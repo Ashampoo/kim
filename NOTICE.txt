@@ -2,7 +2,7 @@ Ashampoo Kim - Kotlin Image Metadata
 Copyright 2023 Ashampoo GmbH & Co. KG
 
 This product includes a modified portion of 'Apache Commons Imaging'
-developed by the Apache Software Foundation (http://www.apache.org/).
+developed by the Apache Software Foundation (https://www.apache.org/).
 The metadata handling logic, originally implemented in Java, has been rewritten in Kotlin.
 Copyright 2007-2023 The Apache Software Foundation
 
