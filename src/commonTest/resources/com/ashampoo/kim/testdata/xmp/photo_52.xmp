@@ -1,0 +1,250 @@
+<x:xmpmeta xmlns:x="adobe:ns:meta/" x:xmptk="XMP Core 6.0.0">
+   <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+      <rdf:Description rdf:about=""
+            xmlns:lr="http://ns.adobe.com/lightroom/1.0/"
+            xmlns:aux="http://ns.adobe.com/exif/1.0/aux/"
+            xmlns:exif="http://ns.adobe.com/exif/1.0/"
+            xmlns:exifEX="http://cipa.jp/exif/1.0/"
+            xmlns:xmp="http://ns.adobe.com/xap/1.0/"
+            xmlns:darktable="http://darktable.sf.net/"
+            xmlns:tiff="http://ns.adobe.com/tiff/1.0/"
+            xmlns:dc="http://purl.org/dc/elements/1.1/"
+            xmlns:photoshop="http://ns.adobe.com/photoshop/1.0/"
+            xmlns:xmpMM="http://ns.adobe.com/xap/1.0/mm/">
+         <lr:hierarchicalSubject>
+            <rdf:Seq>
+               <rdf:li>dxfoto|published</rdf:li>
+            </rdf:Seq>
+         </lr:hierarchicalSubject>
+         <aux:Firmware>Firmware Version 1.1.2</aux:Firmware>
+         <aux:LensInfo>55/1 250/1 0/0 0/0</aux:LensInfo>
+         <aux:Lens>Canon EF-S 55-250mm f/4-5.6 IS STM</aux:Lens>
+         <aux:LensID>4148</aux:LensID>
+         <aux:FlashCompensation>0/1</aux:FlashCompensation>
+         <exif:WhiteBalance>0</exif:WhiteBalance>
+         <exif:ExposureMode>1</exif:ExposureMode>
+         <exif:PixelYDimension>2670</exif:PixelYDimension>
+         <exif:MaxApertureValue>208885/36926</exif:MaxApertureValue>
+         <exif:ISOSpeedRatings>
+            <rdf:Seq>
+               <rdf:li>250</rdf:li>
+            </rdf:Seq>
+         </exif:ISOSpeedRatings>
+         <exif:GPSLatitude>55,54.679N</exif:GPSLatitude>
+         <exif:GPSLongitude>36,57.8089E</exif:GPSLongitude>
+         <exif:FocalPlaneResolutionUnit>2</exif:FocalPlaneResolutionUnit>
+         <exif:ColorSpace>1</exif:ColorSpace>
+         <exif:GPSVersionID>2.2.0.0</exif:GPSVersionID>
+         <exif:ApertureValue>368640/65536</exif:ApertureValue>
+         <exif:FlashPixVersion>0100</exif:FlashPixVersion>
+         <exif:SubsecTimeOriginal>47</exif:SubsecTimeOriginal>
+         <exif:FocalPlaneYResolution>3648000/599</exif:FocalPlaneYResolution>
+         <exif:ComponentsConfiguration>
+            <rdf:Seq>
+               <rdf:li>1</rdf:li>
+               <rdf:li>2</rdf:li>
+               <rdf:li>3</rdf:li>
+               <rdf:li>0</rdf:li>
+            </rdf:Seq>
+         </exif:ComponentsConfiguration>
+         <exif:ExposureTime>1/400</exif:ExposureTime>
+         <exif:GPSLongitudeRef>E</exif:GPSLongitudeRef>
+         <exif:FocalLength>250/1</exif:FocalLength>
+         <exif:CustomRendered>0</exif:CustomRendered>
+         <exif:ShutterSpeedValue>565248/65536</exif:ShutterSpeedValue>
+         <exif:SubsecTimeDigitized>47</exif:SubsecTimeDigitized>
+         <exif:GPSLatitudeRef>N</exif:GPSLatitudeRef>
+         <exif:SceneCaptureType>0</exif:SceneCaptureType>
+         <exif:ExposureProgram>1</exif:ExposureProgram>
+         <exif:FNumber>71/10</exif:FNumber>
+         <exif:MeteringMode>5</exif:MeteringMode>
+         <exif:Flash rdf:parseType="Resource">
+            <exif:Function>False</exif:Function>
+            <exif:Fired>False</exif:Fired>
+            <exif:Return>0</exif:Return>
+            <exif:Mode>2</exif:Mode>
+            <exif:RedEyeMode>False</exif:RedEyeMode>
+         </exif:Flash>
+         <exif:FocalPlaneXResolution>5472000/899</exif:FocalPlaneXResolution>
+         <exif:ExposureBiasValue>0/1</exif:ExposureBiasValue>
+         <exif:PixelXDimension>4000</exif:PixelXDimension>
+         <exif:ExifVersion>0230</exif:ExifVersion>
+         <exif:SubsecTime>47</exif:SubsecTime>
+         <exifEX:BodySerialNumber>103025021031</exifEX:BodySerialNumber>
+         <exifEX:PhotographicSensitivity>250</exifEX:PhotographicSensitivity>
+         <exifEX:RecommendedExposureIndex>250</exifEX:RecommendedExposureIndex>
+         <exifEX:LensModel>EF-S55-250mm f/4-5.6 IS STM</exifEX:LensModel>
+         <exifEX:LensSerialNumber>0000800dcf</exifEX:LensSerialNumber>
+         <exifEX:SensitivityType>2</exifEX:SensitivityType>
+         <exifEX:LensSpecification>
+            <rdf:Seq>
+               <rdf:li>55/1</rdf:li>
+               <rdf:li>250/1</rdf:li>
+               <rdf:li>0/1</rdf:li>
+               <rdf:li>0/1</rdf:li>
+            </rdf:Seq>
+         </exifEX:LensSpecification>
+         <xmp:ModifyDate>2019-07-15T20:09:19.47</xmp:ModifyDate>
+         <xmp:Rating>0</xmp:Rating>
+         <xmp:CreateDate>2019-07-14T09:21:11.47</xmp:CreateDate>
+         <xmp:CreatorTool>darktable 2.6.2</xmp:CreatorTool>
+         <darktable:auto_presets_applied>1</darktable:auto_presets_applied>
+         <darktable:history>
+            <rdf:Seq>
+               <rdf:li rdf:parseType="Resource">
+                  <darktable:params>000000400000003f0000003f</darktable:params>
+                  <darktable:operation>sharpen</darktable:operation>
+                  <darktable:enabled>1</darktable:enabled>
+                  <darktable:modversion>1</darktable:modversion>
+                  <darktable:blendop_version>8</darktable:blendop_version>
+                  <darktable:multi_priority>0</darktable:multi_priority>
+                  <darktable:blendop_params>gz11eJxjYGBgkGAAgRNODGiAEV0AJ2iwh+CRxQcA5qIZBA==</darktable:blendop_params>
+                  <darktable:multi_name/>
+               </rdf:li>
+               <rdf:li rdf:parseType="Resource">
+                  <darktable:params>ffffffff</darktable:params>
+                  <darktable:operation>flip</darktable:operation>
+                  <darktable:enabled>1</darktable:enabled>
+                  <darktable:modversion>2</darktable:modversion>
+                  <darktable:blendop_version>8</darktable:blendop_version>
+                  <darktable:multi_priority>0</darktable:multi_priority>
+                  <darktable:blendop_params>gz11eJxjYGBgkGAAgRNODGiAEV0AJ2iwh+CRxQcA5qIZBA==</darktable:blendop_params>
+                  <darktable:multi_name/>
+               </rdf:li>
+               <rdf:li rdf:parseType="Resource">
+                  <darktable:params>gz09eJxjYIAAM6vnNnqyn22E9n235b6aa3cy6rVdRaK9/Y970fYf95bbMzA0QPEoGEqADYnNhCELiVMAudcSGA==</darktable:params>
+                  <darktable:operation>basecurve</darktable:operation>
+                  <darktable:enabled>1</darktable:enabled>
+                  <darktable:modversion>5</darktable:modversion>
+                  <darktable:blendop_version>8</darktable:blendop_version>
+                  <darktable:multi_priority>0</darktable:multi_priority>
+                  <darktable:blendop_params>gz11eJxjYGBgkGAAgRNODGiAEV0AJ2iwh+CRxQcA5qIZBA==</darktable:blendop_params>
+                  <darktable:multi_name/>
+               </rdf:li>
+               <rdf:li rdf:parseType="Resource">
+                  <darktable:params>00000000e040f23c4ee4053efce6413f80c75b3f0000000000000000cdcc4c3ecdcc4c3ecdcc4c3fcdcc4c3ecdcc4c3fcdcc4c3fcdcc4c3ecdcc4c3f000000000000000000000000010000000000000001000000</darktable:params>
+                  <darktable:operation>clipping</darktable:operation>
+                  <darktable:enabled>1</darktable:enabled>
+                  <darktable:modversion>5</darktable:modversion>
+                  <darktable:blendop_version>8</darktable:blendop_version>
+                  <darktable:multi_priority>0</darktable:multi_priority>
+                  <darktable:blendop_params>gz11eJxjYGBgkGAAgRNODGiAEV0AJ2iwh+CRxQcA5qIZBA==</darktable:blendop_params>
+                  <darktable:multi_name/>
+               </rdf:li>
+               <rdf:li rdf:parseType="Resource">
+                  <darktable:params>00000000501a1c3d0c5cb53d9a16443feef9503f0000000000000000cdcc4c3ecdcc4c3ecdcc4c3fcdcc4c3ecdcc4c3fcdcc4c3fcdcc4c3ecdcc4c3f000000000000000000000000010000000000000001000000</darktable:params>
+                  <darktable:operation>clipping</darktable:operation>
+                  <darktable:enabled>1</darktable:enabled>
+                  <darktable:modversion>5</darktable:modversion>
+                  <darktable:blendop_version>8</darktable:blendop_version>
+                  <darktable:multi_priority>0</darktable:multi_priority>
+                  <darktable:blendop_params>gz11eJxjYGBgkGAAgRNODGiAEV0AJ2iwh+CRxQcA5qIZBA==</darktable:blendop_params>
+                  <darktable:multi_name/>
+               </rdf:li>
+               <rdf:li rdf:parseType="Resource">
+                  <darktable:params>d0ccccbdd0cccc3dd0cc4cbd</darktable:params>
+                  <darktable:operation>colisa</darktable:operation>
+                  <darktable:enabled>1</darktable:enabled>
+                  <darktable:modversion>1</darktable:modversion>
+                  <darktable:blendop_version>8</darktable:blendop_version>
+                  <darktable:multi_priority>0</darktable:multi_priority>
+                  <darktable:blendop_params>gz11eJxjYGBgkGAAgRNODGiAEV0AJ2iwh+CRxQcA5qIZBA==</darktable:blendop_params>
+                  <darktable:multi_name/>
+               </rdf:li>
+               <rdf:li rdf:parseType="Resource">
+                  <darktable:params>01000000cdcccc3ecdcc8c3f0000803ecdcc4c3e</darktable:params>
+                  <darktable:operation>bilat</darktable:operation>
+                  <darktable:enabled>1</darktable:enabled>
+                  <darktable:modversion>3</darktable:modversion>
+                  <darktable:blendop_version>8</darktable:blendop_version>
+                  <darktable:multi_priority>0</darktable:multi_priority>
+                  <darktable:blendop_params>gz11eJxjYGBgkGAAgRNODGiAEV0AJ2iwh+CRxQcA5qIZBA==</darktable:blendop_params>
+                  <darktable:multi_name/>
+               </rdf:li>
+               <rdf:li rdf:parseType="Resource">
+                  <darktable:params>000000400000803f0000003f</darktable:params>
+                  <darktable:operation>sharpen</darktable:operation>
+                  <darktable:enabled>1</darktable:enabled>
+                  <darktable:modversion>1</darktable:modversion>
+                  <darktable:blendop_version>8</darktable:blendop_version>
+                  <darktable:multi_priority>0</darktable:multi_priority>
+                  <darktable:blendop_params>gz11eJxjYGBgkGAAgRNODGiAEV0AJ2iwh+CRxQcA5qIZBA==</darktable:blendop_params>
+                  <darktable:multi_name/>
+               </rdf:li>
+               <rdf:li rdf:parseType="Resource">
+                  <darktable:params>01000000cdcccc3ecdcc8c3f9a99993ecdcc4c3e</darktable:params>
+                  <darktable:operation>bilat</darktable:operation>
+                  <darktable:enabled>1</darktable:enabled>
+                  <darktable:modversion>3</darktable:modversion>
+                  <darktable:blendop_version>8</darktable:blendop_version>
+                  <darktable:multi_priority>0</darktable:multi_priority>
+                  <darktable:blendop_params>gz11eJxjYGBgkGAAgRNODGiAEV0AJ2iwh+CRxQcA5qIZBA==</darktable:blendop_params>
+                  <darktable:multi_name/>
+               </rdf:li>
+               <rdf:li rdf:parseType="Resource">
+                  <darktable:params>0000000000000000000048420000c842d9899d3dc332d53e8bac483f</darktable:params>
+                  <darktable:operation>levels</darktable:operation>
+                  <darktable:enabled>1</darktable:enabled>
+                  <darktable:modversion>2</darktable:modversion>
+                  <darktable:blendop_version>8</darktable:blendop_version>
+                  <darktable:multi_priority>0</darktable:multi_priority>
+                  <darktable:blendop_params>gz11eJxjYGBgkGAAgRNODGiAEV0AJ2iwh+CRxQcA5qIZBA==</darktable:blendop_params>
+                  <darktable:multi_name/>
+               </rdf:li>
+               <rdf:li rdf:parseType="Resource">
+                  <darktable:params>0000000000000000000000000100000000000000</darktable:params>
+                  <darktable:operation>demosaic</darktable:operation>
+                  <darktable:enabled>1</darktable:enabled>
+                  <darktable:modversion>3</darktable:modversion>
+                  <darktable:blendop_version>8</darktable:blendop_version>
+                  <darktable:multi_priority>0</darktable:multi_priority>
+                  <darktable:blendop_params>gz11eJxjYGBgkGAAgRNODGiAEV0AJ2iwh+CRxQcA5qIZBA==</darktable:blendop_params>
+                  <darktable:multi_name/>
+               </rdf:li>
+               <rdf:li rdf:parseType="Resource">
+                  <darktable:params>32000000</darktable:params>
+                  <darktable:operation>cacorrect</darktable:operation>
+                  <darktable:enabled>1</darktable:enabled>
+                  <darktable:modversion>1</darktable:modversion>
+                  <darktable:blendop_version>8</darktable:blendop_version>
+                  <darktable:multi_priority>0</darktable:multi_priority>
+                  <darktable:blendop_params>gz11eJxjYGBgkGAAgRNODGiAEV0AJ2iwh+CRxQcA5qIZBA==</darktable:blendop_params>
+                  <darktable:multi_name/>
+               </rdf:li>
+            </rdf:Seq>
+         </darktable:history>
+         <darktable:history_end>12</darktable:history_end>
+         <darktable:raw_params>0</darktable:raw_params>
+         <darktable:xmp_version>2</darktable:xmp_version>
+         <tiff:Orientation>1</tiff:Orientation>
+         <tiff:XResolution>300</tiff:XResolution>
+         <tiff:ResolutionUnit>2</tiff:ResolutionUnit>
+         <tiff:Make>Canon</tiff:Make>
+         <tiff:YResolution>300</tiff:YResolution>
+         <tiff:Model>Canon EOS 70D</tiff:Model>
+         <dc:subject>
+            <rdf:Bag>
+               <rdf:li>dxfoto</rdf:li>
+               <rdf:li>published</rdf:li>
+            </rdf:Bag>
+         </dc:subject>
+         <dc:rights>
+            <rdf:Alt>
+               <rdf:li xml:lang="x-default">CC-BY 3.0</rdf:li>
+            </rdf:Alt>
+         </dc:rights>
+         <dc:description>
+            <rdf:Alt>
+               <rdf:li xml:lang="x-default">honeybee perching on yellow flower</rdf:li>
+            </rdf:Alt>
+         </dc:description>
+         <dc:creator>
+            <rdf:Seq>
+               <rdf:li>dxfoto.ru</rdf:li>
+            </rdf:Seq>
+         </dc:creator>
+         <photoshop:DateCreated>2019-07-14T09:21:11.47</photoshop:DateCreated>
+         <xmpMM:DerivedFrom>_MG_9604.CR2</xmpMM:DerivedFrom>
+      </rdf:Description>
+   </rdf:RDF>
+</x:xmpmeta>

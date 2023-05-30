@@ -1,0 +1,2 @@
+# Git should not touch original CRLF in XMP
+*.xmp binary

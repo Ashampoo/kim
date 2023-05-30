@@ -1,0 +1,295 @@
+File format : JPEG
+Resolution  : 3705 x 2470
+---- TIFF ----
+Version 42
+Little-endian (Intel, II)
+---- IFD0 ----
+0x010f Make = Canon
+0x0110 Model = Canon EOS REBEL T3i
+0x011a XResolution = 240/1 (240.0)
+0x011b YResolution = 240/1 (240.0)
+0x0128 ResolutionUnit = 3
+0x0131 Software = Adobe Photoshop Lightroom 4.2 (Windows)
+0x0132 DateTime = 2012:11:20 21:52:09
+0x8769 ExifOffset = 224
+0x8825 GPSInfo = 732
+
+---- ExifIFD ----
+0x829a ExposureTime = 1/640 (0.0015625)
+0x829d FNumber = 56/10 (5.6)
+0x8822 ExposureProgram = 1
+0x8827 PhotographicSensitivity = 400
+0x9000 ExifVersion = [0x30, 0x32, 0x33, 0x30]
+0x9003 DateTimeOriginal = 2011:06:26 08:16:55
+0x9004 DateTimeDigitized = 2011:06:26 08:16:55
+0x9201 ShutterSpeedValue = 9321928/1000000 (9.321928)
+0x9202 ApertureValue = 4970854/1000000 (4.970854)
+0x9204 ExposureCompensation = 0/1 (0.0)
+0x9205 MaxApertureValue = 5/1 (5.0)
+0x9207 MeteringMode = 5
+0x9208 LightSource = 255
+0x9209 Flash = 8
+0x920a FocalLength = 400/1 (400.0)
+0x9292 SubSecTimeDigitized = 53
+0xa20e FocalPlaneXResolution = 5184000/905 (5728.176795580111)
+0xa20f FocalPlaneYResolution = 3456000/595 (5808.403361344538)
+0xa210 FocalPlaneResolutionUnit = 2
+0xa402 ExposureMode = 1
+0xa403 WhiteBalance = 1
+0xa406 SceneCaptureType = 0
+0xa431 BodySerialNumber = 102025013293
+0xa432 LensSpecification = [400/1 (400.0), 400/1 (400.0), Invalid rational (0/0), Invalid rational (0/0)]
+0xa434 LensModel = EF400mm f/5.6L USM
+0xa435 LensSerialNumber = 0000000000
+
+---- GPS ----
+0x0001 GPSLatitudeRef = N
+0x0002 GPSLatitude = [22/1 (22.0), 48/1 (48.0), 18531/3125 (5.92992)]
+0x0003 GPSLongitudeRef = E
+0x0004 GPSLongitude = [120/1 (120.0), 17/1 (17.0), 40807/4443 (9.184559981994148)]
+
+---- Sub ----
+0x0103 Compression = 6
+0x011a XResolution = 72/1 (72.0)
+0x011b YResolution = 72/1 (72.0)
+0x0128 ResolutionUnit = 2
+0x0201 JpgFromRawStart = 940
+0x0202 JpgFromRawLength = 9685
+
+
+---- IPTC ----
+Date Created (55) = '20110626'
+Time Created (60) = '081655'
+Digital Creation Date (62) = '20110626'
+Digital Creation Time (63) = '081655'
+Caption/Abstract (120) = 'brown butterfly on orange petaled flower'
+Keywords (25) = 'invertebrate'
+Keywords (25) = 'cosmos'
+
+---- XMP ----
+<?xpacket begin='﻿' id='W5M0MpCehiHzreSzNTczkc9d'?>
+<x:xmpmeta xmlns:x='adobe:ns:meta/' x:xmptk='Image::ExifTool 12.27'>
+<rdf:RDF xmlns:rdf='http://www.w3.org/1999/02/22-rdf-syntax-ns#'>
+
+ <rdf:Description rdf:about=''
+  xmlns:aux='http://ns.adobe.com/exif/1.0/aux/'>
+  <aux:ApproximateFocusDistance>350/100</aux:ApproximateFocusDistance>
+  <aux:Firmware>1.0.1</aux:Firmware>
+  <aux:FlashCompensation>0/1</aux:FlashCompensation>
+  <aux:ImageNumber>0</aux:ImageNumber>
+  <aux:Lens>EF400mm f/5.6L USM</aux:Lens>
+  <aux:LensID>172</aux:LensID>
+  <aux:LensInfo>400/1 400/1 0/0 0/0</aux:LensInfo>
+  <aux:LensSerialNumber>0000000000</aux:LensSerialNumber>
+  <aux:SerialNumber>102025013293</aux:SerialNumber>
+ </rdf:Description>
+
+ <rdf:Description rdf:about=''
+  xmlns:dc='http://purl.org/dc/elements/1.1/'>
+  <dc:format>image/jpeg</dc:format>
+ </rdf:Description>
+
+ <rdf:Description rdf:about=''
+  xmlns:photoshop='http://ns.adobe.com/photoshop/1.0/'>
+  <photoshop:DateCreated>2011-06-26T08:16:55.53</photoshop:DateCreated>
+ </rdf:Description>
+
+ <rdf:Description rdf:about=''
+  xmlns:xmp='http://ns.adobe.com/xap/1.0/'>
+  <xmp:CreateDate>2011-06-26T08:16:55.53</xmp:CreateDate>
+  <xmp:CreatorTool>Adobe Photoshop Lightroom 4.2 (Windows)</xmp:CreatorTool>
+  <xmp:MetadataDate>2012-11-20T21:52:09+08:00</xmp:MetadataDate>
+  <xmp:ModifyDate>2012-11-20T21:52:09+08:00</xmp:ModifyDate>
+  <xmp:Rating>3</xmp:Rating>
+ </rdf:Description>
+
+ <rdf:Description rdf:about=''
+  xmlns:stEvt='http://ns.adobe.com/xap/1.0/sType/ResourceEvent#'
+  xmlns:stRef='http://ns.adobe.com/xap/1.0/sType/ResourceRef#'
+  xmlns:xmpMM='http://ns.adobe.com/xap/1.0/mm/'>
+  <xmpMM:DerivedFrom rdf:parseType='Resource'>
+   <stRef:documentID>5A955C431B805E6BA1D276896A7DF8D0</stRef:documentID>
+   <stRef:instanceID>xmp.iid:f64c2c89-48d8-ca43-9309-ddfc18bbd4fc</stRef:instanceID>
+   <stRef:originalDocumentID>5A955C431B805E6BA1D276896A7DF8D0</stRef:originalDocumentID>
+  </xmpMM:DerivedFrom>
+  <xmpMM:DocumentID>xmp.did:db26b988-3004-0146-a322-b2eefc779823</xmpMM:DocumentID>
+  <xmpMM:History>
+   <rdf:Seq>
+    <rdf:li>saved</rdf:li>
+    <rdf:li>xmp.iid:7401f5df-4c24-c749-bc58-0b3929d876d1</rdf:li>
+    <rdf:li>2012-11-20T21:40:25+08:00</rdf:li>
+    <rdf:li>Adobe Photoshop Lightroom 4.2 (Windows)</rdf:li>
+    <rdf:li>/metadata</rdf:li>
+    <rdf:li>saved</rdf:li>
+    <rdf:li>xmp.iid:f64c2c89-48d8-ca43-9309-ddfc18bbd4fc</rdf:li>
+    <rdf:li>2012-11-20T21:40:26+08:00</rdf:li>
+    <rdf:li>Adobe Photoshop Lightroom 4.2 (Windows)</rdf:li>
+    <rdf:li>/metadata</rdf:li>
+    <rdf:li rdf:parseType='Resource'>
+     <stEvt:action>derived</stEvt:action>
+     <stEvt:parameters>saved to new location</stEvt:parameters>
+    </rdf:li>
+    <rdf:li rdf:parseType='Resource'>
+     <stEvt:action>saved</stEvt:action>
+     <stEvt:changed>/</stEvt:changed>
+     <stEvt:instanceID>xmp.iid:db26b988-3004-0146-a322-b2eefc779823</stEvt:instanceID>
+     <stEvt:softwareAgent>Adobe Photoshop Lightroom 4.2 (Windows)</stEvt:softwareAgent>
+     <stEvt:when>2012-11-20T21:52:09+08:00</stEvt:when>
+    </rdf:li>
+   </rdf:Seq>
+  </xmpMM:History>
+  <xmpMM:InstanceID>xmp.iid:db26b988-3004-0146-a322-b2eefc779823</xmpMM:InstanceID>
+  <xmpMM:OriginalDocumentID>5A955C431B805E6BA1D276896A7DF8D0</xmpMM:OriginalDocumentID>
+ </rdf:Description>
+
+ <rdf:Description rdf:about=''
+  xmlns:crs='http://ns.adobe.com/camera-raw-settings/1.0/'>
+  <crs:AlreadyApplied>True</crs:AlreadyApplied>
+  <crs:AutoLateralCA>1</crs:AutoLateralCA>
+  <crs:Blacks2012>0</crs:Blacks2012>
+  <crs:BlueHue>0</crs:BlueHue>
+  <crs:BlueSaturation>0</crs:BlueSaturation>
+  <crs:CameraProfile>Embedded</crs:CameraProfile>
+  <crs:Clarity2012>+30</crs:Clarity2012>
+  <crs:ColorNoiseReduction>0</crs:ColorNoiseReduction>
+  <crs:Contrast2012>0</crs:Contrast2012>
+  <crs:ConvertToGrayscale>False</crs:ConvertToGrayscale>
+  <crs:CropAngle>0</crs:CropAngle>
+  <crs:CropBottom>0.83586</crs:CropBottom>
+  <crs:CropConstrainToWarp>0</crs:CropConstrainToWarp>
+  <crs:CropHeight>2470</crs:CropHeight>
+  <crs:CropLeft>0.088384</crs:CropLeft>
+  <crs:CropRight>0.803031</crs:CropRight>
+  <crs:CropTop>0.121213</crs:CropTop>
+  <crs:CropUnit>0</crs:CropUnit>
+  <crs:CropWidth>3705</crs:CropWidth>
+  <crs:DefringeGreenAmount>0</crs:DefringeGreenAmount>
+  <crs:DefringeGreenHueHi>60</crs:DefringeGreenHueHi>
+  <crs:DefringeGreenHueLo>40</crs:DefringeGreenHueLo>
+  <crs:DefringePurpleAmount>0</crs:DefringePurpleAmount>
+  <crs:DefringePurpleHueHi>70</crs:DefringePurpleHueHi>
+  <crs:DefringePurpleHueLo>30</crs:DefringePurpleHueLo>
+  <crs:Exposure2012>-0.60</crs:Exposure2012>
+  <crs:GrainAmount>0</crs:GrainAmount>
+  <crs:GreenHue>0</crs:GreenHue>
+  <crs:GreenSaturation>0</crs:GreenSaturation>
+  <crs:HasCrop>True</crs:HasCrop>
+  <crs:HasSettings>True</crs:HasSettings>
+  <crs:Highlights2012>0</crs:Highlights2012>
+  <crs:HueAdjustmentAqua>0</crs:HueAdjustmentAqua>
+  <crs:HueAdjustmentBlue>0</crs:HueAdjustmentBlue>
+  <crs:HueAdjustmentGreen>0</crs:HueAdjustmentGreen>
+  <crs:HueAdjustmentMagenta>0</crs:HueAdjustmentMagenta>
+  <crs:HueAdjustmentOrange>0</crs:HueAdjustmentOrange>
+  <crs:HueAdjustmentPurple>0</crs:HueAdjustmentPurple>
+  <crs:HueAdjustmentRed>0</crs:HueAdjustmentRed>
+  <crs:HueAdjustmentYellow>0</crs:HueAdjustmentYellow>
+  <crs:IncrementalTemperature>0</crs:IncrementalTemperature>
+  <crs:IncrementalTint>0</crs:IncrementalTint>
+  <crs:LensManualDistortionAmount>0</crs:LensManualDistortionAmount>
+  <crs:LensProfileEnable>0</crs:LensProfileEnable>
+  <crs:LensProfileSetup>LensDefaults</crs:LensProfileSetup>
+  <crs:LuminanceAdjustmentAqua>0</crs:LuminanceAdjustmentAqua>
+  <crs:LuminanceAdjustmentBlue>0</crs:LuminanceAdjustmentBlue>
+  <crs:LuminanceAdjustmentGreen>0</crs:LuminanceAdjustmentGreen>
+  <crs:LuminanceAdjustmentMagenta>0</crs:LuminanceAdjustmentMagenta>
+  <crs:LuminanceAdjustmentOrange>+33</crs:LuminanceAdjustmentOrange>
+  <crs:LuminanceAdjustmentPurple>0</crs:LuminanceAdjustmentPurple>
+  <crs:LuminanceAdjustmentRed>0</crs:LuminanceAdjustmentRed>
+  <crs:LuminanceAdjustmentYellow>0</crs:LuminanceAdjustmentYellow>
+  <crs:LuminanceNoiseReductionContrast>0</crs:LuminanceNoiseReductionContrast>
+  <crs:LuminanceNoiseReductionDetail>50</crs:LuminanceNoiseReductionDetail>
+  <crs:LuminanceSmoothing>17</crs:LuminanceSmoothing>
+  <crs:ParametricDarks>0</crs:ParametricDarks>
+  <crs:ParametricHighlightSplit>75</crs:ParametricHighlightSplit>
+  <crs:ParametricHighlights>0</crs:ParametricHighlights>
+  <crs:ParametricLights>0</crs:ParametricLights>
+  <crs:ParametricMidtoneSplit>50</crs:ParametricMidtoneSplit>
+  <crs:ParametricShadowSplit>25</crs:ParametricShadowSplit>
+  <crs:ParametricShadows>0</crs:ParametricShadows>
+  <crs:PerspectiveHorizontal>0</crs:PerspectiveHorizontal>
+  <crs:PerspectiveRotate>0.0</crs:PerspectiveRotate>
+  <crs:PerspectiveScale>100</crs:PerspectiveScale>
+  <crs:PerspectiveVertical>0</crs:PerspectiveVertical>
+  <crs:PostCropVignetteAmount>0</crs:PostCropVignetteAmount>
+  <crs:ProcessVersion>6.7</crs:ProcessVersion>
+  <crs:RedHue>0</crs:RedHue>
+  <crs:RedSaturation>0</crs:RedSaturation>
+  <crs:Saturation>+7</crs:Saturation>
+  <crs:SaturationAdjustmentAqua>0</crs:SaturationAdjustmentAqua>
+  <crs:SaturationAdjustmentBlue>0</crs:SaturationAdjustmentBlue>
+  <crs:SaturationAdjustmentGreen>0</crs:SaturationAdjustmentGreen>
+  <crs:SaturationAdjustmentMagenta>0</crs:SaturationAdjustmentMagenta>
+  <crs:SaturationAdjustmentOrange>+36</crs:SaturationAdjustmentOrange>
+  <crs:SaturationAdjustmentPurple>0</crs:SaturationAdjustmentPurple>
+  <crs:SaturationAdjustmentRed>0</crs:SaturationAdjustmentRed>
+  <crs:SaturationAdjustmentYellow>0</crs:SaturationAdjustmentYellow>
+  <crs:ShadowTint>0</crs:ShadowTint>
+  <crs:Shadows2012>0</crs:Shadows2012>
+  <crs:SharpenDetail>25</crs:SharpenDetail>
+  <crs:SharpenEdgeMasking>0</crs:SharpenEdgeMasking>
+  <crs:SharpenRadius>+1.0</crs:SharpenRadius>
+  <crs:Sharpness>0</crs:Sharpness>
+  <crs:SplitToningBalance>0</crs:SplitToningBalance>
+  <crs:SplitToningHighlightHue>0</crs:SplitToningHighlightHue>
+  <crs:SplitToningHighlightSaturation>0</crs:SplitToningHighlightSaturation>
+  <crs:SplitToningShadowHue>0</crs:SplitToningShadowHue>
+  <crs:SplitToningShadowSaturation>0</crs:SplitToningShadowSaturation>
+  <crs:ToneCurveName2012>Linear</crs:ToneCurveName2012>
+  <crs:ToneCurvePV2012>
+   <rdf:Seq>
+    <rdf:li>0, 0</rdf:li>
+    <rdf:li>255, 255</rdf:li>
+   </rdf:Seq>
+  </crs:ToneCurvePV2012>
+  <crs:ToneCurvePV2012Blue>
+   <rdf:Seq>
+    <rdf:li>0, 0</rdf:li>
+    <rdf:li>255, 255</rdf:li>
+   </rdf:Seq>
+  </crs:ToneCurvePV2012Blue>
+  <crs:ToneCurvePV2012Green>
+   <rdf:Seq>
+    <rdf:li>0, 0</rdf:li>
+    <rdf:li>255, 255</rdf:li>
+   </rdf:Seq>
+  </crs:ToneCurvePV2012Green>
+  <crs:ToneCurvePV2012Red>
+   <rdf:Seq>
+    <rdf:li>0, 0</rdf:li>
+    <rdf:li>255, 255</rdf:li>
+   </rdf:Seq>
+  </crs:ToneCurvePV2012Red>
+  <crs:Version>7.2</crs:Version>
+  <crs:Vibrance>+25</crs:Vibrance>
+  <crs:VignetteAmount>0</crs:VignetteAmount>
+  <crs:WhiteBalance>As Shot</crs:WhiteBalance>
+  <crs:Whites2012>0</crs:Whites2012>
+ </rdf:Description>
+</rdf:RDF>
+</x:xmpmeta>
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+<?xpacket end='w'?>

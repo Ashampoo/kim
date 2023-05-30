@@ -1,0 +1,208 @@
+<?xpacket begin='﻿' id='W5M0MpCehiHzreSzNTczkc9d'?>
+<x:xmpmeta xmlns:x='adobe:ns:meta/' x:xmptk='Image::ExifTool 12.27'>
+<rdf:RDF xmlns:rdf='http://www.w3.org/1999/02/22-rdf-syntax-ns#'>
+
+ <rdf:Description rdf:about=''
+  xmlns:darktable='http://darktable.sf.net/'>
+  <darktable:auto_presets_applied>1</darktable:auto_presets_applied>
+  <darktable:history>
+   <rdf:Seq>
+    <rdf:li rdf:parseType='Resource'>
+     <darktable:blendop_params>gz11eJxjYGBgkGAAgRNODGiAEV0AJ2iwh+CRxQcA5qIZBA==</darktable:blendop_params>
+     <darktable:blendop_version>8</darktable:blendop_version>
+     <darktable:enabled>1</darktable:enabled>
+     <darktable:modversion>1</darktable:modversion>
+     <darktable:multi_name/>
+     <darktable:multi_priority>0</darktable:multi_priority>
+     <darktable:operation>sharpen</darktable:operation>
+     <darktable:params>000000400000003f0000003f</darktable:params>
+    </rdf:li>
+    <rdf:li rdf:parseType='Resource'>
+     <darktable:blendop_params>gz11eJxjYGBgkGAAgRNODGiAEV0AJ2iwh+CRxQcA5qIZBA==</darktable:blendop_params>
+     <darktable:blendop_version>8</darktable:blendop_version>
+     <darktable:enabled>1</darktable:enabled>
+     <darktable:modversion>2</darktable:modversion>
+     <darktable:multi_name/>
+     <darktable:multi_priority>0</darktable:multi_priority>
+     <darktable:operation>flip</darktable:operation>
+     <darktable:params>ffffffff</darktable:params>
+    </rdf:li>
+    <rdf:li rdf:parseType='Resource'>
+     <darktable:blendop_params>gz11eJxjYGBgkGAAgRNODGiAEV0AJ2iwh+CRxQcA5qIZBA==</darktable:blendop_params>
+     <darktable:blendop_version>8</darktable:blendop_version>
+     <darktable:enabled>1</darktable:enabled>
+     <darktable:modversion>5</darktable:modversion>
+     <darktable:multi_name/>
+     <darktable:multi_priority>0</darktable:multi_priority>
+     <darktable:operation>basecurve</darktable:operation>
+     <darktable:params>gz09eJxjYIAAM6vnNnqyn22E9n235b6aa3cy6rVdRaK9/Y970fYf95bbMzA0QPEoGEqADYnNhCELiVMAudcSGA==</darktable:params>
+    </rdf:li>
+    <rdf:li rdf:parseType='Resource'>
+     <darktable:blendop_params>gz11eJxjYGBgkGAAgRNODGiAEV0AJ2iwh+CRxQcA5qIZBA==</darktable:blendop_params>
+     <darktable:blendop_version>8</darktable:blendop_version>
+     <darktable:enabled>1</darktable:enabled>
+     <darktable:modversion>5</darktable:modversion>
+     <darktable:multi_name/>
+     <darktable:multi_priority>0</darktable:multi_priority>
+     <darktable:operation>clipping</darktable:operation>
+     <darktable:params>00000000e040f23c4ee4053efce6413f80c75b3f0000000000000000cdcc4c3ecdcc4c3ecdcc4c3fcdcc4c3ecdcc4c3fcdcc4c3fcdcc4c3ecdcc4c3f000000000000000000000000010000000000000001000000</darktable:params>
+    </rdf:li>
+    <rdf:li rdf:parseType='Resource'>
+     <darktable:blendop_params>gz11eJxjYGBgkGAAgRNODGiAEV0AJ2iwh+CRxQcA5qIZBA==</darktable:blendop_params>
+     <darktable:blendop_version>8</darktable:blendop_version>
+     <darktable:enabled>1</darktable:enabled>
+     <darktable:modversion>5</darktable:modversion>
+     <darktable:multi_name/>
+     <darktable:multi_priority>0</darktable:multi_priority>
+     <darktable:operation>clipping</darktable:operation>
+     <darktable:params>00000000501a1c3d0c5cb53d9a16443feef9503f0000000000000000cdcc4c3ecdcc4c3ecdcc4c3fcdcc4c3ecdcc4c3fcdcc4c3fcdcc4c3ecdcc4c3f000000000000000000000000010000000000000001000000</darktable:params>
+    </rdf:li>
+    <rdf:li rdf:parseType='Resource'>
+     <darktable:blendop_params>gz11eJxjYGBgkGAAgRNODGiAEV0AJ2iwh+CRxQcA5qIZBA==</darktable:blendop_params>
+     <darktable:blendop_version>8</darktable:blendop_version>
+     <darktable:enabled>1</darktable:enabled>
+     <darktable:modversion>1</darktable:modversion>
+     <darktable:multi_name/>
+     <darktable:multi_priority>0</darktable:multi_priority>
+     <darktable:operation>colisa</darktable:operation>
+     <darktable:params>d0ccccbdd0cccc3dd0cc4cbd</darktable:params>
+    </rdf:li>
+    <rdf:li rdf:parseType='Resource'>
+     <darktable:blendop_params>gz11eJxjYGBgkGAAgRNODGiAEV0AJ2iwh+CRxQcA5qIZBA==</darktable:blendop_params>
+     <darktable:blendop_version>8</darktable:blendop_version>
+     <darktable:enabled>1</darktable:enabled>
+     <darktable:modversion>3</darktable:modversion>
+     <darktable:multi_name/>
+     <darktable:multi_priority>0</darktable:multi_priority>
+     <darktable:operation>bilat</darktable:operation>
+     <darktable:params>01000000cdcccc3ecdcc8c3f0000803ecdcc4c3e</darktable:params>
+    </rdf:li>
+    <rdf:li rdf:parseType='Resource'>
+     <darktable:blendop_params>gz11eJxjYGBgkGAAgRNODGiAEV0AJ2iwh+CRxQcA5qIZBA==</darktable:blendop_params>
+     <darktable:blendop_version>8</darktable:blendop_version>
+     <darktable:enabled>1</darktable:enabled>
+     <darktable:modversion>1</darktable:modversion>
+     <darktable:multi_name/>
+     <darktable:multi_priority>0</darktable:multi_priority>
+     <darktable:operation>sharpen</darktable:operation>
+     <darktable:params>000000400000803f0000003f</darktable:params>
+    </rdf:li>
+    <rdf:li rdf:parseType='Resource'>
+     <darktable:blendop_params>gz11eJxjYGBgkGAAgRNODGiAEV0AJ2iwh+CRxQcA5qIZBA==</darktable:blendop_params>
+     <darktable:blendop_version>8</darktable:blendop_version>
+     <darktable:enabled>1</darktable:enabled>
+     <darktable:modversion>3</darktable:modversion>
+     <darktable:multi_name/>
+     <darktable:multi_priority>0</darktable:multi_priority>
+     <darktable:operation>bilat</darktable:operation>
+     <darktable:params>01000000cdcccc3ecdcc8c3f9a99993ecdcc4c3e</darktable:params>
+    </rdf:li>
+    <rdf:li rdf:parseType='Resource'>
+     <darktable:blendop_params>gz11eJxjYGBgkGAAgRNODGiAEV0AJ2iwh+CRxQcA5qIZBA==</darktable:blendop_params>
+     <darktable:blendop_version>8</darktable:blendop_version>
+     <darktable:enabled>1</darktable:enabled>
+     <darktable:modversion>2</darktable:modversion>
+     <darktable:multi_name/>
+     <darktable:multi_priority>0</darktable:multi_priority>
+     <darktable:operation>levels</darktable:operation>
+     <darktable:params>0000000000000000000048420000c842d9899d3dc332d53e8bac483f</darktable:params>
+    </rdf:li>
+    <rdf:li rdf:parseType='Resource'>
+     <darktable:blendop_params>gz11eJxjYGBgkGAAgRNODGiAEV0AJ2iwh+CRxQcA5qIZBA==</darktable:blendop_params>
+     <darktable:blendop_version>8</darktable:blendop_version>
+     <darktable:enabled>1</darktable:enabled>
+     <darktable:modversion>3</darktable:modversion>
+     <darktable:multi_name/>
+     <darktable:multi_priority>0</darktable:multi_priority>
+     <darktable:operation>demosaic</darktable:operation>
+     <darktable:params>0000000000000000000000000100000000000000</darktable:params>
+    </rdf:li>
+    <rdf:li rdf:parseType='Resource'>
+     <darktable:blendop_params>gz11eJxjYGBgkGAAgRNODGiAEV0AJ2iwh+CRxQcA5qIZBA==</darktable:blendop_params>
+     <darktable:blendop_version>8</darktable:blendop_version>
+     <darktable:enabled>1</darktable:enabled>
+     <darktable:modversion>1</darktable:modversion>
+     <darktable:multi_name/>
+     <darktable:multi_priority>0</darktable:multi_priority>
+     <darktable:operation>cacorrect</darktable:operation>
+     <darktable:params>32000000</darktable:params>
+    </rdf:li>
+   </rdf:Seq>
+  </darktable:history>
+  <darktable:history_end>12</darktable:history_end>
+  <darktable:raw_params>0</darktable:raw_params>
+  <darktable:xmp_version>2</darktable:xmp_version>
+ </rdf:Description>
+
+ <rdf:Description rdf:about=''
+  xmlns:dc='http://purl.org/dc/elements/1.1/'>
+  <dc:creator>
+   <rdf:Seq>
+    <rdf:li>dxfoto.ru</rdf:li>
+   </rdf:Seq>
+  </dc:creator>
+  <dc:rights>
+   <rdf:Alt>
+    <rdf:li xml:lang='x-default'>CC-BY 3.0</rdf:li>
+   </rdf:Alt>
+  </dc:rights>
+  <dc:subject>
+   <rdf:Seq>
+    <rdf:li>dxfoto</rdf:li>
+    <rdf:li>published</rdf:li>
+   </rdf:Seq>
+  </dc:subject>
+ </rdf:Description>
+
+ <rdf:Description rdf:about=''
+  xmlns:exif='http://ns.adobe.com/exif/1.0/'>
+  <exif:GPSLatitude>55,54.678955N</exif:GPSLatitude>
+  <exif:GPSLongitude>36,57.808914E</exif:GPSLongitude>
+  <exif:GPSVersionID>2.2.0.0</exif:GPSVersionID>
+ </rdf:Description>
+
+ <rdf:Description rdf:about=''
+  xmlns:lr='http://ns.adobe.com/lightroom/1.0/'>
+  <lr:hierarchicalSubject>
+   <rdf:Seq>
+    <rdf:li>dxfoto|published</rdf:li>
+   </rdf:Seq>
+  </lr:hierarchicalSubject>
+ </rdf:Description>
+
+ <rdf:Description rdf:about=''
+  xmlns:xmp='http://ns.adobe.com/xap/1.0/'>
+  <xmp:Rating>0</xmp:Rating>
+ </rdf:Description>
+
+ <rdf:Description rdf:about=''
+  xmlns:xmpMM='http://ns.adobe.com/xap/1.0/mm/'>
+  <xmpMM:DerivedFrom>_MG_9604.CR2</xmpMM:DerivedFrom>
+ </rdf:Description>
+</rdf:RDF>
+</x:xmpmeta>
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+<?xpacket end='w'?>

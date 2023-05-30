@@ -1,0 +1,188 @@
+<?xpacket begin="﻿" id="W5M0MpCehiHzreSzNTczkc9d"?>
+<x:xmpmeta xmlns:x="adobe:ns:meta/" x:xmptk="XMP Core 4.4.0-Exiv2">
+ <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+  <rdf:Description rdf:about=""
+    xmlns:darktable="http://darktable.sf.net/"
+    xmlns:xmpMM="http://ns.adobe.com/xap/1.0/mm/"
+    xmlns:stEvt="http://ns.adobe.com/xap/1.0/sType/ResourceEvent#"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:exif="http://ns.adobe.com/exif/1.0/"
+    xmlns:GIMP="http://www.gimp.org/xmp/"
+    xmlns:lr="http://ns.adobe.com/lightroom/1.0/"
+    xmlns:tiff="http://ns.adobe.com/tiff/1.0/"
+    xmlns:xmp="http://ns.adobe.com/xap/1.0/"
+   darktable:auto_presets_applied="1"
+   darktable:history_end="12"
+   darktable:raw_params="0"
+   darktable:xmp_version="2"
+   xmpMM:DerivedFrom="_MG_9604.CR2"
+   xmpMM:DocumentID="gimp:docid:gimp:dab56eec-4e79-4d04-8b3c-3d000bcabc0a"
+   xmpMM:InstanceID="xmp.iid:f1488bc5-a1a0-486a-9dc2-4cb2621a1acd"
+   xmpMM:OriginalDocumentID="xmp.did:cb97ab9c-80d0-4ee0-aa3f-96f0fdafba3e"
+   dc:Format="image/png"
+   exif:GPSLatitude="55,54.678955N"
+   exif:GPSLongitude="36,57.808914E"
+   exif:GPSVersionID="2.2.0.0"
+   GIMP:API="2.0"
+   GIMP:Platform="Mac OS"
+   GIMP:TimeStamp="1683556949179434"
+   GIMP:Version="2.10.30"
+   tiff:Orientation="1"
+   xmp:CreatorTool="GIMP 2.10"
+   xmp:Rating="0">
+   <darktable:history>
+    <rdf:Bag>
+     <rdf:li
+      darktable:blendop_params="gz11eJxjYGBgkGAAgRNODGiAEV0AJ2iwh+CRxQcA5qIZBA=="
+      darktable:blendop_version="8"
+      darktable:enabled="1"
+      darktable:modversion="1"
+      darktable:multi_priority="0"
+      darktable:operation="sharpen"
+      darktable:params="000000400000003f0000003f"/>
+     <rdf:li
+      darktable:blendop_params="gz11eJxjYGBgkGAAgRNODGiAEV0AJ2iwh+CRxQcA5qIZBA=="
+      darktable:blendop_version="8"
+      darktable:enabled="1"
+      darktable:modversion="2"
+      darktable:multi_priority="0"
+      darktable:operation="flip"
+      darktable:params="ffffffff"/>
+     <rdf:li
+      darktable:blendop_params="gz11eJxjYGBgkGAAgRNODGiAEV0AJ2iwh+CRxQcA5qIZBA=="
+      darktable:blendop_version="8"
+      darktable:enabled="1"
+      darktable:modversion="5"
+      darktable:multi_priority="0"
+      darktable:operation="basecurve"
+      darktable:params="gz09eJxjYIAAM6vnNnqyn22E9n235b6aa3cy6rVdRaK9/Y970fYf95bbMzA0QPEoGEqADYnNhCELiVMAudcSGA=="/>
+     <rdf:li
+      darktable:blendop_params="gz11eJxjYGBgkGAAgRNODGiAEV0AJ2iwh+CRxQcA5qIZBA=="
+      darktable:blendop_version="8"
+      darktable:enabled="1"
+      darktable:modversion="5"
+      darktable:multi_priority="0"
+      darktable:operation="clipping"
+      darktable:params="00000000e040f23c4ee4053efce6413f80c75b3f0000000000000000cdcc4c3ecdcc4c3ecdcc4c3fcdcc4c3ecdcc4c3fcdcc4c3fcdcc4c3ecdcc4c3f000000000000000000000000010000000000000001000000"/>
+     <rdf:li
+      darktable:blendop_params="gz11eJxjYGBgkGAAgRNODGiAEV0AJ2iwh+CRxQcA5qIZBA=="
+      darktable:blendop_version="8"
+      darktable:enabled="1"
+      darktable:modversion="5"
+      darktable:multi_priority="0"
+      darktable:operation="clipping"
+      darktable:params="00000000501a1c3d0c5cb53d9a16443feef9503f0000000000000000cdcc4c3ecdcc4c3ecdcc4c3fcdcc4c3ecdcc4c3fcdcc4c3fcdcc4c3ecdcc4c3f000000000000000000000000010000000000000001000000"/>
+     <rdf:li
+      darktable:blendop_params="gz11eJxjYGBgkGAAgRNODGiAEV0AJ2iwh+CRxQcA5qIZBA=="
+      darktable:blendop_version="8"
+      darktable:enabled="1"
+      darktable:modversion="1"
+      darktable:multi_priority="0"
+      darktable:operation="colisa"
+      darktable:params="d0ccccbdd0cccc3dd0cc4cbd"/>
+     <rdf:li
+      darktable:blendop_params="gz11eJxjYGBgkGAAgRNODGiAEV0AJ2iwh+CRxQcA5qIZBA=="
+      darktable:blendop_version="8"
+      darktable:enabled="1"
+      darktable:modversion="3"
+      darktable:multi_priority="0"
+      darktable:operation="bilat"
+      darktable:params="01000000cdcccc3ecdcc8c3f0000803ecdcc4c3e"/>
+     <rdf:li
+      darktable:blendop_params="gz11eJxjYGBgkGAAgRNODGiAEV0AJ2iwh+CRxQcA5qIZBA=="
+      darktable:blendop_version="8"
+      darktable:enabled="1"
+      darktable:modversion="1"
+      darktable:multi_priority="0"
+      darktable:operation="sharpen"
+      darktable:params="000000400000803f0000003f"/>
+     <rdf:li
+      darktable:blendop_params="gz11eJxjYGBgkGAAgRNODGiAEV0AJ2iwh+CRxQcA5qIZBA=="
+      darktable:blendop_version="8"
+      darktable:enabled="1"
+      darktable:modversion="3"
+      darktable:multi_priority="0"
+      darktable:operation="bilat"
+      darktable:params="01000000cdcccc3ecdcc8c3f9a99993ecdcc4c3e"/>
+     <rdf:li
+      darktable:blendop_params="gz11eJxjYGBgkGAAgRNODGiAEV0AJ2iwh+CRxQcA5qIZBA=="
+      darktable:blendop_version="8"
+      darktable:enabled="1"
+      darktable:modversion="2"
+      darktable:multi_priority="0"
+      darktable:operation="levels"
+      darktable:params="0000000000000000000048420000c842d9899d3dc332d53e8bac483f"/>
+     <rdf:li
+      darktable:blendop_params="gz11eJxjYGBgkGAAgRNODGiAEV0AJ2iwh+CRxQcA5qIZBA=="
+      darktable:blendop_version="8"
+      darktable:enabled="1"
+      darktable:modversion="3"
+      darktable:multi_priority="0"
+      darktable:operation="demosaic"
+      darktable:params="0000000000000000000000000100000000000000"/>
+     <rdf:li
+      darktable:blendop_params="gz11eJxjYGBgkGAAgRNODGiAEV0AJ2iwh+CRxQcA5qIZBA=="
+      darktable:blendop_version="8"
+      darktable:enabled="1"
+      darktable:modversion="1"
+      darktable:multi_priority="0"
+      darktable:operation="cacorrect"
+      darktable:params="32000000"/>
+    </rdf:Bag>
+   </darktable:history>
+   <xmpMM:History>
+    <rdf:Seq>
+     <rdf:li
+      stEvt:action="saved"
+      stEvt:changed="/"
+      stEvt:instanceID="xmp.iid:4ddb99b5-d320-4bd0-918a-8f68cea699a6"
+      stEvt:softwareAgent="Gimp 2.10 (Mac OS)"
+      stEvt:when="2023-05-08T16:42:29+02:00"/>
+    </rdf:Seq>
+   </xmpMM:History>
+   <dc:creator>
+    <rdf:Seq>
+     <rdf:li>dxfoto.ru</rdf:li>
+    </rdf:Seq>
+   </dc:creator>
+   <dc:rights>
+    <rdf:Alt>
+     <rdf:li xml:lang="x-default">CC-BY 3.0</rdf:li>
+    </rdf:Alt>
+   </dc:rights>
+   <dc:subject>
+    <rdf:Bag>
+     <rdf:li>dxfoto</rdf:li>
+     <rdf:li>published</rdf:li>
+    </rdf:Bag>
+   </dc:subject>
+   <lr:hierarchicalSubject>
+    <rdf:Bag>
+     <rdf:li>dxfoto|published</rdf:li>
+    </rdf:Bag>
+   </lr:hierarchicalSubject>
+  </rdf:Description>
+ </rdf:RDF>
+</x:xmpmeta>
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                           
+<?xpacket end="w"?>

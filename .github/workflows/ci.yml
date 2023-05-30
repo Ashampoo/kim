@@ -1,0 +1,122 @@
+name: Build & Test
+
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - '*'
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Build & Test
+    runs-on: macos-latest
+    steps:
+      - name: Checkout workspace
+        uses: actions/checkout@v3
+        timeout-minutes: 5
+        with:
+          fetch-depth: 0 # no shallow clones for SonarQube
+      - name: Set up Java JDK 17
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17.0.5+8'
+      - name: Gradle Cache
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+            ~/.gradle/native
+          key: ${{ runner.os }}-gradle-${{ hashFiles('gradle/wrapper/gradle-wrapper.properties', 'build.gradle.kts') }}
+          restore-keys: ${{ runner.os }}-gradle-
+      - name: Kotlin Native Cache
+        uses: actions/cache@v3
+        with:
+          path: ~/.konan
+          key: ${{ runner.os }}-konan-${{ hashFiles('gradle/wrapper/gradle-wrapper.properties', 'build.gradle.kts') }}
+          restore-keys: ${{ runner.os }}-konan-
+      - name: Android Cache
+        uses: actions/cache@v3
+        with:
+          path: ~/.android
+          key: ${{ runner.os }}-android-${{ hashFiles('gradle/wrapper/gradle-wrapper.properties', 'build.gradle.kts') }}
+          restore-keys: ${{ runner.os }}-android-
+      - name: Cache SonarCloud packages
+        uses: actions/cache@v1
+        with:
+          path: ~/.sonar/cache
+          key: ${{ runner.os }}-sonar
+          restore-keys: ${{ runner.os }}-sonar
+      - name: Build & Test
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: |
+          chmod +x ./gradlew
+          ./gradlew build test koverXmlReport detekt sonar assembleXCFramework --parallel
+      - name: Set RELEASE_VERSION variable
+        run: |
+          echo "RELEASE_VERSION=$(cat build/version.txt)" >> $GITHUB_ENV
+          echo ${{ env.RELEASE_VERSION }}
+      - name: Upload reports
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: reports.zip
+          path: build/reports
+      - name: List files
+        run: |
+          ls -lah build/bin/*/releaseExecutable build/libs/  build/outputs/aar/ build/XCFrameworks/release/
+      - name: Upload kim.jar
+        uses: actions/upload-artifact@v3
+        with:
+          if-no-files-found: error
+          name: kim.jar
+          path: build/libs/kim-jvm-${{ env.RELEASE_VERSION }}.jar
+      - name: Upload kim.aar
+        uses: actions/upload-artifact@v3
+        with:
+          if-no-files-found: error
+          name: kim.aar
+          path: build/outputs/aar/kim-release.aar
+      - name: Upload kim.xcframework
+        uses: actions/upload-artifact@v3
+        with:
+          if-no-files-found: error
+          name: kim.xcframework
+          path: build/XCFrameworks/release/kim.xcframework
+      - name: Upload kim.exe
+        uses: actions/upload-artifact@v3
+        with:
+          if-no-files-found: error
+          name: kim.exe
+          path: build/bin/win/releaseExecutable/kim.exe
+      - name: Upload kim-macosX64.kexe
+        uses: actions/upload-artifact@v3
+        with:
+          if-no-files-found: error
+          name: kim-macosX64.kexe
+          path: build/bin/macosX64/releaseExecutable/kim.kexe
+      - name: Upload kim-macosArm64.kexe
+        uses: actions/upload-artifact@v3
+        with:
+          if-no-files-found: error
+          name: kim-macosArm64.kexe
+          path: build/bin/macosArm64/releaseExecutable/kim.kexe
+      - name: Export secring.pgp
+        run: |
+          echo ${{ secrets.SINGING_SECRET_KEY_RING_FILE_CONTENTS }} | base64 --decode > secring.pgp
+      - name: Publish to Maven Central
+        if: startsWith(github.ref, 'refs/tags/')
+        env:
+          SIGNING_ENABLED: true
+          SIGNING_KEY_ID: ${{ secrets.SIGNING_KEY_ID }}
+          SIGNING_PASSWORD: ${{ secrets.SIGNING_PASSWORD }}
+          OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
+          OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
+        run: ./gradlew publishAllPublicationsToSonatypeRepository

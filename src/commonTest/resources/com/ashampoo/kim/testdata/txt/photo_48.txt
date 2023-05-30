@@ -1,0 +1,65 @@
+File format : JPEG
+Resolution  : 4032 x 3024
+---- TIFF ----
+Version 42
+Big-endian (Motorola, MM)
+---- IFD0 ----
+0x010f Make = Apple
+0x0110 Model = iPhone SE (3rd generation)
+0x0112 Orientation = 6
+0x011a XResolution = 72/1 (72.0)
+0x011b YResolution = 72/1 (72.0)
+0x0128 ResolutionUnit = 2
+0x0131 Software = 16.0.3
+0x0132 DateTime = 2022:11:30 14:57:00
+0x013c HostComputer = iPhone SE (3rd generation)
+0x0213 YCbCrPositioning = 1
+0x8769 ExifOffset = 252
+
+---- ExifIFD ----
+0x829a ExposureTime = 1/100 (0.01)
+0x829d FNumber = 9/5 (1.8)
+0x8822 ExposureProgram = 2
+0x8827 PhotographicSensitivity = 50
+0x9000 ExifVersion = [0x30, 0x32, 0x33, 0x32]
+0x9003 DateTimeOriginal = 2022:11:30 14:57:00
+0x9004 DateTimeDigitized = 2022:11:30 14:57:00
+0x00-1 Unknown = +01:00
+0x9011 OffsetTimeOriginal = +01:00
+0x00-1 Unknown = +01:00
+0x9101 ComponentsConfiguration = [0x01, 0x02, 0x03, 0x00]
+0x9201 ShutterSpeedValue = 6287/946 (6.645877378435518)
+0x9202 ApertureValue = 54823/32325 (1.6959938128383605)
+0x9203 BrightnessValue = 341522/74591 (4.57859527288815)
+0x9204 ExposureCompensation = 0/1 (0.0)
+0x9207 MeteringMode = 5
+0x9209 Flash = 16
+0x920a FocalLength = 399/100 (3.99)
+0x9214 SubjectArea = [2013, 1511, 2217, 1330]
+0x927c MakerNote = [1380 bytes]
+0x9291 SubSecTimeOriginal = 203
+0x9292 SubSecTimeDigitized = 203
+0xa000 FlashpixVersion = [0x30, 0x31, 0x30, 0x30]
+0x00-1 Unknown = -1
+0xa002 ExifImageWidth = 4032
+0xa003 ExifImageLength = 3024
+0xa217 SensingMethod = 2
+0xa301 SceneType = 1
+0xa402 ExposureMode = 0
+0xa403 WhiteBalance = 0
+0xa405 FocalLengthIn35mmFormat = 28
+0xa406 SceneCaptureType = 0
+0xa432 LensSpecification = [4183519/1048501 (3.9900000095374253), 4183519/1048501 (3.9900000095374253), 9/5 (1.8), 9/5 (1.8)]
+0xa433 LensMake = Apple
+0xa434 LensModel = iPhone SE (3rd generation) back camera 3.99mm f/1.8
+0x00-1 Unknown = 2
+
+---- Sub ----
+0x0103 Compression = 6
+0x011a XResolution = 72/1 (72.0)
+0x011b YResolution = 72/1 (72.0)
+0x0128 ResolutionUnit = 2
+0x0201 JpgFromRawStart = 2382
+0x0202 JpgFromRawLength = 11130
+
+

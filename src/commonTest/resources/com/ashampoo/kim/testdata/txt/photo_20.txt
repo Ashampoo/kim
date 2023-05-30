@@ -1,0 +1,64 @@
+File format : JPEG
+Resolution  : 250 x 250
+---- TIFF ----
+Version 42
+Little-endian (Intel, II)
+---- IFD0 ----
+0x010e ImageDescription = []
+0x010f Make = OLYMPUS OPTICAL CO.,LTD
+0x0110 Model = C750UZ
+0x0112 Orientation = 6
+0x011a XResolution = 72/1 (72.0)
+0x011b YResolution = 72/1 (72.0)
+0x0128 ResolutionUnit = 2
+0x0131 Software = GIMP 2.10.30
+0x0132 DateTime = 2023:04:05 09:06:56
+0x0213 YCbCrPositioning = 2
+0x8769 ExifOffset = 618
+0xc4a5 PrintIM = [260 bytes]
+
+---- ExifIFD ----
+0x829a ExposureTime = 10/300 (0.03333333333333333)
+0x829d FNumber = 40/10 (4.0)
+0x8822 ExposureProgram = 5
+0x8827 PhotographicSensitivity = 200
+0x9000 ExifVersion = [0x30, 0x32, 0x32, 0x30]
+0x9003 DateTimeOriginal = 0000:00:00 00:00:00
+0x9004 DateTimeDigitized = 0000:00:00 00:00:00
+0x9101 ComponentsConfiguration = [0x01, 0x02, 0x03, 0x00]
+0x9102 CompressedBitsPerPixel = 2/1 (2.0)
+0x9204 ExposureCompensation = 0/10 (0.0)
+0x9205 MaxApertureValue = 30/10 (3.0)
+0x9207 MeteringMode = 5
+0x9208 LightSource = 0
+0x9209 Flash = 25
+0x920a FocalLength = 63/10 (6.3)
+0x9286 UserComment =                                                                                                                      
+0xa000 FlashpixVersion = [0x30, 0x31, 0x30, 0x30]
+0x00-1 Unknown = 1
+0xa002 ExifImageWidth = 2288
+0xa003 ExifImageLength = 1712
+0xa300 FileSource = 3
+0xa301 SceneType = 1
+0xa401 CustomRendered = 0
+0xa402 ExposureMode = 0
+0xa403 WhiteBalance = 0
+0xa404 DigitalZoomRatio = 0/100 (0.0)
+0xa406 SceneCaptureType = 0
+0xa407 GainControl = 1
+0xa408 Contrast = 0
+0xa409 Saturation = 0
+0xa40a Sharpness = 0
+
+---- Sub ----
+0x00fe NewSubfileType = 1
+0x0100 ImageWidth = 256
+0x0101 ImageLength = 256
+0x0102 BitsPerSample = [8, 8, 8]
+0x0103 Compression = 6
+0x0106 PhotometricInterpretation = 6
+0x0115 SamplesPerPixel = 3
+0x0201 JpgFromRawStart = 1338
+0x0202 JpgFromRawLength = 5648
+
+

@@ -1,0 +1,114 @@
+File format : JPEG
+Resolution  : 4032 x 3024
+---- TIFF ----
+Version 42
+Big-endian (Motorola, MM)
+---- IFD0 ----
+0x010f Make = Apple
+0x0110 Model = iPhone XS
+0x011a XResolution = 72/1 (72.0)
+0x011b YResolution = 72/1 (72.0)
+0x0128 ResolutionUnit = 2
+0x0131 Software = 12.1.4
+0x0132 DateTime = 2019:03:22 18:50:02
+0x0142 TileWidth = 512
+0x0143 TileLength = 512
+0x0213 YCbCrPositioning = 1
+0x8769 ExifOffset = 218
+0x8825 GPSInfo = 1796
+
+---- ExifIFD ----
+0x829a ExposureTime = 1/122 (0.00819672131147541)
+0x829d FNumber = 12/5 (2.4)
+0x8822 ExposureProgram = 2
+0x8827 PhotographicSensitivity = 50
+0x9000 ExifVersion = [0x30, 0x32, 0x32, 0x31]
+0x9003 DateTimeOriginal = 2019:03:22 18:50:02
+0x9004 DateTimeDigitized = 2019:03:22 18:50:02
+0x9101 ComponentsConfiguration = [0x01, 0x02, 0x03, 0x00]
+0x9201 ShutterSpeedValue = 328711/47450 (6.927523709167545)
+0x9202 ApertureValue = 126503/50079 (2.5260688112781806)
+0x9203 BrightnessValue = 685337/119222 (5.748410528258208)
+0x9204 ExposureCompensation = 0/1 (0.0)
+0x9207 MeteringMode = 5
+0x9209 Flash = 24
+0x920a FocalLength = 6/1 (6.0)
+0x9214 SubjectArea = [2007, 1505, 2112, 1270]
+0x927c MakerNote = [996 bytes]
+0x9291 SubSecTimeOriginal = 935
+0x9292 SubSecTimeDigitized = 935
+0xa000 FlashpixVersion = [0x30, 0x31, 0x30, 0x30]
+0x00-1 Unknown = -1
+0xa002 ExifImageWidth = 4032
+0xa003 ExifImageLength = 3024
+0xa217 SensingMethod = 2
+0xa301 SceneType = 1
+0xa401 CustomRendered = 8
+0xa402 ExposureMode = 0
+0xa403 WhiteBalance = 0
+0xa405 FocalLengthIn35mmFormat = 52
+0xa406 SceneCaptureType = 0
+0xa432 LensSpecification = [17/4 (4.25), 6/1 (6.0), 9/5 (1.8), 12/5 (2.4)]
+0xa433 LensMake = Apple
+0xa434 LensModel = iPhone XS back dual camera 6mm f/2.4
+
+---- GPS ----
+0x0001 GPSLatitudeRef = N
+0x0002 GPSLatitude = [34/1 (34.0), 27/1 (27.0), 4701/100 (47.01)]
+0x0003 GPSLongitudeRef = W
+0x0004 GPSLongitude = [119/1 (119.0), 45/1 (45.0), 2958/100 (29.58)]
+0x0005 GPSAltitudeRef = 0
+0x0006 GPSAltitude = 425411/2445 (173.99222903885482)
+0x0007 GPSTimeStamp = [1/1 (1.0), 50/1 (50.0), 1/1 (1.0)]
+0x000c GPSSpeedRef = K
+0x000d GPSSpeed = 76721/92899 (0.8258538843259884)
+0x0010 GPSImgDirectionRef = T
+0x0011 GPSImgDirection = 100129/713 (140.43338008415148)
+0x0017 GPSDestBearingRef = T
+0x0018 GPSDestBearing = 100129/713 (140.43338008415148)
+0x001d GPSDateStamp = 2019:03:23
+0x00-1 Unknown = 79605/8807 (9.038832746678779)
+
+
+---- IPTC ----
+Keywords (25) = 'nature'
+Keywords (25) = 'field'
+Keywords (25) = 'grassland'
+Keywords (25) = 'outdoors'
+
+---- XMP ----
+<?xpacket begin='﻿' id='W5M0MpCehiHzreSzNTczkc9d'?>
+<x:xmpmeta xmlns:x='adobe:ns:meta/' x:xmptk='Image::ExifTool 12.27'>
+<rdf:RDF xmlns:rdf='http://www.w3.org/1999/02/22-rdf-syntax-ns#'>
+
+ <rdf:Description rdf:about=''
+  xmlns:xmp='http://ns.adobe.com/xap/1.0/'>
+  <xmp:Rating>4</xmp:Rating>
+ </rdf:Description>
+</rdf:RDF>
+</x:xmpmeta>
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+<?xpacket end='w'?>

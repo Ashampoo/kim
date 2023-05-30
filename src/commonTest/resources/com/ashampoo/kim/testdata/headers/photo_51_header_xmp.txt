@@ -1,0 +1,239 @@
+<?xpacket begin="﻿" id="W5M0MpCehiHzreSzNTczkc9d"?>
+<x:xmpmeta xmlns:x="adobe:ns:meta/" x:xmptk="XMP Core 4.4.0-Exiv2">
+ <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+  <rdf:Description rdf:about=""
+    xmlns:xmpMM="http://ns.adobe.com/xap/1.0/mm/"
+    xmlns:stEvt="http://ns.adobe.com/xap/1.0/sType/ResourceEvent#"
+    xmlns:stRef="http://ns.adobe.com/xap/1.0/sType/ResourceRef#"
+    xmlns:aux="http://ns.adobe.com/exif/1.0/aux/"
+    xmlns:crs="http://ns.adobe.com/camera-raw-settings/1.0/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:exifEX="http://cipa.jp/exif/1.0/"
+    xmlns:GIMP="http://www.gimp.org/xmp/"
+    xmlns:photoshop="http://ns.adobe.com/photoshop/1.0/"
+    xmlns:tiff="http://ns.adobe.com/tiff/1.0/"
+    xmlns:xmp="http://ns.adobe.com/xap/1.0/"
+   xmpMM:DocumentID="xmp.did:69493116-46dc-402d-931b-1c9bf37ddaad"
+   xmpMM:InstanceID="xmp.iid:b6251a9e-0b38-4a48-b01e-cf5a7d9a4bb9"
+   xmpMM:OriginalDocumentID="D91E7F7E064AEF7A630A1DCAC6BF38D0"
+   aux:ApproximateFocusDistance="161/100"
+   aux:Firmware="1.4.0"
+   aux:FlashCompensation="0/1"
+   aux:ImageNumber="0"
+   aux:Lens="EF70-300mm f/4-5.6L IS USM"
+   aux:LensID="489"
+   aux:LensInfo="70/1 300/1 0/0 0/0"
+   aux:LensSerialNumber="7820004130"
+   aux:SerialNumber="058021001133"
+   crs:AlreadyApplied="True"
+   crs:AutoLateralCA="0"
+   crs:AutoToneDigest="DB958B423B648352F5500DCF12E528B1"
+   crs:AutoToneDigestNoSat="5D637BD0F4976718D5C101714DE7835E"
+   crs:Blacks2012="-27"
+   crs:BlueHue="0"
+   crs:BlueSaturation="0"
+   crs:CameraProfile="Adobe Standard"
+   crs:CameraProfileDigest="38E531B7F49849F74EF6FA15106BD31D"
+   crs:Clarity2012="-15"
+   crs:ColorNoiseReduction="25"
+   crs:ColorNoiseReductionDetail="23"
+   crs:ColorNoiseReductionSmoothness="23"
+   crs:Contrast2012="+56"
+   crs:ConvertToGrayscale="False"
+   crs:DefringeGreenAmount="0"
+   crs:DefringeGreenHueHi="60"
+   crs:DefringeGreenHueLo="40"
+   crs:DefringePurpleAmount="0"
+   crs:DefringePurpleHueHi="70"
+   crs:DefringePurpleHueLo="30"
+   crs:Dehaze="+11"
+   crs:Exposure2012="+0.20"
+   crs:GrainAmount="0"
+   crs:GreenHue="0"
+   crs:GreenSaturation="0"
+   crs:HasCrop="False"
+   crs:HasSettings="True"
+   crs:Highlights2012="-33"
+   crs:HueAdjustmentAqua="0"
+   crs:HueAdjustmentBlue="0"
+   crs:HueAdjustmentGreen="0"
+   crs:HueAdjustmentMagenta="0"
+   crs:HueAdjustmentOrange="0"
+   crs:HueAdjustmentPurple="0"
+   crs:HueAdjustmentRed="0"
+   crs:HueAdjustmentYellow="0"
+   crs:LensManualDistortionAmount="0"
+   crs:LensProfileEnable="0"
+   crs:LensProfileSetup="LensDefaults"
+   crs:LuminanceAdjustmentAqua="0"
+   crs:LuminanceAdjustmentBlue="0"
+   crs:LuminanceAdjustmentGreen="0"
+   crs:LuminanceAdjustmentMagenta="0"
+   crs:LuminanceAdjustmentOrange="0"
+   crs:LuminanceAdjustmentPurple="0"
+   crs:LuminanceAdjustmentRed="0"
+   crs:LuminanceAdjustmentYellow="0"
+   crs:LuminanceNoiseReductionContrast="21"
+   crs:LuminanceNoiseReductionDetail="20"
+   crs:LuminanceSmoothing="20"
+   crs:OverrideLookVignette="False"
+   crs:ParametricDarks="0"
+   crs:ParametricHighlights="0"
+   crs:ParametricHighlightSplit="75"
+   crs:ParametricLights="0"
+   crs:ParametricMidtoneSplit="50"
+   crs:ParametricShadows="0"
+   crs:ParametricShadowSplit="25"
+   crs:PerspectiveAspect="0"
+   crs:PerspectiveHorizontal="0"
+   crs:PerspectiveRotate="0.0"
+   crs:PerspectiveScale="100"
+   crs:PerspectiveUpright="0"
+   crs:PerspectiveVertical="0"
+   crs:PerspectiveX="0.00"
+   crs:PerspectiveY="0.00"
+   crs:PostCropVignetteAmount="0"
+   crs:ProcessVersion="11.0"
+   crs:RawFileName="353A9054.CR3"
+   crs:RedHue="0"
+   crs:RedSaturation="0"
+   crs:Saturation="-1"
+   crs:SaturationAdjustmentAqua="0"
+   crs:SaturationAdjustmentBlue="0"
+   crs:SaturationAdjustmentGreen="0"
+   crs:SaturationAdjustmentMagenta="0"
+   crs:SaturationAdjustmentOrange="0"
+   crs:SaturationAdjustmentPurple="0"
+   crs:SaturationAdjustmentRed="0"
+   crs:SaturationAdjustmentYellow="0"
+   crs:Shadows2012="+42"
+   crs:ShadowTint="0"
+   crs:SharpenDetail="25"
+   crs:SharpenEdgeMasking="0"
+   crs:SharpenRadius="+1.0"
+   crs:Sharpness="40"
+   crs:SplitToningBalance="0"
+   crs:SplitToningHighlightHue="0"
+   crs:SplitToningHighlightSaturation="0"
+   crs:SplitToningShadowHue="0"
+   crs:SplitToningShadowSaturation="0"
+   crs:Temperature="4850"
+   crs:Texture="-9"
+   crs:Tint="-7"
+   crs:ToneCurve="0, 0, 32, 22, 64, 56, 128, 128, 192, 196, 255, 255"
+   crs:ToneCurveBlue="0, 0, 255, 255"
+   crs:ToneCurveGreen="0, 0, 255, 255"
+   crs:ToneCurveName="Medium Contrast"
+   crs:ToneCurveName2012="Linear"
+   crs:ToneCurvePV2012="0, 0, 255, 255"
+   crs:ToneCurvePV2012Blue="0, 0, 255, 255"
+   crs:ToneCurvePV2012Green="0, 0, 255, 255"
+   crs:ToneCurvePV2012Red="0, 0, 255, 255"
+   crs:ToneCurveRed="0, 0, 255, 255"
+   crs:ToneMapStrength="0"
+   crs:UprightCenterMode="0"
+   crs:UprightCenterNormX="0.5"
+   crs:UprightCenterNormY="0.5"
+   crs:UprightFocalLength35mm="35"
+   crs:UprightFocalMode="0"
+   crs:UprightFourSegmentsCount="0"
+   crs:UprightPreview="False"
+   crs:UprightTransformCount="6"
+   crs:UprightVersion="151388160"
+   crs:Version="12.2"
+   crs:Vibrance="+14"
+   crs:VignetteAmount="0"
+   crs:WhiteBalance="Custom"
+   crs:Whites2012="+36"
+   dc:format="image/jpeg"
+   exifEX:LensModel="EF70-300mm f/4-5.6L IS USM"
+   GIMP:API="2.0"
+   GIMP:Platform="Mac OS"
+   GIMP:TimeStamp="1664194672787493"
+   GIMP:Version="2.10.30"
+   photoshop:DateCreated="2020-03-11T17:37:33.36+08:00"
+   tiff:Orientation="1"
+   xmp:CreateDate="2020-03-11T17:37:33.36+08:00"
+   xmp:CreatorTool="GIMP 2.10"
+   xmp:MetadataDate="2020-03-11T20:10:12+07:00"
+   xmp:ModifyDate="2020-03-11T20:10:12+07:00"
+   xmp:Rating="2">
+   <xmpMM:History>
+    <rdf:Seq>
+     <rdf:li
+      stEvt:action="derived"
+      stEvt:parameters="converted from image/x-canon-cr3 to image/jpeg, saved to new location"/>
+     <rdf:li
+      stEvt:action="saved"
+      stEvt:changed="/"
+      stEvt:instanceID="xmp.iid:69493116-46dc-402d-931b-1c9bf37ddaad"
+      stEvt:softwareAgent="Adobe Photoshop Camera Raw 12.2 (Macintosh)"
+      stEvt:when="2020-03-11T20:10:12+07:00"/>
+     <rdf:li
+      stEvt:action="saved"
+      stEvt:changed="/"
+      stEvt:instanceID="xmp.iid:9d7b157e-f1a6-4fbe-8b35-d7cf3cf75dd3"
+      stEvt:softwareAgent="Gimp 2.10 (Mac OS)"
+      stEvt:when="2022-09-26T14:17:52+02:00"/>
+    </rdf:Seq>
+   </xmpMM:History>
+   <xmpMM:DerivedFrom
+    stRef:documentID="D91E7F7E064AEF7A630A1DCAC6BF38D0"
+    stRef:originalDocumentID="D91E7F7E064AEF7A630A1DCAC6BF38D0"/>
+   <crs:Look>
+    <rdf:Description
+     crs:Amount="1.000000"
+     crs:Copyright="© 2018 Adobe Systems, Inc."
+     crs:Group="lang=&quot;x-default&quot; Profiles"
+     crs:Name="Adobe Color"
+     crs:SupportsAmount="false"
+     crs:SupportsMonochrome="false"
+     crs:SupportsOutputReferred="false"
+     crs:UUID="B952C231111CD8E0ECCF14B86BAA7077">
+    <crs:Parameters
+     crs:CameraProfile="Adobe Standard"
+     crs:ConvertToGrayscale="False"
+     crs:LookTable="E1095149FDB39D7A057BAB208837E2E1"
+     crs:ProcessVersion="11.0"
+     crs:ToneCurvePV2012="0, 0, 22, 16, 40, 35, 127, 127, 224, 230, 240, 246, 255, 255"
+     crs:ToneCurvePV2012Blue="0, 0, 255, 255"
+     crs:ToneCurvePV2012Green="0, 0, 255, 255"
+     crs:ToneCurvePV2012Red="0, 0, 255, 255"
+     crs:Version="12.2"/>
+    </rdf:Description>
+   </crs:Look>
+   <dc:creator>
+    <rdf:Seq>
+     <rdf:li>SippakorN</rdf:li>
+    </rdf:Seq>
+   </dc:creator>
+   <dc:rights>
+    <rdf:Alt>
+     <rdf:li xml:lang="x-default">@Sippakorn1955</rdf:li>
+    </rdf:Alt>
+   </dc:rights>
+  </rdf:Description>
+ </rdf:RDF>
+</x:xmpmeta>
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                           
+<?xpacket end="w"?>
