@@ -58,7 +58,7 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
           chmod +x ./gradlew
-          ./gradlew build test koverXmlReport detekt sonar assembleXCFramework --parallel
+          ./gradlew build test koverXmlReport detekt assembleXCFramework --parallel
       - name: Set RELEASE_VERSION variable
         run: |
           echo "RELEASE_VERSION=$(cat build/version.txt)" >> $GITHUB_ENV
