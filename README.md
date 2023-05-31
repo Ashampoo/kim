@@ -15,16 +15,31 @@ It's part of [Ashampoo Photos](https://ashampoo.com/photos).
 
 Current features:
 
-* JPG: Read & Write IPTC, EXIF & XMP
-* PNG: Read & Write EXIF Chunk & XMP
+* JPG: Read & Write EXIF, IPTC & XMP
+* PNG: Read & Write EXIF Chunk & XMP (iTXT)
 * TIFF: Read EXIF & XMP
 
 The future development of features on our part is driven entirely by the
 needs of Ashampoo Photos, which, in turn, is driven by user community feedback.
 
-## Getting started
+## Installation
 
-Add to your `build.gradle.kts`:
+Add to your `build.gradle.kts` for Multiplatform:
+```
+repositories {
+    mavenCentral()
+}
+
+kotlin {
+    val commonMain by sourceSets.getting {
+        dependencies {
+            implementation("com.ashampoo:kim:0.1.1")
+        }
+    }
+}
+```
+
+Add to your `build.gradle.kts` for JVM:
 ```
 repositories {
     mavenCentral()
@@ -35,7 +50,7 @@ dependencies {
 }
 ```
 
-Then use the library like in this sample for JVM:
+## Sample usage (for JVM)
 ```
 import com.ashampoo.kim.Kim
 import com.ashampoo.kim.common.convertToPhotoMetadata
@@ -50,7 +65,7 @@ import java.io.File
 
 fun main() {
 
-    val inputFile = File("/Users/sol/Pictures/myphoto.jpg")
+    val inputFile = File("myphoto.jpg")
 
     /*
      * readMetadata() takes kotlin.ByteArray & io.ktor.utils.io.core.Input
@@ -96,7 +111,7 @@ fun main() {
     rootDirectory.removeField(TiffTag.TIFF_TAG_ORIENTATION)
     rootDirectory.add(TiffTag.TIFF_TAG_ORIENTATION, 8)
 
-    val outputFile = File("/Users/sol/Pictures/myphoto_changed.jpg")
+    val outputFile = File("myphoto_changed.jpg")
 
     OutputStreamByteWriter(
         outputFile.outputStream()
@@ -130,7 +145,7 @@ please feel free to submit a pull request.
 
 We thank the following organizations and people.
 
-* JetBrains for making Kotlin.
+* JetBrains for making [Kotlin](https://kotlinlang.org).
 * Apache Software Foundation for making [Apache Commons Imaging](https://commons.apache.org/proper/commons-imaging/).
 * Drew Noakes for making [metadata-extractor](https://github.com/drewnoakes/metadata-extractor).
 * Phil Harvey for making [ExifTool](https://exiftool.org/).
