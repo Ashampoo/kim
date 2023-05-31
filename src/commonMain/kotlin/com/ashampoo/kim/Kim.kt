@@ -34,7 +34,7 @@ object Kim {
     @kotlin.jvm.JvmStatic
     @Throws(ImageReadException::class)
     fun readMetadata(bytes: ByteArray): ImageMetadata? =
-        readMetadata(ByteArrayByteReader(bytes))
+        if (bytes.isEmpty()) null else readMetadata(ByteArrayByteReader(bytes))
 
     @kotlin.jvm.JvmStatic
     @Throws(ImageReadException::class)

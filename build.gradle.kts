@@ -18,7 +18,11 @@ repositories {
     mavenCentral()
 }
 
-description = "Ashampoo Kim"
+val productName = "Ashampoo Kim"
+
+val ktorVersion: String = "2.3.0"
+
+description = productName
 group = "com.ashampoo"
 version = "0.0.0"
 
@@ -53,7 +57,7 @@ sonar {
     properties {
 
         property("sonar.projectKey", "kim")
-        property("sonar.projectName", "Ashampoo Kim")
+        property("sonar.projectName", productName)
         property("sonar.organization", "realashampoo")
         property("sonar.host.url", "https://sonarcloud.io")
 
@@ -75,15 +79,15 @@ sonar {
             )
         )
 
-        // Include Android Lint
+        /* Include Android Lint */
         property("sonar.android.lint.report", "${project.buildDir}/reports/lint-results.xml")
 
-        // Include Detekt issues
+        /* Include Detekt issues */
         val detektPath = "${project.buildDir}/reports/detekt/detekt.xml"
         println("Detekt report: $detektPath")
         property("sonar.kotlin.detekt.reportPaths", detektPath)
 
-        // Include Kover Coverage
+        /* Include Kover code coverage */
         val koverPath = "${project.buildDir}/reports/kover/xml/report.xml"
         println("Kover report: $koverPath")
         property("sonar.coverage.jacoco.xmlReportPaths", koverPath)
@@ -149,7 +153,8 @@ kotlin {
             implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.4.0")
 
             /* Needed for Charset class. */
-            implementation("io.ktor:ktor-io:2.3.0")
+            /* Defined as api() to prevent problems when used from a pure-java project. */
+            api("io.ktor:ktor-io:$ktorVersion")
         }
     }
 
@@ -370,7 +375,7 @@ publishing {
 
             pom {
 
-                name.set("Ashampoo Kim")
+                name.set(productName)
                 description.set("Kotlin Multiplatform library for image metadata manipulation")
                 url.set("https://github.com/RealAshampoo/kim")
 

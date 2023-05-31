@@ -15,16 +15,31 @@ It's part of [Ashampoo Photos](https://ashampoo.com/photos).
 
 Current features:
 
-* JPG: Read & Write IPTC, EXIF & XMP
-* PNG: Read & Write EXIF Chunk & XMP
+* JPG: Read & Write EXIF, IPTC & XMP
+* PNG: Read & Write EXIF Chunk & XMP (iTXT)
 * TIFF: Read EXIF & XMP
 
 The future development of features on our part is driven entirely by the
 needs of Ashampoo Photos, which, in turn, is driven by user community feedback.
 
-## Getting started
+## Installation
 
-Add to your `build.gradle.kts`:
+Add to your `build.gradle.kts` for Multiplatform:
+```
+repositories {
+    mavenCentral()
+}
+
+kotlin {
+    val commonMain by sourceSets.getting {
+        dependencies {
+            implementation("com.ashampoo:kim:0.1.1")
+        }
+    }
+}
+```
+
+Add to your `build.gradle.kts` for JVM:
 ```
 repositories {
     mavenCentral()
@@ -35,7 +50,7 @@ dependencies {
 }
 ```
 
-Then use the library like in this sample for JVM:
+## Sample usage in Kotlin (for JVM)
 ```
 import com.ashampoo.kim.Kim
 import com.ashampoo.kim.common.convertToPhotoMetadata
@@ -50,7 +65,7 @@ import java.io.File
 
 fun main() {
 
-    val inputFile = File("/Users/sol/Pictures/myphoto.jpg")
+    val inputFile = File("myphoto.jpg")
 
     /*
      * readMetadata() takes kotlin.ByteArray & io.ktor.utils.io.core.Input
@@ -71,7 +86,7 @@ fun main() {
 
     println("Orientation: $orientation")
 
-    val takenDate = metadata.findTiffField(ExifTag.EXIF_TAG_DATE_TIME_ORIGINAL)
+    val takenDate = metadata.findStringValue(ExifTag.EXIF_TAG_DATE_TIME_ORIGINAL)
 
     println("Taken date: $takenDate")
 
@@ -96,7 +111,7 @@ fun main() {
     rootDirectory.removeField(TiffTag.TIFF_TAG_ORIENTATION)
     rootDirectory.add(TiffTag.TIFF_TAG_ORIENTATION, 8)
 
-    val outputFile = File("/Users/sol/Pictures/myphoto_changed.jpg")
+    val outputFile = File("myphoto_changed.jpg")
 
     OutputStreamByteWriter(
         outputFile.outputStream()
@@ -107,6 +122,84 @@ fun main() {
             byteWriter = outputStreamByteWriter,
             outputSet = outputSet
         )
+    }
+}
+```
+
+## Sample usage in Java
+
+This is the equivalent Java code as shown above.
+
+While it may not be the most aesthetically pleasing, it functions correctly and will
+serve as a helpful starting point if you're still in the process of transitioning to Kotlin.
+
+```
+import com.ashampoo.kim.Kim;
+import com.ashampoo.kim.common.PhotoMetadataConverterKt;
+import com.ashampoo.kim.format.ImageMetadata;
+import com.ashampoo.kim.format.jpeg.JpegRewriter;
+import com.ashampoo.kim.format.tiff.constants.ExifTag;
+import com.ashampoo.kim.format.tiff.constants.TiffTag;
+import com.ashampoo.kim.format.tiff.write.TiffOutputDirectory;
+import com.ashampoo.kim.format.tiff.write.TiffOutputSet;
+import com.ashampoo.kim.input.JvmInputStreamByteReader;
+import com.ashampoo.kim.model.PhotoMetadata;
+import com.ashampoo.kim.output.ByteWriter;
+import com.ashampoo.kim.output.OutputStreamByteWriter;
+
+import java.io.*;
+
+public class Main {
+
+    public static void main(String[] args) throws FileNotFoundException {
+
+        File inputFile = new File("myphoto.jpg");
+        File outputFile = new File("myphoto_changed.jpg");
+
+        JvmInputStreamByteReader byteReader = new JvmInputStreamByteReader(
+                new FileInputStream((inputFile))
+        );
+
+        ImageMetadata metadata = Kim.readMetadata(byteReader);
+
+        /* ImageMetadata has a proper toString() similar to the output of ExifTool */
+        System.out.println(metadata);
+
+        /*
+         * Convert the raw imageMetadata to a summary object used by Ashampoo Photos.
+         */
+        PhotoMetadata photoMetadata =
+                PhotoMetadataConverterKt.convertToPhotoMetadata(metadata, false);
+
+        System.out.println(photoMetadata);
+
+        Short orientation = metadata.findShortValue(TiffTag.INSTANCE.getTIFF_TAG_ORIENTATION());
+
+        System.out.println("Orientation: " + orientation);
+
+        String takenDate = metadata.findStringValue(ExifTag.INSTANCE.getEXIF_TAG_DATE_TIME_ORIGINAL());
+
+        System.out.println("Taken date: " + takenDate);
+
+        /*
+         * Change orientation
+         */
+
+        TiffOutputSet outputSet = metadata.getExif() != null ?
+                metadata.getExif().createOutputSet() : new TiffOutputSet();
+
+        TiffOutputDirectory rootDirectory = outputSet.getOrCreateRootDirectory();
+
+        rootDirectory.removeField(TiffTag.INSTANCE.getTIFF_TAG_ORIENTATION());
+        rootDirectory.add(TiffTag.INSTANCE.getTIFF_TAG_ORIENTATION(), (short) 8);
+
+        JvmInputStreamByteReader secondByteReader = new JvmInputStreamByteReader(
+                new FileInputStream((inputFile))
+        );
+
+        ByteWriter byteWriter = new OutputStreamByteWriter(new FileOutputStream(outputFile));
+
+        JpegRewriter.INSTANCE.updateExifMetadataLossless(secondByteReader, byteWriter, outputSet);
     }
 }
 ```
@@ -130,7 +223,7 @@ please feel free to submit a pull request.
 
 We thank the following organizations and people.
 
-* JetBrains for making Kotlin.
+* JetBrains for making [Kotlin](https://kotlinlang.org).
 * Apache Software Foundation for making [Apache Commons Imaging](https://commons.apache.org/proper/commons-imaging/).
 * Drew Noakes for making [metadata-extractor](https://github.com/drewnoakes/metadata-extractor).
 * Phil Harvey for making [ExifTool](https://exiftool.org/).
