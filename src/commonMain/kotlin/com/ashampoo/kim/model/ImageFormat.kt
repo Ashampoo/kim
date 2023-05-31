@@ -15,6 +15,7 @@
  */
 package com.ashampoo.kim.model
 
+import com.ashampoo.kim.common.ImageReadException
 import com.ashampoo.kim.common.startsWith
 import com.ashampoo.kim.common.startsWithNullable
 import com.ashampoo.kim.common.toSingleNumberHexes
@@ -116,9 +117,11 @@ enum class ImageFormat(
         @JvmStatic
         fun detect(bytes: ByteArray): ImageFormat? {
 
-            require(bytes.size >= REQUIRED_HEADER_BYTE_COUNT_FOR_DETECTION) {
-                "Detection needs $REQUIRED_HEADER_BYTE_COUNT_FOR_DETECTION bytes, but got ${bytes.size}."
-            }
+            if (bytes.isEmpty())
+                return null
+
+            if (bytes.size < REQUIRED_HEADER_BYTE_COUNT_FOR_DETECTION)
+                throw ImageReadException("Only got ${bytes.size} for detection of format.")
 
             /*
              * We want to exit this detection early, so we order the
