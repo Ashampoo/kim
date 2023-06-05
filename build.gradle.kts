@@ -267,7 +267,7 @@ android {
     sourceSets["main"].res.srcDirs("src/commonMain/resources")
 
     defaultConfig {
-        minSdk = 29
+        minSdk = 23
     }
 
     compileOptions {
