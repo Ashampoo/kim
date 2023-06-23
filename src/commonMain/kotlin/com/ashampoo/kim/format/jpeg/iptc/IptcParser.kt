@@ -19,9 +19,12 @@ package com.ashampoo.kim.format.jpeg.iptc
 import com.ashampoo.kim.common.BinaryFileParser
 import com.ashampoo.kim.common.ByteOrder
 import com.ashampoo.kim.common.ImageReadException
+import com.ashampoo.kim.common.quadsToByteArray
 import com.ashampoo.kim.common.slice
 import com.ashampoo.kim.common.startsWith
+import com.ashampoo.kim.common.toHex
 import com.ashampoo.kim.common.toInt
+import com.ashampoo.kim.common.toSingleNumberHexes
 import com.ashampoo.kim.common.toUInt16
 import com.ashampoo.kim.common.toUInt8
 import com.ashampoo.kim.format.jpeg.JpegConstants
@@ -94,6 +97,7 @@ object IptcParser : BinaryFileParser() {
 
         var index = 0
 
+        @Suppress("LoopWithTooManyJumpStatements")
         while (index + 1 < bytes.size) {
 
             val tagMarker = bytes[index++].toUInt8()
@@ -103,8 +107,7 @@ object IptcParser : BinaryFileParser() {
                 continue
 
             val recordNumber = bytes[index++].toUInt8()
-            val recordType = bytes[index].toUInt8()
-            index++
+            val recordType = bytes[index++].toUInt8()
 
             val recordSize = bytes.toUInt16(index, byteOrder)
             index += 2
@@ -116,6 +119,7 @@ object IptcParser : BinaryFileParser() {
                 return records
 
             val recordData = bytes.slice(index, recordSize)
+
             index += recordSize
 
             if (recordNumber == IptcConstants.IPTC_ENVELOPE_RECORD_NUMBER &&
@@ -131,13 +135,12 @@ object IptcParser : BinaryFileParser() {
             if (recordType == 0)
                 continue
 
-            val value = String(recordData, charset = charset)
-
-            val iptcType = getIptcType(recordType)
-
-            val record = IptcRecord(iptcType, value)
-
-            records.add(record)
+            records.add(
+                IptcRecord(
+                    iptcType = getIptcType(recordType),
+                    value = String(recordData, charset = charset)
+                )
+            )
         }
 
         return records
@@ -164,6 +167,7 @@ object IptcParser : BinaryFileParser() {
                     " != " + JpegConstants.PHOTOSHOP_IDENTIFICATION_STRING.contentToString()
             )
 
+        @Suppress("LoopWithTooManyJumpStatements")
         while (true) {
 
             val resourceBlockSignature: Int = try {
@@ -172,8 +176,18 @@ object IptcParser : BinaryFileParser() {
                 break
             }
 
-            if (resourceBlockSignature != JpegConstants.CONST_8BIM)
-                throw ImageReadException("Invalid Image Resource Block Signature: $resourceBlockSignature")
+            if (resourceBlockSignature != JpegConstants.CONST_8BIM) {
+
+                /*
+                 * Some files seem to contain invalid markers: 04 3A 00 00 in case of our test data.
+                 * We just ignore these and skip to the next 8BIM (38 42 49 4D) segment.
+                 * If we can't skip to the next we found everything we can interpret.
+                 */
+                val skipSuccessful = byteReader.skipToQuad(JpegConstants.CONST_8BIM)
+
+                if (!skipSuccessful)
+                    break
+            }
 
             val blockType = byteReader.read2BytesAsInt("IPTC block type", APP13_BYTE_ORDER)
 

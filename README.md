@@ -5,7 +5,7 @@
 ![macOS](https://img.shields.io/badge/-macOS-gray.svg?style=flat)
 ![iOS](https://img.shields.io/badge/-iOS-gray.svg?style=flat)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=kim&metric=coverage)](https://sonarcloud.io/summary/new_code?id=kim)
-[![Latest release](https://img.shields.io/github/v/release/realAshampoo/kim?color=brightgreen&label=latest%20release)](https://github.com/realAshampoo/kim/releases/latest)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.ashampoo/kim/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.ashampoo/kim)
 
 Kim is a Kotlin Multiplatform library for reading and writing image metadata.
 
@@ -33,7 +33,7 @@ repositories {
 kotlin {
     val commonMain by sourceSets.getting {
         dependencies {
-            implementation("com.ashampoo:kim:0.1.1")
+            implementation("com.ashampoo:kim:0.1.3")
         }
     }
 }
@@ -46,7 +46,7 @@ repositories {
 }
 
 dependencies {
-    implementation("com.ashampoo:kim:0.1.1")
+    implementation("com.ashampoo:kim:0.1.3")
 }
 ```
 

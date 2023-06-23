@@ -28,6 +28,7 @@ import com.ashampoo.kim.input.ByteArrayByteReader
 import com.ashampoo.kim.model.GpsCoordinates
 import com.ashampoo.kim.output.ByteArrayByteWriter
 import com.ashampoo.kim.testdata.KimTestData
+import java.io.File
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNotEquals
@@ -141,7 +142,7 @@ class JpegRewriterTest {
 
             if (!equals) {
 
-                // File("build/photo_${index}_modified.jpg").writeBytes(actualMetadataBytes)
+                File("build/photo_${index}_modified.jpg").writeBytes(actualMetadataBytes)
 
                 fail("Photo $index has not the expected bytes!")
             }
