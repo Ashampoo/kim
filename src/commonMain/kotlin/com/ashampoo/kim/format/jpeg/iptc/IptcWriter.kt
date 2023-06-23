@@ -42,9 +42,10 @@ object IptcWriter {
             bos.write4Bytes(JpegConstants.CONST_8BIM)
 
             if (block.blockType < 0 || block.blockType > 0xFFFF)
-                throw ImageWriteException("Invalid IPTC block type.")
+                throw ImageWriteException("Invalid IPTC block type: ${block.blockType}")
 
             bos.write2Bytes(block.blockType)
+
             val blockNameBytes = block.blockNameBytes
 
             if (blockNameBytes.size > JpegConstants.IPTC_MAX_BLOCK_NAME_LENGTH)

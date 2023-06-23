@@ -74,6 +74,21 @@ Little-endian (Intel, II)
 0x0202 JpgFromRawLength = 1487
 
 
+---- IPTC ----
+Date Created (55) = '20180727'
+Time Created (60) = '220203+0000'
+Digital Creation Date (62) = '20180727'
+Caption/Abstract (120) = 'moon illustration'
+Keywords (25) = 'eclipse'
+Keywords (25) = 'outdoors'
+Keywords (25) = 'nature'
+Keywords (25) = 'lunar eclipse'
+Keywords (25) = 'space'
+Keywords (25) = 'outer space'
+Keywords (25) = 'night'
+Keywords (25) = 'astronomy'
+Keywords (25) = 'universe'
+
 ---- XMP ----
 <?xpacket begin='﻿' id='W5M0MpCehiHzreSzNTczkc9d'?>
 <x:xmpmeta xmlns:x='adobe:ns:meta/' x:xmptk='Image::ExifTool 12.27'>
