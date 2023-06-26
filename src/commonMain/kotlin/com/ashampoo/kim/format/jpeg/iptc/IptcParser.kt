@@ -19,12 +19,9 @@ package com.ashampoo.kim.format.jpeg.iptc
 import com.ashampoo.kim.common.BinaryFileParser
 import com.ashampoo.kim.common.ByteOrder
 import com.ashampoo.kim.common.ImageReadException
-import com.ashampoo.kim.common.quadsToByteArray
 import com.ashampoo.kim.common.slice
 import com.ashampoo.kim.common.startsWith
-import com.ashampoo.kim.common.toHex
 import com.ashampoo.kim.common.toInt
-import com.ashampoo.kim.common.toSingleNumberHexes
 import com.ashampoo.kim.common.toUInt16
 import com.ashampoo.kim.common.toUInt8
 import com.ashampoo.kim.format.jpeg.JpegConstants
@@ -49,8 +46,9 @@ object IptcParser : BinaryFileParser() {
 
     val DEFAULT_CHARSET = Charsets.ISO_8859_1
 
-    const val ENV_TAG_CODED_CHARACTER_SET = 90
+    const val CODED_CHARACTER_SET_IPTC_CODE = 90
 
+    /* "ESC % G" as bytes */
     val UTF8_CHARACTER_ESCAPE_SEQUENCE =
         byteArrayOf('\u001B'.code.toByte(), '%'.code.toByte(), 'G'.code.toByte())
 
@@ -123,7 +121,7 @@ object IptcParser : BinaryFileParser() {
             index += recordSize
 
             if (recordNumber == IptcConstants.IPTC_ENVELOPE_RECORD_NUMBER &&
-                recordType == ENV_TAG_CODED_CHARACTER_SET
+                recordType == CODED_CHARACTER_SET_IPTC_CODE
             ) {
                 charset = findCharset(recordData)
                 continue

@@ -107,7 +107,8 @@ class JpegRewriterTest {
             val newRecords = mutableListOf<IptcRecord>()
             newRecords.addAll(oldRecords)
 
-            newRecords.add(IptcRecord(IptcTypes.KEYWORDS, "new_keyword"))
+            /* Write a new keyword including umlauts */
+            newRecords.add(IptcRecord(IptcTypes.KEYWORDS, "Umlauts: äöüß"))
 
             val newPhotoshopData = IptcMetadata(
                 newRecords,

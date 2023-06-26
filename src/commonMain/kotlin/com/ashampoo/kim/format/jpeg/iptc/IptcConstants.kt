@@ -85,4 +85,5 @@ object IptcConstants {
     const val IPTC_RECORD_TAG_MARKER = 0x1c
     const val IPTC_ENVELOPE_RECORD_NUMBER = 0x01
     const val IPTC_APPLICATION_2_RECORD_NUMBER = 0x02
+    const val IPTC_RECORD_VERSION_VALUE = 4
 }

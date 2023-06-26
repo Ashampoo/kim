@@ -22,12 +22,11 @@ import com.ashampoo.kim.format.jpeg.iptc.IptcParser.APP13_BYTE_ORDER
 import com.ashampoo.kim.output.BigEndianBinaryByteWriter
 import com.ashampoo.kim.output.BinaryByteWriter
 import com.ashampoo.kim.output.ByteArrayByteWriter
-import io.ktor.utils.io.charsets.Charsets
-import io.ktor.utils.io.core.String
 import io.ktor.utils.io.core.toByteArray
 
 object IptcWriter {
 
+    @Suppress("ThrowsCount")
     fun writePhotoshopApp13Segment(data: IptcMetadata): ByteArray {
 
         val os = ByteArrayByteWriter()
@@ -76,53 +75,37 @@ object IptcWriter {
         return os.toByteArray()
     }
 
+    /* Writes the IPTC block in UTF-8 */
     fun writeIPTCBlock(records: List<IptcRecord>): ByteArray {
-
-        var charset = IptcParser.DEFAULT_CHARSET
-
-        /*
-         * Check if the default ISO charset will work.
-         * Otherwise we need to switch to UTF8.
-         */
-        for (record in records) {
-
-            val recordData = record.value.toByteArray(charset)
-
-            val reEncodedString = String(recordData, charset = charset)
-
-            if (reEncodedString != record.value) {
-                charset = Charsets.UTF_8
-                break
-            }
-        }
 
         val byteWriter = ByteArrayByteWriter()
 
         val binaryWriter = BinaryByteWriter.createBinaryByteWriter(byteWriter, APP13_BYTE_ORDER)
 
-        if (charset != IptcParser.DEFAULT_CHARSET) {
-
-            binaryWriter.write(IptcConstants.IPTC_RECORD_TAG_MARKER)
-            binaryWriter.write(IptcConstants.IPTC_ENVELOPE_RECORD_NUMBER)
-            binaryWriter.write(IptcParser.ENV_TAG_CODED_CHARACTER_SET)
-            binaryWriter.write2Bytes(IptcParser.UTF8_CHARACTER_ESCAPE_SEQUENCE.size)
-            binaryWriter.write(IptcParser.UTF8_CHARACTER_ESCAPE_SEQUENCE)
-        }
+        /*
+         * Set the envelope for UTF-8
+         *
+         * It's recommended to use UTF-8 as a default to prevent issues with umlauts.
+         * And it's more consistent to always write data the same way.
+         */
+        binaryWriter.write(IptcConstants.IPTC_RECORD_TAG_MARKER)
+        binaryWriter.write(IptcConstants.IPTC_ENVELOPE_RECORD_NUMBER)
+        binaryWriter.write(IptcParser.CODED_CHARACTER_SET_IPTC_CODE)
+        binaryWriter.write2Bytes(IptcParser.UTF8_CHARACTER_ESCAPE_SEQUENCE.size)
+        binaryWriter.write(IptcParser.UTF8_CHARACTER_ESCAPE_SEQUENCE)
 
         /* First, right record version record */
         binaryWriter.write(IptcConstants.IPTC_RECORD_TAG_MARKER)
         binaryWriter.write(IptcConstants.IPTC_APPLICATION_2_RECORD_NUMBER)
         binaryWriter.write(IptcTypes.RECORD_VERSION.type)
         binaryWriter.write2Bytes(2) // record version record size
-        binaryWriter.write2Bytes(2) // record version value
+        binaryWriter.write2Bytes(IptcConstants.IPTC_RECORD_VERSION_VALUE)
 
-        // make a copy of the list.
         val sortedRecords: List<IptcRecord> = records.sortedWith(IptcRecord.comparator)
 
-        // write the list.
         for ((iptcType, value) in sortedRecords) {
 
-            /* Ignore the record version */
+            /* Ignore the record version, because we already wrote it. */
             if (iptcType === IptcTypes.RECORD_VERSION)
                 continue
 
@@ -134,7 +117,8 @@ object IptcWriter {
 
             binaryWriter.write(iptcType.type)
 
-            val recordData = value.toByteArray(charset)
+            val recordData = value.toByteArray()
+
             binaryWriter.write2Bytes(recordData.size)
             binaryWriter.write(recordData)
         }
