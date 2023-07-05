@@ -125,7 +125,7 @@ object JpegRewriter : BinaryFileParser() {
 
         val writer: TiffImageWriterBase
 
-        if (!exifSegmentPieces.isEmpty()) {
+        if (exifSegmentPieces.isNotEmpty()) {
 
             val exifPiece = exifSegmentPieces.first()
 

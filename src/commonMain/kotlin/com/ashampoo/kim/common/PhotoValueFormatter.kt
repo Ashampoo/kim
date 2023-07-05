@@ -245,21 +245,17 @@ object PhotoValueFormatter {
     @Suppress("MagicNumber")
     fun formatExposureTime(seconds: Double): String {
 
-        if (seconds < 1.0) {
-
+        if (seconds < 1.0)
             return "1/" + (0.5 + 1 / seconds).toInt() + " s"
 
-        } else {
+        val roundedSeconds = seconds.toInt()
 
-            val roundedSeconds = seconds.toInt()
+        val fractionSeconds = seconds - roundedSeconds
 
-            val fractionSeconds = seconds - roundedSeconds
+        if (fractionSeconds > 0.0001)
+            return "$roundedSeconds'' 1/" + (0.5 + 1 / fractionSeconds).toInt() + " s"
 
-            if (fractionSeconds > 0.0001)
-                return "$roundedSeconds'' 1/" + (0.5 + 1 / fractionSeconds).toInt() + " s"
-
-            return "$roundedSeconds'' s"
-        }
+        return "$roundedSeconds'' s"
     }
 
     fun formatFNumber(fNumber: Double): String {

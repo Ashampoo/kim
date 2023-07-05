@@ -185,7 +185,7 @@ class TiffImageWriterLossless(
             .toMutableList()
 
         /* Any items that represent a gap at the end of the exif segment, can be discarded. */
-        while (!unusedElements.isEmpty()) {
+        while (unusedElements.isNotEmpty()) {
 
             val element = unusedElements[0]
 
@@ -209,7 +209,7 @@ class TiffImageWriterLossless(
         unplacedItems.sortWith(ITEM_SIZE_COMPARATOR)
         unplacedItems.reverse()
 
-        while (!unplacedItems.isEmpty()) {
+        while (unplacedItems.isNotEmpty()) {
 
             /* Pop off largest unplaced item. */
             val outputItem = unplacedItems.removeAt(0)
