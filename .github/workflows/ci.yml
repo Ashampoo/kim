@@ -109,10 +109,11 @@ jobs:
           name: kim-macosArm64.kexe
           path: build/bin/macosArm64/releaseExecutable/kim.kexe
       - name: Export secring.pgp
+        if: startsWith(github.ref, 'refs/tags/') # Only for releases
         run: |
           echo ${{ secrets.SINGING_SECRET_KEY_RING_FILE_CONTENTS }} | base64 --decode > secring.pgp
       - name: Publish to Maven Central
-        if: startsWith(github.ref, 'refs/tags/')
+        if: startsWith(github.ref, 'refs/tags/') # Only for releases
         env:
           SIGNING_ENABLED: true
           SIGNING_KEY_ID: ${{ secrets.SIGNING_KEY_ID }}

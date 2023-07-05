@@ -105,26 +105,31 @@ abstract class TiffImageWriterBase(
 
                 fieldTags.add(field.tag)
 
-                if (field.tag == ExifTag.EXIF_TAG_EXIF_OFFSET.tag) {
+                when (field.tag) {
 
-                    if (exifDirectoryOffsetField != null)
-                        throw ImageWriteException("More than one Exif directory offset field.")
+                    ExifTag.EXIF_TAG_EXIF_OFFSET.tag -> {
 
-                    exifDirectoryOffsetField = field
+                        if (exifDirectoryOffsetField != null)
+                            throw ImageWriteException("More than one Exif directory offset field.")
 
-                } else if (field.tag == ExifTag.EXIF_TAG_INTEROP_OFFSET.tag) {
+                        exifDirectoryOffsetField = field
+                    }
 
-                    if (interoperabilityDirectoryOffsetField != null)
-                        throw ImageWriteException("More than one Interoperability directory offset field.")
+                    ExifTag.EXIF_TAG_INTEROP_OFFSET.tag -> {
 
-                    interoperabilityDirectoryOffsetField = field
+                        if (interoperabilityDirectoryOffsetField != null)
+                            throw ImageWriteException("More than one Interoperability dir offset field.")
 
-                } else if (field.tag == ExifTag.EXIF_TAG_GPSINFO.tag) {
+                        interoperabilityDirectoryOffsetField = field
+                    }
 
-                    if (gpsDirectoryOffsetField != null)
-                        throw ImageWriteException("More than one GPS directory offset field.")
+                    ExifTag.EXIF_TAG_GPSINFO.tag -> {
 
-                    gpsDirectoryOffsetField = field
+                        if (gpsDirectoryOffsetField != null)
+                            throw ImageWriteException("More than one GPS directory offset field.")
+
+                        gpsDirectoryOffsetField = field
+                    }
                 }
             }
         }

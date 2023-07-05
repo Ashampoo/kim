@@ -28,7 +28,6 @@ import com.ashampoo.kim.input.ByteArrayByteReader
 import com.ashampoo.kim.output.BinaryByteWriter.Companion.createBinaryByteWriter
 import com.ashampoo.kim.output.BufferByteWriter
 import com.ashampoo.kim.output.ByteWriter
-import io.ktor.utils.io.core.use
 
 class TiffImageWriterLossless(
     byteOrder: ByteOrder = TiffConstants.DEFAULT_TIFF_BYTE_ORDER,
@@ -185,7 +184,7 @@ class TiffImageWriterLossless(
             .toMutableList()
 
         /* Any items that represent a gap at the end of the exif segment, can be discarded. */
-        while (!unusedElements.isEmpty()) {
+        while (unusedElements.isNotEmpty()) {
 
             val element = unusedElements[0]
 
@@ -209,7 +208,7 @@ class TiffImageWriterLossless(
         unplacedItems.sortWith(ITEM_SIZE_COMPARATOR)
         unplacedItems.reverse()
 
-        while (!unplacedItems.isEmpty()) {
+        while (unplacedItems.isNotEmpty()) {
 
             /* Pop off largest unplaced item. */
             val outputItem = unplacedItems.removeAt(0)
@@ -309,9 +308,9 @@ class TiffImageWriterLossless(
 
             val newByteWriter = BufferByteWriter(outputByteArray, offset)
 
-            createBinaryByteWriter(newByteWriter, byteOrder).use { bos ->
-                outputItem.writeItem(bos)
-            }
+            val bos = createBinaryByteWriter(newByteWriter, byteOrder)
+
+            outputItem.writeItem(bos)
         }
 
         byteWriter.write(outputByteArray)

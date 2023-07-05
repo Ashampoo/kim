@@ -69,16 +69,13 @@ object PngImageParser : ImageParser() {
 
                 requireNotNull(bytes)
 
-                if (ChunkType.TEXT == chunkType)
-                    chunks.add(PngChunkText(length, chunkType, crc, bytes))
-                else if (ChunkType.ZTXT == chunkType)
-                    chunks.add(PngChunkZtxt(length, chunkType, crc, bytes))
-                else if (ChunkType.IHDR == chunkType)
-                    chunks.add(PngChunkIhdr(length, chunkType, crc, bytes))
-                else if (ChunkType.ITXT == chunkType)
-                    chunks.add(PngChunkItxt(length, chunkType, crc, bytes))
-                else
-                    chunks.add(PngChunk(length, chunkType, crc, bytes))
+                when {
+                    ChunkType.TEXT == chunkType -> chunks.add(PngChunkText(length, chunkType, crc, bytes))
+                    ChunkType.ZTXT == chunkType -> chunks.add(PngChunkZtxt(length, chunkType, crc, bytes))
+                    ChunkType.IHDR == chunkType -> chunks.add(PngChunkIhdr(length, chunkType, crc, bytes))
+                    ChunkType.ITXT == chunkType -> chunks.add(PngChunkItxt(length, chunkType, crc, bytes))
+                    else -> chunks.add(PngChunk(length, chunkType, crc, bytes))
+                }
             }
 
             if (ChunkType.IEND == chunkType)

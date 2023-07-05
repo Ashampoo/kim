@@ -43,7 +43,7 @@ class FieldTypeLong(type: Int, name: String) : FieldType(type, name, 4) {
         if (data is IntArray)
             return data.toBytes(byteOrder)
 
-        if (!(data is Array<*>))
+        if (data !is Array<*>)
             throw ImageWriteException("Invalid data: $data")
 
         val values = IntArray(data.size)

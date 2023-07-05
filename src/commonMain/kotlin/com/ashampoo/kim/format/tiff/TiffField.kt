@@ -57,8 +57,8 @@ class TiffField(
 
                 if (value.size <= MAX_BYTE_ARRAY_DISPLAY_SIZE)
                     return@lazy "[${value.toSingleNumberHexes()}]"
-                else
-                    return@lazy "[${value.size} bytes]"
+
+                return@lazy "[${value.size} bytes]"
             }
 
             if (value is IntArray)

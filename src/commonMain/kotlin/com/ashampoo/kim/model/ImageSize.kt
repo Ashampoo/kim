@@ -22,5 +22,4 @@ data class ImageSize(
 
     override fun toString(): String =
         "$width x $height"
-
 }

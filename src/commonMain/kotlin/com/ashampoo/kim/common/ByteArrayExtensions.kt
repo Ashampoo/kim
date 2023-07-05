@@ -24,15 +24,19 @@ fun Byte.toHex(): String =
     this.toInt().and(FF).toString(HEX_RADIX).padStart(2, '0')
 
 @Suppress("MagicNumber")
-fun ByteArray.toHex(): String = joinToString("") { it.toHex() }
+fun ByteArray.toHex(): String =
+    joinToString("") { it.toHex() }
 
 @Suppress("MagicNumber")
-fun ByteArray.toSingleNumberHexes(): String = joinToString(", ") { "0x" + it.toHex() }
+fun ByteArray.toSingleNumberHexes(): String =
+    joinToString(", ") { "0x" + it.toHex() }
 
 @Suppress("MagicNumber")
-fun ByteArray.toAsciiString(): String = this.decodeToString()
+fun ByteArray.toAsciiString(): String =
+    this.decodeToString()
 
-fun ByteArray.indexOfNullTerminator(): Int = indexOfNullTerminator(0)
+fun ByteArray.indexOfNullTerminator(): Int =
+    indexOfNullTerminator(0)
 
 /**
  * NUL is often used in image formats to terminate a string.
