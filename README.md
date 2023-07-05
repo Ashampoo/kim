@@ -1,4 +1,5 @@
 # Kim - Kotlin Image Metadata
+
 [![Kotlin](https://img.shields.io/badge/kotlin-1.8.20-blue.svg?logo=kotlin)](httpw://kotlinlang.org)
 ![JVM](https://img.shields.io/badge/-JVM-gray.svg?style=flat)
 ![Android](https://img.shields.io/badge/-Android-gray.svg?style=flat)
@@ -24,33 +25,12 @@ needs of Ashampoo Photos, which, in turn, is driven by user community feedback.
 
 ## Installation
 
-Add to your `build.gradle.kts` for Multiplatform:
 ```
-repositories {
-    mavenCentral()
-}
-
-kotlin {
-    val commonMain by sourceSets.getting {
-        dependencies {
-            implementation("com.ashampoo:kim:0.1.3")
-        }
-    }
-}
-```
-
-Add to your `build.gradle.kts` for JVM:
-```
-repositories {
-    mavenCentral()
-}
-
-dependencies {
-    implementation("com.ashampoo:kim:0.1.3")
-}
+implementation("com.ashampoo:kim:0.1.5")
 ```
 
 ## Sample usage in Kotlin (for JVM)
+
 ```
 import com.ashampoo.kim.Kim
 import com.ashampoo.kim.common.convertToPhotoMetadata
@@ -220,8 +200,6 @@ have suggestions for improvements, or would like to contribute new features,
 please feel free to submit a pull request.
 
 ## Acknowledgements
-
-We thank the following organizations and people.
 
 * JetBrains for making [Kotlin](https://kotlinlang.org).
 * Apache Software Foundation for making [Apache Commons Imaging](https://commons.apache.org/proper/commons-imaging/).
