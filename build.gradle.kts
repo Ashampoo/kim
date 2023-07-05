@@ -20,7 +20,7 @@ repositories {
 
 val productName = "Ashampoo Kim"
 
-val ktorVersion: String = "2.3.0"
+val ktorVersion: String = "2.3.2"
 
 description = productName
 group = "com.ashampoo"
