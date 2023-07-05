@@ -28,7 +28,6 @@ import com.ashampoo.kim.input.ByteArrayByteReader
 import com.ashampoo.kim.output.BinaryByteWriter.Companion.createBinaryByteWriter
 import com.ashampoo.kim.output.BufferByteWriter
 import com.ashampoo.kim.output.ByteWriter
-import io.ktor.utils.io.core.use
 
 class TiffImageWriterLossless(
     byteOrder: ByteOrder = TiffConstants.DEFAULT_TIFF_BYTE_ORDER,
@@ -309,9 +308,9 @@ class TiffImageWriterLossless(
 
             val newByteWriter = BufferByteWriter(outputByteArray, offset)
 
-            createBinaryByteWriter(newByteWriter, byteOrder).use { bos ->
-                outputItem.writeItem(bos)
-            }
+            val bos = createBinaryByteWriter(newByteWriter, byteOrder)
+
+            outputItem.writeItem(bos)
         }
 
         byteWriter.write(outputByteArray)
