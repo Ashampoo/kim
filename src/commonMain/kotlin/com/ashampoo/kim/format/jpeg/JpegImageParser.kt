@@ -102,15 +102,18 @@ object JpegImageParser : ImageParser() {
                     JpegConstants.JPEG_APP13_MARKER -> segments.add(App13Segment(marker, segmentBytes))
                     JpegConstants.JFIF_MARKER -> segments.add(JfifSegment(marker, segmentBytes))
                     else ->
-                        if (JpegConstants.SOFN_MARKERS.binarySearch(marker) >= 0)
-                            segments.add(SofnSegment(marker, segmentBytes))
-                        else if (
+                        when {
+
+                            JpegConstants.SOFN_MARKERS.binarySearch(marker) >= 0 ->
+                                segments.add(SofnSegment(marker, segmentBytes))
+
                             marker >= JpegConstants.JPEG_APP1_MARKER &&
-                            marker <= JpegConstants.JPEG_APP15_MARKER
-                        )
-                            segments.add(UnknownSegment(marker, segmentBytes))
-                        else if (marker == JpegConstants.COM_MARKER)
-                            segments.add(ComSegment(marker, segmentBytes))
+                                marker <= JpegConstants.JPEG_APP15_MARKER ->
+                                segments.add(UnknownSegment(marker, segmentBytes))
+
+                            marker == JpegConstants.COM_MARKER ->
+                                segments.add(ComSegment(marker, segmentBytes))
+                        }
                 }
 
                 return true

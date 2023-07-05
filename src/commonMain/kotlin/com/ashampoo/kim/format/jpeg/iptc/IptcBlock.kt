@@ -27,4 +27,5 @@ class IptcBlock(
 
     fun isIPTCBlock(): Boolean =
         blockType == IptcConstants.IMAGE_RESOURCE_BLOCK_IPTC_DATA
+
 }

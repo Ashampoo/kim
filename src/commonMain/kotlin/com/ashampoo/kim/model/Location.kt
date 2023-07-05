@@ -23,12 +23,10 @@ data class Location(
 ) {
 
     val displayString: String =
-        if (name != null)
-            "$name, $country"
-        else if (city != null)
-            "$city, $country"
-        else if (state != null)
-            "$state, $country"
-        else
-            country
+        when {
+            name != null -> "$name, $country"
+            city != null -> "$city, $country"
+            state != null -> "$state, $country"
+            else -> country
+        }
 }
