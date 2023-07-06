@@ -17,7 +17,8 @@ package com.ashampoo.kim.format.jpeg
 
 import com.ashampoo.kim.input.ByteArrayByteReader
 import com.ashampoo.kim.testdata.KimTestData
-import java.io.File
+import kotlinx.io.files.Path
+import kotlinx.io.files.sink
 import kotlin.test.Test
 import kotlin.test.fail
 
@@ -26,6 +27,7 @@ class JpegMetadataExtractorTest {
     /**
      * Regression test based on a fixed small set of test files.
      */
+    @OptIn(ExperimentalStdlibApi::class)
     @Test
     fun testExtractMetadataBytes() {
 
@@ -43,7 +45,7 @@ class JpegMetadataExtractorTest {
 
             if (!equals) {
 
-                File("build/photo_${index}_header.jpg").writeBytes(actualMetadataBytes)
+                Path("build/photo_${index}_header.jpg").sink().use { it.write(actualMetadataBytes) }
 
                 fail("Photo $index has not the expected bytes!")
             }

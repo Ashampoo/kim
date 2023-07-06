@@ -17,7 +17,8 @@ package com.ashampoo.kim.format.jpeg
 
 import com.ashampoo.kim.Kim
 import com.ashampoo.kim.testdata.KimTestData
-import java.io.File
+import kotlinx.io.files.Path
+import kotlinx.io.files.sink
 import kotlin.test.Test
 import kotlin.test.assertNotNull
 import kotlin.test.fail
@@ -27,6 +28,7 @@ class ExifThumbnailExtractionTest {
     /**
      * Regression test based on a fixed small set of test files.
      */
+    @OptIn(ExperimentalStdlibApi::class)
     @Test
     fun testExtractJpegThumbnail() {
 
@@ -50,7 +52,7 @@ class ExifThumbnailExtractionTest {
 
             if (!equals) {
 
-                File("build/photo_${index}_exifthumb.jpg").writeBytes(actualThumbnailBytes)
+                Path("build/photo_${index}_exifthumb.jpg").sink().use { it.write(actualThumbnailBytes) }
 
                 fail("Photo $index has not the expected bytes!")
             }

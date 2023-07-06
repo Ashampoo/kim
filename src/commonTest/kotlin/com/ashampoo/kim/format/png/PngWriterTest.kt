@@ -87,8 +87,6 @@ class PngWriterTest {
 
             assertEquals(expectedXmp, actualXmp)
 
-            // File("build/photo_${index}_modified.png").writeBytes(newBytes)
-
             val expectedBytes = KimTestData.getModifiedBytesOf(index)
 
             assertTrue(
