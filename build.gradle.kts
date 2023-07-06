@@ -383,7 +383,7 @@ publishing {
 
                 name.set(productName)
                 description.set("Kotlin Multiplatform library for image metadata manipulation")
-                url.set("https://github.com/RealAshampoo/kim")
+                url.set("https://github.com/Ashampoo/kim")
 
                 licenses {
                     license {
@@ -400,8 +400,8 @@ publishing {
                 }
 
                 scm {
-                    connection.set("https://github.com/RealAshampoo/kim.git")
-                    url.set("https://github.com/RealAshampoo/kim")
+                    connection.set("https://github.com/Ashampoo/kim.git")
+                    url.set("https://github.com/Ashampoo/kim")
                 }
             }
         }
