@@ -33,8 +33,8 @@ Little-endian (Intel, II)
 0x9291 SubSecTimeOriginal = 93
 0x9292 SubSecTimeDigitized = 93
 0x00-1 Unknown = 1
-0xa20e FocalPlaneXResolution = 5472000/1436 (3810.58495821727)
-0xa20f FocalPlaneYResolution = 3648000/956 (3815.899581589958)
+0xa20e FocalPlaneXResolution = 5472000/1436 (3810.584958)
+0xa20f FocalPlaneYResolution = 3648000/956 (3815.899582)
 0xa210 FocalPlaneResolutionUnit = 2
 0xa401 CustomRendered = 0
 0xa402 ExposureMode = 1

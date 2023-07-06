@@ -14,7 +14,7 @@ Little-endian (Intel, II)
 0x8769 ExifOffset = 222
 
 ---- ExifIFD ----
-0x829a ExposureTime = 1/640 (0.0015625)
+0x829a ExposureTime = 1/640 (0.001563)
 0x829d FNumber = 56/10 (5.6)
 0x8822 ExposureProgram = 1
 0x8827 PhotographicSensitivity = 1600
@@ -34,8 +34,8 @@ Little-endian (Intel, II)
 0x9291 SubSecTimeOriginal = 23
 0x9292 SubSecTimeDigitized = 23
 0x00-1 Unknown = -1
-0xa20e FocalPlaneXResolution = 5184000/894 (5798.657718120805)
-0xa20f FocalPlaneYResolution = 3456000/597 (5788.94472361809)
+0xa20e FocalPlaneXResolution = 5184000/894 (5798.657718)
+0xa20f FocalPlaneYResolution = 3456000/597 (5788.944724)
 0xa210 FocalPlaneResolutionUnit = 2
 0xa401 CustomRendered = 0
 0xa402 ExposureMode = 1

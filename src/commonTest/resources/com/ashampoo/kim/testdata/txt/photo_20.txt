@@ -18,7 +18,7 @@ Little-endian (Intel, II)
 0xc4a5 PrintIM = [260 bytes]
 
 ---- ExifIFD ----
-0x829a ExposureTime = 10/300 (0.03333333333333333)
+0x829a ExposureTime = 10/300 (0.033333)
 0x829d FNumber = 40/10 (4.0)
 0x8822 ExposureProgram = 5
 0x8827 PhotographicSensitivity = 200

@@ -32,7 +32,7 @@ Big-endian (Motorola, MM)
 0x9201 ShutterSpeedValue = 69/8 (8.625)
 0x9202 ApertureValue = 45/8 (5.625)
 0x9204 ExposureCompensation = 0/1 (0.0)
-0x9205 MaxApertureValue = 189284/33461 (5.656854248229282)
+0x9205 MaxApertureValue = 189284/33461 (5.656854)
 0x9207 MeteringMode = 5
 0x9209 Flash = 16
 0x920a FocalLength = 250/1 (250.0)
@@ -42,8 +42,8 @@ Big-endian (Motorola, MM)
 0xa000 FlashpixVersion = [0x30, 0x31, 0x30, 0x30]
 0xa002 ExifImageWidth = 1000
 0xa003 ExifImageLength = 668
-0xa20e FocalPlaneXResolution = 1746901/287 (6086.76306620209)
-0xa20f FocalPlaneYResolution = 2472601/406 (6090.1502463054185)
+0xa20e FocalPlaneXResolution = 1746901/287 (6086.763066)
+0xa20f FocalPlaneYResolution = 2472601/406 (6090.150246)
 0xa210 FocalPlaneResolutionUnit = 2
 0xa401 CustomRendered = 0
 0xa402 ExposureMode = 1

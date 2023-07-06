@@ -168,6 +168,9 @@ kotlin {
 
             /* Multiplatform resources */
             implementation("com.goncalossilva:resources:0.3.2")
+
+            /* Multiplatform file access */
+            implementation("org.jetbrains.kotlinx:kotlinx-io-core:0.2.0")
         }
     }
 

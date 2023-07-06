@@ -15,7 +15,7 @@ Little-endian (Intel, II)
 0x8769 ExifOffset = 190
 
 ---- ExifIFD ----
-0x829a ExposureTime = 1/120 (0.008333333333333333)
+0x829a ExposureTime = 1/120 (0.008333)
 0x829d FNumber = 2/1 (2.0)
 0x8822 ExposureProgram = 2
 0x8827 PhotographicSensitivity = 80
@@ -24,9 +24,9 @@ Little-endian (Intel, II)
 0x9004 DateTimeDigitized = 2020:02:17 14:47:46
 0x00-1 Unknown = +00:00
 0x9101 ComponentsConfiguration = [0x01, 0x02, 0x03, 0x00]
-0x9201 ShutterSpeedValue = 133006/19257 (6.906891000675079)
+0x9201 ShutterSpeedValue = 133006/19257 (6.906891)
 0x9202 ApertureValue = 2/1 (2.0)
-0x9203 BrightnessValue = 270370/52511 (5.14882596027499)
+0x9203 BrightnessValue = 270370/52511 (5.148826)
 0x9204 ExposureCompensation = 0/1 (0.0)
 0x9207 MeteringMode = 3
 0x9209 Flash = 16

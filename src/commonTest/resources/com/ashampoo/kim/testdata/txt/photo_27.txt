@@ -15,7 +15,7 @@ Little-endian (Intel, II)
 0x8825 GPSInfo = 732
 
 ---- ExifIFD ----
-0x829a ExposureTime = 1/640 (0.0015625)
+0x829a ExposureTime = 1/640 (0.001563)
 0x829d FNumber = 56/10 (5.6)
 0x8822 ExposureProgram = 1
 0x8827 PhotographicSensitivity = 400
@@ -31,8 +31,8 @@ Little-endian (Intel, II)
 0x9209 Flash = 8
 0x920a FocalLength = 400/1 (400.0)
 0x9292 SubSecTimeDigitized = 53
-0xa20e FocalPlaneXResolution = 5184000/905 (5728.176795580111)
-0xa20f FocalPlaneYResolution = 3456000/595 (5808.403361344538)
+0xa20e FocalPlaneXResolution = 5184000/905 (5728.176796)
+0xa20f FocalPlaneYResolution = 3456000/595 (5808.403361)
 0xa210 FocalPlaneResolutionUnit = 2
 0xa402 ExposureMode = 1
 0xa403 WhiteBalance = 1
@@ -46,7 +46,7 @@ Little-endian (Intel, II)
 0x0001 GPSLatitudeRef = N
 0x0002 GPSLatitude = [22/1 (22.0), 48/1 (48.0), 18531/3125 (5.92992)]
 0x0003 GPSLongitudeRef = E
-0x0004 GPSLongitude = [120/1 (120.0), 17/1 (17.0), 40807/4443 (9.184559981994148)]
+0x0004 GPSLongitude = [120/1 (120.0), 17/1 (17.0), 40807/4443 (9.18456)]
 
 ---- Sub ----
 0x0103 Compression = 6

@@ -25,9 +25,9 @@ Little-endian (Intel, II)
 0x9004 DateTimeDigitized = 2019:04:17 18:11:48
 0x9201 ShutterSpeedValue = 8965784/1000000 (8.965784)
 0x9202 ApertureValue = 1695994/1000000 (1.695994)
-0x9203 BrightnessValue = 19324/2560 (7.5484375)
+0x9203 BrightnessValue = 19324/2560 (7.548438)
 0x9204 ExposureCompensation = 0/10 (0.0)
-0x9205 MaxApertureValue = 434/256 (1.6953125)
+0x9205 MaxApertureValue = 434/256 (1.695313)
 0x9207 MeteringMode = 2
 0x9208 LightSource = 0
 0x9209 Flash = 16
