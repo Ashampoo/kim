@@ -16,7 +16,7 @@
 package com.ashampoo.kim.model
 
 import com.ashampoo.kim.testdata.KimTestData
-import org.junit.Test
+import kotlin.test.Test
 import kotlin.test.assertEquals
 
 class ImageFormatTest {
