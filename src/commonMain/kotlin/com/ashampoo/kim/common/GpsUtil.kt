@@ -17,7 +17,6 @@ package com.ashampoo.kim.common
 
 import kotlin.math.abs
 import kotlin.math.pow
-import kotlin.math.roundToInt
 import kotlin.math.roundToLong
 
 object GpsUtil {

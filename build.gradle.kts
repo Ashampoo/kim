@@ -75,8 +75,7 @@ sonar {
         property(
             "sonar.tests",
             listOf(
-                "./src/commonTest/kotlin",
-                "./src/jvmTest/kotlin",
+                "./src/commonTest/kotlin"
             )
         )
 
@@ -166,7 +165,7 @@ kotlin {
             /* Kotlin Test */
             implementation(kotlin("test"))
 
-            /* Multiplatform resources */
+            /* Multiplatform test resources */
             implementation("com.goncalossilva:resources:0.3.2")
 
             /* Multiplatform file access */
