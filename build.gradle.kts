@@ -11,6 +11,7 @@ plugins {
     id("org.jetbrains.kotlinx.kover") version "0.6.1"
     id("com.asarkar.gradle.build-time-tracker") version "4.3.0"
     id("me.qoomon.git-versioning") version "6.4.1"
+    id("com.goncalossilva.resources") version "0.3.2"
 }
 
 repositories {
@@ -164,6 +165,9 @@ kotlin {
 
             /* Kotlin Test */
             implementation(kotlin("test"))
+
+            /* Multiplatform resources */
+            implementation("com.goncalossilva:resources:0.3.2")
         }
     }
 

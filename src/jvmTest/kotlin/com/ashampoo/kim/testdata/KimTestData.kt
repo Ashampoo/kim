@@ -15,6 +15,8 @@
  */
 package com.ashampoo.kim.testdata
 
+import com.goncalossilva.resources.Resource
+
 /**
  * This object extracts the bundled test
  * photo files to a specified directory.
@@ -23,6 +25,8 @@ package com.ashampoo.kim.testdata
  */
 @Suppress("TooManyFunctions")
 object KimTestData {
+
+    private const val RESOURCE_PATH: String = "src/commonTest/resources/com/ashampoo/kim/testdata"
 
     const val TEST_PHOTO_COUNT: Int = 61
     const val HIGHEST_JPEG_INDEX: Int = 50
@@ -52,9 +56,6 @@ object KimTestData {
         PNG_GIMP_TEST_IMAGE_INDEX
     )
 
-    private fun checkIndex(index: Int) =
-        require(index in 1..TEST_PHOTO_COUNT) { "Illegal index: $index" }
-
     private fun getExtension(index: Int) = when (index) {
         GIF_TEST_IMAGE_INDEX -> "gif"
         WEBP_TEST_IMAGE_INDEX -> "webp"
@@ -72,75 +73,36 @@ object KimTestData {
 
     fun getFileName(index: Int): String = "photo_$index.${getExtension(index)}"
 
-    fun getBytesOf(index: Int): ByteArray {
+    fun getBytesOf(index: Int): ByteArray =
+        getBytesOf(getFileName(index))
 
-        checkIndex(index)
+    fun getBytesOf(fileName: String): ByteArray =
+        Resource("$RESOURCE_PATH/full/$fileName").readBytes()
 
-        return getBytesOf(getFileName(index))
-    }
+    fun getHeaderBytesOf(index: Int): ByteArray =
+        Resource("$RESOURCE_PATH/headers/photo_${index}_header.${getExtension(index)}").readBytes()
 
-    fun getBytesOf(fileName: String): ByteArray {
+    fun getModifiedBytesOf(index: Int): ByteArray =
+        Resource("$RESOURCE_PATH/modified/photo_${index}_modified.${getExtension(index)}").readBytes()
 
-        val inputStream = getResourceAsStream("full/$fileName")
+    fun getExifThumbnailBytesOf(index: Int): ByteArray =
+        Resource("$RESOURCE_PATH/exifthumbs/photo_${index}_exifthumb.jpg").readBytes()
 
-        return inputStream.readBytes()
-    }
-
-    fun getHeaderBytesOf(index: Int): ByteArray {
-
-        checkIndex(index)
-
-        val extension = getExtension(index)
-
-        val inputStream = getResourceAsStream("headers/photo_${index}_header.$extension")
-
-        return inputStream.readBytes()
-    }
-
-    fun getModifiedBytesOf(index: Int): ByteArray {
-
-        checkIndex(index)
-
-        val extension = getExtension(index)
-
-        val inputStream = getResourceAsStream("modified/photo_${index}_modified.$extension")
-
-        return inputStream.readBytes()
-    }
-
-    fun getExifThumbnailBytesOf(index: Int): ByteArray {
-
-        checkIndex(index)
-
-        val inputStream = getResourceAsStream("exifthumbs/photo_${index}_exifthumb.jpg")
-
-        return inputStream.readBytes()
-    }
-
-    fun getHeaderExifBytesOf(index: Int): ByteArray {
-
-        checkIndex(index)
-
-        val inputStream = getResourceAsStream("headers/photo_${index}_header_exif.tif")
-
-        return inputStream.readBytes()
-    }
+    fun getHeaderExifBytesOf(index: Int): ByteArray =
+        Resource("$RESOURCE_PATH/headers/photo_${index}_header_exif.tif").readBytes()
 
     fun getHeaderTextFile(index: Int, identifier: String): String =
-        String(getResourceAsStream("headers/photo_${index}_header_$identifier.txt").readBytes())
+        Resource("$RESOURCE_PATH/headers/photo_${index}_header_$identifier.txt").readText()
 
     fun getToStringText(index: Int): ByteArray =
-        getResourceAsStream("txt/photo_$index.txt").readBytes()
+        Resource("$RESOURCE_PATH/txt/photo_$index.txt").readBytes()
 
     fun getOriginalXmp(index: Int): ByteArray =
-        getResourceAsStream("xmp/photo_$index.xmp").readBytes()
+        Resource("$RESOURCE_PATH/xmp/photo_$index.xmp").readBytes()
 
     fun getFormattedXmp(index: Int): String =
-        String(getResourceAsStream("xmp/photo_${index}_formatted.xmp").readBytes())
+        Resource("$RESOURCE_PATH/xmp/photo_${index}_formatted.xmp").readText()
 
     fun getMetadataCsvString(): String =
-        String(getResourceAsStream("metadata.csv").readBytes())
-
-    private fun getResourceAsStream(name: String) =
-        requireNotNull(object {}.javaClass.getResourceAsStream(name)) { "Can't find resource $name" }
+        Resource("$RESOURCE_PATH/metadata.csv").readText()
 }
