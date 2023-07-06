@@ -17,7 +17,7 @@ package com.ashampoo.kim.common
 
 import kotlin.math.abs
 import kotlin.math.pow
-import kotlin.math.roundToInt
+import kotlin.math.roundToLong
 
 object GpsUtil {
 
@@ -98,6 +98,6 @@ object GpsUtil {
 
     private fun Double.roundTo(numFractionDigits: Int): Double {
         val factor = 10.0.pow(numFractionDigits.toDouble())
-        return (this * factor).roundToInt() / factor
+        return (this * factor).roundToLong() / factor
     }
 }

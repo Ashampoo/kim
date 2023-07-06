@@ -11,6 +11,7 @@ plugins {
     id("org.jetbrains.kotlinx.kover") version "0.6.1"
     id("com.asarkar.gradle.build-time-tracker") version "4.3.0"
     id("me.qoomon.git-versioning") version "6.4.1"
+    id("com.goncalossilva.resources") version "0.3.2"
 }
 
 repositories {
@@ -74,8 +75,7 @@ sonar {
         property(
             "sonar.tests",
             listOf(
-                "./src/commonTest/kotlin",
-                "./src/jvmTest/kotlin",
+                "./src/commonTest/kotlin"
             )
         )
 
@@ -164,6 +164,12 @@ kotlin {
 
             /* Kotlin Test */
             implementation(kotlin("test"))
+
+            /* Multiplatform test resources */
+            implementation("com.goncalossilva:resources:0.3.2")
+
+            /* Multiplatform file access */
+            implementation("org.jetbrains.kotlinx:kotlinx-io-core:0.2.0")
         }
     }
 

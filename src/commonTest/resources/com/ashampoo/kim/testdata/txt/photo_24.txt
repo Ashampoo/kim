@@ -25,7 +25,7 @@ Little-endian (Intel, II)
 0x9004 DateTimeDigitized = 2019:02:08 09:19:15
 0x9201 ShutterSpeedValue = -1/1 (-1.0)
 0x9202 ApertureValue = 2970854/1000000 (2.970854)
-0x9203 BrightnessValue = -18086/2560 (-7.06484375)
+0x9203 BrightnessValue = -18086/2560 (-7.064844)
 0x9204 ExposureCompensation = 0/10 (0.0)
 0x9205 MaxApertureValue = 760/256 (2.96875)
 0x9207 MeteringMode = 5
@@ -33,8 +33,8 @@ Little-endian (Intel, II)
 0x9209 Flash = 16
 0x920a FocalLength = 250/10 (25.0)
 0x00-1 Unknown = 1
-0xa20e FocalPlaneXResolution = 70924134/32768 (2164.4328002929688)
-0xa20f FocalPlaneYResolution = 70924134/32768 (2164.4328002929688)
+0xa20e FocalPlaneXResolution = 70924134/32768 (2164.4328)
+0xa20f FocalPlaneYResolution = 70924134/32768 (2164.4328)
 0xa210 FocalPlaneResolutionUnit = 3
 0xa300 FileSource = 3
 0xa301 SceneType = 1

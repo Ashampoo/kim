@@ -28,7 +28,7 @@ Little-endian (Intel, II)
 0x00-1 Unknown = +02:00
 0x9201 ShutterSpeedValue = 9643856/1000000 (9.643856)
 0x9202 ApertureValue = 4970854/1000000 (4.970854)
-0x9204 ExposureCompensation = -2/3 (-0.6666666666666666)
+0x9204 ExposureCompensation = -2/3 (-0.666667)
 0x9205 MaxApertureValue = 5/1 (5.0)
 0x9207 MeteringMode = 5
 0x9209 Flash = 16
@@ -36,8 +36,8 @@ Little-endian (Intel, II)
 0x9291 SubSecTimeOriginal = 09
 0x9292 SubSecTimeDigitized = 09
 0x00-1 Unknown = 1
-0xa20e FocalPlaneXResolution = 79937569/32768 (2439.501007080078)
-0xa20f FocalPlaneYResolution = 79937569/32768 (2439.501007080078)
+0xa20e FocalPlaneXResolution = 79937569/32768 (2439.501007)
+0xa20f FocalPlaneYResolution = 79937569/32768 (2439.501007)
 0xa210 FocalPlaneResolutionUnit = 3
 0xa401 CustomRendered = 0
 0xa402 ExposureMode = 1

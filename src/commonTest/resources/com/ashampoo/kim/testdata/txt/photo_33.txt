@@ -26,7 +26,7 @@ Little-endian (Intel, II)
 0x9004 DateTimeDigitized = 2017:11:09 02:25:39
 0x9201 ShutterSpeedValue = 6643856/1000000 (6.643856)
 0x9202 ApertureValue = 5310704/1000000 (5.310704)
-0x9203 BrightnessValue = 16614/2560 (6.48984375)
+0x9203 BrightnessValue = 16614/2560 (6.489844)
 0x9204 ExposureCompensation = 0/10 (0.0)
 0x9205 MaxApertureValue = 1360/256 (5.3125)
 0x9207 MeteringMode = 5
@@ -50,9 +50,9 @@ Little-endian (Intel, II)
 
 ---- GPS ----
 0x0001 GPSLatitudeRef = N
-0x0002 GPSLatitude = [43/1 (43.0), 37/1 (37.0), 33554/4561 (7.356720017540013)]
+0x0002 GPSLatitude = [43/1 (43.0), 37/1 (37.0), 33554/4561 (7.35672)]
 0x0003 GPSLongitudeRef = W
-0x0004 GPSLongitude = [116/1 (116.0), 12/1 (12.0), 95546/1817 (52.584479911942765)]
+0x0004 GPSLongitude = [116/1 (116.0), 12/1 (12.0), 95546/1817 (52.58448)]
 
 ---- Sub ----
 0x0103 Compression = 6

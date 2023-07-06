@@ -13,47 +13,39 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.ashampoo.kim
+package com.ashampoo.kim.format.jpeg
 
+import com.ashampoo.kim.input.ByteArrayByteReader
 import com.ashampoo.kim.testdata.KimTestData
-import java.io.File
+import kotlinx.io.files.Path
+import kotlinx.io.files.sink
 import kotlin.test.Test
-import kotlin.test.assertNotNull
 import kotlin.test.fail
 
-class XmpExtractionTest {
+class JpegMetadataExtractorTest {
 
     /**
      * Regression test based on a fixed small set of test files.
      */
+    @OptIn(ExperimentalStdlibApi::class)
     @Test
-    fun testExtractXmp() {
+    fun testExtractMetadataBytes() {
 
-        for (index in 1..53) {
+        for (index in 1..KimTestData.HIGHEST_JPEG_INDEX) {
 
-            /* Skip files without embedded XMP */
-            if (index == 2 || index == 20 || index == 48)
-                continue
+            val bytes = KimTestData.getBytesOf(index)
 
-            // TODO Handle broken file (bad IFD1)
-            if (index == 21)
-                continue
+            val byteReader = ByteArrayByteReader(bytes)
 
-            val bytes = KimTestData.getHeaderBytesOf(index)
+            val actualMetadataBytes = JpegMetadataExtractor.extractMetadataBytes(byteReader)
 
-            val actualXmp = Kim.readMetadata(bytes)?.xmp
+            val expectedMetadataBytes = KimTestData.getHeaderBytesOf(index)
 
-            assertNotNull(actualXmp, "File #$index has no XMP.")
-
-            val actualXmpBytes = actualXmp.encodeToByteArray()
-
-            val expectedXmp = KimTestData.getOriginalXmp(index)
-
-            val equals = expectedXmp.contentEquals(actualXmpBytes)
+            val equals = expectedMetadataBytes.contentEquals(actualMetadataBytes)
 
             if (!equals) {
 
-                File("build/photo_$index.xmp").writeBytes(actualXmpBytes)
+                Path("build/photo_${index}_header.jpg").sink().use { it.write(actualMetadataBytes) }
 
                 fail("Photo $index has not the expected bytes!")
             }

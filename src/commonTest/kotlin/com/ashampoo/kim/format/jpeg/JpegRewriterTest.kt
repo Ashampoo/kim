@@ -28,7 +28,8 @@ import com.ashampoo.kim.input.ByteArrayByteReader
 import com.ashampoo.kim.model.GpsCoordinates
 import com.ashampoo.kim.output.ByteArrayByteWriter
 import com.ashampoo.kim.testdata.KimTestData
-import java.io.File
+import kotlinx.io.files.Path
+import kotlinx.io.files.sink
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNotEquals
@@ -59,6 +60,7 @@ class JpegRewriterTest {
     /**
      * Regression test based on a fixed small set of test files.
      */
+    @OptIn(ExperimentalStdlibApi::class)
     @Test
     fun testChangeMetadata() {
 
@@ -143,7 +145,7 @@ class JpegRewriterTest {
 
             if (!equals) {
 
-                File("build/photo_${index}_modified.jpg").writeBytes(actualMetadataBytes)
+                Path("build/photo_${index}_modified.jpg").sink().use { it.write(actualMetadataBytes) }
 
                 fail("Photo $index has not the expected bytes!")
             }
@@ -313,6 +315,7 @@ class JpegRewriterTest {
     @Test
     fun testUpdateXmp() {
 
+        @Suppress("LoopWithTooManyJumpStatements")
         for (index in 1..KimTestData.HIGHEST_JPEG_INDEX) {
 
             // TODO Handle broken file (bad IFD1)
@@ -333,9 +336,7 @@ class JpegRewriterTest {
 
             val byteWriter = ByteArrayByteWriter()
 
-            byteWriter.use {
-                JpegRewriter.updateXmpXml(ByteArrayByteReader(bytes), it, newXmp)
-            }
+            JpegRewriter.updateXmpXml(ByteArrayByteReader(bytes), byteWriter, newXmp)
 
             val newBytes = byteWriter.toByteArray()
 

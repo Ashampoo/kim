@@ -31,7 +31,7 @@ Little-endian (Intel, II)
 0x00-1 Unknown = [110 bytes]
 
 ---- ExifIFD ----
-0x829a ExposureTime = 1/30 (0.03333333333333333)
+0x829a ExposureTime = 1/30 (0.033333)
 0x829d FNumber = 5/1 (5.0)
 0x8822 ExposureProgram = 3
 0x8827 PhotographicSensitivity = 400
@@ -41,7 +41,7 @@ Little-endian (Intel, II)
 0x9003 DateTimeOriginal = 2021:11:25 07:40:51
 0x9101 ComponentsConfiguration = [0x01, 0x02, 0x03, 0x00]
 0x9201 ShutterSpeedValue = 5/1 (5.0)
-0x9202 ApertureValue = 9297/2002 (4.643856143856143)
+0x9202 ApertureValue = 9297/2002 (4.643856)
 0x9204 ExposureCompensation = 0/1 (0.0)
 0x9207 MeteringMode = 5
 0x9209 Flash = 16
@@ -51,8 +51,8 @@ Little-endian (Intel, II)
 0x00-1 Unknown = 1
 0xa002 ExifImageWidth = 1200
 0xa003 ExifImageLength = 800
-0xa20e FocalPlaneXResolution = 2592000/905 (2864.0883977900553)
-0xa20f FocalPlaneYResolution = 1728000/595 (2904.201680672269)
+0xa20e FocalPlaneXResolution = 2592000/905 (2864.088398)
+0xa20f FocalPlaneYResolution = 1728000/595 (2904.201681)
 0xa210 FocalPlaneResolutionUnit = 2
 0xa402 ExposureMode = 0
 0xa403 WhiteBalance = 0

@@ -18,6 +18,8 @@ package com.ashampoo.kim.common
 
 import kotlin.math.abs
 import kotlin.math.absoluteValue
+import kotlin.math.pow
+import kotlin.math.roundToLong
 
 /**
  * Rational number, as used by the TIFF image format.
@@ -135,7 +137,13 @@ class RationalNumber {
         if (divisor == 0L)
             return "Invalid rational ($numerator/$divisor)"
 
-        return "$numerator/$divisor (${doubleValue()})"
+        /* Display a rounded number to avoid different results on different platforms. */
+        return "$numerator/$divisor (${doubleValue().roundTo(TO_STRING_DOUBLE_ROUND_FRACTION_DIGITS)})"
+    }
+
+    private fun Double.roundTo(numFractionDigits: Int): Double {
+        val factor = 10.0.pow(numFractionDigits.toDouble())
+        return (this * factor).roundToLong() / factor
     }
 
     override fun equals(other: Any?): Boolean {
@@ -166,6 +174,8 @@ class RationalNumber {
     }
 
     companion object {
+
+        private const val TO_STRING_DOUBLE_ROUND_FRACTION_DIGITS = 6
 
         private const val INT_PRECISION_TOLERANCE = 1E-8
         private const val MAX_ITERATIONS = 100

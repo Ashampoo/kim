@@ -15,35 +15,44 @@
  */
 package com.ashampoo.kim.format.jpeg
 
-import com.ashampoo.kim.input.ByteArrayByteReader
+import com.ashampoo.kim.Kim
 import com.ashampoo.kim.testdata.KimTestData
-import java.io.File
+import kotlinx.io.files.Path
+import kotlinx.io.files.sink
 import kotlin.test.Test
+import kotlin.test.assertNotNull
 import kotlin.test.fail
 
-class JpegMetadataExtractorTest {
+class ExifThumbnailExtractionTest {
 
     /**
      * Regression test based on a fixed small set of test files.
      */
+    @OptIn(ExperimentalStdlibApi::class)
     @Test
-    fun testExtractMetadataBytes() {
+    fun testExtractJpegThumbnail() {
 
-        for (index in 1..KimTestData.HIGHEST_JPEG_INDEX) {
+        for (index in KimTestData.photoIdsWithExifThumbnail) {
+
+            // TODO Handle broken file (bad IFD1)
+            if (index == 21)
+                continue
 
             val bytes = KimTestData.getBytesOf(index)
 
-            val byteReader = ByteArrayByteReader(bytes)
+            val metadata = Kim.readMetadata(bytes)
 
-            val actualMetadataBytes = JpegMetadataExtractor.extractMetadataBytes(byteReader)
+            val actualThumbnailBytes = metadata?.getExifThumbnailBytes()
 
-            val expectedMetadataBytes = KimTestData.getHeaderBytesOf(index)
+            assertNotNull(actualThumbnailBytes, "Photo $index has not thumbnail bytes.")
 
-            val equals = expectedMetadataBytes.contentEquals(actualMetadataBytes)
+            val expectedThumbnailBytes = KimTestData.getExifThumbnailBytesOf(index)
+
+            val equals = expectedThumbnailBytes.contentEquals(actualThumbnailBytes)
 
             if (!equals) {
 
-                File("build/photo_${index}_header.jpg").writeBytes(actualMetadataBytes)
+                Path("build/photo_${index}_exifthumb.jpg").sink().use { it.write(actualThumbnailBytes) }
 
                 fail("Photo $index has not the expected bytes!")
             }

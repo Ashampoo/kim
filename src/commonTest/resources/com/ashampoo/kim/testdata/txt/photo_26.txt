@@ -22,7 +22,7 @@ Big-endian (Motorola, MM)
 0x9000 ExifVersion = [0x30, 0x32, 0x33, 0x30]
 0x9003 DateTimeOriginal = 2017:04:08 02:45:27
 0x9004 DateTimeDigitized = 2017:04:08 02:45:27
-0x9201 ShutterSpeedValue = 11747/1359 (8.643855776306108)
+0x9201 ShutterSpeedValue = 11747/1359 (8.643856)
 0x9202 ApertureValue = 4/1 (4.0)
 0x9204 ExposureCompensation = 0/1 (0.0)
 0x9205 MaxApertureValue = 4/1 (4.0)

@@ -15,7 +15,7 @@ Little-endian (Intel, II)
 0x8769 ExifOffset = 214
 
 ---- ExifIFD ----
-0x829a ExposureTime = 1/640 (0.0015625)
+0x829a ExposureTime = 1/640 (0.001563)
 0x829d FNumber = 63/10 (6.3)
 0x8822 ExposureProgram = 1
 0x8827 PhotographicSensitivity = 800
@@ -26,7 +26,7 @@ Little-endian (Intel, II)
 0x9004 DateTimeDigitized = 2017:07:17 18:21:14
 0x9201 ShutterSpeedValue = 9321928/1000000 (9.321928)
 0x9202 ApertureValue = 5310704/1000000 (5.310704)
-0x9203 BrightnessValue = 16234/2560 (6.34140625)
+0x9203 BrightnessValue = 16234/2560 (6.341406)
 0x9204 ExposureCompensation = 0/10 (0.0)
 0x9205 MaxApertureValue = 1360/256 (5.3125)
 0x9207 MeteringMode = 5
@@ -34,8 +34,8 @@ Little-endian (Intel, II)
 0x9209 Flash = 16
 0x920a FocalLength = 2400/10 (240.0)
 0x00-1 Unknown = 1
-0xa20e FocalPlaneXResolution = 38690215/32768 (1180.7316589355469)
-0xa20f FocalPlaneYResolution = 38690215/32768 (1180.7316589355469)
+0xa20e FocalPlaneXResolution = 38690215/32768 (1180.731659)
+0xa20f FocalPlaneYResolution = 38690215/32768 (1180.731659)
 0xa210 FocalPlaneResolutionUnit = 3
 0xa300 FileSource = 3
 0xa301 SceneType = 1

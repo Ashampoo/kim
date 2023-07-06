@@ -25,7 +25,7 @@ Little-endian (Intel, II)
 0x9004 DateTimeDigitized = 2019:11:03 14:55:39
 0x9201 ShutterSpeedValue = 10965784/1000000 (10.965784)
 0x9202 ApertureValue = 6/1 (6.0)
-0x9204 ExposureCompensation = 2/6 (0.3333333333333333)
+0x9204 ExposureCompensation = 2/6 (0.333333)
 0x9205 MaxApertureValue = 40/10 (4.0)
 0x9207 MeteringMode = 5
 0x9208 LightSource = 0
@@ -34,8 +34,8 @@ Little-endian (Intel, II)
 0x9291 SubSecTimeOriginal = 04
 0x9292 SubSecTimeDigitized = 04
 0x00-1 Unknown = 1
-0xa20e FocalPlaneXResolution = 67122044/32768 (2048.4022216796875)
-0xa20f FocalPlaneYResolution = 67122044/32768 (2048.4022216796875)
+0xa20e FocalPlaneXResolution = 67122044/32768 (2048.402222)
+0xa20f FocalPlaneYResolution = 67122044/32768 (2048.402222)
 0xa210 FocalPlaneResolutionUnit = 3
 0xa217 SensingMethod = 2
 0xa300 FileSource = 3
@@ -60,7 +60,7 @@ Little-endian (Intel, II)
 0x0001 GPSLatitudeRef = N
 0x0002 GPSLatitude = [49/1 (49.0), 14/1 (14.0), 18744/625 (29.9904)]
 0x0003 GPSLongitudeRef = W
-0x0004 GPSLongitude = [121/1 (121.0), 56/1 (56.0), 62759/1390 (45.15035971223021)]
+0x0004 GPSLongitude = [121/1 (121.0), 56/1 (56.0), 62759/1390 (45.15036)]
 
 
 ---- IPTC ----
