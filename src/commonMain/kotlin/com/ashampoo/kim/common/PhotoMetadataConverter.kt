@@ -24,6 +24,7 @@ import com.ashampoo.kim.format.tiff.constants.TiffTag
 import com.ashampoo.kim.model.GpsCoordinates
 import com.ashampoo.kim.model.PhotoMetadata
 import com.ashampoo.kim.model.TiffOrientation
+import com.ashampoo.kim.xmp.XmpReader
 import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toInstant
@@ -73,12 +74,25 @@ fun ImageMetadata.convertToPhotoMetadata(
         else
             null
 
+    val xmpMetadata: PhotoMetadata? = xmp?.let {
+        XmpReader.readMetadata(it, underUnitTesting)
+    }
+
+    /*
+     * Embedded XMP metadata has higher priority than EXIF or IPTC
+     * for certain fields because it's the newer format. Some fields
+     * like rating, faces and persons in image are exclusive to XMP.
+     *
+     * Resolution, orientation and capture parameters (camera make,
+     * iso, exposure time, etc.) are always taken from EXIF.
+     */
     return PhotoMetadata(
         widthPx = imageSize?.width,
         heightPx = imageSize?.height,
         orientation = orientation,
-        takenDate = takenDateMillis,
-        gpsCoordinates = gpsCoordinates,
+        takenDate = xmpMetadata?.takenDate ?: takenDateMillis,
+        gpsCoordinates = xmpMetadata?.gpsCoordinates ?: gpsCoordinates,
+        location = xmpMetadata?.location,
         cameraMake = cameraMake,
         cameraModel = cameraModel,
         lensMake = lensMake,
@@ -87,7 +101,10 @@ fun ImageMetadata.convertToPhotoMetadata(
         exposureTime = exposureTime,
         fNumber = fNumber,
         focalLength = focalLength,
-        keywords = keywords
+        rating = xmpMetadata?.rating,
+        keywords = keywords.ifEmpty { xmpMetadata?.keywords ?: emptySet() },
+        faces = xmpMetadata?.faces ?: emptyMap(),
+        personsInImage = xmpMetadata?.personsInImage ?: emptySet()
     )
 }
 

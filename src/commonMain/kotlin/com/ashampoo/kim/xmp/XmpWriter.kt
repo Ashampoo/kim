@@ -199,7 +199,7 @@ object XmpWriter {
                             arrayOptions
                         )
 
-                        /* Fill th new array with persons. */
+                        /* Fill the new array with persons. */
                         for (person in update.personsInImage.sorted())
                             xmpMeta.appendArrayItem(
                                 schemaNS = XMPConst.NS_IPTCEXT,
