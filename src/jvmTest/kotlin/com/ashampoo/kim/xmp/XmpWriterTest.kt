@@ -23,10 +23,15 @@ import com.ashampoo.kim.testdata.KimTestData
 import com.ashampoo.xmp.XMPMetaFactory
 import kotlinx.io.files.Path
 import kotlinx.io.files.sink
-import kotlin.test.Ignore
 import kotlin.test.Test
 import kotlin.test.fail
 
+/*
+ * FIXME On native the result is slightly different,
+ *   because MicrosoftPhoto gets a new prefix.
+ *   The problem must lie in XMP Core.
+ *   We need to investigate this further.
+ */
 class XmpWriterTest {
 
     private val updates = setOf(
@@ -44,12 +49,10 @@ class XmpWriterTest {
         doCompare("acdsee_sample")
 
     @Test
-    @Ignore // FIXME Has native a different result; MicrosoftPhoto prefix is changed.
     fun testWriteDigiKamXmpFile(): Unit =
         doCompare("digikam_sample")
 
     @Test
-    @Ignore // FIXME Has native a different result; MicrosoftPhoto prefix is changed.
     fun testWriteExifToolXmpFile(): Unit =
         doCompare("exiftool_sample")
 
