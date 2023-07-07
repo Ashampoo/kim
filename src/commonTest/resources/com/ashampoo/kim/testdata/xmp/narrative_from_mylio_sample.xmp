@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<x:xmpmeta xmlns:x="adobe:ns:meta/" x:xmptk="XMP Core 6.0.0">
+	<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+		<rdf:Description rdf:about=""
+				xmlns:exif="http://ns.adobe.com/exif/1.0/"
+				xmlns:xmp="http://ns.adobe.com/xap/1.0/"
+				xmlns:MY="http://ns.mylollc.com/MyloEdit/"
+				xmlns:xmpMM="http://ns.adobe.com/xap/1.0/mm/"
+				xmlns:dc="http://purl.org/dc/elements/1.1/"
+				xmlns:mwg-rs="http://www.metadataworkinggroup.com/schemas/regions/"
+				xmlns:stDim="http://ns.adobe.com/xap/1.0/sType/Dimensions#"
+				xmlns:stArea="http://ns.adobe.com/xmp/sType/Area#"
+				xmlns:Iptc4xmpExt="http://iptc.org/std/Iptc4xmpExt/2008-02-29/">
+			<exif:DateTimeOriginal>2018-10-20T15:19:58.620</exif:DateTimeOriginal>
+			<exif:SubSecTime>620</exif:SubSecTime>
+			<exif:SubSecTimeOriginal>620</exif:SubSecTimeOriginal>
+			<exif:SubSecTimeDigitized>620</exif:SubSecTimeDigitized>
+			<exif:ISOSpeedRatings>
+				<rdf:Seq>
+					<rdf:li>125</rdf:li>
+				</rdf:Seq>
+			</exif:ISOSpeedRatings>
+			<xmp:CreateDate>2018-10-20T15:19:58.620</xmp:CreateDate>
+			<xmp:ModifyDate>2018-10-20T15:19:58.620</xmp:ModifyDate>
+			<xmp:Rating>5</xmp:Rating>
+			<xmp:MetadataDate>2023-03-24T08:34:52.699Z</xmp:MetadataDate>
+			<MY:DateRangeStart>2018-10-20T15:19:58.620</MY:DateRangeStart>
+			<MY:DateRangeEnd>2018-10-20T15:19:58.620</MY:DateRangeEnd>
+			<MY:DateRangeScope/>
+			<MY:Undated>false</MY:Undated>
+			<MY:flag>false</MY:flag>
+			<MY:processVersion>1</MY:processVersion>
+			<MY:MetadataDate>2023-03-24T08:34:52.699Z</MY:MetadataDate>
+			<xmpMM:DocumentID>3FA43AE2-4074-445A-99A3-6331901004DA</xmpMM:DocumentID>
+			<xmpMM:OriginalDocumentID>3FA43AE2-4074-445A-99A3-6331901004DA</xmpMM:OriginalDocumentID>
+			<xmpMM:InstanceID>xmp.iid:5E9C720A-E628-4EA0-94AB-ACF8D1722FE9</xmpMM:InstanceID>
+			<dc:description>
+				<rdf:Alt>
+					<rdf:li xml:lang="x-default">orange fox walking on street</rdf:li>
+				</rdf:Alt>
+			</dc:description>
+			<dc:subject>
+				<rdf:Bag>
+					<rdf:li>"fuchs"</rdf:li>
+					<rdf:li>&lt;HALLO&gt;</rdf:li>
+					<rdf:li>fox</rdf:li>
+					<rdf:li>fuchs</rdf:li>
+					<rdf:li>fuchs = "süß"</rdf:li>
+					<rdf:li>süßer fuchs</rdf:li>
+					<rdf:li>was solls</rdf:li>
+				</rdf:Bag>
+			</dc:subject>
+			<dc:rights>
+				<rdf:Alt>
+					<rdf:li xml:lang="x-default">2014</rdf:li>
+				</rdf:Alt>
+			</dc:rights>
+			<mwg-rs:Regions rdf:parseType="Resource">
+				<mwg-rs:AppliedToDimensions rdf:parseType="Resource">
+					<stDim:w>4390</stDim:w>
+					<stDim:h>2927</stDim:h>
+					<stDim:unit>pixel</stDim:unit>
+				</mwg-rs:AppliedToDimensions>
+				<mwg-rs:RegionList>
+					<rdf:Seq>
+						<rdf:li rdf:parseType="Resource">
+							<mwg-rs:Type>Face</mwg-rs:Type>
+							<mwg-rs:Name>Swiper</mwg-rs:Name>
+							<mwg-rs:Description>mylio_face</mwg-rs:Description>
+							<mwg-rs:Area rdf:parseType="Resource">
+								<stArea:x>0.404336</stArea:x>
+								<stArea:y>0.422313</stArea:y>
+								<stArea:w>0.124503</stArea:w>
+								<stArea:h>0.240097</stArea:h>
+								<stArea:unit>normalized</stArea:unit>
+							</mwg-rs:Area>
+						</rdf:li>
+					</rdf:Seq>
+				</mwg-rs:RegionList>
+			</mwg-rs:Regions>
+			<Iptc4xmpExt:PersonInImage>
+				<rdf:Seq>
+					<rdf:li>Swiper</rdf:li>
+				</rdf:Seq>
+			</Iptc4xmpExt:PersonInImage>
+		</rdf:Description>
+	</rdf:RDF>
+</x:xmpmeta>

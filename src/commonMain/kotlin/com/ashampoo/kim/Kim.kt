@@ -16,9 +16,14 @@
 package com.ashampoo.kim
 
 import com.ashampoo.kim.common.ImageReadException
+import com.ashampoo.kim.common.ImageWriteException
 import com.ashampoo.kim.format.ImageMetadata
 import com.ashampoo.kim.format.ImageParser
 import com.ashampoo.kim.format.jpeg.JpegMetadataExtractor
+import com.ashampoo.kim.format.jpeg.JpegRewriter
+import com.ashampoo.kim.format.jpeg.iptc.IptcMetadata
+import com.ashampoo.kim.format.jpeg.iptc.IptcRecord
+import com.ashampoo.kim.format.jpeg.iptc.IptcTypes
 import com.ashampoo.kim.format.png.PngMetadataExtractor
 import com.ashampoo.kim.format.raf.RafMetadataExtractor
 import com.ashampoo.kim.input.ByteArrayByteReader
@@ -26,6 +31,12 @@ import com.ashampoo.kim.input.ByteReader
 import com.ashampoo.kim.input.KtorInputByteReader
 import com.ashampoo.kim.input.PrePendingByteReader
 import com.ashampoo.kim.model.ImageFormat
+import com.ashampoo.kim.model.MetadataUpdate
+import com.ashampoo.kim.output.ByteArrayByteWriter
+import com.ashampoo.kim.output.ByteWriter
+import com.ashampoo.kim.xmp.XmpWriter
+import com.ashampoo.xmp.XMPMeta
+import com.ashampoo.xmp.XMPMetaFactory
 import io.ktor.utils.io.core.Input
 import io.ktor.utils.io.core.use
 

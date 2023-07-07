@@ -19,6 +19,7 @@ Current features:
 * JPG: Read & Write EXIF, IPTC & XMP
 * PNG: Read & Write EXIF Chunk & XMP (iTXT)
 * TIFF: Read EXIF & XMP
+* Handling of XMP content through [XMP Core for Kotlin Multiplatform](https://github.com/Ashampoo/xmpcore).
 
 The future development of features on our part is driven entirely by the
 needs of Ashampoo Photos, which, in turn, is driven by user community feedback.
@@ -188,7 +189,6 @@ public class Main {
 
 We are actively working to address the following limitations in future updates:
 
-* No interpretation of XMP data; Adobe XMP Toolkit SDK is currently required.
 * No support for EXIF & IPTC in PNG zTXT chunks.
 * Inability to update EXIF, IPTC and XMP in JPG files simultaneously.
 * Insufficient error handling for broken or non-standard conforming files.

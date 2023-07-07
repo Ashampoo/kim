@@ -69,6 +69,12 @@ jobs:
         with:
           name: reports.zip
           path: build/reports
+      - name: Upload unit test reference files
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: reference_files.zip
+          path: build/*.*
       - name: List files
         run: |
           ls -lah build/bin/*/releaseExecutable build/libs/  build/outputs/aar/ build/XCFrameworks/release/

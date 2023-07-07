@@ -22,6 +22,7 @@ repositories {
 val productName = "Ashampoo Kim"
 
 val ktorVersion: String = "2.3.2"
+val xmpCoreVersion: String = "0.1.0"
 
 description = productName
 group = "com.ashampoo"
@@ -59,7 +60,7 @@ sonar {
 
         property("sonar.projectKey", "kim")
         property("sonar.projectName", productName)
-        property("sonar.organization", "realashampoo")
+        property("sonar.organization", "ashampoo")
         property("sonar.host.url", "https://sonarcloud.io")
 
         property(
@@ -130,9 +131,10 @@ kotlin {
 
     mingwX64("win") {
         binaries {
-            executable(
-                buildTypes = setOf(NativeBuildType.RELEASE)
-            )
+            executable(setOf(NativeBuildType.RELEASE)) {
+                baseName = "kim"
+                entryPoint = "com.ashampoo.kim.main"
+            }
         }
     }
 
@@ -155,6 +157,9 @@ kotlin {
             /* Needed for Charset class. */
             /* Defined as api() to prevent problems when used from a pure-java project. */
             api("io.ktor:ktor-io:$ktorVersion")
+
+            /* XMP handling */
+            api("com.ashampoo:xmpcore:$xmpCoreVersion")
         }
     }
 
@@ -185,10 +190,9 @@ kotlin {
         macosArm64()
     ).forEach {
 
-        it.binaries.executable(
-            buildTypes = setOf(NativeBuildType.RELEASE)
-        ) {
+        it.binaries.executable(setOf(NativeBuildType.RELEASE)) {
             baseName = "kim"
+            entryPoint = "com.ashampoo.kim.main"
         }
 
         it.binaries.framework(

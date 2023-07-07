@@ -13,53 +13,51 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import com.ashampoo.kim.Kim
+package com.ashampoo.kim
+
 import com.ashampoo.kim.common.convertToPhotoMetadata
 import com.ashampoo.kim.common.readFileAsByteArray
 import platform.posix.perror
 
 fun main(args: Array<String>) {
 
-    if (args.size == 0) {
+    if (args.size != 1) {
         println("USAGE: Must be called with one argument.")
         return
     }
 
-    if (args.size == 1) {
+    val filePath = args.first()
 
-        val filePath = args.first()
+    println("--- Ashampoo Kim ---")
 
-        println("--- Ashampoo Kim ---")
+    println("File path   : $filePath")
 
-        println("File path   : $filePath")
+    val bytes = readFileAsByteArray(filePath)
 
-        val bytes = readFileAsByteArray(filePath)
-
-        if (bytes == null) {
-            perror("File could not be read: $filePath")
-            return
-        }
-
-        println("File length : ${bytes.size}")
-
-        val metadata = Kim.readMetadata(bytes)
-
-        if (metadata == null) {
-            perror("File could not be parsed.")
-            return
-        }
-
-        println(metadata)
-
-        /*
-         * Show what the parsing result looks like
-         */
-
-        println("--- Ashampoo Photos Metadata ---")
-
-        val photoMetadata =
-            metadata.convertToPhotoMetadata(underUnitTesting = false)
-
-        println(photoMetadata)
+    if (bytes == null) {
+        perror("File could not be read: $filePath")
+        return
     }
+
+    println("File length : ${bytes.size}")
+
+    val metadata = Kim.readMetadata(bytes)
+
+    if (metadata == null) {
+        perror("File could not be parsed.")
+        return
+    }
+
+    println(metadata)
+
+    /*
+     * Show what the parsing result looks like
+     */
+
+    println("--- Ashampoo Photos Metadata ---")
+
+    val photoMetadata =
+        metadata.convertToPhotoMetadata(underUnitTesting = false)
+
+    println(photoMetadata)
 }
