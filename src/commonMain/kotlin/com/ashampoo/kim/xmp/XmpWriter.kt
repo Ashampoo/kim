@@ -49,7 +49,7 @@ object XmpWriter {
      */
     @Suppress("LoopWithTooManyJumpStatements")
     fun updateXmp(
-        xmpMeta: XMPMeta = XMPMetaFactory.create(),
+        xmpMeta: XMPMeta,
         updates: Set<MetadataUpdate>,
         writePackageWrapper: Boolean,
         underUnitTesting: Boolean = false
@@ -161,13 +161,13 @@ object XmpWriter {
 //                        xmpMeta.setStructField(
 //                            NS_MWG_RS, "Regions/mwg-rs:AppliedToDimensions",
 //                            XMPConst.TYPE_DIMENSIONS, "w",
-//                            metadata.widthPx.toString()
+//                            xmpMeta.widthPx.toString()
 //                        )
 //
 //                        xmpMeta.setStructField(
 //                            NS_MWG_RS, "Regions/mwg-rs:AppliedToDimensions",
 //                            XMPConst.TYPE_DIMENSIONS, "h",
-//                            metadata.heightPx.toString()
+//                            xmpMeta.heightPx.toString()
 //                        )
 //
 //                        xmpMeta.setStructField(
