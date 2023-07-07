@@ -75,7 +75,12 @@ class XmpWriterTest {
 
         val xmpMeta = XMPMetaFactory.parseFromString(originalXmp)
 
-        val actualXmp = XmpWriter.updateXmp(xmpMeta, updates, true)
+        val actualXmp = XmpWriter.updateXmp(
+            xmpMeta = xmpMeta,
+            updates = updates,
+            writePackageWrapper = true,
+            underUnitTesting = true
+        )
 
         val expectedXmp = KimTestData.getXmp("${baseFileName}_mod.xmp")
 
