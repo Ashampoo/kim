@@ -33,6 +33,7 @@ object XmpWriter {
             .setOmitXmpMetaElement(false)
             .setOmitPacketWrapper(false)
             .setUseCompactFormat(true)
+            .setUseCanonicalFormat(false)
             .setSort(true)
 
     private val arrayOptions = PropertyOptions().setArray(true)
