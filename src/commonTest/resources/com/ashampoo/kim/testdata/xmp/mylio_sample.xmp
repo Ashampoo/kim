@@ -1,0 +1,115 @@
+<x:xmpmeta xmlns:x="adobe:ns:meta/" x:xmptk="XMP Core 6.0.0">
+ <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+  <rdf:Description rdf:about=""
+    xmlns:exif="http://ns.adobe.com/exif/1.0/"
+    xmlns:xmp="http://ns.adobe.com/xap/1.0/"
+    xmlns:MY="http://ns.mylollc.com/MyloEdit/"
+    xmlns:tiff="http://ns.adobe.com/tiff/1.0/"
+    xmlns:xmpMM="http://ns.adobe.com/xap/1.0/mm/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:mwg-rs="http://www.metadataworkinggroup.com/schemas/regions/"
+    xmlns:stDim="http://ns.adobe.com/xap/1.0/sType/Dimensions#"
+    xmlns:stArea="http://ns.adobe.com/xmp/sType/Area#"
+    xmlns:Iptc4xmpExt="http://iptc.org/std/Iptc4xmpExt/2008-02-29/"
+   exif:DateTimeOriginal="2016-02-21T16:23:45.420"
+   exif:SubSecTime="420"
+   exif:SubSecTimeOriginal="420"
+   exif:SubSecTimeDigitized="420"
+   exif:GPSVersionID="2.2.0.0"
+   exif:GPSLatitude="53,13.1635N"
+   exif:GPSLongitude="8,14.3797E"
+   xmp:CreateDate="2016-02-21T16:23:45.420"
+   xmp:ModifyDate="2016-02-21T16:23:45.420"
+   xmp:Rating="-1"
+   xmp:MetadataDate="2023-03-27T13:28:35.381Z"
+   xmp:Label="Green"
+   MY:DateRangeStart="2016-02-21T16:23:45.420"
+   MY:DateRangeEnd="2016-02-21T16:23:45.420"
+   MY:DateRangeScope=""
+   MY:Undated="false"
+   MY:flag="false"
+   MY:processVersion="1"
+   MY:MetadataDate="2023-03-27T13:28:35.381Z"
+   MY:Season="0"
+   MY:Year="0"
+   tiff:Orientation="1"
+   xmpMM:DocumentID="26D2F494-1226-403D-BAB5-F41D05F2AB35"
+   xmpMM:OriginalDocumentID="26D2F494-1226-403D-BAB5-F41D05F2AB35"
+   xmpMM:InstanceID="xmp.iid:3740FF85-236E-4C0D-8131-39CCEADD1BA1">
+   <exif:ISOSpeedRatings>
+    <rdf:Seq>
+     <rdf:li>400</rdf:li>
+    </rdf:Seq>
+   </exif:ISOSpeedRatings>
+   <dc:description>
+    <rdf:Alt>
+     <rdf:li xml:lang="x-default">This is the description</rdf:li>
+    </rdf:Alt>
+   </dc:description>
+   <dc:subject>
+    <rdf:Bag>
+     <rdf:li>animal</rdf:li>
+     <rdf:li>bird</rdf:li>
+    </rdf:Bag>
+   </dc:subject>
+   <dc:title>
+    <rdf:Alt>
+     <rdf:li xml:lang="x-default">sample title</rdf:li>
+    </rdf:Alt>
+   </dc:title>
+   <mwg-rs:Regions rdf:parseType="Resource">
+    <mwg-rs:AppliedToDimensions
+     stDim:w="4512"
+     stDim:h="3000"
+     stDim:unit="pixel"/>
+    <mwg-rs:RegionList>
+     <rdf:Seq>
+      <rdf:li>
+       <rdf:Description
+        mwg-rs:Type="Face"
+        mwg-rs:Name="Eye Left">
+       <mwg-rs:Area
+        stArea:x="0.295179"
+        stArea:y="0.278880"
+        stArea:w="0.033245"
+        stArea:h="0.050000"
+        stArea:unit="normalized"/>
+       </rdf:Description>
+      </rdf:li>
+      <rdf:li>
+       <rdf:Description
+        mwg-rs:Type="Face"
+        mwg-rs:Name="Eye Right">
+       <mwg-rs:Area
+        stArea:x="0.814990"
+        stArea:y="0.472579"
+        stArea:w="0.033245"
+        stArea:h="0.050000"
+        stArea:unit="normalized"/>
+       </rdf:Description>
+      </rdf:li>
+      <rdf:li>
+       <rdf:Description
+        mwg-rs:Type="Face"
+        mwg-rs:Name="Nothing">
+       <mwg-rs:Area
+        stArea:x="0.501552"
+        stArea:y="0.905484"
+        stArea:w="0.033245"
+        stArea:h="0.050000"
+        stArea:unit="normalized"/>
+       </rdf:Description>
+      </rdf:li>
+     </rdf:Seq>
+    </mwg-rs:RegionList>
+   </mwg-rs:Regions>
+   <Iptc4xmpExt:PersonInImage>
+    <rdf:Seq>
+     <rdf:li>Eye Left</rdf:li>
+     <rdf:li>Eye Right</rdf:li>
+     <rdf:li>Nothing</rdf:li>
+    </rdf:Seq>
+   </Iptc4xmpExt:PersonInImage>
+  </rdf:Description>
+ </rdf:RDF>
+</x:xmpmeta>

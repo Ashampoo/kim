@@ -97,6 +97,9 @@ object KimTestData {
     fun getToStringText(index: Int): ByteArray =
         Resource("$RESOURCE_PATH/txt/photo_$index.txt").readBytes()
 
+    fun getXmp(fileName: String): String =
+        Resource("$RESOURCE_PATH/xmp/$fileName").readText()
+
     fun getOriginalXmp(index: Int): ByteArray =
         Resource("$RESOURCE_PATH/xmp/photo_$index.xmp").readBytes()
 
