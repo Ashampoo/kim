@@ -37,6 +37,9 @@ enum class ImageFormat(
     CR2("image/x-canon-cr2", "com.canon.cr2-raw-image", setOf("cr2")),
     RAF("image/x-fuji-raf", "com.fuji.raw-image", setOf("raf"));
 
+    fun isMetadataEmbeddable(): Boolean =
+        this == ImageFormat.JPEG || this == ImageFormat.PNG
+
     companion object {
 
         /** RAF is the longest format that requires us to read 15 bytes to detect it. **/
