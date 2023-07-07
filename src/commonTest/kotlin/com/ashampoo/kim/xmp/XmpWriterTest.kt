@@ -78,7 +78,7 @@ class XmpWriterTest {
         if (!equals) {
 
             Path("build/${baseFileName}_mod.xmp").sink().use {
-                it.write(expectedXmp.encodeToByteArray())
+                it.write(actualXmp.encodeToByteArray())
             }
 
             fail("Photo $baseFileName has not the expected bytes!")
