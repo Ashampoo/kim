@@ -59,7 +59,7 @@ sonar {
 
         property("sonar.projectKey", "kim")
         property("sonar.projectName", productName)
-        property("sonar.organization", "realashampoo")
+        property("sonar.organization", "ashampoo")
         property("sonar.host.url", "https://sonarcloud.io")
 
         property(
