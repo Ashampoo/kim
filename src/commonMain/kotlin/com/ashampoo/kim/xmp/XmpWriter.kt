@@ -187,13 +187,13 @@ object XmpWriter {
                 is MetadataUpdate.Persons -> {
 
                     /* Delete existing entries, if any */
-                    xmpMeta.deleteProperty(XMPConst.NS_IPTCEXT, XMP_IPTCEXT_PERSON_IN_IMAGE)
+                    xmpMeta.deleteProperty(XMPConst.NS_IPTC_EXT, XMP_IPTCEXT_PERSON_IN_IMAGE)
 
                     if (update.personsInImage.isNotEmpty()) {
 
                         /* Create a new array property. */
                         xmpMeta.setProperty(
-                            XMPConst.NS_IPTCEXT,
+                            XMPConst.NS_IPTC_EXT,
                             XMP_IPTCEXT_PERSON_IN_IMAGE,
                             null,
                             arrayOptions
@@ -202,7 +202,7 @@ object XmpWriter {
                         /* Fill the new array with persons. */
                         for (person in update.personsInImage.sorted())
                             xmpMeta.appendArrayItem(
-                                schemaNS = XMPConst.NS_IPTCEXT,
+                                schemaNS = XMPConst.NS_IPTC_EXT,
                                 arrayName = XMP_IPTCEXT_PERSON_IN_IMAGE,
                                 itemValue = person
                             )
