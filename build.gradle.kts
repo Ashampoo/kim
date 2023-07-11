@@ -22,7 +22,7 @@ repositories {
 val productName = "Ashampoo Kim"
 
 val ktorVersion: String = "2.3.2"
-val xmpCoreVersion: String = "0.1.0"
+val xmpCoreVersion: String = "0.1.3"
 
 description = productName
 group = "com.ashampoo"

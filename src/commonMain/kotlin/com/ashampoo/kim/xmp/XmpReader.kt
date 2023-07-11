@@ -179,13 +179,13 @@ object XmpReader {
         val personsInImage = mutableSetOf<String>()
 
         val personsInImageCount =
-            xmpMeta.countArrayItems(XMPConst.NS_IPTCEXT, XMP_IPTCEXT_PERSON_IN_IMAGE)
+            xmpMeta.countArrayItems(XMPConst.NS_IPTC_EXT, XMP_IPTCEXT_PERSON_IN_IMAGE)
 
         for (index in 1..personsInImageCount) {
 
             val personName =
                 xmpMeta.getPropertyString(
-                    XMPConst.NS_IPTCEXT,
+                    XMPConst.NS_IPTC_EXT,
                     "$XMP_IPTCEXT_PERSON_IN_IMAGE[$index]"
                 ) ?: continue
 

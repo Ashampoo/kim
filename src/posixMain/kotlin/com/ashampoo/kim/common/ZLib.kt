@@ -16,6 +16,7 @@
 package com.ashampoo.kim.common
 
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.UnsafeNumber
 import kotlinx.cinterop.alloc
 import kotlinx.cinterop.convert
 import kotlinx.cinterop.memScoped
@@ -36,6 +37,7 @@ import platform.zlib.inflateInit
 import platform.zlib.uByteVar
 import platform.zlib.z_stream
 
+@OptIn(UnsafeNumber::class)
 actual fun compress(input: String): ByteArray {
 
     memScoped {
