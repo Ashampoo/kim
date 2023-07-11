@@ -24,7 +24,7 @@ import com.ashampoo.kim.format.tiff.constants.TiffTag
 import com.ashampoo.kim.model.GpsCoordinates
 import com.ashampoo.kim.model.PhotoMetadata
 import com.ashampoo.kim.model.TiffOrientation
-import com.ashampoo.kim.xmp.XmpReader
+import com.ashampoo.kim.format.xmp.XmpReader
 import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toInstant

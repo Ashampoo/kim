@@ -15,6 +15,7 @@
  */
 package com.ashampoo.kim.xmp
 
+import com.ashampoo.kim.format.xmp.XmpReader
 import com.ashampoo.kim.model.GpsCoordinates
 import com.ashampoo.kim.model.PhotoMetadata
 import com.ashampoo.kim.model.PhotoRating
