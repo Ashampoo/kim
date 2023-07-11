@@ -20,11 +20,13 @@ import com.ashampoo.kim.common.ByteOrder
 import com.ashampoo.kim.common.ImageReadException
 import com.ashampoo.kim.format.ImageMetadata
 import com.ashampoo.kim.format.ImageParser
+import com.ashampoo.kim.format.jpeg.JpegConstants
 import com.ashampoo.kim.format.png.chunks.PngChunk
 import com.ashampoo.kim.format.png.chunks.PngChunkIhdr
 import com.ashampoo.kim.format.png.chunks.PngChunkItxt
 import com.ashampoo.kim.format.png.chunks.PngChunkText
 import com.ashampoo.kim.format.png.chunks.PngChunkZtxt
+import com.ashampoo.kim.format.png.chunks.PngTextChunk
 import com.ashampoo.kim.format.tiff.TiffContents
 import com.ashampoo.kim.format.tiff.TiffReader
 import com.ashampoo.kim.input.ByteArrayByteReader
@@ -33,6 +35,8 @@ import com.ashampoo.kim.model.ImageFormat
 import com.ashampoo.kim.model.ImageSize
 
 object PngImageParser : ImageParser() {
+
+    private val controlCharRegex = Regex("[\\p{Cntrl}]")
 
     init {
         byteOrder = ByteOrder.BIG_ENDIAN
@@ -119,7 +123,12 @@ object PngImageParser : ImageParser() {
 
         val imageSize = getImageSize(chunks)
 
-        val exif = getExif(chunks)
+        /*
+         * We attempt to read EXIF data from the EXIF chunk, which has been the standard
+         * location since 2017. If the EXIF chunk is not present, we fallback to reading
+         * it from TXT. Some older apps may still store the data there.
+         */
+        val exif = getExif(chunks) ?: getExifFromTextChunk(chunks)
 
         val xmp = getXmpXml(chunks)
 
@@ -133,10 +142,70 @@ object PngImageParser : ImageParser() {
         return TiffReader().read(ByteArrayByteReader(exifChunk.bytes))
     }
 
+    /*
+     * According to https://dev.exiv2.org/projects/exiv2/wiki/The_Metadata_in_PNG_files
+     * Exiv2 saves EXIF & IPTC in zTXT chunks. This library is widely used and therefore
+     * we can expect a lot of files storing the information in that way.
+     * According to https://exiftool.org/TagNames/PNG.html it may even be in uncompressed text.
+     * So we look for all PNG text chunk types and take the first one that matches the keyword.
+     */
+    private fun getExifFromTextChunk(chunks: List<PngChunk>): TiffContents? {
+
+        val chunkText = getTextChunkWithKeyword(chunks, PngConstants.EXIF_KEYWORD) ?: return null
+
+        /*
+         * Before the EXIF block starts there are some characters before that.
+         * How these look seems to depend on the tool writing it. There may be no standard.
+         */
+        val index = chunkText.indexOf(JpegConstants.EXIF_IDENTIFIER_CODE_HEX)
+
+        /* If we did not find the identifier we may have invalid data. */
+        if (index == -1)
+            return null
+
+        /*
+         * This should be a text starting with EXIF identifier code "45786966"
+         * and ending with the regular "ffd9". It's HEX encoded and contains
+         * control chars. We need to remove them and convert it to a ByteArray.
+         */
+        val exifText = chunkText
+            .substring(startIndex = index)
+            .replace(controlCharRegex, "")
+            .trim()
+
+        /*
+         * Ensure the block is completely read and is a multiple of two.
+         * We don't want the following ByteArray-conversion to fail.
+         */
+        if (!exifText.endsWith("ffd9") || exifText.length % 2 != 0)
+            return null
+
+        println(exifText)
+
+        /*
+         * Convert it to bytes and drop the header.
+         */
+        val exifTextBytes = exifText
+            .chunked(2)
+            .map { it.toInt(16).toByte() }
+            .drop(JpegConstants.EXIF_IDENTIFIER_CODE.size)
+            .toByteArray()
+
+        /*
+         * This should be fine now to be fed into the TIFF reader.
+         */
+        return TiffReader().read(ByteArrayByteReader(exifTextBytes))
+    }
+
     private fun getXmpXml(chunks: List<PngChunk>): String? = chunks
         .filterIsInstance<PngChunkItxt>()
         .filter { it.getKeyword() == PngConstants.XMP_KEYWORD }
         .firstOrNull()
         ?.getText()
 
+    private fun getTextChunkWithKeyword(chunks: List<PngChunk>, keyword: String): String? = chunks
+        .filterIsInstance<PngTextChunk>()
+        .filter { it.getKeyword() == keyword }
+        .firstOrNull()
+        ?.getText()
 }

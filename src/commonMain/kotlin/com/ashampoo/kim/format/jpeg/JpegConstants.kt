@@ -46,8 +46,12 @@ object JpegConstants {
         0x45, // E
         0x78, // x
         0x69, // i
-        0x66 // f
+        0x66, // f
+        0, // NUL
+        0 // NUL
     )
+
+    const val EXIF_IDENTIFIER_CODE_HEX: String = "457869660000"
 
     val XMP_IDENTIFIER = byteArrayOf(
         0x68, // h

@@ -136,11 +136,7 @@ object JpegRewriter : BinaryFileParser() {
         } else
             writer = TiffImageWriterLossy(outputSet.byteOrder)
 
-        val newBytes = writeExifSegment(
-            writer = writer,
-            outputSet = outputSet,
-            includeEXIFPrefix = true
-        )
+        val newBytes = writeExifSegment(writer, outputSet)
 
         writeSegmentsReplacingExif(byteWriter, oldSegmentsWithoutExif, newBytes)
     }
@@ -215,17 +211,13 @@ object JpegRewriter : BinaryFileParser() {
 
     private fun writeExifSegment(
         writer: TiffImageWriterBase,
-        outputSet: TiffOutputSet,
-        includeEXIFPrefix: Boolean
+        outputSet: TiffOutputSet
     ): ByteArray {
 
         val byteWriter = ByteArrayByteWriter()
 
-        if (includeEXIFPrefix) {
-            byteWriter.write(JpegConstants.EXIF_IDENTIFIER_CODE)
-            byteWriter.write(0)
-            byteWriter.write(0)
-        }
+        /* Write prefix */
+        byteWriter.write(JpegConstants.EXIF_IDENTIFIER_CODE)
 
         writer.write(byteWriter, outputSet)
 

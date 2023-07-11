@@ -165,7 +165,7 @@ object JpegImageParser : ImageParser() {
 
         val firstSegment = exifSegments.first()
 
-        return firstSegment.segmentBytes.getRemainingBytes(6)
+        return firstSegment.segmentBytes.getRemainingBytes(JpegConstants.EXIF_IDENTIFIER_CODE.size)
     }
 
     private fun getXmpXml(segments: List<Segment>): String? {
