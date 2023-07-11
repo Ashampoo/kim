@@ -73,6 +73,22 @@ Little-endian (Intel, II)
 0x0202 JpgFromRawLength = 6554
 
 
+---- IPTC ----
+By-line (80) = 'SippakorN'
+Caption/Abstract (120) = 'brown snake on green grass'
+Copyright Notice (116) = '@Sippakorn1955'
+Date Created (55) = '2022-9-26'
+Digital Creation Date (62) = '2020-03-11'
+Digital Creation Time (63) = '17:37:33+08:00'
+Keywords (25) = 'cobra'
+Keywords (25) = 'sea life'
+Keywords (25) = 'animal'
+Keywords (25) = 'reptile'
+Keywords (25) = 'turtle'
+Keywords (25) = 'snake'
+Object Name (5) = 'Head of King cobra'
+Time Created (60) = '14:17:49-14:17'
+
 ---- XMP ----
 <?xpacket begin="﻿" id="W5M0MpCehiHzreSzNTczkc9d"?>
 <x:xmpmeta xmlns:x="adobe:ns:meta/" x:xmptk="XMP Core 4.4.0-Exiv2">

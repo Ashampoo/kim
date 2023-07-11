@@ -77,6 +77,17 @@ Little-endian (Intel, II)
 0x0202 JpgFromRawLength = 7278
 
 
+---- IPTC ----
+Caption/Abstract (120) = 'honeybee perching on yellow flower'
+Date Created (55) = '2023-05-08'
+Keywords (25) = 'honey bee'
+Keywords (25) = 'animal'
+Keywords (25) = 'insect'
+Keywords (25) = 'invertebrate'
+Keywords (25) = 'apidae'
+Keywords (25) = 'bee'
+Time Created (60) = '16:42:23-16:42'
+
 ---- XMP ----
 <?xpacket begin="﻿" id="W5M0MpCehiHzreSzNTczkc9d"?>
 <x:xmpmeta xmlns:x="adobe:ns:meta/" x:xmptk="XMP Core 4.4.0-Exiv2">

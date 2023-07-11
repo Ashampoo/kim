@@ -21,6 +21,10 @@ import com.ashampoo.kim.common.ImageReadException
 import com.ashampoo.kim.format.ImageMetadata
 import com.ashampoo.kim.format.ImageParser
 import com.ashampoo.kim.format.jpeg.JpegConstants
+import com.ashampoo.kim.format.jpeg.JpegConstants.PHOTOSHOP_IDENTIFICATION_STRING
+import com.ashampoo.kim.format.jpeg.iptc.IptcConstants
+import com.ashampoo.kim.format.jpeg.iptc.IptcMetadata
+import com.ashampoo.kim.format.jpeg.iptc.IptcParser
 import com.ashampoo.kim.format.png.chunks.PngChunk
 import com.ashampoo.kim.format.png.chunks.PngChunkIhdr
 import com.ashampoo.kim.format.png.chunks.PngChunkItxt
@@ -130,9 +134,11 @@ object PngImageParser : ImageParser() {
          */
         val exif = getExif(chunks) ?: getExifFromTextChunk(chunks)
 
+        val iptc = getIptcFromTextChunk(chunks)
+
         val xmp = getXmpXml(chunks)
 
-        return ImageMetadata(ImageFormat.PNG, imageSize, exif, null, xmp)
+        return ImageMetadata(ImageFormat.PNG, imageSize, exif, iptc, xmp)
     }
 
     private fun getExif(chunks: List<PngChunk>): TiffContents? {
@@ -180,8 +186,6 @@ object PngImageParser : ImageParser() {
         if (!exifText.endsWith("ffd9") || exifText.length % 2 != 0)
             return null
 
-        println(exifText)
-
         /*
          * Convert it to bytes and drop the header.
          */
@@ -195,6 +199,59 @@ object PngImageParser : ImageParser() {
          * This should be fine now to be fed into the TIFF reader.
          */
         return TiffReader().read(ByteArrayByteReader(exifTextBytes))
+    }
+
+    private fun getIptcFromTextChunk(chunks: List<PngChunk>): IptcMetadata? {
+
+        val chunkText = getTextChunkWithKeyword(chunks, PngConstants.IPTC_KEYWORD) ?: return null
+
+        val identifier = "3842494d04040000000000" // What is it?
+
+        /*
+         * Before the IPTC block starts there are some characters before that.
+         * How these look seems to depend on the tool writing it. There may be no standard.
+         */
+        val index = chunkText.indexOf(identifier)
+
+        /* If we did not find the identifier we may have invalid data. */
+        if (index == -1)
+            return null
+
+        /*
+         * This should be a text starting with EXIF identifier code "45786966"
+         * and ending with the regular "ffd9". It's HEX encoded and contains
+         * control chars. We need to remove them and convert it to a ByteArray.
+         */
+        val iptcText = chunkText
+            .substring(startIndex = index)
+            .replace(controlCharRegex, "")
+            .trim()
+
+        /*
+         * Ensure the block is completely read and is a multiple of two.
+         * We don't want the following ByteArray-conversion to fail.
+         */
+        if (iptcText.length % 2 != 0)
+            return null
+
+        /*
+         * Convert it to bytes.
+         */
+        val iptcTextBytes = iptcText
+            .chunked(2)
+            .map { it.toInt(16).toByte() }
+            .toMutableList()
+
+        /*
+         * Add the prefix back.
+         */
+        iptcTextBytes
+            .addAll(0, PHOTOSHOP_IDENTIFICATION_STRING.asList())
+
+        /*
+         * This should be fine now to be fed into the IPTC reader.
+         */
+        return IptcParser.parseIptc(iptcTextBytes.toByteArray())
     }
 
     private fun getXmpXml(chunks: List<PngChunk>): String? = chunks
