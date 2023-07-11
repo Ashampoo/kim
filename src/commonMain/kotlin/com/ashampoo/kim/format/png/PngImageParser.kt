@@ -218,9 +218,8 @@ object PngImageParser : ImageParser() {
             return null
 
         /*
-         * This should be a text starting with EXIF identifier code "45786966"
-         * and ending with the regular "ffd9". It's HEX encoded and contains
-         * control chars. We need to remove them and convert it to a ByteArray.
+         * This text is HEX encoded and contains control chars.
+         * We need to remove them and convert it to a ByteArray.
          */
         val iptcText = chunkText
             .substring(startIndex = index)
