@@ -23,6 +23,7 @@ import com.ashampoo.kim.common.RationalNumber.Companion.valueOf
 import com.ashampoo.kim.format.tiff.constants.GpsTag
 import com.ashampoo.kim.format.tiff.constants.TiffConstants
 import com.ashampoo.kim.format.tiff.constants.TiffConstants.DEFAULT_TIFF_BYTE_ORDER
+import com.ashampoo.kim.model.GpsCoordinates
 import kotlin.math.abs
 
 @Suppress("TooManyFunctions")
@@ -84,29 +85,34 @@ class TiffOutputSet(
 
     /**
      * A convenience method to update GPS values in EXIF metadata.
-     *
-     * @param longitude Longitude in degrees E, negative values are W.
-     * @param latitude  latitude in degrees N, negative values are S.
      */
-    fun setGPSInDegrees(longitude: Double, latitude: Double) {
+    fun setGpsCoordinates(gpsCoordinates: GpsCoordinates?) {
 
         val gpsDirectory = getOrCreateGPSDirectory()
 
+        /* First delete everything. */
         gpsDirectory.removeField(GpsTag.GPS_TAG_GPS_VERSION_ID)
+        gpsDirectory.removeField(GpsTag.GPS_TAG_GPS_LONGITUDE_REF)
+        gpsDirectory.removeField(GpsTag.GPS_TAG_GPS_LATITUDE_REF)
+        gpsDirectory.removeField(GpsTag.GPS_TAG_GPS_LONGITUDE)
+        gpsDirectory.removeField(GpsTag.GPS_TAG_GPS_LATITUDE)
+
+        if (gpsCoordinates == null)
+            return
+
+        /* Add the data back. */
+
         gpsDirectory.add(GpsTag.GPS_TAG_GPS_VERSION_ID, GpsTag.GPS_VERSION)
 
-        val longitudeRef = if (longitude < 0) "W" else "E"
-        val latitudeRef = if (latitude < 0) "S" else "N"
+        val longitudeRef = if (gpsCoordinates.longitude < 0) "W" else "E"
+        val latitudeRef = if (gpsCoordinates.latitude < 0) "S" else "N"
 
-        gpsDirectory.removeField(GpsTag.GPS_TAG_GPS_LONGITUDE_REF)
         gpsDirectory.add(GpsTag.GPS_TAG_GPS_LONGITUDE_REF, longitudeRef)
-
-        gpsDirectory.removeField(GpsTag.GPS_TAG_GPS_LATITUDE_REF)
         gpsDirectory.add(GpsTag.GPS_TAG_GPS_LATITUDE_REF, latitudeRef)
 
         run {
 
-            var value = abs(longitude)
+            var value = abs(gpsCoordinates.longitude)
 
             val longitudeDegrees = value.toLong().toDouble()
             value %= 1.0
@@ -118,7 +124,6 @@ class TiffOutputSet(
 
             val longitudeSeconds = value
 
-            gpsDirectory.removeField(GpsTag.GPS_TAG_GPS_LONGITUDE)
             gpsDirectory.add(
                 GpsTag.GPS_TAG_GPS_LONGITUDE,
                 arrayOf(
@@ -131,7 +136,7 @@ class TiffOutputSet(
 
         run {
 
-            var value = abs(latitude)
+            var value = abs(gpsCoordinates.latitude)
 
             val latitudeDegrees = value.toLong().toDouble()
 
@@ -145,7 +150,6 @@ class TiffOutputSet(
 
             val latitudeSeconds = value
 
-            gpsDirectory.removeField(GpsTag.GPS_TAG_GPS_LATITUDE)
             gpsDirectory.add(
                 GpsTag.GPS_TAG_GPS_LATITUDE,
                 arrayOf(
@@ -163,7 +167,7 @@ class TiffOutputSet(
 
             val field = directory.findField(tag)
 
-            if (null != field)
+            if (field != null)
                 return field
         }
 

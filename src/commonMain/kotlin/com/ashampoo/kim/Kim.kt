@@ -35,6 +35,8 @@ import io.ktor.utils.io.core.use
 
 object Kim {
 
+    var underUnitTesting: Boolean = false
+
     @kotlin.jvm.JvmStatic
     @Throws(ImageReadException::class)
     fun readMetadata(bytes: ByteArray): ImageMetadata? =
@@ -92,7 +94,7 @@ object Kim {
      * Updates the file with the wanted updates.
      *
      * **Note**: We don't have an good API for single-shot write all fields right now.
-     * So this is inefficent at this time.
+     * So this is inefficent at this time. This method is experimental and will likely change.
      */
     fun update(
         bytes: ByteArray,

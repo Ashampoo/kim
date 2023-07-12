@@ -17,10 +17,16 @@
 package com.ashampoo.kim.format.jpeg
 
 import com.ashampoo.kim.Kim
+import com.ashampoo.kim.Kim.underUnitTesting
 import com.ashampoo.kim.common.ImageWriteException
+import com.ashampoo.kim.common.toExifDateString
 import com.ashampoo.kim.format.jpeg.iptc.IptcMetadata
 import com.ashampoo.kim.format.jpeg.iptc.IptcRecord
 import com.ashampoo.kim.format.jpeg.iptc.IptcTypes
+import com.ashampoo.kim.format.tiff.TiffContents
+import com.ashampoo.kim.format.tiff.constants.ExifTag
+import com.ashampoo.kim.format.tiff.constants.TiffTag
+import com.ashampoo.kim.format.tiff.write.TiffOutputSet
 import com.ashampoo.kim.format.xmp.XmpWriter
 import com.ashampoo.kim.input.ByteArrayByteReader
 import com.ashampoo.kim.model.ImageFormat
@@ -28,6 +34,9 @@ import com.ashampoo.kim.model.MetadataUpdate
 import com.ashampoo.kim.output.ByteArrayByteWriter
 import com.ashampoo.xmp.XMPMeta
 import com.ashampoo.xmp.XMPMetaFactory
+import kotlinx.datetime.Instant
+import kotlinx.datetime.TimeZone
+import kotlinx.datetime.toLocalDateTime
 
 internal object JpegUpdater {
 
@@ -44,56 +53,128 @@ internal object JpegUpdater {
         if (kimMetadata.imageFormat != ImageFormat.JPEG)
             throw ImageWriteException("Can only update JPEG.")
 
-        /*
-         * Update XMP
-         */
+        val xmpUpdatedBytes = updateXmp(bytes, kimMetadata.xmp, updates)
 
-        val xmpMeta: XMPMeta = if (kimMetadata.xmp != null)
-            XMPMetaFactory.parseFromString(kimMetadata.xmp)
+        val exifUpdatedBytes = updateExif(xmpUpdatedBytes, kimMetadata.exif, updates)
+
+        val iptcUpdatedBytes = updateIptc(exifUpdatedBytes, kimMetadata.iptc, updates)
+
+        return iptcUpdatedBytes
+    }
+
+    private fun updateXmp(inputBytes: ByteArray, xmp: String?, updates: Set<MetadataUpdate>): ByteArray {
+
+        val xmpMeta: XMPMeta = if (xmp != null)
+            XMPMetaFactory.parseFromString(xmp)
         else
             XMPMetaFactory.create()
 
-        val newXmp = XmpWriter.updateXmp(xmpMeta, updates, true)
+        val updatedXmp = XmpWriter.updateXmp(xmpMeta, updates, true)
 
-        val xmpByteWriter = ByteArrayByteWriter()
+        val byteWriter = ByteArrayByteWriter()
 
         JpegRewriter.updateXmpXml(
-            byteReader = ByteArrayByteReader(bytes),
-            byteWriter = xmpByteWriter,
-            xmpXml = newXmp
+            byteReader = ByteArrayByteReader(inputBytes),
+            byteWriter = byteWriter,
+            xmpXml = updatedXmp
         )
 
-        val xmpUpdatedBytes = xmpByteWriter.toByteArray()
+        return byteWriter.toByteArray()
+    }
 
-        /* Update EXIF */
+    private fun updateExif(
+        inputBytes: ByteArray,
+        exif: TiffContents?,
+        updates: Set<MetadataUpdate>
+    ): ByteArray {
 
-        // TODO
-//        val orientationUpdate = updates.filterIsInstance<MetadataUpdate.Orientation>().firstOrNull()
-//
-//        val exifByteWriter = ByteArrayByteWriter()
-//
-//        JpegRewriter.updateExifMetadataLossless(
-//            byteReader = ByteArrayByteReader(xmpUpdatedBytes),
-//            byteWriter = exifByteWriter,
-//            outputSet = kimMetadata.exif?.createOutputSet()
-//        )
-//
-//        val exifUpdatesBytes = exifByteWriter.toByteArray()
+        /*
+         * Filter out all updates we can to to EXIF.
+         */
+        val exifUpdates = updates.filter {
+            it is MetadataUpdate.Orientation ||
+                it is MetadataUpdate.TakenDate ||
+                it is MetadataUpdate.GpsCoordinates
+        }
+
+        if (exifUpdates.isEmpty())
+            return inputBytes
+
+        val outputSet = exif?.createOutputSet() ?: TiffOutputSet()
+
+        val rootDirectory = outputSet.getOrCreateRootDirectory()
+        val exifDirectory = outputSet.getOrCreateExifDirectory()
+
+        for (update in updates) {
+
+            when (update) {
+
+                is MetadataUpdate.Orientation -> {
+
+                    rootDirectory.removeField(TiffTag.TIFF_TAG_ORIENTATION)
+                    rootDirectory.add(TiffTag.TIFF_TAG_ORIENTATION, update.tiffOrientation.value.toShort())
+                }
+
+                is MetadataUpdate.TakenDate -> {
+
+                    rootDirectory.removeField(TiffTag.TIFF_TAG_DATE_TIME)
+                    exifDirectory.removeField(ExifTag.EXIF_TAG_DATE_TIME_ORIGINAL)
+                    exifDirectory.removeField(ExifTag.EXIF_TAG_DATE_TIME_DIGITIZED)
+
+                    if (update.takenDate != null) {
+
+                        val timeZone = if (underUnitTesting)
+                            TimeZone.of("GMT+02:00")
+                        else
+                            TimeZone.currentSystemDefault()
+
+                        val exifDateString = Instant.fromEpochMilliseconds(update.takenDate)
+                            .toLocalDateTime(timeZone)
+                            .toExifDateString()
+
+                        rootDirectory.add(TiffTag.TIFF_TAG_DATE_TIME, exifDateString)
+                        exifDirectory.add(ExifTag.EXIF_TAG_DATE_TIME_ORIGINAL, exifDateString)
+                        exifDirectory.add(ExifTag.EXIF_TAG_DATE_TIME_DIGITIZED, exifDateString)
+                    }
+                }
+
+                is MetadataUpdate.GpsCoordinates -> {
+
+                    outputSet.setGpsCoordinates(update.gpsCoordinates)
+                }
+
+                else -> throw ImageWriteException("Can't perform update $update.")
+            }
+        }
+
+        val byteWriter = ByteArrayByteWriter()
+
+        JpegRewriter.updateExifMetadataLossless(
+            byteReader = ByteArrayByteReader(inputBytes),
+            byteWriter = byteWriter,
+            outputSet = outputSet
+        )
+
+        return byteWriter.toByteArray()
+    }
+
+    private fun updateIptc(
+        inputBytes: ByteArray,
+        iptc: IptcMetadata?,
+        updates: Set<MetadataUpdate>
+    ): ByteArray {
 
         val keywordsUpdate = updates.filterIsInstance<MetadataUpdate.Keywords>().firstOrNull()
 
-        /* No keywords to update in IPTC? In that case we are done. */
         if (keywordsUpdate == null)
-            return xmpUpdatedBytes
+            return inputBytes
 
         /* Update IPTC keywords */
 
         val newKeywords = keywordsUpdate.keywords
 
-        val oldIptc = kimMetadata.iptc
-
-        val newBlocks = oldIptc?.nonIptcBlocks ?: emptyList()
-        val oldRecords = oldIptc?.records ?: emptyList()
+        val newBlocks = iptc?.nonIptcBlocks ?: emptyList()
+        val oldRecords = iptc?.records ?: emptyList()
 
         val newRecords = oldRecords.filter { it.iptcType != IptcTypes.KEYWORDS }.toMutableList()
 
@@ -102,14 +183,14 @@ internal object JpegUpdater {
 
         val newIptc = IptcMetadata(newRecords, newBlocks)
 
-        val iptcByteWriter = ByteArrayByteWriter()
+        val byteWriter = ByteArrayByteWriter()
 
         JpegRewriter.writeIPTC(
-            byteReader = ByteArrayByteReader(xmpUpdatedBytes),
-            byteWriter = iptcByteWriter,
+            byteReader = ByteArrayByteReader(inputBytes),
+            byteWriter = byteWriter,
             metadata = newIptc
         )
 
-        return iptcByteWriter.toByteArray()
+        return byteWriter.toByteArray()
     }
 }

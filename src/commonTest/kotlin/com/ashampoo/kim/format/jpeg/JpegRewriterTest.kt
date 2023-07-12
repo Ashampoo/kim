@@ -97,14 +97,15 @@ class JpegRewriterTest {
             exifDirectory.add(ExifTag.EXIF_TAG_DATE_TIME_DIGITIZED, newDate)
 
             /* Set GPS */
-            outputSet.setGPSInDegrees(crashBuildingGps.longitude, crashBuildingGps.latitude)
+
+            outputSet.setGpsCoordinates(crashBuildingGps)
 
             /* IPTC */
 
-            val photoshopApp13Data = metadata?.iptc
+            val iptcMetadata = metadata?.iptc
 
-            val newBlocks = photoshopApp13Data?.nonIptcBlocks ?: emptyList()
-            val oldRecords = photoshopApp13Data?.records ?: emptyList()
+            val newBlocks = iptcMetadata?.nonIptcBlocks ?: emptyList()
+            val oldRecords = iptcMetadata?.records ?: emptyList()
 
             val newRecords = mutableListOf<IptcRecord>()
             newRecords.addAll(oldRecords)
