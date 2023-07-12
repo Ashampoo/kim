@@ -13,19 +13,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.ashampoo.kim.xmp
+package com.ashampoo.kim.format.xmp
 
-import com.ashampoo.kim.format.xmp.XmpReader
+import com.ashampoo.kim.Kim
 import com.ashampoo.kim.model.GpsCoordinates
 import com.ashampoo.kim.model.PhotoMetadata
 import com.ashampoo.kim.model.PhotoRating
 import com.ashampoo.kim.model.RegionArea
 import com.ashampoo.kim.model.TiffOrientation
 import com.ashampoo.kim.testdata.KimTestData
+import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
 class XmpReaderTest {
+
+    @BeforeTest
+    fun setUp() {
+        Kim.underUnitTesting = true
+    }
 
     @Test
     fun testReadAcdSeeXmpFile() {
@@ -53,7 +59,7 @@ class XmpReaderTest {
                 faces = emptyMap(),
                 personsInImage = emptySet()
             ),
-            actual = XmpReader.readMetadata(xmp, underUnitTesting = true)
+            actual = XmpReader.readMetadata(xmp)
         )
     }
 
@@ -88,7 +94,7 @@ class XmpReaderTest {
                 ),
                 personsInImage = emptySet()
             ),
-            actual = XmpReader.readMetadata(xmp, underUnitTesting = true)
+            actual = XmpReader.readMetadata(xmp)
         )
     }
 
@@ -128,7 +134,7 @@ class XmpReaderTest {
                 ),
                 personsInImage = setOf("Swiper")
             ),
-            actual = XmpReader.readMetadata(xmp, underUnitTesting = true)
+            actual = XmpReader.readMetadata(xmp)
         )
     }
 
@@ -165,7 +171,7 @@ class XmpReaderTest {
                 ),
                 personsInImage = setOf("Eye Left", "Eye Right", "Nothing")
             ),
-            actual = XmpReader.readMetadata(xmp, underUnitTesting = true)
+            actual = XmpReader.readMetadata(xmp)
         )
     }
 
@@ -195,7 +201,7 @@ class XmpReaderTest {
                 faces = emptyMap(),
                 personsInImage = emptySet()
             ),
-            actual = XmpReader.readMetadata(xmp, underUnitTesting = true)
+            actual = XmpReader.readMetadata(xmp)
         )
     }
 
@@ -235,7 +241,7 @@ class XmpReaderTest {
                 ),
                 personsInImage = setOf("Swiper")
             ),
-            actual = XmpReader.readMetadata(xmp, underUnitTesting = true)
+            actual = XmpReader.readMetadata(xmp)
         )
     }
 }

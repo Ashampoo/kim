@@ -30,6 +30,7 @@ import com.ashampoo.kim.output.ByteArrayByteWriter
 import com.ashampoo.kim.testdata.KimTestData
 import kotlinx.io.files.Path
 import kotlinx.io.files.sink
+import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNotEquals
@@ -58,6 +59,11 @@ class JpegRewriterTest {
             </x:xmpmeta>
         <?xpacket end="w"?>
     """.trimIndent()
+
+    @BeforeTest
+    fun setUp() {
+        Kim.underUnitTesting = true
+    }
 
     /**
      * Regression test based on a fixed small set of test files.

@@ -15,6 +15,7 @@
  */
 package com.ashampoo.kim.format.xmp
 
+import com.ashampoo.kim.Kim.underUnitTesting
 import com.ashampoo.kim.common.GpsUtil
 import com.ashampoo.kim.model.GpsCoordinates
 import com.ashampoo.kim.model.PhotoMetadata
@@ -41,7 +42,7 @@ object XmpReader {
     private const val XMP_ACDSEE_KEYWORDS = "keywords"
 
     @Suppress("LoopWithTooManyJumpStatements")
-    fun readMetadata(xmp: String, underUnitTesting: Boolean = false): PhotoMetadata {
+    fun readMetadata(xmp: String): PhotoMetadata {
 
         val xmpMeta = XMPMetaFactory.parseFromString(xmp)
 

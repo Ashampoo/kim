@@ -56,8 +56,7 @@ fun main(args: Array<String>) {
 
     println("--- Ashampoo Photos Metadata ---")
 
-    val photoMetadata =
-        metadata.convertToPhotoMetadata(underUnitTesting = false)
+    val photoMetadata = metadata.convertToPhotoMetadata()
 
     println(photoMetadata)
 }
