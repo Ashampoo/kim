@@ -16,16 +16,20 @@
 package com.ashampoo.kim
 
 import com.ashampoo.kim.common.ImageReadException
+import com.ashampoo.kim.common.ImageWriteException
 import com.ashampoo.kim.format.ImageMetadata
 import com.ashampoo.kim.format.ImageParser
 import com.ashampoo.kim.format.jpeg.JpegMetadataExtractor
+import com.ashampoo.kim.format.jpeg.JpegUpdater
 import com.ashampoo.kim.format.png.PngMetadataExtractor
+import com.ashampoo.kim.format.png.PngUpdater
 import com.ashampoo.kim.format.raf.RafMetadataExtractor
 import com.ashampoo.kim.input.ByteArrayByteReader
 import com.ashampoo.kim.input.ByteReader
 import com.ashampoo.kim.input.KtorInputByteReader
 import com.ashampoo.kim.input.PrePendingByteReader
 import com.ashampoo.kim.model.ImageFormat
+import com.ashampoo.kim.model.MetadataUpdate
 import io.ktor.utils.io.core.Input
 import io.ktor.utils.io.core.use
 
@@ -81,6 +85,27 @@ object Kim {
             ImageFormat.PNG -> imageFormat to PngMetadataExtractor.extractMetadataBytes(newReader)
             ImageFormat.RAF -> imageFormat to RafMetadataExtractor.extractMetadataBytes(newReader)
             else -> imageFormat to byteArrayOf()
+        }
+    }
+
+    /**
+     * Updates the file with the wanted updates.
+     *
+     * **Note**: We don't have an good API for single-shot write all fields right now.
+     * So this is inefficent at this time.
+     */
+    fun update(
+        bytes: ByteArray,
+        updates: Set<MetadataUpdate>
+    ): ByteArray {
+
+        val imageFormat = ImageFormat.detect(bytes)
+
+        return when (imageFormat) {
+            ImageFormat.JPEG -> JpegUpdater.update(bytes, updates)
+            ImageFormat.PNG -> PngUpdater.update(bytes, updates)
+            null -> throw ImageWriteException("Unsupported/Undetected file format.")
+            else -> throw ImageWriteException("Can't embedd into $imageFormat")
         }
     }
 }
