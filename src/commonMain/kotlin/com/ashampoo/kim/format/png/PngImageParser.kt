@@ -22,7 +22,6 @@ import com.ashampoo.kim.format.ImageMetadata
 import com.ashampoo.kim.format.ImageParser
 import com.ashampoo.kim.format.jpeg.JpegConstants
 import com.ashampoo.kim.format.jpeg.JpegConstants.PHOTOSHOP_IDENTIFICATION_STRING
-import com.ashampoo.kim.format.jpeg.iptc.IptcConstants
 import com.ashampoo.kim.format.jpeg.iptc.IptcMetadata
 import com.ashampoo.kim.format.jpeg.iptc.IptcParser
 import com.ashampoo.kim.format.png.chunks.PngChunk
