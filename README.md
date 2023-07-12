@@ -17,7 +17,7 @@ It's part of [Ashampoo Photos](https://ashampoo.com/photos).
 Current features:
 
 * JPG: Read & Write EXIF, IPTC & XMP
-* PNG: Read & Write EXIF Chunk & XMP (iTXT) as well as read EXIF from zTXT
+* PNG: Read & Write EXIF Chunk & XMP. Also read non-standard EXIF & IPTC from zTXT chunks.
 * TIFF: Read EXIF & XMP
 * Handling of XMP content through [XMP Core for Kotlin Multiplatform](https://github.com/Ashampoo/xmpcore).
 
@@ -187,9 +187,7 @@ public class Main {
 
 ## Limitations
 
-We are actively working to address the following limitations in future updates:
-
-* No support for IPTC in PNG zTXT chunks.
+* Kim can read non-standard EXIF & IPTC from PNG zTXT chunks, but it won't write them.
 * Inability to update EXIF, IPTC and XMP in JPG files simultaneously.
 * Insufficient error handling for broken or non-standard conforming files.
 

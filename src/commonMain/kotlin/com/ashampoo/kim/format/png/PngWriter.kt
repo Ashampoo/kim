@@ -16,6 +16,8 @@
  */
 package com.ashampoo.kim.format.png
 
+import com.ashampoo.kim.common.compress
+import com.ashampoo.kim.common.toHex
 import com.ashampoo.kim.format.png.PngCrc.continuePartialCrc
 import com.ashampoo.kim.format.png.PngCrc.finishPartialCrc
 import com.ashampoo.kim.format.png.PngCrc.startPartialCrc
@@ -23,7 +25,6 @@ import com.ashampoo.kim.format.png.chunks.PngTextChunk
 import com.ashampoo.kim.input.ByteArrayByteReader
 import com.ashampoo.kim.output.ByteArrayByteWriter
 import com.ashampoo.kim.output.ByteWriter
-import io.ktor.utils.io.charsets.Charsets
 import io.ktor.utils.io.core.toByteArray
 
 class PngWriter {
@@ -55,18 +56,31 @@ class PngWriter {
     }
 
     /**
-     * XMP is often uncompressed (see GIMP for example)
+     * XMP is often uncompressed (see GIMP for example).
      * For better compatibility we also write it without compression.
+     * The chunk type iTXT is the standard for this, because XMP is UTF-8.
      */
-    private fun writeChunkXmpiTXt(byteWriter: ByteWriter, xmpXml: String) {
+    private fun writeXmpChunk(byteWriter: ByteWriter, xmpXml: String) {
+
+        /*
+         * Keyword:             1-79 bytes (character string)
+         * Null separator:      1 byte
+         * Compression flag:    1 byte
+         * Compression method:  1 byte
+         * Language tag:        0 or more bytes (character string)
+         * Null separator:      1 byte
+         * Translated keyword:  0 or more bytes
+         * Null separator:      1 byte
+         * Text:                0 or more bytes
+         */
 
         val writer = ByteArrayByteWriter()
 
         /* XMP keyword */
-        writer.write(PngConstants.XMP_KEYWORD.toByteArray(Charsets.ISO_8859_1))
+        writer.write(PngConstants.XMP_KEYWORD.encodeToByteArray())
         writer.write(0)
 
-        /* No compression */
+        /* No compression and no language tag */
         writer.write(0) // No compression
         writer.write(0) // No compression method
         writer.write(0) // No language tag
@@ -79,6 +93,40 @@ class PngWriter {
         writer.write(xmpXml.toByteArray())
 
         writeChunk(byteWriter, ChunkType.ITXT, writer.toByteArray())
+    }
+
+    /*
+     * A note on IPTC support:
+     * We tried to write it like ExifTool, but the result can't be read anywhere.
+     * We don't have a specification here and so we don't support it.
+     *
+     * **Note:** Don't use this. It's left here as we may pick it up in the future
+     * once we at least know the specification GIMP & ExifTool follow.
+     */
+    @Suppress("UnusedPrivateMember", "kotlin:S1144")
+    private fun writeIptcChunk(byteWriter: ByteWriter, iptcBytes: ByteArray) {
+
+        /*
+         * Keyword:            1-79 bytes (character string)
+         * Null separator:     1 byte
+         * Compression method: 1 byte
+         * Compressed text:    n bytes
+         */
+
+        val writer = ByteArrayByteWriter()
+
+        /* IPTC keyword */
+        writer.write(PngConstants.IPTC_KEYWORD.encodeToByteArray())
+        writer.write(0)
+
+        /* Only DEFLATE compression (value 0) is defined in the spec. */
+        writer.write(PngConstants.COMPRESSION_DEFLATE_INFLATE)
+
+        val textToWrite = "IPTC profile ${iptcBytes.size} ${iptcBytes.toHex()}"
+
+        writer.write(compress(textToWrite))
+
+        writeChunk(byteWriter, ChunkType.ZTXT, writer.toByteArray())
     }
 
     fun writeImage(
@@ -96,15 +144,17 @@ class PngWriter {
          * Delete old chunks that are going to be replaced.
          */
 
-        if (xmp != null)
-            chunks.removeAll { it is PngTextChunk && it.getKeyword() == PngConstants.XMP_KEYWORD }
-
         if (exifBytes != null)
             chunks.removeAll {
                 it.chunkType == ChunkType.EXIF ||
-                    it is PngTextChunk && it.getKeyword() == PngConstants.EXIF_KEYWORD ||
-                    it is PngTextChunk && it.getKeyword() == PngConstants.IPTC_KEYWORD
+                    it is PngTextChunk && it.getKeyword() == PngConstants.EXIF_KEYWORD
             }
+
+//        if (iptcBytes != null)
+//            chunks.removeAll { it is PngTextChunk && it.getKeyword() == PngConstants.IPTC_KEYWORD }
+
+        if (xmp != null)
+            chunks.removeAll { it is PngTextChunk && it.getKeyword() == PngConstants.XMP_KEYWORD }
 
         /*
          * Write the new file
@@ -122,7 +172,7 @@ class PngWriter {
 
             /* Write XMP chunk right after the header. */
             if (xmp != null && ChunkType.IHDR == chunk.chunkType)
-                writeChunkXmpiTXt(byteWriter, xmp)
+                writeXmpChunk(byteWriter, xmp)
         }
 
         byteWriter.close()

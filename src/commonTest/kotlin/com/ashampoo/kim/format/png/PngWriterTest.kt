@@ -21,10 +21,13 @@ import com.ashampoo.kim.format.tiff.write.TiffImageWriterLossy
 import com.ashampoo.kim.format.tiff.write.TiffOutputSet
 import com.ashampoo.kim.output.ByteArrayByteWriter
 import com.ashampoo.kim.testdata.KimTestData
+import kotlinx.io.files.Path
+import kotlinx.io.files.sink
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNotEquals
-import kotlin.test.assertTrue
+import kotlin.test.assertNotNull
+import kotlin.test.fail
 
 class PngWriterTest {
 
@@ -45,6 +48,7 @@ class PngWriterTest {
     /**
      * Regression test based on a fixed small set of test files.
      */
+    @OptIn(ExperimentalStdlibApi::class)
     @Test
     fun testUpdateMetadata() {
 
@@ -83,16 +87,27 @@ class PngWriterTest {
 
             val newBytes = byteWriter.toByteArray()
 
-            val actualXmp = Kim.readMetadata(newBytes)?.xmp
+            val actualMetadata = Kim.readMetadata(newBytes)
 
-            assertEquals(expectedXmp, actualXmp)
+            assertNotNull(actualMetadata)
+            assertNotNull(actualMetadata.exif)
+            assertNotNull(actualMetadata.xmp)
+
+            assertEquals(
+                expected = expectedXmp,
+                actual = actualMetadata.xmp
+            )
 
             val expectedBytes = KimTestData.getModifiedBytesOf(index)
 
-            assertTrue(
-                expectedBytes.contentEquals(newBytes),
-                "Bytes for $index are different."
-            )
+            val equals = expectedBytes.contentEquals(newBytes)
+
+            if (!equals) {
+
+                Path("build/photo_${index}_modified.png").sink().use { it.write(newBytes) }
+
+                fail("Bytes for test image #$index are different.")
+            }
         }
     }
 }

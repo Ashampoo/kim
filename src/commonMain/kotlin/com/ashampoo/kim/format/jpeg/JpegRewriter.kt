@@ -241,7 +241,7 @@ object JpegRewriter : BinaryFileParser() {
 
         val newApp13Segment = JFIFPieceSegment(
             marker = JpegConstants.JPEG_APP13_MARKER,
-            segmentBytes = IptcWriter.writePhotoshopApp13Segment(mergedBlocks)
+            segmentBytes = IptcWriter.writeIptcBlocks(mergedBlocks)
         )
 
         val oldPiecesWithoutApp13Segments =
