@@ -53,22 +53,33 @@ internal object PngUpdater {
 
         val updatedXmp = XmpWriter.updateXmp(xmpMeta, updates, true)
 
-        val tiffOutputSet = kimMetadata.exif?.createOutputSet() ?: TiffOutputSet()
+        val exifUpdates = updates.filter {
+            it is MetadataUpdate.Orientation ||
+                it is MetadataUpdate.TakenDate ||
+                it is MetadataUpdate.GpsCoordinates
+        }
 
-        tiffOutputSet.applyUpdates(updates)
+        val exifBytes: ByteArray? = if (exifUpdates.isNotEmpty()) {
 
-        val oldExifBytes = kimMetadata.exifBytes
+            val tiffOutputSet = kimMetadata.exif?.createOutputSet() ?: TiffOutputSet()
 
-        val writer = if (oldExifBytes != null)
-            TiffImageWriterLossless(exifBytes = oldExifBytes)
-        else
-            TiffImageWriterLossy()
+            tiffOutputSet.applyUpdates(exifUpdates)
 
-        val exifBytesWriter = ByteArrayByteWriter()
+            val oldExifBytes = kimMetadata.exifBytes
 
-        writer.write(exifBytesWriter, tiffOutputSet)
+            val writer = if (oldExifBytes != null)
+                TiffImageWriterLossless(exifBytes = oldExifBytes)
+            else
+                TiffImageWriterLossy()
 
-        val exifBytes = exifBytesWriter.toByteArray()
+            val exifBytesWriter = ByteArrayByteWriter()
+
+            writer.write(exifBytesWriter, tiffOutputSet)
+
+            exifBytesWriter.toByteArray()
+
+        } else
+            null
 
         val byteWriter = ByteArrayByteWriter()
 

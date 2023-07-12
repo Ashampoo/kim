@@ -91,7 +91,7 @@ class TiffOutputSet(
         return null
     }
 
-    fun applyUpdates(updates: Set<MetadataUpdate>) {
+    fun applyUpdates(updates: Collection<MetadataUpdate>) {
 
         val rootDirectory = getOrCreateRootDirectory()
         val exifDirectory = getOrCreateExifDirectory()

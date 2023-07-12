@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.ashampoo.kim.format.jpeg
+package com.ashampoo.kim.format.png
 
 import com.ashampoo.kim.Kim
 import com.ashampoo.kim.model.GpsCoordinates
@@ -27,7 +27,7 @@ import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.test.fail
 
-class JpegUpdaterTest {
+class PngUpdaterTest {
 
     private val keywordWithUmlauts = "Äußerst öffentlich"
 
@@ -38,9 +38,9 @@ class JpegUpdaterTest {
 
     private val timestamp = 1_689_166_125_401 // 2023:07:12 12:48:45
 
-    private val resourcePath: String = "src/commonTest/resources/com/ashampoo/kim/updates_jpg"
+    private val resourcePath: String = "src/commonTest/resources/com/ashampoo/kim/updates_png"
 
-    private val originalBytes = Resource("$resourcePath/original.jpg").readBytes()
+    private val originalBytes = Resource("$resourcePath/original.png").readBytes()
 
     @BeforeTest
     fun setUp() {
@@ -58,12 +58,7 @@ class JpegUpdaterTest {
             )
         )
 
-        /*
-         * FIXME The original has a orientation flag. Such hefty re-ordering
-         *  should not be needed. Investigate this.
-         */
-
-        compare("rotated_right.jpg", newBytes)
+        compare("rotated_right.png", newBytes)
     }
 
     @OptIn(ExperimentalStdlibApi::class)
@@ -77,7 +72,7 @@ class JpegUpdaterTest {
             )
         )
 
-        compare("new_taken_date.jpg", newBytes)
+        compare("new_taken_date.png", newBytes)
     }
 
     @OptIn(ExperimentalStdlibApi::class)
@@ -91,7 +86,7 @@ class JpegUpdaterTest {
             )
         )
 
-        compare("new_gps_coordinates.jpg", newBytes)
+        compare("new_gps_coordinates.png", newBytes)
     }
 
     @OptIn(ExperimentalStdlibApi::class)
@@ -105,7 +100,7 @@ class JpegUpdaterTest {
             )
         )
 
-        compare("new_rating.jpg", newBytes)
+        compare("new_rating.png", newBytes)
     }
 
     @OptIn(ExperimentalStdlibApi::class)
@@ -119,7 +114,7 @@ class JpegUpdaterTest {
             )
         )
 
-        compare("new_keywords.jpg", newBytes)
+        compare("new_keywords.png", newBytes)
     }
 
     @OptIn(ExperimentalStdlibApi::class)
@@ -133,7 +128,7 @@ class JpegUpdaterTest {
             )
         )
 
-        compare("new_persons.jpg", newBytes)
+        compare("new_persons.png", newBytes)
     }
 
     @OptIn(ExperimentalStdlibApi::class)

@@ -98,7 +98,7 @@ internal object JpegUpdater {
 
         val outputSet = exif?.createOutputSet() ?: TiffOutputSet()
 
-        outputSet.applyUpdates(updates)
+        outputSet.applyUpdates(exifUpdates)
 
         val byteWriter = ByteArrayByteWriter()
 
