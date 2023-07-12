@@ -180,10 +180,10 @@ object JpegConstants {
 
     const val IPTC_MAX_BLOCK_NAME_LENGTH: Int = 255
 
-    val CONST_8BIM = charsToQuad('8', 'B', 'I', 'M')
+    /** Int value of "8BIM" */
+    const val IPTC_RESOURCE_BLOCK_SIGNATURE_INT = 943_868_237
 
-    private fun charsToQuad(c1: Char, c2: Char, c3: Char, c4: Char): Int =
-        0xFF and c1.code shl 24 or (0xFF and c2.code shl 16) or
-            (0xFF and c3.code shl 8) or (0xFF and c4.code shl 0)
+    /** Hex value of "8BIM" (38 42 49 4D) */
+    const val IPTC_RESOURCE_BLOCK_SIGNATURE_HEX = "3842494d"
 
 }

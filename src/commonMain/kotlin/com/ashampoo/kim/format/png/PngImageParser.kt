@@ -203,13 +203,11 @@ object PngImageParser : ImageParser() {
 
         val chunkText = getTextChunkWithKeyword(chunks, PngConstants.IPTC_KEYWORD) ?: return null
 
-        val identifier = "3842494d04040000000000" // What is it?
-
         /*
          * Before the IPTC block starts there are some characters before that.
          * How these look seems to depend on the tool writing it. There may be no standard.
          */
-        val index = chunkText.indexOf(identifier)
+        val index = chunkText.indexOf(JpegConstants.IPTC_RESOURCE_BLOCK_SIGNATURE_HEX)
 
         /* If we did not find the identifier we may have invalid data. */
         if (index == -1)

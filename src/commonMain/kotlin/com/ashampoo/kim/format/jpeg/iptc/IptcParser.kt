@@ -70,7 +70,7 @@ object IptcParser : BinaryFileParser() {
         val index = JpegConstants.APP13_IDENTIFIER.size
 
         return index + 4 <= segmentData.size &&
-            segmentData.toInt(index, APP13_BYTE_ORDER) == JpegConstants.CONST_8BIM
+            segmentData.toInt(index, APP13_BYTE_ORDER) == JpegConstants.IPTC_RESOURCE_BLOCK_SIGNATURE_INT
     }
 
     /**
@@ -189,14 +189,14 @@ object IptcParser : BinaryFileParser() {
                 break
             }
 
-            if (resourceBlockSignature != JpegConstants.CONST_8BIM) {
+            if (resourceBlockSignature != JpegConstants.IPTC_RESOURCE_BLOCK_SIGNATURE_INT) {
 
                 /*
                  * Some files seem to contain invalid markers: 04 3A 00 00 in case of our test data.
                  * We just ignore these and skip to the next 8BIM (38 42 49 4D) segment.
                  * If we can't skip to the next we found everything we can interpret.
                  */
-                val skipSuccessful = byteReader.skipToQuad(JpegConstants.CONST_8BIM)
+                val skipSuccessful = byteReader.skipToQuad(JpegConstants.IPTC_RESOURCE_BLOCK_SIGNATURE_INT)
 
                 if (!skipSuccessful)
                     break
@@ -215,7 +215,7 @@ object IptcParser : BinaryFileParser() {
                  * If there is still data in this block, before the next image resource block (8BIM),
                  * then we must consume these bytes to leave a pointer ready to read the next block.
                  */
-                byteReader.skipToQuad(JpegConstants.CONST_8BIM)
+                byteReader.skipToQuad(JpegConstants.IPTC_RESOURCE_BLOCK_SIGNATURE_INT)
 
                 continue
             }

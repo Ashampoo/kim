@@ -39,7 +39,7 @@ object IptcWriter {
 
         for (block in blocks) {
 
-            bos.write4Bytes(JpegConstants.CONST_8BIM)
+            bos.write4Bytes(JpegConstants.IPTC_RESOURCE_BLOCK_SIGNATURE_INT)
 
             if (block.blockType < 0 || block.blockType > 0xFFFF)
                 throw ImageWriteException("Invalid IPTC block type: ${block.blockType}")
