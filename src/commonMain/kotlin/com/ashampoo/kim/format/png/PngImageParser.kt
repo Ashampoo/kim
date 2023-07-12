@@ -136,14 +136,14 @@ object PngImageParser : ImageParser() {
 
         val xmp = getXmpXml(chunks)
 
-        return ImageMetadata(ImageFormat.PNG, imageSize, exif, iptc, xmp)
+        return ImageMetadata(ImageFormat.PNG, imageSize, exif?.second, exif?.first, iptc, xmp)
     }
 
-    private fun getExif(chunks: List<PngChunk>): TiffContents? {
+    private fun getExif(chunks: List<PngChunk>): Pair<ByteArray, TiffContents>? {
 
         val exifChunk = chunks.find { it.chunkType == ChunkType.EXIF } ?: return null
 
-        return TiffReader().read(ByteArrayByteReader(exifChunk.bytes))
+        return exifChunk.bytes to TiffReader().read(ByteArrayByteReader(exifChunk.bytes))
     }
 
     /*
@@ -153,7 +153,7 @@ object PngImageParser : ImageParser() {
      * According to https://exiftool.org/TagNames/PNG.html it may even be in uncompressed text.
      * So we look for all PNG text chunk types and take the first one that matches the keyword.
      */
-    private fun getExifFromTextChunk(chunks: List<PngChunk>): TiffContents? {
+    private fun getExifFromTextChunk(chunks: List<PngChunk>): Pair<ByteArray, TiffContents>? {
 
         val chunkText = getTextChunkWithKeyword(chunks, PngConstants.EXIF_KEYWORD) ?: return null
 
@@ -196,7 +196,7 @@ object PngImageParser : ImageParser() {
         /*
          * This should be fine now to be fed into the TIFF reader.
          */
-        return TiffReader().read(ByteArrayByteReader(exifTextBytes))
+        return exifTextBytes to TiffReader().read(ByteArrayByteReader(exifTextBytes))
     }
 
     private fun getIptcFromTextChunk(chunks: List<PngChunk>): IptcMetadata? {

@@ -16,14 +16,22 @@
  */
 package com.ashampoo.kim.format.tiff.write
 
+import com.ashampoo.kim.Kim
 import com.ashampoo.kim.common.ByteOrder
 import com.ashampoo.kim.common.GpsUtil.MINUTES_PER_HOUR
 import com.ashampoo.kim.common.ImageWriteException
 import com.ashampoo.kim.common.RationalNumber.Companion.valueOf
+import com.ashampoo.kim.common.toExifDateString
+import com.ashampoo.kim.format.tiff.constants.ExifTag
 import com.ashampoo.kim.format.tiff.constants.GpsTag
 import com.ashampoo.kim.format.tiff.constants.TiffConstants
 import com.ashampoo.kim.format.tiff.constants.TiffConstants.DEFAULT_TIFF_BYTE_ORDER
+import com.ashampoo.kim.format.tiff.constants.TiffTag
 import com.ashampoo.kim.model.GpsCoordinates
+import com.ashampoo.kim.model.MetadataUpdate
+import kotlinx.datetime.Instant
+import kotlinx.datetime.TimeZone
+import kotlinx.datetime.toLocalDateTime
 import kotlin.math.abs
 
 @Suppress("TooManyFunctions")
@@ -81,6 +89,54 @@ class TiffOutputSet(
                 return directory
 
         return null
+    }
+
+    fun applyUpdates(updates: Set<MetadataUpdate>) {
+
+        val rootDirectory = getOrCreateRootDirectory()
+        val exifDirectory = getOrCreateExifDirectory()
+
+        for (update in updates) {
+
+            when (update) {
+
+                is MetadataUpdate.Orientation -> {
+
+                    rootDirectory.removeField(TiffTag.TIFF_TAG_ORIENTATION)
+                    rootDirectory.add(TiffTag.TIFF_TAG_ORIENTATION, update.tiffOrientation.value.toShort())
+                }
+
+                is MetadataUpdate.TakenDate -> {
+
+                    rootDirectory.removeField(TiffTag.TIFF_TAG_DATE_TIME)
+                    exifDirectory.removeField(ExifTag.EXIF_TAG_DATE_TIME_ORIGINAL)
+                    exifDirectory.removeField(ExifTag.EXIF_TAG_DATE_TIME_DIGITIZED)
+
+                    if (update.takenDate != null) {
+
+                        val timeZone = if (Kim.underUnitTesting)
+                            TimeZone.of("GMT+02:00")
+                        else
+                            TimeZone.currentSystemDefault()
+
+                        val exifDateString = Instant.fromEpochMilliseconds(update.takenDate)
+                            .toLocalDateTime(timeZone)
+                            .toExifDateString()
+
+                        rootDirectory.add(TiffTag.TIFF_TAG_DATE_TIME, exifDateString)
+                        exifDirectory.add(ExifTag.EXIF_TAG_DATE_TIME_ORIGINAL, exifDateString)
+                        exifDirectory.add(ExifTag.EXIF_TAG_DATE_TIME_DIGITIZED, exifDateString)
+                    }
+                }
+
+                is MetadataUpdate.GpsCoordinates -> {
+
+                    setGpsCoordinates(update.gpsCoordinates)
+                }
+
+                else -> throw ImageWriteException("Can't perform update $update.")
+            }
+        }
     }
 
     /**

@@ -58,13 +58,15 @@ object JpegImageParser : ImageParser() {
 
         val imageSize = getImageSize(segments)
 
-        val exif = getExif(segments)
+        val exifBytes = getExifBytes(segments)
+
+        val exif = if (exifBytes != null) getExif(exifBytes) else null
 
         val iptc = getIptc(segments)
 
         val xmp = getXmpXml(segments)
 
-        return ImageMetadata(ImageFormat.JPEG, imageSize, exif, iptc, xmp)
+        return ImageMetadata(ImageFormat.JPEG, imageSize, exif, exifBytes, iptc, xmp)
     }
 
     private fun readSegments(byteReader: ByteReader, markers: List<Int>): List<Segment> {
@@ -140,9 +142,7 @@ object JpegImageParser : ImageParser() {
         return ImageSize(firstSegment.width, firstSegment.height)
     }
 
-    private fun getExif(segments: List<Segment>): TiffContents? {
-
-        val bytes = getExifBytes(segments) ?: return null
+    private fun getExif(bytes: ByteArray): TiffContents? {
 
         val exifByteReader = ByteArrayByteReader(bytes)
 

@@ -27,7 +27,7 @@ import com.ashampoo.kim.output.ByteArrayByteWriter
 import com.ashampoo.kim.output.ByteWriter
 import io.ktor.utils.io.core.toByteArray
 
-class PngWriter {
+object PngWriter {
 
     private fun writeChunk(
         byteWriter: ByteWriter,
@@ -149,9 +149,6 @@ class PngWriter {
                 it.chunkType == ChunkType.EXIF ||
                     it is PngTextChunk && it.getKeyword() == PngConstants.EXIF_KEYWORD
             }
-
-//        if (iptcBytes != null)
-//            chunks.removeAll { it is PngTextChunk && it.getKeyword() == PngConstants.IPTC_KEYWORD }
 
         if (xmp != null)
             chunks.removeAll { it is PngTextChunk && it.getKeyword() == PngConstants.XMP_KEYWORD }

@@ -17,6 +17,7 @@ package com.ashampoo.kim.format.png
 
 import com.ashampoo.kim.Kim
 import com.ashampoo.kim.format.tiff.constants.ExifTag
+import com.ashampoo.kim.format.tiff.write.TiffImageWriterLossless
 import com.ashampoo.kim.format.tiff.write.TiffImageWriterLossy
 import com.ashampoo.kim.format.tiff.write.TiffOutputSet
 import com.ashampoo.kim.output.ByteArrayByteWriter
@@ -31,7 +32,7 @@ import kotlin.test.fail
 
 class PngWriterTest {
 
-    val expectedXmp = """
+    private val expectedXmp = """
         <?xpacket begin="﻿" id="W5M0MpCehiHzreSzNTczkc9d"?>
             <x:xmpmeta xmlns:x="adobe:ns:meta/" x:xmptk="Adobe XMP Core 6.1.10">
               <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
@@ -56,29 +57,41 @@ class PngWriterTest {
 
             val bytes = KimTestData.getBytesOf(index)
 
-            val oldXmp = Kim.readMetadata(bytes)?.xmp
+            val oldMetadata = Kim.readMetadata(bytes)
+
+            assertNotNull(oldMetadata)
+
+            val oldXmp = oldMetadata.xmp
 
             assertNotEquals(expectedXmp, oldXmp)
 
-            val tiffOutputSet = TiffOutputSet()
+            val tiffOutputSet = oldMetadata.exif?.createOutputSet() ?: TiffOutputSet()
+
+            val exifDirectory = tiffOutputSet.getOrCreateExifDirectory()
 
             /*
-             * Note: We erite a different date to EXIF than to XMP
-             * to see which viewer gives priority to what field.
+             * Note: We write a different date to EXIF than to XMP
+             * to see which viewer gives priority to which field.
              */
-            tiffOutputSet.getOrCreateExifDirectory().add(
-                ExifTag.EXIF_TAG_DATE_TIME_ORIGINAL, "2023:08:01 08:00:00"
-            )
+            exifDirectory.removeField(ExifTag.EXIF_TAG_DATE_TIME_ORIGINAL)
+            exifDirectory.add(ExifTag.EXIF_TAG_DATE_TIME_ORIGINAL, "2023:08:01 08:00:00")
 
             val exifBytesWriter = ByteArrayByteWriter()
 
-            TiffImageWriterLossy().write(exifBytesWriter, tiffOutputSet)
+            val oldExifBytes = oldMetadata.exifBytes
+
+            val writer = if (oldExifBytes != null)
+                TiffImageWriterLossless(exifBytes = oldExifBytes)
+            else
+                TiffImageWriterLossy()
+
+            writer.write(exifBytesWriter, tiffOutputSet)
 
             val exifBytes: ByteArray = exifBytesWriter.toByteArray()
 
             val byteWriter = ByteArrayByteWriter()
 
-            PngWriter().writeImage(
+            PngWriter.writeImage(
                 byteWriter,
                 bytes,
                 exifBytes,

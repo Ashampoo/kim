@@ -128,7 +128,7 @@ object JpegRewriter : BinaryFileParser() {
 
             val exifPiece = exifSegmentPieces.first()
 
-            val exifBytes = exifPiece.segmentBytes.getRemainingBytes(6)
+            val exifBytes = exifPiece.segmentBytes.getRemainingBytes(JpegConstants.EXIF_IDENTIFIER_CODE.size)
 
             writer = TiffImageWriterLossless(outputSet.byteOrder, exifBytes)
 

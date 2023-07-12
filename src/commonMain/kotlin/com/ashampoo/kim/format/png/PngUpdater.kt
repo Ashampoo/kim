@@ -18,8 +18,15 @@ package com.ashampoo.kim.format.png
 
 import com.ashampoo.kim.Kim
 import com.ashampoo.kim.common.ImageWriteException
+import com.ashampoo.kim.format.tiff.write.TiffImageWriterLossless
+import com.ashampoo.kim.format.tiff.write.TiffImageWriterLossy
+import com.ashampoo.kim.format.tiff.write.TiffOutputSet
+import com.ashampoo.kim.format.xmp.XmpWriter
 import com.ashampoo.kim.model.ImageFormat
 import com.ashampoo.kim.model.MetadataUpdate
+import com.ashampoo.kim.output.ByteArrayByteWriter
+import com.ashampoo.xmp.XMPMeta
+import com.ashampoo.xmp.XMPMetaFactory
 
 internal object PngUpdater {
 
@@ -27,6 +34,9 @@ internal object PngUpdater {
         bytes: ByteArray,
         updates: Set<MetadataUpdate>
     ): ByteArray {
+
+        if (updates.isEmpty())
+            return bytes
 
         val kimMetadata = Kim.readMetadata(bytes)
 
@@ -36,10 +46,39 @@ internal object PngUpdater {
         if (kimMetadata.imageFormat != ImageFormat.PNG)
             throw ImageWriteException("Can only update PNG.")
 
-        /*
-         * TODO Implement
-         */
+        val xmpMeta: XMPMeta = if (kimMetadata.xmp != null)
+            XMPMetaFactory.parseFromString(kimMetadata.xmp)
+        else
+            XMPMetaFactory.create()
 
-        return bytes
+        val updatedXmp = XmpWriter.updateXmp(xmpMeta, updates, true)
+
+        val tiffOutputSet = kimMetadata.exif?.createOutputSet() ?: TiffOutputSet()
+
+        tiffOutputSet.applyUpdates(updates)
+
+        val oldExifBytes = kimMetadata.exifBytes
+
+        val writer = if (oldExifBytes != null)
+            TiffImageWriterLossless(exifBytes = oldExifBytes)
+        else
+            TiffImageWriterLossy()
+
+        val exifBytesWriter = ByteArrayByteWriter()
+
+        writer.write(exifBytesWriter, tiffOutputSet)
+
+        val exifBytes = exifBytesWriter.toByteArray()
+
+        val byteWriter = ByteArrayByteWriter()
+
+        PngWriter.writeImage(
+            byteWriter = byteWriter,
+            originalBytes = bytes,
+            exifBytes = exifBytes,
+            xmp = updatedXmp
+        )
+
+        return byteWriter.toByteArray()
     }
 }

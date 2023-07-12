@@ -41,7 +41,7 @@ class TiffImageParser : ImageParser() {
         val imageSize = getImageSize(exif)
         val xmp = getXmpXml(exif)
 
-        return ImageMetadata(ImageFormat.TIFF, imageSize, exif, null, xmp)
+        return ImageMetadata(ImageFormat.TIFF, imageSize, exif, null, null, xmp)
     }
 
     private fun getImageSize(tiffContents: TiffContents): ImageSize? {

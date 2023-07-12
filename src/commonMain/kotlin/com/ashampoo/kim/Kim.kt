@@ -58,7 +58,7 @@ object Kim {
         val imageParser = ImageParser.forFormat(imageFormat)
 
         if (imageParser == null)
-            return ImageMetadata(imageFormat, null, null, null, null)
+            return ImageMetadata(imageFormat, null, null, null, null, null)
 
         val newReader = PrePendingByteReader(it, headerBytes.toList())
 
@@ -100,6 +100,9 @@ object Kim {
         bytes: ByteArray,
         updates: Set<MetadataUpdate>
     ): ByteArray {
+
+        if (updates.isEmpty())
+            return bytes
 
         val imageFormat = ImageFormat.detect(bytes)
 
