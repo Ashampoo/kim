@@ -27,15 +27,13 @@ import io.ktor.utils.io.core.toByteArray
 object IptcWriter {
 
     @Suppress("ThrowsCount")
-    fun writePhotoshopApp13Segment(data: IptcMetadata): ByteArray {
+    fun writePhotoshopApp13Segment(blocks: List<IptcBlock>): ByteArray {
 
         val os = ByteArrayByteWriter()
 
         val bos: BinaryByteWriter = BigEndianBinaryByteWriter(os)
 
         bos.write(JpegConstants.APP13_IDENTIFIER)
-
-        val blocks = data.rawBlocks
 
         for (block in blocks) {
 
