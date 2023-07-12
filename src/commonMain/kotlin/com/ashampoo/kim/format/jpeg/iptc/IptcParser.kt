@@ -58,22 +58,35 @@ object IptcParser : BinaryFileParser() {
         byteOrder = APP13_BYTE_ORDER
     }
 
-    fun isIptcSegment(segmentData: ByteArray): Boolean {
+    /**
+     * Checks if the ByteArray starts with the Photoshop identifaction header.
+     * This is mandatory for IPTC embedded into APP13.
+     */
+    fun isPhotoshopApp13Segment(segmentData: ByteArray): Boolean {
 
-        if (!segmentData.startsWith(JpegConstants.PHOTOSHOP_IDENTIFICATION_STRING))
+        if (!segmentData.startsWith(JpegConstants.APP13_IDENTIFIER))
             return false
 
-        val index = JpegConstants.PHOTOSHOP_IDENTIFICATION_STRING.size
+        val index = JpegConstants.APP13_IDENTIFIER.size
 
         return index + 4 <= segmentData.size &&
             segmentData.toInt(index, APP13_BYTE_ORDER) == JpegConstants.CONST_8BIM
     }
 
-    fun parseIptc(bytes: ByteArray): IptcMetadata {
+    /**
+     * Parses IPTC from the given string.
+     *
+     * @param bytes                 The IPTC bytes
+     * @param startsWithApp13Header If IPTC is read from JPEG the header is required.
+     */
+    fun parseIptc(
+        bytes: ByteArray,
+        startsWithApp13Header: Boolean = true
+    ): IptcMetadata {
 
         val records = mutableListOf<IptcRecord>()
 
-        val blocks = parseAllIptcBlocks(bytes)
+        val blocks = parseAllIptcBlocks(bytes, startsWithApp13Header)
 
         for (block in blocks) {
 
@@ -144,26 +157,28 @@ object IptcParser : BinaryFileParser() {
         return records
     }
 
-    private fun parseAllIptcBlocks(bytes: ByteArray): List<IptcBlock> {
+    private fun parseAllIptcBlocks(
+        bytes: ByteArray,
+        startsWithApp13Header: Boolean
+    ): List<IptcBlock> {
 
         val blocks = mutableListOf<IptcBlock>()
 
         val byteReader = ByteArrayByteReader(bytes)
 
-        /*
-         * Note that these are unsigned quantities. Name is always an even
-         * number of bytes (including the 1st byte, which is the size.)
-         */
-        val idString = byteReader.readBytes(
-            "App13 Segment identifier",
-            JpegConstants.PHOTOSHOP_IDENTIFICATION_STRING.size
-        )
+        if (startsWithApp13Header) {
 
-        if (!JpegConstants.PHOTOSHOP_IDENTIFICATION_STRING.contentEquals(idString))
-            throw ImageReadException(
-                "Not a Photoshop App13 Segment: ${idString.contentToString()} " +
-                    " != " + JpegConstants.PHOTOSHOP_IDENTIFICATION_STRING.contentToString()
+            val idString = byteReader.readBytes(
+                "App13 Segment identifier",
+                JpegConstants.APP13_IDENTIFIER.size
             )
+
+            if (!JpegConstants.APP13_IDENTIFIER.contentEquals(idString))
+                throw ImageReadException(
+                    "Not a Photoshop App13 segment: ${idString.contentToString()} " +
+                        " != " + JpegConstants.APP13_IDENTIFIER.contentToString()
+                )
+        }
 
         @Suppress("LoopWithTooManyJumpStatements")
         while (true) {

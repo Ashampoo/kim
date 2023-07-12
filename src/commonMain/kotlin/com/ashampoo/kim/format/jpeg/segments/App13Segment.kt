@@ -28,7 +28,7 @@ class App13Segment(marker: Int, markerLength: Int, byteReader: ByteReader) :
         this(marker, segmentData.size, ByteArrayByteReader(segmentData))
 
     fun isPhotoshopJpegSegment(): Boolean =
-        IptcParser.isIptcSegment(segmentBytes)
+        IptcParser.isPhotoshopApp13Segment(segmentBytes)
 
     fun parseIptcMetadata(): IptcMetadata? {
 
@@ -40,6 +40,9 @@ class App13Segment(marker: Int, markerLength: Int, byteReader: ByteReader) :
         if (!isPhotoshopJpegSegment())
             return null
 
-        return IptcParser.parseIptc(segmentBytes)
+        return IptcParser.parseIptc(
+            bytes = segmentBytes,
+            startsWithApp13Header = true
+        )
     }
 }

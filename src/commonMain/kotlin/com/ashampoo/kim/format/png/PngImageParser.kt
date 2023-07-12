@@ -21,7 +21,6 @@ import com.ashampoo.kim.common.ImageReadException
 import com.ashampoo.kim.format.ImageMetadata
 import com.ashampoo.kim.format.ImageParser
 import com.ashampoo.kim.format.jpeg.JpegConstants
-import com.ashampoo.kim.format.jpeg.JpegConstants.PHOTOSHOP_IDENTIFICATION_STRING
 import com.ashampoo.kim.format.jpeg.iptc.IptcMetadata
 import com.ashampoo.kim.format.jpeg.iptc.IptcParser
 import com.ashampoo.kim.format.png.chunks.PngChunk
@@ -241,15 +240,13 @@ object PngImageParser : ImageParser() {
             .toMutableList()
 
         /*
-         * Add the prefix back.
-         */
-        iptcTextBytes
-            .addAll(0, PHOTOSHOP_IDENTIFICATION_STRING.asList())
-
-        /*
          * This should be fine now to be fed into the IPTC reader.
+         * The bytes don't have the APP13 header, because it's not taken from an JPEG segment.
          */
-        return IptcParser.parseIptc(iptcTextBytes.toByteArray())
+        return IptcParser.parseIptc(
+            bytes = iptcTextBytes.toByteArray(),
+            startsWithApp13Header = false
+        )
     }
 
     private fun getXmpXml(chunks: List<PngChunk>): String? = chunks

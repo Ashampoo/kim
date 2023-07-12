@@ -32,7 +32,8 @@ object IptcWriter {
         val os = ByteArrayByteWriter()
 
         val bos: BinaryByteWriter = BigEndianBinaryByteWriter(os)
-        bos.write(JpegConstants.PHOTOSHOP_IDENTIFICATION_STRING)
+
+        bos.write(JpegConstants.APP13_IDENTIFIER)
 
         val blocks = data.rawBlocks
 

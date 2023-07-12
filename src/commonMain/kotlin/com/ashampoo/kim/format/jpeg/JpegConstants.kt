@@ -161,7 +161,7 @@ object JpegConstants {
         RST3_MARKER, RST4_MARKER, RST5_MARKER, RST6_MARKER, RST7_MARKER
     )
 
-    val PHOTOSHOP_IDENTIFICATION_STRING = byteArrayOf(
+    val APP13_IDENTIFIER = byteArrayOf(
         0x50, // P
         0x68, // h
         0x6F, // o
