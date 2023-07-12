@@ -19,8 +19,7 @@ package com.ashampoo.kim.format.png
 import com.ashampoo.kim.format.png.PngCrc.continuePartialCrc
 import com.ashampoo.kim.format.png.PngCrc.finishPartialCrc
 import com.ashampoo.kim.format.png.PngCrc.startPartialCrc
-import com.ashampoo.kim.format.png.chunks.PngChunkItxt
-import com.ashampoo.kim.format.png.chunks.PngChunkZtxt
+import com.ashampoo.kim.format.png.chunks.PngTextChunk
 import com.ashampoo.kim.input.ByteArrayByteReader
 import com.ashampoo.kim.output.ByteArrayByteWriter
 import com.ashampoo.kim.output.ByteWriter
@@ -91,57 +90,27 @@ class PngWriter {
 
         val byteReader = ByteArrayByteReader(originalBytes)
 
-        val chunks =
-            PngImageParser
-                .readChunks(byteReader, null)
-                .toMutableList()
+        val chunks = PngImageParser.readChunks(byteReader, null).toMutableList()
+
+        /*
+         * Delete old chunks that are going to be replaced.
+         */
+
+        if (xmp != null)
+            chunks.removeAll { it is PngTextChunk && it.getKeyword() == PngConstants.XMP_KEYWORD }
+
+        if (exifBytes != null)
+            chunks.removeAll {
+                it.chunkType == ChunkType.EXIF ||
+                    it is PngTextChunk && it.getKeyword() == PngConstants.EXIF_KEYWORD ||
+                    it is PngTextChunk && it.getKeyword() == PngConstants.IPTC_KEYWORD
+            }
+
+        /*
+         * Write the new file
+         */
 
         byteWriter.write(PngConstants.PNG_SIGNATURE)
-
-        if (xmp != null) {
-
-            /*
-             * Identify and remove old chunk
-             */
-            val chunkIt = chunks.iterator()
-
-            while (chunkIt.hasNext()) {
-
-                val chunk = chunkIt.next()
-
-                if (ChunkType.ITXT == chunk.chunkType) {
-
-                    val itxt = chunk as PngChunkItxt
-
-                    if (PngConstants.XMP_KEYWORD == itxt.keyword)
-                        chunkIt.remove()
-                }
-            }
-        }
-
-        if (exifBytes != null) {
-
-            /*
-             * Identify and remove old chunks
-             */
-            val chunkIt = chunks.iterator()
-
-            while (chunkIt.hasNext()) {
-
-                val chunk = chunkIt.next()
-
-                if (ChunkType.EXIF == chunk.chunkType)
-                    chunkIt.remove()
-
-                if (ChunkType.ZTXT == chunk.chunkType) {
-
-                    val ztxt = chunk as PngChunkZtxt
-
-                    if ("Raw profile type exif" == ztxt.keyword || "Raw profile type iptc" == ztxt.keyword)
-                        chunkIt.remove()
-                }
-            }
-        }
 
         for (chunk in chunks) {
 
