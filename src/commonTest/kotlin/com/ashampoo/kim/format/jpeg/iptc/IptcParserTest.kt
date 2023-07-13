@@ -33,14 +33,6 @@ class IptcParserTest {
             startsWithApp13Header = false
         )
 
-        println(
-            actualIptc.rawBlocks.first().blockType
-        )
-
-        println(
-            actualIptc.rawBlocks.first().blockNameBytes.toHex()
-        )
-
         assertEquals(1, actualIptc.records.size)
         assertEquals(1, actualIptc.rawBlocks.size)
 
