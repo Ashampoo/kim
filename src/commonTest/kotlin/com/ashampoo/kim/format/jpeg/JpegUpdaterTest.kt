@@ -58,11 +58,6 @@ class JpegUpdaterTest {
             )
         )
 
-        /*
-         * FIXME The original has a orientation flag. Such hefty re-ordering
-         *  should not be needed. Investigate this.
-         */
-
         compare("rotated_right.jpg", newBytes)
     }
 
