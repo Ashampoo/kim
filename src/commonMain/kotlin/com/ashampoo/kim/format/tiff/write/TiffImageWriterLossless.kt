@@ -179,32 +179,15 @@ class TiffImageWriterLossless(
         outputItems: List<TiffOutputItem>
     ): Long {
 
+        val pair = filterAndSortElements(
+            existingTiffElements,
+            exifBytes.size.toLong()
+        )
+
+        val unusedElements = pair.first
+
         /* Keeps track of the total length the exif bytes will have. */
-        var newExifBytesLength = exifBytes.size.toLong()
-
-        /* Make a copy and ensure it's correctly sorted. */
-        val unusedElements = existingTiffElements
-            .sortedWith(TiffElement.offsetComparator)
-            .toMutableList()
-
-        /* Any items that represent a gap at the end of the exif segment, can be discarded. */
-        while (unusedElements.isNotEmpty()) {
-
-            val element = unusedElements.last()
-
-            val elementEnd = element.offset + element.length
-
-            if (elementEnd != newExifBytesLength)
-                break
-
-            /* Discarding a tail element. Should only happen once. */
-
-            newExifBytesLength -= element.length.toLong()
-
-            unusedElements.removeLast()
-        }
-
-        unusedElements.sortWith(elementLengthComparator.reversed())
+        var newExifBytesLength = pair.second
 
         // make copy.
         val unplacedItems = outputItems
@@ -271,6 +254,42 @@ class TiffImageWriterLossless(
         }
 
         return newExifBytesLength
+    }
+
+    private fun filterAndSortElements(
+        existingTiffElements: List<TiffElement>,
+        exifBytesLength: Long
+    ): Pair<MutableList<TiffElement>, Long> {
+
+        var newExifBytesLength = exifBytesLength
+
+        val filteredAndSortedElements = existingTiffElements
+            .sortedWith(TiffElement.offsetComparator)
+            .toMutableList()
+
+        /*
+         * Any items that represent a gap at the end of
+         * the exif segment, can be discarded.
+         */
+        while (filteredAndSortedElements.isNotEmpty()) {
+
+            val element = filteredAndSortedElements.last()
+
+            val elementEnd = element.offset + element.length
+
+            if (elementEnd != newExifBytesLength)
+                break
+
+            /* Discarding a tail element. Should only happen once. */
+
+            newExifBytesLength -= element.length.toLong()
+
+            filteredAndSortedElements.removeLast()
+        }
+
+        filteredAndSortedElements.sortWith(elementLengthComparator.reversed())
+
+        return Pair(filteredAndSortedElements, newExifBytesLength)
     }
 
     private fun writeStep(
