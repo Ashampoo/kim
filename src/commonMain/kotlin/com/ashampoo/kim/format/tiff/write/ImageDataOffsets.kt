@@ -19,21 +19,21 @@ package com.ashampoo.kim.format.tiff.write
 import com.ashampoo.kim.format.tiff.TiffElement.DataElement
 
 class ImageDataOffsets(
-    imageData: Array<DataElement>,
-    val imageDataOffsets: IntArray,
-    val imageDataOffsetsField: TiffOutputField
+    imageData: List<DataElement>,
+    val offsets: IntArray,
+    val outputField: TiffOutputField
 ) {
 
-    val outputItems: Array<TiffOutputItem>
+    val outputItems: List<TiffOutputItem>
 
     init {
 
-        val finalOutputItems = arrayOfNulls<TiffOutputItem>(imageData.size)
+        val finalOutputItems = mutableListOf<TiffOutputItem>()
 
         repeat(finalOutputItems.size) { i ->
             finalOutputItems[i] = TiffOutputItem.Value(imageData[i].bytes)
         }
 
-        this.outputItems = finalOutputItems as Array<TiffOutputItem>
+        this.outputItems = finalOutputItems
     }
 }

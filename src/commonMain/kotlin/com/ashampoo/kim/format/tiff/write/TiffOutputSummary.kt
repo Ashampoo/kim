@@ -44,11 +44,11 @@ class TiffOutputSummary(
         for (imageDataInfo in imageDataOffsets) {
 
             for (index in imageDataInfo.outputItems.indices)
-                imageDataInfo.imageDataOffsets[index] =
+                imageDataInfo.offsets[index] =
                     imageDataInfo.outputItems[index].offset.toInt()
 
-            imageDataInfo.imageDataOffsetsField.setBytes(
-                FieldType.LONG.writeData(imageDataInfo.imageDataOffsets, byteOrder)
+            imageDataInfo.outputField.setBytes(
+                FieldType.LONG.writeData(imageDataInfo.offsets, byteOrder)
             )
         }
     }
