@@ -203,13 +203,13 @@ class TiffImageWriterLossless(
             unusedElements.removeFirst()
         }
 
-        unusedElements.sortWith(ELEMENT_SIZE_COMPARATOR.reversed())
+        unusedElements.sortWith(elementLengthComparator.reversed())
 
         // make copy.
         val unplacedItems = mutableListOf<TiffOutputItem>()
 
         unplacedItems.addAll(outputItems)
-        unplacedItems.sortWith(ITEM_SIZE_COMPARATOR)
+        unplacedItems.sortWith(itemLengthComparator)
         unplacedItems.reverse()
 
         while (unplacedItems.isNotEmpty()) {
@@ -264,7 +264,7 @@ class TiffImageWriterLossless(
                     unusedElements.add(TiffElement.Stub(excessOffset, excessLength))
 
                     /* Make sure the new element is in the correct order. */
-                    unusedElements.sortWith(ELEMENT_SIZE_COMPARATOR)
+                    unusedElements.sortWith(elementLengthComparator)
                     unusedElements.reverse()
                 }
             }
@@ -324,10 +324,10 @@ class TiffImageWriterLossless(
 
         const val OFFSET_TOLERANCE = 3
 
-        private val ELEMENT_SIZE_COMPARATOR =
+        private val elementLengthComparator =
             compareBy { element: TiffElement -> element.length }
 
-        private val ITEM_SIZE_COMPARATOR =
+        private val itemLengthComparator =
             compareBy { item: TiffOutputItem -> item.getItemLength() }
     }
 }
