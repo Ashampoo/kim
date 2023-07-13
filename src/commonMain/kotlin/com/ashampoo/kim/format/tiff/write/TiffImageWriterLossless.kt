@@ -173,19 +173,19 @@ class TiffImageWriterLossless(
     }
 
     private fun updateOffsetsStep(
-        existingTiffElements: List<TiffElement>,
+        tiffElements: List<TiffElement>,
         outputItems: List<TiffOutputItem>
     ): Long {
 
-        val pair = filterAndSortElements(
-            existingTiffElements,
+        val filterAndSortElementsResult = filterAndSortElements(
+            tiffElements,
             exifBytes.size.toLong()
         )
 
-        val unusedElements = pair.first
+        val unusedElements = filterAndSortElementsResult.first
 
         /* Keeps track of the total length the exif bytes will have. */
-        var newExifBytesLength = pair.second
+        var newExifBytesLength = filterAndSortElementsResult.second
 
         val unplacedItems = outputItems
             .sortedWith(itemLengthComparator)
