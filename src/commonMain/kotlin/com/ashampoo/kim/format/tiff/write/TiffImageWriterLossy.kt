@@ -80,8 +80,10 @@ class TiffImageWriterLossy(
 
     companion object {
 
+        private const val FOUR = 4
+
         @JvmStatic
         private fun imageDataPaddingLength(dataLength: Int): Int =
-            (4 - dataLength % 4) % 4
+            (FOUR - dataLength % FOUR) % FOUR
     }
 }
