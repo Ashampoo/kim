@@ -27,7 +27,7 @@ class TiffOutputSummary(
 
     private val offsetItems = mutableListOf<OffsetItem>()
 
-    private val imageDataItems = mutableListOf<ImageDataOffsets>()
+    private val imageDataOffsets = mutableListOf<ImageDataOffsets>()
 
     private data class OffsetItem(
         val item: TiffOutputItem,
@@ -37,28 +37,25 @@ class TiffOutputSummary(
     fun add(item: TiffOutputItem, itemOffsetField: TiffOutputField) =
         offsetItems.add(OffsetItem(item, itemOffsetField))
 
+    fun addTiffImageData(imageDataOffset: ImageDataOffsets) =
+        imageDataOffsets.add(imageDataOffset)
+
     fun updateOffsets(byteOrder: ByteOrder) {
 
-        for (offset in offsetItems) {
-            val value = FieldType.LONG.writeData(offset.item.offset.toInt(), byteOrder)
-            offset.itemOffsetField.setBytes(value)
-        }
+        for (offset in offsetItems)
+            offset.itemOffsetField.setBytes(
+                FieldType.LONG.writeData(offset.item.offset.toInt(), byteOrder)
+            )
 
-        for (imageDataInfo in imageDataItems) {
+        for (imageDataInfo in imageDataOffsets) {
 
-            for (index in imageDataInfo.outputItems.indices) {
-
-                val item = imageDataInfo.outputItems[index]
-
-                imageDataInfo.imageDataOffsets[index] = item.offset.toInt()
-            }
+            for (index in imageDataInfo.outputItems.indices)
+                imageDataInfo.imageDataOffsets[index] =
+                    imageDataInfo.outputItems[index].offset.toInt()
 
             imageDataInfo.imageDataOffsetsField.setBytes(
                 FieldType.LONG.writeData(imageDataInfo.imageDataOffsets, byteOrder)
             )
         }
     }
-
-    fun addTiffImageData(imageDataInfo: ImageDataOffsets) =
-        imageDataItems.add(imageDataInfo)
 }
