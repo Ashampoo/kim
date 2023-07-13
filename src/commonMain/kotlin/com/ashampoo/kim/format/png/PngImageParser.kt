@@ -18,6 +18,7 @@ package com.ashampoo.kim.format.png
 
 import com.ashampoo.kim.common.ByteOrder
 import com.ashampoo.kim.common.ImageReadException
+import com.ashampoo.kim.common.convertHexStringToByteArray
 import com.ashampoo.kim.format.ImageMetadata
 import com.ashampoo.kim.format.ImageParser
 import com.ashampoo.kim.format.jpeg.JpegConstants
@@ -187,16 +188,17 @@ object PngImageParser : ImageParser() {
         /*
          * Convert it to bytes and drop the header.
          */
-        val exifTextBytes = exifText
-            .chunked(2)
-            .map { it.toInt(16).toByte() }
-            .drop(JpegConstants.EXIF_IDENTIFIER_CODE.size)
-            .toByteArray()
+        val exifBytes = convertHexStringToByteArray(exifText)
+
+        val exifBytesWithoutIdentifier =
+            exifBytes.drop(JpegConstants.EXIF_IDENTIFIER_CODE.size)
+                .toByteArray()
 
         /*
          * This should be fine now to be fed into the TIFF reader.
          */
-        return exifTextBytes to TiffReader().read(ByteArrayByteReader(exifTextBytes))
+        return exifBytesWithoutIdentifier to
+            TiffReader().read(ByteArrayByteReader(exifBytesWithoutIdentifier))
     }
 
     private fun getIptcFromTextChunk(chunks: List<PngChunk>): IptcMetadata? {
@@ -232,10 +234,7 @@ object PngImageParser : ImageParser() {
         /*
          * Convert it to bytes.
          */
-        val iptcBytes = iptcText
-            .chunked(2)
-            .map { it.toInt(16).toByte() }
-            .toByteArray()
+        val iptcBytes = convertHexStringToByteArray(iptcText)
 
         /*
          * This should be fine now to be fed into the IPTC reader.

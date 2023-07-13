@@ -18,10 +18,17 @@
 package com.ashampoo.kim.common
 
 private const val FF = 0xFF
-private const val HEX_RADIX = 16
+
+const val HEX_RADIX = 16
 
 fun Byte.toHex(): String =
     this.toInt().and(FF).toString(HEX_RADIX).padStart(2, '0')
+
+fun convertHexStringToByteArray(string: String): ByteArray =
+    string
+        .chunked(2)
+        .map { it.toInt(HEX_RADIX).toByte() }
+        .toByteArray()
 
 @Suppress("MagicNumber")
 fun ByteArray.toHex(): String =
