@@ -179,13 +179,15 @@ class TiffImageWriterLossless(
         outputItems: List<TiffOutputItem>
     ): Long {
 
-        /* Items we cannot fit into a gap, we shall append to tail. */
-        var overflowIndex = exifBytes.size.toLong()
+        /* Keeps track of the total length the exif bytes will have. */
+        var newExifBytesLength = exifBytes.size.toLong()
 
         /* Make a copy and ensure it's correctly sorted. */
         val unusedElements = existingTiffElements
             .sortedWith(TiffElement.offsetComparator)
             .toMutableList()
+
+        println("Look...")
 
         /* Any items that represent a gap at the end of the exif segment, can be discarded. */
         while (unusedElements.isNotEmpty()) {
@@ -194,11 +196,12 @@ class TiffImageWriterLossless(
 
             val elementEnd = element.offset + element.length
 
-            if (elementEnd != overflowIndex)
+            if (elementEnd != newExifBytesLength)
                 break
 
             /* Discarding a tail element. Should only happen once. */
-            overflowIndex -= element.length.toLong()
+
+            newExifBytesLength -= element.length.toLong()
 
             unusedElements.removeLast()
         }
@@ -232,12 +235,12 @@ class TiffImageWriterLossless(
             if (bestFit == null) {
 
                 /* Overflow if we couldn't place this item. */
-                if (overflowIndex and 1L != 0L)
-                    overflowIndex += 1
+                if (newExifBytesLength and 1L != 0L)
+                    newExifBytesLength += 1
 
-                outputItem.offset = overflowIndex
+                outputItem.offset = newExifBytesLength
 
-                overflowIndex += outputItemLength.toLong()
+                newExifBytesLength += outputItemLength.toLong()
 
             } else {
 
@@ -269,7 +272,7 @@ class TiffImageWriterLossless(
             }
         }
 
-        return overflowIndex
+        return newExifBytesLength
     }
 
     private fun writeStep(
