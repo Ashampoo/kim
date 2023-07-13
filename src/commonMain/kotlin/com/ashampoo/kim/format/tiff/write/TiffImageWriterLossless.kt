@@ -36,7 +36,7 @@ class TiffImageWriterLossless(
 
     private fun analyzeOldTiff(frozenFields: Map<Int, TiffOutputField>): List<TiffElement> {
 
-        return try {
+        try {
 
             val byteReader = ByteArrayByteReader(exifBytes)
 
@@ -76,33 +76,39 @@ class TiffImageWriterLossless(
 
             val rewritableElements = mutableListOf<TiffElement>()
 
-            var start: TiffElement? = null
+            var lastElement: TiffElement? = null
             var index: Long = -1
 
             for (element in elements) {
 
-                if (start == null) {
+                if (lastElement == null) {
 
-                    start = element
+                    lastElement = element
 
                 } else if (element.offset - index > OFFSET_TOLERANCE) {
 
                     rewritableElements.add(
-                        TiffElement.Stub(start.offset, (index - start.offset).toInt())
+                        TiffElement.Stub(
+                            offset = lastElement.offset,
+                            length = (index - lastElement.offset).toInt()
+                        )
                     )
 
-                    start = element
+                    lastElement = element
                 }
 
                 index = element.offset + element.length
             }
 
-            if (start != null)
+            if (lastElement != null)
                 rewritableElements.add(
-                    TiffElement.Stub(start.offset, (index - start.offset).toInt())
+                    TiffElement.Stub(
+                        offset = lastElement.offset,
+                        length = (index - lastElement.offset).toInt()
+                    )
                 )
 
-            rewritableElements
+            return rewritableElements
 
         } catch (ex: ImageReadException) {
             throw ImageWriteException(ex.message, ex)
