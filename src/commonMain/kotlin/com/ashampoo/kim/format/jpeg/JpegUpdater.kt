@@ -84,7 +84,7 @@ internal object JpegUpdater {
     ): ByteArray {
 
         /*
-         * Filter out all updates we can to to EXIF.
+         * Filter out all updates we can perform on EXIF.
          */
         val exifUpdates = updates.filter {
             it is MetadataUpdate.Orientation ||

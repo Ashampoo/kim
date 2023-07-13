@@ -61,11 +61,10 @@ class TiffImageWriterLossless(
                         if (frozenField != null &&
                             frozenField.separateValue != null &&
                             frozenField.bytesEqual(field.byteArrayValue)
-                        ) {
+                        )
                             frozenField.separateValue.offset = field.offset.toLong()
-                        } else {
+                        else
                             elements.add(oversizeValue)
-                        }
                     }
                 }
 
@@ -93,7 +92,9 @@ class TiffImageWriterLossless(
 
                 } else if (element.offset - index > OFFSET_TOLERANCE) {
 
-                    rewritableElements.add(TiffElement.Stub(start.offset, (index - start.offset).toInt()))
+                    rewritableElements.add(
+                        TiffElement.Stub(start.offset, (index - start.offset).toInt())
+                    )
 
                     start = element
                 }
@@ -102,7 +103,9 @@ class TiffImageWriterLossless(
             }
 
             if (start != null)
-                rewritableElements.add(TiffElement.Stub(start.offset, (index - start.offset).toInt()))
+                rewritableElements.add(
+                    TiffElement.Stub(start.offset, (index - start.offset).toInt())
+                )
 
             rewritableElements
 
