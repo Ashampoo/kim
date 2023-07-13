@@ -187,8 +187,6 @@ class TiffImageWriterLossless(
             .sortedWith(TiffElement.offsetComparator)
             .toMutableList()
 
-        println("Look...")
-
         /* Any items that represent a gap at the end of the exif segment, can be discarded. */
         while (unusedElements.isNotEmpty()) {
 
