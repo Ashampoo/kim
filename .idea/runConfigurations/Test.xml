@@ -10,7 +10,7 @@
       </option>
       <option name="taskNames">
         <list>
-          <option value="test" />
+          <option value="allTests" />
           <option value="koverHtmlReport" />
         </list>
       </option>

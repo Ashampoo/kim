@@ -11,7 +11,7 @@
       <option name="taskNames">
         <list>
           <option value="build" />
-          <option value="test" />
+          <option value="allTests" />
           <option value="koverHtmlReport" />
         </list>
       </option>
