@@ -24,11 +24,11 @@ class LittleEndianBinaryByteWriter(byteWriter: ByteWriter) : BinaryByteWriter(by
         write(0xFF and (value shr 8))
     }
 
-    override fun write3Bytes(value: Int) {
-        write(0xFF and value)
-        write(0xFF and (value shr 8))
-        write(0xFF and (value shr 16))
-    }
+//    override fun write3Bytes(value: Int) {
+//        write(0xFF and value)
+//        write(0xFF and (value shr 8))
+//        write(0xFF and (value shr 16))
+//    }
 
     override fun write4Bytes(value: Int) {
         write(0xFF and value)
