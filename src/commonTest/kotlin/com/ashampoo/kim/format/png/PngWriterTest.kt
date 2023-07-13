@@ -106,7 +106,7 @@ class PngWriterTest {
             val newIptcBlock = IptcBlock(
                 blockType = IptcConstants.IMAGE_RESOURCE_BLOCK_IPTC_DATA,
                 blockNameBytes = IptcParser.EMPTY_BYTE_ARRAY,
-                blockData = IptcWriter.writeIPTCBlock(
+                blockData = IptcWriter.writeIptcBlockData(
                     listOf(
                         IptcRecord(IptcTypes.KEYWORDS, "Äußerst schön")
                     )

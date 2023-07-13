@@ -17,7 +17,6 @@ package com.ashampoo.kim.format.jpeg.iptc
 
 import com.ashampoo.kim.common.convertHexStringToByteArray
 import com.ashampoo.kim.common.toHex
-import com.ashampoo.kim.format.jpeg.JpegConstants
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
@@ -27,12 +26,7 @@ class IptcParserTest {
     @Test
     fun testParseIptc() {
 
-        val iptcBlockDataHex = "1c015a00031b25471c0200000200041c02190011c38475c39f6572737420736368c3b66e21"
-
-        val iptcHex =
-            JpegConstants.IPTC_RESOURCE_BLOCK_SIGNATURE_HEX + "0404000000000025" + iptcBlockDataHex + "00"
-
-        val iptcBytes = convertHexStringToByteArray(iptcHex)
+        val iptcBytes = convertHexStringToByteArray(IPTC_HEX)
 
         val actualIptc = IptcParser.parseIptc(
             bytes = iptcBytes,
@@ -51,7 +45,7 @@ class IptcParserTest {
         assertEquals(1, actualIptc.rawBlocks.size)
 
         assertEquals(
-            expected = IptcRecord(IptcTypes.KEYWORDS, "Äußerst schön!"),
+            expected = IptcRecord(IptcTypes.KEYWORDS, TEST_KEYWORD),
             actual = actualIptc.records.first()
         )
 
@@ -65,7 +59,7 @@ class IptcParserTest {
         assertTrue(rawBlock.blockNameBytes.isEmpty())
 
         assertEquals(
-            expected = iptcBlockDataHex,
+            expected = IPTC_BLOCK_DATA_HEX,
             actual = rawBlock.blockData.toHex()
         )
     }

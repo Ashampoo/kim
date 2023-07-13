@@ -234,7 +234,7 @@ object JpegRewriter : BinaryFileParser() {
         val newBlock = IptcBlock(
             blockType = IptcConstants.IMAGE_RESOURCE_BLOCK_IPTC_DATA,
             blockNameBytes = IptcParser.EMPTY_BYTE_ARRAY,
-            blockData = IptcWriter.writeIPTCBlock(metadata.records)
+            blockData = IptcWriter.writeIptcBlockData(metadata.records)
         )
 
         val mergedBlocks = metadata.nonIptcBlocks + newBlock

@@ -79,7 +79,7 @@ object IptcWriter {
     }
 
     /* Writes the IPTC block in UTF-8 */
-    fun writeIPTCBlock(records: List<IptcRecord>): ByteArray {
+    fun writeIptcBlockData(records: List<IptcRecord>): ByteArray {
 
         val byteWriter = ByteArrayByteWriter()
 
