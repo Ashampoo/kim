@@ -86,7 +86,11 @@ internal object PngUpdater {
             byteWriter = byteWriter,
             originalBytes = bytes,
             exifBytes = exifBytes,
-            /* IPTC is not written because it's not recognized everywhere. */
+            /*
+             * IPTC is not written because it's not recognized everywhere.
+             * XMP is the better choice. If users demand it we may add it.
+             * The logic is already implemented.
+             */
             iptcBytes = null,
             xmp = updatedXmp
         )

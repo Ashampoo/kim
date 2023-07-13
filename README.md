@@ -187,7 +187,6 @@ public class Main {
 
 ## Limitations
 
-* Kim can read non-standard EXIF & IPTC from PNG zTXT chunks, but it won't write them.
 * Inability to update EXIF, IPTC and XMP in JPG files simultaneously.
 * Insufficient error handling for broken or non-standard conforming files.
 
