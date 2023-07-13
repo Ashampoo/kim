@@ -1,5 +1,93 @@
 File format : PNG
 Resolution  : 1000 x 668
+---- TIFF ----
+Version 42
+Little-endian (Intel, II)
+---- IFD0 ----
+0x0100 ImageWidth = 1000
+0x0101 ImageLength = 668
+0x0102 BitsPerSample = [8, 8, 8]
+0x010f Make = Canon
+0x0110 Model = Canon EOS 70D
+0x0112 Orientation = 1
+0x011a XResolution = 300/1 (300.0)
+0x011b YResolution = 300/1 (300.0)
+0x0128 ResolutionUnit = 2
+0x0131 Software = GIMP 2.10.30
+0x0132 DateTime = 2023:05:08 16:42:23
+0x013b Artist = dxfoto.ru
+0x00-1 Unknown = 0
+0x00-1 Unknown = 0
+0x8298 Copyright = CC-BY 3.0
+0x8769 ExifOffset = 346
+0x8825 GPSInfo = 9672
+0x00-1 Unknown = 2019:07:14 09:21:11
+
+---- ExifIFD ----
+0x829a ExposureTime = 1/400 (0.0025)
+0x829d FNumber = 71/10 (7.1)
+0x8822 ExposureProgram = 1
+0x8827 PhotographicSensitivity = 250
+0x00-1 Unknown = 2
+0x00-1 Unknown = 250
+0x9000 ExifVersion = [0x30, 0x32, 0x33, 0x30]
+0x9003 DateTimeOriginal = 2019:07:14 09:21:11
+0x9004 DateTimeDigitized = 2019:07:14 09:21:11
+0x9101 ComponentsConfiguration = [0x01, 0x02, 0x03, 0x00]
+0x9201 ShutterSpeedValue = 565248/65536 (8.625)
+0x9202 ApertureValue = 368640/65536 (5.625)
+0x9204 ExposureCompensation = 0/1 (0.0)
+0x9207 MeteringMode = 5
+0x9209 Flash = 16
+0x920a FocalLength = 250/1 (250.0)
+0x927c MakerNote = [8722 bytes]
+0x9290 SubSecTime = 47
+0x9291 SubSecTimeOriginal = 47
+0x9292 SubSecTimeDigitized = 47
+0xa000 FlashpixVersion = [0x30, 0x31, 0x30, 0x30]
+0xa002 ExifImageWidth = 4000
+0xa003 ExifImageLength = 2670
+0xa20e FocalPlaneXResolution = 5472000/899 (6086.76307)
+0xa20f FocalPlaneYResolution = 3648000/599 (6090.15025)
+0xa210 FocalPlaneResolutionUnit = 2
+0xa401 CustomRendered = 0
+0xa402 ExposureMode = 1
+0xa403 WhiteBalance = 0
+0xa406 SceneCaptureType = 0
+0xa431 BodySerialNumber = 103025021031
+0xa432 LensSpecification = [55/1 (55.0), 250/1 (250.0), 0/1 (0.0), 0/1 (0.0)]
+0xa434 LensModel = EF-S55-250mm f/4-5.6 IS STM
+0xa435 LensSerialNumber = 0000800dcf
+
+---- GPS ----
+0x0001 GPSLatitudeRef = N
+0x0002 GPSLatitude = [55/1 (55.0), 54678955/1000000 (54.678955), 0/1 (0.0)]
+0x0003 GPSLongitudeRef = E
+0x0004 GPSLongitude = [36/1 (36.0), 57808914/1000000 (57.808914), 0/1 (0.0)]
+
+---- Sub ----
+0x00fe NewSubfileType = 1
+0x0100 ImageWidth = 256
+0x0101 ImageLength = 171
+0x0102 BitsPerSample = [8, 8, 8]
+0x0103 Compression = 6
+0x0106 PhotometricInterpretation = 6
+0x0115 SamplesPerPixel = 3
+0x0201 JpgFromRawStart = 9906
+0x0202 JpgFromRawLength = 7278
+
+
+---- IPTC ----
+Caption/Abstract (120) = 'honeybee perching on yellow flower'
+Date Created (55) = '2023-05-08'
+Keywords (25) = 'honey bee'
+Keywords (25) = 'animal'
+Keywords (25) = 'insect'
+Keywords (25) = 'invertebrate'
+Keywords (25) = 'apidae'
+Keywords (25) = 'bee'
+Time Created (60) = '16:42:23-16:42'
+
 ---- XMP ----
 <?xpacket begin="﻿" id="W5M0MpCehiHzreSzNTczkc9d"?>
 <x:xmpmeta xmlns:x="adobe:ns:meta/" x:xmptk="XMP Core 4.4.0-Exiv2">

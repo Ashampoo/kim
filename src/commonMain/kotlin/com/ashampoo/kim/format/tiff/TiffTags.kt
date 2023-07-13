@@ -17,8 +17,8 @@
 package com.ashampoo.kim.format.tiff
 
 import com.ashampoo.kim.format.tiff.constants.ExifTag
+import com.ashampoo.kim.format.tiff.constants.ExifTag.EXIF_DIRECTORY_UNKNOWN
 import com.ashampoo.kim.format.tiff.constants.GpsTag
-import com.ashampoo.kim.format.tiff.constants.TiffDirectoryType
 import com.ashampoo.kim.format.tiff.constants.TiffTag
 import com.ashampoo.kim.format.tiff.taginfos.TagInfo
 
@@ -42,7 +42,7 @@ internal object TiffTags {
 
         val exactMatch = possibleMatches.firstOrNull { tagInfo ->
             tagInfo.directoryType?.directoryType == directoryType &&
-                tagInfo.directoryType != TiffDirectoryType.EXIF_DIRECTORY_UNKNOWN
+                tagInfo.directoryType != EXIF_DIRECTORY_UNKNOWN
         }
 
         if (exactMatch != null)
@@ -57,7 +57,7 @@ internal object TiffTags {
             return inexactMatch
 
         val wildcardMatch = possibleMatches.firstOrNull { tagInfo ->
-            tagInfo.directoryType == TiffDirectoryType.EXIF_DIRECTORY_UNKNOWN
+            tagInfo.directoryType == EXIF_DIRECTORY_UNKNOWN
         }
 
         if (wildcardMatch != null)

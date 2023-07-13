@@ -30,6 +30,7 @@ import com.ashampoo.kim.output.ByteArrayByteWriter
 import com.ashampoo.kim.testdata.KimTestData
 import kotlinx.io.files.Path
 import kotlinx.io.files.sink
+import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNotEquals
@@ -39,6 +40,8 @@ import kotlin.test.fail
 class JpegRewriterTest {
 
     private val newDate = "2023:05:10 13:37:42"
+
+    private val keywordWithUmlauts = "Umlauts: äöüß"
 
     private val crashBuildingGps = GpsCoordinates(
         53.219391,
@@ -56,6 +59,11 @@ class JpegRewriterTest {
             </x:xmpmeta>
         <?xpacket end="w"?>
     """.trimIndent()
+
+    @BeforeTest
+    fun setUp() {
+        Kim.underUnitTesting = true
+    }
 
     /**
      * Regression test based on a fixed small set of test files.
@@ -82,6 +90,7 @@ class JpegRewriterTest {
             val exifDirectory = outputSet.getOrCreateExifDirectory()
 
             /* Rotate by 180 degrees */
+
             rootDirectory.removeField(TiffTag.TIFF_TAG_ORIENTATION)
             rootDirectory.add(TiffTag.TIFF_TAG_ORIENTATION, 8)
 
@@ -97,25 +106,22 @@ class JpegRewriterTest {
             exifDirectory.add(ExifTag.EXIF_TAG_DATE_TIME_DIGITIZED, newDate)
 
             /* Set GPS */
-            outputSet.setGPSInDegrees(crashBuildingGps.longitude, crashBuildingGps.latitude)
+
+            outputSet.setGpsCoordinates(crashBuildingGps)
 
             /* IPTC */
 
-            val photoshopApp13Data = metadata?.iptc
+            val iptcMetadata = metadata?.iptc
 
-            val newBlocks = photoshopApp13Data?.nonIptcBlocks ?: emptyList()
-            val oldRecords = photoshopApp13Data?.records ?: emptyList()
+            val newBlocks = iptcMetadata?.nonIptcBlocks ?: emptyList()
+            val oldRecords = iptcMetadata?.records ?: emptyList()
 
             val newRecords = mutableListOf<IptcRecord>()
             newRecords.addAll(oldRecords)
 
-            /* Write a new keyword including umlauts */
-            newRecords.add(IptcRecord(IptcTypes.KEYWORDS, "Umlauts: äöüß"))
+            newRecords.add(IptcRecord(IptcTypes.KEYWORDS, keywordWithUmlauts))
 
-            val newPhotoshopData = IptcMetadata(
-                newRecords,
-                newBlocks
-            )
+            val newPhotoshopData = IptcMetadata(newRecords, newBlocks)
 
             /* Write end result */
 

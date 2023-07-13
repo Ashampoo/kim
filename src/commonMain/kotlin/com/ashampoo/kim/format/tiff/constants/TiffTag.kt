@@ -16,6 +16,7 @@
  */
 package com.ashampoo.kim.format.tiff.constants
 
+import com.ashampoo.kim.format.tiff.constants.TiffDirectoryType.TIFF_DIRECTORY_IFD0
 import com.ashampoo.kim.format.tiff.taginfos.TagInfo
 import com.ashampoo.kim.format.tiff.taginfos.TagInfoAny
 import com.ashampoo.kim.format.tiff.taginfos.TagInfoAscii
@@ -38,7 +39,7 @@ object TiffTag {
 
     val TIFF_TAG_NEW_SUBFILE_TYPE = TagInfoLong(
         "NewSubfileType", 0xFE,
-        TiffDirectoryType.Companion.TIFF_DIRECTORY_ROOT
+        TIFF_DIRECTORY_IFD0
     )
 
     const val SUBFILE_TYPE_VALUE_FULL_RESOLUTION_IMAGE = 0
@@ -52,7 +53,7 @@ object TiffTag {
 
     val TIFF_TAG_SUBFILE_TYPE = TagInfoShort(
         "SubfileType", 0xFF,
-        TiffDirectoryType.Companion.TIFF_DIRECTORY_ROOT
+        TIFF_DIRECTORY_IFD0
     )
 
     const val OLD_SUBFILE_TYPE_VALUE_FULL_RESOLUTION_IMAGE = 1
@@ -61,22 +62,22 @@ object TiffTag {
 
     val TIFF_TAG_IMAGE_WIDTH = TagInfoShortOrLong(
         "ImageWidth", 0x100, 1,
-        TiffDirectoryType.Companion.TIFF_DIRECTORY_ROOT
+        TIFF_DIRECTORY_IFD0
     )
 
     val TIFF_TAG_IMAGE_LENGTH = TagInfoShortOrLong(
         "ImageLength", 0x101, 1,
-        TiffDirectoryType.Companion.TIFF_DIRECTORY_ROOT
+        TIFF_DIRECTORY_IFD0
     )
 
     val TIFF_TAG_BITS_PER_SAMPLE = TagInfoShorts(
         "BitsPerSample", 0x102, -1,
-        TiffDirectoryType.Companion.TIFF_DIRECTORY_ROOT
+        TIFF_DIRECTORY_IFD0
     )
 
     val TIFF_TAG_COMPRESSION = TagInfoShort(
         "Compression", 0x103,
-        TiffDirectoryType.Companion.TIFF_DIRECTORY_ROOT
+        TIFF_DIRECTORY_IFD0
     )
 
     const val COMPRESSION_VALUE_UNCOMPRESSED = 1
@@ -112,7 +113,7 @@ object TiffTag {
 
     val TIFF_TAG_PHOTOMETRIC_INTERPRETATION = TagInfoShort(
         "PhotometricInterpretation", 0x106,
-        TiffDirectoryType.Companion.TIFF_DIRECTORY_ROOT
+        TIFF_DIRECTORY_IFD0
     )
 
     const val PHOTOMETRIC_INTERPRETATION_VALUE_WHITE_IS_ZERO = 0
@@ -132,7 +133,7 @@ object TiffTag {
 
     val TIFF_TAG_THRESHHOLDING = TagInfoShort(
         "Threshholding", 0x107,
-        TiffDirectoryType.Companion.TIFF_DIRECTORY_ROOT
+        TIFF_DIRECTORY_IFD0
     )
 
     const val THRESHOLDING_VALUE_NO_DITHERING_OR_HALFTONING = 1
@@ -141,17 +142,17 @@ object TiffTag {
 
     val TIFF_TAG_CELL_WIDTH = TagInfoShort(
         "CellWidth", 0x108,
-        TiffDirectoryType.Companion.TIFF_DIRECTORY_ROOT
+        TIFF_DIRECTORY_IFD0
     )
 
     val TIFF_TAG_CELL_LENGTH = TagInfoShort(
         "CellLength", 0x109,
-        TiffDirectoryType.Companion.TIFF_DIRECTORY_ROOT
+        TIFF_DIRECTORY_IFD0
     )
 
     val TIFF_TAG_FILL_ORDER = TagInfoShort(
         "FillOrder", 0x10A,
-        TiffDirectoryType.Companion.TIFF_DIRECTORY_ROOT
+        TIFF_DIRECTORY_IFD0
     )
 
     const val FILL_ORDER_VALUE_NORMAL = 1
@@ -159,32 +160,32 @@ object TiffTag {
 
     val TIFF_TAG_DOCUMENT_NAME = TagInfoAscii(
         "DocumentName", 0x10D, -1,
-        TiffDirectoryType.Companion.TIFF_DIRECTORY_ROOT
+        TIFF_DIRECTORY_IFD0
     )
 
     val TIFF_TAG_IMAGE_DESCRIPTION = TagInfoAscii(
         "ImageDescription", 0x10E, -1,
-        TiffDirectoryType.Companion.TIFF_DIRECTORY_ROOT
+        TIFF_DIRECTORY_IFD0
     )
 
     val TIFF_TAG_MAKE = TagInfoAscii(
         "Make", 0x10F, -1,
-        TiffDirectoryType.Companion.TIFF_DIRECTORY_ROOT
+        TIFF_DIRECTORY_IFD0
     )
 
     val TIFF_TAG_MODEL = TagInfoAscii(
         "Model", 0x110, -1,
-        TiffDirectoryType.Companion.TIFF_DIRECTORY_ROOT
+        TIFF_DIRECTORY_IFD0
     )
 
     val TIFF_TAG_STRIP_OFFSETS = TagInfoShortOrLong(
         "StripOffsets", 0x111, -1,
-        TiffDirectoryType.Companion.TIFF_DIRECTORY_ROOT, true
+        TIFF_DIRECTORY_IFD0, true
     )
 
     val TIFF_TAG_ORIENTATION = TagInfoShort(
         "Orientation", 0x112,
-        TiffDirectoryType.Companion.TIFF_DIRECTORY_ROOT
+        TIFF_DIRECTORY_IFD0
     )
 
     const val ORIENTATION_VALUE_HORIZONTAL_NORMAL = 1
@@ -198,42 +199,42 @@ object TiffTag {
 
     val TIFF_TAG_SAMPLES_PER_PIXEL = TagInfoShort(
         "SamplesPerPixel", 0x115,
-        TiffDirectoryType.Companion.TIFF_DIRECTORY_ROOT
+        TIFF_DIRECTORY_IFD0
     )
 
     val TIFF_TAG_ROWS_PER_STRIP = TagInfoShortOrLong(
         "RowsPerStrip", 0x116, 1,
-        TiffDirectoryType.Companion.TIFF_DIRECTORY_ROOT
+        TIFF_DIRECTORY_IFD0
     )
 
     val TIFF_TAG_STRIP_BYTE_COUNTS = TagInfoShortOrLong(
         "StripByteCounts", 0x117, -1,
-        TiffDirectoryType.Companion.TIFF_DIRECTORY_ROOT
+        TIFF_DIRECTORY_IFD0
     )
 
     val TIFF_TAG_MIN_SAMPLE_VALUE = TagInfoShorts(
         "MinSampleValue", 0x118, -1,
-        TiffDirectoryType.Companion.TIFF_DIRECTORY_ROOT
+        TIFF_DIRECTORY_IFD0
     )
 
     val TIFF_TAG_MAX_SAMPLE_VALUE = TagInfoShorts(
         "MaxSampleValue", 0x119, -1,
-        TiffDirectoryType.Companion.TIFF_DIRECTORY_ROOT
+        TIFF_DIRECTORY_IFD0
     )
 
     val TIFF_TAG_XRESOLUTION = TagInfoRational(
         "XResolution", 0x11A,
-        TiffDirectoryType.Companion.TIFF_DIRECTORY_ROOT
+        TIFF_DIRECTORY_IFD0
     )
 
     val TIFF_TAG_YRESOLUTION = TagInfoRational(
         "YResolution", 0x11B,
-        TiffDirectoryType.Companion.TIFF_DIRECTORY_ROOT
+        TIFF_DIRECTORY_IFD0
     )
 
     val TIFF_TAG_PLANAR_CONFIGURATION = TagInfoShort(
         "PlanarConfiguration", 0x11C,
-        TiffDirectoryType.Companion.TIFF_DIRECTORY_ROOT
+        TIFF_DIRECTORY_IFD0
     )
 
     const val PLANAR_CONFIGURATION_VALUE_CHUNKY = 1
@@ -241,32 +242,32 @@ object TiffTag {
 
     val TIFF_TAG_PAGE_NAME = TagInfoAscii(
         "PageName", 0x11D, -1,
-        TiffDirectoryType.Companion.TIFF_DIRECTORY_ROOT
+        TIFF_DIRECTORY_IFD0
     )
 
     val TIFF_TAG_XPOSITION = TagInfoRationals(
         "XPosition", 0x11E, -1,
-        TiffDirectoryType.Companion.TIFF_DIRECTORY_ROOT
+        TIFF_DIRECTORY_IFD0
     )
 
     val TIFF_TAG_YPOSITION = TagInfoRationals(
         "YPosition", 0x11F, -1,
-        TiffDirectoryType.Companion.TIFF_DIRECTORY_ROOT
+        TIFF_DIRECTORY_IFD0
     )
 
     val TIFF_TAG_FREE_OFFSETS = TagInfoLongs(
         "FreeOffsets", 0x120, -1,
-        TiffDirectoryType.Companion.TIFF_DIRECTORY_ROOT
+        TIFF_DIRECTORY_IFD0
     )
 
     val TIFF_TAG_FREE_BYTE_COUNTS = TagInfoLongs(
         "FreeByteCounts", 0x121, -1,
-        TiffDirectoryType.Companion.TIFF_DIRECTORY_ROOT
+        TIFF_DIRECTORY_IFD0
     )
 
     val TIFF_TAG_GRAY_RESPONSE_UNIT = TagInfoShort(
         "GrayResponseUnit", 0x122,
-        TiffDirectoryType.Companion.TIFF_DIRECTORY_ROOT
+        TIFF_DIRECTORY_IFD0
     )
 
     const val GRAY_RESPONSE_UNIT_VALUE_0_1 = 1
@@ -277,22 +278,22 @@ object TiffTag {
 
     val TIFF_TAG_GRAY_RESPONSE_CURVE = TagInfoShorts(
         "GrayResponseCurve", 0x123, -1,
-        TiffDirectoryType.Companion.TIFF_DIRECTORY_ROOT
+        TIFF_DIRECTORY_IFD0
     )
 
     val TIFF_TAG_T4_OPTIONS = TagInfoLong(
         "T4Options", 0x124,
-        TiffDirectoryType.Companion.TIFF_DIRECTORY_ROOT
+        TIFF_DIRECTORY_IFD0
     )
 
     val TIFF_TAG_T6_OPTIONS = TagInfoLong(
         "T6Options", 0x125,
-        TiffDirectoryType.Companion.TIFF_DIRECTORY_ROOT
+        TIFF_DIRECTORY_IFD0
     )
 
     val TIFF_TAG_RESOLUTION_UNIT = TagInfoShort(
         "ResolutionUnit", 0x128,
-        TiffDirectoryType.Companion.TIFF_DIRECTORY_ROOT
+        TIFF_DIRECTORY_IFD0
     )
 
     const val RESOLUTION_UNIT_VALUE_NONE = 1
@@ -301,37 +302,37 @@ object TiffTag {
 
     val TIFF_TAG_PAGE_NUMBER = TagInfoShorts(
         "PageNumber", 0x129, 2,
-        TiffDirectoryType.Companion.TIFF_DIRECTORY_ROOT
+        TIFF_DIRECTORY_IFD0
     )
 
     val TIFF_TAG_TRANSFER_FUNCTION = TagInfoShorts(
         "TransferFunction", 0x12D, -1,
-        TiffDirectoryType.Companion.TIFF_DIRECTORY_ROOT
+        TIFF_DIRECTORY_IFD0
     )
 
     val TIFF_TAG_SOFTWARE = TagInfoAscii(
         "Software", 0x131, -1,
-        TiffDirectoryType.Companion.TIFF_DIRECTORY_ROOT
+        TIFF_DIRECTORY_IFD0
     )
 
     val TIFF_TAG_DATE_TIME = TagInfoAscii(
         "DateTime", 0x132, 20,
-        TiffDirectoryType.Companion.TIFF_DIRECTORY_ROOT
+        TIFF_DIRECTORY_IFD0
     )
 
     val TIFF_TAG_ARTIST = TagInfoAscii(
         "Artist", 0x13B, -1,
-        TiffDirectoryType.Companion.TIFF_DIRECTORY_ROOT
+        TIFF_DIRECTORY_IFD0
     )
 
     val TIFF_TAG_HOST_COMPUTER = TagInfoAscii(
         "HostComputer", 0x13C, -1,
-        TiffDirectoryType.Companion.TIFF_DIRECTORY_ROOT
+        TIFF_DIRECTORY_IFD0
     )
 
     val TIFF_TAG_PREDICTOR = TagInfoShort(
         "Predictor", 0x13D,
-        TiffDirectoryType.Companion.TIFF_DIRECTORY_ROOT
+        TIFF_DIRECTORY_IFD0
     )
 
     const val PREDICTOR_VALUE_NONE = 1
@@ -340,47 +341,47 @@ object TiffTag {
 
     val TIFF_TAG_WHITE_POINT = TagInfoRationals(
         "WhitePoint", 0x13E, 2,
-        TiffDirectoryType.Companion.TIFF_DIRECTORY_ROOT
+        TIFF_DIRECTORY_IFD0
     )
 
     val TIFF_TAG_PRIMARY_CHROMATICITIES = TagInfoRationals(
         "PrimaryChromaticities", 0x13F, 6,
-        TiffDirectoryType.Companion.TIFF_DIRECTORY_ROOT
+        TIFF_DIRECTORY_IFD0
     )
 
     val TIFF_TAG_COLOR_MAP = TagInfoShorts(
         "ColorMap", 0x140, -1,
-        TiffDirectoryType.Companion.TIFF_DIRECTORY_ROOT
+        TIFF_DIRECTORY_IFD0
     )
 
     val TIFF_TAG_HALFTONE_HINTS = TagInfoShorts(
         "HalftoneHints", 0x141, 2,
-        TiffDirectoryType.Companion.TIFF_DIRECTORY_ROOT
+        TIFF_DIRECTORY_IFD0
     )
 
     val TIFF_TAG_TILE_WIDTH = TagInfoShortOrLong(
         "TileWidth", 0x142, 1,
-        TiffDirectoryType.Companion.TIFF_DIRECTORY_ROOT
+        TIFF_DIRECTORY_IFD0
     )
 
     val TIFF_TAG_TILE_LENGTH = TagInfoShortOrLong(
         "TileLength", 0x143, 1,
-        TiffDirectoryType.Companion.TIFF_DIRECTORY_ROOT
+        TIFF_DIRECTORY_IFD0
     )
 
     val TIFF_TAG_TILE_OFFSETS = TagInfoLongs(
         "TileOffsets", 0x144, -1,
-        TiffDirectoryType.Companion.TIFF_DIRECTORY_ROOT, true
+        TIFF_DIRECTORY_IFD0, true
     )
 
     val TIFF_TAG_TILE_BYTE_COUNTS = TagInfoShortOrLong(
         "TileByteCounts", 0x145, -1,
-        TiffDirectoryType.Companion.TIFF_DIRECTORY_ROOT
+        TIFF_DIRECTORY_IFD0
     )
 
     val TIFF_TAG_INK_SET = TagInfoShort(
         "InkSet", 0x14C,
-        TiffDirectoryType.Companion.TIFF_DIRECTORY_ROOT
+        TIFF_DIRECTORY_IFD0
     )
 
     const val INK_SET_VALUE_CMYK = 1
@@ -388,27 +389,27 @@ object TiffTag {
 
     val TIFF_TAG_INK_NAMES = TagInfoAscii(
         "InkNames", 0x14D, -1,
-        TiffDirectoryType.Companion.TIFF_DIRECTORY_ROOT
+        TIFF_DIRECTORY_IFD0
     )
 
     val TIFF_TAG_NUMBER_OF_INKS = TagInfoShort(
         "NumberOfInks", 0x14E,
-        TiffDirectoryType.Companion.TIFF_DIRECTORY_ROOT
+        TIFF_DIRECTORY_IFD0
     )
 
     val TIFF_TAG_DOT_RANGE = TagInfoByteOrShort(
         "DotRange", 0x150, -1,
-        TiffDirectoryType.Companion.TIFF_DIRECTORY_ROOT
+        TIFF_DIRECTORY_IFD0
     )
 
     val TIFF_TAG_TARGET_PRINTER = TagInfoAscii(
         "TargetPrinter", 0x151, -1,
-        TiffDirectoryType.Companion.TIFF_DIRECTORY_ROOT
+        TIFF_DIRECTORY_IFD0
     )
 
     val TIFF_TAG_EXTRA_SAMPLES = TagInfoShorts(
         "ExtraSamples", 0x152, -1,
-        TiffDirectoryType.Companion.TIFF_DIRECTORY_ROOT
+        TIFF_DIRECTORY_IFD0
     )
 
     const val EXTRA_SAMPLE_ASSOCIATED_ALPHA = 1
@@ -416,7 +417,7 @@ object TiffTag {
 
     val TIFF_TAG_SAMPLE_FORMAT = TagInfoShorts(
         "SampleFormat", 0x153, -1,
-        TiffDirectoryType.Companion.TIFF_DIRECTORY_ROOT
+        TIFF_DIRECTORY_IFD0
     )
 
     const val SAMPLE_FORMAT_VALUE_UNSIGNED_INTEGER = 1
@@ -428,22 +429,22 @@ object TiffTag {
 
     val TIFF_TAG_SMIN_SAMPLE_VALUE = TagInfoAny(
         "SMinSampleValue", 0x154, -1,
-        TiffDirectoryType.Companion.TIFF_DIRECTORY_ROOT
+        TIFF_DIRECTORY_IFD0
     )
 
     val TIFF_TAG_SMAX_SAMPLE_VALUE = TagInfoAny(
         "SMaxSampleValue", 0x155, -1,
-        TiffDirectoryType.Companion.TIFF_DIRECTORY_ROOT
+        TIFF_DIRECTORY_IFD0
     )
 
     val TIFF_TAG_TRANSFER_RANGE = TagInfoShorts(
         "TransferRange", 0x156, 6,
-        TiffDirectoryType.Companion.TIFF_DIRECTORY_ROOT
+        TIFF_DIRECTORY_IFD0
     )
 
     val TIFF_TAG_JPEG_PROC = TagInfoShort(
         "JPEGProc", 0x200,
-        TiffDirectoryType.Companion.TIFF_DIRECTORY_ROOT
+        TIFF_DIRECTORY_IFD0
     )
 
     const val JPEGPROC_VALUE_BASELINE = 1
@@ -451,57 +452,57 @@ object TiffTag {
 
     val TIFF_TAG_JPEG_INTERCHANGE_FORMAT = TagInfoLong(
         "JPEGInterchangeFormat", 0x201,
-        TiffDirectoryType.Companion.TIFF_DIRECTORY_ROOT, true
+        TIFF_DIRECTORY_IFD0, true
     )
 
     val TIFF_TAG_JPEG_INTERCHANGE_FORMAT_LENGTH = TagInfoLong(
         "JPEGInterchangeFormatLength", 0x202,
-        TiffDirectoryType.Companion.TIFF_DIRECTORY_ROOT
+        TIFF_DIRECTORY_IFD0
     )
 
     val TIFF_TAG_JPEG_RESTART_INTERVAL = TagInfoShort(
         "JPEGRestartInterval", 0x203,
-        TiffDirectoryType.Companion.TIFF_DIRECTORY_ROOT
+        TIFF_DIRECTORY_IFD0
     )
 
     val TIFF_TAG_JPEG_LOSSLESS_PREDICTORS = TagInfoShorts(
         "JPEGLosslessPredictors", 0x205, -1,
-        TiffDirectoryType.Companion.TIFF_DIRECTORY_ROOT
+        TIFF_DIRECTORY_IFD0
     )
 
     val TIFF_TAG_JPEG_POINT_TRANSFORMS = TagInfoShorts(
         "JPEGPointTransforms", 0x206, -1,
-        TiffDirectoryType.Companion.TIFF_DIRECTORY_ROOT
+        TIFF_DIRECTORY_IFD0
     )
 
     val TIFF_TAG_JPEG_QTABLES = TagInfoLongs(
         "JPEGQTables", 0x207, -1,
-        TiffDirectoryType.Companion.TIFF_DIRECTORY_ROOT
+        TIFF_DIRECTORY_IFD0
     )
 
     val TIFF_TAG_JPEG_DCTABLES = TagInfoLongs(
         "JPEGDCTables", 0x208, -1,
-        TiffDirectoryType.Companion.TIFF_DIRECTORY_ROOT
+        TIFF_DIRECTORY_IFD0
     )
 
     val TIFF_TAG_JPEG_ACTABLES = TagInfoLongs(
         "JPEGACTables", 0x209, -1,
-        TiffDirectoryType.Companion.TIFF_DIRECTORY_ROOT
+        TIFF_DIRECTORY_IFD0
     )
 
     val TIFF_TAG_YCBCR_COEFFICIENTS = TagInfoRationals(
         "YCbCrCoefficients", 0x211, 3,
-        TiffDirectoryType.Companion.TIFF_DIRECTORY_ROOT
+        TIFF_DIRECTORY_IFD0
     )
 
     val TIFF_TAG_YCBCR_SUB_SAMPLING = TagInfoShorts(
         "YCbCrSubSampling", 0x212, 2,
-        TiffDirectoryType.Companion.TIFF_DIRECTORY_ROOT
+        TIFF_DIRECTORY_IFD0
     )
 
     val TIFF_TAG_YCBCR_POSITIONING = TagInfoShort(
         "YCbCrPositioning", 0x213,
-        TiffDirectoryType.Companion.TIFF_DIRECTORY_ROOT
+        TIFF_DIRECTORY_IFD0
     )
 
     const val YCB_CR_POSITIONING_VALUE_CENTERED = 1
@@ -509,22 +510,21 @@ object TiffTag {
 
     val TIFF_TAG_REFERENCE_BLACK_WHITE = TagInfoLongs(
         "ReferenceBlackWhite", 0x214, -1,
-        TiffDirectoryType.Companion.TIFF_DIRECTORY_ROOT
+        TIFF_DIRECTORY_IFD0
     )
 
     val TIFF_TAG_COPYRIGHT = TagInfoAscii(
         "Copyright", 0x8298, -1,
-        TiffDirectoryType.Companion.TIFF_DIRECTORY_ROOT
+        TIFF_DIRECTORY_IFD0
     )
 
     val TIFF_TAG_XMP = TagInfoBytes(
         "XMP", 0x2BC, -1,
-        TiffDirectoryType.Companion.TIFF_DIRECTORY_ROOT
+        TIFF_DIRECTORY_IFD0
     )
 
     val TIFF_TAG_UNKNOWN = TagInfoUnknowns(
-        "Unknown", -1, TagInfo.LENGTH_UNKNOWN,
-        TiffDirectoryType.Companion.EXIF_DIRECTORY_UNKNOWN
+        "Unknown", -1, TagInfo.LENGTH_UNKNOWN, null
     )
 
     val ALL_TIFF_TAGS = listOf(

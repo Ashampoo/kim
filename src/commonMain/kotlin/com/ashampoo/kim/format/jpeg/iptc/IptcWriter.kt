@@ -27,18 +27,21 @@ import io.ktor.utils.io.core.toByteArray
 object IptcWriter {
 
     @Suppress("ThrowsCount")
-    fun writePhotoshopApp13Segment(data: IptcMetadata): ByteArray {
+    fun writeIptcBlocks(
+        blocks: List<IptcBlock>,
+        includeApp13Identifier: Boolean = true
+    ): ByteArray {
 
         val os = ByteArrayByteWriter()
 
         val bos: BinaryByteWriter = BigEndianBinaryByteWriter(os)
-        bos.write(JpegConstants.PHOTOSHOP_IDENTIFICATION_STRING)
 
-        val blocks = data.rawBlocks
+        if (includeApp13Identifier)
+            bos.write(JpegConstants.APP13_IDENTIFIER)
 
         for (block in blocks) {
 
-            bos.write4Bytes(JpegConstants.CONST_8BIM)
+            bos.write4Bytes(JpegConstants.IPTC_RESOURCE_BLOCK_SIGNATURE_INT)
 
             if (block.blockType < 0 || block.blockType > 0xFFFF)
                 throw ImageWriteException("Invalid IPTC block type: ${block.blockType}")
@@ -76,7 +79,7 @@ object IptcWriter {
     }
 
     /* Writes the IPTC block in UTF-8 */
-    fun writeIPTCBlock(records: List<IptcRecord>): ByteArray {
+    fun writeIptcBlockData(records: List<IptcRecord>): ByteArray {
 
         val byteWriter = ByteArrayByteWriter()
 

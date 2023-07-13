@@ -13,8 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.ashampoo.kim.xmp
+package com.ashampoo.kim.format.xmp
 
+import com.ashampoo.kim.Kim
 import com.ashampoo.kim.model.GpsCoordinates
 import com.ashampoo.kim.model.MetadataUpdate
 import com.ashampoo.kim.model.PhotoRating
@@ -43,6 +44,10 @@ class XmpWriterTest {
         // MetadataUpdate.Faces(mapOf("John" to RegionArea(0.2, 0.3, 0.4, 0.5))),
         MetadataUpdate.Persons(setOf("John"))
     )
+
+    fun setUp() {
+        Kim.underUnitTesting = true
+    }
 
     @Test
     fun testWriteAcdSeeXmpFile(): Unit =
@@ -78,8 +83,7 @@ class XmpWriterTest {
         val actualXmp = XmpWriter.updateXmp(
             xmpMeta = xmpMeta,
             updates = updates,
-            writePackageWrapper = true,
-            underUnitTesting = true
+            writePackageWrapper = true
         )
 
         val expectedXmp = KimTestData.getXmp("${baseFileName}_mod.xmp")

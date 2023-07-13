@@ -46,8 +46,12 @@ object JpegConstants {
         0x45, // E
         0x78, // x
         0x69, // i
-        0x66 // f
+        0x66, // f
+        0, // NUL
+        0 // NUL
     )
+
+    const val EXIF_IDENTIFIER_CODE_HEX: String = "457869660000"
 
     val XMP_IDENTIFIER = byteArrayOf(
         0x68, // h
@@ -83,7 +87,7 @@ object JpegConstants {
 
     val SOI = byteArrayOf(0xFF.toByte(), 0xd8.toByte())
 
-    val EOI = byteArrayOf(0xFF.toByte(), 0xd9.toByte())
+    // val EOI = byteArrayOf(0xFF.toByte(), 0xd9.toByte())
 
     const val JPEG_APP0 = 0xE0
     const val JPEG_APP0_MARKER = 0xFF00 or JPEG_APP0
@@ -145,19 +149,19 @@ object JpegConstants {
         JpegConstants.SOF15_MARKER
     )
 
-    val MARKERS = listOf(
-        JPEG_APP0, JPEG_APP0_MARKER,
-        JPEG_APP1_MARKER, JPEG_APP2_MARKER, JPEG_APP13_MARKER,
-        JPEG_APP14_MARKER, JPEG_APP15_MARKER, JFIF_MARKER,
-        SOF0_MARKER, SOF1_MARKER, SOF2_MARKER, SOF3_MARKER, DHT_MARKER,
-        SOF5_MARKER, SOF6_MARKER, SOF7_MARKER, SOF8_MARKER, SOF9_MARKER,
-        SOF10_MARKER, SOF11_MARKER, DAC_MARKER, SOF13_MARKER,
-        SOF14_MARKER, SOF15_MARKER, EOI_MARKER, SOS_MARKER, DQT_MARKER,
-        DNL_MARKER, COM_MARKER, DRI_MARKER, RST0_MARKER, RST1_MARKER, RST2_MARKER,
-        RST3_MARKER, RST4_MARKER, RST5_MARKER, RST6_MARKER, RST7_MARKER
-    )
+//    val MARKERS = listOf(
+//        JPEG_APP0, JPEG_APP0_MARKER,
+//        JPEG_APP1_MARKER, JPEG_APP2_MARKER, JPEG_APP13_MARKER,
+//        JPEG_APP14_MARKER, JPEG_APP15_MARKER, JFIF_MARKER,
+//        SOF0_MARKER, SOF1_MARKER, SOF2_MARKER, SOF3_MARKER, DHT_MARKER,
+//        SOF5_MARKER, SOF6_MARKER, SOF7_MARKER, SOF8_MARKER, SOF9_MARKER,
+//        SOF10_MARKER, SOF11_MARKER, DAC_MARKER, SOF13_MARKER,
+//        SOF14_MARKER, SOF15_MARKER, EOI_MARKER, SOS_MARKER, DQT_MARKER,
+//        DNL_MARKER, COM_MARKER, DRI_MARKER, RST0_MARKER, RST1_MARKER, RST2_MARKER,
+//        RST3_MARKER, RST4_MARKER, RST5_MARKER, RST6_MARKER, RST7_MARKER
+//    )
 
-    val PHOTOSHOP_IDENTIFICATION_STRING = byteArrayOf(
+    val APP13_IDENTIFIER = byteArrayOf(
         0x50, // P
         0x68, // h
         0x6F, // o
@@ -176,10 +180,10 @@ object JpegConstants {
 
     const val IPTC_MAX_BLOCK_NAME_LENGTH: Int = 255
 
-    val CONST_8BIM = charsToQuad('8', 'B', 'I', 'M')
+    /** Int value of "8BIM" */
+    const val IPTC_RESOURCE_BLOCK_SIGNATURE_INT = 943_868_237
 
-    private fun charsToQuad(c1: Char, c2: Char, c3: Char, c4: Char): Int =
-        0xFF and c1.code shl 24 or (0xFF and c2.code shl 16) or
-            (0xFF and c3.code shl 8) or (0xFF and c4.code shl 0)
+    /** Hex value of "8BIM" (38 42 49 4D) */
+    const val IPTC_RESOURCE_BLOCK_SIGNATURE_HEX = "3842494d"
 
 }

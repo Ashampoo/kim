@@ -15,6 +15,7 @@
  */
 package com.ashampoo.kim.format.raf
 
+import com.ashampoo.kim.Kim
 import com.ashampoo.kim.input.ByteArrayByteReader
 import com.ashampoo.kim.testdata.KimTestData
 import kotlin.test.Test
@@ -31,7 +32,8 @@ class RafMetadataExtractorTest {
 
         val byteReader = ByteArrayByteReader(bytes)
 
-        val actualMetadataBytes = RafMetadataExtractor.extractMetadataBytes(byteReader)
+        /* Use the public Kim interface to ensure it works. */
+        val actualMetadataBytes = Kim.extractMetadataBytes(byteReader).second
 
         val expectedMetadataBytes = KimTestData.getHeaderBytesOf(index)
 

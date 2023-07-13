@@ -36,7 +36,7 @@ class TiffImageWriterLossless(
 
     private fun analyzeOldTiff(frozenFields: Map<Int, TiffOutputField>): List<TiffElement> {
 
-        return try {
+        try {
 
             val byteReader = ByteArrayByteReader(exifBytes)
 
@@ -44,9 +44,7 @@ class TiffImageWriterLossless(
 
             val elements = mutableListOf<TiffElement>()
 
-            val directories = contents.directories
-
-            for (directory in directories) {
+            for (directory in contents.directories) {
 
                 elements.add(directory)
 
@@ -61,11 +59,10 @@ class TiffImageWriterLossless(
                         if (frozenField != null &&
                             frozenField.separateValue != null &&
                             frozenField.bytesEqual(field.byteArrayValue)
-                        ) {
+                        )
                             frozenField.separateValue.offset = field.offset.toLong()
-                        } else {
+                        else
                             elements.add(oversizeValue)
-                        }
                     }
                 }
 
@@ -75,39 +72,46 @@ class TiffImageWriterLossless(
                     elements.add(jpegImageData)
             }
 
-            elements.sortWith(TiffElement.COMPARATOR)
+            elements.sortWith(TiffElement.offsetComparator)
 
             val rewritableElements = mutableListOf<TiffElement>()
 
-            var start: TiffElement? = null
-
+            var lastElement: TiffElement? = null
             var index: Long = -1
 
             for (element in elements) {
 
-                val lastElementByte = element.offset + element.length
+                if (lastElement == null) {
 
-                if (start == null) {
-
-                    start = element
+                    lastElement = element
 
                 } else if (element.offset - index > OFFSET_TOLERANCE) {
 
-                    rewritableElements.add(TiffElement.Stub(start.offset, (index - start.offset).toInt()))
+                    rewritableElements.add(
+                        TiffElement.Stub(
+                            offset = lastElement.offset,
+                            length = (index - lastElement.offset).toInt()
+                        )
+                    )
 
-                    start = element
+                    lastElement = element
                 }
 
-                index = lastElementByte
+                index = element.offset + element.length
             }
 
-            if (start != null)
-                rewritableElements.add(TiffElement.Stub(start.offset, (index - start.offset).toInt()))
+            if (lastElement != null)
+                rewritableElements.add(
+                    TiffElement.Stub(
+                        offset = lastElement.offset,
+                        length = (index - lastElement.offset).toInt()
+                    )
+                )
 
-            rewritableElements
+            return rewritableElements
 
-        } catch (e: ImageReadException) {
-            throw ImageWriteException(e.message, e)
+        } catch (ex: ImageReadException) {
+            throw ImageWriteException(ex.message, ex)
         }
     }
 
@@ -134,7 +138,7 @@ class TiffImageWriterLossless(
 
         if (analysis.size == 1) {
 
-            val onlyElement = analysis[0]
+            val onlyElement = analysis.first()
 
             val newLength: Long = onlyElement.offset + onlyElement.length + TIFF_HEADER_SIZE
 
@@ -155,13 +159,11 @@ class TiffImageWriterLossless(
 
         val outputSummary = validateDirectories(outputSet)
 
-        val allOutputItems = outputSet.getOutputItems(outputSummary)
-
-        val outputItems = mutableListOf<TiffOutputItem>()
-
-        for (outputItem in allOutputItems)
-            if (!frozenFieldOffsets.containsKey(outputItem.offset))
-                outputItems.add(outputItem)
+        /*
+         * Receive all items from the OutputSet expect for the frozen MakerNotes.
+         */
+        val outputItems = outputSet.getOutputItems(outputSummary)
+            .filter { !frozenFieldOffsets.containsKey(it.offset) }
 
         val outputLength = updateOffsetsStep(analysis, outputItems)
 
@@ -171,47 +173,29 @@ class TiffImageWriterLossless(
     }
 
     private fun updateOffsetsStep(
-        analysis: List<TiffElement>,
+        tiffElements: List<TiffElement>,
         outputItems: List<TiffOutputItem>
     ): Long {
 
-        /* Items we cannot fit into a gap, we shall append to tail. */
-        var overflowIndex = exifBytes.size.toLong()
+        val filterAndSortElementsResult = filterAndSortElements(
+            tiffElements,
+            exifBytes.size.toLong()
+        )
 
-        /* Make a copy and ensure it's correctly sorted. */
-        val unusedElements = analysis
-            .sortedWith(TiffElement.COMPARATOR.reversed())
+        val unusedElements = filterAndSortElementsResult.first
+
+        /* Keeps track of the total length the exif bytes will have. */
+        var newExifBytesLength = filterAndSortElementsResult.second
+
+        val unplacedItems = outputItems
+            .sortedWith(itemLengthComparator)
+            .reversed()
             .toMutableList()
-
-        /* Any items that represent a gap at the end of the exif segment, can be discarded. */
-        while (unusedElements.isNotEmpty()) {
-
-            val element = unusedElements[0]
-
-            val elementEnd = element.offset + element.length
-
-            if (elementEnd != overflowIndex)
-                break
-
-            /* Discarding a tail element. Should only happen once. */
-            overflowIndex -= element.length.toLong()
-
-            unusedElements.removeAt(0)
-        }
-
-        unusedElements.sortWith(ELEMENT_SIZE_COMPARATOR.reversed())
-
-        // make copy.
-        val unplacedItems = mutableListOf<TiffOutputItem>()
-
-        unplacedItems.addAll(outputItems)
-        unplacedItems.sortWith(ITEM_SIZE_COMPARATOR)
-        unplacedItems.reverse()
 
         while (unplacedItems.isNotEmpty()) {
 
             /* Pop off largest unplaced item. */
-            val outputItem = unplacedItems.removeAt(0)
+            val outputItem = unplacedItems.removeFirst()
 
             val outputItemLength = outputItem.getItemLength()
 
@@ -229,12 +213,12 @@ class TiffImageWriterLossless(
             if (bestFit == null) {
 
                 /* Overflow if we couldn't place this item. */
-                if (overflowIndex and 1L != 0L)
-                    overflowIndex += 1
+                if (newExifBytesLength and 1L != 0L)
+                    newExifBytesLength += 1
 
-                outputItem.offset = overflowIndex
+                outputItem.offset = newExifBytesLength
 
-                overflowIndex += outputItemLength.toLong()
+                newExifBytesLength += outputItemLength.toLong()
 
             } else {
 
@@ -260,13 +244,49 @@ class TiffImageWriterLossless(
                     unusedElements.add(TiffElement.Stub(excessOffset, excessLength))
 
                     /* Make sure the new element is in the correct order. */
-                    unusedElements.sortWith(ELEMENT_SIZE_COMPARATOR)
+                    unusedElements.sortWith(elementLengthComparator)
                     unusedElements.reverse()
                 }
             }
         }
 
-        return overflowIndex
+        return newExifBytesLength
+    }
+
+    private fun filterAndSortElements(
+        existingTiffElements: List<TiffElement>,
+        exifBytesLength: Long
+    ): Pair<MutableList<TiffElement>, Long> {
+
+        var newExifBytesLength = exifBytesLength
+
+        val filteredAndSortedElements = existingTiffElements
+            .sortedWith(TiffElement.offsetComparator)
+            .toMutableList()
+
+        /*
+         * Any items that represent a gap at the end of
+         * the exif segment, can be discarded.
+         */
+        while (filteredAndSortedElements.isNotEmpty()) {
+
+            val element = filteredAndSortedElements.last()
+
+            val elementEnd = element.offset + element.length
+
+            if (elementEnd != newExifBytesLength)
+                break
+
+            /* Discarding a tail element. Should only happen once. */
+
+            newExifBytesLength -= element.length.toLong()
+
+            filteredAndSortedElements.removeLast()
+        }
+
+        filteredAndSortedElements.sortWith(elementLengthComparator.reversed())
+
+        return Pair(filteredAndSortedElements, newExifBytesLength)
     }
 
     private fun writeStep(
@@ -320,10 +340,10 @@ class TiffImageWriterLossless(
 
         const val OFFSET_TOLERANCE = 3
 
-        private val ELEMENT_SIZE_COMPARATOR =
+        private val elementLengthComparator =
             compareBy { element: TiffElement -> element.length }
 
-        private val ITEM_SIZE_COMPARATOR =
+        private val itemLengthComparator =
             compareBy { item: TiffOutputItem -> item.getItemLength() }
     }
 }

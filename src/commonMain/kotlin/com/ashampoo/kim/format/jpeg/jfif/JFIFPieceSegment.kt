@@ -60,7 +60,7 @@ open class JFIFPieceSegment(
         if (marker != JpegConstants.JPEG_APP13_MARKER)
             return false
 
-        return IptcParser.isIptcSegment(segmentBytes)
+        return IptcParser.isPhotoshopApp13Segment(segmentBytes)
     }
 
     fun isXmpSegment(): Boolean {

@@ -18,7 +18,6 @@ package com.ashampoo.kim.format.jpeg
 
 import com.ashampoo.kim.common.BinaryFileParser
 import com.ashampoo.kim.common.ExifOverflowException
-import com.ashampoo.kim.common.ImageReadException
 import com.ashampoo.kim.common.ImageWriteException
 import com.ashampoo.kim.common.getRemainingBytes
 import com.ashampoo.kim.common.toBytes
@@ -129,18 +128,14 @@ object JpegRewriter : BinaryFileParser() {
 
             val exifPiece = exifSegmentPieces.first()
 
-            val exifBytes = exifPiece.segmentBytes.getRemainingBytes(6)
+            val exifBytes = exifPiece.segmentBytes.getRemainingBytes(JpegConstants.EXIF_IDENTIFIER_CODE.size)
 
             writer = TiffImageWriterLossless(outputSet.byteOrder, exifBytes)
 
         } else
             writer = TiffImageWriterLossy(outputSet.byteOrder)
 
-        val newBytes = writeExifSegment(
-            writer = writer,
-            outputSet = outputSet,
-            includeEXIFPrefix = true
-        )
+        val newBytes = writeExifSegment(writer, outputSet)
 
         writeSegmentsReplacingExif(byteWriter, oldSegmentsWithoutExif, newBytes)
     }
@@ -215,17 +210,13 @@ object JpegRewriter : BinaryFileParser() {
 
     private fun writeExifSegment(
         writer: TiffImageWriterBase,
-        outputSet: TiffOutputSet,
-        includeEXIFPrefix: Boolean
+        outputSet: TiffOutputSet
     ): ByteArray {
 
         val byteWriter = ByteArrayByteWriter()
 
-        if (includeEXIFPrefix) {
-            byteWriter.write(JpegConstants.EXIF_IDENTIFIER_CODE)
-            byteWriter.write(0)
-            byteWriter.write(0)
-        }
+        /* Write prefix */
+        byteWriter.write(JpegConstants.EXIF_IDENTIFIER_CODE)
 
         writer.write(byteWriter, outputSet)
 
@@ -233,42 +224,32 @@ object JpegRewriter : BinaryFileParser() {
     }
 
     /**
-     * Reads a Jpeg image, replaces the IPTC data in the App13 segment but
-     * leaves the other data in that segment (if present) unchanged and writes
-     * the result to a stream.
+     * Reads a JPEG image, replaces the IPTC data in the App13 segment, but leaves the other
+     * data in that segment (if present) unchanged and writes the result to a stream.
      */
-    fun writeIPTC(byteReader: ByteReader, byteWriter: ByteWriter, newData: IptcMetadata) {
+    fun writeIPTC(byteReader: ByteReader, byteWriter: ByteWriter, metadata: IptcMetadata) {
 
-        val (oldPieces) = readSegments(byteReader)
-
-        val photoshopApp13Segments =
-            oldPieces.filterIsInstance<JFIFPieceSegment>().filter { it.isIptcSegment() }
-
-        if (photoshopApp13Segments.size > 1)
-            throw ImageReadException("Image contains more than one Photoshop App13 segment.")
+        val oldPieces = readSegments(byteReader).allPieces
 
         val newBlock = IptcBlock(
             blockType = IptcConstants.IMAGE_RESOURCE_BLOCK_IPTC_DATA,
             blockNameBytes = IptcParser.EMPTY_BYTE_ARRAY,
-            blockData = IptcWriter.writeIPTCBlock(newData.records)
+            blockData = IptcWriter.writeIptcBlockData(metadata.records)
         )
 
-        val newIptc = IptcMetadata(
-            records = newData.records,
-            rawBlocks = newData.nonIptcBlocks + newBlock
-        )
+        val mergedBlocks = metadata.nonIptcBlocks + newBlock
 
-        val iptcSegment = JFIFPieceSegment(
+        val newApp13Segment = JFIFPieceSegment(
             marker = JpegConstants.JPEG_APP13_MARKER,
-            segmentBytes = IptcWriter.writePhotoshopApp13Segment(newIptc)
+            segmentBytes = IptcWriter.writeIptcBlocks(mergedBlocks)
         )
 
-        val oldPiecesWithoutPhotoshopApp13Segments =
+        val oldPiecesWithoutApp13Segments =
             oldPieces.filterNot { piece -> piece is JFIFPieceSegment && piece.isIptcSegment() }
 
         val mergedPieces = insertAfterLastAppSegments(
-            oldPiecesWithoutPhotoshopApp13Segments,
-            listOf(iptcSegment)
+            oldPiecesWithoutApp13Segments,
+            listOf(newApp13Segment)
         )
 
         byteWriter.write(JpegConstants.SOI)

@@ -67,8 +67,6 @@ class TiffOutputDirectory(val type: Int, private val byteOrder: ByteOrder) : Tif
     var rawJpegImageData: JpegImageData? = null
         private set
 
-    val description: String = description(type)
-
     fun setNextDirectory(nextDirectory: TiffOutputDirectory?) {
         this.nextDirectory = nextDirectory
     }
@@ -531,9 +529,8 @@ class TiffOutputDirectory(val type: Int, private val byteOrder: ByteOrder) : Tif
 
     fun getFields(): List<TiffOutputField> = fields
 
-    fun removeField(tagInfo: TagInfo) {
+    fun removeField(tagInfo: TagInfo) =
         removeField(tagInfo.tag)
-    }
 
     fun removeField(tag: Int) {
 
@@ -634,8 +631,6 @@ class TiffOutputDirectory(val type: Int, private val byteOrder: ByteOrder) : Tif
         removeFieldIfPresent(TiffTag.TIFF_TAG_TILE_OFFSETS)
         removeFieldIfPresent(TiffTag.TIFF_TAG_TILE_BYTE_COUNTS)
 
-        val imageDataInfo: ImageDataOffsets? = null
-
         val result = mutableListOf<TiffOutputItem>()
 
         result.add(this)
@@ -651,16 +646,9 @@ class TiffOutputDirectory(val type: Int, private val byteOrder: ByteOrder) : Tif
             result.add(item)
         }
 
-        if (imageDataInfo != null) {
-
-            result.addAll(imageDataInfo.outputItems)
-
-            outputSummary.addTiffImageData(imageDataInfo)
-        }
-
         if (rawJpegImageData != null) {
 
-            val item: TiffOutputItem = Value(rawJpegImageData!!.bytes)
+            val item: TiffOutputItem = Value("rawJpegImageData", rawJpegImageData!!.bytes)
 
             result.add(item)
 
@@ -670,7 +658,10 @@ class TiffOutputDirectory(val type: Int, private val byteOrder: ByteOrder) : Tif
         return result
     }
 
-    companion object {
-        val COMPARATOR = compareBy { directory: TiffOutputDirectory -> directory.type }
-    }
+    override fun toString(): String =
+        description(type)
+
+//    companion object {
+//        val COMPARATOR = compareBy { directory: TiffOutputDirectory -> directory.type }
+//    }
 }

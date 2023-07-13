@@ -1,6 +1,5 @@
 /*
  * Copyright 2023 Ashampoo GmbH & Co. KG
- * Copyright 2007-2023 The Apache Software Foundation
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,12 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.ashampoo.kim.format.jpeg.segments
+package com.ashampoo.kim.format.jpeg.iptc
 
-import io.ktor.utils.io.charsets.Charsets
+import com.ashampoo.kim.format.jpeg.JpegConstants
 
-class ComSegment(marker: Int, segmentData: ByteArray) : GenericSegment(marker, segmentData) {
+/** A keyword with umlauts, great to test encoding. */
+internal const val TEST_KEYWORD = "Äußerst schön!"
 
-    override fun getDescription(): String =
-        "COM (" + getSegmentDataAsString(Charsets.UTF_8) + ")"
-}
+internal const val IPTC_BLOCK_DATA_HEX =
+    "1c015a00031b25471c0200000200041c02190011c38475c39f6572737420736368c3b66e21"
+
+internal const val IPTC_HEX =
+    JpegConstants.IPTC_RESOURCE_BLOCK_SIGNATURE_HEX + "0404000000000025" + IPTC_BLOCK_DATA_HEX + "00"

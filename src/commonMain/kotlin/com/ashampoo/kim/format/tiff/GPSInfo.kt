@@ -22,7 +22,7 @@ import com.ashampoo.kim.common.ImageReadException
 import com.ashampoo.kim.common.RationalNumber
 import com.ashampoo.kim.format.tiff.constants.GpsTag
 
-class GPSInfo private constructor(
+data class GPSInfo private constructor(
     private val latitudeRef: String,
     private val longitudeRef: String,
     private val latitudeDegrees: Double,
@@ -32,25 +32,6 @@ class GPSInfo private constructor(
     private val longitudeMinutes: Double,
     private val longitudeSeconds: Double
 ) {
-
-    override fun toString(): String =
-        "[GPS. Latitude: " +
-            latitudeDegrees +
-            " degrees, " +
-            latitudeMinutes +
-            " minutes, " +
-            latitudeSeconds +
-            " seconds " +
-            latitudeRef +
-            ", Longitude: " +
-            longitudeDegrees +
-            " degrees, " +
-            longitudeMinutes +
-            " minutes, " +
-            longitudeSeconds +
-            " seconds " +
-            longitudeRef +
-            ']'
 
     fun getLongitudeAsDegreesEast(): Double {
 

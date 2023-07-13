@@ -18,6 +18,9 @@ package com.ashampoo.kim.format.png
 
 object PngConstants {
 
+    /* ChunkType must be always 4 bytes */
+    const val TPYE_LENGTH = 4
+
     const val COMPRESSION_DEFLATE_INFLATE = 0
 
     val PNG_SIGNATURE = byteArrayOf(
@@ -32,4 +35,13 @@ object PngConstants {
     )
 
     const val XMP_KEYWORD = "XML:com.adobe.xmp"
+
+    const val EXIF_KEYWORD = "Raw profile type exif"
+
+    const val IPTC_KEYWORD = "Raw profile type iptc"
+
+    /* Size in raw profiles is always 8 chars long and padded with spaces. */
+    const val TXT_SIZE_LENGTH = 8
+    const val TXT_SIZE_PAD = ' '
+
 }

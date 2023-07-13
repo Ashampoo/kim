@@ -18,6 +18,7 @@ package com.ashampoo.kim.format.tiff.taginfos
 
 import com.ashampoo.kim.common.ByteOrder
 import com.ashampoo.kim.format.tiff.TiffField
+import com.ashampoo.kim.format.tiff.constants.ExifTag.EXIF_DIRECTORY_UNKNOWN
 import com.ashampoo.kim.format.tiff.constants.TiffDirectoryType
 import com.ashampoo.kim.format.tiff.fieldtypes.FieldType
 
@@ -42,7 +43,7 @@ open class TagInfo(
         tag: Int,
         dataType: FieldType,
         length: Int = LENGTH_UNKNOWN,
-        exifDirectory: TiffDirectoryType? = TiffDirectoryType.EXIF_DIRECTORY_UNKNOWN
+        exifDirectory: TiffDirectoryType? = EXIF_DIRECTORY_UNKNOWN
     ) : this(name, tag, listOf(dataType), length, exifDirectory)
 
     /**

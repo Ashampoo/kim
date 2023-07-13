@@ -22,7 +22,7 @@ abstract class BinaryByteWriter(val byteWriter: ByteWriter) : ByteWriter {
 
     abstract fun write2Bytes(value: Int)
 
-    abstract fun write3Bytes(value: Int)
+    // abstract fun write3Bytes(value: Int)
 
     abstract fun write4Bytes(value: Int)
 

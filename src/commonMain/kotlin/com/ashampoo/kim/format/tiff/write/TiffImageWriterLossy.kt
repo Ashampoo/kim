@@ -22,6 +22,7 @@ import com.ashampoo.kim.format.tiff.constants.TiffConstants.TIFF_HEADER_SIZE
 import com.ashampoo.kim.output.BinaryByteWriter
 import com.ashampoo.kim.output.BinaryByteWriter.Companion.createBinaryByteWriter
 import com.ashampoo.kim.output.ByteWriter
+import kotlin.jvm.JvmStatic
 
 class TiffImageWriterLossy(
     byteOrder: ByteOrder = TiffConstants.DEFAULT_TIFF_BYTE_ORDER
@@ -75,5 +76,14 @@ class TiffImageWriterLossy(
                 bos.write(0)
             }
         }
+    }
+
+    companion object {
+
+        private const val FOUR = 4
+
+        @JvmStatic
+        private fun imageDataPaddingLength(dataLength: Int): Int =
+            (FOUR - dataLength % FOUR) % FOUR
     }
 }

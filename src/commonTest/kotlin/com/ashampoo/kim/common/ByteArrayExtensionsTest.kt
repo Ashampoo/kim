@@ -16,6 +16,7 @@
 package com.ashampoo.kim.common
 
 import kotlin.test.Test
+import kotlin.test.assertContentEquals
 import kotlin.test.assertEquals
 
 class ByteArrayExtensionsTest {
@@ -42,10 +43,6 @@ class ByteArrayExtensionsTest {
             "00fffefcf8e0c080",
             byteArrayOf(-0, -1, -2, -4, -8, -32, -64, -128).toHex()
         )
-
-        /*
-         * Comparison with other software
-         */
 
         assertEquals(
             "fc9e97d362b5fef0bae291aa185877ca",
@@ -85,6 +82,22 @@ class ByteArrayExtensionsTest {
                 55, -59, -7, 50, -63, -93, -41, -35,
                 -92, -69, 6, -93, -44, 47, -93, 117
             ).toHex()
+        )
+    }
+
+    @Test
+    fun testConvertHexStringToByteArray() {
+
+        assertContentEquals(
+            expected = byteArrayOf(0x38, 0x42, 0x49, 0x4d, 0x04, 0x04, 0x00, 0x00),
+            actual = convertHexStringToByteArray("3842494d0404000")
+        )
+
+        assertContentEquals(
+            expected = byteArrayOf(
+                55, -59, -7, 50, -63, -93, -41, -35, -92, -69, 6, -93, -44, 47, -93, 117
+            ),
+            actual = convertHexStringToByteArray("37c5f932c1a3d7dda4bb06a3d42fa375")
         )
     }
 

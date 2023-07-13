@@ -35,39 +35,18 @@ enum class TiffDirectoryType(
         true, TiffConstants.DIRECTORY_TYPE_DIR_3, "IFD3"
     ),
     EXIF_DIRECTORY_INTEROP_IFD(
-        false, TiffConstants.DIRECTORY_TYPE_INTEROPERABILITY, "Interop IFD"
+        false, TiffConstants.DIRECTORY_TYPE_INTEROPERABILITY, "InteropIFD"
     ),
     EXIF_DIRECTORY_MAKER_NOTES(
-        false, TiffConstants.DIRECTORY_TYPE_MAKER_NOTES, "Maker Notes"
+        false, TiffConstants.DIRECTORY_TYPE_MAKER_NOTES, "MakerNotes"
     ),
     EXIF_DIRECTORY_EXIF_IFD(
-        false, TiffConstants.DIRECTORY_TYPE_EXIF, "Exif IFD"
+        false, TiffConstants.DIRECTORY_TYPE_EXIF, "ExifIFD"
     ),
     EXIF_DIRECTORY_GPS(
-        false, TiffConstants.DIRECTORY_TYPE_GPS, "GPS IFD"
+        false, TiffConstants.DIRECTORY_TYPE_GPS, "GPS"
     );
 
-    companion object {
-
-        val EXIF_DIRECTORY_IFD0 = TIFF_DIRECTORY_IFD0
-        val TIFF_DIRECTORY_ROOT = TIFF_DIRECTORY_IFD0
-        val EXIF_DIRECTORY_IFD1 = TIFF_DIRECTORY_IFD1
-        val EXIF_DIRECTORY_IFD2 = TIFF_DIRECTORY_IFD2
-        val EXIF_DIRECTORY_IFD3 = TIFF_DIRECTORY_IFD3
-        val EXIF_DIRECTORY_SUB_IFD = TIFF_DIRECTORY_IFD1
-        val EXIF_DIRECTORY_SUB_IFD1 = TIFF_DIRECTORY_IFD2
-        val EXIF_DIRECTORY_SUB_IFD2 = TIFF_DIRECTORY_IFD3
-
-        val EXIF_DIRECTORY_UNKNOWN: TiffDirectoryType? = null
-
-        @kotlin.jvm.JvmStatic
-        fun getExifDirectoryType(type: Int): TiffDirectoryType? {
-
-            for (tiffDirectoryType in values())
-                if (tiffDirectoryType.directoryType == type)
-                    return tiffDirectoryType
-
-            return EXIF_DIRECTORY_UNKNOWN
-        }
-    }
+    override fun toString(): String =
+        directoryName
 }

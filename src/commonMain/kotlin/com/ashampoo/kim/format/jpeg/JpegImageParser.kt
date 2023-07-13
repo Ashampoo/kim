@@ -25,7 +25,6 @@ import com.ashampoo.kim.format.jpeg.JpegConstants.JPEG_BYTE_ORDER
 import com.ashampoo.kim.format.jpeg.iptc.IptcMetadata
 import com.ashampoo.kim.format.jpeg.segments.App13Segment
 import com.ashampoo.kim.format.jpeg.segments.AppnSegment
-import com.ashampoo.kim.format.jpeg.segments.ComSegment
 import com.ashampoo.kim.format.jpeg.segments.GenericSegment
 import com.ashampoo.kim.format.jpeg.segments.JfifSegment
 import com.ashampoo.kim.format.jpeg.segments.Segment
@@ -58,13 +57,15 @@ object JpegImageParser : ImageParser() {
 
         val imageSize = getImageSize(segments)
 
-        val exif = getExif(segments)
+        val exifBytes = getExifBytes(segments)
+
+        val exif = if (exifBytes != null) getExif(exifBytes) else null
 
         val iptc = getIptc(segments)
 
         val xmp = getXmpXml(segments)
 
-        return ImageMetadata(ImageFormat.JPEG, imageSize, exif, iptc, xmp)
+        return ImageMetadata(ImageFormat.JPEG, imageSize, exif, exifBytes, iptc, xmp)
     }
 
     private fun readSegments(byteReader: ByteReader, markers: List<Int>): List<Segment> {
@@ -110,9 +111,6 @@ object JpegImageParser : ImageParser() {
                             marker >= JpegConstants.JPEG_APP1_MARKER &&
                                 marker <= JpegConstants.JPEG_APP15_MARKER ->
                                 segments.add(UnknownSegment(marker, segmentBytes))
-
-                            marker == JpegConstants.COM_MARKER ->
-                                segments.add(ComSegment(marker, segmentBytes))
                         }
                 }
 
@@ -140,9 +138,7 @@ object JpegImageParser : ImageParser() {
         return ImageSize(firstSegment.width, firstSegment.height)
     }
 
-    private fun getExif(segments: List<Segment>): TiffContents? {
-
-        val bytes = getExifBytes(segments) ?: return null
+    private fun getExif(bytes: ByteArray): TiffContents? {
 
         val exifByteReader = ByteArrayByteReader(bytes)
 
@@ -165,7 +161,7 @@ object JpegImageParser : ImageParser() {
 
         val firstSegment = exifSegments.first()
 
-        return firstSegment.segmentBytes.getRemainingBytes(6)
+        return firstSegment.segmentBytes.getRemainingBytes(JpegConstants.EXIF_IDENTIFIER_CODE.size)
     }
 
     private fun getXmpXml(segments: List<Segment>): String? {

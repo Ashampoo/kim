@@ -18,11 +18,17 @@ package com.ashampoo.kim.common
 import com.ashampoo.kim.Kim
 import com.ashampoo.kim.model.PhotoMetadata
 import com.ashampoo.kim.testdata.KimTestData
+import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
 
 class PhotoMetadataConverterTest {
+
+    @BeforeTest
+    fun setUp() {
+        Kim.underUnitTesting = true
+    }
 
     /**
      * Regression test based on a fixed small set of test files.
@@ -58,9 +64,7 @@ class PhotoMetadataConverterTest {
         else
             KimTestData.getHeaderBytesOf(index)
 
-        val photoMetadata = Kim.readMetadata(bytes)?.convertToPhotoMetadata(
-            underUnitTesting = true
-        )
+        val photoMetadata = Kim.readMetadata(bytes)?.convertToPhotoMetadata()
 
         assertNotNull(photoMetadata)
 

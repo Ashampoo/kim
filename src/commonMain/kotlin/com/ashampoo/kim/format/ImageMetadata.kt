@@ -27,6 +27,7 @@ data class ImageMetadata(
     val imageFormat: ImageFormat?,
     val imageSize: ImageSize?,
     val exif: TiffContents?,
+    val exifBytes: ByteArray?,
     val iptc: IptcMetadata?,
     val xmp: String?
 ) {

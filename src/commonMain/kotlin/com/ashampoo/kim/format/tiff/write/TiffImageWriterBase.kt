@@ -25,7 +25,6 @@ import com.ashampoo.kim.format.tiff.constants.TiffConstants.TIFF_HEADER_SIZE
 import com.ashampoo.kim.format.tiff.constants.TiffConstants.TIFF_VERSION
 import com.ashampoo.kim.output.BinaryByteWriter
 import com.ashampoo.kim.output.ByteWriter
-import kotlin.jvm.JvmStatic
 
 abstract class TiffImageWriterBase(
     val byteOrder: ByteOrder = DEFAULT_TIFF_BYTE_ORDER
@@ -46,6 +45,7 @@ abstract class TiffImageWriterBase(
         var exifDirectoryOffsetField: TiffOutputField? = null
         var gpsDirectoryOffsetField: TiffOutputField? = null
         var interoperabilityDirectoryOffsetField: TiffOutputField? = null
+
         val directoryIndices = mutableListOf<Int>()
         val directoryTypeMap = mutableMapOf<Int, TiffOutputDirectory>()
 
@@ -145,29 +145,27 @@ abstract class TiffImageWriterBase(
 
         var previousDirectory: TiffOutputDirectory? = null
 
-        for (directoryIndex in directoryIndices.indices) {
-
-            val index = directoryIndices[directoryIndex]
-
-            if (index != directoryIndex)
-                throw ImageWriteException("Missing directory: $directoryIndex.")
+        for (index in directoryIndices) {
 
             /* set up chain of directory references for "normal" directories. */
             val directory = directoryTypeMap[index]
 
             previousDirectory?.setNextDirectory(directory)
+
             previousDirectory = directory
         }
 
         val rootDirectory = directoryTypeMap[TiffConstants.DIRECTORY_TYPE_ROOT]
 
+        if (rootDirectory == null)
+            throw ImageWriteException("Root directory is missing.")
+
         /* Prepare results */
-        val result = TiffOutputSummary(byteOrder, rootDirectory!!, directoryTypeMap)
+        val result = TiffOutputSummary(byteOrder)
 
         if (interoperabilityDirectory == null && interoperabilityDirectoryOffsetField != null)
             throw ImageWriteException(
-                "Output set has Interoperability Directory Offset field, " +
-                    "but no Interoperability Directory"
+                "Output set has interoperability dir offset field, but no interoperability dir"
             )
 
         if (interoperabilityDirectory != null) {
@@ -175,6 +173,9 @@ abstract class TiffImageWriterBase(
             if (exifDirectory == null)
                 exifDirectory = outputSet.addExifDirectory()
 
+            /*
+             * Create offset
+             */
             if (interoperabilityDirectoryOffsetField == null) {
 
                 interoperabilityDirectoryOffsetField =
@@ -182,10 +183,8 @@ abstract class TiffImageWriterBase(
 
                 exifDirectory.add(interoperabilityDirectoryOffsetField)
             }
-            result.add(
-                interoperabilityDirectory,
-                interoperabilityDirectoryOffsetField
-            )
+
+            result.add(interoperabilityDirectory, interoperabilityDirectoryOffsetField)
         }
 
         /* Make sure offset fields and offset'd directories correspond. */
@@ -239,11 +238,5 @@ abstract class TiffImageWriterBase(
 
         bos.write2Bytes(TIFF_VERSION)
         bos.write4Bytes(offsetToFirstIFD.toInt())
-    }
-
-    companion object {
-
-        @JvmStatic
-        protected fun imageDataPaddingLength(dataLength: Int): Int = (4 - dataLength % 4) % 4
     }
 }

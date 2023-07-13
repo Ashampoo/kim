@@ -260,20 +260,6 @@ fun ByteArray.toUInt16(offset: Int, byteOrder: ByteOrder): Int {
         byte1 shl 8 or byte0
 }
 
-fun ByteArray.toUInt16s(byteOrder: ByteOrder): IntArray =
-    this.toUInt16s(0, size, byteOrder)
-
-private fun ByteArray.toUInt16s(offset: Int, length: Int, byteOrder: ByteOrder): IntArray {
-
-    val result = IntArray(length / 2)
-
-    repeat(result.size) { i ->
-        result[i] = toUInt16(offset + 2 * i, byteOrder)
-    }
-
-    return result
-}
-
 fun ByteArray.toInt(byteOrder: ByteOrder): Int =
     this.toInt(0, byteOrder)
 

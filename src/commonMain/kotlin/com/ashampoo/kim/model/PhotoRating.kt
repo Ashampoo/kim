@@ -53,7 +53,7 @@ enum class PhotoRating(
 
         val validIntRange: IntRange = REJECTED.value..FIVE_STARS.value
 
-        /* Warning: Swift problems if value is of type Int? */
+        /* **Note:** Swift problems if parameter value is of type Int? */
         fun of(value: Int): PhotoRating? = when (value) {
             REJECTED_VALUE -> REJECTED
             UNRATED_VALUE -> UNRATED

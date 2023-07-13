@@ -15,27 +15,26 @@
  */
 package com.ashampoo.kim.common
 
+import com.ashampoo.kim.Kim.underUnitTesting
 import com.ashampoo.kim.format.ImageMetadata
 import com.ashampoo.kim.format.jpeg.iptc.IptcTypes
 import com.ashampoo.kim.format.tiff.GPSInfo
 import com.ashampoo.kim.format.tiff.constants.ExifTag
 import com.ashampoo.kim.format.tiff.constants.TiffConstants
 import com.ashampoo.kim.format.tiff.constants.TiffTag
+import com.ashampoo.kim.format.xmp.XmpReader
 import com.ashampoo.kim.model.GpsCoordinates
 import com.ashampoo.kim.model.PhotoMetadata
 import com.ashampoo.kim.model.TiffOrientation
-import com.ashampoo.kim.xmp.XmpReader
 import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toInstant
 
-fun ImageMetadata.convertToPhotoMetadata(
-    underUnitTesting: Boolean = false
-): PhotoMetadata {
+fun ImageMetadata.convertToPhotoMetadata(): PhotoMetadata {
 
     val orientation = TiffOrientation.of(findShortValue(TiffTag.TIFF_TAG_ORIENTATION)?.toInt())
 
-    val takenDateMillis = extractTakenDateMillis(this, underUnitTesting)
+    val takenDateMillis = extractTakenDateMillis(this)
 
     val gpsDirectory = findTiffDirectory(TiffConstants.DIRECTORY_TYPE_GPS)
 
@@ -75,7 +74,7 @@ fun ImageMetadata.convertToPhotoMetadata(
             null
 
     val xmpMetadata: PhotoMetadata? = xmp?.let {
-        XmpReader.readMetadata(it, underUnitTesting)
+        XmpReader.readMetadata(it)
     }
 
     /*
@@ -135,10 +134,7 @@ private fun extractTakenDateAsIso(metadata: ImageMetadata): String? {
     return convertExifDateToIso8601Date(takenDate)
 }
 
-private fun extractTakenDateMillis(
-    metadata: ImageMetadata,
-    underUnitTesting: Boolean
-): Long? {
+private fun extractTakenDateMillis(metadata: ImageMetadata): Long? {
 
     val exif = metadata.exif
 

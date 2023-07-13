@@ -15,6 +15,7 @@
  */
 package com.ashampoo.kim.format.jpeg
 
+import com.ashampoo.kim.Kim
 import com.ashampoo.kim.input.ByteArrayByteReader
 import com.ashampoo.kim.testdata.KimTestData
 import kotlinx.io.files.Path
@@ -37,7 +38,8 @@ class JpegMetadataExtractorTest {
 
             val byteReader = ByteArrayByteReader(bytes)
 
-            val actualMetadataBytes = JpegMetadataExtractor.extractMetadataBytes(byteReader)
+            /* Use the public Kim interface to ensure it works. */
+            val actualMetadataBytes = Kim.extractMetadataBytes(byteReader).second
 
             val expectedMetadataBytes = KimTestData.getHeaderBytesOf(index)
 

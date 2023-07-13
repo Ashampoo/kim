@@ -34,6 +34,6 @@ abstract class TiffElement(
     }
 
     companion object {
-        val COMPARATOR = compareBy { e: TiffElement -> e.offset }
+        val offsetComparator = compareBy { e: TiffElement -> e.offset }
     }
 }

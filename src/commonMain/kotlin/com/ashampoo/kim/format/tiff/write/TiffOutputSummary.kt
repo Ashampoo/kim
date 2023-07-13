@@ -19,46 +19,18 @@ package com.ashampoo.kim.format.tiff.write
 import com.ashampoo.kim.common.ByteOrder
 import com.ashampoo.kim.format.tiff.fieldtypes.FieldType
 
-class TiffOutputSummary(
-    val byteOrder: ByteOrder,
-    val rootDirectory: TiffOutputDirectory,
-    val directoryTypeMap: Map<Int, TiffOutputDirectory>
-) {
+class TiffOutputSummary(val byteOrder: ByteOrder) {
 
-    private val offsetItems = mutableListOf<OffsetItem>()
+    private val offsetItems = mutableSetOf<TiffOffsetItem>()
 
-    private val imageDataItems = mutableListOf<ImageDataOffsets>()
-
-    private data class OffsetItem(
-        val item: TiffOutputItem,
-        val itemOffsetField: TiffOutputField
-    )
-
-    fun add(item: TiffOutputItem, itemOffsetField: TiffOutputField) =
-        offsetItems.add(OffsetItem(item, itemOffsetField))
+    fun add(outputItem: TiffOutputItem, outputField: TiffOutputField) =
+        offsetItems.add(TiffOffsetItem(outputItem, outputField))
 
     fun updateOffsets(byteOrder: ByteOrder) {
 
-        for (offset in offsetItems) {
-            val value = FieldType.LONG.writeData(offset.item.offset.toInt(), byteOrder)
-            offset.itemOffsetField.setBytes(value)
-        }
-
-        for (imageDataInfo in imageDataItems) {
-
-            for (index in imageDataInfo.outputItems.indices) {
-
-                val item = imageDataInfo.outputItems[index]
-
-                imageDataInfo.imageDataOffsets[index] = item.offset.toInt()
-            }
-
-            imageDataInfo.imageDataOffsetsField.setBytes(
-                FieldType.LONG.writeData(imageDataInfo.imageDataOffsets, byteOrder)
+        for (offset in offsetItems)
+            offset.outputField.setBytes(
+                FieldType.LONG.writeData(offset.outputItem.offset.toInt(), byteOrder)
             )
-        }
     }
-
-    fun addTiffImageData(imageDataInfo: ImageDataOffsets) =
-        imageDataItems.add(imageDataInfo)
 }
