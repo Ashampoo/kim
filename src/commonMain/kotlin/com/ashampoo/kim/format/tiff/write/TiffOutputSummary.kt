@@ -21,7 +21,7 @@ import com.ashampoo.kim.format.tiff.fieldtypes.FieldType
 
 class TiffOutputSummary(val byteOrder: ByteOrder) {
 
-    private val offsetItems = mutableListOf<TiffOffsetItem>()
+    private val offsetItems = mutableSetOf<TiffOffsetItem>()
 
     fun add(outputItem: TiffOutputItem, outputField: TiffOutputField) =
         offsetItems.add(TiffOffsetItem(outputItem, outputField))
