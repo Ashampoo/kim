@@ -28,13 +28,6 @@ class TagInfoLongOrIFD : TagInfo {
         name: String,
         tag: Int,
         length: Int,
-        directoryType: TiffDirectoryType?
-    ) : super(name, tag, FieldType.LONG_OR_IFD, length, directoryType)
-
-    constructor(
-        name: String,
-        tag: Int,
-        length: Int,
         directoryType: TiffDirectoryType?,
         isOffset: Boolean
     ) : super(name, tag, FieldType.LONG_OR_IFD, length, directoryType, isOffset)

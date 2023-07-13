@@ -211,6 +211,7 @@ object XmpReader {
         )
     }
 
+    @Suppress("Unused")
     fun determineXmpPath(path: String): String {
 
         val xmpPath = path.replaceAfterLast(".", "xmp")

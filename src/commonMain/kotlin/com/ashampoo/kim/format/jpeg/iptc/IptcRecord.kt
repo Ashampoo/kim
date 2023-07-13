@@ -24,9 +24,6 @@ data class IptcRecord(
     val value: String
 ) {
 
-    fun getIptcTypeName(): String =
-        iptcType.fieldName
-
     override fun toString(): String =
         "$iptcType = '$value\'"
 
