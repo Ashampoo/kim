@@ -19,11 +19,7 @@ package com.ashampoo.kim.format.tiff.write
 import com.ashampoo.kim.common.ByteOrder
 import com.ashampoo.kim.format.tiff.fieldtypes.FieldType
 
-class TiffOutputSummary(
-    val byteOrder: ByteOrder,
-    val rootDirectory: TiffOutputDirectory,
-    val directoryTypeMap: Map<Int, TiffOutputDirectory>
-) {
+class TiffOutputSummary(val byteOrder: ByteOrder) {
 
     private val offsetItems = mutableListOf<TiffOffsetItem>()
 

@@ -35,15 +35,18 @@ enum class TiffDirectoryType(
         true, TiffConstants.DIRECTORY_TYPE_DIR_3, "IFD3"
     ),
     EXIF_DIRECTORY_INTEROP_IFD(
-        false, TiffConstants.DIRECTORY_TYPE_INTEROPERABILITY, "Interop IFD"
+        false, TiffConstants.DIRECTORY_TYPE_INTEROPERABILITY, "InteropIFD"
     ),
     EXIF_DIRECTORY_MAKER_NOTES(
-        false, TiffConstants.DIRECTORY_TYPE_MAKER_NOTES, "Maker Notes"
+        false, TiffConstants.DIRECTORY_TYPE_MAKER_NOTES, "MakerNotes"
     ),
     EXIF_DIRECTORY_EXIF_IFD(
-        false, TiffConstants.DIRECTORY_TYPE_EXIF, "Exif IFD"
+        false, TiffConstants.DIRECTORY_TYPE_EXIF, "ExifIFD"
     ),
     EXIF_DIRECTORY_GPS(
-        false, TiffConstants.DIRECTORY_TYPE_GPS, "GPS IFD"
+        false, TiffConstants.DIRECTORY_TYPE_GPS, "GPS"
     );
+
+    override fun toString(): String =
+        directoryName
 }

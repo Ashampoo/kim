@@ -161,7 +161,7 @@ abstract class TiffImageWriterBase(
             throw ImageWriteException("Root directory is missing.")
 
         /* Prepare results */
-        val result = TiffOutputSummary(byteOrder, rootDirectory, directoryTypeMap)
+        val result = TiffOutputSummary(byteOrder)
 
         if (interoperabilityDirectory == null && interoperabilityDirectoryOffsetField != null)
             throw ImageWriteException(
