@@ -17,8 +17,6 @@
 package com.ashampoo.kim.format.jpeg.segments
 
 import com.ashampoo.kim.input.ByteReader
-import io.ktor.utils.io.charsets.Charset
-import io.ktor.utils.io.core.String
 
 abstract class GenericSegment : Segment {
 
@@ -31,7 +29,4 @@ abstract class GenericSegment : Segment {
     constructor(marker: Int, bytes: ByteArray) : super(marker, bytes.size) {
         segmentBytes = bytes
     }
-
-    fun getSegmentDataAsString(charset: Charset): String =
-        String(segmentBytes, charset = charset)
 }
