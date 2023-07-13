@@ -25,17 +25,11 @@ class TiffOutputSummary(
     val directoryTypeMap: Map<Int, TiffOutputDirectory>
 ) {
 
-    private val offsetItems = mutableListOf<OffsetItem>()
-
+    private val offsetItems = mutableListOf<TiffOffsetItem>()
     private val imageDataOffsets = mutableListOf<ImageDataOffsets>()
 
-    private data class OffsetItem(
-        val item: TiffOutputItem,
-        val itemOffsetField: TiffOutputField
-    )
-
-    fun add(item: TiffOutputItem, itemOffsetField: TiffOutputField) =
-        offsetItems.add(OffsetItem(item, itemOffsetField))
+    fun add(outputItem: TiffOutputItem, outputField: TiffOutputField) =
+        offsetItems.add(TiffOffsetItem(outputItem, outputField))
 
     fun addTiffImageData(imageDataOffset: ImageDataOffsets) =
         imageDataOffsets.add(imageDataOffset)
@@ -43,8 +37,8 @@ class TiffOutputSummary(
     fun updateOffsets(byteOrder: ByteOrder) {
 
         for (offset in offsetItems)
-            offset.itemOffsetField.setBytes(
-                FieldType.LONG.writeData(offset.item.offset.toInt(), byteOrder)
+            offset.outputField.setBytes(
+                FieldType.LONG.writeData(offset.outputItem.offset.toInt(), byteOrder)
             )
 
         for (imageDataInfo in imageDataOffsets) {
