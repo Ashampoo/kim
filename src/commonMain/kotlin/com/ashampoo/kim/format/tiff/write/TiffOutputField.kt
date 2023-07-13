@@ -34,7 +34,7 @@ class TiffOutputField(
     val isLocalValue: Boolean = bytes.size <= TIFF_ENTRY_MAX_VALUE_LENGTH
 
     val separateValue: TiffOutputItem.Value? =
-        if (isLocalValue) null else TiffOutputItem.Value(bytes)
+        if (isLocalValue) null else TiffOutputItem.Value("Value of $this", bytes)
 
     var sortHint = -1
 
@@ -84,13 +84,12 @@ class TiffOutputField(
             throw ImageWriteException("Cannot change size of value.")
 
         this.bytes = bytes
+
         separateValue?.updateValue(bytes)
     }
 
-    override fun toString(): String {
-        return "TiffOutputField(tag=$tag, tagInfo=$tagInfo, fieldType=$fieldType, count=$count, " +
-            "${bytes.size} bytes, separateValue=$separateValue, sortHint=$sortHint)"
-    }
+    override fun toString(): String =
+        "TiffOutputField ${tagInfo.name}"
 
     companion object {
 

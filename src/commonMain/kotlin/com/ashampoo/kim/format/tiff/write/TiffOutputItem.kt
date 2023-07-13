@@ -27,7 +27,10 @@ abstract class TiffOutputItem {
 
     abstract fun writeItem(bos: BinaryByteWriter)
 
-    class Value internal constructor(private val bytes: ByteArray) : TiffOutputItem() {
+    class Value internal constructor(
+        private val description: String,
+        private val bytes: ByteArray
+    ) : TiffOutputItem() {
 
         override fun getItemLength(): Int =
             bytes.size
@@ -42,6 +45,9 @@ abstract class TiffOutputItem {
 
         override fun writeItem(bos: BinaryByteWriter) =
             bos.write(bytes)
+
+        override fun toString(): String =
+            description
     }
 
     companion object {

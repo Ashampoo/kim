@@ -648,7 +648,7 @@ class TiffOutputDirectory(val type: Int, private val byteOrder: ByteOrder) : Tif
 
         if (rawJpegImageData != null) {
 
-            val item: TiffOutputItem = Value(rawJpegImageData!!.bytes)
+            val item: TiffOutputItem = Value("rawJpegImageData", rawJpegImageData!!.bytes)
 
             result.add(item)
 
