@@ -632,8 +632,6 @@ class TiffOutputDirectory(val type: Int, private val byteOrder: ByteOrder) : Tif
         removeFieldIfPresent(TiffTag.TIFF_TAG_TILE_OFFSETS)
         removeFieldIfPresent(TiffTag.TIFF_TAG_TILE_BYTE_COUNTS)
 
-        val imageDataInfo: ImageDataOffsets? = null
-
         val result = mutableListOf<TiffOutputItem>()
 
         result.add(this)
@@ -647,13 +645,6 @@ class TiffOutputDirectory(val type: Int, private val byteOrder: ByteOrder) : Tif
             val item = field.separateValue!!
 
             result.add(item)
-        }
-
-        if (imageDataInfo != null) {
-
-            result.addAll(imageDataInfo.outputItems)
-
-            outputSummary.addTiffImageData(imageDataInfo)
         }
 
         if (rawJpegImageData != null) {
