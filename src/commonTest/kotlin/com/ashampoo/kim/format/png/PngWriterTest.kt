@@ -16,6 +16,12 @@
 package com.ashampoo.kim.format.png
 
 import com.ashampoo.kim.Kim
+import com.ashampoo.kim.format.jpeg.iptc.IptcBlock
+import com.ashampoo.kim.format.jpeg.iptc.IptcConstants
+import com.ashampoo.kim.format.jpeg.iptc.IptcParser
+import com.ashampoo.kim.format.jpeg.iptc.IptcRecord
+import com.ashampoo.kim.format.jpeg.iptc.IptcTypes
+import com.ashampoo.kim.format.jpeg.iptc.IptcWriter
 import com.ashampoo.kim.format.tiff.constants.ExifTag
 import com.ashampoo.kim.format.tiff.write.TiffImageWriterLossless
 import com.ashampoo.kim.format.tiff.write.TiffImageWriterLossy
@@ -97,10 +103,26 @@ class PngWriterTest {
 
             val byteWriter = ByteArrayByteWriter()
 
+            val newIptcBlock = IptcBlock(
+                blockType = IptcConstants.IMAGE_RESOURCE_BLOCK_IPTC_DATA,
+                blockNameBytes = IptcParser.EMPTY_BYTE_ARRAY,
+                blockData = IptcWriter.writeIPTCBlock(
+                    listOf(
+                        IptcRecord(IptcTypes.KEYWORDS, "Äußerst schön")
+                    )
+                )
+            )
+
+            val iptcBytes = IptcWriter.writeIptcBlocks(
+                blocks = listOf(newIptcBlock),
+                includeApp13Identifier = false
+            )
+
             PngWriter.writeImage(
                 byteWriter,
                 bytes,
                 exifBytes,
+                iptcBytes,
                 expectedXmp
             )
 

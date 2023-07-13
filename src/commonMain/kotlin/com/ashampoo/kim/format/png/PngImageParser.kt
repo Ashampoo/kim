@@ -232,17 +232,17 @@ object PngImageParser : ImageParser() {
         /*
          * Convert it to bytes.
          */
-        val iptcTextBytes = iptcText
+        val iptcBytes = iptcText
             .chunked(2)
             .map { it.toInt(16).toByte() }
-            .toMutableList()
+            .toByteArray()
 
         /*
          * This should be fine now to be fed into the IPTC reader.
          * The bytes don't have the APP13 header, because it's not taken from an JPEG segment.
          */
         return IptcParser.parseIptc(
-            bytes = iptcTextBytes.toByteArray(),
+            bytes = iptcBytes,
             startsWithApp13Header = false
         )
     }

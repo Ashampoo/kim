@@ -16,7 +16,6 @@
  */
 package com.ashampoo.kim.format.png
 
-import com.ashampoo.kim.common.compress
 import com.ashampoo.kim.common.toHex
 import com.ashampoo.kim.format.png.PngCrc.continuePartialCrc
 import com.ashampoo.kim.format.png.PngCrc.finishPartialCrc
@@ -95,21 +94,21 @@ object PngWriter {
         writeChunk(byteWriter, ChunkType.ITXT, writer.toByteArray())
     }
 
-    /*
-     * A note on IPTC support:
-     * We tried to write it like ExifTool, but the result can't be read anywhere.
-     * We don't have a specification here and so we don't support it.
-     *
-     * **Note:** Don't use this. It's left here as we may pick it up in the future
-     * once we at least know the specification GIMP & ExifTool follow.
+    /**
+     * Write non-standard IPTC in TEXT chunk the same way as ExifTool does it.
+     * Note that a lot of tools might not be able to read this.
      */
     @Suppress("UnusedPrivateMember", "kotlin:S1144")
     private fun writeIptcChunk(byteWriter: ByteWriter, iptcBytes: ByteArray) {
 
+        /**
+         * FIXME It's done the same way as ExifTool does it, but ExifTool can't read it.
+         * GIMP however can.
+         */
+
         /*
          * Keyword:            1-79 bytes (character string)
          * Null separator:     1 byte
-         * Compression method: 1 byte
          * Compressed text:    n bytes
          */
 
@@ -119,20 +118,27 @@ object PngWriter {
         writer.write(PngConstants.IPTC_KEYWORD.encodeToByteArray())
         writer.write(0)
 
-        /* Only DEFLATE compression (value 0) is defined in the spec. */
-        writer.write(PngConstants.COMPRESSION_DEFLATE_INFLATE)
+        val sizeAsText =
+            iptcBytes.size.toString().padStart(
+                PngConstants.TXT_SIZE_LENGTH,
+                PngConstants.TXT_SIZE_PAD
+            )
 
-        val textToWrite = "IPTC profile ${iptcBytes.size} ${iptcBytes.toHex()}"
+        val textToWrite = "IPTC profile\n$sizeAsText\n${iptcBytes.toHex()}"
 
-        writer.write(compress(textToWrite))
+        writer.write(textToWrite.encodeToByteArray())
 
-        writeChunk(byteWriter, ChunkType.ZTXT, writer.toByteArray())
+        writeChunk(byteWriter, ChunkType.TEXT, writer.toByteArray())
     }
 
+    /**
+     * **Note**: Support for non-standard IPTC TXT chunk is experimental
+     */
     fun writeImage(
         byteWriter: ByteWriter,
         originalBytes: ByteArray,
         exifBytes: ByteArray?,
+        iptcBytes: ByteArray?,
         xmp: String?
     ) {
 
@@ -150,6 +156,9 @@ object PngWriter {
                     it is PngTextChunk && it.getKeyword() == PngConstants.EXIF_KEYWORD
             }
 
+        if (iptcBytes != null)
+            chunks.removeAll { it is PngTextChunk && it.getKeyword() == PngConstants.IPTC_KEYWORD }
+
         if (xmp != null)
             chunks.removeAll { it is PngTextChunk && it.getKeyword() == PngConstants.XMP_KEYWORD }
 
@@ -166,6 +175,10 @@ object PngWriter {
             /* Write EXIF chunk right after the header. */
             if (exifBytes != null && ChunkType.IHDR == chunk.chunkType)
                 writeChunk(byteWriter, ChunkType.EXIF, exifBytes)
+
+            /* Write EXIF chunk right after the header. */
+            if (iptcBytes != null && ChunkType.IHDR == chunk.chunkType)
+                writeIptcChunk(byteWriter, iptcBytes)
 
             /* Write XMP chunk right after the header. */
             if (xmp != null && ChunkType.IHDR == chunk.chunkType)

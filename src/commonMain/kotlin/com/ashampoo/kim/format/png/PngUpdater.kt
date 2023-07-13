@@ -86,6 +86,8 @@ internal object PngUpdater {
             byteWriter = byteWriter,
             originalBytes = bytes,
             exifBytes = exifBytes,
+            /* IPTC is not written because it's not recognized everywhere. */
+            iptcBytes = null,
             xmp = updatedXmp
         )
 

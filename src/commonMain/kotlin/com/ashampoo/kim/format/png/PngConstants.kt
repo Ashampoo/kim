@@ -40,4 +40,8 @@ object PngConstants {
 
     const val IPTC_KEYWORD = "Raw profile type iptc"
 
+    /* Size in raw profiles is always 8 chars long and padded with spaces. */
+    const val TXT_SIZE_LENGTH = 8
+    const val TXT_SIZE_PAD = ' '
+
 }
