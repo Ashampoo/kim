@@ -82,14 +82,8 @@ class TiffOutputSet(
         return findDirectory(TiffConstants.DIRECTORY_TYPE_GPS) ?: addGPSDirectory()
     }
 
-    fun findDirectory(directoryType: Int): TiffOutputDirectory? {
-
-        for (directory in directories)
-            if (directory.type == directoryType)
-                return directory
-
-        return null
-    }
+    fun findDirectory(directoryType: Int): TiffOutputDirectory? =
+        directories.find { it.type == directoryType }
 
     fun applyUpdates(updates: Collection<MetadataUpdate>) {
 
