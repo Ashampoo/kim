@@ -57,8 +57,12 @@ data class ChunkType internal constructor(
 
             require(typeBytes.size == PngConstants.TPYE_LENGTH) { "ChunkType must be always 4 bytes!" }
 
-            val intValue = typeBytes[0].toInt() shl 24 or (typeBytes[1].toInt() shl 16) or
-                (typeBytes[2].toInt() shl 8) or (typeBytes[3].toInt() shl 0)
+            @Suppress("UnnecessaryParentheses")
+            val intValue =
+                (typeBytes[0].toInt() shl 24) or
+                    (typeBytes[1].toInt() shl 16) or
+                    (typeBytes[2].toInt() shl 8) or
+                    (typeBytes[3].toInt() shl 0)
 
             return ChunkType(
                 array = typeBytes,

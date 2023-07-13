@@ -190,7 +190,7 @@ class TiffImageWriterLossless(
         /* Any items that represent a gap at the end of the exif segment, can be discarded. */
         while (unusedElements.isNotEmpty()) {
 
-            val element = unusedElements[0]
+            val element = unusedElements.first()
 
             val elementEnd = element.offset + element.length
 
@@ -200,7 +200,7 @@ class TiffImageWriterLossless(
             /* Discarding a tail element. Should only happen once. */
             overflowIndex -= element.length.toLong()
 
-            unusedElements.removeAt(0)
+            unusedElements.removeFirst()
         }
 
         unusedElements.sortWith(ELEMENT_SIZE_COMPARATOR.reversed())
@@ -215,7 +215,7 @@ class TiffImageWriterLossless(
         while (unplacedItems.isNotEmpty()) {
 
             /* Pop off largest unplaced item. */
-            val outputItem = unplacedItems.removeAt(0)
+            val outputItem = unplacedItems.removeFirst()
 
             val outputItemLength = outputItem.getItemLength()
 
