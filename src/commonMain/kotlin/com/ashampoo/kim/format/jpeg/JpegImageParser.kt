@@ -25,7 +25,6 @@ import com.ashampoo.kim.format.jpeg.JpegConstants.JPEG_BYTE_ORDER
 import com.ashampoo.kim.format.jpeg.iptc.IptcMetadata
 import com.ashampoo.kim.format.jpeg.segments.App13Segment
 import com.ashampoo.kim.format.jpeg.segments.AppnSegment
-import com.ashampoo.kim.format.jpeg.segments.ComSegment
 import com.ashampoo.kim.format.jpeg.segments.GenericSegment
 import com.ashampoo.kim.format.jpeg.segments.JfifSegment
 import com.ashampoo.kim.format.jpeg.segments.Segment
@@ -112,9 +111,6 @@ object JpegImageParser : ImageParser() {
                             marker >= JpegConstants.JPEG_APP1_MARKER &&
                                 marker <= JpegConstants.JPEG_APP15_MARKER ->
                                 segments.add(UnknownSegment(marker, segmentBytes))
-
-                            marker == JpegConstants.COM_MARKER ->
-                                segments.add(ComSegment(marker, segmentBytes))
                         }
                 }
 
