@@ -159,13 +159,11 @@ class TiffImageWriterLossless(
 
         val outputSummary = validateDirectories(outputSet)
 
-        val allOutputItems = outputSet.getOutputItems(outputSummary)
-
-        val outputItems = mutableListOf<TiffOutputItem>()
-
-        for (outputItem in allOutputItems)
-            if (!frozenFieldOffsets.containsKey(outputItem.offset))
-                outputItems.add(outputItem)
+        /*
+         * Receive all items from the OutputSet expect for the frozen MakerNotes.
+         */
+        val outputItems = outputSet.getOutputItems(outputSummary)
+            .filter { !frozenFieldOffsets.containsKey(it.offset) }
 
         val outputLength = updateOffsetsStep(analysis, outputItems)
 
