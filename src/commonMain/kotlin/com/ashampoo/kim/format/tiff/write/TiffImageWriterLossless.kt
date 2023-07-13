@@ -137,7 +137,7 @@ class TiffImageWriterLossless(
 
         if (analysis.size == 1) {
 
-            val onlyElement = analysis[0]
+            val onlyElement = analysis.first()
 
             val newLength: Long = onlyElement.offset + onlyElement.length + TIFF_HEADER_SIZE
 
