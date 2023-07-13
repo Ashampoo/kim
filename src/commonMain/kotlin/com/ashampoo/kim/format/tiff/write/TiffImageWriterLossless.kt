@@ -175,7 +175,7 @@ class TiffImageWriterLossless(
     }
 
     private fun updateOffsetsStep(
-        analysis: List<TiffElement>,
+        existingTiffElements: List<TiffElement>,
         outputItems: List<TiffOutputItem>
     ): Long {
 
@@ -183,14 +183,14 @@ class TiffImageWriterLossless(
         var overflowIndex = exifBytes.size.toLong()
 
         /* Make a copy and ensure it's correctly sorted. */
-        val unusedElements = analysis
-            .sortedWith(TiffElement.offsetComparator.reversed())
+        val unusedElements = existingTiffElements
+            .sortedWith(TiffElement.offsetComparator)
             .toMutableList()
 
         /* Any items that represent a gap at the end of the exif segment, can be discarded. */
         while (unusedElements.isNotEmpty()) {
 
-            val element = unusedElements.first()
+            val element = unusedElements.last()
 
             val elementEnd = element.offset + element.length
 
@@ -200,17 +200,16 @@ class TiffImageWriterLossless(
             /* Discarding a tail element. Should only happen once. */
             overflowIndex -= element.length.toLong()
 
-            unusedElements.removeFirst()
+            unusedElements.removeLast()
         }
 
         unusedElements.sortWith(elementLengthComparator.reversed())
 
         // make copy.
-        val unplacedItems = mutableListOf<TiffOutputItem>()
-
-        unplacedItems.addAll(outputItems)
-        unplacedItems.sortWith(itemLengthComparator)
-        unplacedItems.reverse()
+        val unplacedItems = outputItems
+            .sortedWith(itemLengthComparator)
+            .reversed()
+            .toMutableList()
 
         while (unplacedItems.isNotEmpty()) {
 
