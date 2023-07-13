@@ -67,8 +67,6 @@ class TiffOutputDirectory(val type: Int, private val byteOrder: ByteOrder) : Tif
     var rawJpegImageData: JpegImageData? = null
         private set
 
-    val description: String = description(type)
-
     fun setNextDirectory(nextDirectory: TiffOutputDirectory?) {
         this.nextDirectory = nextDirectory
     }
@@ -670,7 +668,10 @@ class TiffOutputDirectory(val type: Int, private val byteOrder: ByteOrder) : Tif
         return result
     }
 
-    companion object {
-        val COMPARATOR = compareBy { directory: TiffOutputDirectory -> directory.type }
-    }
+    override fun toString(): String =
+        description(type)
+
+//    companion object {
+//        val COMPARATOR = compareBy { directory: TiffOutputDirectory -> directory.type }
+//    }
 }

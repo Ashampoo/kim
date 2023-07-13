@@ -151,6 +151,7 @@ abstract class TiffImageWriterBase(
             val directory = directoryTypeMap[index]
 
             previousDirectory?.setNextDirectory(directory)
+
             previousDirectory = directory
         }
 
