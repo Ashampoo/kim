@@ -72,12 +72,11 @@ class TiffImageWriterLossless(
                     elements.add(jpegImageData)
             }
 
-            elements.sortWith(TiffElement.COMPARATOR)
+            elements.sortWith(TiffElement.offsetComparator)
 
             val rewritableElements = mutableListOf<TiffElement>()
 
             var start: TiffElement? = null
-
             var index: Long = -1
 
             for (element in elements) {
@@ -181,7 +180,7 @@ class TiffImageWriterLossless(
 
         /* Make a copy and ensure it's correctly sorted. */
         val unusedElements = analysis
-            .sortedWith(TiffElement.COMPARATOR.reversed())
+            .sortedWith(TiffElement.offsetComparator.reversed())
             .toMutableList()
 
         /* Any items that represent a gap at the end of the exif segment, can be discarded. */
