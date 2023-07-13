@@ -96,15 +96,12 @@ object PngWriter {
 
     /**
      * Write non-standard IPTC in TEXT chunk the same way as ExifTool does it.
-     * Note that a lot of tools might not be able to read this.
+     *
+     * Note that a lot of tools like Apple Preview will not be able to read this,
+     * but at least ExifTool and GIMP will.
      */
     @Suppress("UnusedPrivateMember", "kotlin:S1144")
     private fun writeIptcChunk(byteWriter: ByteWriter, iptcBytes: ByteArray) {
-
-        /**
-         * FIXME It's done the same way as ExifTool does it, but ExifTool can't read it.
-         * GIMP however can.
-         */
 
         /*
          * Keyword:            1-79 bytes (character string)
@@ -124,16 +121,13 @@ object PngWriter {
                 PngConstants.TXT_SIZE_PAD
             )
 
-        val textToWrite = "IPTC profile\n$sizeAsText\n${iptcBytes.toHex()}"
+        val textToWrite = "\nIPTC profile\n$sizeAsText\n${iptcBytes.toHex()}"
 
         writer.write(textToWrite.encodeToByteArray())
 
         writeChunk(byteWriter, ChunkType.TEXT, writer.toByteArray())
     }
 
-    /**
-     * **Note**: Support for non-standard IPTC TXT chunk is experimental
-     */
     fun writeImage(
         byteWriter: ByteWriter,
         originalBytes: ByteArray,
