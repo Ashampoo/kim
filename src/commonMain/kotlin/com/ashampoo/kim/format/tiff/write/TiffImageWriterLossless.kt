@@ -81,8 +81,6 @@ class TiffImageWriterLossless(
 
             for (element in elements) {
 
-                val lastElementByte = element.offset + element.length
-
                 if (start == null) {
 
                     start = element
@@ -96,7 +94,7 @@ class TiffImageWriterLossless(
                     start = element
                 }
 
-                index = lastElementByte
+                index = element.offset + element.length
             }
 
             if (start != null)
@@ -106,8 +104,8 @@ class TiffImageWriterLossless(
 
             rewritableElements
 
-        } catch (e: ImageReadException) {
-            throw ImageWriteException(e.message, e)
+        } catch (ex: ImageReadException) {
+            throw ImageWriteException(ex.message, ex)
         }
     }
 
