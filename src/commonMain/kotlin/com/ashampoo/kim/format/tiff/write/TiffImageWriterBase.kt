@@ -157,13 +157,15 @@ abstract class TiffImageWriterBase(
 
         val rootDirectory = directoryTypeMap[TiffConstants.DIRECTORY_TYPE_ROOT]
 
+        if (rootDirectory == null)
+            throw ImageWriteException("Root directory is missing.")
+
         /* Prepare results */
-        val result = TiffOutputSummary(byteOrder, rootDirectory!!, directoryTypeMap)
+        val result = TiffOutputSummary(byteOrder, rootDirectory, directoryTypeMap)
 
         if (interoperabilityDirectory == null && interoperabilityDirectoryOffsetField != null)
             throw ImageWriteException(
-                "Output set has Interoperability Directory Offset field, " +
-                    "but no Interoperability Directory"
+                "Output set has interoperability dir offset field, but no interoperability dir"
             )
 
         if (interoperabilityDirectory != null) {
@@ -171,6 +173,9 @@ abstract class TiffImageWriterBase(
             if (exifDirectory == null)
                 exifDirectory = outputSet.addExifDirectory()
 
+            /*
+             * Create offset
+             */
             if (interoperabilityDirectoryOffsetField == null) {
 
                 interoperabilityDirectoryOffsetField =
