@@ -529,9 +529,8 @@ class TiffOutputDirectory(val type: Int, private val byteOrder: ByteOrder) : Tif
 
     fun getFields(): List<TiffOutputField> = fields
 
-    fun removeField(tagInfo: TagInfo) {
+    fun removeField(tagInfo: TagInfo) =
         removeField(tagInfo.tag)
-    }
 
     fun removeField(tag: Int) {
 

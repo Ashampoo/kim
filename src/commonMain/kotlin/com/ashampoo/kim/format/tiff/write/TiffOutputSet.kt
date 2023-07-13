@@ -211,18 +211,10 @@ class TiffOutputSet(
         }
     }
 
-    fun findField(tag: Int): TiffOutputField? {
-
-        for (directory in directories) {
-
-            val field = directory.findField(tag)
-
-            if (field != null)
-                return field
-        }
-
-        return null
-    }
+    fun findField(tag: Int): TiffOutputField? =
+        directories
+            .mapNotNull { directory -> directory.findField(tag) }
+            .firstOrNull()
 
     fun addRootDirectory(): TiffOutputDirectory =
         addDirectory(TiffOutputDirectory(TiffConstants.DIRECTORY_TYPE_ROOT, byteOrder))
