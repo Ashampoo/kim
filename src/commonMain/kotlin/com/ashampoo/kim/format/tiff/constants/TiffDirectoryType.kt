@@ -59,15 +59,5 @@ enum class TiffDirectoryType(
         val EXIF_DIRECTORY_SUB_IFD2 = TIFF_DIRECTORY_IFD3
 
         val EXIF_DIRECTORY_UNKNOWN: TiffDirectoryType? = null
-
-        @kotlin.jvm.JvmStatic
-        fun getExifDirectoryType(type: Int): TiffDirectoryType? {
-
-            for (tiffDirectoryType in values())
-                if (tiffDirectoryType.directoryType == type)
-                    return tiffDirectoryType
-
-            return EXIF_DIRECTORY_UNKNOWN
-        }
     }
 }
