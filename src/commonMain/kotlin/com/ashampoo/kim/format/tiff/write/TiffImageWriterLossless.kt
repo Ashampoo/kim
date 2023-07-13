@@ -44,9 +44,7 @@ class TiffImageWriterLossless(
 
             val elements = mutableListOf<TiffElement>()
 
-            val directories = contents.directories
-
-            for (directory in directories) {
+            for (directory in contents.directories) {
 
                 elements.add(directory)
 
