@@ -189,7 +189,6 @@ class TiffImageWriterLossless(
         /* Keeps track of the total length the exif bytes will have. */
         var newExifBytesLength = pair.second
 
-        // make copy.
         val unplacedItems = outputItems
             .sortedWith(itemLengthComparator)
             .reversed()
