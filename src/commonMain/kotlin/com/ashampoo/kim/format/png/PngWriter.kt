@@ -62,15 +62,15 @@ object PngWriter {
     private fun writeXmpChunk(byteWriter: ByteWriter, xmpXml: String) {
 
         /*
-         * Keyword:             1-79 bytes (character string)
-         * Null separator:      1 byte
-         * Compression flag:    1 byte
-         * Compression method:  1 byte
-         * Language tag:        0 or more bytes (character string)
-         * Null separator:      1 byte
-         * Translated keyword:  0 or more bytes
-         * Null separator:      1 byte
-         * Text:                0 or more bytes
+         * Keyword:            1-79 bytes (character string)
+         * Null separator:     1 byte
+         * Compression flag:   1 byte
+         * Compression method: 1 byte
+         * Language tag:       0 or more bytes (character string)
+         * Null separator:     1 byte
+         * Translated keyword: 0 or more bytes
+         * Null separator:     1 byte
+         * Text:               0 or more bytes
          */
 
         val writer = ByteArrayByteWriter()
@@ -104,9 +104,9 @@ object PngWriter {
     private fun writeIptcChunk(byteWriter: ByteWriter, iptcBytes: ByteArray) {
 
         /*
-         * Keyword:            1-79 bytes (character string)
-         * Null separator:     1 byte
-         * Compressed text:    n bytes
+         * Keyword:        1-79 bytes (character string)
+         * Null separator: 1 byte
+         * Text:           n bytes
          */
 
         val writer = ByteArrayByteWriter()
@@ -166,17 +166,18 @@ object PngWriter {
 
             writeChunk(byteWriter, chunk.chunkType, chunk.bytes)
 
-            /* Write EXIF chunk right after the header. */
-            if (exifBytes != null && ChunkType.IHDR == chunk.chunkType)
-                writeChunk(byteWriter, ChunkType.EXIF, exifBytes)
+            /* Write new metadata chunks right after the header. */
+            if (ChunkType.IHDR == chunk.chunkType) {
 
-            /* Write EXIF chunk right after the header. */
-            if (iptcBytes != null && ChunkType.IHDR == chunk.chunkType)
-                writeIptcChunk(byteWriter, iptcBytes)
+                if (exifBytes != null)
+                    writeChunk(byteWriter, ChunkType.EXIF, exifBytes)
 
-            /* Write XMP chunk right after the header. */
-            if (xmp != null && ChunkType.IHDR == chunk.chunkType)
-                writeXmpChunk(byteWriter, xmp)
+                if (iptcBytes != null)
+                    writeIptcChunk(byteWriter, iptcBytes)
+
+                if (xmp != null)
+                    writeXmpChunk(byteWriter, xmp)
+            }
         }
 
         byteWriter.close()
