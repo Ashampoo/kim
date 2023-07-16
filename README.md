@@ -35,7 +35,7 @@ implementation("com.ashampoo:kim:0.3.0")
 
 `Kim.readMetadata()` takes `kotlin.ByteArray` & `io.ktor.utils.io.core.Input`
 on all platforms and depending on the platform also `java.io.File`,
-`java.io.InputStream`, `NSData` and `string paths`.
+`java.io.InputStream`, `NSData` and string paths.
 
 ```kotlin
 val bytes: ByteArray = loadBytes()
