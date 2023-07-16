@@ -15,13 +15,15 @@ It's part of [Ashampoo Photos](https://ashampoo.com/photos).
 ## Features
 
 * JPG: Read & Write EXIF, IPTC & XMP
-* PNG: Read & Write `eXIf` chunk & XMP. Also read non-standard EXIF & IPTC from `tEXt`/`zTXt` chunk.
+* PNG: Read & Write `eXIf` chunk & XMP.  
+  Also read non-standard EXIF & IPTC from `tEXt`/`zTXt` chunk.
 * TIFF: Read EXIF & XMP
-* Handling of XMP content through [XMP Core for Kotlin Multiplatform](https://github.com/Ashampoo/xmpcore).
+* Handling of XMP content through
+  [XMP Core for Kotlin Multiplatform](https://github.com/Ashampoo/xmpcore).
 * Convenicent `Kim.update()` API to perform updates to the relevant places.
 
-The future development of features on our part is driven entirely by the
-needs of Ashampoo Photos, which, in turn, is driven by user community feedback.
+The future development of features on our part is driven entirely by the needs
+of Ashampoo Photos, which, in turn, is driven by user community feedback.
 
 ## Installation
 
