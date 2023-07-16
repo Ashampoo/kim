@@ -15,13 +15,15 @@ It's part of [Ashampoo Photos](https://ashampoo.com/photos).
 ## Features
 
 * JPG: Read & Write EXIF, IPTC & XMP
-* PNG: Read & Write `eXIf` chunk & XMP. Also read non-standard EXIF & IPTC from `tEXt`/`zTXt` chunk.
+* PNG: Read & Write `eXIf` chunk & XMP.  
+  Also read non-standard EXIF & IPTC from `tEXt`/`zTXt` chunk.
 * TIFF: Read EXIF & XMP
-* Handling of XMP content through [XMP Core for Kotlin Multiplatform](https://github.com/Ashampoo/xmpcore).
+* Handling of XMP content through
+  [XMP Core for Kotlin Multiplatform](https://github.com/Ashampoo/xmpcore).
 * Convenicent `Kim.update()` API to perform updates to the relevant places.
 
-The future development of features on our part is driven entirely by the
-needs of Ashampoo Photos, which, in turn, is driven by user community feedback.
+The future development of features on our part is driven entirely by the needs
+of Ashampoo Photos, which, in turn, is driven by user community feedback.
 
 ## Installation
 
@@ -29,162 +31,96 @@ needs of Ashampoo Photos, which, in turn, is driven by user community feedback.
 implementation("com.ashampoo:kim:0.3.0")
 ```
 
-## Sample usage in Kotlin (for JVM)
+## Sample usages
 
+### Read metadata
+
+`Kim.readMetadata()` takes `kotlin.ByteArray` & `io.ktor.utils.io.core.Input`
+on all platforms and depending on the platform also `java.io.File`,
+`java.io.InputStream`, `NSData` and string paths.
+
+```kotlin
+val bytes: ByteArray = loadBytes()
+
+val metadata = Kim.readMetadata(bytes)
+
+/* ImageMetadata has a proper toString() similar to the output of ExifTool */
+println(metadata)
+
+val orientation = metadata.findShortValue(TiffTag.TIFF_TAG_ORIENTATION)
+
+println("Orientation: $orientation")
+
+val takenDate = metadata.findStringValue(ExifTag.EXIF_TAG_DATE_TIME_ORIGINAL)
+
+println("Taken date: $takenDate")
 ```
-import com.ashampoo.kim.Kim
-import com.ashampoo.kim.common.convertToPhotoMetadata
-import com.ashampoo.kim.format.jpeg.JpegRewriter
-import com.ashampoo.kim.format.tiff.constants.ExifTag
-import com.ashampoo.kim.format.tiff.constants.TiffTag
-import com.ashampoo.kim.format.tiff.write.TiffOutputSet
-import com.ashampoo.kim.input.JvmInputStreamByteReader
-import com.ashampoo.kim.output.OutputStreamByteWriter
-import com.ashampoo.kim.readMetadata
-import java.io.File
 
-fun main() {
+### Create high level summary object
 
-    val inputFile = File("myphoto.jpg")
+This creates an instance of [PhotosMetadata](src/commonMain/kotlin/com/ashampoo/kim/model/PhotoMetadata.kt).
+It contains the following:
 
-    /*
-     * readMetadata() takes kotlin.ByteArray & io.ktor.utils.io.core.Input
-     * on all platforms and depending on the platform also java.io.File,
-     * java.io.InputStream, NSData and string paths.
-     */
-    val metadata = Kim.readMetadata(inputFile)
+- Image size
+- Orientation
+- Taken date
+- GPS coordinates
+- Camera make & model
+- Lens make & model
+- ISO, Exposure time, F-Number, Focal length
+- Rating
+- Keywords
+- Faces (XMP-mws-rs regions, used by Picasa and others)
+- Persons in image
 
-    if (metadata == null) {
-        println("Image not found: $inputFile")
-        return
-    }
+```kotlin
+val bytes: ByteArray = loadBytes()
 
-    /* ImageMetadata has a proper toString() similar to the output of ExifTool */
-    println(metadata)
+val photoMetadata = Kim.readMetadata(bytes).convertToPhotoMetadata()
+```
 
-    val orientation = metadata.findShortValue(TiffTag.TIFF_TAG_ORIENTATION)
+### Change orientation using low level API
 
-    println("Orientation: $orientation")
+```kotlin
+val metadata = Kim.readMetadata(File("myphoto.jpg"))
 
-    val takenDate = metadata.findStringValue(ExifTag.EXIF_TAG_DATE_TIME_ORIGINAL)
+val outputSet: TiffOutputSet = metadata.exif?.createOutputSet() ?: TiffOutputSet()
 
-    println("Taken date: $takenDate")
+val rootDirectory = outputSet.getOrCreateRootDirectory()
 
-    /*
-     * Convert the raw imageMetadata to a summary object used by Ashampoo Photos.
-     */
-    val photoMetadata = metadata.convertToPhotoMetadata()
+rootDirectory.removeField(TiffTag.TIFF_TAG_ORIENTATION)
+rootDirectory.add(TiffTag.TIFF_TAG_ORIENTATION, 8)
 
-    /* PhotoMetadata is a data class with default toString() */
-    println(photoMetadata)
+val inputStream = File("myphoto.jpg").inputStream()
+val outputStream = File("myphoto_changed.jpg").outputStream()
 
-    /*
-     * Change orientation
-     *
-     * Note: This API will be improved in future versions.
-     */
+OutputStreamByteWriter(
+    File("myphoto_changed.jpg").outputStream()
+).use { outputStreamByteWriter ->
 
-    val outputSet: TiffOutputSet = metadata.exif?.createOutputSet() ?: TiffOutputSet()
-
-    val rootDirectory = outputSet.getOrCreateRootDirectory()
-
-    rootDirectory.removeField(TiffTag.TIFF_TAG_ORIENTATION)
-    rootDirectory.add(TiffTag.TIFF_TAG_ORIENTATION, 8)
-
-    val outputFile = File("myphoto_changed.jpg")
-
-    OutputStreamByteWriter(
-        outputFile.outputStream()
-    ).use { outputStreamByteWriter ->
-
-        JpegRewriter.updateExifMetadataLossless(
-            byteReader = JvmInputStreamByteReader(inputFile.inputStream()),
-            byteWriter = outputStreamByteWriter,
-            outputSet = outputSet
-        )
-    }
+    JpegRewriter.updateExifMetadataLossless(
+        byteReader = JvmInputStreamByteReader(inputStream),
+        byteWriter = outputStreamByteWriter,
+        outputSet = outputSet
+    )
 }
 ```
 
-Also see `JpegUpdaterTest` & `PngUpdaterTest` to see how to perform updates.
+### Change orientation using Kim.update() API
 
-## Sample usage in Java
+```kotlin
+val bytes: ByteArray = loadBytes()
 
-This is the equivalent Java code as shown above.
-
-While it may not be the most aesthetically pleasing, it functions correctly and will
-serve as a helpful starting point if you're still in the process of transitioning to Kotlin.
-
+val newBytes = Kim.update(
+    bytes = bytes,
+    updates = setOf(
+        MetadataUpdate.Orientation(TiffOrientation.ROTATE_RIGHT)
+    )
+)
 ```
-import com.ashampoo.kim.Kim;
-import com.ashampoo.kim.common.PhotoMetadataConverterKt;
-import com.ashampoo.kim.format.ImageMetadata;
-import com.ashampoo.kim.format.jpeg.JpegRewriter;
-import com.ashampoo.kim.format.tiff.constants.ExifTag;
-import com.ashampoo.kim.format.tiff.constants.TiffTag;
-import com.ashampoo.kim.format.tiff.write.TiffOutputDirectory;
-import com.ashampoo.kim.format.tiff.write.TiffOutputSet;
-import com.ashampoo.kim.input.JvmInputStreamByteReader;
-import com.ashampoo.kim.model.PhotoMetadata;
-import com.ashampoo.kim.output.ByteWriter;
-import com.ashampoo.kim.output.OutputStreamByteWriter;
 
-import java.io.*;
-
-public class Main {
-
-    public static void main(String[] args) throws FileNotFoundException {
-
-        File inputFile = new File("myphoto.jpg");
-        File outputFile = new File("myphoto_changed.jpg");
-
-        JvmInputStreamByteReader byteReader = new JvmInputStreamByteReader(
-                new FileInputStream((inputFile))
-        );
-
-        ImageMetadata metadata = Kim.readMetadata(byteReader);
-
-        /* ImageMetadata has a proper toString() similar to the output of ExifTool */
-        System.out.println(metadata);
-
-        /*
-         * Convert the raw imageMetadata to a summary object used by Ashampoo Photos.
-         */
-        PhotoMetadata photoMetadata =
-                PhotoMetadataConverterKt.convertToPhotoMetadata(metadata, false);
-
-        System.out.println(photoMetadata);
-
-        Short orientation = metadata.findShortValue(TiffTag.INSTANCE.getTIFF_TAG_ORIENTATION());
-
-        System.out.println("Orientation: " + orientation);
-
-        String takenDate = metadata.findStringValue(ExifTag.INSTANCE.getEXIF_TAG_DATE_TIME_ORIGINAL());
-
-        System.out.println("Taken date: " + takenDate);
-
-        /*
-         * Change orientation
-         */
-
-        TiffOutputSet outputSet = metadata.getExif() != null ?
-                metadata.getExif().createOutputSet() : new TiffOutputSet();
-
-        TiffOutputDirectory rootDirectory = outputSet.getOrCreateRootDirectory();
-
-        rootDirectory.removeField(TiffTag.INSTANCE.getTIFF_TAG_ORIENTATION());
-        rootDirectory.add(TiffTag.INSTANCE.getTIFF_TAG_ORIENTATION(), (short) 8);
-
-        JvmInputStreamByteReader secondByteReader = new JvmInputStreamByteReader(
-                new FileInputStream((inputFile))
-        );
-
-        ByteWriter byteWriter = new OutputStreamByteWriter(new FileOutputStream(outputFile));
-
-        JpegRewriter.INSTANCE.updateExifMetadataLossless(secondByteReader, byteWriter, outputSet);
-    }
-}
-```
+See [JpegUpdaterTest](src/commonTest/kotlin/com/ashampoo/kim/format/jpeg/JpegUpdaterTest.kt)
+for more samples.
 
 ## Limitations
 
@@ -207,6 +143,6 @@ please feel free to submit a pull request.
 
 ## License
 
-This code is under the [Apache Licence v2](https://www.apache.org/licenses/LICENSE-2.0).
+This code is under the [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0).
 
 See the `NOTICE.txt` file for required notices and attributions.
