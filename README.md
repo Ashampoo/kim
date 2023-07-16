@@ -59,20 +59,17 @@ println("Taken date: $takenDate")
 This creates an instance of [PhotosMetadata](src/commonMain/kotlin/com/ashampoo/kim/model/PhotoMetadata.kt).
 It contains the following:
 
-- image size
-- orientation
-- taken date
+- Image size
+- Orientation
+- Taken date
 - GPS coordinates
-- camera make & model
-- lens make & model
-- iso
-- exposure time
-- f-number
-- focal length
-- rating
-- keywords
-- faces (XMP-mws-rs regions, used by Picasa and others)
-- persons in image
+- Camera make & model
+- Lens make & model
+- ISO, Exposure time, F-Number, Focal length
+- Rating
+- Keywords
+- Faces (XMP-mws-rs regions, used by Picasa and others)
+- Persons in image
 
 ```kotlin
 val bytes: ByteArray = loadBytes()
