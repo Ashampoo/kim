@@ -58,7 +58,7 @@ println("Taken date: $takenDate")
 
 ### Create high level summary object
 
-This creates an instance of [PhotosMetadata](src/commonMain/kotlin/com/ashampoo/kim/model/PhotoMetadata.kt).
+This creates an instance of [PhotoMetadata](src/commonMain/kotlin/com/ashampoo/kim/model/PhotoMetadata.kt).
 It contains the following:
 
 - Image size
@@ -70,7 +70,7 @@ It contains the following:
 - ISO, Exposure time, F-Number, Focal length
 - Rating
 - Keywords
-- Faces (XMP-mws-rs regions, used by Picasa and others)
+- Faces (XMP-mwg-rs regions, used by Picasa and others)
 - Persons in image
 
 ```kotlin
