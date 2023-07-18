@@ -124,6 +124,7 @@ for more samples.
 
 ## Limitations
 
+* No XMP extraction out of TIFF
 * Inability to update EXIF, IPTC and XMP in JPG files simultaneously.
 * Insufficient error handling for broken or non-standard conforming files.
 
