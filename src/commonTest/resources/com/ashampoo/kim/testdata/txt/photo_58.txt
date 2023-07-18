@@ -1,0 +1,2 @@
+File format : RAF
+Resolution  : null

@@ -1,0 +1,2 @@
+File format : CR2
+Resolution  : null
