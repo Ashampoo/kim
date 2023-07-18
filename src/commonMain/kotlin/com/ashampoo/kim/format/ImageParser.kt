@@ -31,10 +31,20 @@ fun interface ImageParser {
 
         fun forFormat(imageFormat: ImageFormat): ImageParser? =
             when (imageFormat) {
+
                 ImageFormat.JPEG -> JpegImageParser
+
                 ImageFormat.PNG -> PngImageParser
-                ImageFormat.TIFF, ImageFormat.CR2 -> TiffImageParser
+
+                ImageFormat.TIFF,
+                ImageFormat.CR2,
+                ImageFormat.NEF,
+                ImageFormat.ARW,
+                ImageFormat.RW2,
+                ImageFormat.ORF -> TiffImageParser
+
                 ImageFormat.RAF -> RafImageParser
+
                 else -> null
             }
     }

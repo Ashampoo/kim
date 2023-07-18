@@ -1,0 +1,62 @@
+File format : TIFF
+Resolution  : 3680 x 2760
+---- TIFF ----
+Version 20306
+Little-endian (Intel, II)
+---- IFD0 ----
+0x0100 ImageWidth = 3680
+0x0101 ImageLength = 2760
+0x0102 BitsPerSample = 16
+0x0103 Compression = 1
+0x0106 PhotometricInterpretation = 1
+0x010e ImageDescription = OLYMPUS DIGITAL CAMERA         
+0x010f Make = OLYMPUS IMAGING CORP.  
+0x0110 Model = XZ-1            
+0x0111 PreviewImageStart = 1478144
+0x0112 Orientation = 1
+0x0115 SamplesPerPixel = 1
+0x0116 RowsPerStrip = 2760
+0x0117 PreviewImageLength = 9942960
+0x011a XResolution = 314/1 (314.0)
+0x011b YResolution = 314/1 (314.0)
+0x011c PlanarConfiguration = 1
+0x0128 ResolutionUnit = 2
+0x0131 Software = Version 1.4                    
+0x0132 DateTime = 2014:12:28 15:50:57
+0x013b Artist = []
+0x8298 Copyright = []
+0x8769 ExifOffset = 290
+0xc4a5 PrintIM = [528 bytes]
+
+---- ExifIFD ----
+0x829a ExposureTime = 1/640 (0.001563)
+0x829d FNumber = 40/10 (4.0)
+0x8822 ExposureProgram = 2
+0x8827 PhotographicSensitivity = 100
+0x9000 ExifVersion = [0x30, 0x32, 0x32, 0x31]
+0x9003 DateTimeOriginal = 2014:12:28 15:50:57
+0x9004 DateTimeDigitized = 2014:12:28 15:50:57
+0x9204 ExposureCompensation = 0/10 (0.0)
+0x9205 MaxApertureValue = 170/100 (1.7)
+0x9207 MeteringMode = 2
+0x9208 LightSource = 0
+0x9209 Flash = 24
+0x920a FocalLength = 1527/100 (15.27)
+0x927c MakerNote = [1474972 bytes]
+0x9286 UserComment =                                                                                                                      
+0xa000 FlashpixVersion = [0x30, 0x31, 0x30, 0x30]
+0x00-1 Unknown = 1
+0xa300 FileSource = 3
+0xa302 CFAPattern = [0x02, 0x00, 0x02, 0x00, 0x00, 0x01, 0x01, 0x02]
+0xa401 CustomRendered = 1
+0xa402 ExposureMode = 0
+0xa403 WhiteBalance = 1
+0xa404 DigitalZoomRatio = 100/100 (1.0)
+0xa405 FocalLengthIn35mmFormat = 71
+0xa406 SceneCaptureType = 0
+0xa407 GainControl = 0
+0xa408 Contrast = 0
+0xa409 Saturation = 0
+0xa40a Sharpness = 0
+
+

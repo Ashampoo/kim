@@ -35,7 +35,11 @@ enum class ImageFormat(
     TIFF("image/tiff", "public.tiff", setOf("tif", "tiff")),
     HEIC("image/heic", "public.heic", setOf("heic")),
     CR2("image/x-canon-cr2", "com.canon.cr2-raw-image", setOf("cr2")),
-    RAF("image/x-fuji-raf", "com.fuji.raw-image", setOf("raf"));
+    RAF("image/x-fuji-raf", "com.fuji.raw-image", setOf("raf")),
+    NEF("image/x-nikon-nef", "com.nikon.raw-image", setOf("nef")),
+    ARW("image/x-sony-arw", "com.sony.raw-image", setOf("arw")),
+    RW2("image/x-panasonic-rw2", "com.panasonic.raw-image", setOf("rw2")),
+    ORF("image/x-olympus-orf", "com.olympus.raw-image", setOf("orf"));
 
     fun isMetadataEmbeddable(): Boolean =
         this == ImageFormat.JPEG || this == ImageFormat.PNG
@@ -136,8 +140,13 @@ enum class ImageFormat(
                 /* Check other common formats. */
                 bytes.startsWith(ImageFormatMagicNumbers.png) -> ImageFormat.PNG
                 bytes.startsWithNullable(ImageFormatMagicNumbers.webP) -> ImageFormat.WEBP
-                /* Canon CR2 *must* be checked before TIFF, because it's based on TIFF */
+                /* Canon CR2 et al *must* be checked before TIFF, because they are based on TIFF */
                 bytes.startsWith(ImageFormatMagicNumbers.cr2) -> ImageFormat.CR2
+                bytes.startsWith(ImageFormatMagicNumbers.arw) -> ImageFormat.ARW
+                bytes.startsWith(ImageFormatMagicNumbers.rw2) -> ImageFormat.RW2
+                bytes.startsWith(ImageFormatMagicNumbers.orf_iiro) -> ImageFormat.ORF
+                bytes.startsWith(ImageFormatMagicNumbers.orf_mmor) -> ImageFormat.ORF
+                bytes.startsWith(ImageFormatMagicNumbers.orf_iirs) -> ImageFormat.ORF
                 bytes.startsWith(ImageFormatMagicNumbers.raf) -> ImageFormat.RAF
                 /* Check TIFF after the RAW files. */
                 bytes.startsWith(ImageFormatMagicNumbers.tiffLittleEndian) -> ImageFormat.TIFF

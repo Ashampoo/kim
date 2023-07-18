@@ -25,7 +25,13 @@ import kotlin.test.fail
 class XmpExtractionTest {
 
     val indicesWithoutXmp = setOf(
-        2, 20, 48, 60, 61
+        2, 20, 48,
+        KimTestData.HEIC_TEST_IMAGE_INDEX,
+        KimTestData.GIF_TEST_IMAGE_INDEX,
+        KimTestData.NEF_TEST_IMAGE_INDEX,
+        KimTestData.ARW_TEST_IMAGE_INDEX,
+        KimTestData.RW2_TEST_IMAGE_INDEX,
+        KimTestData.ORF_TEST_IMAGE_INDEX
     )
 
     // TODO Support these files as they have XMP

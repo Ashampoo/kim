@@ -28,7 +28,7 @@ object KimTestData {
 
     private const val RESOURCE_PATH: String = "src/commonTest/resources/com/ashampoo/kim/testdata"
 
-    const val TEST_PHOTO_COUNT: Int = 61
+    const val TEST_PHOTO_COUNT: Int = 65
     const val HIGHEST_JPEG_INDEX: Int = 50
 
     const val PNG_TEST_IMAGE_INDEX: Int = 51
@@ -42,6 +42,10 @@ object KimTestData {
     const val WEBP_TEST_IMAGE_INDEX: Int = 59
     const val HEIC_TEST_IMAGE_INDEX: Int = 60
     const val GIF_TEST_IMAGE_INDEX: Int = 61
+    const val NEF_TEST_IMAGE_INDEX: Int = 62
+    const val ARW_TEST_IMAGE_INDEX: Int = 63
+    const val RW2_TEST_IMAGE_INDEX: Int = 64
+    const val ORF_TEST_IMAGE_INDEX: Int = 65
 
     @Suppress("MagicNumber")
     val photoIdsWithExifThumbnail: Set<Int> = setOf(
@@ -51,7 +55,10 @@ object KimTestData {
         PNG_TEST_IMAGE_INDEX,
         PNG_GIMP_TEST_IMAGE_INDEX,
         CR2_TEST_IMAGE_INDEX,
-        RAF_TEST_IMAGE_INDEX
+        RAF_TEST_IMAGE_INDEX,
+        ARW_TEST_IMAGE_INDEX,
+        RW2_TEST_IMAGE_INDEX,
+        ORF_TEST_IMAGE_INDEX
     )
 
     val pngPhotoIds: Set<Int> = setOf(
@@ -72,6 +79,10 @@ object KimTestData {
         PNG_TEST_IMAGE_INDEX -> "png"
         PNG_APPLE_PREVIEW_TEST_IMAGE_INDEX -> "png"
         PNG_GIMP_TEST_IMAGE_INDEX -> "png"
+        NEF_TEST_IMAGE_INDEX -> "nef"
+        ARW_TEST_IMAGE_INDEX -> "arw"
+        RW2_TEST_IMAGE_INDEX -> "rw2"
+        ORF_TEST_IMAGE_INDEX -> "orf"
         else -> "jpg"
     }
 

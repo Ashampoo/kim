@@ -23,7 +23,6 @@ import com.ashampoo.kim.common.toInt
 import com.ashampoo.kim.format.tiff.constants.ExifTag
 import com.ashampoo.kim.format.tiff.constants.TiffConstants
 import com.ashampoo.kim.format.tiff.constants.TiffConstants.TIFF_ENTRY_MAX_VALUE_LENGTH
-import com.ashampoo.kim.format.tiff.constants.TiffConstants.TIFF_VERSION
 import com.ashampoo.kim.format.tiff.fieldtypes.FieldType
 import com.ashampoo.kim.format.tiff.fieldtypes.FieldType.Companion.getFieldType
 import com.ashampoo.kim.input.ByteReader
@@ -88,9 +87,6 @@ class TiffReader : BinaryFileParser() {
         byteOrder = getTiffByteOrder(byteOrder1)
 
         val tiffVersion = byteReader.read2BytesAsInt("TIFF version", byteOrder)
-
-        if (tiffVersion != TIFF_VERSION)
-            throw ImageReadException("Unknown Tiff Version: $tiffVersion")
 
         val offsetToFirstIFD =
             0xFFFFFFFFL and byteReader.read4BytesAsInt("Offset to first IFD", byteOrder).toLong()

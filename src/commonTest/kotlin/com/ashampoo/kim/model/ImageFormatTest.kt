@@ -32,13 +32,18 @@ class ImageFormatTest {
                 index == KimTestData.GIF_TEST_IMAGE_INDEX -> ImageFormat.GIF
                 index == KimTestData.WEBP_TEST_IMAGE_INDEX -> ImageFormat.WEBP
                 index == KimTestData.PNG_TEST_IMAGE_INDEX -> ImageFormat.PNG
-                index == KimTestData.CR2_TEST_IMAGE_INDEX -> ImageFormat.CR2
-                index == KimTestData.RAF_TEST_IMAGE_INDEX -> ImageFormat.RAF
                 index == KimTestData.TIFF_NONE_TEST_IMAGE_INDEX -> ImageFormat.TIFF
                 index == KimTestData.TIFF_ZIP_TEST_IMAGE_INDEX -> ImageFormat.TIFF
                 index == KimTestData.TIFF_LZW_TEST_IMAGE_INDEX -> ImageFormat.TIFF
                 index == KimTestData.PNG_APPLE_PREVIEW_TEST_IMAGE_INDEX -> ImageFormat.PNG
                 index == KimTestData.PNG_GIMP_TEST_IMAGE_INDEX -> ImageFormat.PNG
+                index == KimTestData.CR2_TEST_IMAGE_INDEX -> ImageFormat.CR2
+                index == KimTestData.RAF_TEST_IMAGE_INDEX -> ImageFormat.RAF
+                /* NEF has no unique magic bytes. */
+                index == KimTestData.NEF_TEST_IMAGE_INDEX -> ImageFormat.TIFF
+                index == KimTestData.ARW_TEST_IMAGE_INDEX -> ImageFormat.ARW
+                index == KimTestData.RW2_TEST_IMAGE_INDEX -> ImageFormat.RW2
+                index == KimTestData.ORF_TEST_IMAGE_INDEX -> ImageFormat.ORF
                 else -> null
             }
 
@@ -100,6 +105,26 @@ class ImageFormatTest {
             expected = ImageFormat.RAF,
             actual = ImageFormat.byMimeType("image/x-fuji-raf")
         )
+
+        assertEquals(
+            expected = ImageFormat.NEF,
+            actual = ImageFormat.byMimeType("image/x-nikon-nef")
+        )
+
+        assertEquals(
+            expected = ImageFormat.ARW,
+            actual = ImageFormat.byMimeType("image/x-sony-arw")
+        )
+
+        assertEquals(
+            expected = ImageFormat.RW2,
+            actual = ImageFormat.byMimeType("image/x-panasonic-rw2")
+        )
+
+        assertEquals(
+            expected = ImageFormat.ORF,
+            actual = ImageFormat.byMimeType("image/x-olympus-orf")
+        )
     }
 
     @Test
@@ -145,6 +170,26 @@ class ImageFormatTest {
         assertEquals(
             expected = ImageFormat.RAF,
             actual = ImageFormat.byUniformTypeIdentifier("com.fuji.raw-image")
+        )
+
+        assertEquals(
+            expected = ImageFormat.NEF,
+            actual = ImageFormat.byUniformTypeIdentifier("com.nikon.raw-image")
+        )
+
+        assertEquals(
+            expected = ImageFormat.ARW,
+            actual = ImageFormat.byUniformTypeIdentifier("com.sony.raw-image")
+        )
+
+        assertEquals(
+            expected = ImageFormat.RW2,
+            actual = ImageFormat.byUniformTypeIdentifier("com.panasonic.raw-image")
+        )
+
+        assertEquals(
+            expected = ImageFormat.ORF,
+            actual = ImageFormat.byUniformTypeIdentifier("com.olympus.raw-image")
         )
     }
 
@@ -206,6 +251,26 @@ class ImageFormatTest {
         assertEquals(
             expected = ImageFormat.RAF,
             actual = ImageFormat.byFileNameExtension("image.raf")
+        )
+
+        assertEquals(
+            expected = ImageFormat.NEF,
+            actual = ImageFormat.byFileNameExtension("image.nef")
+        )
+
+        assertEquals(
+            expected = ImageFormat.ARW,
+            actual = ImageFormat.byFileNameExtension("image.arw")
+        )
+
+        assertEquals(
+            expected = ImageFormat.RW2,
+            actual = ImageFormat.byFileNameExtension("image.rw2")
+        )
+
+        assertEquals(
+            expected = ImageFormat.ORF,
+            actual = ImageFormat.byFileNameExtension("image.orf")
         )
     }
 }

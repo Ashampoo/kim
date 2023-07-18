@@ -1,0 +1,70 @@
+File format : TIFF
+Resolution  : 160 x 120
+---- TIFF ----
+Version 42
+Big-endian (Motorola, MM)
+---- IFD0 ----
+0x00fe NewSubfileType = 1
+0x0100 ImageWidth = 160
+0x0101 ImageLength = 120
+0x0102 BitsPerSample = [8, 8, 8]
+0x0103 Compression = 1
+0x0106 PhotometricInterpretation = 2
+0x010f Make = NIKON CORPORATION
+0x0110 Model = NIKON D5100
+0x0111 PreviewImageStart = 124144
+0x0112 Orientation = 1
+0x0115 SamplesPerPixel = 3
+0x0116 RowsPerStrip = 120
+0x0117 PreviewImageLength = 57600
+0x011a XResolution = 300/1 (300.0)
+0x011b YResolution = 300/1 (300.0)
+0x011c PlanarConfiguration = 1
+0x0128 ResolutionUnit = 2
+0x0131 Software = Ver.1.01 
+0x0132 DateTime = 2014:08:12 09:30:58
+0x00-1 Unknown = [181744, 181864]
+0x0214 ReferenceBlackWhite = [0/1 (0.0), 255/1 (255.0), 0/1 (0.0), 255/1 (255.0), 0/1 (0.0), 255/1 (255.0)]
+0x8769 ExifOffset = 480
+0x8825 GPSInfo = 124124
+0x00-1 Unknown = 2014:08:12 09:30:58
+0x00-1 Unknown = [0x01, 0x00, 0x00, 0x00]
+
+---- ExifIFD ----
+0x829a ExposureTime = 10/1600 (0.00625)
+0x829d FNumber = 63/10 (6.3)
+0x8822 ExposureProgram = 0
+0x8827 PhotographicSensitivity = 200
+0x00-1 Unknown = 2
+0x9003 DateTimeOriginal = 2014:08:12 09:30:58
+0x9004 DateTimeDigitized = 2014:08:12 09:30:58
+0x9204 ExposureCompensation = 0/6 (0.0)
+0x9205 MaxApertureValue = 44/10 (4.4)
+0x9207 MeteringMode = 5
+0x9208 LightSource = 0
+0x9209 Flash = 16
+0x920a FocalLength = 300/10 (30.0)
+0x927c MakerNote = [123100 bytes]
+0x9286 UserComment =                                     
+0x9290 SubSecTime = 10
+0x9291 SubSecTimeOriginal = 10
+0x9292 SubSecTimeDigitized = 10
+0xa217 SensingMethod = 2
+0xa300 FileSource = 3
+0xa301 SceneType = 1
+0xa302 CFAPattern = [0x00, 0x02, 0x00, 0x02, 0x00, 0x01, 0x01, 0x02]
+0xa401 CustomRendered = 0
+0xa402 ExposureMode = 0
+0xa403 WhiteBalance = 0
+0xa404 DigitalZoomRatio = 1/1 (1.0)
+0xa405 FocalLengthIn35mmFormat = 45
+0xa406 SceneCaptureType = 0
+0xa407 GainControl = 0
+0xa408 Contrast = 0
+0xa409 Saturation = 0
+0xa40a Sharpness = 0
+0xa40c SubjectDistanceRange = 0
+
+---- GPS ----
+
+
