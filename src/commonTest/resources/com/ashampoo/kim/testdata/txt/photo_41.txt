@@ -57,7 +57,7 @@ Big-endian (Motorola, MM)
 
 ---- GPS ----
 
----- Sub ----
+---- SubIFD ----
 0x0103 Compression = 6
 0x011a XResolution = 300/1 (300.0)
 0x011b YResolution = 300/1 (300.0)

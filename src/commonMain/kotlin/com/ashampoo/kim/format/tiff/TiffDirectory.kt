@@ -173,7 +173,7 @@ class TiffDirectory(
             return when (type) {
                 TiffConstants.DIRECTORY_TYPE_UNKNOWN -> "Unknown"
                 TiffConstants.DIRECTORY_TYPE_ROOT -> "IFD0"
-                TiffConstants.DIRECTORY_TYPE_SUB -> "Sub"
+                TiffConstants.DIRECTORY_TYPE_SUB -> "SubIFD"
                 TiffConstants.DIRECTORY_TYPE_THUMBNAIL -> "Thumbnail"
                 TiffConstants.DIRECTORY_TYPE_EXIF -> "ExifIFD"
                 TiffConstants.DIRECTORY_TYPE_GPS -> "GPS"

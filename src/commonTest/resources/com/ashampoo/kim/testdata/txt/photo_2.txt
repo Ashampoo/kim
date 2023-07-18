@@ -58,7 +58,7 @@ Little-endian (Intel, II)
 0xa431 BodySerialNumber = 8020595
 0xa432 LensSpecification = [700/10 (70.0), 2000/10 (200.0), 28/10 (2.8), 28/10 (2.8)]
 
----- Sub ----
+---- SubIFD ----
 0x00fe NewSubfileType = 1
 0x0100 ImageWidth = 174
 0x0101 ImageLength = 256

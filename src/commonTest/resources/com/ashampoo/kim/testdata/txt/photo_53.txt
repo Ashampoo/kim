@@ -65,7 +65,7 @@ Little-endian (Intel, II)
 0x0003 GPSLongitudeRef = E
 0x0004 GPSLongitude = [36/1 (36.0), 57808914/1000000 (57.808914), 0/1 (0.0)]
 
----- Sub ----
+---- SubIFD ----
 0x00fe NewSubfileType = 1
 0x0100 ImageWidth = 256
 0x0101 ImageLength = 171

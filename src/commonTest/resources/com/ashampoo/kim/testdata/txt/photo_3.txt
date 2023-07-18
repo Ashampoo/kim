@@ -52,7 +52,7 @@ Little-endian (Intel, II)
 0xa434 LensModel = OLYMPUS M.30mm F3.5 Macro
 0xa435 LensSerialNumber = ACBA37456
 
----- Sub ----
+---- SubIFD ----
 0x0103 Compression = 6
 0x011a XResolution = 72/1 (72.0)
 0x011b YResolution = 72/1 (72.0)
