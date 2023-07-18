@@ -23,6 +23,7 @@ import com.ashampoo.kim.format.tiff.constants.TiffDirectoryType.TIFF_DIRECTORY_I
 import com.ashampoo.kim.format.tiff.taginfos.TagInfoAscii
 import com.ashampoo.kim.format.tiff.taginfos.TagInfoByte
 import com.ashampoo.kim.format.tiff.taginfos.TagInfoBytes
+import com.ashampoo.kim.format.tiff.taginfos.TagInfoDirectories
 import com.ashampoo.kim.format.tiff.taginfos.TagInfoDirectory
 import com.ashampoo.kim.format.tiff.taginfos.TagInfoDouble
 import com.ashampoo.kim.format.tiff.taginfos.TagInfoGpsText
@@ -59,7 +60,7 @@ object ExifTag {
         TIFF_DIRECTORY_IFD0
     )
 
-    val EXIF_TAG_SUB_IFDS_OFFSET = TagInfoDirectory(
+    val EXIF_TAG_SUB_IFDS_OFFSET = TagInfoDirectories(
         "SubIFD", 0x014a,
         TIFF_DIRECTORY_IFD0
     )

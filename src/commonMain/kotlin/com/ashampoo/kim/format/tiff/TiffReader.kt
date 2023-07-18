@@ -25,6 +25,8 @@ import com.ashampoo.kim.format.tiff.constants.TiffConstants
 import com.ashampoo.kim.format.tiff.constants.TiffConstants.TIFF_ENTRY_MAX_VALUE_LENGTH
 import com.ashampoo.kim.format.tiff.fieldtypes.FieldType
 import com.ashampoo.kim.format.tiff.fieldtypes.FieldType.Companion.getFieldType
+import com.ashampoo.kim.format.tiff.taginfos.TagInfoLong
+import com.ashampoo.kim.format.tiff.taginfos.TagInfoLongs
 import com.ashampoo.kim.input.ByteReader
 import com.ashampoo.kim.input.RandomAccessByteReader
 
@@ -33,13 +35,15 @@ class TiffReader : BinaryFileParser() {
     private val offsetFields = listOf(
         ExifTag.EXIF_TAG_EXIF_OFFSET,
         ExifTag.EXIF_TAG_GPSINFO,
-        ExifTag.EXIF_TAG_INTEROP_OFFSET
+        ExifTag.EXIF_TAG_INTEROP_OFFSET,
+        ExifTag.EXIF_TAG_SUB_IFDS_OFFSET
     )
 
     private val directoryTypes = listOf(
         TiffConstants.DIRECTORY_TYPE_EXIF,
         TiffConstants.DIRECTORY_TYPE_GPS,
-        TiffConstants.DIRECTORY_TYPE_INTEROPERABILITY
+        TiffConstants.DIRECTORY_TYPE_INTEROPERABILITY,
+        TiffConstants.DIRECTORY_TYPE_SUB
     )
 
     fun getTiffByteOrder(byteOrderByte: Int): ByteOrder =
@@ -193,29 +197,37 @@ class TiffReader : BinaryFileParser() {
 
             if (field != null) {
 
-                var subDirectoryRead = false
-
-                try {
-
-                    val subDirectoryOffset = directory.getFieldValue(offsetField).toLong()
-                    val subDirectoryType = directoryTypes[index]
-
-                    subDirectoryRead = readDirectory(
-                        byteReader = byteReader,
-                        directoryOffset = subDirectoryOffset,
-                        dirType = subDirectoryType,
-                        collector = collector,
-                        visitedOffsets = visitedOffsets
-                    )
-
-                } catch (ignore: ImageReadException) {
-                    /*
-                     * If the subdirectory is broken we remove the field.
-                     */
+                val subDirOffsets: IntArray = when (offsetField) {
+                    is TagInfoLong -> intArrayOf(directory.getFieldValue(offsetField))
+                    is TagInfoLongs -> directory.getFieldValue(offsetField)
+                    else -> error("Unknown type: $offsetField")
                 }
 
-                if (!subDirectoryRead)
-                    fields.remove(field)
+                for (subDirOffset in subDirOffsets) {
+
+                    var subDirectoryRead = false
+
+                    try {
+
+                        val subDirectoryType = directoryTypes[index]
+
+                        subDirectoryRead = readDirectory(
+                            byteReader = byteReader,
+                            directoryOffset = subDirOffset.toLong(),
+                            dirType = subDirectoryType,
+                            collector = collector,
+                            visitedOffsets = visitedOffsets
+                        )
+
+                    } catch (ignore: ImageReadException) {
+                        /*
+                         * If the subdirectory is broken we remove the field.
+                         */
+                    }
+
+                    if (!subDirectoryRead)
+                        fields.remove(field)
+                }
             }
         }
 

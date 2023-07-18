@@ -67,4 +67,33 @@ Big-endian (Motorola, MM)
 
 ---- GPS ----
 
+---- SubIFD ----
+0x00fe NewSubfileType = 1
+0x0103 Compression = 6
+0x011a XResolution = 300/1 (300.0)
+0x011b YResolution = 300/1 (300.0)
+0x0128 ResolutionUnit = 2
+0x0201 JpgFromRawStart = 182144
+0x0202 JpgFromRawLength = 1470727
+0x0213 YCbCrPositioning = 2
+
+---- SubIFD ----
+0x00fe NewSubfileType = 0
+0x0100 ImageWidth = 4992
+0x0101 ImageLength = 3280
+0x0102 BitsPerSample = 14
+0x0103 Compression = -30823
+0x0106 PhotometricInterpretation = -32733
+0x0111 PreviewImageStart = 1652896
+0x0115 SamplesPerPixel = 1
+0x0116 RowsPerStrip = 3280
+0x0117 PreviewImageLength = 15527989
+0x011a XResolution = 300/1 (300.0)
+0x011b YResolution = 300/1 (300.0)
+0x011c PlanarConfiguration = 1
+0x0128 ResolutionUnit = 2
+0x828d Unknown = [2, 2]
+0x828e Unknown = [0x00, 0x01, 0x01, 0x02]
+0x9217 Unknown = 2
+
 

@@ -24,6 +24,7 @@ import com.ashampoo.kim.format.tiff.constants.TiffTag
 import com.ashampoo.kim.format.tiff.taginfos.TagInfo
 import com.ashampoo.kim.format.tiff.taginfos.TagInfoBytes
 import com.ashampoo.kim.format.tiff.taginfos.TagInfoLong
+import com.ashampoo.kim.format.tiff.taginfos.TagInfoLongs
 import com.ashampoo.kim.format.tiff.write.TiffOutputDirectory
 import com.ashampoo.kim.format.tiff.write.TiffOutputField
 
@@ -99,6 +100,18 @@ class TiffDirectory(
 
         if (field.count != 1L)
             throw ImageReadException("Field ${tag.name} has wrong count ${field.count}")
+
+        return tag.getValue(field.byteOrder, field.byteArrayValue)
+    }
+
+    @Suppress("ThrowsCount")
+    fun getFieldValue(tag: TagInfoLongs): IntArray {
+
+        val field = findField(tag)
+            ?: throw ImageReadException("Required field ${tag.name} is missing")
+
+        if (!tag.dataTypes.contains(field.fieldType))
+            throw ImageReadException("Required field ${tag.name} has incorrect type ${field.fieldType.name}")
 
         return tag.getValue(field.byteOrder, field.byteArrayValue)
     }
