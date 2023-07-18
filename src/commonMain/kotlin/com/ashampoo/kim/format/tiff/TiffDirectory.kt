@@ -85,16 +85,6 @@ class TiffDirectory(
             return null
         }
 
-        if (!tag.dataTypes.contains(field.fieldType)) {
-
-            if (mustExist)
-                throw ImageReadException(
-                    "Required field ${tag.name} has incorrect type ${field.fieldType.name}"
-                )
-
-            return null
-        }
-
         return field.byteArrayValue
     }
 
