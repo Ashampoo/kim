@@ -19,7 +19,7 @@ Little-endian (Intel, II)
 0x829d FNumber = 28/10 (2.8)
 0x8822 ExposureProgram = 3
 0x8827 PhotographicSensitivity = 500
-0x00-1 Unknown = 1
+0x8830 Unknown = 1
 0x9000 ExifVersion = [0x30, 0x32, 0x33, 0x30]
 0x9003 DateTimeOriginal = 2018:07:13 19:38:07
 0x9004 DateTimeDigitized = 2018:07:13 19:38:07
@@ -31,7 +31,7 @@ Little-endian (Intel, II)
 0x9208 LightSource = 0
 0x9209 Flash = 24
 0x920a FocalLength = 150/1 (150.0)
-0x00-1 Unknown = 1
+0xa001 Unknown = 1
 0xa20e FocalPlaneXResolution = 87196351/32768 (2661.021454)
 0xa20f FocalPlaneYResolution = 87196351/32768 (2661.021454)
 0xa210 FocalPlaneResolutionUnit = 3
@@ -52,7 +52,7 @@ Little-endian (Intel, II)
 0xa434 LensModel = OLYMPUS M.40-150mm F2.8
 0xa435 LensSerialNumber = ABV25833600
 
----- Sub ----
+---- SubIFD ----
 0x0103 Compression = 6
 0x011a XResolution = 72/1 (72.0)
 0x011b YResolution = 72/1 (72.0)

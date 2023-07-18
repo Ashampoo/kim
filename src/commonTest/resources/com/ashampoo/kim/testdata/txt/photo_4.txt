@@ -18,12 +18,12 @@ Little-endian (Intel, II)
 0x829d FNumber = 56/10 (5.6)
 0x8822 ExposureProgram = 1
 0x8827 PhotographicSensitivity = 1600
-0x00-1 Unknown = 2
-0x00-1 Unknown = 1600
+0x8830 Unknown = 2
+0x8832 Unknown = 1600
 0x9000 ExifVersion = [0x30, 0x32, 0x33, 0x31]
 0x9003 DateTimeOriginal = 2019:12:23 01:28:28
 0x9004 DateTimeDigitized = 2019:12:23 01:28:28
-0x00-1 Unknown = -05:00
+0x9010 Unknown = -05:00
 0x9201 ShutterSpeedValue = 9321928/1000000 (9.321928)
 0x9202 ApertureValue = 4970854/1000000 (4.970854)
 0x9204 ExposureCompensation = 0/1 (0.0)
@@ -33,7 +33,7 @@ Little-endian (Intel, II)
 0x920a FocalLength = 18/1 (18.0)
 0x9291 SubSecTimeOriginal = 23
 0x9292 SubSecTimeDigitized = 23
-0x00-1 Unknown = -1
+0xa001 Unknown = -1
 0xa20e FocalPlaneXResolution = 5184000/894 (5798.657718)
 0xa20f FocalPlaneYResolution = 3456000/597 (5788.944724)
 0xa210 FocalPlaneResolutionUnit = 2
@@ -46,7 +46,7 @@ Little-endian (Intel, II)
 0xa434 LensModel = EF-S18-55mm f/3.5-5.6 IS STM
 0xa435 LensSerialNumber = 0000070a01
 
----- Sub ----
+---- SubIFD ----
 0x0103 Compression = 6
 0x011a XResolution = 72/1 (72.0)
 0x011b YResolution = 72/1 (72.0)

@@ -28,8 +28,8 @@ Little-endian (Intel, II)
 0x829d FNumber = 71/10 (7.1)
 0x8822 ExposureProgram = 1
 0x8827 PhotographicSensitivity = 250
-0x00-1 Unknown = 2
-0x00-1 Unknown = 250
+0x8830 Unknown = 2
+0x8832 Unknown = 250
 0x9000 ExifVersion = [0x30, 0x32, 0x33, 0x30]
 0x9003 DateTimeOriginal = 2019:07:14 09:21:11
 0x9004 DateTimeDigitized = 2019:07:14 09:21:11
@@ -65,7 +65,7 @@ Little-endian (Intel, II)
 0x0003 GPSLongitudeRef = E
 0x0004 GPSLongitude = [36/1 (36.0), 57808914/1000000 (57.808914), 0/1 (0.0)]
 
----- Sub ----
+---- SubIFD ----
 0x00fe NewSubfileType = 1
 0x0100 ImageWidth = 256
 0x0101 ImageLength = 171

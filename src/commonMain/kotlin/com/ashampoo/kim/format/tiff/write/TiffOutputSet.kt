@@ -71,7 +71,7 @@ class TiffOutputSet(
         /* The EXIF directory requires root directory. */
         getOrCreateRootDirectory()
 
-        return findDirectory(TiffConstants.DIRECTORY_TYPE_EXIF) ?: addExifDirectory()
+        return findDirectory(TiffConstants.TIFF_EXIF_IFD) ?: addExifDirectory()
     }
 
     fun getOrCreateGPSDirectory(): TiffOutputDirectory {
@@ -79,7 +79,7 @@ class TiffOutputSet(
         /* The GPS directory requires EXIF directory */
         getOrCreateExifDirectory()
 
-        return findDirectory(TiffConstants.DIRECTORY_TYPE_GPS) ?: addGPSDirectory()
+        return findDirectory(TiffConstants.TIFF_GPS) ?: addGPSDirectory()
     }
 
     fun findDirectory(directoryType: Int): TiffOutputDirectory? =
@@ -220,8 +220,8 @@ class TiffOutputSet(
         addDirectory(TiffOutputDirectory(TiffConstants.DIRECTORY_TYPE_ROOT, byteOrder))
 
     fun addExifDirectory(): TiffOutputDirectory =
-        addDirectory(TiffOutputDirectory(TiffConstants.DIRECTORY_TYPE_EXIF, byteOrder))
+        addDirectory(TiffOutputDirectory(TiffConstants.TIFF_EXIF_IFD, byteOrder))
 
     fun addGPSDirectory(): TiffOutputDirectory =
-        addDirectory(TiffOutputDirectory(TiffConstants.DIRECTORY_TYPE_GPS, byteOrder))
+        addDirectory(TiffOutputDirectory(TiffConstants.TIFF_GPS, byteOrder))
 }

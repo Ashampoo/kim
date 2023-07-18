@@ -24,6 +24,21 @@ import kotlin.test.fail
 
 class XmpExtractionTest {
 
+    val indicesWithoutXmp = setOf(
+        2, 20, 48,
+        KimTestData.HEIC_TEST_IMAGE_INDEX,
+        KimTestData.GIF_TEST_IMAGE_INDEX,
+        KimTestData.NEF_TEST_IMAGE_INDEX,
+        KimTestData.ARW_TEST_IMAGE_INDEX,
+        KimTestData.RW2_TEST_IMAGE_INDEX,
+        KimTestData.ORF_TEST_IMAGE_INDEX
+    )
+
+    // TODO Support these files as they have XMP
+    val indicesUnsupported = setOf(
+        59
+    )
+
     /**
      * Regression test based on a fixed small set of test files.
      */
@@ -32,17 +47,17 @@ class XmpExtractionTest {
     fun testExtractXmp() {
 
         @Suppress("LoopWithTooManyJumpStatements")
-        for (index in 1..53) {
+        for (index in 1..KimTestData.TEST_PHOTO_COUNT) {
 
             /* Skip files without embedded XMP */
-            if (index == 2 || index == 20 || index == 48)
+            if (indicesWithoutXmp.contains(index) || indicesUnsupported.contains(index))
                 continue
 
             // TODO Handle broken file (bad IFD1)
             if (index == 21)
                 continue
 
-            val bytes = KimTestData.getHeaderBytesOf(index)
+            val bytes = KimTestData.getBytesOf(index)
 
             val actualXmp = Kim.readMetadata(bytes)?.xmp
 

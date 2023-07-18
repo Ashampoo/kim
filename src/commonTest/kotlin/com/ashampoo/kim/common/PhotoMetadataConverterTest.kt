@@ -38,7 +38,7 @@ class PhotoMetadataConverterTest {
 
         val metadataMap = mutableMapOf<String, PhotoMetadata>()
 
-        for (index in 1..56) {
+        for (index in 1..KimTestData.TEST_PHOTO_COUNT) {
 
             // TODO Handle broken file (bad IFD1)
             if (index == 21)
@@ -58,11 +58,15 @@ class PhotoMetadataConverterTest {
         metadataMap: MutableMap<String, PhotoMetadata>
     ) {
 
-        /* Get full bytes for TIFF as we don't have header extraction. */
-        val bytes = if (index in 54..56)
+        /* For Non-JPG we get the full bytes. */
+        val bytes = if (index > KimTestData.HIGHEST_JPEG_INDEX)
             KimTestData.getBytesOf(index)
         else
             KimTestData.getHeaderBytesOf(index)
+
+        /* Skip HEIC as it's not supported right now. */
+        if (index == KimTestData.HEIC_TEST_IMAGE_INDEX)
+            return
 
         val photoMetadata = Kim.readMetadata(bytes)?.convertToPhotoMetadata()
 

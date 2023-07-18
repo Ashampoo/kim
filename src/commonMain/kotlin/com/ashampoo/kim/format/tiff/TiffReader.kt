@@ -22,10 +22,15 @@ import com.ashampoo.kim.common.ImageReadException
 import com.ashampoo.kim.common.toInt
 import com.ashampoo.kim.format.tiff.constants.ExifTag
 import com.ashampoo.kim.format.tiff.constants.TiffConstants
+import com.ashampoo.kim.format.tiff.constants.TiffConstants.DIRECTORY_TYPE_SUB
+import com.ashampoo.kim.format.tiff.constants.TiffConstants.EXIF_SUB_IFD1
+import com.ashampoo.kim.format.tiff.constants.TiffConstants.EXIF_SUB_IFD2
+import com.ashampoo.kim.format.tiff.constants.TiffConstants.EXIF_SUB_IFD3
 import com.ashampoo.kim.format.tiff.constants.TiffConstants.TIFF_ENTRY_MAX_VALUE_LENGTH
-import com.ashampoo.kim.format.tiff.constants.TiffConstants.TIFF_VERSION
 import com.ashampoo.kim.format.tiff.fieldtypes.FieldType
 import com.ashampoo.kim.format.tiff.fieldtypes.FieldType.Companion.getFieldType
+import com.ashampoo.kim.format.tiff.taginfos.TagInfoLong
+import com.ashampoo.kim.format.tiff.taginfos.TagInfoLongs
 import com.ashampoo.kim.input.ByteReader
 import com.ashampoo.kim.input.RandomAccessByteReader
 
@@ -34,13 +39,15 @@ class TiffReader : BinaryFileParser() {
     private val offsetFields = listOf(
         ExifTag.EXIF_TAG_EXIF_OFFSET,
         ExifTag.EXIF_TAG_GPSINFO,
-        ExifTag.EXIF_TAG_INTEROP_OFFSET
+        ExifTag.EXIF_TAG_INTEROP_OFFSET,
+        ExifTag.EXIF_TAG_SUB_IFDS_OFFSET
     )
 
-    private val directoryTypes = listOf(
-        TiffConstants.DIRECTORY_TYPE_EXIF,
-        TiffConstants.DIRECTORY_TYPE_GPS,
-        TiffConstants.DIRECTORY_TYPE_INTEROPERABILITY
+    private val directoryTypeMap = mapOf(
+        ExifTag.EXIF_TAG_EXIF_OFFSET to TiffConstants.TIFF_EXIF_IFD,
+        ExifTag.EXIF_TAG_GPSINFO to TiffConstants.TIFF_GPS,
+        ExifTag.EXIF_TAG_INTEROP_OFFSET to TiffConstants.TIFF_INTEROP_IFD,
+        ExifTag.EXIF_TAG_SUB_IFDS_OFFSET to TiffConstants.DIRECTORY_TYPE_SUB
     )
 
     fun getTiffByteOrder(byteOrderByte: Int): ByteOrder =
@@ -65,7 +72,6 @@ class TiffReader : BinaryFileParser() {
             directoryOffset = tiffHeader.offsetToFirstIFD,
             dirType = TiffConstants.DIRECTORY_TYPE_ROOT,
             collector = collector,
-            ignoreNextDirectory = false,
             visitedOffsets = mutableListOf<Number>()
         )
 
@@ -89,9 +95,6 @@ class TiffReader : BinaryFileParser() {
 
         val tiffVersion = byteReader.read2BytesAsInt("TIFF version", byteOrder)
 
-        if (tiffVersion != TIFF_VERSION)
-            throw ImageReadException("Unknown Tiff Version: $tiffVersion")
-
         val offsetToFirstIFD =
             0xFFFFFFFFL and byteReader.read4BytesAsInt("Offset to first IFD", byteOrder).toLong()
 
@@ -105,7 +108,6 @@ class TiffReader : BinaryFileParser() {
         directoryOffset: Long,
         dirType: Int,
         collector: TiffReaderCollector,
-        ignoreNextDirectory: Boolean,
         visitedOffsets: MutableList<Number>
     ): Boolean {
 
@@ -191,48 +193,62 @@ class TiffReader : BinaryFileParser() {
         collector.directories.add(directory)
 
         /* Read offset directories */
-        for (index in offsetFields.indices) {
-
-            val offsetField = offsetFields[index]
+        for (offsetField in offsetFields) {
 
             val field = directory.findField(offsetField)
 
             if (field != null) {
 
-                var subDirectoryRead = false
-
-                try {
-
-                    val subDirectoryOffset = directory.getFieldValue(offsetField).toLong()
-                    val subDirectoryType = directoryTypes[index]
-
-                    subDirectoryRead = readDirectory(
-                        byteReader = byteReader,
-                        directoryOffset = subDirectoryOffset,
-                        dirType = subDirectoryType,
-                        collector = collector,
-                        ignoreNextDirectory = true,
-                        visitedOffsets = visitedOffsets
-                    )
-
-                } catch (ignore: ImageReadException) {
-                    /*
-                     * If the subdirectory is broken we remove the field.
-                     */
+                val subDirOffsets: IntArray = when (offsetField) {
+                    is TagInfoLong -> intArrayOf(directory.getFieldValue(offsetField))
+                    is TagInfoLongs -> directory.getFieldValue(offsetField)
+                    else -> error("Unknown type: $offsetField")
                 }
 
-                if (!subDirectoryRead)
-                    fields.remove(field)
+                for ((index, subDirOffset) in subDirOffsets.withIndex()) {
+
+                    var subDirectoryRead = false
+
+                    try {
+
+                        val subIfdOffsets = field.tag == ExifTag.EXIF_TAG_SUB_IFDS_OFFSET.tag
+
+                        val subDirectoryType = if (subIfdOffsets)
+                            when (index) {
+                                1 -> EXIF_SUB_IFD1
+                                2 -> EXIF_SUB_IFD2
+                                3 -> EXIF_SUB_IFD3
+                                else -> DIRECTORY_TYPE_SUB
+                            }
+                        else
+                            directoryTypeMap.get(offsetField)!!
+
+                        subDirectoryRead = readDirectory(
+                            byteReader = byteReader,
+                            directoryOffset = subDirOffset.toLong(),
+                            dirType = subDirectoryType,
+                            collector = collector,
+                            visitedOffsets = visitedOffsets
+                        )
+
+                    } catch (ignore: ImageReadException) {
+                        /*
+                         * If the subdirectory is broken we remove the field.
+                         */
+                    }
+
+                    if (!subDirectoryRead)
+                        fields.remove(field)
+                }
             }
         }
 
-        if (!ignoreNextDirectory && directory.nextDirectoryOffset > 0)
+        if (directory.nextDirectoryOffset > 0)
             readDirectory(
                 byteReader = byteReader,
                 directoryOffset = directory.nextDirectoryOffset,
                 dirType = dirType + 1,
                 collector = collector,
-                ignoreNextDirectory = false,
                 visitedOffsets = visitedOffsets
             )
 

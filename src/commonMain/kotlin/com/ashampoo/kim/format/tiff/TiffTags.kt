@@ -21,6 +21,7 @@ import com.ashampoo.kim.format.tiff.constants.ExifTag.EXIF_DIRECTORY_UNKNOWN
 import com.ashampoo.kim.format.tiff.constants.GpsTag
 import com.ashampoo.kim.format.tiff.constants.TiffTag
 import com.ashampoo.kim.format.tiff.taginfos.TagInfo
+import com.ashampoo.kim.format.tiff.taginfos.TagInfoUnknowns
 
 internal object TiffTags {
 
@@ -29,7 +30,8 @@ internal object TiffTags {
 
     fun getTag(directoryType: Int, tag: Int): TagInfo {
 
-        val possibleMatches = ALL_TAG_MAP[tag] ?: return TiffTag.TIFF_TAG_UNKNOWN
+        val possibleMatches = ALL_TAG_MAP[tag]
+            ?: return TagInfoUnknowns("Unknown", tag, TagInfo.LENGTH_UNKNOWN, null)
 
         return getTag(directoryType, possibleMatches)
     }

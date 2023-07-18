@@ -61,6 +61,35 @@ open class TagInfo(
     open fun isText(): Boolean =
         false
 
+    override fun equals(other: Any?): Boolean {
+
+        if (this === other) return true
+        if (other !is TagInfo) return false
+
+        if (name != other.name) return false
+        if (tag != other.tag) return false
+        if (dataTypes != other.dataTypes) return false
+        if (length != other.length) return false
+        if (directoryType != other.directoryType) return false
+        if (isOffset != other.isOffset) return false
+        if (tagFormatted != other.tagFormatted) return false
+        if (description != other.description) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        var result = name.hashCode()
+        result = 31 * result + tag
+        result = 31 * result + dataTypes.hashCode()
+        result = 31 * result + length
+        result = 31 * result + (directoryType?.hashCode() ?: 0)
+        result = 31 * result + isOffset.hashCode()
+        result = 31 * result + tagFormatted.hashCode()
+        result = 31 * result + description.hashCode()
+        return result
+    }
+
     companion object {
         const val LENGTH_UNKNOWN = -1
     }

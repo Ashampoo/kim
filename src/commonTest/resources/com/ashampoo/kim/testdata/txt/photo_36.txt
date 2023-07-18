@@ -20,7 +20,7 @@ Big-endian (Motorola, MM)
 0x829d FNumber = 2/1 (2.0)
 0x8822 ExposureProgram = 1
 0x8827 PhotographicSensitivity = 200
-0x00-1 Unknown = 1
+0x8830 Unknown = 1
 0x9000 ExifVersion = [0x30, 0x32, 0x33, 0x30]
 0x9003 DateTimeOriginal = 2017:06:26 23:18:45
 0x9101 ComponentsConfiguration = [0x01, 0x02, 0x03, 0x00]
@@ -34,7 +34,7 @@ Big-endian (Motorola, MM)
 0x9208 LightSource = 0
 0x9209 Flash = 0
 0x920a FocalLength = 90/1 (90.0)
-0x00-1 Unknown = 1
+0xa001 Unknown = 1
 0xa002 ExifImageWidth = 4240
 0xa003 ExifImageLength = 2384
 0xa20e FocalPlaneXResolution = 1812/1 (1812.0)

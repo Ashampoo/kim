@@ -17,7 +17,7 @@ Little-endian (Intel, II)
 0x9003 DateTimeOriginal = 2019:01:08 14:48:21
 0x9202 ApertureValue = 970854/1000000 (0.970854)
 0x920a FocalLength = 850/10 (85.0)
-0x00-1 Unknown = -1
+0xa001 Unknown = -1
 0xa434 LensModel = 85.0 mm f/1.4
 
 

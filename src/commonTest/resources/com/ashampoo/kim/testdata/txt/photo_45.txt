@@ -19,8 +19,8 @@ Little-endian (Intel, II)
 0x829d FNumber = 63/10 (6.3)
 0x8822 ExposureProgram = 1
 0x8827 PhotographicSensitivity = 800
-0x00-1 Unknown = 2
-0x00-1 Unknown = 800
+0x8830 Unknown = 2
+0x8832 Unknown = 800
 0x9000 ExifVersion = [0x30, 0x32, 0x33, 0x30]
 0x9003 DateTimeOriginal = 2017:07:17 18:21:14
 0x9004 DateTimeDigitized = 2017:07:17 18:21:14
@@ -33,7 +33,7 @@ Little-endian (Intel, II)
 0x9208 LightSource = 11
 0x9209 Flash = 16
 0x920a FocalLength = 2400/10 (240.0)
-0x00-1 Unknown = 1
+0xa001 Unknown = 1
 0xa20e FocalPlaneXResolution = 38690215/32768 (1180.731659)
 0xa20f FocalPlaneYResolution = 38690215/32768 (1180.731659)
 0xa210 FocalPlaneResolutionUnit = 3
@@ -51,7 +51,7 @@ Little-endian (Intel, II)
 0xa432 LensSpecification = [240/10 (24.0), 2400/10 (240.0), 35/10 (3.5), 63/10 (6.3)]
 0xa434 LensModel = FE 24-240mm F3.5-6.3 OSS
 
----- Sub ----
+---- SubIFD ----
 0x0103 Compression = 6
 0x011a XResolution = 72/1 (72.0)
 0x011b YResolution = 72/1 (72.0)

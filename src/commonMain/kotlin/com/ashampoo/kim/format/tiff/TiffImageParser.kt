@@ -26,7 +26,7 @@ import com.ashampoo.kim.model.ImageSize
 import io.ktor.utils.io.charsets.Charsets
 import io.ktor.utils.io.core.String
 
-class TiffImageParser : ImageParser() {
+object TiffImageParser : ImageParser {
 
     override fun parseMetadata(byteReader: ByteReader): ImageMetadata {
 
@@ -46,7 +46,25 @@ class TiffImageParser : ImageParser() {
 
     private fun getImageSize(tiffContents: TiffContents): ImageSize? {
 
-        val directory = tiffContents.directories.first()
+        /*
+         * NEF files have the image length of the full resoltion
+         * image in SubIFD1 and not in the first directory, which
+         * contains the thumbnail. Just always taking the first
+         * directory is wrong.
+         *
+         * Other vendors use the SubIFD differently.
+         * Just look for the biggest size and report that.
+         */
+
+        val imageSizes = mutableListOf<ImageSize>()
+
+        for (directory in tiffContents.directories)
+            getImageSize(directory)?.let { imageSizes.add(it) }
+
+        return imageSizes.maxByOrNull { it.width * it.height }
+    }
+
+    private fun getImageSize(directory: TiffDirectory): ImageSize? {
 
         val widthField = directory.findField(TiffTag.TIFF_TAG_IMAGE_WIDTH, false)
         val heightField = directory.findField(TiffTag.TIFF_TAG_IMAGE_LENGTH, false)

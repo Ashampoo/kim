@@ -18,7 +18,7 @@ Little-endian (Intel, II)
 0x829d FNumber = 2/1 (2.0)
 0x8822 ExposureProgram = 3
 0x8827 PhotographicSensitivity = 250
-0x00-1 Unknown = 1
+0x8830 Unknown = 1
 0x9000 ExifVersion = [0x30, 0x32, 0x33, 0x30]
 0x9003 DateTimeOriginal = 2019:01:21 20:13:58
 0x9004 DateTimeDigitized = 2019:01:21 20:13:58
@@ -31,7 +31,7 @@ Little-endian (Intel, II)
 0x9208 LightSource = 0
 0x9209 Flash = 0
 0x920a FocalLength = 9000/100 (90.0)
-0x00-1 Unknown = 1
+0xa001 Unknown = 1
 0xa20e FocalPlaneXResolution = 83663736/32768 (2553.2146)
 0xa20f FocalPlaneYResolution = 83663736/32768 (2553.2146)
 0xa210 FocalPlaneResolutionUnit = 3
@@ -51,7 +51,7 @@ Little-endian (Intel, II)
 0xa434 LensModel = XF90mmF2 R LM WR
 0xa435 LensSerialNumber = 65B00914
 
----- Sub ----
+---- SubIFD ----
 0x0103 Compression = 6
 0x011a XResolution = 72/1 (72.0)
 0x011b YResolution = 72/1 (72.0)

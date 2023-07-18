@@ -15,9 +15,11 @@ It's part of [Ashampoo Photos](https://ashampoo.com/photos).
 ## Features
 
 * JPG: Read & Write EXIF, IPTC & XMP
-* PNG: Read & Write `eXIf` chunk & XMP.  
-  Also read non-standard EXIF & IPTC from `tEXt`/`zTXt` chunk.
+* PNG: Read & Write `eXIf` chunk & XMP.
+    + Also read non-standard EXIF & IPTC from `tEXt`/`zTXt` chunk.
 * TIFF: Read EXIF & XMP
+* RAW: Read EXIF & XMP from Canon CR2 & Fujifilm RAF
+    + Experimental support for NEF, ARW, RW2 & ORF with known issues.
 * Handling of XMP content through
   [XMP Core for Kotlin Multiplatform](https://github.com/Ashampoo/xmpcore).
 * Convenicent `Kim.update()` API to perform updates to the relevant places.
@@ -28,7 +30,7 @@ of Ashampoo Photos, which, in turn, is driven by user community feedback.
 ## Installation
 
 ```
-implementation("com.ashampoo:kim:0.3.0")
+implementation("com.ashampoo:kim:0.4.0")
 ```
 
 ## Sample usages
@@ -124,6 +126,8 @@ for more samples.
 
 ## Limitations
 
+* No support for stream reading TIFF or RAW so far. It will load the whole file.  
+  That makes it unsuitable for reading a cloud file, but local files should work.
 * Inability to update EXIF, IPTC and XMP in JPG files simultaneously.
 * Insufficient error handling for broken or non-standard conforming files.
 

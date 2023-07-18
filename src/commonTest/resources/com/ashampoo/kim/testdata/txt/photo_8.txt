@@ -18,8 +18,8 @@ Little-endian (Intel, II)
 0x829d FNumber = 14/10 (1.4)
 0x8822 ExposureProgram = 1
 0x8827 PhotographicSensitivity = 250
-0x00-1 Unknown = 2
-0x00-1 Unknown = 250
+0x8830 Unknown = 2
+0x8832 Unknown = 250
 0x9000 ExifVersion = [0x30, 0x32, 0x33, 0x30]
 0x9003 DateTimeOriginal = 2019:02:16 06:37:31
 0x9004 DateTimeDigitized = 2019:02:16 06:37:31
@@ -32,7 +32,7 @@ Little-endian (Intel, II)
 0x920a FocalLength = 35/1 (35.0)
 0x9291 SubSecTimeOriginal = 93
 0x9292 SubSecTimeDigitized = 93
-0x00-1 Unknown = 1
+0xa001 Unknown = 1
 0xa20e FocalPlaneXResolution = 5472000/1436 (3810.584958)
 0xa20f FocalPlaneYResolution = 3648000/956 (3815.899582)
 0xa210 FocalPlaneResolutionUnit = 2
@@ -45,7 +45,7 @@ Little-endian (Intel, II)
 0xa434 LensModel = 35mm
 0xa435 LensSerialNumber = 0000000000
 
----- Sub ----
+---- SubIFD ----
 0x0103 Compression = 6
 0x011a XResolution = 72/1 (72.0)
 0x011b YResolution = 72/1 (72.0)

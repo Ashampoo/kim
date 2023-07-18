@@ -24,9 +24,9 @@ Big-endian (Motorola, MM)
 0x9000 ExifVersion = [0x30, 0x32, 0x33, 0x32]
 0x9003 DateTimeOriginal = 2022:11:30 14:57:00
 0x9004 DateTimeDigitized = 2022:11:30 14:57:00
-0x00-1 Unknown = +01:00
+0x9010 Unknown = +01:00
 0x9011 OffsetTimeOriginal = +01:00
-0x00-1 Unknown = +01:00
+0x9012 Unknown = +01:00
 0x9101 ComponentsConfiguration = [0x01, 0x02, 0x03, 0x00]
 0x9201 ShutterSpeedValue = 6287/946 (6.645877)
 0x9202 ApertureValue = 54823/32325 (1.695994)
@@ -40,7 +40,7 @@ Big-endian (Motorola, MM)
 0x9291 SubSecTimeOriginal = 203
 0x9292 SubSecTimeDigitized = 203
 0xa000 FlashpixVersion = [0x30, 0x31, 0x30, 0x30]
-0x00-1 Unknown = -1
+0xa001 Unknown = -1
 0xa002 ExifImageWidth = 4032
 0xa003 ExifImageLength = 3024
 0xa217 SensingMethod = 2
@@ -52,9 +52,9 @@ Big-endian (Motorola, MM)
 0xa432 LensSpecification = [4183519/1048501 (3.99), 4183519/1048501 (3.99), 9/5 (1.8), 9/5 (1.8)]
 0xa433 LensMake = Apple
 0xa434 LensModel = iPhone SE (3rd generation) back camera 3.99mm f/1.8
-0x00-1 Unknown = 2
+0xa460 Unknown = 2
 
----- Sub ----
+---- SubIFD ----
 0x0103 Compression = 6
 0x011a XResolution = 72/1 (72.0)
 0x011b YResolution = 72/1 (72.0)

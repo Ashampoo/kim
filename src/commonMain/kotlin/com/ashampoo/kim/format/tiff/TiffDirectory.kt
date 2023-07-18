@@ -24,6 +24,7 @@ import com.ashampoo.kim.format.tiff.constants.TiffTag
 import com.ashampoo.kim.format.tiff.taginfos.TagInfo
 import com.ashampoo.kim.format.tiff.taginfos.TagInfoBytes
 import com.ashampoo.kim.format.tiff.taginfos.TagInfoLong
+import com.ashampoo.kim.format.tiff.taginfos.TagInfoLongs
 import com.ashampoo.kim.format.tiff.write.TiffOutputDirectory
 import com.ashampoo.kim.format.tiff.write.TiffOutputField
 
@@ -85,16 +86,6 @@ class TiffDirectory(
             return null
         }
 
-        if (!tag.dataTypes.contains(field.fieldType)) {
-
-            if (mustExist)
-                throw ImageReadException(
-                    "Required field ${tag.name} has incorrect type ${field.fieldType.name}"
-                )
-
-            return null
-        }
-
         return field.byteArrayValue
     }
 
@@ -109,6 +100,18 @@ class TiffDirectory(
 
         if (field.count != 1L)
             throw ImageReadException("Field ${tag.name} has wrong count ${field.count}")
+
+        return tag.getValue(field.byteOrder, field.byteArrayValue)
+    }
+
+    @Suppress("ThrowsCount")
+    fun getFieldValue(tag: TagInfoLongs): IntArray {
+
+        val field = findField(tag)
+            ?: throw ImageReadException("Required field ${tag.name} is missing")
+
+        if (!tag.dataTypes.contains(field.fieldType))
+            throw ImageReadException("Required field ${tag.name} has incorrect type ${field.fieldType.name}")
 
         return tag.getValue(field.byteOrder, field.byteArrayValue)
     }
@@ -183,11 +186,14 @@ class TiffDirectory(
             return when (type) {
                 TiffConstants.DIRECTORY_TYPE_UNKNOWN -> "Unknown"
                 TiffConstants.DIRECTORY_TYPE_ROOT -> "IFD0"
-                TiffConstants.DIRECTORY_TYPE_SUB -> "Sub"
-                TiffConstants.DIRECTORY_TYPE_THUMBNAIL -> "Thumbnail"
-                TiffConstants.DIRECTORY_TYPE_EXIF -> "ExifIFD"
-                TiffConstants.DIRECTORY_TYPE_GPS -> "GPS"
-                TiffConstants.DIRECTORY_TYPE_INTEROPERABILITY -> "InteropIFD"
+                TiffConstants.DIRECTORY_TYPE_SUB -> "SubIFD"
+                TiffConstants.EXIF_SUB_IFD1 -> "SubIFD1"
+                TiffConstants.EXIF_SUB_IFD2 -> "SubIFD2"
+                TiffConstants.EXIF_SUB_IFD3 -> "SubIFD3"
+                // TiffConstants.DIRECTORY_TYPE_THUMBNAIL -> "Thumbnail"
+                TiffConstants.TIFF_EXIF_IFD -> "ExifIFD"
+                TiffConstants.TIFF_GPS -> "GPS"
+                TiffConstants.TIFF_INTEROP_IFD -> "InteropIFD"
                 else -> "Bad Type"
             }
         }

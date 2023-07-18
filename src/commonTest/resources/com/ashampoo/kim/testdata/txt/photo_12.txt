@@ -31,7 +31,7 @@ Little-endian (Intel, II)
 0x9208 LightSource = 0
 0x9209 Flash = 16
 0x920a FocalLength = 2500/10 (250.0)
-0x00-1 Unknown = 1
+0xa001 Unknown = 1
 0xa20e FocalPlaneXResolution = 59791142/32768 (1824.680847)
 0xa20f FocalPlaneYResolution = 59791142/32768 (1824.680847)
 0xa210 FocalPlaneResolutionUnit = 3
@@ -49,7 +49,7 @@ Little-endian (Intel, II)
 0xa432 LensSpecification = [100/1 (100.0), 300/1 (300.0), 45/10 (4.5), 56/10 (5.6)]
 0xa434 LensModel = 100-300mm F4.5-5.6
 
----- Sub ----
+---- SubIFD ----
 0x0103 Compression = 6
 0x011a XResolution = 72/1 (72.0)
 0x011b YResolution = 72/1 (72.0)

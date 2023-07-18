@@ -30,7 +30,7 @@ class ImageMetadataTest {
     @Test
     fun testToString() {
 
-        for (index in 1..56) {
+        for (index in 1..KimTestData.TEST_PHOTO_COUNT) {
 
             // TODO Handle broken file (bad IFD1)
             if (index == 21)

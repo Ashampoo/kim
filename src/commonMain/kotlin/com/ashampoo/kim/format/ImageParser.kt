@@ -16,24 +16,35 @@
  */
 package com.ashampoo.kim.format
 
-import com.ashampoo.kim.common.BinaryFileParser
 import com.ashampoo.kim.format.jpeg.JpegImageParser
 import com.ashampoo.kim.format.png.PngImageParser
+import com.ashampoo.kim.format.raf.RafImageParser
 import com.ashampoo.kim.format.tiff.TiffImageParser
 import com.ashampoo.kim.input.ByteReader
 import com.ashampoo.kim.model.ImageFormat
 
-abstract class ImageParser : BinaryFileParser() {
+fun interface ImageParser {
 
-    abstract fun parseMetadata(byteReader: ByteReader): ImageMetadata
+    fun parseMetadata(byteReader: ByteReader): ImageMetadata
 
     companion object {
 
         fun forFormat(imageFormat: ImageFormat): ImageParser? =
             when (imageFormat) {
+
                 ImageFormat.JPEG -> JpegImageParser
+
                 ImageFormat.PNG -> PngImageParser
-                ImageFormat.TIFF -> TiffImageParser()
+
+                ImageFormat.TIFF,
+                ImageFormat.CR2,
+                ImageFormat.NEF,
+                ImageFormat.ARW,
+                ImageFormat.RW2,
+                ImageFormat.ORF -> TiffImageParser
+
+                ImageFormat.RAF -> RafImageParser
+
                 else -> null
             }
     }

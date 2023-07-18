@@ -34,7 +34,7 @@ Big-endian (Motorola, MM)
 0x920a FocalLength = 1800/100 (18.0)
 0x927c MakerNote = [4382 bytes]
 0xa000 FlashpixVersion = [0x30, 0x31, 0x30, 0x30]
-0x00-1 Unknown = 1
+0xa001 Unknown = 1
 0xa002 ExifImageWidth = 4928
 0xa003 ExifImageLength = 3264
 0xa005 InteropOffset = 5452
@@ -57,7 +57,7 @@ Big-endian (Motorola, MM)
 
 ---- GPS ----
 
----- Sub ----
+---- SubIFD ----
 0x0103 Compression = 6
 0x011a XResolution = 300/1 (300.0)
 0x011b YResolution = 300/1 (300.0)

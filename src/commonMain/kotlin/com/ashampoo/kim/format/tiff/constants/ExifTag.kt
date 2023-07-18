@@ -23,6 +23,7 @@ import com.ashampoo.kim.format.tiff.constants.TiffDirectoryType.TIFF_DIRECTORY_I
 import com.ashampoo.kim.format.tiff.taginfos.TagInfoAscii
 import com.ashampoo.kim.format.tiff.taginfos.TagInfoByte
 import com.ashampoo.kim.format.tiff.taginfos.TagInfoBytes
+import com.ashampoo.kim.format.tiff.taginfos.TagInfoDirectories
 import com.ashampoo.kim.format.tiff.taginfos.TagInfoDirectory
 import com.ashampoo.kim.format.tiff.taginfos.TagInfoDouble
 import com.ashampoo.kim.format.tiff.taginfos.TagInfoGpsText
@@ -56,6 +57,11 @@ object ExifTag {
 
     val EXIF_TAG_PROCESSING_SOFTWARE = TagInfoAscii(
         "ProcessingSoftware", 0x000b, -1,
+        TIFF_DIRECTORY_IFD0
+    )
+
+    val EXIF_TAG_SUB_IFDS_OFFSET = TagInfoDirectories(
+        "SubIFD", 0x014a,
         TIFF_DIRECTORY_IFD0
     )
 
@@ -288,6 +294,7 @@ object ExifTag {
         "ExifOffset", 0x8769,
         EXIF_DIRECTORY_UNKNOWN
     )
+
     val EXIF_TAG_EXPOSURE_PROGRAM = TagInfoShort(
         "ExposureProgram", 0x8822,
         TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD
@@ -942,6 +949,7 @@ object ExifTag {
         EXIF_TAG_USER_COMMENT, //
         EXIF_TAG_MAKER_NOTE,
         EXIF_TAG_RATING,
-        EXIF_TAG_RATING_PERCENT
+        EXIF_TAG_RATING_PERCENT,
+        EXIF_TAG_SUB_IFDS_OFFSET
     )
 }

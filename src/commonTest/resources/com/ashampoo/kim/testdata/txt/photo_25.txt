@@ -32,7 +32,7 @@ Little-endian (Intel, II)
 0x9290 SubSecTime = 20
 0x9291 SubSecTimeOriginal = 20
 0x9292 SubSecTimeDigitized = 20
-0x00-1 Unknown = -1
+0xa001 Unknown = -1
 0xa002 ExifImageWidth = 4660
 0xa003 ExifImageLength = 3106
 0xa20e FocalPlaneXResolution = 4752000/894 (5315.436242)
@@ -46,7 +46,7 @@ Little-endian (Intel, II)
 0xa432 LensSpecification = [50/1 (50.0), 50/1 (50.0), Invalid rational (0/0), Invalid rational (0/0)]
 0xa434 LensModel = EF50mm f/1.8 II
 
----- Sub ----
+---- SubIFD ----
 0x0103 Compression = 6
 0x011a XResolution = 72/1 (72.0)
 0x011b YResolution = 72/1 (72.0)

@@ -37,7 +37,7 @@ Little-endian (Intel, II)
 0x9290 SubSecTime = 76
 0x9291 SubSecTimeOriginal = 76
 0x9292 SubSecTimeDigitized = 76
-0x00-1 Unknown = -1
+0xa001 Unknown = -1
 0xa002 ExifImageWidth = 2371
 0xa003 ExifImageLength = 1580
 0xa20e FocalPlaneXResolution = 5184000/905 (5728.176796)
@@ -51,7 +51,7 @@ Little-endian (Intel, II)
 0xa432 LensSpecification = [70/1 (70.0), 200/1 (200.0), Invalid rational (0/0), Invalid rational (0/0)]
 0xa434 LensModel = EF70-200mm f/4L USM
 
----- Sub ----
+---- SubIFD ----
 0x0103 Compression = 6
 0x011a XResolution = 72/1 (72.0)
 0x011b YResolution = 72/1 (72.0)
