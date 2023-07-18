@@ -18,6 +18,7 @@ package com.ashampoo.kim.format.tiff
 
 import com.ashampoo.kim.format.ImageMetadata
 import com.ashampoo.kim.format.ImageParser
+import com.ashampoo.kim.format.tiff.constants.TiffDirectoryType
 import com.ashampoo.kim.format.tiff.constants.TiffTag
 import com.ashampoo.kim.input.ByteArrayByteReader
 import com.ashampoo.kim.input.ByteReader
@@ -46,7 +47,32 @@ object TiffImageParser : ImageParser {
 
     private fun getImageSize(tiffContents: TiffContents): ImageSize? {
 
-        val directory = tiffContents.directories.first()
+        /*
+         * NEF files have the image length of the full resoltion
+         * image in SubIFD1 and not in the first directory, which
+         * contains the thumbnail. Just always taking the first
+         * directory is wrong. This should be the fallback.
+         */
+
+        /*
+         * TODO FIXME SubIFD1 is not read by the current logic.
+         */
+        val subIdf1 = tiffContents.directories.find {
+            it.type == TiffDirectoryType.TIFF_DIRECTORY_IFD1.directoryType
+        }
+
+        var imageSize: ImageSize? = null
+
+        if (subIdf1 != null)
+            imageSize = getImageSize(subIdf1)
+
+        if (imageSize == null)
+            imageSize = getImageSize(tiffContents.directories.first())
+
+        return imageSize
+    }
+
+    private fun getImageSize(directory: TiffDirectory): ImageSize? {
 
         val widthField = directory.findField(TiffTag.TIFF_TAG_IMAGE_WIDTH, false)
         val heightField = directory.findField(TiffTag.TIFF_TAG_IMAGE_LENGTH, false)
