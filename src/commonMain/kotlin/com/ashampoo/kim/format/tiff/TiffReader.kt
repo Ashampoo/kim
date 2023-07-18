@@ -64,7 +64,6 @@ class TiffReader : BinaryFileParser() {
             directoryOffset = tiffHeader.offsetToFirstIFD,
             dirType = TiffConstants.DIRECTORY_TYPE_ROOT,
             collector = collector,
-            ignoreNextDirectory = false,
             visitedOffsets = mutableListOf<Number>()
         )
 
@@ -101,7 +100,6 @@ class TiffReader : BinaryFileParser() {
         directoryOffset: Long,
         dirType: Int,
         collector: TiffReaderCollector,
-        ignoreNextDirectory: Boolean,
         visitedOffsets: MutableList<Number>
     ): Boolean {
 
@@ -207,7 +205,6 @@ class TiffReader : BinaryFileParser() {
                         directoryOffset = subDirectoryOffset,
                         dirType = subDirectoryType,
                         collector = collector,
-                        ignoreNextDirectory = true,
                         visitedOffsets = visitedOffsets
                     )
 
@@ -222,13 +219,12 @@ class TiffReader : BinaryFileParser() {
             }
         }
 
-        if (!ignoreNextDirectory && directory.nextDirectoryOffset > 0)
+        if (directory.nextDirectoryOffset > 0)
             readDirectory(
                 byteReader = byteReader,
                 directoryOffset = directory.nextDirectoryOffset,
                 dirType = dirType + 1,
                 collector = collector,
-                ignoreNextDirectory = false,
                 visitedOffsets = visitedOffsets
             )
 
