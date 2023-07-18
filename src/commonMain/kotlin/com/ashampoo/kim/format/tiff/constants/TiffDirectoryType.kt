@@ -23,28 +23,28 @@ enum class TiffDirectoryType(
 ) {
 
     TIFF_DIRECTORY_IFD0(
-        true, TiffConstants.DIRECTORY_TYPE_DIR_0, "IFD0"
+        true, TiffConstants.TIFF_IFD0, "IFD0"
     ),
     TIFF_DIRECTORY_IFD1(
-        true, TiffConstants.DIRECTORY_TYPE_DIR_1, "IFD1"
+        true, TiffConstants.TIFF_IFD1, "IFD1"
     ),
     TIFF_DIRECTORY_IFD2(
-        true, TiffConstants.DIRECTORY_TYPE_DIR_2, "IFD2"
+        true, TiffConstants.TIFF_IFD2, "IFD2"
     ),
     TIFF_DIRECTORY_IFD3(
-        true, TiffConstants.DIRECTORY_TYPE_DIR_3, "IFD3"
+        true, TiffConstants.TIFF_IFD3, "IFD3"
     ),
     EXIF_DIRECTORY_INTEROP_IFD(
-        false, TiffConstants.DIRECTORY_TYPE_INTEROPERABILITY, "InteropIFD"
+        false, TiffConstants.TIFF_INTEROP_IFD, "InteropIFD"
     ),
     EXIF_DIRECTORY_MAKER_NOTES(
-        false, TiffConstants.DIRECTORY_TYPE_MAKER_NOTES, "MakerNotes"
+        false, TiffConstants.TIFF_MAKER_NOTES, "MakerNotes"
     ),
     EXIF_DIRECTORY_EXIF_IFD(
-        false, TiffConstants.DIRECTORY_TYPE_EXIF, "ExifIFD"
+        false, TiffConstants.TIFF_EXIF_IFD, "ExifIFD"
     ),
     EXIF_DIRECTORY_GPS(
-        false, TiffConstants.DIRECTORY_TYPE_GPS, "GPS"
+        false, TiffConstants.TIFF_GPS, "GPS"
     );
 
     override fun toString(): String =

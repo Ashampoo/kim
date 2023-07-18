@@ -59,7 +59,7 @@ abstract class TiffImageWriterBase(
 
                 when (dirType) {
 
-                    TiffConstants.DIRECTORY_TYPE_EXIF -> {
+                    TiffConstants.TIFF_EXIF_IFD -> {
 
                         if (exifDirectory != null)
                             throw ImageWriteException("More than one EXIF directory.")
@@ -67,7 +67,7 @@ abstract class TiffImageWriterBase(
                         exifDirectory = directory
                     }
 
-                    TiffConstants.DIRECTORY_TYPE_GPS -> {
+                    TiffConstants.TIFF_GPS -> {
 
                         if (gpsDirectory != null)
                             throw ImageWriteException("More than one GPS directory.")
@@ -75,7 +75,7 @@ abstract class TiffImageWriterBase(
                         gpsDirectory = directory
                     }
 
-                    TiffConstants.DIRECTORY_TYPE_INTEROPERABILITY -> {
+                    TiffConstants.TIFF_INTEROP_IFD -> {
 
                         if (interoperabilityDirectory != null)
                             throw ImageWriteException("More than one Interoperability directory.")

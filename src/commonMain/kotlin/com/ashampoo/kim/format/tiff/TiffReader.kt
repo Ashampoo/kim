@@ -44,9 +44,9 @@ class TiffReader : BinaryFileParser() {
     )
 
     private val directoryTypeMap = mapOf(
-        ExifTag.EXIF_TAG_EXIF_OFFSET to TiffConstants.DIRECTORY_TYPE_EXIF,
-        ExifTag.EXIF_TAG_GPSINFO to TiffConstants.DIRECTORY_TYPE_GPS,
-        ExifTag.EXIF_TAG_INTEROP_OFFSET to TiffConstants.DIRECTORY_TYPE_INTEROPERABILITY,
+        ExifTag.EXIF_TAG_EXIF_OFFSET to TiffConstants.TIFF_EXIF_IFD,
+        ExifTag.EXIF_TAG_GPSINFO to TiffConstants.TIFF_GPS,
+        ExifTag.EXIF_TAG_INTEROP_OFFSET to TiffConstants.TIFF_INTEROP_IFD,
         ExifTag.EXIF_TAG_SUB_IFDS_OFFSET to TiffConstants.DIRECTORY_TYPE_SUB
     )
 

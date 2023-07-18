@@ -191,9 +191,9 @@ class TiffDirectory(
                 TiffConstants.DIRECTORY_TYPE_SUB2 -> "SubIFD2"
                 TiffConstants.DIRECTORY_TYPE_SUB3 -> "SubIFD3"
                 // TiffConstants.DIRECTORY_TYPE_THUMBNAIL -> "Thumbnail"
-                TiffConstants.DIRECTORY_TYPE_EXIF -> "ExifIFD"
-                TiffConstants.DIRECTORY_TYPE_GPS -> "GPS"
-                TiffConstants.DIRECTORY_TYPE_INTEROPERABILITY -> "InteropIFD"
+                TiffConstants.TIFF_EXIF_IFD -> "ExifIFD"
+                TiffConstants.TIFF_GPS -> "GPS"
+                TiffConstants.TIFF_INTEROP_IFD -> "InteropIFD"
                 else -> "Bad Type"
             }
         }

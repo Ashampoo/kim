@@ -73,13 +73,13 @@ object TiffConstants {
     const val DIRECTORY_TYPE_SUB1 = 2
     const val DIRECTORY_TYPE_SUB2 = 3
     const val DIRECTORY_TYPE_SUB3 = 4
-    const val DIRECTORY_TYPE_EXIF = -2
-    const val DIRECTORY_TYPE_GPS = -3
-    const val DIRECTORY_TYPE_INTEROPERABILITY = -4
-    const val DIRECTORY_TYPE_MAKER_NOTES = -5
-    const val DIRECTORY_TYPE_DIR_0 = 0
-    const val DIRECTORY_TYPE_DIR_1 = 1
-    const val DIRECTORY_TYPE_DIR_2 = 2
-    const val DIRECTORY_TYPE_DIR_3 = 3
+    const val TIFF_EXIF_IFD = -2
+    const val TIFF_GPS = -3
+    const val TIFF_INTEROP_IFD = -4
+    const val TIFF_MAKER_NOTES = -5
+    const val TIFF_IFD0 = 0
+    const val TIFF_IFD1 = 1
+    const val TIFF_IFD2 = 2
+    const val TIFF_IFD3 = 3
     const val DIRECTORY_TYPE_DIR_4 = 4
 }
