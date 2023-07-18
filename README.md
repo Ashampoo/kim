@@ -30,7 +30,7 @@ of Ashampoo Photos, which, in turn, is driven by user community feedback.
 ## Installation
 
 ```
-implementation("com.ashampoo:kim:0.3.0")
+implementation("com.ashampoo:kim:0.4.0")
 ```
 
 ## Sample usages
@@ -126,6 +126,8 @@ for more samples.
 
 ## Limitations
 
+* No support for stream reading TIFF or RAW so far. It will load the whole file.  
+  That makes it unsuitable for reading a cloud file, but local files should work.
 * Inability to update EXIF, IPTC and XMP in JPG files simultaneously.
 * Insufficient error handling for broken or non-standard conforming files.
 
