@@ -32,7 +32,7 @@ fun interface ImageParser {
             when (imageFormat) {
                 ImageFormat.JPEG -> JpegImageParser
                 ImageFormat.PNG -> PngImageParser
-                ImageFormat.TIFF -> TiffImageParser
+                ImageFormat.TIFF, ImageFormat.CR2 -> TiffImageParser
                 else -> null
             }
     }

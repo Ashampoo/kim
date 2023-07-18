@@ -38,6 +38,10 @@ class ExifThumbnailExtractionTest {
             if (index == 21)
                 continue
 
+            // TODO Support RAF
+            if (index == 58)
+                continue
+
             val bytes = KimTestData.getBytesOf(index)
 
             val metadata = Kim.readMetadata(bytes)

@@ -18,6 +18,7 @@ It's part of [Ashampoo Photos](https://ashampoo.com/photos).
 * PNG: Read & Write `eXIf` chunk & XMP.  
   Also read non-standard EXIF & IPTC from `tEXt`/`zTXt` chunk.
 * TIFF: Read EXIF & XMP
+* RAW: Read Canon CR2
 * Handling of XMP content through
   [XMP Core for Kotlin Multiplatform](https://github.com/Ashampoo/xmpcore).
 * Convenicent `Kim.update()` API to perform updates to the relevant places.
