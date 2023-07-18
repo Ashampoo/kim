@@ -57,14 +57,14 @@ object TiffImageParser : ImageParser {
         /*
          * TODO FIXME SubIFD1 is not read by the current logic.
          */
-        val subIdf1 = tiffContents.directories.find {
+        val subIfd1 = tiffContents.directories.find {
             it.type == TiffDirectoryType.TIFF_DIRECTORY_IFD1.directoryType
         }
 
         var imageSize: ImageSize? = null
 
-        if (subIdf1 != null)
-            imageSize = getImageSize(subIdf1)
+        if (subIfd1 != null)
+            imageSize = getImageSize(subIfd1)
 
         if (imageSize == null)
             imageSize = getImageSize(tiffContents.directories.first())

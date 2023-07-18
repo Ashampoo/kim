@@ -59,6 +59,11 @@ object ExifTag {
         TIFF_DIRECTORY_IFD0
     )
 
+    val EXIF_TAG_SUB_IFDS_OFFSET = TagInfoDirectory(
+        "SubIFD", 0x014a,
+        TIFF_DIRECTORY_IFD0
+    )
+
     val EXIF_TAG_SOFTWARE = TagInfoAscii(
         "Software", 0x0131, -1,
         TIFF_DIRECTORY_IFD0
@@ -288,6 +293,7 @@ object ExifTag {
         "ExifOffset", 0x8769,
         EXIF_DIRECTORY_UNKNOWN
     )
+
     val EXIF_TAG_EXPOSURE_PROGRAM = TagInfoShort(
         "ExposureProgram", 0x8822,
         TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD
@@ -942,6 +948,7 @@ object ExifTag {
         EXIF_TAG_USER_COMMENT, //
         EXIF_TAG_MAKER_NOTE,
         EXIF_TAG_RATING,
-        EXIF_TAG_RATING_PERCENT
+        EXIF_TAG_RATING_PERCENT,
+        EXIF_TAG_SUB_IFDS_OFFSET
     )
 }
