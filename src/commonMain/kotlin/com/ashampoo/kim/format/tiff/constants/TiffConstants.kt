@@ -72,7 +72,7 @@ object TiffConstants {
     const val DIRECTORY_TYPE_SUB0 = 1
     const val DIRECTORY_TYPE_SUB1 = 2
     const val DIRECTORY_TYPE_SUB2 = 3
-    const val DIRECTORY_TYPE_THUMBNAIL = 2
+    const val DIRECTORY_TYPE_SUB3 = 4
     const val DIRECTORY_TYPE_EXIF = -2
     const val DIRECTORY_TYPE_GPS = -3
     const val DIRECTORY_TYPE_INTEROPERABILITY = -4

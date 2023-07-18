@@ -22,6 +22,10 @@ import com.ashampoo.kim.common.ImageReadException
 import com.ashampoo.kim.common.toInt
 import com.ashampoo.kim.format.tiff.constants.ExifTag
 import com.ashampoo.kim.format.tiff.constants.TiffConstants
+import com.ashampoo.kim.format.tiff.constants.TiffConstants.DIRECTORY_TYPE_SUB
+import com.ashampoo.kim.format.tiff.constants.TiffConstants.DIRECTORY_TYPE_SUB1
+import com.ashampoo.kim.format.tiff.constants.TiffConstants.DIRECTORY_TYPE_SUB2
+import com.ashampoo.kim.format.tiff.constants.TiffConstants.DIRECTORY_TYPE_SUB3
 import com.ashampoo.kim.format.tiff.constants.TiffConstants.TIFF_ENTRY_MAX_VALUE_LENGTH
 import com.ashampoo.kim.format.tiff.fieldtypes.FieldType
 import com.ashampoo.kim.format.tiff.fieldtypes.FieldType.Companion.getFieldType
@@ -39,11 +43,11 @@ class TiffReader : BinaryFileParser() {
         ExifTag.EXIF_TAG_SUB_IFDS_OFFSET
     )
 
-    private val directoryTypes = listOf(
-        TiffConstants.DIRECTORY_TYPE_EXIF,
-        TiffConstants.DIRECTORY_TYPE_GPS,
-        TiffConstants.DIRECTORY_TYPE_INTEROPERABILITY,
-        TiffConstants.DIRECTORY_TYPE_SUB
+    private val directoryTypeMap = mapOf(
+        ExifTag.EXIF_TAG_EXIF_OFFSET to TiffConstants.DIRECTORY_TYPE_EXIF,
+        ExifTag.EXIF_TAG_GPSINFO to TiffConstants.DIRECTORY_TYPE_GPS,
+        ExifTag.EXIF_TAG_INTEROP_OFFSET to TiffConstants.DIRECTORY_TYPE_INTEROPERABILITY,
+        ExifTag.EXIF_TAG_SUB_IFDS_OFFSET to TiffConstants.DIRECTORY_TYPE_SUB
     )
 
     fun getTiffByteOrder(byteOrderByte: Int): ByteOrder =
@@ -189,9 +193,7 @@ class TiffReader : BinaryFileParser() {
         collector.directories.add(directory)
 
         /* Read offset directories */
-        for (index in offsetFields.indices) {
-
-            val offsetField = offsetFields[index]
+        for (offsetField in offsetFields) {
 
             val field = directory.findField(offsetField)
 
@@ -203,13 +205,23 @@ class TiffReader : BinaryFileParser() {
                     else -> error("Unknown type: $offsetField")
                 }
 
-                for (subDirOffset in subDirOffsets) {
+                for ((index, subDirOffset) in subDirOffsets.withIndex()) {
 
                     var subDirectoryRead = false
 
                     try {
 
-                        val subDirectoryType = directoryTypes[index]
+                        val subIfdOffsets = field.tag == ExifTag.EXIF_TAG_SUB_IFDS_OFFSET.tag
+
+                        val subDirectoryType = if (subIfdOffsets)
+                            when (index) {
+                                1 -> DIRECTORY_TYPE_SUB1
+                                2 -> DIRECTORY_TYPE_SUB2
+                                3 -> DIRECTORY_TYPE_SUB3
+                                else -> DIRECTORY_TYPE_SUB
+                            }
+                        else
+                            directoryTypeMap.get(offsetField)!!
 
                         subDirectoryRead = readDirectory(
                             byteReader = byteReader,
