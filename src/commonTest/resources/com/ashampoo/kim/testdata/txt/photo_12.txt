@@ -31,7 +31,7 @@ Little-endian (Intel, II)
 0x9208 LightSource = 0
 0x9209 Flash = 16
 0x920a FocalLength = 2500/10 (250.0)
-0x00-1 Unknown = 1
+0xa001 Unknown = 1
 0xa20e FocalPlaneXResolution = 59791142/32768 (1824.680847)
 0xa20f FocalPlaneYResolution = 59791142/32768 (1824.680847)
 0xa210 FocalPlaneResolutionUnit = 3

@@ -19,14 +19,14 @@ Little-endian (Intel, II)
 0x829d FNumber = 32/10 (3.2)
 0x8822 ExposureProgram = 1
 0x8827 PhotographicSensitivity = 100
-0x00-1 Unknown = 2
-0x00-1 Unknown = 100
+0x8830 Unknown = 2
+0x8832 Unknown = 100
 0x9000 ExifVersion = [0x30, 0x32, 0x33, 0x31]
 0x9003 DateTimeOriginal = 2020:01:18 17:28:22
 0x9004 DateTimeDigitized = 2020:01:18 17:28:22
-0x00-1 Unknown = -07:00
+0x9010 Unknown = -07:00
 0x9011 OffsetTimeOriginal = -08:00
-0x00-1 Unknown = -08:00
+0x9012 Unknown = -08:00
 0x9201 ShutterSpeedValue = 9643856/1000000 (9.643856)
 0x9202 ApertureValue = 3356144/1000000 (3.356144)
 0x9204 ExposureCompensation = 0/6 (0.0)
@@ -37,7 +37,7 @@ Little-endian (Intel, II)
 0x920a FocalLength = 310/10 (31.0)
 0x9291 SubSecTimeOriginal = 56
 0x9292 SubSecTimeDigitized = 56
-0x00-1 Unknown = -1
+0xa001 Unknown = -1
 0xa002 ExifImageWidth = 3948
 0xa003 ExifImageLength = 2632
 0xa20e FocalPlaneXResolution = 75409805/32768 (2301.324615)

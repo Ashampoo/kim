@@ -19,6 +19,7 @@ import com.ashampoo.kim.testdata.KimTestData
 import kotlinx.io.files.Path
 import kotlinx.io.files.sink
 import kotlin.test.Test
+import kotlin.test.fail
 
 class ImageMetadataTest {
 
@@ -41,10 +42,6 @@ class ImageMetadataTest {
 
             val actualToString = metadata.toString().encodeToByteArray()
 
-
-            Path("build/photo_$index.txt").sink().use { it.write(actualToString) }
-            continue
-
             val expectedToString = KimTestData.getToStringText(index)
 
             val equals = expectedToString.contentEquals(actualToString)
@@ -53,7 +50,7 @@ class ImageMetadataTest {
 
                 Path("build/photo_$index.txt").sink().use { it.write(actualToString) }
 
-                // fail("photo_$index.txt is different.")
+                fail("photo_$index.txt is different.")
             }
         }
     }

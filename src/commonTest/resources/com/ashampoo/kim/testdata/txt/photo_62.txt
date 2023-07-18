@@ -23,19 +23,19 @@ Big-endian (Motorola, MM)
 0x0128 ResolutionUnit = 2
 0x0131 Software = Ver.1.01 
 0x0132 DateTime = 2014:08:12 09:30:58
-0x00-1 Unknown = [181744, 181864]
+0x014a Unknown = [181744, 181864]
 0x0214 ReferenceBlackWhite = [0/1 (0.0), 255/1 (255.0), 0/1 (0.0), 255/1 (255.0), 0/1 (0.0), 255/1 (255.0)]
 0x8769 ExifOffset = 480
 0x8825 GPSInfo = 124124
 0x00-1 Unknown = 2014:08:12 09:30:58
-0x00-1 Unknown = [0x01, 0x00, 0x00, 0x00]
+0x9216 Unknown = [0x01, 0x00, 0x00, 0x00]
 
 ---- ExifIFD ----
 0x829a ExposureTime = 10/1600 (0.00625)
 0x829d FNumber = 63/10 (6.3)
 0x8822 ExposureProgram = 0
 0x8827 PhotographicSensitivity = 200
-0x00-1 Unknown = 2
+0x8830 Unknown = 2
 0x9003 DateTimeOriginal = 2014:08:12 09:30:58
 0x9004 DateTimeDigitized = 2014:08:12 09:30:58
 0x9204 ExposureCompensation = 0/6 (0.0)

@@ -19,7 +19,7 @@ Little-endian (Intel, II)
 0x829d FNumber = 56/10 (5.6)
 0x8822 ExposureProgram = 3
 0x8827 PhotographicSensitivity = 500
-0x00-1 Unknown = 1
+0x8830 Unknown = 1
 0x9000 ExifVersion = [0x30, 0x32, 0x33, 0x31]
 0x9003 DateTimeOriginal = 2020:04:30 15:08:15
 0x9004 DateTimeDigitized = 2020:04:30 15:08:15
@@ -31,7 +31,7 @@ Little-endian (Intel, II)
 0x9208 LightSource = 0
 0x9209 Flash = 8
 0x920a FocalLength = 30/1 (30.0)
-0x00-1 Unknown = 1
+0xa001 Unknown = 1
 0xa20e FocalPlaneXResolution = 87196351/32768 (2661.021454)
 0xa20f FocalPlaneYResolution = 87196351/32768 (2661.021454)
 0xa210 FocalPlaneResolutionUnit = 3

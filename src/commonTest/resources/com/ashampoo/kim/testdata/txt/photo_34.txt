@@ -38,7 +38,7 @@ Little-endian (Intel, II)
 0x9291 SubSecTimeOriginal = 20
 0x9292 SubSecTimeDigitized = 20
 0xa000 FlashpixVersion = [0x30, 0x31, 0x30, 0x30]
-0x00-1 Unknown = -1
+0xa001 Unknown = -1
 0xa002 ExifImageWidth = 4928
 0xa003 ExifImageLength = 3264
 0xa217 SensingMethod = 2

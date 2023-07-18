@@ -32,7 +32,7 @@ Big-endian (Motorola, MM)
 0x920a FocalLength = 55/1 (55.0)
 0x9291 SubSecTimeOriginal = 5
 0x9292 SubSecTimeDigitized = 5
-0x00-1 Unknown = 1
+0xa001 Unknown = 1
 0xa002 ExifImageWidth = 2304
 0xa003 ExifImageLength = 1536
 0xa217 SensingMethod = 2

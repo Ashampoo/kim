@@ -19,8 +19,8 @@ Little-endian (Intel, II)
 0x829d FNumber = 14/10 (1.4)
 0x8822 ExposureProgram = 1
 0x8827 PhotographicSensitivity = 125
-0x00-1 Unknown = 2
-0x00-1 Unknown = 125
+0x8830 Unknown = 2
+0x8832 Unknown = 125
 0x9000 ExifVersion = [0x30, 0x32, 0x33, 0x31]
 0x9003 DateTimeOriginal = 2019:03:24 21:41:32
 0x9004 DateTimeDigitized = 2019:03:24 21:41:32
@@ -33,7 +33,7 @@ Little-endian (Intel, II)
 0x920a FocalLength = 24/1 (24.0)
 0x9291 SubSecTimeOriginal = 40
 0x9292 SubSecTimeDigitized = 40
-0x00-1 Unknown = 1
+0xa001 Unknown = 1
 0xa20e FocalPlaneXResolution = 49807360/32768 (1520.0)
 0xa20f FocalPlaneYResolution = 49807360/32768 (1520.0)
 0xa210 FocalPlaneResolutionUnit = 3

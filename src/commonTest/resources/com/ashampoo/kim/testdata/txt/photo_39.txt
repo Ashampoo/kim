@@ -25,7 +25,7 @@ Little-endian (Intel, II)
 0x829d FNumber = 50/10 (5.0)
 0x8822 ExposureProgram = 4
 0x8827 PhotographicSensitivity = 400
-0x00-1 Unknown = 1
+0x8830 Unknown = 1
 0x9000 ExifVersion = [0x30, 0x32, 0x33, 0x30]
 0x9003 DateTimeOriginal = 2016:06:18 16:38:46
 0x9004 DateTimeDigitized = 2016:06:18 16:38:46
@@ -39,7 +39,7 @@ Little-endian (Intel, II)
 0x927c MakerNote = [11914 bytes]
 0x9286 UserComment =                                                                                                                      
 0xa000 FlashpixVersion = [0x30, 0x31, 0x30, 0x30]
-0x00-1 Unknown = 1
+0xa001 Unknown = 1
 0xa002 ExifImageWidth = 4608
 0xa003 ExifImageLength = 3456
 0xa005 InteropOffset = 13598
