@@ -37,13 +37,11 @@ import com.ashampoo.kim.input.ByteReader
 import com.ashampoo.kim.model.ImageFormat
 import com.ashampoo.kim.model.ImageSize
 
-object PngImageParser : ImageParser() {
+object PngImageParser : ImageParser {
 
     private val controlCharRegex = Regex("[\\p{Cntrl}]")
 
-    init {
-        byteOrder = ByteOrder.BIG_ENDIAN
-    }
+    private val pngByteOrder = ByteOrder.BIG_ENDIAN
 
     private fun readChunksInternal(
         byteReader: ByteReader,
@@ -54,7 +52,7 @@ object PngImageParser : ImageParser() {
 
         while (true) {
 
-            val length = byteReader.read4BytesAsInt("length", byteOrder)
+            val length = byteReader.read4BytesAsInt("length", pngByteOrder)
 
             if (length < 0)
                 throw ImageReadException("Invalid PNG chunk length: $length")
@@ -70,7 +68,7 @@ object PngImageParser : ImageParser() {
             else
                 byteReader.skipBytes("chunk data", length.toLong())
 
-            val crc = byteReader.read4BytesAsInt("crc", byteOrder)
+            val crc = byteReader.read4BytesAsInt("crc", pngByteOrder)
 
             if (keep) {
 

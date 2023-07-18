@@ -26,7 +26,7 @@ import com.ashampoo.kim.model.ImageSize
 import io.ktor.utils.io.charsets.Charsets
 import io.ktor.utils.io.core.String
 
-class TiffImageParser : ImageParser() {
+object TiffImageParser : ImageParser {
 
     override fun parseMetadata(byteReader: ByteReader): ImageMetadata {
 

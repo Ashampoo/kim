@@ -21,7 +21,6 @@ import com.ashampoo.kim.common.getRemainingBytes
 import com.ashampoo.kim.common.startsWith
 import com.ashampoo.kim.format.ImageMetadata
 import com.ashampoo.kim.format.ImageParser
-import com.ashampoo.kim.format.jpeg.JpegConstants.JPEG_BYTE_ORDER
 import com.ashampoo.kim.format.jpeg.iptc.IptcMetadata
 import com.ashampoo.kim.format.jpeg.segments.App13Segment
 import com.ashampoo.kim.format.jpeg.segments.AppnSegment
@@ -38,11 +37,7 @@ import com.ashampoo.kim.input.ByteReader
 import com.ashampoo.kim.model.ImageFormat
 import com.ashampoo.kim.model.ImageSize
 
-object JpegImageParser : ImageParser() {
-
-    init {
-        byteOrder = JPEG_BYTE_ORDER
-    }
+object JpegImageParser : ImageParser {
 
     private fun keepMarker(marker: Int, markers: List<Int>?): Boolean =
         markers?.contains(marker) ?: false
@@ -52,7 +47,7 @@ object JpegImageParser : ImageParser() {
         val segments = readSegments(
             byteReader,
             JpegConstants.SOFN_MARKERS +
-                listOf(JpegConstants.JPEG_APP1_MARKER, JpegConstants.JPEG_APP13_MARKER)
+                    listOf(JpegConstants.JPEG_APP1_MARKER, JpegConstants.JPEG_APP13_MARKER)
         )
 
         val imageSize = getImageSize(segments)
