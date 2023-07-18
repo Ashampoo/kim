@@ -47,7 +47,7 @@ object JpegImageParser : ImageParser {
         val segments = readSegments(
             byteReader,
             JpegConstants.SOFN_MARKERS +
-                    listOf(JpegConstants.JPEG_APP1_MARKER, JpegConstants.JPEG_APP13_MARKER)
+                listOf(JpegConstants.JPEG_APP1_MARKER, JpegConstants.JPEG_APP13_MARKER)
         )
 
         val imageSize = getImageSize(segments)
