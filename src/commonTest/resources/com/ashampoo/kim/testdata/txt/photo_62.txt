@@ -1,5 +1,5 @@
 File format : TIFF
-Resolution  : 160 x 120
+Resolution  : 4992 x 3280
 ---- TIFF ----
 Version 42
 Big-endian (Motorola, MM)

@@ -70,9 +70,9 @@ object TiffConstants {
     const val DIRECTORY_TYPE_ROOT = 0
     const val DIRECTORY_TYPE_SUB = 1
     const val DIRECTORY_TYPE_SUB0 = 1
-    const val DIRECTORY_TYPE_SUB1 = 2
-    const val DIRECTORY_TYPE_SUB2 = 3
-    const val DIRECTORY_TYPE_SUB3 = 4
+    const val EXIF_SUB_IFD1 = 2
+    const val EXIF_SUB_IFD2 = 3
+    const val EXIF_SUB_IFD3 = 4
     const val TIFF_EXIF_IFD = -2
     const val TIFF_GPS = -3
     const val TIFF_INTEROP_IFD = -4

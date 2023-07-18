@@ -23,9 +23,9 @@ import com.ashampoo.kim.common.toInt
 import com.ashampoo.kim.format.tiff.constants.ExifTag
 import com.ashampoo.kim.format.tiff.constants.TiffConstants
 import com.ashampoo.kim.format.tiff.constants.TiffConstants.DIRECTORY_TYPE_SUB
-import com.ashampoo.kim.format.tiff.constants.TiffConstants.DIRECTORY_TYPE_SUB1
-import com.ashampoo.kim.format.tiff.constants.TiffConstants.DIRECTORY_TYPE_SUB2
-import com.ashampoo.kim.format.tiff.constants.TiffConstants.DIRECTORY_TYPE_SUB3
+import com.ashampoo.kim.format.tiff.constants.TiffConstants.EXIF_SUB_IFD1
+import com.ashampoo.kim.format.tiff.constants.TiffConstants.EXIF_SUB_IFD2
+import com.ashampoo.kim.format.tiff.constants.TiffConstants.EXIF_SUB_IFD3
 import com.ashampoo.kim.format.tiff.constants.TiffConstants.TIFF_ENTRY_MAX_VALUE_LENGTH
 import com.ashampoo.kim.format.tiff.fieldtypes.FieldType
 import com.ashampoo.kim.format.tiff.fieldtypes.FieldType.Companion.getFieldType
@@ -215,9 +215,9 @@ class TiffReader : BinaryFileParser() {
 
                         val subDirectoryType = if (subIfdOffsets)
                             when (index) {
-                                1 -> DIRECTORY_TYPE_SUB1
-                                2 -> DIRECTORY_TYPE_SUB2
-                                3 -> DIRECTORY_TYPE_SUB3
+                                1 -> EXIF_SUB_IFD1
+                                2 -> EXIF_SUB_IFD2
+                                3 -> EXIF_SUB_IFD3
                                 else -> DIRECTORY_TYPE_SUB
                             }
                         else

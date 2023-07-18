@@ -18,7 +18,7 @@ package com.ashampoo.kim.format.tiff
 
 import com.ashampoo.kim.format.ImageMetadata
 import com.ashampoo.kim.format.ImageParser
-import com.ashampoo.kim.format.tiff.constants.TiffDirectoryType
+import com.ashampoo.kim.format.tiff.constants.TiffConstants
 import com.ashampoo.kim.format.tiff.constants.TiffTag
 import com.ashampoo.kim.input.ByteArrayByteReader
 import com.ashampoo.kim.input.ByteReader
@@ -54,11 +54,8 @@ object TiffImageParser : ImageParser {
          * directory is wrong. This should be the fallback.
          */
 
-        /*
-         * TODO FIXME SubIFD1 is not read by the current logic.
-         */
         val subIfd1 = tiffContents.directories.find {
-            it.type == TiffDirectoryType.TIFF_DIRECTORY_IFD1.directoryType
+            it.type == TiffConstants.EXIF_SUB_IFD1
         }
 
         var imageSize: ImageSize? = null
