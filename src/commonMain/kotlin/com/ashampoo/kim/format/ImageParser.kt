@@ -18,6 +18,7 @@ package com.ashampoo.kim.format
 
 import com.ashampoo.kim.format.jpeg.JpegImageParser
 import com.ashampoo.kim.format.png.PngImageParser
+import com.ashampoo.kim.format.raf.RafImageParser
 import com.ashampoo.kim.format.tiff.TiffImageParser
 import com.ashampoo.kim.input.ByteReader
 import com.ashampoo.kim.model.ImageFormat
@@ -33,6 +34,7 @@ fun interface ImageParser {
                 ImageFormat.JPEG -> JpegImageParser
                 ImageFormat.PNG -> PngImageParser
                 ImageFormat.TIFF, ImageFormat.CR2 -> TiffImageParser
+                ImageFormat.RAF -> RafImageParser
                 else -> null
             }
     }
