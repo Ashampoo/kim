@@ -22,6 +22,7 @@ import com.ashampoo.kim.format.ImageParser
 import com.ashampoo.kim.format.jpeg.JpegImageParser
 import com.ashampoo.kim.input.ByteReader
 import com.ashampoo.kim.input.PrePendingByteReader
+import com.ashampoo.kim.model.ImageFormat
 
 object RafImageParser : ImageParser {
 
@@ -63,6 +64,8 @@ object RafImageParser : ImageParser {
             prependedBytes = ImageFormatMagicNumbers.jpeg
         )
 
-        return JpegImageParser.parseMetadata(newReader)
+        return JpegImageParser
+            .parseMetadata(newReader)
+            .copy(imageFormat = ImageFormat.RAF)
     }
 }

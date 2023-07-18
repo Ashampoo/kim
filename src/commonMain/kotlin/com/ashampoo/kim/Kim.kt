@@ -62,7 +62,13 @@ object Kim {
 
         val newReader = PrePendingByteReader(it, headerBytes.toList())
 
-        return@use imageParser.parseMetadata(newReader)
+        /*
+         * We re-apply the ImageFormat, because we don't want to report
+         * "TIFF" for every TIFF-based RAW format like CR2.
+         */
+        return@use imageParser
+            .parseMetadata(newReader)
+            .copy(imageFormat = imageFormat)
     }
 
     /**

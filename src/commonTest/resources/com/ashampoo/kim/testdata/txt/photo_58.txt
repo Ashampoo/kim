@@ -1,4 +1,4 @@
-File format : JPEG
+File format : RAF
 Resolution  : 4416 x 2944
 ---- TIFF ----
 Version 42

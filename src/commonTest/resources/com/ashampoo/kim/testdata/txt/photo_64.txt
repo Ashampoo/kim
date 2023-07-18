@@ -1,4 +1,4 @@
-File format : TIFF
+File format : RW2
 Resolution  : null
 ---- TIFF ----
 Version 85
