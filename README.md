@@ -96,9 +96,7 @@ rootDirectory.add(TiffTag.TIFF_TAG_ORIENTATION, 8)
 val inputStream = File("myphoto.jpg").inputStream()
 val outputStream = File("myphoto_changed.jpg").outputStream()
 
-OutputStreamByteWriter(
-    File("myphoto_changed.jpg").outputStream()
-).use { outputStreamByteWriter ->
+OutputStreamByteWriter(outputStream).use { outputStreamByteWriter ->
 
     JpegRewriter.updateExifMetadataLossless(
         byteReader = JvmInputStreamByteReader(inputStream),
