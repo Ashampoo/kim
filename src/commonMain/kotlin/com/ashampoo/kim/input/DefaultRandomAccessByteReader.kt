@@ -21,7 +21,7 @@ class DefaultRandomAccessByteReader(
 ) : RandomAccessByteReader {
 
     private var position: Int = 0
-    private val buffer = mutableListOf<Byte>()
+    private val buffer: MutableList<Byte> = ArrayList(INITIAL_SIZE)
 
     override fun readByte(): Byte? {
 
@@ -88,5 +88,9 @@ class DefaultRandomAccessByteReader(
         val bytes = byteReader.readBytes(missingBytesCount)
 
         buffer.addAll(bytes.asIterable())
+    }
+
+    companion object {
+        const val INITIAL_SIZE = 1024
     }
 }
