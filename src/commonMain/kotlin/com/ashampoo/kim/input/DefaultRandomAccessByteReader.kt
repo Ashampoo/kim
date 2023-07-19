@@ -28,11 +28,10 @@ class DefaultRandomAccessByteReader(
         if (position >= size)
             return null
 
-        if (position + 1 > buffer.size) {
-            val missingBytesCount = position + 1 - buffer.size
-            val bytes = byteReader.readBytes(missingBytesCount)
-            buffer.addAll(bytes.asIterable())
-        }
+        val endIndex = position + 1
+
+        if (endIndex > buffer.size)
+            readToIndex(endIndex)
 
         return buffer[position++]
     }
@@ -44,13 +43,11 @@ class DefaultRandomAccessByteReader(
 
         val endIndex = position + count.coerceAtMost(size.toInt())
 
-        if (endIndex > buffer.size) {
-            val missingBytesCount = endIndex - buffer.size
-            val bytes = byteReader.readBytes(missingBytesCount)
-            buffer.addAll(bytes.asIterable())
-        }
+        if (endIndex > buffer.size)
+            readToIndex(endIndex)
 
         val bytes = buffer.subList(position, endIndex).toByteArray()
+
         position += bytes.size
 
         return bytes
@@ -73,11 +70,8 @@ class DefaultRandomAccessByteReader(
 
         val endIndex = start + length
 
-        if (endIndex > buffer.size) {
-            val missingBytesCount = endIndex - buffer.size
-            val bytes = byteReader.readBytes(missingBytesCount)
-            buffer.addAll(bytes.asIterable())
-        }
+        if (endIndex > buffer.size)
+            readToIndex(endIndex)
 
         return buffer.subList(start, endIndex).toByteArray()
     }
@@ -86,4 +80,13 @@ class DefaultRandomAccessByteReader(
 
     override fun close() =
         byteReader.close()
+
+    private fun readToIndex(index: Int) {
+
+        val missingBytesCount = index - buffer.size
+
+        val bytes = byteReader.readBytes(missingBytesCount)
+
+        buffer.addAll(bytes.asIterable())
+    }
 }
