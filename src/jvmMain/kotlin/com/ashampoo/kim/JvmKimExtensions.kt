@@ -22,8 +22,8 @@ import java.io.File
 import java.io.InputStream
 
 @Throws(ImageReadException::class)
-fun Kim.readMetadata(inputStream: InputStream): ImageMetadata? =
-    Kim.readMetadata(JvmInputStreamByteReader(inputStream))
+fun Kim.readMetadata(inputStream: InputStream, length: Long): ImageMetadata? =
+    Kim.readMetadata(JvmInputStreamByteReader(inputStream), length)
 
 @Throws(ImageReadException::class)
 fun Kim.readMetadata(path: String): ImageMetadata? =
@@ -34,5 +34,5 @@ fun Kim.readMetadata(file: File): ImageMetadata? {
 
     check(file.exists()) { "File does not exist: $file" }
 
-    return Kim.readMetadata(file.inputStream())
+    return Kim.readMetadata(file.inputStream(), file.length())
 }

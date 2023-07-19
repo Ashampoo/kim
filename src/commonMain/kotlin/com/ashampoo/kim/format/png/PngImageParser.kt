@@ -115,7 +115,7 @@ object PngImageParser : ImageParser {
         return ImageSize(pngChunkIHDR.width, pngChunkIHDR.height)
     }
 
-    override fun parseMetadata(byteReader: ByteReader): ImageMetadata {
+    override fun parseMetadata(byteReader: ByteReader, length: Long): ImageMetadata {
 
         val chunks = readChunks(
             byteReader,

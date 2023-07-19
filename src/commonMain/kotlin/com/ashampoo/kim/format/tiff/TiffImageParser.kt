@@ -19,8 +19,8 @@ package com.ashampoo.kim.format.tiff
 import com.ashampoo.kim.format.ImageMetadata
 import com.ashampoo.kim.format.ImageParser
 import com.ashampoo.kim.format.tiff.constants.TiffTag
-import com.ashampoo.kim.input.ByteArrayByteReader
 import com.ashampoo.kim.input.ByteReader
+import com.ashampoo.kim.input.DefaultRandomAccessByteReader
 import com.ashampoo.kim.model.ImageFormat
 import com.ashampoo.kim.model.ImageSize
 import io.ktor.utils.io.charsets.Charsets
@@ -28,13 +28,9 @@ import io.ktor.utils.io.core.String
 
 object TiffImageParser : ImageParser {
 
-    override fun parseMetadata(byteReader: ByteReader): ImageMetadata {
+    override fun parseMetadata(byteReader: ByteReader, length: Long): ImageMetadata {
 
-        /*
-         * TODO Implement a logic that only reads as much bytes as requested
-         *  and not the whole file at once. Reading the whole file is bad for cloud hosted files.
-         */
-        val randomAccessByteReader = ByteArrayByteReader(byteReader.readRemainingBytes())
+        val randomAccessByteReader = DefaultRandomAccessByteReader(byteReader, length)
 
         val exif = TiffReader().read(randomAccessByteReader)
 

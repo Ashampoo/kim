@@ -25,7 +25,7 @@ import com.ashampoo.kim.model.ImageFormat
 
 fun interface ImageParser {
 
-    fun parseMetadata(byteReader: ByteReader): ImageMetadata
+    fun parseMetadata(byteReader: ByteReader, length: Long): ImageMetadata
 
     companion object {
 

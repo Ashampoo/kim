@@ -30,14 +30,14 @@ import platform.posix.memcpy
 
 @Throws(ImageReadException::class)
 fun Kim.readMetadata(data: NSData): ImageMetadata? =
-    Kim.readMetadata(ByteArrayByteReader(convertDataToByteArray(data)))
+    Kim.readMetadata(ByteArrayByteReader(convertDataToByteArray(data)), data.length.toLong())
 
 @Throws(ImageReadException::class)
 fun Kim.readMetadata(path: String): ImageMetadata? {
 
     val fileBytes = readFileAsByteArray(path) ?: return null
 
-    return Kim.readMetadata(ByteArrayByteReader(fileBytes))
+    return Kim.readMetadata(ByteArrayByteReader(fileBytes), fileBytes.size.toLong())
 }
 
 private fun convertDataToByteArray(data: NSData): ByteArray {
