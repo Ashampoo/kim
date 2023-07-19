@@ -33,7 +33,6 @@ class KtorInputByteReader(
     override fun readBytes(count: Int): ByteArray =
         input.readBytes(minOf(count, input.remaining.toInt()))
 
-    override fun close() {
+    override fun close() =
         input.close()
-    }
 }
