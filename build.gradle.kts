@@ -23,6 +23,9 @@ val productName = "Ashampoo Kim"
 
 val ktorVersion: String = "2.3.2"
 val xmpCoreVersion: String = "0.1.3"
+val dateTimeVersion: String = "0.4.0"
+val testRessourcesVersion: String = "0.3.2"
+val ioCoreVersion: String = "0.2.1"
 
 description = productName
 group = "com.ashampoo"
@@ -152,7 +155,10 @@ kotlin {
         dependencies {
 
             /* Date handling */
-            implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.4.0")
+            implementation("org.jetbrains.kotlinx:kotlinx-datetime:$dateTimeVersion")
+
+            /* Multiplatform file access */
+            implementation("org.jetbrains.kotlinx:kotlinx-io-core:$ioCoreVersion")
 
             /* Needed for Charset class. */
             /* Defined as api() to prevent problems when used from a pure-java project. */
@@ -171,10 +177,7 @@ kotlin {
             implementation(kotlin("test"))
 
             /* Multiplatform test resources */
-            implementation("com.goncalossilva:resources:0.3.2")
-
-            /* Multiplatform file access */
-            implementation("org.jetbrains.kotlinx:kotlinx-io-core:0.2.0")
+            implementation("com.goncalossilva:resources:$testRessourcesVersion")
         }
     }
 
