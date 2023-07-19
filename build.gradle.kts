@@ -157,9 +157,6 @@ kotlin {
             /* Date handling */
             implementation("org.jetbrains.kotlinx:kotlinx-datetime:$dateTimeVersion")
 
-            /* Multiplatform file access */
-            implementation("org.jetbrains.kotlinx:kotlinx-io-core:$ioCoreVersion")
-
             /* Needed for Charset class. */
             /* Defined as api() to prevent problems when used from a pure-java project. */
             api("io.ktor:ktor-io:$ktorVersion")
@@ -178,6 +175,9 @@ kotlin {
 
             /* Multiplatform test resources */
             implementation("com.goncalossilva:resources:$testRessourcesVersion")
+
+            /* Multiplatform file access */
+            implementation("org.jetbrains.kotlinx:kotlinx-io-core:$ioCoreVersion")
         }
     }
 
