@@ -24,5 +24,5 @@ import java.io.InputStream
  * Provides way to read from Android ContentReolver that should work on all versions.
  */
 @Throws(ImageReadException::class)
-fun Kim.readMetadataAndroid(inputStream: InputStream): ImageMetadata? =
-    Kim.readMetadata(AndroidInputStreamByteReader(inputStream))
+fun Kim.readMetadataAndroid(inputStream: InputStream, length: Long): ImageMetadata? =
+    Kim.readMetadata(AndroidInputStreamByteReader(inputStream), length)

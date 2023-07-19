@@ -42,7 +42,7 @@ object JpegImageParser : ImageParser {
     private fun keepMarker(marker: Int, markers: List<Int>?): Boolean =
         markers?.contains(marker) ?: false
 
-    override fun parseMetadata(byteReader: ByteReader): ImageMetadata {
+    override fun parseMetadata(byteReader: ByteReader, length: Long): ImageMetadata {
 
         val segments = readSegments(
             byteReader,

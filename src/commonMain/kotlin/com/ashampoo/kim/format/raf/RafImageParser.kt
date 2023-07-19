@@ -31,7 +31,7 @@ object RafImageParser : ImageParser {
      * We just have to find it and read the data from there it.
      */
     @Suppress("ComplexCondition", "LoopWithTooManyJumpStatements")
-    override fun parseMetadata(byteReader: ByteReader): ImageMetadata {
+    override fun parseMetadata(byteReader: ByteReader, length: Long): ImageMetadata {
 
         val magicNumberBytes = byteReader.readBytes(ImageFormatMagicNumbers.raf.size).toList()
 
@@ -65,7 +65,7 @@ object RafImageParser : ImageParser {
         )
 
         return JpegImageParser
-            .parseMetadata(newReader)
+            .parseMetadata(newReader, length)
             .copy(imageFormat = ImageFormat.RAF)
     }
 }

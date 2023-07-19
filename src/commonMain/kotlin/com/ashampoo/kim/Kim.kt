@@ -40,16 +40,16 @@ object Kim {
     @kotlin.jvm.JvmStatic
     @Throws(ImageReadException::class)
     fun readMetadata(bytes: ByteArray): ImageMetadata? =
-        if (bytes.isEmpty()) null else readMetadata(ByteArrayByteReader(bytes))
+        if (bytes.isEmpty()) null else readMetadata(ByteArrayByteReader(bytes), bytes.size.toLong())
 
     @kotlin.jvm.JvmStatic
     @Throws(ImageReadException::class)
     fun readMetadata(input: Input): ImageMetadata? =
-        readMetadata(KtorInputByteReader(input))
+        readMetadata(KtorInputByteReader(input), input.remaining)
 
     @kotlin.jvm.JvmStatic
     @Throws(ImageReadException::class)
-    fun readMetadata(byteReader: ByteReader): ImageMetadata? = byteReader.use {
+    fun readMetadata(byteReader: ByteReader, length: Long): ImageMetadata? = byteReader.use {
 
         val headerBytes = it.readBytes(ImageFormat.REQUIRED_HEADER_BYTE_COUNT_FOR_DETECTION)
 
@@ -67,7 +67,7 @@ object Kim {
          * "TIFF" for every TIFF-based RAW format like CR2.
          */
         return@use imageParser
-            .parseMetadata(newReader)
+            .parseMetadata(newReader, length)
             .copy(imageFormat = imageFormat)
     }
 
