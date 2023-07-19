@@ -87,7 +87,10 @@ class DefaultRandomAccessByteReader(
 
         val bytes = byteReader.readBytes(missingBytesCount)
 
-        buffer.addAll(bytes.asIterable())
+        if (bytes.size == 1)
+            buffer.add(bytes.first())
+        else
+            buffer.addAll(bytes.asIterable())
     }
 
     companion object {
