@@ -15,33 +15,23 @@
  */
 package com.ashampoo.kim.input
 
-import kotlin.math.min
-
 class DefaultRandomAccessByteReader(
     val byteReader: ByteReader,
     val size: Long
 ) : RandomAccessByteReader {
 
     private var position: Int = 0
-
     private val buffer = mutableListOf<Byte>()
 
     override fun readByte(): Byte? {
 
-        /* Check if the end is reached. */
-        if (position > size)
+        if (position >= size)
             return null
 
-        /*
-         * Fill the buffer as much as needed
-         */
         if (position + 1 > buffer.size) {
-
             val missingBytesCount = position + 1 - buffer.size
-
             val bytes = byteReader.readBytes(missingBytesCount)
-
-            buffer.addAll(bytes.toList())
+            buffer.addAll(bytes.asIterable())
         }
 
         return buffer[position++]
@@ -49,39 +39,31 @@ class DefaultRandomAccessByteReader(
 
     override fun readBytes(count: Int): ByteArray {
 
-        /* Check if the end is reached. */
-        if (position > size)
+        if (position >= size)
             return byteArrayOf()
 
-        val endIndex: Int = min(position + count, size.toInt())
+        val endIndex = position + count.coerceAtMost(size.toInt())
 
-        /*
-         * Fill the buffer as much as needed
-         */
-        if (endIndex + 1 > buffer.size) {
-
-            val missingBytesCount = endIndex + 1 - buffer.size
-
+        if (endIndex > buffer.size) {
+            val missingBytesCount = endIndex - buffer.size
             val bytes = byteReader.readBytes(missingBytesCount)
-
-            buffer.addAll(bytes.toList())
+            buffer.addAll(bytes.asIterable())
         }
 
         val bytes = buffer.subList(position, endIndex).toByteArray()
-
         position += bytes.size
 
         return bytes
     }
 
     override fun reset() {
-        this.position = 0
+        position = 0
     }
 
     override fun skipTo(position: Int) {
 
-        require(position <= size) {
-            "Can't skip after max length: $position > $size"
+        require(position <= size - 1) {
+            "Can't skip after max length: $position > ${size - 1}"
         }
 
         this.position = position
@@ -91,16 +73,10 @@ class DefaultRandomAccessByteReader(
 
         val endIndex = start + length
 
-        /*
-         * Fill the buffer as much as needed
-         */
-        if (endIndex + 1 > buffer.size) {
-
-            val missingBytesCount = endIndex + 1 - buffer.size
-
+        if (endIndex > buffer.size) {
+            val missingBytesCount = endIndex - buffer.size
             val bytes = byteReader.readBytes(missingBytesCount)
-
-            buffer.addAll(bytes.toList())
+            buffer.addAll(bytes.asIterable())
         }
 
         return buffer.subList(start, endIndex).toByteArray()
