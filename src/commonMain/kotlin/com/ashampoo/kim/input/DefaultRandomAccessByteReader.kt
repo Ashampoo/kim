@@ -15,6 +15,10 @@
  */
 package com.ashampoo.kim.input
 
+/**
+ * This class buffers the reading from the original ByteReader and
+ * provides random access needed for parsing TIFF files.
+ */
 class DefaultRandomAccessByteReader(
     val byteReader: ByteReader,
     val size: Long
