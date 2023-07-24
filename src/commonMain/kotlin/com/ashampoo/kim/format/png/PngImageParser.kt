@@ -244,15 +244,31 @@ object PngImageParser : ImageParser {
         )
     }
 
-    private fun getXmpXml(chunks: List<PngChunk>): String? = chunks
-        .filterIsInstance<PngChunkItxt>()
-        .filter { it.getKeyword() == PngConstants.XMP_KEYWORD }
-        .firstOrNull()
-        ?.getText()
+    private fun getXmpXml(chunks: List<PngChunk>): String? {
 
-    private fun getTextChunkWithKeyword(chunks: List<PngChunk>, keyword: String): String? = chunks
-        .filterIsInstance<PngTextChunk>()
-        .filter { it.getKeyword() == keyword }
-        .firstOrNull()
-        ?.getText()
+        val text = chunks
+            .filterIsInstance<PngChunkItxt>()
+            .filter { it.getKeyword() == PngConstants.XMP_KEYWORD }
+            .firstOrNull()
+            ?.getText()
+
+        if (text.isNullOrBlank())
+            return text
+
+        return text
+    }
+
+    private fun getTextChunkWithKeyword(chunks: List<PngChunk>, keyword: String): String? {
+
+        val text = chunks
+            .filterIsInstance<PngTextChunk>()
+            .filter { it.getKeyword() == keyword }
+            .firstOrNull()
+            ?.getText()
+
+        if (text.isNullOrBlank())
+            return text
+
+        return text
+    }
 }
