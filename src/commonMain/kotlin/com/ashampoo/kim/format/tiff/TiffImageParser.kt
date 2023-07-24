@@ -77,6 +77,9 @@ object TiffImageParser : ImageParser {
 
         val bytes = firstDirectory.getFieldValue(TiffTag.TIFF_TAG_XMP, false) ?: return null
 
+        if (bytes.isEmpty())
+            return null
+
         return String(bytes, charset = Charsets.UTF_8)
     }
 }

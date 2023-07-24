@@ -175,7 +175,12 @@ object JpegImageParser : ImageParser {
          * and take the first by ignoring the rest.
          */
 
-        return JpegXmpParser.parseXmpJpegSegment(xmpSegments.first().segmentBytes)
+        val xmp = JpegXmpParser.parseXmpJpegSegment(xmpSegments.first().segmentBytes)
+
+        if (xmp.isBlank())
+            return null
+
+        return xmp
     }
 
     private fun getIptc(segments: List<Segment>): IptcMetadata? {
