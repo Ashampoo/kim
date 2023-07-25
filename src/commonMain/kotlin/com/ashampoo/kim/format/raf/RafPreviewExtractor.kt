@@ -16,10 +16,7 @@
  */
 package com.ashampoo.kim.format.raf
 
-import com.ashampoo.kim.common.ByteOrder
-import com.ashampoo.kim.common.ImageReadException
 import com.ashampoo.kim.common.toSingleNumberHexes
-import com.ashampoo.kim.common.toUInt16
 import com.ashampoo.kim.format.ImageFormatMagicNumbers
 import com.ashampoo.kim.format.PreviewExtractor
 import com.ashampoo.kim.format.jpeg.JpegMetadataExtractor
@@ -42,65 +39,7 @@ object RafPreviewExtractor : PreviewExtractor {
 
         bytes.addAll(ImageFormatMagicNumbers.jpeg)
 
-        /*
-         * First read the whole metadata part of the file.
-         */
-
-        @Suppress("LoopWithTooManyJumpStatements")
-        do {
-
-            var segmentIdentifier = byteReader.readByte() ?: break
-            var segmentType = byteReader.readByte() ?: break
-
-            bytes.add(segmentIdentifier)
-            bytes.add(segmentType)
-
-            /*
-             * Find the segment marker. Markers are zero or more 0xFF bytes, followed by
-             * a 0xFF and then a byte not equal to 0x00 or 0xFF.
-             */
-            while (
-                segmentIdentifier != JpegMetadataExtractor.SEGMENT_IDENTIFIER ||
-                segmentType == JpegMetadataExtractor.SEGMENT_IDENTIFIER ||
-                segmentType.toInt() == 0
-            ) {
-
-                segmentIdentifier = segmentType
-
-                val nextSegmentType = byteReader.readByte() ?: break
-
-                bytes.add(nextSegmentType)
-
-                segmentType = nextSegmentType
-            }
-
-            if (segmentType == JpegMetadataExtractor.SEGMENT_START_OF_SCAN)
-                break
-
-            val segmentLengthFirstByte = byteReader.readByte() ?: break
-            val segmentLengthSecondByte = byteReader.readByte() ?: break
-
-            bytes.add(segmentLengthFirstByte)
-            bytes.add(segmentLengthSecondByte)
-
-            /* Next 2-bytes are <segment-size>: [high-byte] [low-byte] */
-            var segmentLength: Int = byteArrayOf(segmentLengthFirstByte, segmentLengthSecondByte)
-                .toUInt16(ByteOrder.BIG_ENDIAN)
-
-            /* Segment length includes size bytes, so subtract two */
-            segmentLength -= 2
-
-            if (segmentLength <= 0)
-                throw ImageReadException("Illegal JPEG segment length: $segmentLength")
-
-            val segmentBytes = byteReader.readBytes(segmentLength)
-
-            if (segmentBytes.size != segmentLength)
-                throw ImageReadException("Incomplete read: ${segmentBytes.size} != $segmentLength")
-
-            bytes.addAll(segmentBytes.asList())
-
-        } while (true)
+        JpegMetadataExtractor.readSegmentBytesIntoList(byteReader, bytes)
 
         /*
          * Now we are in Start-of-Scan segment and need to read until FF D9 (EOI)
