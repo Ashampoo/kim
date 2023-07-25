@@ -19,8 +19,6 @@ import com.ashampoo.kim.model.MetadataUpdate
 
 fun interface MetadataUpdater {
 
-    fun update(
-        bytes: ByteArray,
-        updates: Set<MetadataUpdate>
-    ): ByteArray
+    fun update(bytes: ByteArray, updates: Set<MetadataUpdate>): ByteArray
+
 }

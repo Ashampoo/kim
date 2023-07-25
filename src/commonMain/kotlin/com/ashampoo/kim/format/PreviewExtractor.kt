@@ -19,8 +19,6 @@ import com.ashampoo.kim.input.ByteReader
 
 fun interface PreviewExtractor {
 
-    fun extractPreviewImage(
-        byteReader: ByteReader,
-        length: Long
-    ): ByteArray?
+    fun extractPreviewImage(byteReader: ByteReader, length: Long): ByteArray?
+
 }
