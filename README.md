@@ -20,6 +20,7 @@ It's part of [Ashampoo Photos](https://ashampoo.com/photos).
 * TIFF: Read EXIF & XMP
 * RAW: Read EXIF & XMP from Canon CR2 & Fujifilm RAF
     + Experimental support for NEF, ARW, RW2 & ORF with known issues.
+    + API for preview image extraction of CR2, RAF, NEF, ARW & RW2 (but not ORF)
 * Handling of XMP content through
   [XMP Core for Kotlin Multiplatform](https://github.com/Ashampoo/xmpcore).
 * Convenicent `Kim.update()` API to perform updates to the relevant places.

@@ -66,17 +66,17 @@ object TiffTag {
     )
 
     val TIFF_TAG_IMAGE_LENGTH = TagInfoShortOrLong(
-        "ImageLength", 0x101, 1,
+        "ImageLength", 0x0101, 1,
         TIFF_DIRECTORY_IFD0
     )
 
     val TIFF_TAG_BITS_PER_SAMPLE = TagInfoShorts(
-        "BitsPerSample", 0x102, -1,
+        "BitsPerSample", 0x0102, -1,
         TIFF_DIRECTORY_IFD0
     )
 
     val TIFF_TAG_COMPRESSION = TagInfoShort(
-        "Compression", 0x103,
+        "Compression", 0x0103,
         TIFF_DIRECTORY_IFD0
     )
 

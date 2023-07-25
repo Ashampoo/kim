@@ -113,6 +113,10 @@ object Kim {
 
         val newReader = PrePendingByteReader(it, headerBytes.toList())
 
+        /**
+         * *Note:* Olympus ORF is currently unsupported because the preview offset
+         * is burried in the Olympus MakerNotes, which are currently not interpreted.
+         */
         return@use when (imageFormat) {
             ImageFormat.CR2 -> Cr2PreviewExtractor.extractPreviewImage(newReader, length)
             ImageFormat.RAF -> RafPreviewExtractor.extractPreviewImage(newReader, length)
