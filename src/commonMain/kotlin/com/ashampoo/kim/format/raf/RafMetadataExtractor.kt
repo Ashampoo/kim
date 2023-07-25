@@ -17,17 +17,18 @@ package com.ashampoo.kim.format.raf
 
 import com.ashampoo.kim.common.toSingleNumberHexes
 import com.ashampoo.kim.format.ImageFormatMagicNumbers
+import com.ashampoo.kim.format.MetadataExtractor
 import com.ashampoo.kim.format.jpeg.JpegMetadataExtractor
 import com.ashampoo.kim.input.ByteReader
 import com.ashampoo.kim.input.PrePendingByteReader
 
-object RafMetadataExtractor {
+object RafMetadataExtractor : MetadataExtractor {
 
     /**
      * The RAF file contains a JPEG with EXIF metadata.
      * We just have to find it and read the data from there it.
      */
-    fun extractMetadataBytes(byteReader: ByteReader): ByteArray {
+    override fun extractMetadataBytes(byteReader: ByteReader): ByteArray {
 
         val magicNumberBytes = byteReader.readBytes(ImageFormatMagicNumbers.raf.size).toList()
 

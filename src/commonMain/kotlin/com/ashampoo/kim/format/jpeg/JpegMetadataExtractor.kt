@@ -20,9 +20,10 @@ import com.ashampoo.kim.common.ImageReadException
 import com.ashampoo.kim.common.toSingleNumberHexes
 import com.ashampoo.kim.common.toUInt16
 import com.ashampoo.kim.format.ImageFormatMagicNumbers
+import com.ashampoo.kim.format.MetadataExtractor
 import com.ashampoo.kim.input.ByteReader
 
-object JpegMetadataExtractor {
+object JpegMetadataExtractor : MetadataExtractor {
 
     const val SEGMENT_IDENTIFIER = 0xFF.toByte()
     const val SEGMENT_START_OF_SCAN = 0xDA.toByte()
@@ -31,11 +32,11 @@ object JpegMetadataExtractor {
     private const val ADDITIONAL_BYTE_COUNT_AFTER_HEADER: Int = 12
 
     @Suppress("ComplexMethod")
-    fun extractMetadataBytes(reader: ByteReader): ByteArray {
+    override fun extractMetadataBytes(byteReader: ByteReader): ByteArray {
 
         val bytes = mutableListOf<Byte>()
 
-        val magicNumberBytes = reader.readBytes(ImageFormatMagicNumbers.jpegShort.size).toList()
+        val magicNumberBytes = byteReader.readBytes(ImageFormatMagicNumbers.jpegShort.size).toList()
 
         /* Ensure it's actually a JPEG. */
         require(magicNumberBytes == ImageFormatMagicNumbers.jpegShort) {
@@ -44,7 +45,7 @@ object JpegMetadataExtractor {
 
         bytes.addAll(magicNumberBytes)
 
-        readSegmentBytesIntoList(reader, bytes)
+        readSegmentBytesIntoList(byteReader, bytes)
 
         /**
          * Add some more bytes after the header, so it's recognized
@@ -52,7 +53,7 @@ object JpegMetadataExtractor {
          */
         repeat(ADDITIONAL_BYTE_COUNT_AFTER_HEADER) {
 
-            reader.readByte()?.let {
+            byteReader.readByte()?.let {
                 bytes.add(it)
             }
         }
