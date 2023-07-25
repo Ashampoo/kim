@@ -16,14 +16,15 @@
  */
 package com.ashampoo.kim.format.cr2
 
+import com.ashampoo.kim.format.PreviewExtractor
 import com.ashampoo.kim.format.tiff.TiffReader
 import com.ashampoo.kim.format.tiff.constants.TiffTag
 import com.ashampoo.kim.input.ByteReader
 import com.ashampoo.kim.input.DefaultRandomAccessByteReader
 
-object Cr2PreviewExtractor {
+object Cr2PreviewExtractor : PreviewExtractor {
 
-    fun extractPreviewImage(byteReader: ByteReader, length: Long): ByteArray {
+    override fun extractPreviewImage(byteReader: ByteReader, length: Long): ByteArray {
 
         val randomAccessByteReader = DefaultRandomAccessByteReader(byteReader, length)
 
