@@ -450,13 +450,20 @@ object TiffTag {
     const val JPEGPROC_VALUE_BASELINE = 1
     const val JPEGPROC_VALUE_LOSSLESS = 14
 
+    /**
+     * This marks where the thumbnail starts.
+     * It's called "JPEGInterchangeFormat" in the specficiation,
+     * but depending on the manufacturer it is also named
+     * "ThumbnailOffset", "PreviewImageStart", "JpgFromRawStart"
+     * and "OtherImageStart".
+     */
     val TIFF_TAG_JPEG_INTERCHANGE_FORMAT = TagInfoLong(
-        "JPEGInterchangeFormat", 0x201,
+        "JPEGInterchangeFormat", 0x0201,
         TIFF_DIRECTORY_IFD0, true
     )
 
     val TIFF_TAG_JPEG_INTERCHANGE_FORMAT_LENGTH = TagInfoLong(
-        "JPEGInterchangeFormatLength", 0x202,
+        "JPEGInterchangeFormatLength", 0x0202,
         TIFF_DIRECTORY_IFD0
     )
 

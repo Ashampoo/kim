@@ -27,7 +27,8 @@ class PreviewImageExtractionTest {
 
     val indicesWithPreviewImage = setOf(
         KimTestData.CR2_TEST_IMAGE_INDEX,
-        KimTestData.RAF_TEST_IMAGE_INDEX
+        KimTestData.RAF_TEST_IMAGE_INDEX,
+        KimTestData.NEF_TEST_IMAGE_INDEX
     )
 
     /**
