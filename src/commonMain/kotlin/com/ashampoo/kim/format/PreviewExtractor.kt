@@ -22,5 +22,5 @@ fun interface PreviewExtractor {
     fun extractPreviewImage(
         byteReader: ByteReader,
         length: Long
-    ): ByteArray
+    ): ByteArray?
 }

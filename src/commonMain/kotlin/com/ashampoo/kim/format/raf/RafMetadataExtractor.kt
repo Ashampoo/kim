@@ -27,22 +27,35 @@ object RafMetadataExtractor {
      * The RAF file contains a JPEG with EXIF metadata.
      * We just have to find it and read the data from there it.
      */
-    @Suppress("ComplexCondition", "LoopWithTooManyJumpStatements")
-    fun extractMetadataBytes(reader: ByteReader): ByteArray {
+    fun extractMetadataBytes(byteReader: ByteReader): ByteArray {
 
-        val magicNumberBytes = reader.readBytes(ImageFormatMagicNumbers.raf.size).toList()
+        val magicNumberBytes = byteReader.readBytes(ImageFormatMagicNumbers.raf.size).toList()
 
         /* Ensure it's actually an RAF. */
         require(magicNumberBytes == ImageFormatMagicNumbers.raf) {
             "RAF magic number mismatch: ${magicNumberBytes.toByteArray().toSingleNumberHexes()}"
         }
 
+        skipToJpegMagicBytes(byteReader)
+
+        /* Create a new reader, prepending the jpegMagicNumbers, and read the contained JPEG. */
+        val newReader = PrePendingByteReader(
+            delegate = byteReader,
+            prependedBytes = ImageFormatMagicNumbers.jpeg
+        )
+
+        return JpegMetadataExtractor.extractMetadataBytes(newReader)
+    }
+
+    @Suppress("ComplexCondition", "LoopWithTooManyJumpStatements")
+    fun skipToJpegMagicBytes(byteReader: ByteReader) {
+
         @Suppress("kotlin:S1481") // false positive
         val bytes = mutableListOf<Byte>()
 
         while (true) {
 
-            val byte = reader.readByte() ?: break
+            val byte = byteReader.readByte() ?: break
 
             bytes.add(byte)
 
@@ -53,13 +66,5 @@ object RafMetadataExtractor {
                 bytes[bytes.lastIndex - 0] == ImageFormatMagicNumbers.jpeg[2]
             ) break
         }
-
-        /* Create a new reader, prepending the jpegMagicNumbers, and read the contained JPEG. */
-        val newReader = PrePendingByteReader(
-            delegate = reader,
-            prependedBytes = ImageFormatMagicNumbers.jpeg
-        )
-
-        return JpegMetadataExtractor.extractMetadataBytes(newReader)
     }
 }

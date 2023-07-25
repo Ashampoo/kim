@@ -24,7 +24,7 @@ import com.ashampoo.kim.input.DefaultRandomAccessByteReader
 
 object Cr2PreviewExtractor : PreviewExtractor {
 
-    override fun extractPreviewImage(byteReader: ByteReader, length: Long): ByteArray {
+    override fun extractPreviewImage(byteReader: ByteReader, length: Long): ByteArray? {
 
         val randomAccessByteReader = DefaultRandomAccessByteReader(byteReader, length)
 
