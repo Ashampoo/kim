@@ -19,6 +19,7 @@ import com.ashampoo.kim.common.ImageReadException
 import com.ashampoo.kim.common.ImageWriteException
 import com.ashampoo.kim.format.ImageMetadata
 import com.ashampoo.kim.format.ImageParser
+import com.ashampoo.kim.format.arw.ArwPreviewExtractor
 import com.ashampoo.kim.format.cr2.Cr2PreviewExtractor
 import com.ashampoo.kim.format.jpeg.JpegMetadataExtractor
 import com.ashampoo.kim.format.jpeg.JpegUpdater
@@ -114,7 +115,7 @@ object Kim {
         return@use when (imageFormat) {
             ImageFormat.CR2 -> Cr2PreviewExtractor.extractPreviewImage(newReader, length)
             ImageFormat.RAF -> RafPreviewExtractor.extractPreviewImage(newReader, length)
-
+            ImageFormat.ARW -> ArwPreviewExtractor.extractPreviewImage(newReader, length)
             /* Unfortunately NEF has no separate magic bytes */
             ImageFormat.TIFF -> NefPreviewExtractor.extractPreviewImage(newReader, length)
             else -> null
