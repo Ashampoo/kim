@@ -18,9 +18,10 @@ package com.ashampoo.kim.format.png
 import com.ashampoo.kim.common.ImageReadException
 import com.ashampoo.kim.common.toSingleNumberHexes
 import com.ashampoo.kim.format.ImageFormatMagicNumbers
+import com.ashampoo.kim.format.MetadataExtractor
 import com.ashampoo.kim.input.ByteReader
 
-object PngMetadataExtractor {
+object PngMetadataExtractor : MetadataExtractor {
 
     const val INT32_BYTE_SIZE: Int = 4
 
@@ -50,11 +51,11 @@ object PngMetadataExtractor {
     )
 
     @Suppress("ComplexMethod", "LoopWithTooManyJumpStatements")
-    fun extractMetadataBytes(reader: ByteReader): ByteArray {
+    override fun extractMetadataBytes(byteReader: ByteReader): ByteArray {
 
         val bytes = mutableListOf<Byte>()
 
-        val magicNumberBytes = reader.readBytes(ImageFormatMagicNumbers.png.size).toList()
+        val magicNumberBytes = byteReader.readBytes(ImageFormatMagicNumbers.png.size).toList()
 
         /* Ensure it's actually a PNG. */
         require(magicNumberBytes == ImageFormatMagicNumbers.png) {
@@ -75,7 +76,7 @@ object PngMetadataExtractor {
          */
         while (true) {
 
-            val chunkDataLengthBytes = reader.readBytes(INT32_BYTE_SIZE)
+            val chunkDataLengthBytes = byteReader.readBytes(INT32_BYTE_SIZE)
 
             val chunkDataLength = chunkDataLengthBytes.toInt32()
 
@@ -83,7 +84,7 @@ object PngMetadataExtractor {
             if (chunkDataLength < 0)
                 throw ImageReadException("PNG chunk length exceeds maximum")
 
-            val chunkTypeBytes = reader.readBytes(INT32_BYTE_SIZE)
+            val chunkTypeBytes = byteReader.readBytes(INT32_BYTE_SIZE)
 
             val chunkType = PngChunkType.get(chunkTypeBytes)
 
@@ -109,10 +110,10 @@ object PngMetadataExtractor {
             bytes.addAll(chunkTypeBytes.toList())
 
             /* Chunk data. */
-            reader.readAndAddBytes(bytes, chunkDataLength)
+            byteReader.readAndAddBytes(bytes, chunkDataLength)
 
             /* CRC bytes. */
-            reader.readAndAddBytes(bytes, INT32_BYTE_SIZE)
+            byteReader.readAndAddBytes(bytes, INT32_BYTE_SIZE)
         }
 
         /* Write the end tag. */

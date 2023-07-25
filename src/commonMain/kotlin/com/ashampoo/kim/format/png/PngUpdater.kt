@@ -17,6 +17,7 @@ package com.ashampoo.kim.format.png
 
 import com.ashampoo.kim.Kim
 import com.ashampoo.kim.common.ImageWriteException
+import com.ashampoo.kim.format.MetadataUpdater
 import com.ashampoo.kim.format.tiff.write.TiffImageWriterLossless
 import com.ashampoo.kim.format.tiff.write.TiffImageWriterLossy
 import com.ashampoo.kim.format.tiff.write.TiffOutputSet
@@ -27,9 +28,9 @@ import com.ashampoo.kim.output.ByteArrayByteWriter
 import com.ashampoo.xmp.XMPMeta
 import com.ashampoo.xmp.XMPMetaFactory
 
-internal object PngUpdater {
+internal object PngUpdater : MetadataUpdater {
 
-    fun update(
+    override fun update(
         bytes: ByteArray,
         updates: Set<MetadataUpdate>
     ): ByteArray {

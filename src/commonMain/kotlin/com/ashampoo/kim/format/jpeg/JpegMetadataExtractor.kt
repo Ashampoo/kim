@@ -20,22 +20,23 @@ import com.ashampoo.kim.common.ImageReadException
 import com.ashampoo.kim.common.toSingleNumberHexes
 import com.ashampoo.kim.common.toUInt16
 import com.ashampoo.kim.format.ImageFormatMagicNumbers
+import com.ashampoo.kim.format.MetadataExtractor
 import com.ashampoo.kim.input.ByteReader
 
-object JpegMetadataExtractor {
+object JpegMetadataExtractor : MetadataExtractor {
 
-    private const val SEGMENT_IDENTIFIER = 0xFF.toByte()
-    private const val SEGMENT_START_OF_SCAN = 0xDA.toByte()
-    private const val MARKER_END_OF_IMAGE = 0xD9.toByte()
+    const val SEGMENT_IDENTIFIER = 0xFF.toByte()
+    const val SEGMENT_START_OF_SCAN = 0xDA.toByte()
+    const val MARKER_END_OF_IMAGE = 0xD9.toByte()
 
     private const val ADDITIONAL_BYTE_COUNT_AFTER_HEADER: Int = 12
 
     @Suppress("ComplexMethod")
-    fun extractMetadataBytes(reader: ByteReader): ByteArray {
+    override fun extractMetadataBytes(byteReader: ByteReader): ByteArray {
 
         val bytes = mutableListOf<Byte>()
 
-        val magicNumberBytes = reader.readBytes(ImageFormatMagicNumbers.jpegShort.size).toList()
+        val magicNumberBytes = byteReader.readBytes(ImageFormatMagicNumbers.jpegShort.size).toList()
 
         /* Ensure it's actually a JPEG. */
         require(magicNumberBytes == ImageFormatMagicNumbers.jpegShort) {
@@ -44,11 +45,32 @@ object JpegMetadataExtractor {
 
         bytes.addAll(magicNumberBytes)
 
+        readSegmentBytesIntoList(byteReader, bytes)
+
+        /**
+         * Add some more bytes after the header, so it's recognized
+         * by most image viewers as a valid (but broken) file.
+         */
+        repeat(ADDITIONAL_BYTE_COUNT_AFTER_HEADER) {
+
+            byteReader.readByte()?.let {
+                bytes.add(it)
+            }
+        }
+
+        return bytes.toByteArray()
+    }
+
+    internal fun readSegmentBytesIntoList(
+        byteReader: ByteReader,
+        bytes: MutableList<Byte>
+    ) {
+
         @Suppress("LoopWithTooManyJumpStatements")
         do {
 
-            var segmentIdentifier = reader.readByte() ?: break
-            var segmentType = reader.readByte() ?: break
+            var segmentIdentifier = byteReader.readByte() ?: break
+            var segmentType = byteReader.readByte() ?: break
 
             bytes.add(segmentIdentifier)
             bytes.add(segmentType)
@@ -65,7 +87,7 @@ object JpegMetadataExtractor {
 
                 segmentIdentifier = segmentType
 
-                val nextSegmentType = reader.readByte() ?: break
+                val nextSegmentType = byteReader.readByte() ?: break
 
                 bytes.add(nextSegmentType)
 
@@ -75,8 +97,8 @@ object JpegMetadataExtractor {
             if (segmentType == SEGMENT_START_OF_SCAN || segmentType == MARKER_END_OF_IMAGE)
                 break
 
-            val segmentLengthFirstByte = reader.readByte() ?: break
-            val segmentLengthSecondByte = reader.readByte() ?: break
+            val segmentLengthFirstByte = byteReader.readByte() ?: break
+            val segmentLengthSecondByte = byteReader.readByte() ?: break
 
             bytes.add(segmentLengthFirstByte)
             bytes.add(segmentLengthSecondByte)
@@ -91,7 +113,7 @@ object JpegMetadataExtractor {
             if (segmentLength <= 0)
                 throw ImageReadException("Illegal JPEG segment length: $segmentLength")
 
-            val segmentBytes = reader.readBytes(segmentLength)
+            val segmentBytes = byteReader.readBytes(segmentLength)
 
             if (segmentBytes.size != segmentLength)
                 throw ImageReadException("Incomplete read: ${segmentBytes.size} != $segmentLength")
@@ -99,18 +121,5 @@ object JpegMetadataExtractor {
             bytes.addAll(segmentBytes.asList())
 
         } while (true)
-
-        /**
-         * Add some more bytes after the header, so it's recognized
-         * by most image viewers as a valid (but broken) file.
-         */
-        repeat(ADDITIONAL_BYTE_COUNT_AFTER_HEADER) {
-
-            reader.readByte()?.let {
-                bytes.add(it)
-            }
-        }
-
-        return bytes.toByteArray()
     }
 }

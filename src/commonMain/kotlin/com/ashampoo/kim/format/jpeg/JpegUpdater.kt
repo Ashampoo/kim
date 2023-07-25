@@ -17,6 +17,7 @@ package com.ashampoo.kim.format.jpeg
 
 import com.ashampoo.kim.Kim
 import com.ashampoo.kim.common.ImageWriteException
+import com.ashampoo.kim.format.MetadataUpdater
 import com.ashampoo.kim.format.jpeg.iptc.IptcMetadata
 import com.ashampoo.kim.format.jpeg.iptc.IptcRecord
 import com.ashampoo.kim.format.jpeg.iptc.IptcTypes
@@ -30,9 +31,9 @@ import com.ashampoo.kim.output.ByteArrayByteWriter
 import com.ashampoo.xmp.XMPMeta
 import com.ashampoo.xmp.XMPMetaFactory
 
-internal object JpegUpdater {
+internal object JpegUpdater : MetadataUpdater {
 
-    fun update(
+    override fun update(
         bytes: ByteArray,
         updates: Set<MetadataUpdate>
     ): ByteArray {

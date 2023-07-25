@@ -40,23 +40,7 @@ object RafImageParser : ImageParser {
             "RAF magic number mismatch: ${magicNumberBytes.toByteArray().toSingleNumberHexes()}"
         }
 
-        @Suppress("kotlin:S1481") // false positive
-        val bytes = mutableListOf<Byte>()
-
-        while (true) {
-
-            val byte = byteReader.readByte() ?: break
-
-            bytes.add(byte)
-
-            /* Search the header and then break */
-            if (bytes.size >= ImageFormatMagicNumbers.jpeg.size &&
-                bytes[bytes.lastIndex - 2] == ImageFormatMagicNumbers.jpeg[0] &&
-                bytes[bytes.lastIndex - 1] == ImageFormatMagicNumbers.jpeg[1] &&
-                bytes[bytes.lastIndex - 0] == ImageFormatMagicNumbers.jpeg[2]
-            )
-                break
-        }
+        RafMetadataExtractor.skipToJpegMagicBytes(byteReader)
 
         /* Create a new reader, prepending the jpegMagicNumbers, and read the contained JPEG. */
         val newReader = PrePendingByteReader(
