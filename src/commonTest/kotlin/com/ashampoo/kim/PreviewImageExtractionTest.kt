@@ -26,7 +26,8 @@ import kotlin.test.fail
 class PreviewImageExtractionTest {
 
     val indicesWithPreviewImage = setOf(
-        KimTestData.CR2_TEST_IMAGE_INDEX
+        KimTestData.CR2_TEST_IMAGE_INDEX,
+        KimTestData.RAF_TEST_IMAGE_INDEX
     )
 
     /**

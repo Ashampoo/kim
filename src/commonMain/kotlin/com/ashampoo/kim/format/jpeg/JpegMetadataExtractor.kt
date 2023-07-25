@@ -24,9 +24,9 @@ import com.ashampoo.kim.input.ByteReader
 
 object JpegMetadataExtractor {
 
-    private const val SEGMENT_IDENTIFIER = 0xFF.toByte()
-    private const val SEGMENT_START_OF_SCAN = 0xDA.toByte()
-    private const val MARKER_END_OF_IMAGE = 0xD9.toByte()
+    const val SEGMENT_IDENTIFIER = 0xFF.toByte()
+    const val SEGMENT_START_OF_SCAN = 0xDA.toByte()
+    const val MARKER_END_OF_IMAGE = 0xD9.toByte()
 
     private const val ADDITIONAL_BYTE_COUNT_AFTER_HEADER: Int = 12
 

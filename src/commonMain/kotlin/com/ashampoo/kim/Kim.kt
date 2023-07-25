@@ -25,6 +25,7 @@ import com.ashampoo.kim.format.jpeg.JpegUpdater
 import com.ashampoo.kim.format.png.PngMetadataExtractor
 import com.ashampoo.kim.format.png.PngUpdater
 import com.ashampoo.kim.format.raf.RafMetadataExtractor
+import com.ashampoo.kim.format.raf.RafPreviewExtractor
 import com.ashampoo.kim.input.ByteArrayByteReader
 import com.ashampoo.kim.input.ByteReader
 import com.ashampoo.kim.input.KtorInputByteReader
@@ -111,6 +112,7 @@ object Kim {
 
         return@use when (imageFormat) {
             ImageFormat.CR2 -> Cr2PreviewExtractor.extractPreviewImage(newReader, length)
+            ImageFormat.RAF -> RafPreviewExtractor.extractPreviewImage(newReader, length)
             else -> null
         }
     }
