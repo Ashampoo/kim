@@ -103,6 +103,9 @@ object KimTestData {
     fun getExifThumbnailBytesOf(index: Int): ByteArray =
         Resource("$RESOURCE_PATH/exifthumbs/photo_${index}_exifthumb.jpg").readBytes()
 
+    fun getPreviewBytesOf(index: Int): ByteArray =
+        Resource("$RESOURCE_PATH/previews/photo_${index}_preview.jpg").readBytes()
+
     fun getHeaderExifBytesOf(index: Int): ByteArray =
         Resource("$RESOURCE_PATH/headers/photo_${index}_header_exif.tif").readBytes()
 

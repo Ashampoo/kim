@@ -19,6 +19,7 @@ import com.ashampoo.kim.common.ImageReadException
 import com.ashampoo.kim.common.ImageWriteException
 import com.ashampoo.kim.format.ImageMetadata
 import com.ashampoo.kim.format.ImageParser
+import com.ashampoo.kim.format.cr2.Cr2PreviewExtractor
 import com.ashampoo.kim.format.jpeg.JpegMetadataExtractor
 import com.ashampoo.kim.format.jpeg.JpegUpdater
 import com.ashampoo.kim.format.png.PngMetadataExtractor
@@ -93,6 +94,24 @@ object Kim {
             ImageFormat.PNG -> imageFormat to PngMetadataExtractor.extractMetadataBytes(newReader)
             ImageFormat.RAF -> imageFormat to RafMetadataExtractor.extractMetadataBytes(newReader)
             else -> imageFormat to byteArrayOf()
+        }
+    }
+
+    @Throws(ImageReadException::class)
+    fun extractPreviewImage(
+        byteReader: ByteReader,
+        length: Long
+    ): ByteArray? = byteReader.use {
+
+        val headerBytes = it.readBytes(ImageFormat.REQUIRED_HEADER_BYTE_COUNT_FOR_DETECTION)
+
+        val imageFormat = ImageFormat.detect(headerBytes)
+
+        val newReader = PrePendingByteReader(it, headerBytes.toList())
+
+        return@use when (imageFormat) {
+            ImageFormat.CR2 -> Cr2PreviewExtractor.extractPreviewImage(newReader, length)
+            else -> null
         }
     }
 

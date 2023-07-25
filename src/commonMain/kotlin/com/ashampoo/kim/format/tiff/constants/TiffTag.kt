@@ -174,17 +174,17 @@ object TiffTag {
     )
 
     val TIFF_TAG_MODEL = TagInfoAscii(
-        "Model", 0x110, -1,
+        "Model", 0x0110, -1,
         TIFF_DIRECTORY_IFD0
     )
 
-    val TIFF_TAG_STRIP_OFFSETS = TagInfoShortOrLong(
-        "StripOffsets", 0x111, -1,
+    val TIFF_TAG_STRIP_OFFSETS = TagInfoLong(
+        "StripOffsets", 0x0111,
         TIFF_DIRECTORY_IFD0, true
     )
 
     val TIFF_TAG_ORIENTATION = TagInfoShort(
-        "Orientation", 0x112,
+        "Orientation", 0x0112,
         TIFF_DIRECTORY_IFD0
     )
 
@@ -198,37 +198,37 @@ object TiffTag {
     const val ORIENTATION_VALUE_ROTATE_270_CW = 8
 
     val TIFF_TAG_SAMPLES_PER_PIXEL = TagInfoShort(
-        "SamplesPerPixel", 0x115,
+        "SamplesPerPixel", 0x0115,
         TIFF_DIRECTORY_IFD0
     )
 
     val TIFF_TAG_ROWS_PER_STRIP = TagInfoShortOrLong(
-        "RowsPerStrip", 0x116, 1,
+        "RowsPerStrip", 0x0116, 1,
         TIFF_DIRECTORY_IFD0
     )
 
-    val TIFF_TAG_STRIP_BYTE_COUNTS = TagInfoShortOrLong(
-        "StripByteCounts", 0x117, -1,
+    val TIFF_TAG_STRIP_BYTE_COUNTS = TagInfoLong(
+        "StripByteCounts", 0x0117,
         TIFF_DIRECTORY_IFD0
     )
 
     val TIFF_TAG_MIN_SAMPLE_VALUE = TagInfoShorts(
-        "MinSampleValue", 0x118, -1,
+        "MinSampleValue", 0x0118, -1,
         TIFF_DIRECTORY_IFD0
     )
 
     val TIFF_TAG_MAX_SAMPLE_VALUE = TagInfoShorts(
-        "MaxSampleValue", 0x119, -1,
+        "MaxSampleValue", 0x0119, -1,
         TIFF_DIRECTORY_IFD0
     )
 
     val TIFF_TAG_XRESOLUTION = TagInfoRational(
-        "XResolution", 0x11A,
+        "XResolution", 0x011A,
         TIFF_DIRECTORY_IFD0
     )
 
     val TIFF_TAG_YRESOLUTION = TagInfoRational(
-        "YResolution", 0x11B,
+        "YResolution", 0x011B,
         TIFF_DIRECTORY_IFD0
     )
 
