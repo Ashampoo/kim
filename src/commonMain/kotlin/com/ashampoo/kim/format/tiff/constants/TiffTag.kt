@@ -530,6 +530,12 @@ object TiffTag {
         TIFF_DIRECTORY_IFD0
     )
 
+    /** Panasonic RW2 special tag. */
+    val TIFF_JPG_FROM_RAW = TagInfoBytes(
+        "JpgFromRaw", 0x002E, -1,
+        TIFF_DIRECTORY_IFD0
+    )
+
     val TIFF_TAG_UNKNOWN = TagInfoUnknowns(
         "Unknown", -1, TagInfo.LENGTH_UNKNOWN, null
     )
@@ -568,6 +574,7 @@ object TiffTag {
         TIFF_TAG_YCBCR_COEFFICIENTS, TIFF_TAG_YCBCR_SUB_SAMPLING,
         TIFF_TAG_YCBCR_POSITIONING, TIFF_TAG_REFERENCE_BLACK_WHITE,
         TIFF_TAG_COPYRIGHT,
-        TIFF_TAG_XMP
+        TIFF_TAG_XMP,
+        TIFF_JPG_FROM_RAW
     )
 }

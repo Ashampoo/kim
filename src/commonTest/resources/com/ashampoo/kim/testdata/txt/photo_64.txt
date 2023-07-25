@@ -32,7 +32,7 @@ Little-endian (Intel, II)
 0x0026 Unknown = 482
 0x0027 Unknown = [58 bytes]
 0x002d Unknown = 4
-0x002e Unknown = [616448 bytes]
+0x002e JpgFromRaw = [616448 bytes]
 0x010f Make = Panasonic
 0x0110 Model = DMC-LX7
 0x0111 PreviewImageStart = -1

@@ -28,6 +28,7 @@ import com.ashampoo.kim.format.png.PngMetadataExtractor
 import com.ashampoo.kim.format.png.PngUpdater
 import com.ashampoo.kim.format.raf.RafMetadataExtractor
 import com.ashampoo.kim.format.raf.RafPreviewExtractor
+import com.ashampoo.kim.format.rw2.Rw2PreviewExtractor
 import com.ashampoo.kim.input.ByteArrayByteReader
 import com.ashampoo.kim.input.ByteReader
 import com.ashampoo.kim.input.KtorInputByteReader
@@ -116,6 +117,7 @@ object Kim {
             ImageFormat.CR2 -> Cr2PreviewExtractor.extractPreviewImage(newReader, length)
             ImageFormat.RAF -> RafPreviewExtractor.extractPreviewImage(newReader, length)
             ImageFormat.ARW -> ArwPreviewExtractor.extractPreviewImage(newReader, length)
+            ImageFormat.RW2 -> Rw2PreviewExtractor.extractPreviewImage(newReader, length)
             /* Unfortunately NEF has no separate magic bytes */
             ImageFormat.TIFF -> NefPreviewExtractor.extractPreviewImage(newReader, length)
             else -> null
