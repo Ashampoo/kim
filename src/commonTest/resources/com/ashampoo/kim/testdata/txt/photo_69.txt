@@ -1,0 +1,305 @@
+File format : ARW
+Resolution  : 4288 x 2858
+---- TIFF ----
+Version 42
+Little-endian (Intel, II)
+---- IFD0 ----
+0x00fe NewSubfileType = 1
+0x0100 ImageWidth = 256
+0x0101 ImageLength = 171
+0x0102 BitsPerSample = [8, 8, 8]
+0x0103 Compression = 1
+0x0106 PhotometricInterpretation = 2
+0x010e ImageDescription = SONY DSC
+0x010f Make = SONY
+0x0110 Model = DSLR-A500
+0x0111 PreviewImageStart = 138318
+0x0112 Orientation = 1
+0x0115 SamplesPerPixel = 3
+0x0116 RowsPerStrip = 171
+0x0117 PreviewImageLength = 131328
+0x011c PlanarConfiguration = 1
+0x0131 Software = Adobe DNG Converter 15.4 (Macintosh)
+0x0132 DateTime = 2023:07:26 06:11:34
+0x014a SubIFD = [134210, 136300, 136692, 137274, 137796]
+0x02bc XMP = [6431 bytes]
+0x8769 ExifOffset = 133624
+0xc612 Unknown = [0x01, 0x04, 0x00, 0x00]
+0xc613 Unknown = [0x01, 0x01, 0x00, 0x00]
+0xc614 Unknown = Sony DSLR-A500
+0xc621 Unknown = [9548/10000 (0.9548), -5128/10000 (-0.5128), 467/10000 (0.0467), -4471/10000 (-0.4471), 11739/10000 (1.1739), 3117/10000 (0.3117), -177/10000 (-0.0177), 673/10000 (0.0673), 8320/10000 (0.832)]
+0xc622 Unknown = [6046/10000 (0.6046), -1127/10000 (-0.1127), -278/10000 (-0.0278), -5574/10000 (-0.5574), 13076/10000 (1.3076), 2786/10000 (0.2786), -691/10000 (-0.0691), 1419/10000 (0.1419), 7625/10000 (0.7625)]
+0xc623 Unknown = [10261/10000 (1.0261), 0/10000 (0.0), 0/10000 (0.0), 0/10000 (0.0), 10000/10000 (1.0), 0/10000 (0.0), 0/10000 (0.0), 0/10000 (0.0), 10060/10000 (1.006)]
+0xc624 Unknown = [10261/10000 (1.0261), 0/10000 (0.0), 0/10000 (0.0), 0/10000 (0.0), 10000/10000 (1.0), 0/10000 (0.0), 0/10000 (0.0), 0/10000 (0.0), 10060/10000 (1.006)]
+0xc627 Unknown = [1000000/1000000 (1.0), 1000000/1000000 (1.0), 1000000/1000000 (1.0)]
+0xc628 Unknown = [417618/1000000 (0.417618), 1000000/1000000 (1.0), 839344/1000000 (0.839344)]
+0xc62a Unknown = 0/100 (0.0)
+0xc62b Unknown = 100/100 (1.0)
+0xc62c Unknown = 133/100 (1.33)
+0xc62e Unknown = 100/100 (1.0)
+0xc630 Unknown = [18/1 (18.0), 55/1 (55.0), 35/10 (3.5), 56/10 (5.6)]
+0xc633 Unknown = 1/1 (1.0)
+0xc634 Unknown = [70318 bytes]
+0xc65a Unknown = 17
+0xc65b Unknown = 21
+0xc65d Unknown = [16 bytes]
+0xc68b Unknown = photo_63.arw
+0xc6f3 Unknown = com.adobe
+0xc6f4 Unknown = com.adobe
+0xc6f8 Unknown = Adobe Standard
+0xc6fd Unknown = 0
+0xc6fe Unknown = Copyright 2009 Adobe Systems, Inc.
+0xc714 Unknown = [6129/10000 (0.6129), 3184/10000 (0.3184), 330/10000 (0.033), 2234/10000 (0.2234), 8944/10000 (0.8944), -1178/10000 (-0.1178), -39/10000 (-0.0039), -1946/10000 (-0.1946), 10236/10000 (1.0236)]
+0xc715 Unknown = [8201/10000 (0.8201), 2035/10000 (0.2035), -592/10000 (-0.0592), 3484/10000 (0.3484), 9301/10000 (0.9301), -2785/10000 (-0.2785), 46/10000 (0.0046), -1066/10000 (-0.1066), 9270/10000 (0.927)]
+0xc716 Unknown = Adobe DNG Converter
+0xc717 Unknown = 15.4
+0xc719 Unknown = [16 bytes]
+0xc71a Unknown = 2
+0xc71b Unknown = 2023-07-26T06:11:34+02:00
+0xc725 Unknown = [36, 8, 16]
+0xc726 Unknown = [F@c74d054
+0xc761 Unknown = [4.711375600823987E-5, 2.1540751533546545E-7]
+0xc7a7 Unknown = [16 bytes]
+
+---- ExifIFD ----
+0x829a ExposureTime = 1/60 (0.016667)
+0x829d FNumber = 8/1 (8.0)
+0x8822 ExposureProgram = 3
+0x8827 PhotographicSensitivity = 200
+0x9000 ExifVersion = [0x30, 0x32, 0x33, 0x31]
+0x9003 DateTimeOriginal = 2010:02:01 16:03:48
+0x9004 DateTimeDigitized = 2010:02:01 16:03:48
+0x9010 Unknown = +02:00
+0x9201 ShutterSpeedValue = 5906891/1000000 (5.906891)
+0x9202 ApertureValue = 6/1 (6.0)
+0x9203 BrightnessValue = 587/100 (5.87)
+0x9204 ExposureCompensation = 0/10 (0.0)
+0x9205 MaxApertureValue = 361/100 (3.61)
+0x9207 MeteringMode = 5
+0x9208 LightSource = 0
+0x9209 Flash = 16
+0x920a FocalLength = 180/10 (18.0)
+0xa001 Unknown = 1
+0xa20e FocalPlaneXResolution = 59568041/32768 (1817.872345)
+0xa20f FocalPlaneYResolution = 59568041/32768 (1817.872345)
+0xa210 FocalPlaneResolutionUnit = 3
+0xa300 FileSource = 3
+0xa301 SceneType = 1
+0xa401 CustomRendered = 0
+0xa402 ExposureMode = 0
+0xa403 WhiteBalance = 0
+0xa405 FocalLengthIn35mmFormat = 27
+0xa406 SceneCaptureType = 0
+0xa408 Contrast = 0
+0xa409 Saturation = 0
+0xa40a Sharpness = 0
+0xa432 LensSpecification = [18/1 (18.0), 55/1 (55.0), 35/10 (3.5), 56/10 (5.6)]
+0xa434 LensModel = DT 18-55mm F3.5-5.6 SAM
+
+---- SubIFD ----
+0x00fe NewSubfileType = 0
+0x0100 ImageWidth = 4288
+0x0101 ImageLength = 2858
+0x0102 BitsPerSample = 16
+0x0103 Compression = 7
+0x0106 PhotometricInterpretation = -32733
+0x0115 SamplesPerPixel = 1
+0x011c PlanarConfiguration = 1
+0x0142 TileWidth = 256
+0x0143 TileLength = 240
+0x0144 TileOffsets = [934414, 1000132, 1067134, 1132052, 1197038, 1261946, 1326842, 1391848, 1456716, 1521598, 1586374, 1651324, 1716370, 1781518, 1846912, 1912376, 1977866, 2033516, 2096368, 2158684, 2224658, 2290372, 2356162, 2419544, 2484884, 2550480, 2616004, 2680586, 2746358, 2810510, 2875670, 2940074, 3005854, 3068874, 3119344, 3183666, 3252122, 3321982, 3391100, 3461054, 3529550, 3600118, 3664952, 3736530, 3806034, 3871052, 3943022, 4008932, 4079932, 4145338, 4214904, 4268642, 4320276, 4375976, 4432184, 4489052, 4545384, 4601570, 4657396, 4713770, 4770384, 4827660, 4882700, 4937972, 4994030, 5050364, 5107102, 5163946, 5211920, 5278458, 5347524, 5413888, 5482518, 5548238, 5617940, 5684204, 5750966, 5818546, 5889926, 5948218, 6018706, 6086266, 6152028, 6221848, 6285864, 6344282, 6407678, 6468586, 6530638, 6594882, 6658340, 6725216, 6789978, 6854050, 6918470, 6983962, 7044326, 7110230, 7175898, 7235440, 7298242, 7358502, 7412192, 7469030, 7524120, 7581558, 7638790, 7696176, 7753572, 7810922, 7872658, 7937512, 8001194, 8057472, 8114028, 8169944, 8225066, 8280174, 8334872, 8381068, 8446378, 8512632, 8581086, 8644446, 8712640, 8781196, 8841636, 8909094, 8976182, 9042236, 9102842, 9167152, 9234562, 9298224, 9363924, 9431976, 9484098, 9545694, 9615486, 9686658, 9747422, 9818736, 9888246, 9946350, 10013424, 10082616, 10151024, 10212724, 10275080, 10343968, 10412072, 10474554, 10543698, 10601426, 10659758, 10725532, 10790306, 10851650, 10917918, 10983248, 11040498, 11102622, 11169778, 11238170, 11296376, 11356164, 11421480, 11487614, 11546406, 11611272, 11667334, 11719676, 11774242, 11828838, 11882942, 11939150, 11994904, 12052422, 12111952, 12177008, 12245008, 12300538, 12355858, 12410220, 12463980, 12523782, 12581576, 12630066, 12678248, 12727150, 12776668, 12826218, 12875390, 12922932, 12967842, 13019456, 13071460, 13124392, 13172512, 13217260, 13265038, 13313978, 13362208, 13410160]
+0x0145 TileByteCounts = [65717, 67002, 64917, 64986, 64908, 64896, 65005, 64868, 64882, 64775, 64950, 65046, 65147, 65394, 65464, 65489, 55649, 62852, 62316, 65973, 65714, 65789, 63382, 65339, 65595, 65524, 64581, 65772, 64151, 65159, 64403, 65779, 63019, 50470, 64322, 68456, 69860, 69118, 69953, 68496, 70567, 64834, 71577, 69504, 65017, 71969, 65910, 70999, 65405, 69565, 53737, 51634, 55699, 56207, 56867, 56332, 56185, 55825, 56373, 56614, 57275, 55040, 55271, 56057, 56333, 56738, 56843, 47973, 66538, 69065, 66363, 68630, 65719, 69701, 66264, 66761, 67580, 71380, 58291, 70487, 67560, 65761, 69819, 64015, 58417, 63395, 60908, 62051, 64244, 63458, 66876, 64762, 64072, 64420, 65491, 60364, 65903, 65668, 59542, 62802, 60259, 53689, 56838, 55090, 57437, 57232, 57385, 57395, 57349, 61736, 64853, 63682, 56277, 56556, 55915, 55121, 55108, 54697, 46195, 65310, 66254, 68453, 63359, 68194, 68556, 60439, 67457, 67087, 66054, 60606, 64309, 67409, 63661, 65699, 68051, 52121, 61596, 69792, 71171, 60764, 71313, 69509, 58103, 67073, 69191, 68407, 61699, 62356, 68888, 68104, 62482, 69144, 57727, 58332, 65774, 64773, 61344, 66268, 65329, 57249, 62124, 67156, 68392, 58206, 59787, 65316, 66134, 58792, 64865, 56062, 52341, 54565, 54596, 54104, 56208, 55753, 57517, 59529, 65055, 68000, 55530, 55320, 54362, 53760, 59802, 57793, 48489, 48182, 48901, 49517, 49549, 49171, 47542, 44910, 51614, 52004, 52931, 48120, 44748, 47777, 48940, 48230, 47951, 40874]
+0x828d Unknown = [2, 2]
+0x828e Unknown = [0x00, 0x01, 0x01, 0x02]
+0xc616 Unknown = [0x00, 0x01, 0x02]
+0xc617 Unknown = 1
+0xc619 Unknown = [2, 2]
+0xc61a Unknown = [131072/256 (512.0), 131072/256 (512.0), 131072/256 (512.0), 131072/256 (512.0)]
+0xc61d Unknown = 16300
+0xc61e Unknown = [1/1 (1.0), 1/1 (1.0)]
+0xc61f Unknown = [8/1 (8.0), 7/1 (7.0)]
+0xc620 Unknown = [4272/1 (4272.0), 2848/1 (2848.0)]
+0xc62d Unknown = 250
+0xc632 Unknown = 100/100 (1.0)
+0xc65c Unknown = 1/1 (1.0)
+0xc68d Unknown = [0, 0, 2858, 4288]
+0xc761 Unknown = [4.711375600823987E-5, 2.1540751533546545E-7]
+
+---- SubIFD1 ----
+0x00fe NewSubfileType = 1
+0x0100 ImageWidth = 1024
+0x0101 ImageLength = 683
+0x0102 BitsPerSample = [8, 8, 8]
+0x0103 Compression = 7
+0x0106 PhotometricInterpretation = 6
+0x0111 PreviewImageStart = 269646
+0x0115 SamplesPerPixel = 3
+0x0116 RowsPerStrip = 683
+0x0117 PreviewImageLength = 111341
+0x011c PlanarConfiguration = 1
+0x0211 YCbCrCoefficients = [299/1000 (0.299), 587/1000 (0.587), 114/1000 (0.114)]
+0x0212 YCbCrSubSampling = [2, 2]
+0x0213 YCbCrPositioning = 0
+0x0214 ReferenceBlackWhite = [0/1 (0.0), 255/1 (255.0), 128/1 (128.0), 255/1 (255.0), 128/1 (128.0), 255/1 (255.0)]
+0xc716 Unknown = Adobe DNG Converter
+0xc717 Unknown = 15.4
+0xc719 Unknown = [16 bytes]
+0xc71a Unknown = 2
+0xc71b Unknown = 2023-07-26T06:11:34+02:00
+
+---- SubIFD2 ----
+0x00fe NewSubfileType = 1
+0x0100 ImageWidth = 2048
+0x0101 ImageLength = 1365
+0x0102 BitsPerSample = [8, 8, 8]
+0x0103 Compression = -30644
+0x0106 PhotometricInterpretation = -30644
+0x0115 SamplesPerPixel = 3
+0x011c PlanarConfiguration = 1
+0x0142 TileWidth = 512
+0x0143 TileLength = 464
+0x0144 TileOffsets = [380988, 423176, 457484, 490868, 527332, 576650, 624598, 668030, 712788, 754568, 794462, 831266]
+0x0145 TileByteCounts = [42187, 34308, 33384, 36464, 49318, 47947, 43432, 44757, 41779, 39893, 36804, 41141]
+0xc716 Unknown = Adobe DNG Converter
+0xc717 Unknown = 15.4
+0xc741 Unknown = [256 bytes]
+0xc7aa Unknown = 256
+
+---- SubIFD3 ----
+0x00fe NewSubfileType = 1
+0x0100 ImageWidth = 512
+0x0101 ImageLength = 341
+0x0102 BitsPerSample = [8, 8, 8]
+0x0103 Compression = -30644
+0x0106 PhotometricInterpretation = -30644
+0x0115 SamplesPerPixel = 3
+0x011c PlanarConfiguration = 1
+0x0142 TileWidth = 512
+0x0143 TileLength = 341
+0x0144 TileOffsets = 872408
+0x0145 TileByteCounts = 47041
+0xc61a Unknown = [24/1 (24.0), 35/1 (35.0), 35/1 (35.0)]
+0xc716 Unknown = Adobe DNG Converter
+0xc717 Unknown = 15.4
+0xc741 Unknown = [256 bytes]
+0xc7aa Unknown = 256
+
+---- SubIFD ----
+0x00fe NewSubfileType = 1
+0x0100 ImageWidth = 256
+0x0101 ImageLength = 171
+0x0102 BitsPerSample = [8, 8, 8]
+0x0103 Compression = -30644
+0x0106 PhotometricInterpretation = -30644
+0x0115 SamplesPerPixel = 3
+0x011c PlanarConfiguration = 1
+0x0142 TileWidth = 256
+0x0143 TileLength = 171
+0x0144 TileOffsets = 919450
+0x0145 TileByteCounts = 14964
+0xc61a Unknown = [44/1 (44.0), 14/1 (14.0), 11/1 (11.0)]
+0xc716 Unknown = Adobe DNG Converter
+0xc717 Unknown = 15.4
+0xc741 Unknown = [256 bytes]
+0xc7aa Unknown = 256
+
+
+---- XMP ----
+<?xpacket begin="﻿" id="W5M0MpCehiHzreSzNTczkc9d"?>
+<x:xmpmeta xmlns:x="adobe:ns:meta/" x:xmptk="Adobe XMP Core 7.0-c000 1.000000, 0000/00/00-00:00:00        ">
+ <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+  <rdf:Description rdf:about=""
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:xmp="http://ns.adobe.com/xap/1.0/"
+    xmlns:aux="http://ns.adobe.com/exif/1.0/aux/"
+    xmlns:exifEX="http://cipa.jp/exif/1.0/"
+    xmlns:photoshop="http://ns.adobe.com/photoshop/1.0/"
+    xmlns:xmpMM="http://ns.adobe.com/xap/1.0/mm/"
+    xmlns:stEvt="http://ns.adobe.com/xap/1.0/sType/ResourceEvent#"
+    xmlns:stRef="http://ns.adobe.com/xap/1.0/sType/ResourceRef#"
+    xmlns:crd="http://ns.adobe.com/camera-raw-defaults/1.0/"
+    xmlns:crs="http://ns.adobe.com/camera-raw-settings/1.0/"
+   dc:format="image/dng"
+   xmp:CreatorTool="Adobe DNG Converter 15.4 (Macintosh)"
+   xmp:ModifyDate="2023-07-26T06:11:34+02:00"
+   xmp:CreateDate="2010-02-01T16:03:48"
+   xmp:MetadataDate="2023-07-26T06:11:34+02:00"
+   aux:LensInfo="18/1 55/1 35/10 56/10"
+   aux:Lens="DT 18-55mm F3.5-5.6 SAM"
+   aux:LensID="55"
+   exifEX:LensModel="DT 18-55mm F3.5-5.6 SAM"
+   photoshop:DateCreated="2010-02-01T16:03:48"
+   xmpMM:DocumentID="xmp.did:80ae6276-f808-4036-8b6d-eced56352c34"
+   xmpMM:OriginalDocumentID="85E4F0FEA94F3AFD471AFA773CB23165"
+   xmpMM:InstanceID="xmp.iid:80ae6276-f808-4036-8b6d-eced56352c34"
+   crd:CameraProfile="Camera Standard"
+   crd:LookName=""
+   crs:HasSettings="False"
+   crs:HasCrop="False"
+   crs:AlreadyApplied="False">
+   <dc:description>
+    <rdf:Alt>
+     <rdf:li xml:lang="x-default">SONY DSC</rdf:li>
+    </rdf:Alt>
+   </dc:description>
+   <xmpMM:History>
+    <rdf:Seq>
+     <rdf:li
+      stEvt:action="derived"
+      stEvt:parameters="converted from image/x-sony-arw to image/dng, saved to new location"/>
+     <rdf:li
+      stEvt:action="saved"
+      stEvt:instanceID="xmp.iid:80ae6276-f808-4036-8b6d-eced56352c34"
+      stEvt:when="2023-07-26T06:11:34+02:00"
+      stEvt:softwareAgent="Adobe DNG Converter 15.4 (Macintosh)"
+      stEvt:changed="/"/>
+    </rdf:Seq>
+   </xmpMM:History>
+   <xmpMM:DerivedFrom
+    stRef:documentID="85E4F0FEA94F3AFD471AFA773CB23165"
+    stRef:originalDocumentID="85E4F0FEA94F3AFD471AFA773CB23165"/>
+  </rdf:Description>
+ </rdf:RDF>
+</x:xmpmeta>
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                       
+<?xpacket end="w"?>

@@ -28,7 +28,7 @@ object KimTestData {
 
     private const val RESOURCE_PATH: String = "src/commonTest/resources/com/ashampoo/kim/testdata"
 
-    const val TEST_PHOTO_COUNT: Int = 65
+    const val TEST_PHOTO_COUNT: Int = 71
     const val HIGHEST_JPEG_INDEX: Int = 50
 
     const val PNG_TEST_IMAGE_INDEX: Int = 51
@@ -46,6 +46,12 @@ object KimTestData {
     const val ARW_TEST_IMAGE_INDEX: Int = 63
     const val RW2_TEST_IMAGE_INDEX: Int = 64
     const val ORF_TEST_IMAGE_INDEX: Int = 65
+    const val DNG_CR2_TEST_IMAGE_INDEX: Int = 66
+    const val DNG_RAF_TEST_IMAGE_INDEX: Int = 67
+    const val DNG_NEF_TEST_IMAGE_INDEX: Int = 68
+    const val DNG_ARW_TEST_IMAGE_INDEX: Int = 69
+    const val DNG_RW2_TEST_IMAGE_INDEX: Int = 70
+    const val DNG_ORF_TEST_IMAGE_INDEX: Int = 71
 
     @Suppress("MagicNumber")
     val photoIdsWithExifThumbnail: Set<Int> = setOf(
@@ -58,7 +64,14 @@ object KimTestData {
         RAF_TEST_IMAGE_INDEX,
         ARW_TEST_IMAGE_INDEX,
         RW2_TEST_IMAGE_INDEX,
-        ORF_TEST_IMAGE_INDEX
+        ORF_TEST_IMAGE_INDEX,
+        // FIXME DNG have thumbnails. Extraction logic does not fit here.
+//        DNG_CR2_TEST_IMAGE_INDEX,
+//        DNG_RAF_TEST_IMAGE_INDEX,
+//        DNG_NEF_TEST_IMAGE_INDEX,
+//        DNG_ARW_TEST_IMAGE_INDEX,
+//        DNG_RW2_TEST_IMAGE_INDEX,
+//        DNG_ORF_TEST_IMAGE_INDEX
     )
 
     val pngPhotoIds: Set<Int> = setOf(
@@ -83,6 +96,12 @@ object KimTestData {
         ARW_TEST_IMAGE_INDEX -> "arw"
         RW2_TEST_IMAGE_INDEX -> "rw2"
         ORF_TEST_IMAGE_INDEX -> "orf"
+        DNG_CR2_TEST_IMAGE_INDEX -> "dng"
+        DNG_RAF_TEST_IMAGE_INDEX -> "dng"
+        DNG_NEF_TEST_IMAGE_INDEX -> "dng"
+        DNG_ARW_TEST_IMAGE_INDEX -> "dng"
+        DNG_RW2_TEST_IMAGE_INDEX -> "dng"
+        DNG_ORF_TEST_IMAGE_INDEX -> "dng"
         else -> "jpg"
     }
 

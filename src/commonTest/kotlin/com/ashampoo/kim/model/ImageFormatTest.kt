@@ -44,6 +44,13 @@ class ImageFormatTest {
                 index == KimTestData.ARW_TEST_IMAGE_INDEX -> ImageFormat.ARW
                 index == KimTestData.RW2_TEST_IMAGE_INDEX -> ImageFormat.RW2
                 index == KimTestData.ORF_TEST_IMAGE_INDEX -> ImageFormat.ORF
+                /* FIXME Should be DNG */
+                index == KimTestData.DNG_CR2_TEST_IMAGE_INDEX -> ImageFormat.ARW
+                index == KimTestData.DNG_RAF_TEST_IMAGE_INDEX -> ImageFormat.ARW
+                index == KimTestData.DNG_NEF_TEST_IMAGE_INDEX -> ImageFormat.ARW
+                index == KimTestData.DNG_ARW_TEST_IMAGE_INDEX -> ImageFormat.ARW
+                index == KimTestData.DNG_RW2_TEST_IMAGE_INDEX -> ImageFormat.ARW
+                index == KimTestData.DNG_ORF_TEST_IMAGE_INDEX -> ImageFormat.ARW
                 else -> null
             }
 

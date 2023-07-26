@@ -1,0 +1,296 @@
+File format : ARW
+Resolution  : 3664 x 2752
+---- TIFF ----
+Version 42
+Little-endian (Intel, II)
+---- IFD0 ----
+0x00fe NewSubfileType = 1
+0x0100 ImageWidth = 256
+0x0101 ImageLength = 192
+0x0102 BitsPerSample = [8, 8, 8]
+0x0103 Compression = 1
+0x0106 PhotometricInterpretation = 2
+0x010f Make = Panasonic
+0x0110 Model = DMC-LX7
+0x0111 PreviewImageStart = 749166
+0x0112 Orientation = 1
+0x0115 SamplesPerPixel = 3
+0x0116 RowsPerStrip = 192
+0x0117 PreviewImageLength = 147456
+0x011c PlanarConfiguration = 1
+0x0131 Software = Adobe DNG Converter 15.4 (Macintosh)
+0x0132 DateTime = 2023:07:26 06:11:34
+0x014a SubIFD = [745174, 747148, 747540, 748122, 748644]
+0x02bc XMP = [6163 bytes]
+0x8769 ExifOffset = 744630
+0xc612 Unknown = [0x01, 0x04, 0x00, 0x00]
+0xc613 Unknown = [0x01, 0x03, 0x00, 0x00]
+0xc614 Unknown = Panasonic DMC-LX7
+0xc621 Unknown = [11127/10000 (1.1127), -5386/10000 (-0.5386), 410/10000 (0.041), -1849/10000 (-0.1849), 9339/10000 (0.9339), 2962/10000 (0.2962), 66/10000 (0.0066), 807/10000 (0.0807), 5378/10000 (0.5378)]
+0xc622 Unknown = [10148/10000 (1.0148), -3743/10000 (-0.3743), -991/10000 (-0.0991), -2837/10000 (-0.2837), 11366/10000 (1.1366), 1659/10000 (0.1659), -701/10000 (-0.0701), 1893/10000 (0.1893), 4899/10000 (0.4899)]
+0xc627 Unknown = [1000000/1000000 (1.0), 1000000/1000000 (1.0), 1000000/1000000 (1.0)]
+0xc628 Unknown = [574837/1000000 (0.574837), 1000000/1000000 (1.0), 549793/1000000 (0.549793)]
+0xc62a Unknown = -25/100 (-0.25)
+0xc62b Unknown = 300/100 (3.0)
+0xc62c Unknown = 133/100 (1.33)
+0xc62e Unknown = 100/100 (1.0)
+0xc62f Unknown = F111311090158
+0xc633 Unknown = 1/1 (1.0)
+0xc634 Unknown = [616970 bytes]
+0xc65a Unknown = 17
+0xc65b Unknown = 21
+0xc65d Unknown = [16 bytes]
+0xc68b Unknown = photo_64.rw2
+0xc6f4 Unknown = com.adobe
+0xc6f8 Unknown = Adobe Standard
+0xc6f9 Unknown = [90, 30, 1]
+0xc6fa Unknown = [F@6ec69d02
+0xc6fb Unknown = [F@4926f297
+0xc6fd Unknown = 0
+0xc6fe Unknown = Copyright 2012 Adobe Systems, Inc.
+0xc714 Unknown = [5886/10000 (0.5886), 3085/10000 (0.3085), 672/10000 (0.0672), 814/10000 (0.0814), 10652/10000 (1.0652), -1466/10000 (-0.1466), -526/10000 (-0.0526), -4813/10000 (-0.4813), 13590/10000 (1.359)]
+0xc715 Unknown = [5482/10000 (0.5482), 4214/10000 (0.4214), -53/10000 (-0.0053), 1410/10000 (0.141), 10704/10000 (1.0704), -2114/10000 (-0.2114), 164/10000 (0.0164), -2579/10000 (-0.2579), 10667/10000 (1.0667)]
+0xc716 Unknown = Adobe DNG Converter
+0xc717 Unknown = 15.4
+0xc719 Unknown = [16 bytes]
+0xc71a Unknown = 2
+0xc71b Unknown = 2023-07-26T06:11:34+02:00
+0xc725 Unknown = [36, 8, 16]
+0xc726 Unknown = [F@493bac3e
+0xc761 Unknown = [2.0641153582055387E-4, 3.0483049720786857E-7]
+0xc7a7 Unknown = [16 bytes]
+
+---- ExifIFD ----
+0x829a ExposureTime = 1/60 (0.016667)
+0x829d FNumber = 14/10 (1.4)
+0x8822 ExposureProgram = 2
+0x8827 PhotographicSensitivity = 160
+0x9000 ExifVersion = [0x30, 0x32, 0x33, 0x31]
+0x9003 DateTimeOriginal = 2014:11:19 23:07:44
+0x9004 DateTimeDigitized = 2014:11:19 23:07:44
+0x9010 Unknown = +02:00
+0x9201 ShutterSpeedValue = 5906891/1000000 (5.906891)
+0x9202 ApertureValue = 970854/1000000 (0.970854)
+0x9204 ExposureCompensation = 0/100 (0.0)
+0x9205 MaxApertureValue = 124/128 (0.96875)
+0x9207 MeteringMode = 5
+0x9208 LightSource = 0
+0x9209 Flash = 16
+0x920a FocalLength = 47/10 (4.7)
+0xa20e FocalPlaneXResolution = 160668903/32768 (4903.2258)
+0xa20f FocalPlaneYResolution = 160668903/32768 (4903.2258)
+0xa210 FocalPlaneResolutionUnit = 3
+0xa217 SensingMethod = 2
+0xa300 FileSource = 3
+0xa301 SceneType = 1
+0xa401 CustomRendered = 0
+0xa402 ExposureMode = 0
+0xa403 WhiteBalance = 0
+0xa404 DigitalZoomRatio = 0/10 (0.0)
+0xa405 FocalLengthIn35mmFormat = 24
+0xa406 SceneCaptureType = 0
+0xa407 GainControl = 1
+0xa408 Contrast = 0
+0xa409 Saturation = 0
+0xa40a Sharpness = 0
+0xa431 BodySerialNumber = F111311090158
+
+---- SubIFD ----
+0x00fe NewSubfileType = 0
+0x0100 ImageWidth = 3664
+0x0101 ImageLength = 2752
+0x0102 BitsPerSample = 16
+0x0103 Compression = 7
+0x0106 PhotometricInterpretation = -32733
+0x0115 SamplesPerPixel = 1
+0x011c PlanarConfiguration = 1
+0x0142 TileWidth = 256
+0x0143 TileLength = 256
+0x0144 TileOffsets = [2139246, 2210670, 2283640, 2361528, 2435474, 2510788, 2585390, 2659164, 2728208, 2801842, 2874770, 2928458, 2981412, 3036086, 3089848, 3114128, 3188564, 3262850, 3342580, 3416232, 3494370, 3575050, 3651974, 3727924, 3803988, 3862256, 3914902, 3965676, 4018396, 4072144, 4097202, 4172486, 4245870, 4321584, 4390412, 4465140, 4540560, 4613260, 4682484, 4753556, 4830158, 4897828, 4957932, 5008214, 5059908, 5084820, 5161630, 5235902, 5313746, 5383722, 5461600, 5542946, 5619884, 5693578, 5766264, 5842174, 5915248, 5981072, 6029754, 6079136, 6103460, 6176230, 6245766, 6318756, 6384330, 6457476, 6533574, 6606088, 6677498, 6753154, 6821038, 6874958, 6924194, 6972536, 7020900, 7045014, 7118778, 7191904, 7269266, 7337298, 7414644, 7494374, 7568610, 7643152, 7717550, 7784110, 7848338, 7901808, 7950106, 7998674, 8022752, 8098818, 8170974, 8245270, 8310592, 8383786, 8462008, 8535874, 8612274, 8689758, 8759380, 8822572, 8875598, 8924442, 8974382, 8999026, 9073958, 9145616, 9221312, 9290650, 9368532, 9448564, 9523380, 9597874, 9675160, 9739190, 9792850, 9843898, 9894596, 9947160, 9972590, 10046370, 10119142, 10197190, 10267240, 10341918, 10419968, 10495498, 10570208, 10649068, 10719442, 10774028, 10826122, 10879788, 10934410, 10960168, 11029888, 11100754, 11176112, 11246978, 11322208, 11400346, 11475144, 11553120, 11629066, 11700910, 11768732, 11825008, 11879878, 11934808, 11959866, 12014022, 12072288, 12132940, 12192616, 12255428, 12319392, 12381744, 12446062, 12508412, 12568604, 12631168, 12691116, 12738214, 12783652]
+0x0145 TileByteCounts = [71423, 72969, 77888, 73945, 75314, 74602, 73774, 69044, 73634, 72927, 53688, 52954, 54674, 53762, 24279, 74436, 74285, 79729, 73651, 78137, 80680, 76924, 75949, 76064, 58267, 52646, 50774, 52719, 53748, 25057, 75284, 73383, 75713, 68827, 74728, 75420, 72699, 69223, 71072, 76602, 67670, 60104, 50282, 51693, 24912, 76809, 74272, 77843, 69976, 77877, 81345, 76937, 73694, 72686, 75910, 73073, 65824, 48681, 49381, 24323, 72770, 69536, 72989, 65573, 73146, 76098, 72514, 71409, 75656, 67883, 53919, 49235, 48342, 48363, 24114, 73763, 73125, 77361, 68031, 77346, 79730, 74235, 74541, 74398, 66560, 64227, 53470, 48297, 48567, 24077, 76066, 72155, 74296, 65321, 73194, 78221, 73866, 76399, 77483, 69622, 63191, 53025, 48843, 49940, 24643, 74931, 71657, 75696, 69337, 77881, 80031, 74815, 74494, 77286, 64029, 53659, 51048, 50697, 52564, 25429, 73780, 72772, 78047, 70050, 74678, 78049, 75530, 74710, 78859, 70374, 54586, 52093, 53665, 54622, 25758, 69719, 70865, 75358, 70865, 75230, 78138, 74797, 77976, 75945, 71843, 67822, 56276, 54870, 54929, 25057, 54156, 58266, 60652, 59676, 62812, 63963, 62352, 64318, 62349, 60192, 62563, 59947, 47097, 45438, 19291]
+0x828d Unknown = [2, 2]
+0x828e Unknown = [0x01, 0x00, 0x02, 0x01]
+0xc616 Unknown = [0x00, 0x01, 0x02]
+0xc617 Unknown = 1
+0xc619 Unknown = [2, 2]
+0xc61a Unknown = [36608/256 (143.0), 36608/256 (143.0), 36608/256 (143.0), 36608/256 (143.0)]
+0xc61d Unknown = 3956
+0xc61e Unknown = [1/1 (1.0), 1/1 (1.0)]
+0xc61f Unknown = [8/1 (8.0), 8/1 (8.0)]
+0xc620 Unknown = [3648/1 (3648.0), 2736/1 (2736.0)]
+0xc62d Unknown = 250
+0xc632 Unknown = 100/100 (1.0)
+0xc65c Unknown = 1/1 (1.0)
+0xc68d Unknown = [0, 0, 2752, 3664]
+0xc74e Unknown = [184 bytes]
+0xc761 Unknown = [2.0641153582055387E-4, 3.0483049720786857E-7]
+
+---- SubIFD1 ----
+0x00fe NewSubfileType = 1
+0x0100 ImageWidth = 1024
+0x0101 ImageLength = 768
+0x0102 BitsPerSample = [8, 8, 8]
+0x0103 Compression = 7
+0x0106 PhotometricInterpretation = 6
+0x0111 PreviewImageStart = 896622
+0x0115 SamplesPerPixel = 3
+0x0116 RowsPerStrip = 768
+0x0117 PreviewImageLength = 167003
+0x011c PlanarConfiguration = 1
+0x0211 YCbCrCoefficients = [299/1000 (0.299), 587/1000 (0.587), 114/1000 (0.114)]
+0x0212 YCbCrSubSampling = [2, 2]
+0x0213 YCbCrPositioning = 0
+0x0214 ReferenceBlackWhite = [0/1 (0.0), 255/1 (255.0), 128/1 (128.0), 255/1 (255.0), 128/1 (128.0), 255/1 (255.0)]
+0xc716 Unknown = Adobe DNG Converter
+0xc717 Unknown = 15.4
+0xc719 Unknown = [16 bytes]
+0xc71a Unknown = 2
+0xc71b Unknown = 2023-07-26T06:11:34+02:00
+
+---- SubIFD2 ----
+0x00fe NewSubfileType = 1
+0x0100 ImageWidth = 2048
+0x0101 ImageLength = 1536
+0x0102 BitsPerSample = [8, 8, 8]
+0x0103 Compression = -30644
+0x0106 PhotometricInterpretation = -30644
+0x0115 SamplesPerPixel = 3
+0x011c PlanarConfiguration = 1
+0x0142 TileWidth = 512
+0x0143 TileLength = 512
+0x0144 TileOffsets = [1063626, 1152024, 1239494, 1319338, 1372880, 1464272, 1552292, 1632972, 1685810, 1770122, 1866434, 1958686]
+0x0145 TileByteCounts = [88397, 87470, 79844, 53542, 91391, 88020, 80679, 52838, 84311, 96312, 92252, 55016]
+0xc716 Unknown = Adobe DNG Converter
+0xc717 Unknown = 15.4
+0xc741 Unknown = [256 bytes]
+0xc7aa Unknown = 256
+
+---- SubIFD3 ----
+0x00fe NewSubfileType = 1
+0x0100 ImageWidth = 512
+0x0101 ImageLength = 384
+0x0102 BitsPerSample = [8, 8, 8]
+0x0103 Compression = -30644
+0x0106 PhotometricInterpretation = -30644
+0x0115 SamplesPerPixel = 3
+0x011c PlanarConfiguration = 1
+0x0142 TileWidth = 512
+0x0143 TileLength = 384
+0x0144 TileOffsets = 2013702
+0x0145 TileByteCounts = 94766
+0xc61a Unknown = [47/1 (47.0), 51/1 (51.0), 51/1 (51.0)]
+0xc716 Unknown = Adobe DNG Converter
+0xc717 Unknown = 15.4
+0xc741 Unknown = [256 bytes]
+0xc7aa Unknown = 256
+
+---- SubIFD ----
+0x00fe NewSubfileType = 1
+0x0100 ImageWidth = 256
+0x0101 ImageLength = 192
+0x0102 BitsPerSample = [8, 8, 8]
+0x0103 Compression = -30644
+0x0106 PhotometricInterpretation = -30644
+0x0115 SamplesPerPixel = 3
+0x011c PlanarConfiguration = 1
+0x0142 TileWidth = 256
+0x0143 TileLength = 192
+0x0144 TileOffsets = 2108468
+0x0145 TileByteCounts = 30778
+0xc61a Unknown = [51/1 (51.0), 51/1 (51.0), 51/1 (51.0)]
+0xc716 Unknown = Adobe DNG Converter
+0xc717 Unknown = 15.4
+0xc741 Unknown = [256 bytes]
+0xc7aa Unknown = 256
+
+
+---- XMP ----
+<?xpacket begin="﻿" id="W5M0MpCehiHzreSzNTczkc9d"?>
+<x:xmpmeta xmlns:x="adobe:ns:meta/" x:xmptk="Adobe XMP Core 7.0-c000 1.000000, 0000/00/00-00:00:00        ">
+ <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+  <rdf:Description rdf:about=""
+    xmlns:aux="http://ns.adobe.com/exif/1.0/aux/"
+    xmlns:xmp="http://ns.adobe.com/xap/1.0/"
+    xmlns:photoshop="http://ns.adobe.com/photoshop/1.0/"
+    xmlns:xmpMM="http://ns.adobe.com/xap/1.0/mm/"
+    xmlns:stEvt="http://ns.adobe.com/xap/1.0/sType/ResourceEvent#"
+    xmlns:stRef="http://ns.adobe.com/xap/1.0/sType/ResourceRef#"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:crd="http://ns.adobe.com/camera-raw-defaults/1.0/"
+    xmlns:crs="http://ns.adobe.com/camera-raw-settings/1.0/"
+   aux:SerialNumber="F111311090158"
+   xmp:ModifyDate="2023-07-26T06:11:34+02:00"
+   xmp:CreateDate="2014-11-19T23:07:44"
+   xmp:CreatorTool="Adobe DNG Converter 15.4 (Macintosh)"
+   xmp:MetadataDate="2023-07-26T06:11:34+02:00"
+   photoshop:DateCreated="2014-11-19T23:07:44"
+   xmpMM:DocumentID="xmp.did:a4fa5206-9ba2-408b-9c1e-01b0cabbf9b1"
+   xmpMM:OriginalDocumentID="9888C75E097E3E0B3C7E9F23CE3536B6"
+   xmpMM:InstanceID="xmp.iid:a4fa5206-9ba2-408b-9c1e-01b0cabbf9b1"
+   dc:format="image/dng"
+   crd:CameraProfile="Camera Standard"
+   crd:LookName=""
+   crs:HasSettings="False"
+   crs:HasCrop="False"
+   crs:AlreadyApplied="False">
+   <xmpMM:History>
+    <rdf:Seq>
+     <rdf:li
+      stEvt:action="derived"
+      stEvt:parameters="converted from image/x-panasonic-raw to image/dng, saved to new location"/>
+     <rdf:li
+      stEvt:action="saved"
+      stEvt:instanceID="xmp.iid:a4fa5206-9ba2-408b-9c1e-01b0cabbf9b1"
+      stEvt:when="2023-07-26T06:11:34+02:00"
+      stEvt:softwareAgent="Adobe DNG Converter 15.4 (Macintosh)"
+      stEvt:changed="/"/>
+    </rdf:Seq>
+   </xmpMM:History>
+   <xmpMM:DerivedFrom
+    stRef:documentID="9888C75E097E3E0B3C7E9F23CE3536B6"
+    stRef:originalDocumentID="9888C75E097E3E0B3C7E9F23CE3536B6"/>
+  </rdf:Description>
+ </rdf:RDF>
+</x:xmpmeta>
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                       
+<?xpacket end="w"?>
