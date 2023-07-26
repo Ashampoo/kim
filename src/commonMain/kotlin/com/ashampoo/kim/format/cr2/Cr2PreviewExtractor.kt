@@ -16,24 +16,28 @@
  */
 package com.ashampoo.kim.format.cr2
 
-import com.ashampoo.kim.format.PreviewExtractor
-import com.ashampoo.kim.format.tiff.TiffReader
+import com.ashampoo.kim.format.TiffPreviewExtractor
+import com.ashampoo.kim.format.tiff.TiffContents
 import com.ashampoo.kim.format.tiff.constants.TiffTag
-import com.ashampoo.kim.input.ByteReader
-import com.ashampoo.kim.input.DefaultRandomAccessByteReader
+import com.ashampoo.kim.input.RandomAccessByteReader
 
-object Cr2PreviewExtractor : PreviewExtractor {
+object Cr2PreviewExtractor : TiffPreviewExtractor {
 
-    override fun extractPreviewImage(byteReader: ByteReader, length: Long): ByteArray? {
+    override fun extractPreviewImage(
+        tiffContents: TiffContents,
+        randomAccessByteReader: RandomAccessByteReader
+    ): ByteArray? {
 
-        val randomAccessByteReader = DefaultRandomAccessByteReader(byteReader, length)
+        val ifd0 = tiffContents.directories.first()
 
-        val tiffContents = TiffReader().read(randomAccessByteReader)
+        val previewImageStart =
+            ifd0.getFieldValue(TiffTag.TIFF_TAG_STRIP_OFFSETS) ?: return null
 
-        val firstDirectory = tiffContents.directories.first()
+        val previewLength =
+            ifd0.getFieldValue(TiffTag.TIFF_TAG_STRIP_BYTE_COUNTS) ?: return null
 
-        val previewImageStart = firstDirectory.getFieldValue(TiffTag.TIFF_TAG_STRIP_OFFSETS)
-        val previewLength = firstDirectory.getFieldValue(TiffTag.TIFF_TAG_STRIP_BYTE_COUNTS)
+        if (previewLength == 0)
+            return null
 
         randomAccessByteReader.skipTo(previewImageStart)
 

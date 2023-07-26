@@ -1,4 +1,4 @@
-File format : ARW
+File format : TIFF
 Resolution  : 3664 x 2752
 ---- TIFF ----
 Version 42
@@ -23,7 +23,7 @@ Little-endian (Intel, II)
 0x014a SubIFD = [745174, 747148, 747540, 748122, 748644]
 0x02bc XMP = [6163 bytes]
 0x8769 ExifOffset = 744630
-0xc612 Unknown = [0x01, 0x04, 0x00, 0x00]
+0xc612 DNGVersion = [0x01, 0x04, 0x00, 0x00]
 0xc613 Unknown = [0x01, 0x03, 0x00, 0x00]
 0xc614 Unknown = Panasonic DMC-LX7
 0xc621 Unknown = [11127/10000 (1.1127), -5386/10000 (-0.5386), 410/10000 (0.041), -1849/10000 (-0.1849), 9339/10000 (0.9339), 2962/10000 (0.2962), 66/10000 (0.0066), 807/10000 (0.0807), 5378/10000 (0.5378)]

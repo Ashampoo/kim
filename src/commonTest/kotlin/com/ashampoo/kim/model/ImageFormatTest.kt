@@ -39,18 +39,17 @@ class ImageFormatTest {
                 index == KimTestData.PNG_GIMP_TEST_IMAGE_INDEX -> ImageFormat.PNG
                 index == KimTestData.CR2_TEST_IMAGE_INDEX -> ImageFormat.CR2
                 index == KimTestData.RAF_TEST_IMAGE_INDEX -> ImageFormat.RAF
-                /* NEF has no unique magic bytes. */
-                index == KimTestData.NEF_TEST_IMAGE_INDEX -> ImageFormat.TIFF
-                index == KimTestData.ARW_TEST_IMAGE_INDEX -> ImageFormat.ARW
                 index == KimTestData.RW2_TEST_IMAGE_INDEX -> ImageFormat.RW2
                 index == KimTestData.ORF_TEST_IMAGE_INDEX -> ImageFormat.ORF
-                /* FIXME Should be DNG */
-                index == KimTestData.DNG_CR2_TEST_IMAGE_INDEX -> ImageFormat.ARW
-                index == KimTestData.DNG_RAF_TEST_IMAGE_INDEX -> ImageFormat.ARW
-                index == KimTestData.DNG_NEF_TEST_IMAGE_INDEX -> ImageFormat.ARW
-                index == KimTestData.DNG_ARW_TEST_IMAGE_INDEX -> ImageFormat.ARW
-                index == KimTestData.DNG_RW2_TEST_IMAGE_INDEX -> ImageFormat.ARW
-                index == KimTestData.DNG_ORF_TEST_IMAGE_INDEX -> ImageFormat.ARW
+                /* NEF, ARW and DNG do not have unique magic bytes and recognized as TIFF. */
+                index == KimTestData.NEF_TEST_IMAGE_INDEX -> ImageFormat.TIFF
+                index == KimTestData.ARW_TEST_IMAGE_INDEX -> ImageFormat.TIFF
+                index == KimTestData.DNG_CR2_TEST_IMAGE_INDEX -> ImageFormat.TIFF
+                index == KimTestData.DNG_RAF_TEST_IMAGE_INDEX -> ImageFormat.TIFF
+                index == KimTestData.DNG_NEF_TEST_IMAGE_INDEX -> ImageFormat.TIFF
+                index == KimTestData.DNG_ARW_TEST_IMAGE_INDEX -> ImageFormat.TIFF
+                index == KimTestData.DNG_RW2_TEST_IMAGE_INDEX -> ImageFormat.TIFF
+                index == KimTestData.DNG_ORF_TEST_IMAGE_INDEX -> ImageFormat.TIFF
                 else -> null
             }
 
@@ -132,6 +131,11 @@ class ImageFormatTest {
             expected = ImageFormat.ORF,
             actual = ImageFormat.byMimeType("image/x-olympus-orf")
         )
+
+        assertEquals(
+            expected = ImageFormat.DNG,
+            actual = ImageFormat.byMimeType("image/x-adobe-dng")
+        )
     }
 
     @Test
@@ -197,6 +201,11 @@ class ImageFormatTest {
         assertEquals(
             expected = ImageFormat.ORF,
             actual = ImageFormat.byUniformTypeIdentifier("com.olympus.raw-image")
+        )
+
+        assertEquals(
+            expected = ImageFormat.DNG,
+            actual = ImageFormat.byUniformTypeIdentifier("com.adobe.raw-image")
         )
     }
 
@@ -278,6 +287,11 @@ class ImageFormatTest {
         assertEquals(
             expected = ImageFormat.ORF,
             actual = ImageFormat.byFileNameExtension("image.orf")
+        )
+
+        assertEquals(
+            expected = ImageFormat.DNG,
+            actual = ImageFormat.byFileNameExtension("image.dng")
         )
     }
 }

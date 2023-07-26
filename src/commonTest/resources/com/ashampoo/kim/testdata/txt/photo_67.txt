@@ -1,4 +1,4 @@
-File format : ARW
+File format : TIFF
 Resolution  : 6240 x 4160
 ---- TIFF ----
 Version 42
@@ -25,7 +25,7 @@ Little-endian (Intel, II)
 0x02bc XMP = [6601 bytes]
 0x8298 Copyright = Stefan Oltmann
 0x8769 ExifOffset = 151888
-0xc612 Unknown = [0x01, 0x04, 0x00, 0x00]
+0xc612 DNGVersion = [0x01, 0x04, 0x00, 0x00]
 0xc613 Unknown = [0x01, 0x01, 0x00, 0x00]
 0xc614 Unknown = Fujifilm X-T4
 0xc621 Unknown = [16064/10000 (1.6064), -9942/10000 (-0.9942), 1120/10000 (0.112), -3760/10000 (-0.376), 12096/10000 (1.2096), 1853/10000 (0.1853), -7/10000 (-7.0E-4), 545/10000 (0.0545), 6654/10000 (0.6654)]

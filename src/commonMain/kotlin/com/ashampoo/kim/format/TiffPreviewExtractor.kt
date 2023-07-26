@@ -15,10 +15,14 @@
  */
 package com.ashampoo.kim.format
 
-import com.ashampoo.kim.input.ByteReader
+import com.ashampoo.kim.format.tiff.TiffContents
+import com.ashampoo.kim.input.RandomAccessByteReader
 
-fun interface PreviewExtractor {
+fun interface TiffPreviewExtractor {
 
-    fun extractPreviewImage(byteReader: ByteReader, length: Long): ByteArray?
+    fun extractPreviewImage(
+        tiffContents: TiffContents,
+        randomAccessByteReader: RandomAccessByteReader
+    ): ByteArray?
 
 }

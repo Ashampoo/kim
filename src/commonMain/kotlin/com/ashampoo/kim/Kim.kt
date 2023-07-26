@@ -21,6 +21,7 @@ import com.ashampoo.kim.format.ImageMetadata
 import com.ashampoo.kim.format.ImageParser
 import com.ashampoo.kim.format.arw.ArwPreviewExtractor
 import com.ashampoo.kim.format.cr2.Cr2PreviewExtractor
+import com.ashampoo.kim.format.dng.DngPreviewExtractor
 import com.ashampoo.kim.format.jpeg.JpegMetadataExtractor
 import com.ashampoo.kim.format.jpeg.JpegUpdater
 import com.ashampoo.kim.format.nef.NefPreviewExtractor
@@ -29,8 +30,10 @@ import com.ashampoo.kim.format.png.PngUpdater
 import com.ashampoo.kim.format.raf.RafMetadataExtractor
 import com.ashampoo.kim.format.raf.RafPreviewExtractor
 import com.ashampoo.kim.format.rw2.Rw2PreviewExtractor
+import com.ashampoo.kim.format.tiff.TiffReader
 import com.ashampoo.kim.input.ByteArrayByteReader
 import com.ashampoo.kim.input.ByteReader
+import com.ashampoo.kim.input.DefaultRandomAccessByteReader
 import com.ashampoo.kim.input.KtorInputByteReader
 import com.ashampoo.kim.input.PrePendingByteReader
 import com.ashampoo.kim.model.ImageFormat
@@ -111,19 +114,30 @@ object Kim {
 
         val imageFormat = ImageFormat.detect(headerBytes)
 
-        val newReader = PrePendingByteReader(it, headerBytes.toList())
+        val prePendingByteReader = PrePendingByteReader(it, headerBytes.toList())
+
+        if (imageFormat == ImageFormat.RAF)
+            return@use RafPreviewExtractor.extractPreviewImage(prePendingByteReader)
+
+        val reader = DefaultRandomAccessByteReader(prePendingByteReader, length)
+
+        val tiffContents = TiffReader().read(reader)
 
         /**
          * *Note:* Olympus ORF is currently unsupported because the preview offset
          * is burried in the Olympus MakerNotes, which are currently not interpreted.
          */
         return@use when (imageFormat) {
-            ImageFormat.CR2 -> Cr2PreviewExtractor.extractPreviewImage(newReader, length)
-            ImageFormat.RAF -> RafPreviewExtractor.extractPreviewImage(newReader, length)
-            ImageFormat.ARW -> ArwPreviewExtractor.extractPreviewImage(newReader, length)
-            ImageFormat.RW2 -> Rw2PreviewExtractor.extractPreviewImage(newReader, length)
-            /* Unfortunately NEF has no separate magic bytes */
-            ImageFormat.TIFF -> NefPreviewExtractor.extractPreviewImage(newReader, length)
+            ImageFormat.CR2 -> Cr2PreviewExtractor.extractPreviewImage(tiffContents, reader)
+            ImageFormat.RW2 -> Rw2PreviewExtractor.extractPreviewImage(tiffContents, reader)
+            ImageFormat.TIFF -> {
+
+                /* It can now be DNG, NEF or ARW. */
+                DngPreviewExtractor.extractPreviewImage(tiffContents, reader)?.let { return@use it }
+                NefPreviewExtractor.extractPreviewImage(tiffContents, reader)?.let { return@use it }
+                ArwPreviewExtractor.extractPreviewImage(tiffContents, reader)?.let { return@use it }
+            }
+
             else -> null
         }
     }

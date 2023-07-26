@@ -18,28 +18,29 @@ package com.ashampoo.kim.format.raf
 
 import com.ashampoo.kim.common.toSingleNumberHexes
 import com.ashampoo.kim.format.ImageFormatMagicNumbers
-import com.ashampoo.kim.format.PreviewExtractor
 import com.ashampoo.kim.format.jpeg.JpegMetadataExtractor
 import com.ashampoo.kim.input.ByteReader
 
-object RafPreviewExtractor : PreviewExtractor {
+object RafPreviewExtractor {
 
-    override fun extractPreviewImage(byteReader: ByteReader, length: Long): ByteArray? {
+    fun extractPreviewImage(
+        reader: ByteReader
+    ): ByteArray? {
 
-        val magicNumberBytes = byteReader.readBytes(ImageFormatMagicNumbers.raf.size).toList()
+        val magicNumberBytes = reader.readBytes(ImageFormatMagicNumbers.raf.size).toList()
 
         /* Ensure it's actually an RAF. */
         require(magicNumberBytes == ImageFormatMagicNumbers.raf) {
             "RAF magic number mismatch: ${magicNumberBytes.toByteArray().toSingleNumberHexes()}"
         }
 
-        RafMetadataExtractor.skipToJpegMagicBytes(byteReader)
+        RafMetadataExtractor.skipToJpegMagicBytes(reader)
 
         val bytes = mutableListOf<Byte>()
 
         bytes.addAll(ImageFormatMagicNumbers.jpeg)
 
-        JpegMetadataExtractor.readSegmentBytesIntoList(byteReader, bytes)
+        JpegMetadataExtractor.readSegmentBytesIntoList(reader, bytes)
 
         /*
          * Now we are in Start-of-Scan segment and need to read until FF D9 (EOI)
@@ -48,7 +49,7 @@ object RafPreviewExtractor : PreviewExtractor {
         @Suppress("LoopWithTooManyJumpStatements")
         while (true) {
 
-            val byte = byteReader.readByte() ?: break
+            val byte = reader.readByte() ?: break
 
             bytes.add(byte)
 

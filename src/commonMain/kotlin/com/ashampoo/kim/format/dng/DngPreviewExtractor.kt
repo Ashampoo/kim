@@ -16,27 +16,38 @@
  */
 package com.ashampoo.kim.format.dng
 
-import com.ashampoo.kim.format.PreviewExtractor
-import com.ashampoo.kim.format.tiff.TiffReader
+import com.ashampoo.kim.format.TiffPreviewExtractor
+import com.ashampoo.kim.format.tiff.TiffContents
 import com.ashampoo.kim.format.tiff.constants.ExifTag
 import com.ashampoo.kim.format.tiff.constants.TiffConstants
-import com.ashampoo.kim.input.ByteReader
-import com.ashampoo.kim.input.DefaultRandomAccessByteReader
+import com.ashampoo.kim.format.tiff.constants.TiffTag
+import com.ashampoo.kim.input.RandomAccessByteReader
 
-object DngPreviewExtractor : PreviewExtractor {
+object DngPreviewExtractor : TiffPreviewExtractor {
 
-    override fun extractPreviewImage(byteReader: ByteReader, length: Long): ByteArray? {
+    override fun extractPreviewImage(
+        tiffContents: TiffContents,
+        randomAccessByteReader: RandomAccessByteReader
+    ): ByteArray? {
 
-        val randomAccessByteReader = DefaultRandomAccessByteReader(byteReader, length)
+        val ifd0 = tiffContents.directories.first()
 
-        val tiffContents = TiffReader().read(randomAccessByteReader)
+        /* Ensure that the file is a DNG by checking the required tag. */
+        if (ifd0.getFieldValue(TiffTag.TIFF_TAG_DNG_VERSION, false) == null)
+            return null
 
-        val ifd1 = tiffContents.directories.find {
+        val subIfd1 = tiffContents.directories.find {
             it.type == TiffConstants.EXIF_SUB_IFD1
         } ?: return null
 
-        val previewImageStart = ifd1.getFieldValue(ExifTag.EXIF_TAG_PREVIEW_IMAGE_START_SUB_IFD1)
-        val previewLength = ifd1.getFieldValue(ExifTag.EXIF_TAG_PREVIEW_IMAGE_LENGTH_SUB_IFD1)
+        val previewImageStart =
+            subIfd1.getFieldValue(ExifTag.EXIF_TAG_PREVIEW_IMAGE_START_SUB_IFD1) ?: return null
+
+        val previewLength =
+            subIfd1.getFieldValue(ExifTag.EXIF_TAG_PREVIEW_IMAGE_LENGTH_SUB_IFD1) ?: return null
+
+        if (previewLength == 0)
+            return null
 
         randomAccessByteReader.skipTo(previewImageStart)
 

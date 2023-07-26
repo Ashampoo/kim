@@ -1,4 +1,4 @@
-File format : ARW
+File format : TIFF
 Resolution  : 4948 x 3280
 ---- TIFF ----
 Version 42
@@ -24,7 +24,7 @@ Little-endian (Intel, II)
 0x02bc XMP = [6332 bytes]
 0x8769 ExifOffset = 186902
 0x9211 Unknown = 250
-0xc612 Unknown = [0x01, 0x04, 0x00, 0x00]
+0xc612 DNGVersion = [0x01, 0x04, 0x00, 0x00]
 0xc613 Unknown = [0x01, 0x01, 0x00, 0x00]
 0xc614 Unknown = Nikon D5100
 0xc621 Unknown = [8642/10000 (0.8642), -3058/10000 (-0.3058), -243/10000 (-0.0243), -3999/10000 (-0.3999), 11033/10000 (1.1033), 3422/10000 (0.3422), -453/10000 (-0.0453), 1099/10000 (0.1099), 7814/10000 (0.7814)]

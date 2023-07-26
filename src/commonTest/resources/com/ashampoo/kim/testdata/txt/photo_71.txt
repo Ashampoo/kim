@@ -1,4 +1,4 @@
-File format : ARW
+File format : TIFF
 Resolution  : 3680 x 2760
 ---- TIFF ----
 Version 42
@@ -24,7 +24,7 @@ Little-endian (Intel, II)
 0x014a SubIFD = [1538732, 1540610, 1541002, 1541584, 1542106]
 0x02bc XMP = [6368 bytes]
 0x8769 ExifOffset = 1538236
-0xc612 Unknown = [0x01, 0x04, 0x00, 0x00]
+0xc612 DNGVersion = [0x01, 0x04, 0x00, 0x00]
 0xc613 Unknown = [0x01, 0x03, 0x00, 0x00]
 0xc614 Unknown = Olympus XZ-1
 0xc621 Unknown = [11283/10000 (1.1283), -5046/10000 (-0.5046), -307/10000 (-0.0307), -843/10000 (-0.0843), 8485/10000 (0.8485), 2822/10000 (0.2822), 272/10000 (0.0272), 824/10000 (0.0824), 5672/10000 (0.5672)]

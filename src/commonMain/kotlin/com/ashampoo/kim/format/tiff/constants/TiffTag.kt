@@ -516,24 +516,25 @@ object TiffTag {
     const val YCB_CR_POSITIONING_VALUE_CO_SITED = 2
 
     val TIFF_TAG_REFERENCE_BLACK_WHITE = TagInfoLongs(
-        "ReferenceBlackWhite", 0x214, -1,
-        TIFF_DIRECTORY_IFD0
+        "ReferenceBlackWhite", 0x214, -1, TIFF_DIRECTORY_IFD0
     )
 
     val TIFF_TAG_COPYRIGHT = TagInfoAscii(
-        "Copyright", 0x8298, -1,
-        TIFF_DIRECTORY_IFD0
+        "Copyright", 0x8298, -1, TIFF_DIRECTORY_IFD0
     )
 
     val TIFF_TAG_XMP = TagInfoBytes(
-        "XMP", 0x2BC, -1,
-        TIFF_DIRECTORY_IFD0
+        "XMP", 0x2BC, -1, TIFF_DIRECTORY_IFD0
     )
 
     /** Panasonic RW2 special tag. */
-    val TIFF_JPG_FROM_RAW = TagInfoBytes(
-        "JpgFromRaw", 0x002E, -1,
-        TIFF_DIRECTORY_IFD0
+    val TIFF_TAG_JPG_FROM_RAW = TagInfoBytes(
+        "JpgFromRaw", 0x002E, -1, TIFF_DIRECTORY_IFD0
+    )
+
+    /** Required field for all DNGs. Can be used to detect if TIFF is a DNG. */
+    val TIFF_TAG_DNG_VERSION = TagInfoBytes(
+        "DNGVersion", 0xC612, 4, TIFF_DIRECTORY_IFD0
     )
 
     val TIFF_TAG_UNKNOWN = TagInfoUnknowns(
@@ -575,6 +576,7 @@ object TiffTag {
         TIFF_TAG_YCBCR_POSITIONING, TIFF_TAG_REFERENCE_BLACK_WHITE,
         TIFF_TAG_COPYRIGHT,
         TIFF_TAG_XMP,
-        TIFF_JPG_FROM_RAW
+        TIFF_TAG_JPG_FROM_RAW,
+        TIFF_TAG_DNG_VERSION
     )
 }

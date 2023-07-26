@@ -143,8 +143,6 @@ enum class ImageFormat(
                 bytes.startsWithNullable(ImageFormatMagicNumbers.webP) -> ImageFormat.WEBP
                 /* Canon CR2 et al *must* be checked before TIFF, because they are based on TIFF */
                 bytes.startsWith(ImageFormatMagicNumbers.cr2) -> ImageFormat.CR2
-                // FIXME DNG has the same bytes. How to distinguish?
-                bytes.startsWith(ImageFormatMagicNumbers.arw) -> ImageFormat.ARW
                 bytes.startsWith(ImageFormatMagicNumbers.rw2) -> ImageFormat.RW2
                 bytes.startsWith(ImageFormatMagicNumbers.orf_iiro) -> ImageFormat.ORF
                 bytes.startsWith(ImageFormatMagicNumbers.orf_mmor) -> ImageFormat.ORF

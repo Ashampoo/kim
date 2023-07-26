@@ -1,4 +1,4 @@
-File format : ARW
+File format : TIFF
 Resolution  : 5344 x 3516
 ---- TIFF ----
 Version 42
@@ -26,7 +26,7 @@ Little-endian (Intel, II)
 0x8298 Copyright = Stefan Oltmann
 0x8769 ExifOffset = 108934
 0x9211 Unknown = 0
-0xc612 Unknown = [0x01, 0x04, 0x00, 0x00]
+0xc612 DNGVersion = [0x01, 0x04, 0x00, 0x00]
 0xc613 Unknown = [0x01, 0x01, 0x00, 0x00]
 0xc614 Unknown = Canon EOS 60D
 0xc621 Unknown = [7428/10000 (0.7428), -1897/10000 (-0.1897), -491/10000 (-0.0491), -3505/10000 (-0.3505), 10963/10000 (1.0963), 2929/10000 (0.2929), -337/10000 (-0.0337), 1242/10000 (0.1242), 6413/10000 (0.6413)]

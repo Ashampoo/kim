@@ -1,4 +1,4 @@
-File format : ARW
+File format : TIFF
 Resolution  : 4288 x 2858
 ---- TIFF ----
 Version 42
@@ -24,7 +24,7 @@ Little-endian (Intel, II)
 0x014a SubIFD = [134210, 136300, 136692, 137274, 137796]
 0x02bc XMP = [6431 bytes]
 0x8769 ExifOffset = 133624
-0xc612 Unknown = [0x01, 0x04, 0x00, 0x00]
+0xc612 DNGVersion = [0x01, 0x04, 0x00, 0x00]
 0xc613 Unknown = [0x01, 0x01, 0x00, 0x00]
 0xc614 Unknown = Sony DSLR-A500
 0xc621 Unknown = [9548/10000 (0.9548), -5128/10000 (-0.5128), 467/10000 (0.0467), -4471/10000 (-0.4471), 11739/10000 (1.1739), 3117/10000 (0.3117), -177/10000 (-0.0177), 673/10000 (0.0673), 8320/10000 (0.832)]
