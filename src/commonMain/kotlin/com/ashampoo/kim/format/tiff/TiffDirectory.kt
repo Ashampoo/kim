@@ -90,10 +90,9 @@ class TiffDirectory(
     }
 
     @Suppress("ThrowsCount")
-    fun getFieldValue(tag: TagInfoLong): Int {
+    fun getFieldValue(tag: TagInfoLong): Int? {
 
-        val field = findField(tag)
-            ?: throw ImageReadException("Required field ${tag.name} is missing")
+        val field = findField(tag) ?: return null
 
         if (!tag.dataTypes.contains(field.fieldType))
             throw ImageReadException("Required field ${tag.name} has incorrect type ${field.fieldType.name}")

@@ -114,6 +114,12 @@ jobs:
           if-no-files-found: error
           name: kim-macosArm64.kexe
           path: build/bin/macosArm64/releaseExecutable/kim.kexe
+      - name: Upload kim-win-lib.zip
+        uses: actions/upload-artifact@v3
+        with:
+          if-no-files-found: error
+          name: kim-win-lib.zip
+          path: build/bin/win/releaseStatic
       - name: Export secring.pgp
         if: startsWith(github.ref, 'refs/tags/') # Only for releases
         run: |

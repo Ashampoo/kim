@@ -200,7 +200,7 @@ class TiffReader : BinaryFileParser() {
             if (field != null) {
 
                 val subDirOffsets: IntArray = when (offsetField) {
-                    is TagInfoLong -> intArrayOf(directory.getFieldValue(offsetField))
+                    is TagInfoLong -> intArrayOf(directory.getFieldValue(offsetField)!!)
                     is TagInfoLongs -> directory.getFieldValue(offsetField)
                     else -> error("Unknown type: $offsetField")
                 }

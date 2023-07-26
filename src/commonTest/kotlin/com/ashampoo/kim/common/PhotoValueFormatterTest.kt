@@ -191,6 +191,11 @@ class PhotoValueFormatterTest {
     fun testFormatExposureTime() {
 
         assertEquals(
+            "1/8000 s",
+            PhotoValueFormatter.formatExposureTime(0.000125)
+        )
+
+        assertEquals(
             "1/4000 s",
             PhotoValueFormatter.formatExposureTime(0.00025)
         )
@@ -333,6 +338,11 @@ class PhotoValueFormatterTest {
         assertEquals(
             "10'' s",
             PhotoValueFormatter.formatExposureTime(10.0)
+        )
+
+        assertEquals(
+            "15'' s",
+            PhotoValueFormatter.formatExposureTime(15.0)
         )
 
         assertEquals(

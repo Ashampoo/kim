@@ -70,6 +70,9 @@ class TiffField(
             if (value is DoubleArray)
                 return@lazy value.contentToString()
 
+            if (value is FloatArray)
+                return@lazy value.contentToString()
+
             if (value is Array<*>)
                 return@lazy value.contentToString()
 

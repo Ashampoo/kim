@@ -49,8 +49,8 @@ object ImageFormatMagicNumbers {
     )
 
     /*
-     * Note that NEF also starts this way.
-     * We can't distinguish a normal TIFF and a NEF file.
+     * Note that NEF, ARW & DNG also starts this way.
+     * We can't distinguish a normal TIFF and a raw file based on them.
      */
     val tiffBigEndian: List<Byte> = byteListOf(
         0x4D, 0x4D, 0x00, 0x2A
@@ -62,10 +62,6 @@ object ImageFormatMagicNumbers {
 
     val raf: List<Byte> = byteListOf(
         0x46, 0x55, 0x4A, 0x49, 0x46, 0x49, 0x4C, 0x4D, 0x43, 0x43, 0x44, 0x2D, 0x52, 0x41, 0x57
-    )
-
-    val arw: List<Byte> = byteListOf(
-        0x49, 0x49, 0x2a, 0x00, 0x08, 0x00
     )
 
     val rw2: List<Byte> = byteListOf(

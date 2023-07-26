@@ -16,24 +16,28 @@
  */
 package com.ashampoo.kim.format.arw
 
-import com.ashampoo.kim.format.PreviewExtractor
-import com.ashampoo.kim.format.tiff.TiffReader
+import com.ashampoo.kim.format.TiffPreviewExtractor
+import com.ashampoo.kim.format.tiff.TiffContents
 import com.ashampoo.kim.format.tiff.constants.TiffTag
-import com.ashampoo.kim.input.ByteReader
-import com.ashampoo.kim.input.DefaultRandomAccessByteReader
+import com.ashampoo.kim.input.RandomAccessByteReader
 
-object ArwPreviewExtractor : PreviewExtractor {
+object ArwPreviewExtractor : TiffPreviewExtractor {
 
-    override fun extractPreviewImage(byteReader: ByteReader, length: Long): ByteArray? {
-
-        val randomAccessByteReader = DefaultRandomAccessByteReader(byteReader, length)
-
-        val tiffContents = TiffReader().read(randomAccessByteReader)
+    override fun extractPreviewImage(
+        tiffContents: TiffContents,
+        randomAccessByteReader: RandomAccessByteReader
+    ): ByteArray? {
 
         val ifd0 = tiffContents.directories.first()
 
-        val previewImageStart = ifd0.getFieldValue(TiffTag.TIFF_TAG_JPEG_INTERCHANGE_FORMAT)
-        val previewLength = ifd0.getFieldValue(TiffTag.TIFF_TAG_JPEG_INTERCHANGE_FORMAT_LENGTH)
+        val previewImageStart =
+            ifd0.getFieldValue(TiffTag.TIFF_TAG_JPEG_INTERCHANGE_FORMAT) ?: return null
+
+        val previewLength =
+            ifd0.getFieldValue(TiffTag.TIFF_TAG_JPEG_INTERCHANGE_FORMAT_LENGTH) ?: return null
+
+        if (previewLength == 0)
+            return null
 
         randomAccessByteReader.skipTo(previewImageStart)
 
