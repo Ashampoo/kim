@@ -138,6 +138,9 @@ kotlin {
                 baseName = "kim"
                 entryPoint = "com.ashampoo.kim.main"
             }
+            staticLib(namePrefix = "", setOf(NativeBuildType.RELEASE)) {
+                baseName = "kim"
+            }
         }
     }
 
