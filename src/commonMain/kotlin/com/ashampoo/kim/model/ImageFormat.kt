@@ -39,7 +39,8 @@ enum class ImageFormat(
     NEF("image/x-nikon-nef", "com.nikon.raw-image", setOf("nef")),
     ARW("image/x-sony-arw", "com.sony.raw-image", setOf("arw")),
     RW2("image/x-panasonic-rw2", "com.panasonic.raw-image", setOf("rw2")),
-    ORF("image/x-olympus-orf", "com.olympus.raw-image", setOf("orf"));
+    ORF("image/x-olympus-orf", "com.olympus.raw-image", setOf("orf")),
+    DNG("image/x-adobe-dng", "com.adobe.raw-image", setOf("dng"));
 
     fun isMetadataEmbeddable(): Boolean =
         this == ImageFormat.JPEG || this == ImageFormat.PNG
