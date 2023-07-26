@@ -55,9 +55,15 @@ enum class ImageFormat(
         private val allFileNameExtensions = getAllFileNameExtensions()
 
         /*
-         * OneDrive reports Canon CR2 files under a wrong mime type.
+         * OneDrive reports RAW files under wrong mime types
          */
         private const val CR2_ONEDRIVE_MIME_TYPE = "image/CR2"
+        private const val RAF_ONEDRIVE_MIME_TYPE = "image/RAF"
+        private const val NEF_ONEDRIVE_MIME_TYPE = "image/NEF"
+        private const val ARW_ONEDRIVE_MIME_TYPE = "image/ARW"
+        private const val RW2_ONEDRIVE_MIME_TYPE = "image/RW2"
+        private const val ORF_ONEDRIVE_MIME_TYPE = "image/ORF"
+        private const val DNG_ONEDRIVE_MIME_TYPE = "image/DNG"
 
         @JvmStatic
         private fun getAllFileNameExtensions(): MutableSet<String> {
@@ -88,10 +94,16 @@ enum class ImageFormat(
                 if (mimeType.contentEquals(fileType.mimeType, ignoreCase = true))
                     return fileType
 
-            if (mimeType == CR2_ONEDRIVE_MIME_TYPE)
-                return CR2
-
-            return null
+            return when (mimeType) {
+                CR2_ONEDRIVE_MIME_TYPE -> CR2
+                RAF_ONEDRIVE_MIME_TYPE -> RAF
+                NEF_ONEDRIVE_MIME_TYPE -> NEF
+                ARW_ONEDRIVE_MIME_TYPE -> ARW
+                RW2_ONEDRIVE_MIME_TYPE -> RW2
+                ORF_ONEDRIVE_MIME_TYPE -> ORF
+                DNG_ONEDRIVE_MIME_TYPE -> DNG
+                else -> null
+            }
         }
 
         @JvmStatic
