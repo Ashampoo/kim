@@ -16,6 +16,7 @@
 package com.ashampoo.kim.common
 
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.ExperimentalForeignApi
 import kotlinx.cinterop.UnsafeNumber
 import kotlinx.cinterop.alloc
 import kotlinx.cinterop.convert
@@ -37,7 +38,7 @@ import platform.zlib.inflateInit
 import platform.zlib.uByteVar
 import platform.zlib.z_stream
 
-@OptIn(UnsafeNumber::class)
+@OptIn(UnsafeNumber::class, ExperimentalForeignApi::class)
 actual fun compress(input: String): ByteArray {
 
     memScoped {
@@ -77,6 +78,7 @@ actual fun compress(input: String): ByteArray {
     }
 }
 
+@OptIn(ExperimentalForeignApi::class)
 actual fun decompress(byteArray: ByteArray): String {
 
     memScoped {

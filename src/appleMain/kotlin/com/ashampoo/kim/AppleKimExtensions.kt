@@ -19,6 +19,7 @@ import com.ashampoo.kim.common.ImageReadException
 import com.ashampoo.kim.common.readFileAsByteArray
 import com.ashampoo.kim.format.ImageMetadata
 import com.ashampoo.kim.input.ByteArrayByteReader
+import kotlinx.cinterop.ExperimentalForeignApi
 import kotlinx.cinterop.addressOf
 import kotlinx.cinterop.usePinned
 import platform.Foundation.NSData
@@ -40,6 +41,7 @@ fun Kim.readMetadata(path: String): ImageMetadata? {
     return Kim.readMetadata(ByteArrayByteReader(fileBytes), fileBytes.size.toLong())
 }
 
+@OptIn(ExperimentalForeignApi::class)
 private fun convertDataToByteArray(data: NSData): ByteArray {
 
     return ByteArray(data.length.toInt()).apply {

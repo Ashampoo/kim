@@ -1,6 +1,6 @@
 # Kim - Kotlin Image Metadata
 
-[![Kotlin](https://img.shields.io/badge/kotlin-1.8.20-blue.svg?logo=kotlin)](httpw://kotlinlang.org)
+[![Kotlin](https://img.shields.io/badge/kotlin-1.9.0-blue.svg?logo=kotlin)](httpw://kotlinlang.org)
 ![JVM](https://img.shields.io/badge/-JVM-gray.svg?style=flat)
 ![Android](https://img.shields.io/badge/-Android-gray.svg?style=flat)
 ![macOS](https://img.shields.io/badge/-macOS-gray.svg?style=flat)
@@ -15,15 +15,15 @@ It's part of [Ashampoo Photos](https://ashampoo.com/photos).
 ## Features
 
 * JPG: Read & Write EXIF, IPTC & XMP
-* PNG: Read & Write `eXIf` chunk & XMP.
-    + Also read non-standard EXIF & IPTC from `tEXt`/`zTXt` chunk.
+* PNG: Read & Write `eXIf` chunk & XMP
+    + Also read non-standard EXIF & IPTC from `tEXt`/`zTXt` chunk
 * TIFF / DNG / RAW: Read EXIF & XMP
     + Good support for Canon CR2, Fujifilm RAF & Adobe DNG
-    + Experimental support for NEF, ARW, RW2 & ORF with known issues.
+    + Experimental support for NEF, ARW, RW2 & ORF with known issues
     + API for preview image extraction of DNG, CR2, RAF, NEF, ARW & RW2 (but not ORF)
 * Handling of XMP content through
-  [XMP Core for Kotlin Multiplatform](https://github.com/Ashampoo/xmpcore).
-* Convenicent `Kim.update()` API to perform updates to the relevant places.
+  [XMP Core for Kotlin Multiplatform](https://github.com/Ashampoo/xmpcore)
+* Convenient `Kim.update()` API to perform updates to the relevant places
 
 The future development of features on our part is driven entirely by the needs
 of Ashampoo Photos, which, in turn, is driven by user community feedback.
@@ -31,7 +31,7 @@ of Ashampoo Photos, which, in turn, is driven by user community feedback.
 ## Installation
 
 ```
-implementation("com.ashampoo:kim:0.5.0")
+implementation("com.ashampoo:kim:0.5.1")
 ```
 
 ## Sample usages
