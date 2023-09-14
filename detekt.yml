@@ -54,7 +54,7 @@ output-reports:
   # - 'SarifOutputReport'
 
 comments:
-  active: false
+  active: true
   AbsentOrWrongFileLicense:
     active: false
     licenseTemplateFile: 'license.template'
@@ -66,7 +66,7 @@ comments:
   DeprecatedBlockTag:
     active: true
   EndOfSentenceFormat:
-    active: false # not important for us
+    active: false
     endOfSentenceFormat: '([.?!][ \t\n\r\f<])|([.?!:]$)'
   KDocReferencesNonPublicProperty:
     active: false # not our policy
@@ -77,7 +77,7 @@ comments:
     matchDeclarationsOrder: true
     allowParamOnConstructorProperties: false
   UndocumentedPublicClass:
-    active: false # not our policy
+    active: false
     excludes: [ '**/commonTest/**', '**/jvmTest/**' ]
     searchInNestedClass: true
     searchInInnerClass: true
@@ -96,7 +96,7 @@ comments:
 complexity:
   active: true
   CognitiveComplexMethod:
-    active: false # already checked by SonarQube
+    active: false  # already checked by SonarQube
     threshold: 15
   ComplexCondition:
     active: true
@@ -131,7 +131,7 @@ complexity:
     threshold: 600
   LongMethod:
     active: true
-    threshold: 100 # the default of 60 is quite short for Jetpack Compose
+    threshold: 60
   LongParameterList:
     active: false # already checked by SonarQube
     functionThreshold: 7 # 7 is SonarQube default
@@ -192,6 +192,8 @@ coroutines:
   RedundantSuspendModifier:
     active: true
   SleepInsteadOfDelay:
+    active: true
+  SuspendFunSwallowedCancellation:
     active: true
   SuspendFunWithCoroutineScopeReceiver:
     active: true
@@ -284,7 +286,7 @@ exceptions:
   ThrowingNewInstanceOfSameException:
     active: true
   TooGenericExceptionCaught:
-    active: false # Sometimes this is just what we want to do.
+    active: false # Sometimes this is just what we want to do
     excludes: [ '**/commonTest/**', '**/jvmTest/**' ]
     exceptionNames:
       - 'ArrayIndexOutOfBoundsException'
@@ -309,7 +311,6 @@ naming:
   BooleanPropertyNaming:
     active: true
     allowedPattern: '^(is|has|are)'
-    ignoreOverridden: true
   ClassNaming:
     active: true
     classPattern: '[A-Z][a-zA-Z0-9]*'
@@ -318,7 +319,6 @@ naming:
     parameterPattern: '[a-z][A-Za-z0-9]*'
     privateParameterPattern: '[a-z][A-Za-z0-9]*'
     excludeClassPattern: '$^'
-    ignoreOverridden: true
   EnumNaming:
     active: true
     enumEntryPattern: '[A-Z][_a-zA-Z0-9]*'
@@ -326,23 +326,22 @@ naming:
     active: true
     forbiddenName: [ ]
   FunctionMaxLength:
-    active: false # not useful
+    active: false
     maximumFunctionNameLength: 30
   FunctionMinLength:
-    active: false # not useful
+    active: false
     minimumFunctionNameLength: 3
   FunctionNaming:
     active: true
     excludes: [ '**/commonTest/**', '**/jvmTest/**' ]
     functionPattern: '[a-z][a-zA-Z0-9]*'
     excludeClassPattern: '$^'
-    ignoreOverridden: true
-    ignoreAnnotated: [ 'Composable' ]
+    ignoreAnnotated:
+      - Composable
   FunctionParameterNaming:
     active: true
     parameterPattern: '[a-z][A-Za-z0-9]*'
     excludeClassPattern: '$^'
-    ignoreOverridden: true
   InvalidPackageDeclaration:
     active: true
     rootPackage: ''
@@ -384,7 +383,6 @@ naming:
     variablePattern: '[a-z][A-Za-z0-9]*'
     privateVariablePattern: '(_)?[a-z][A-Za-z0-9]*'
     excludeClassPattern: '$^'
-    ignoreOverridden: true
 
 performance:
   active: true
@@ -410,6 +408,8 @@ potential-bugs:
     active: true
     forbiddenTypePatterns:
       - 'kotlin.String'
+  CastNullableToNonNullableType:
+    active: true
   CastToNullableType:
     active: true
   Deprecation:
@@ -429,6 +429,7 @@ potential-bugs:
       - 'java.util.HashMap'
   ElseCaseInsteadOfExhaustiveWhen:
     active: true
+    ignoredSubjectTypes: [ ]
   EqualsAlwaysReturnsTrueOrFalse:
     active: true
   EqualsWithHashCodeExist:
@@ -443,9 +444,12 @@ potential-bugs:
     active: true
     restrictToConfig: true
     returnValueAnnotations:
+      - 'CheckResult'
       - '*.CheckResult'
+      - 'CheckReturnValue'
       - '*.CheckReturnValue'
     ignoreReturnValueAnnotations:
+      - 'CanIgnoreReturnValue'
       - '*.CanIgnoreReturnValue'
     returnValueTypes:
       - 'kotlin.sequences.Sequence'
@@ -471,10 +475,12 @@ potential-bugs:
     active: true
   MissingPackageDeclaration:
     active: true
-    excludes: [ '**/*.kts', '**/main.kt' ]
+    excludes: [ '**/*.kts' ]
   NullCheckOnMutableProperty:
     active: true
   NullableToStringCall:
+    active: true
+  PropertyUsedBeforeDeclaration:
     active: true
   UnconditionalJumpStatementInLoop:
     active: true
@@ -504,6 +510,14 @@ style:
   active: true
   AlsoCouldBeApply:
     active: true
+  BracesOnIfStatements:
+    active: true
+    singleLine: 'never'
+    multiLine: 'consistent'
+  BracesOnWhenStatements:
+    active: false
+    singleLine: 'necessary'
+    multiLine: 'consistent'
   CanBeNonNullable:
     active: true
   CascadingCallWrapping:
@@ -514,14 +528,25 @@ style:
   CollapsibleIfStatements:
     active: true
   DataClassContainsFunctions:
-    active: false # allowed, be careful
+    active: false
     conversionFunctionPrefix:
       - 'to'
+    allowOperators: false
   DataClassShouldBeImmutable:
     active: true
   DestructuringDeclarationWithTooManyEntries:
     active: true
     maxDestructuringEntries: 3
+  DoubleNegativeLambda:
+    active: true
+    negativeFunctions:
+      - reason: 'Use `takeIf` instead.'
+        value: 'takeUnless'
+      - reason: 'Use `all` instead.'
+        value: 'none'
+    negativeFunctionNameParts:
+      - 'not'
+      - 'non'
   EqualsNullCall:
     active: true
   EqualsOnSignatureLine:
@@ -533,14 +558,33 @@ style:
   ExpressionBodySyntax:
     active: true
     includeLineWrapping: false
+  ForbiddenAnnotation:
+    active: true
+    annotations:
+      - reason: 'it is a java annotation. Use `Suppress` instead.'
+        value: 'java.lang.SuppressWarnings'
+      - reason: 'it is a java annotation. Use `kotlin.Deprecated` instead.'
+        value: 'java.lang.Deprecated'
+      - reason: 'it is a java annotation. Use `kotlin.annotation.MustBeDocumented` instead.'
+        value: 'java.lang.annotation.Documented'
+      - reason: 'it is a java annotation. Use `kotlin.annotation.Target` instead.'
+        value: 'java.lang.annotation.Target'
+      - reason: 'it is a java annotation. Use `kotlin.annotation.Retention` instead.'
+        value: 'java.lang.annotation.Retention'
+      - reason: 'it is a java annotation. Use `kotlin.annotation.Repeatable` instead.'
+        value: 'java.lang.annotation.Repeatable'
+      - reason: 'Kotlin does not support @Inherited annotation, see https://youtrack.jetbrains.com/issue/KT-22265'
+        value: 'java.lang.annotation.Inherited'
   ForbiddenComment:
     active: true
-    values:
-      - 'FIXME:'
-      - 'STOPSHIP:'
-      - 'TODO:'
+    comments:
+      - reason: 'Forbidden FIXME todo marker in comment, please fix the problem.'
+        value: 'FIXME:'
+      - reason: 'Forbidden STOPSHIP todo marker in comment, please address the problem before shipping the code.'
+        value: 'STOPSHIP:'
+      - reason: 'Forbidden TODO todo marker in comment, please do the changes.'
+        value: 'TODO:'
     allowedPatterns: ''
-    customMessage: ''
   ForbiddenImport:
     active: true
     imports: [ ]
@@ -569,7 +613,7 @@ style:
     maxJumpCount: 1
   MagicNumber:
     active: true
-    excludes: [ '**/commonTest/**', '**/jvmTest/**', '**/*.kts' ]
+    excludes: [ '**/commonTest/**', '**/jvmTest/**' ]
     ignoreNumbers:
       - '-1'
       - '0'
@@ -585,10 +629,8 @@ style:
     ignoreEnums: false
     ignoreRanges: false
     ignoreExtensionFunctions: true
-  MandatoryBracesIfStatements:
-    active: false # not our policy
   MandatoryBracesLoops:
-    active: false # not our policy
+    active: false
   MaxChainedCallsOnSameLine:
     active: true
     maxChainedCalls: 5
@@ -606,8 +648,11 @@ style:
   MultilineLambdaItParameter:
     active: true
   MultilineRawStringIndentation:
-    active: true
+    active: false # Rule is broken in v1.23.1
     indentSize: 4
+    trimmingMethods:
+      - 'trimIndent'
+      - 'trimMargin'
   NestedClassesVisibility:
     active: true
   NewLineAtEndOfFile:
@@ -622,8 +667,6 @@ style:
     active: true
   OptionalUnit:
     active: false # It's recommended to specify explicitly public & protected declaration types
-  OptionalWhenBraces:
-    active: false # should be decided by the dev if it's needed on multiline expressions
   PreferToOverPairSyntax:
     active: true
   ProtectedMemberInFinalClass:
@@ -635,7 +678,7 @@ style:
   RedundantVisibilityModifierRule:
     active: true
   ReturnCount:
-    active: false # not our policy since we don't like nesting
+    active: false # results in bad style
     max: 2
     excludedFunctions:
       - 'equals'
@@ -648,6 +691,10 @@ style:
     active: true
   SpacingBetweenPackageAndImports:
     active: true
+  StringShouldBeRawString:
+    active: false
+    maxEscapedCharacterCount: 2
+    ignoredCharacters: [ ]
   ThrowsCount:
     active: false
     max: 2
@@ -656,6 +703,9 @@ style:
     active: true
   TrimMultilineRawString:
     active: true
+    trimmingMethods:
+      - 'trimIndent'
+      - 'trimMargin'
   UnderscoresInNumericLiterals:
     active: true
     acceptableLength: 4
@@ -667,6 +717,8 @@ style:
   UnnecessaryApply:
     active: true
   UnnecessaryBackticks:
+    active: true
+  UnnecessaryBracesAroundTrailingLambda:
     active: true
   UnnecessaryFilter:
     active: true
@@ -683,11 +735,17 @@ style:
     active: true
   UnusedImports:
     active: true
+  UnusedParameter:
+    active: true
+    allowedNames: 'ignored|expected'
   UnusedPrivateClass:
     active: true
   UnusedPrivateMember:
     active: true
-    allowedNames: '(_|ignored|expected|serialVersionUID)'
+    allowedNames: ''
+  UnusedPrivateProperty:
+    active: true
+    allowedNames: '_|ignored|expected|serialVersionUID'
   UseAnyOrNoneInsteadOfFind:
     active: true
   UseArrayLiteralsInAnnotations:
@@ -705,7 +763,10 @@ style:
     active: true
   UseIfInsteadOfWhen:
     active: true
+    ignoreWhenContainingVariableDeclaration: false
   UseIsNullOrEmpty:
+    active: true
+  UseLet:
     active: true
   UseOrEmpty:
     active: true
@@ -729,25 +790,37 @@ style:
 
 formatting:
   active: true
-  android: false
-  autoCorrect: true
+  android: false # same rules for all code
+  autoCorrect: false
   AnnotationOnSeparateLine:
     active: true
     autoCorrect: true
+    indentSize: 4
   AnnotationSpacing:
     active: true
     autoCorrect: true
   ArgumentListWrapping:
-    active: false # strange results sometimes
+    active: false
     autoCorrect: true
     indentSize: 4
-    maxLineLength: 110
+    maxLineLength: 120
+  BinaryExpressionWrapping:
+    active: true
+    autoCorrect: true
+    maxLineLength: 120
+    indentSize: 4
+  BlankLineBeforeDeclaration:
+    active: true
+    autoCorrect: true
   BlockCommentInitialStarAlignment:
     active: true
     autoCorrect: true
   ChainWrapping:
     active: true
     autoCorrect: true
+    indentSize: 4
+  ClassName:
+    active: true
   CommentSpacing:
     active: true
     autoCorrect: true
@@ -755,14 +828,23 @@ formatting:
     active: true
     autoCorrect: true
     indentSize: 4
+  ContextReceiverMapping:
+    active: true
+    autoCorrect: true
+    maxLineLength: 120
+    indentSize: 4
   DiscouragedCommentLocation:
     active: true
     autoCorrect: true
   EnumEntryNameCase:
     active: true
     autoCorrect: true
+  EnumWrapping:
+    active: false # Rule seems to be broken
+    autoCorrect: true
+    indentSize: 4
   Filename:
-    active: false # looks odd, not sure about this rule
+    active: true
   FinalNewline:
     active: true
     autoCorrect: true
@@ -770,15 +852,18 @@ formatting:
   FunKeywordSpacing:
     active: true
     autoCorrect: true
+  FunctionName:
+    active: false # replaced by a better rule that allows exclusions
   FunctionReturnTypeSpacing:
     active: true
     autoCorrect: true
+    maxLineLength: 120
   FunctionSignature:
-    active: false # has some false positives in Detekt 0.22
+    active: false # Rule does not function properly
     autoCorrect: true
-    forceMultilineWhenParameterCountGreaterOrEqualThan: 3
+    forceMultilineWhenParameterCountGreaterOrEqualThan: 4
     functionBodyExpressionWrapping: 'default'
-    maxLineLength: 80
+    maxLineLength: 120
     indentSize: 4
   FunctionStartOfBodySpacing:
     active: true
@@ -786,12 +871,20 @@ formatting:
   FunctionTypeReferenceSpacing:
     active: true
     autoCorrect: true
+  IfElseBracing:
+    active: true
+    autoCorrect: true
+    indentSize: 4
+  IfElseWrapping:
+    active: true
+    autoCorrect: true
+    indentSize: 4
   ImportOrdering:
     active: true
     autoCorrect: true
     layout: '*,java.**,javax.**,kotlin.**,^'
   Indentation:
-    active: true
+    active: false # Rule is broken in v1.23.1
     autoCorrect: true
     indentSize: 4
   KdocWrapping:
@@ -800,7 +893,7 @@ formatting:
     indentSize: 4
   MaximumLineLength:
     active: true
-    maxLineLength: 110
+    maxLineLength: 120
     ignoreBackTickedIdentifier: false
   ModifierListSpacing:
     active: true
@@ -809,10 +902,18 @@ formatting:
     active: true
     autoCorrect: true
   MultiLineIfElse:
-    active: false # not our policy
+    active: false # Rule seems to be broken
     autoCorrect: true
+    indentSize: 4
+  MultilineExpressionWrapping:
+    active: false
+    autoCorrect: true
+    indentSize: 4
   NoBlankLineBeforeRbrace:
-    active: false # bad style
+    active: false
+    autoCorrect: true
+  NoBlankLineInList:
+    active: false
     autoCorrect: true
   NoBlankLinesInChainedMethodCalls:
     active: true
@@ -820,9 +921,17 @@ formatting:
   NoConsecutiveBlankLines:
     active: true
     autoCorrect: true
+  NoConsecutiveComments:
+    active: true
   NoEmptyClassBody:
     active: true
     autoCorrect: true
+  NoEmptyFile:
+    active: true
+  NoEmptyFirstLineInClassBody:
+    active: false
+    autoCorrect: true
+    indentSize: 4
   NoEmptyFirstLineInMethodBlock:
     active: false # bad style
     autoCorrect: true
@@ -838,6 +947,10 @@ formatting:
   NoSemicolons:
     active: true
     autoCorrect: true
+  NoSingleLineBlockComment:
+    active: false
+    autoCorrect: true
+    indentSize: 4
   NoTrailingSpaces:
     active: true
     autoCorrect: true
@@ -862,7 +975,20 @@ formatting:
   ParameterListWrapping:
     active: true
     autoCorrect: true
-    maxLineLength: 110
+    maxLineLength: 120
+    indentSize: 4
+  ParameterWrapping:
+    active: true
+    autoCorrect: true
+    indentSize: 4
+    maxLineLength: 120
+  PropertyName:
+    active: false
+  PropertyWrapping:
+    active: true
+    autoCorrect: true
+    indentSize: 4
+    maxLineLength: 120
   SpacingAroundAngleBrackets:
     active: true
     autoCorrect: true
@@ -905,23 +1031,37 @@ formatting:
   SpacingBetweenFunctionNameAndOpeningParenthesis:
     active: true
     autoCorrect: true
+  StatementWrapping:
+    active: true
+    autoCorrect: true
+    indentSize: 4
   StringTemplate:
     active: true
     autoCorrect: true
+  StringTemplateIndent:
+    active: false
+    autoCorrect: true
+    indentSize: 4
   TrailingCommaOnCallSite:
-    active: false # looks ugly
+    active: false # Trailing comma looks wrong
     autoCorrect: true
     useTrailingCommaOnCallSite: true
   TrailingCommaOnDeclarationSite:
-    active: false # looks ugly
+    active: false # Trailing comma looks wrong
     autoCorrect: true
     useTrailingCommaOnDeclarationSite: true
+  TryCatchFinallySpacing:
+    active: true
+    autoCorrect: true
+    indentSize: 4
   TypeArgumentListSpacing:
     active: true
     autoCorrect: true
+    indentSize: 4
   TypeParameterListSpacing:
     active: true
     autoCorrect: true
+    indentSize: 4
   UnnecessaryParenthesesBeforeTrailingLambda:
     active: true
     autoCorrect: true
@@ -929,3 +1069,4 @@ formatting:
     active: true
     autoCorrect: true
     indentSize: 4
+    maxLineLength: 120

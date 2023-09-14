@@ -2,17 +2,17 @@ import org.jetbrains.kotlin.gradle.plugin.mpp.NativeBuildType
 import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
 
 plugins {
-    kotlin("multiplatform") version "1.9.0"
+    kotlin("multiplatform") version "1.9.10"
     id("com.android.library") version "7.4.2"
     id("maven-publish")
     id("signing")
-    id("io.gitlab.arturbosch.detekt") version "1.22.0"
-    id("org.sonarqube") version "4.3.0.3225"
+    id("io.gitlab.arturbosch.detekt") version "1.23.1"
+    id("org.sonarqube") version "4.3.1.3277"
     id("org.jetbrains.kotlinx.kover") version "0.6.1"
     id("com.asarkar.gradle.build-time-tracker") version "4.3.0"
     id("me.qoomon.git-versioning") version "6.4.2"
     id("com.goncalossilva.resources") version "0.4.0"
-    id("com.github.ben-manes.versions") version "0.47.0"
+    id("com.github.ben-manes.versions") version "0.48.0"
 }
 
 repositories {
@@ -22,11 +22,11 @@ repositories {
 
 val productName = "Ashampoo Kim"
 
-val ktorVersion: String = "2.3.3"
-val xmpCoreVersion: String = "0.1.5"
-val dateTimeVersion: String = "0.4.0"
+val ktorVersion: String = "2.3.4"
+val xmpCoreVersion: String = "0.1.6"
+val dateTimeVersion: String = "0.4.1"
 val testRessourcesVersion: String = "0.4.0"
-val ioCoreVersion: String = "0.2.1"
+val ioCoreVersion: String = "0.3.0"
 
 description = productName
 group = "com.ashampoo"
@@ -117,7 +117,7 @@ koverMerged {
 }
 
 dependencies {
-    detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:1.22.0")
+    detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:1.23.1")
 }
 
 kotlin {
