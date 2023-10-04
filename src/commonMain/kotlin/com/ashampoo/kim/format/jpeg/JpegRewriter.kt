@@ -105,8 +105,10 @@ object JpegRewriter : BinaryFileParser() {
 
             mergedSegments.addAll(1, newSegments)
 
-        } else
+        } else {
+
             mergedSegments.addAll(lastAppIndex + 1, newSegments)
+        }
 
         return mergedSegments
     }

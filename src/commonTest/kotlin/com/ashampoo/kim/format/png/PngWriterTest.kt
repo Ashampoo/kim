@@ -28,7 +28,10 @@ import com.ashampoo.kim.format.tiff.write.TiffImageWriterLossy
 import com.ashampoo.kim.format.tiff.write.TiffOutputSet
 import com.ashampoo.kim.output.ByteArrayByteWriter
 import com.ashampoo.kim.testdata.KimTestData
+import kotlinx.io.buffered
+import kotlinx.io.files.FileSystem
 import kotlinx.io.files.Path
+import kotlinx.io.files.SystemFileSystem
 import kotlinx.io.files.sink
 import kotlin.test.BeforeTest
 import kotlin.test.Test
@@ -145,7 +148,10 @@ class PngWriterTest {
 
             if (!equals) {
 
-                Path("build/photo_${index}_modified.png").sink().use { it.write(newBytes) }
+                SystemFileSystem
+                    .sink(Path("build/photo_${index}_modified.png"))
+                    .buffered()
+                    .use { it.write(newBytes) }
 
                 fail("Bytes for test image #$index are different.")
             }

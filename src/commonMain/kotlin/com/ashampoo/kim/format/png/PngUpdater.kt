@@ -80,8 +80,9 @@ internal object PngUpdater : MetadataUpdater {
 
             exifBytesWriter.toByteArray()
 
-        } else
+        } else {
             null
+        }
 
         val byteWriter = ByteArrayByteWriter()
 

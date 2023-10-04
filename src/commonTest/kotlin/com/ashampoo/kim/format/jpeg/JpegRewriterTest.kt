@@ -28,7 +28,9 @@ import com.ashampoo.kim.input.ByteArrayByteReader
 import com.ashampoo.kim.model.GpsCoordinates
 import com.ashampoo.kim.output.ByteArrayByteWriter
 import com.ashampoo.kim.testdata.KimTestData
+import kotlinx.io.buffered
 import kotlinx.io.files.Path
+import kotlinx.io.files.SystemFileSystem
 import kotlinx.io.files.sink
 import kotlin.test.BeforeTest
 import kotlin.test.Test
@@ -151,7 +153,10 @@ class JpegRewriterTest {
 
             if (!equals) {
 
-                Path("build/photo_${index}_modified.jpg").sink().use { it.write(actualMetadataBytes) }
+                SystemFileSystem
+                    .sink(Path("build/photo_${index}_modified.jpg"))
+                    .buffered()
+                    .use { it.write(actualMetadataBytes) }
 
                 fail("Photo $index has not the expected bytes!")
             }
