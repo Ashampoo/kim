@@ -15,7 +15,9 @@
  */
 package com.ashampoo.kim.format.raf
 
+import com.ashampoo.kim.common.ImageReadException
 import com.ashampoo.kim.common.toSingleNumberHexes
+import com.ashampoo.kim.common.tryWithImageReadException
 import com.ashampoo.kim.format.ImageFormatMagicNumbers
 import com.ashampoo.kim.format.ImageMetadata
 import com.ashampoo.kim.format.ImageParser
@@ -30,26 +32,28 @@ object RafImageParser : ImageParser {
      * The RAF file contains a JPEG with EXIF metadata.
      * We just have to find it and read the data from there it.
      */
+    @Throws(ImageReadException::class)
     @Suppress("ComplexCondition", "LoopWithTooManyJumpStatements")
-    override fun parseMetadata(byteReader: ByteReader, length: Long): ImageMetadata {
+    override fun parseMetadata(byteReader: ByteReader, length: Long): ImageMetadata =
+        tryWithImageReadException {
 
-        val magicNumberBytes = byteReader.readBytes(ImageFormatMagicNumbers.raf.size).toList()
+            val magicNumberBytes = byteReader.readBytes(ImageFormatMagicNumbers.raf.size).toList()
 
-        /* Ensure it's actually an RAF. */
-        require(magicNumberBytes == ImageFormatMagicNumbers.raf) {
-            "RAF magic number mismatch: ${magicNumberBytes.toByteArray().toSingleNumberHexes()}"
+            /* Ensure it's actually an RAF. */
+            require(magicNumberBytes == ImageFormatMagicNumbers.raf) {
+                "RAF magic number mismatch: ${magicNumberBytes.toByteArray().toSingleNumberHexes()}"
+            }
+
+            RafMetadataExtractor.skipToJpegMagicBytes(byteReader)
+
+            /* Create a new reader, prepending the jpegMagicNumbers, and read the contained JPEG. */
+            val newReader = PrePendingByteReader(
+                delegate = byteReader,
+                prependedBytes = ImageFormatMagicNumbers.jpeg
+            )
+
+            return@tryWithImageReadException JpegImageParser
+                .parseMetadata(newReader, length)
+                .copy(imageFormat = ImageFormat.RAF)
         }
-
-        RafMetadataExtractor.skipToJpegMagicBytes(byteReader)
-
-        /* Create a new reader, prepending the jpegMagicNumbers, and read the contained JPEG. */
-        val newReader = PrePendingByteReader(
-            delegate = byteReader,
-            prependedBytes = ImageFormatMagicNumbers.jpeg
-        )
-
-        return JpegImageParser
-            .parseMetadata(newReader, length)
-            .copy(imageFormat = ImageFormat.RAF)
-    }
 }

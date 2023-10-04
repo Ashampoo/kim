@@ -21,7 +21,9 @@ import com.ashampoo.kim.model.MetadataUpdate
 import com.ashampoo.kim.model.PhotoRating
 import com.ashampoo.kim.model.TiffOrientation
 import com.goncalossilva.resources.Resource
+import kotlinx.io.buffered
 import kotlinx.io.files.Path
+import kotlinx.io.files.SystemFileSystem
 import kotlinx.io.files.sink
 import kotlin.test.BeforeTest
 import kotlin.test.Test
@@ -138,7 +140,10 @@ class PngUpdaterTest {
 
         if (!resource.exists()) {
 
-            Path("build/$fileName").sink().use { it.write(actualBytes) }
+            SystemFileSystem
+                .sink(Path("build/$fileName"))
+                .buffered()
+                .use { it.write(actualBytes) }
 
             fail("Reference image $fileName does not exist.")
         }
@@ -149,7 +154,10 @@ class PngUpdaterTest {
 
         if (!equals) {
 
-            Path("build/$fileName").sink().use { it.write(actualBytes) }
+            SystemFileSystem
+                .sink(Path("build/$fileName"))
+                .buffered()
+                .use { it.write(actualBytes) }
 
             fail("Photo $fileName has not the expected bytes!")
         }

@@ -17,6 +17,7 @@ package com.ashampoo.kim.format.png
 
 import com.ashampoo.kim.common.ImageReadException
 import com.ashampoo.kim.common.toSingleNumberHexes
+import com.ashampoo.kim.common.tryWithImageReadException
 import com.ashampoo.kim.format.ImageFormatMagicNumbers
 import com.ashampoo.kim.format.MetadataExtractor
 import com.ashampoo.kim.input.ByteReader
@@ -50,8 +51,11 @@ object PngMetadataExtractor : MetadataExtractor {
         0xAE.toByte(), 42.toByte(), 60.toByte(), 82.toByte()
     )
 
+    @Throws(ImageReadException::class)
     @Suppress("ComplexMethod", "LoopWithTooManyJumpStatements")
-    override fun extractMetadataBytes(byteReader: ByteReader): ByteArray {
+    override fun extractMetadataBytes(
+        byteReader: ByteReader
+    ): ByteArray = tryWithImageReadException {
 
         val bytes = mutableListOf<Byte>()
 
@@ -121,7 +125,7 @@ object PngMetadataExtractor : MetadataExtractor {
         bytes.addAll(PngChunkType.IEND.bytes.toList())
         bytes.addAll(imageEndChunkCrc)
 
-        return bytes.toByteArray()
+        return@tryWithImageReadException bytes.toByteArray()
     }
 
     fun extractExifBytes(reader: ByteReader): ByteArray? {

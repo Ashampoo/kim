@@ -16,16 +16,19 @@
  */
 package com.ashampoo.kim.format.raf
 
+import com.ashampoo.kim.common.ImageReadException
 import com.ashampoo.kim.common.toSingleNumberHexes
+import com.ashampoo.kim.common.tryWithImageReadException
 import com.ashampoo.kim.format.ImageFormatMagicNumbers
 import com.ashampoo.kim.format.jpeg.JpegMetadataExtractor
 import com.ashampoo.kim.input.ByteReader
 
 object RafPreviewExtractor {
 
+    @Throws(ImageReadException::class)
     fun extractPreviewImage(
         reader: ByteReader
-    ): ByteArray? {
+    ): ByteArray? = tryWithImageReadException {
 
         val magicNumberBytes = reader.readBytes(ImageFormatMagicNumbers.raf.size).toList()
 
@@ -60,6 +63,6 @@ object RafPreviewExtractor {
             ) break
         }
 
-        return bytes.toByteArray()
+        return@tryWithImageReadException bytes.toByteArray()
     }
 }

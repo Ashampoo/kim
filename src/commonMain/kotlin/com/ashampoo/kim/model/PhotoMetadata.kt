@@ -57,10 +57,9 @@ data class PhotoMetadata(
 
 ) {
 
-    val takenDateLocalDateTime: LocalDateTime? = if (takenDate != null)
+    val takenDateLocalDateTime: LocalDateTime? = takenDate?.let {
         Instant.fromEpochMilliseconds(takenDate).toLocalDateTime(TimeZone.currentSystemDefault())
-    else
-        null
+    }
 
     val megaPixelCount: Int = if (widthPx == null || heightPx == null)
         0
@@ -70,10 +69,8 @@ data class PhotoMetadata(
     val locationDisplay: String? =
         if (location != null)
             location.displayString
-        else if (gpsCoordinates != null)
-            gpsCoordinates.displayString
         else
-            null
+            gpsCoordinates?.let { gpsCoordinates.displayString }
 
     val cameraName: String? =
         PhotoValueFormatter.createCameraOrLensName(cameraMake, cameraModel)
@@ -88,10 +85,6 @@ data class PhotoMetadata(
         cameraName = cameraName,
         lensName = lensName
     )
-
-    /* For SwiftUI ForEach */
-    @Suppress("unused")
-    val keywordsAsList: List<String> = keywords.toList()
 
     @Suppress("DataClassContainsFunctions")
     fun isEmpty(): Boolean = this == emptyPhotoMetadata

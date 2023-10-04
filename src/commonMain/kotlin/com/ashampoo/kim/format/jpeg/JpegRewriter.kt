@@ -17,7 +17,6 @@
 package com.ashampoo.kim.format.jpeg
 
 import com.ashampoo.kim.common.BinaryFileParser
-import com.ashampoo.kim.common.ExifOverflowException
 import com.ashampoo.kim.common.ImageWriteException
 import com.ashampoo.kim.common.getRemainingBytes
 import com.ashampoo.kim.common.toBytes
@@ -106,8 +105,10 @@ object JpegRewriter : BinaryFileParser() {
 
             mergedSegments.addAll(1, newSegments)
 
-        } else
+        } else {
+
             mergedSegments.addAll(lastAppIndex + 1, newSegments)
+        }
 
         return mergedSegments
     }
@@ -155,7 +156,7 @@ object JpegRewriter : BinaryFileParser() {
             val markerBytes = JpegConstants.JPEG_APP1_MARKER.toShort().toBytes(byteOrder)
 
             if (newBytes.size > JpegConstants.MAX_SEGMENT_SIZE)
-                throw ExifOverflowException("APP1 Segment is too long: " + newBytes.size)
+                throw ImageWriteException("APP1 Segment is too long: " + newBytes.size)
 
             val markerLength = newBytes.size + 2
             val markerLengthBytes = markerLength.toShort().toBytes(byteOrder)
@@ -192,7 +193,7 @@ object JpegRewriter : BinaryFileParser() {
                 val markerBytes = JpegConstants.JPEG_APP1_MARKER.toShort().toBytes(byteOrder)
 
                 if (newBytes.size > JpegConstants.MAX_SEGMENT_SIZE)
-                    throw ExifOverflowException("APP1 Segment is too long: " + newBytes.size)
+                    throw ImageWriteException("APP1 Segment is too long: " + newBytes.size)
 
                 val markerLength = newBytes.size + 2
                 val markerLengthBytes = markerLength.toShort().toBytes(byteOrder)

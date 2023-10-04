@@ -15,7 +15,6 @@
  */
 package com.ashampoo.kim.model
 
-import com.ashampoo.kim.common.ImageReadException
 import com.ashampoo.kim.common.startsWith
 import com.ashampoo.kim.common.startsWithNullable
 import com.ashampoo.kim.common.toSingleNumberHexes
@@ -132,16 +131,21 @@ enum class ImageFormat(
         /**
          * Detects JPEG, GIF, PNG, TIFF & WEBP files based on the header bytes.
          *
+         * If the byte array is less than REQUIRED_HEADER_BYTE_COUNT_FOR_DETECTION
+         * (for example empty) than the detection returns null.
+         *
          * Note: Can NOT detect HEIC!
          */
         @JvmStatic
         fun detect(bytes: ByteArray): ImageFormat? {
 
-            if (bytes.isEmpty())
-                return null
-
+            /*
+             * If empty or not enough bytes we can't detect the format and will return NULL.
+             * We don't want to throw an Exception, because we can't change the fact that
+             * a file is too short to be an image and also we don't want Kotlin/Native to crash.
+             */
             if (bytes.size < REQUIRED_HEADER_BYTE_COUNT_FOR_DETECTION)
-                throw ImageReadException("Only got ${bytes.size} for detection of format.")
+                return null
 
             /*
              * We want to exit this detection early, so we order the

@@ -17,6 +17,7 @@ package com.ashampoo.kim.format.jpeg
 
 import com.ashampoo.kim.Kim
 import com.ashampoo.kim.common.ImageWriteException
+import com.ashampoo.kim.common.tryWithImageWriteException
 import com.ashampoo.kim.format.MetadataUpdater
 import com.ashampoo.kim.format.jpeg.iptc.IptcMetadata
 import com.ashampoo.kim.format.jpeg.iptc.IptcRecord
@@ -33,10 +34,11 @@ import com.ashampoo.xmp.XMPMetaFactory
 
 internal object JpegUpdater : MetadataUpdater {
 
+    @Throws(ImageWriteException::class)
     override fun update(
         bytes: ByteArray,
         updates: Set<MetadataUpdate>
-    ): ByteArray {
+    ): ByteArray = tryWithImageWriteException {
 
         if (updates.isEmpty())
             return bytes
@@ -55,7 +57,7 @@ internal object JpegUpdater : MetadataUpdater {
 
         val iptcUpdatedBytes = updateIptc(exifUpdatedBytes, kimMetadata.iptc, updates)
 
-        return iptcUpdatedBytes
+        return@tryWithImageWriteException iptcUpdatedBytes
     }
 
     private fun updateXmp(inputBytes: ByteArray, xmp: String?, updates: Set<MetadataUpdate>): ByteArray {

@@ -15,11 +15,13 @@
  */
 package com.ashampoo.kim.format
 
+import com.ashampoo.kim.common.ImageReadException
 import com.ashampoo.kim.format.tiff.TiffContents
 import com.ashampoo.kim.input.RandomAccessByteReader
 
 fun interface TiffPreviewExtractor {
 
+    @Throws(ImageReadException::class)
     fun extractPreviewImage(
         tiffContents: TiffContents,
         randomAccessByteReader: RandomAccessByteReader

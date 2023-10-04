@@ -19,6 +19,7 @@ import com.ashampoo.kim.Kim.underUnitTesting
 import com.ashampoo.kim.common.GpsUtil
 import com.ashampoo.kim.model.MetadataUpdate
 import com.ashampoo.xmp.XMPConst
+import com.ashampoo.xmp.XMPException
 import com.ashampoo.xmp.XMPMeta
 import com.ashampoo.xmp.XMPMetaFactory
 import com.ashampoo.xmp.options.PropertyOptions
@@ -48,6 +49,7 @@ object XmpWriter {
     /**
      * @param writePackageWrapper Should be "true" for embedded XMP
      */
+    @Throws(XMPException::class)
     @Suppress("LoopWithTooManyJumpStatements")
     fun updateXmp(
         xmpMeta: XMPMeta,

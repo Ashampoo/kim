@@ -15,7 +15,7 @@
  */
 package com.ashampoo.kim.input
 
-import io.ktor.utils.io.core.Input
+import io.ktor.utils.io.core.ByteReadPacket
 import io.ktor.utils.io.core.readBytes
 
 /**
@@ -24,15 +24,15 @@ import io.ktor.utils.io.core.readBytes
  * of files hosted on a cloud service, which is a common use case.
  */
 class KtorInputByteReader(
-    private val input: Input
+    private val byteReadPacket: ByteReadPacket
 ) : ByteReader {
 
     override fun readByte(): Byte? =
-        if (input.endOfInput) null else input.readByte()
+        if (byteReadPacket.endOfInput) null else byteReadPacket.readByte()
 
     override fun readBytes(count: Int): ByteArray =
-        input.readBytes(minOf(count, input.remaining.toInt()))
+        byteReadPacket.readBytes(minOf(count, byteReadPacket.remaining.toInt()))
 
     override fun close() =
-        input.close()
+        byteReadPacket.close()
 }

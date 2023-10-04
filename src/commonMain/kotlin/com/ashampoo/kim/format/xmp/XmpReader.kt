@@ -23,6 +23,7 @@ import com.ashampoo.kim.model.PhotoRating
 import com.ashampoo.kim.model.RegionArea
 import com.ashampoo.kim.model.TiffOrientation
 import com.ashampoo.xmp.XMPConst
+import com.ashampoo.xmp.XMPException
 import com.ashampoo.xmp.XMPMetaFactory
 import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.TimeZone
@@ -42,6 +43,7 @@ object XmpReader {
     private const val XMP_ACDSEE_KEYWORDS = "keywords"
 
     @Suppress("LoopWithTooManyJumpStatements")
+    @Throws(XMPException::class)
     fun readMetadata(xmp: String): PhotoMetadata {
 
         val xmpMeta = XMPMetaFactory.parseFromString(xmp)

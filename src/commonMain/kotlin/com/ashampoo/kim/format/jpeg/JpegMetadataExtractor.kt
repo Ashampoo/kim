@@ -19,6 +19,7 @@ import com.ashampoo.kim.common.ByteOrder
 import com.ashampoo.kim.common.ImageReadException
 import com.ashampoo.kim.common.toSingleNumberHexes
 import com.ashampoo.kim.common.toUInt16
+import com.ashampoo.kim.common.tryWithImageReadException
 import com.ashampoo.kim.format.ImageFormatMagicNumbers
 import com.ashampoo.kim.format.MetadataExtractor
 import com.ashampoo.kim.input.ByteReader
@@ -31,8 +32,11 @@ object JpegMetadataExtractor : MetadataExtractor {
 
     private const val ADDITIONAL_BYTE_COUNT_AFTER_HEADER: Int = 12
 
+    @Throws(ImageReadException::class)
     @Suppress("ComplexMethod")
-    override fun extractMetadataBytes(byteReader: ByteReader): ByteArray {
+    override fun extractMetadataBytes(
+        byteReader: ByteReader
+    ): ByteArray = tryWithImageReadException {
 
         val bytes = mutableListOf<Byte>()
 
@@ -47,7 +51,7 @@ object JpegMetadataExtractor : MetadataExtractor {
 
         readSegmentBytesIntoList(byteReader, bytes)
 
-        /**
+        /*
          * Add some more bytes after the header, so it's recognized
          * by most image viewers as a valid (but broken) file.
          */
@@ -58,7 +62,7 @@ object JpegMetadataExtractor : MetadataExtractor {
             }
         }
 
-        return bytes.toByteArray()
+        return@tryWithImageReadException bytes.toByteArray()
     }
 
     internal fun readSegmentBytesIntoList(

@@ -24,5 +24,30 @@ class ImageReadException(message: String? = null, cause: Throwable? = null) :
 open class ImageWriteException(message: String? = null, cause: Throwable? = null) :
     ImageException(message, cause)
 
-class ExifOverflowException(message: String) :
-    ImageWriteException(message, null)
+/**
+ * We need to ensure that every Exception that can occur is wrapped
+ * into an ImageReadException, because on Kotlin/Native this is the expected exception type.
+ */
+inline fun <R> tryWithImageReadException(block: () -> R): R =
+    try {
+        block()
+    } catch (ex: ImageReadException) {
+        /* Don't wrap another ImageReadException. */
+        throw ex
+    } catch (ex: Throwable) {
+        throw ImageReadException("Failed to read image.", ex)
+    }
+
+/**
+ * We need to ensure that everything is wrapped into an ImageWriteException,
+ * because on Kotlin/Native this is the expected exception type.
+ */
+inline fun <R> tryWithImageWriteException(block: () -> R): R =
+    try {
+        block()
+    } catch (ex: ImageWriteException) {
+        /* Don't wrap another ImageWriteException. */
+        throw ex
+    } catch (ex: Throwable) {
+        throw ImageWriteException("Failed to write image.", ex)
+    }
