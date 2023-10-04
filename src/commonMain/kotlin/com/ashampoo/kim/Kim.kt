@@ -115,6 +115,7 @@ object Kim {
         }
     }
 
+    @kotlin.jvm.JvmStatic
     @Throws(ImageReadException::class)
     fun extractPreviewImage(
         byteReader: ByteReader,
@@ -162,6 +163,7 @@ object Kim {
      * **Note**: We don't have an good API for single-shot write all fields right now.
      * So this is inefficent at this time. This method is experimental and will likely change.
      */
+    @kotlin.jvm.JvmStatic
     @Throws(ImageWriteException::class)
     fun update(
         bytes: ByteArray,
