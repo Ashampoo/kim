@@ -59,9 +59,12 @@ object Kim {
 
     @kotlin.jvm.JvmStatic
     @Throws(ImageReadException::class)
-    fun readMetadata(byteReader: ByteReader, length: Long): ImageMetadata? = byteReader.use {
+    fun readMetadata(
+        byteReader: ByteReader,
+        length: Long
+    ): ImageMetadata? = tryWithImageReadException {
 
-        return@use tryWithImageReadException {
+        byteReader.use {
 
             val headerBytes = it.readBytes(ImageFormat.REQUIRED_HEADER_BYTE_COUNT_FOR_DETECTION)
 
@@ -78,7 +81,7 @@ object Kim {
              * We re-apply the ImageFormat, because we don't want to report
              * "TIFF" for every TIFF-based RAW format like CR2.
              */
-            return@tryWithImageReadException imageParser
+            return@use imageParser
                 .parseMetadata(newReader, length)
                 .copy(imageFormat = imageFormat)
         }
@@ -93,9 +96,9 @@ object Kim {
     @Throws(ImageReadException::class)
     fun extractMetadataBytes(
         byteReader: ByteReader
-    ): Pair<ImageFormat?, ByteArray> = byteReader.use {
+    ): Pair<ImageFormat?, ByteArray> = tryWithImageReadException {
 
-        return@use tryWithImageReadException {
+        byteReader.use {
 
             val headerBytes = it.readBytes(ImageFormat.REQUIRED_HEADER_BYTE_COUNT_FOR_DETECTION)
 
@@ -103,7 +106,7 @@ object Kim {
 
             val newReader = PrePendingByteReader(it, headerBytes.toList())
 
-            return@tryWithImageReadException when (imageFormat) {
+            return@use when (imageFormat) {
                 ImageFormat.JPEG -> imageFormat to JpegMetadataExtractor.extractMetadataBytes(newReader)
                 ImageFormat.PNG -> imageFormat to PngMetadataExtractor.extractMetadataBytes(newReader)
                 ImageFormat.RAF -> imageFormat to RafMetadataExtractor.extractMetadataBytes(newReader)
@@ -116,9 +119,9 @@ object Kim {
     fun extractPreviewImage(
         byteReader: ByteReader,
         length: Long
-    ): ByteArray? = byteReader.use {
+    ): ByteArray? = tryWithImageReadException {
 
-        return@use tryWithImageReadException {
+        byteReader.use {
 
             val headerBytes = it.readBytes(ImageFormat.REQUIRED_HEADER_BYTE_COUNT_FOR_DETECTION)
 
@@ -137,7 +140,7 @@ object Kim {
              * *Note:* Olympus ORF is currently unsupported because the preview offset
              * is burried in the Olympus MakerNotes, which are currently not interpreted.
              */
-            return@tryWithImageReadException when (imageFormat) {
+            return@use when (imageFormat) {
                 ImageFormat.CR2 -> Cr2PreviewExtractor.extractPreviewImage(tiffContents, reader)
                 ImageFormat.RW2 -> Rw2PreviewExtractor.extractPreviewImage(tiffContents, reader)
                 ImageFormat.TIFF -> {
