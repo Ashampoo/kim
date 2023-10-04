@@ -40,7 +40,7 @@ import com.ashampoo.kim.input.KtorInputByteReader
 import com.ashampoo.kim.input.PrePendingByteReader
 import com.ashampoo.kim.model.ImageFormat
 import com.ashampoo.kim.model.MetadataUpdate
-import io.ktor.utils.io.core.Input
+import io.ktor.utils.io.core.ByteReadPacket
 import io.ktor.utils.io.core.use
 
 object Kim {
@@ -54,8 +54,8 @@ object Kim {
 
     @kotlin.jvm.JvmStatic
     @Throws(ImageReadException::class)
-    fun readMetadata(input: Input): ImageMetadata? =
-        readMetadata(KtorInputByteReader(input), input.remaining)
+    fun readMetadata(byteReadPacket: ByteReadPacket): ImageMetadata? =
+        readMetadata(KtorInputByteReader(byteReadPacket), byteReadPacket.remaining)
 
     @kotlin.jvm.JvmStatic
     @Throws(ImageReadException::class)
