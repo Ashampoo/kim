@@ -16,6 +16,8 @@
  */
 package com.ashampoo.kim.format.tiff
 
+import com.ashampoo.kim.common.ImageReadException
+import com.ashampoo.kim.common.tryWithImageReadException
 import com.ashampoo.kim.format.ImageMetadata
 import com.ashampoo.kim.format.ImageParser
 import com.ashampoo.kim.format.tiff.constants.TiffTag
@@ -28,17 +30,26 @@ import io.ktor.utils.io.core.String
 
 object TiffImageParser : ImageParser {
 
-    override fun parseMetadata(byteReader: ByteReader, length: Long): ImageMetadata {
+    @Throws(ImageReadException::class)
+    override fun parseMetadata(byteReader: ByteReader, length: Long): ImageMetadata =
+        tryWithImageReadException {
 
-        val randomAccessByteReader = DefaultRandomAccessByteReader(byteReader, length)
+            val randomAccessByteReader = DefaultRandomAccessByteReader(byteReader, length)
 
-        val exif = TiffReader().read(randomAccessByteReader)
+            val exif = TiffReader().read(randomAccessByteReader)
 
-        val imageSize = getImageSize(exif)
-        val xmp = getXmpXml(exif)
+            val imageSize = getImageSize(exif)
+            val xmp = getXmpXml(exif)
 
-        return ImageMetadata(ImageFormat.TIFF, imageSize, exif, null, null, xmp)
-    }
+            return@tryWithImageReadException ImageMetadata(
+                imageFormat = ImageFormat.TIFF,
+                imageSize = imageSize,
+                exif = exif,
+                exifBytes = null,
+                iptc = null,
+                xmp = xmp
+            )
+        }
 
     private fun getImageSize(tiffContents: TiffContents): ImageSize? {
 

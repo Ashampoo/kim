@@ -16,6 +16,8 @@
  */
 package com.ashampoo.kim.format.cr2
 
+import com.ashampoo.kim.common.ImageReadException
+import com.ashampoo.kim.common.tryWithImageReadException
 import com.ashampoo.kim.format.TiffPreviewExtractor
 import com.ashampoo.kim.format.tiff.TiffContents
 import com.ashampoo.kim.format.tiff.constants.TiffTag
@@ -23,10 +25,11 @@ import com.ashampoo.kim.input.RandomAccessByteReader
 
 object Cr2PreviewExtractor : TiffPreviewExtractor {
 
+    @Throws(ImageReadException::class)
     override fun extractPreviewImage(
         tiffContents: TiffContents,
         randomAccessByteReader: RandomAccessByteReader
-    ): ByteArray? {
+    ): ByteArray? = tryWithImageReadException {
 
         val ifd0 = tiffContents.directories.first()
 
@@ -43,6 +46,6 @@ object Cr2PreviewExtractor : TiffPreviewExtractor {
 
         val previewBytes = randomAccessByteReader.readBytes(previewLength)
 
-        return previewBytes
+        return@tryWithImageReadException previewBytes
     }
 }

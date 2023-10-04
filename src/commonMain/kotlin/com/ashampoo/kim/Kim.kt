@@ -17,6 +17,8 @@ package com.ashampoo.kim
 
 import com.ashampoo.kim.common.ImageReadException
 import com.ashampoo.kim.common.ImageWriteException
+import com.ashampoo.kim.common.tryWithImageReadException
+import com.ashampoo.kim.common.tryWithImageWriteException
 import com.ashampoo.kim.format.ImageMetadata
 import com.ashampoo.kim.format.ImageParser
 import com.ashampoo.kim.format.arw.ArwPreviewExtractor
@@ -59,24 +61,27 @@ object Kim {
     @Throws(ImageReadException::class)
     fun readMetadata(byteReader: ByteReader, length: Long): ImageMetadata? = byteReader.use {
 
-        val headerBytes = it.readBytes(ImageFormat.REQUIRED_HEADER_BYTE_COUNT_FOR_DETECTION)
+        return@use tryWithImageReadException {
 
-        val imageFormat = ImageFormat.detect(headerBytes) ?: return null
+            val headerBytes = it.readBytes(ImageFormat.REQUIRED_HEADER_BYTE_COUNT_FOR_DETECTION)
 
-        val imageParser = ImageParser.forFormat(imageFormat)
+            val imageFormat = ImageFormat.detect(headerBytes) ?: return null
 
-        if (imageParser == null)
-            return ImageMetadata(imageFormat, null, null, null, null, null)
+            val imageParser = ImageParser.forFormat(imageFormat)
 
-        val newReader = PrePendingByteReader(it, headerBytes.toList())
+            if (imageParser == null)
+                return ImageMetadata(imageFormat, null, null, null, null, null)
 
-        /*
-         * We re-apply the ImageFormat, because we don't want to report
-         * "TIFF" for every TIFF-based RAW format like CR2.
-         */
-        return@use imageParser
-            .parseMetadata(newReader, length)
-            .copy(imageFormat = imageFormat)
+            val newReader = PrePendingByteReader(it, headerBytes.toList())
+
+            /*
+             * We re-apply the ImageFormat, because we don't want to report
+             * "TIFF" for every TIFF-based RAW format like CR2.
+             */
+            return@tryWithImageReadException imageParser
+                .parseMetadata(newReader, length)
+                .copy(imageFormat = imageFormat)
+        }
     }
 
     /**
@@ -90,17 +95,20 @@ object Kim {
         byteReader: ByteReader
     ): Pair<ImageFormat?, ByteArray> = byteReader.use {
 
-        val headerBytes = it.readBytes(ImageFormat.REQUIRED_HEADER_BYTE_COUNT_FOR_DETECTION)
+        return@use tryWithImageReadException {
 
-        val imageFormat = ImageFormat.detect(headerBytes)
+            val headerBytes = it.readBytes(ImageFormat.REQUIRED_HEADER_BYTE_COUNT_FOR_DETECTION)
 
-        val newReader = PrePendingByteReader(it, headerBytes.toList())
+            val imageFormat = ImageFormat.detect(headerBytes)
 
-        return@use when (imageFormat) {
-            ImageFormat.JPEG -> imageFormat to JpegMetadataExtractor.extractMetadataBytes(newReader)
-            ImageFormat.PNG -> imageFormat to PngMetadataExtractor.extractMetadataBytes(newReader)
-            ImageFormat.RAF -> imageFormat to RafMetadataExtractor.extractMetadataBytes(newReader)
-            else -> imageFormat to byteArrayOf()
+            val newReader = PrePendingByteReader(it, headerBytes.toList())
+
+            return@tryWithImageReadException when (imageFormat) {
+                ImageFormat.JPEG -> imageFormat to JpegMetadataExtractor.extractMetadataBytes(newReader)
+                ImageFormat.PNG -> imageFormat to PngMetadataExtractor.extractMetadataBytes(newReader)
+                ImageFormat.RAF -> imageFormat to RafMetadataExtractor.extractMetadataBytes(newReader)
+                else -> imageFormat to byteArrayOf()
+            }
         }
     }
 
@@ -110,35 +118,38 @@ object Kim {
         length: Long
     ): ByteArray? = byteReader.use {
 
-        val headerBytes = it.readBytes(ImageFormat.REQUIRED_HEADER_BYTE_COUNT_FOR_DETECTION)
+        return@use tryWithImageReadException {
 
-        val imageFormat = ImageFormat.detect(headerBytes)
+            val headerBytes = it.readBytes(ImageFormat.REQUIRED_HEADER_BYTE_COUNT_FOR_DETECTION)
 
-        val prePendingByteReader = PrePendingByteReader(it, headerBytes.toList())
+            val imageFormat = ImageFormat.detect(headerBytes)
 
-        if (imageFormat == ImageFormat.RAF)
-            return@use RafPreviewExtractor.extractPreviewImage(prePendingByteReader)
+            val prePendingByteReader = PrePendingByteReader(it, headerBytes.toList())
 
-        val reader = DefaultRandomAccessByteReader(prePendingByteReader, length)
+            if (imageFormat == ImageFormat.RAF)
+                return@use RafPreviewExtractor.extractPreviewImage(prePendingByteReader)
 
-        val tiffContents = TiffReader().read(reader)
+            val reader = DefaultRandomAccessByteReader(prePendingByteReader, length)
 
-        /**
-         * *Note:* Olympus ORF is currently unsupported because the preview offset
-         * is burried in the Olympus MakerNotes, which are currently not interpreted.
-         */
-        return@use when (imageFormat) {
-            ImageFormat.CR2 -> Cr2PreviewExtractor.extractPreviewImage(tiffContents, reader)
-            ImageFormat.RW2 -> Rw2PreviewExtractor.extractPreviewImage(tiffContents, reader)
-            ImageFormat.TIFF -> {
+            val tiffContents = TiffReader().read(reader)
 
-                /* It can now be DNG, NEF or ARW. */
-                DngPreviewExtractor.extractPreviewImage(tiffContents, reader)?.let { return@use it }
-                NefPreviewExtractor.extractPreviewImage(tiffContents, reader)?.let { return@use it }
-                ArwPreviewExtractor.extractPreviewImage(tiffContents, reader)?.let { return@use it }
+            /**
+             * *Note:* Olympus ORF is currently unsupported because the preview offset
+             * is burried in the Olympus MakerNotes, which are currently not interpreted.
+             */
+            return@tryWithImageReadException when (imageFormat) {
+                ImageFormat.CR2 -> Cr2PreviewExtractor.extractPreviewImage(tiffContents, reader)
+                ImageFormat.RW2 -> Rw2PreviewExtractor.extractPreviewImage(tiffContents, reader)
+                ImageFormat.TIFF -> {
+
+                    /* It can now be DNG, NEF or ARW. */
+                    DngPreviewExtractor.extractPreviewImage(tiffContents, reader)?.let { return@use it }
+                    NefPreviewExtractor.extractPreviewImage(tiffContents, reader)?.let { return@use it }
+                    ArwPreviewExtractor.extractPreviewImage(tiffContents, reader)?.let { return@use it }
+                }
+
+                else -> null
             }
-
-            else -> null
         }
     }
 
@@ -148,21 +159,23 @@ object Kim {
      * **Note**: We don't have an good API for single-shot write all fields right now.
      * So this is inefficent at this time. This method is experimental and will likely change.
      */
+    @Throws(ImageWriteException::class)
     fun update(
         bytes: ByteArray,
         updates: Set<MetadataUpdate>
-    ): ByteArray {
+    ): ByteArray = tryWithImageWriteException {
 
+        /* If there is nothing to update we return the bytes as is. */
         if (updates.isEmpty())
             return bytes
 
         val imageFormat = ImageFormat.detect(bytes)
 
-        return when (imageFormat) {
+        return@tryWithImageWriteException when (imageFormat) {
             ImageFormat.JPEG -> JpegUpdater.update(bytes, updates)
             ImageFormat.PNG -> PngUpdater.update(bytes, updates)
-            null -> throw ImageWriteException("Unsupported/Undetected file format.")
-            else -> throw ImageWriteException("Can't embedd into $imageFormat")
+            null -> throw ImageWriteException("Unsupported or unsupoorted file format.")
+            else -> throw ImageWriteException("Can't embed metadata into $imageFormat.")
         }
     }
 }

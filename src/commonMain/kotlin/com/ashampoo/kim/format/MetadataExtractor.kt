@@ -15,10 +15,12 @@
  */
 package com.ashampoo.kim.format
 
+import com.ashampoo.kim.common.ImageReadException
 import com.ashampoo.kim.input.ByteReader
 
 fun interface MetadataExtractor {
 
+    @Throws(ImageReadException::class)
     fun extractMetadataBytes(byteReader: ByteReader): ByteArray
 
 }

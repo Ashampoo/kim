@@ -16,6 +16,8 @@
  */
 package com.ashampoo.kim.format.dng
 
+import com.ashampoo.kim.common.ImageReadException
+import com.ashampoo.kim.common.tryWithImageReadException
 import com.ashampoo.kim.format.TiffPreviewExtractor
 import com.ashampoo.kim.format.tiff.TiffContents
 import com.ashampoo.kim.format.tiff.constants.ExifTag
@@ -25,10 +27,11 @@ import com.ashampoo.kim.input.RandomAccessByteReader
 
 object DngPreviewExtractor : TiffPreviewExtractor {
 
+    @Throws(ImageReadException::class)
     override fun extractPreviewImage(
         tiffContents: TiffContents,
         randomAccessByteReader: RandomAccessByteReader
-    ): ByteArray? {
+    ): ByteArray? = tryWithImageReadException {
 
         val ifd0 = tiffContents.directories.first()
 
@@ -53,6 +56,6 @@ object DngPreviewExtractor : TiffPreviewExtractor {
 
         val previewBytes = randomAccessByteReader.readBytes(previewLength)
 
-        return previewBytes
+        return@tryWithImageReadException previewBytes
     }
 }

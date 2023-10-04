@@ -15,7 +15,9 @@
  */
 package com.ashampoo.kim.format.raf
 
+import com.ashampoo.kim.common.ImageReadException
 import com.ashampoo.kim.common.toSingleNumberHexes
+import com.ashampoo.kim.common.tryWithImageReadException
 import com.ashampoo.kim.format.ImageFormatMagicNumbers
 import com.ashampoo.kim.format.MetadataExtractor
 import com.ashampoo.kim.format.jpeg.JpegMetadataExtractor
@@ -28,7 +30,10 @@ object RafMetadataExtractor : MetadataExtractor {
      * The RAF file contains a JPEG with EXIF metadata.
      * We just have to find it and read the data from there it.
      */
-    override fun extractMetadataBytes(byteReader: ByteReader): ByteArray {
+    @Throws(ImageReadException::class)
+    override fun extractMetadataBytes(
+        byteReader: ByteReader
+    ): ByteArray = tryWithImageReadException {
 
         val magicNumberBytes = byteReader.readBytes(ImageFormatMagicNumbers.raf.size).toList()
 
@@ -45,11 +50,11 @@ object RafMetadataExtractor : MetadataExtractor {
             prependedBytes = ImageFormatMagicNumbers.jpeg
         )
 
-        return JpegMetadataExtractor.extractMetadataBytes(newReader)
+        return@tryWithImageReadException JpegMetadataExtractor.extractMetadataBytes(newReader)
     }
 
     @Suppress("ComplexCondition", "LoopWithTooManyJumpStatements")
-    fun skipToJpegMagicBytes(byteReader: ByteReader) {
+    internal fun skipToJpegMagicBytes(byteReader: ByteReader) {
 
         @Suppress("kotlin:S1481") // false positive
         val bytes = mutableListOf<Byte>()
