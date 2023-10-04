@@ -56,7 +56,7 @@ object JpegImageParser : ImageParser {
 
             val exifBytes = getExifBytes(segments)
 
-            val exif = if (exifBytes != null) getExif(exifBytes) else null
+            val exif = exifBytes?.let { getExif(it) }
 
             val iptc = getIptc(segments)
 
@@ -71,14 +71,11 @@ object JpegImageParser : ImageParser {
 
         val visitor: JpegVisitor = object : JpegVisitor {
 
-            override fun beginSOS(): Boolean {
-                /* Don't read actual image data. */
-                return false
-            }
+            /* Don't read actual image data. */
+            override fun beginSOS(): Boolean = false
 
-            override fun visitSOS(marker: Int, markerBytes: ByteArray, imageData: ByteArray) {
+            override fun visitSOS(marker: Int, markerBytes: ByteArray, imageData: ByteArray) =
                 error("Should not be called.")
-            }
 
             // return false to exit traversal.
             override fun visitSegment(
