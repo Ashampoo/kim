@@ -16,6 +16,7 @@
  */
 package com.ashampoo.kim.format
 
+import com.ashampoo.kim.common.ImageReadException
 import com.ashampoo.kim.format.jpeg.JpegImageParser
 import com.ashampoo.kim.format.png.PngImageParser
 import com.ashampoo.kim.format.raf.RafImageParser
@@ -25,6 +26,7 @@ import com.ashampoo.kim.model.ImageFormat
 
 fun interface ImageParser {
 
+    @Throws(ImageReadException::class)
     fun parseMetadata(byteReader: ByteReader, length: Long): ImageMetadata
 
     companion object {

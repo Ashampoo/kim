@@ -19,6 +19,7 @@ package com.ashampoo.kim.format.jpeg
 import com.ashampoo.kim.common.ImageReadException
 import com.ashampoo.kim.common.getRemainingBytes
 import com.ashampoo.kim.common.startsWith
+import com.ashampoo.kim.common.tryWithImageReadException
 import com.ashampoo.kim.format.ImageMetadata
 import com.ashampoo.kim.format.ImageParser
 import com.ashampoo.kim.format.jpeg.iptc.IptcMetadata
@@ -42,26 +43,27 @@ object JpegImageParser : ImageParser {
     private fun keepMarker(marker: Int, markers: List<Int>?): Boolean =
         markers?.contains(marker) ?: false
 
-    override fun parseMetadata(byteReader: ByteReader, length: Long): ImageMetadata {
+    override fun parseMetadata(byteReader: ByteReader, length: Long): ImageMetadata =
+        tryWithImageReadException {
 
-        val segments = readSegments(
-            byteReader,
-            JpegConstants.SOFN_MARKERS +
-                listOf(JpegConstants.JPEG_APP1_MARKER, JpegConstants.JPEG_APP13_MARKER)
-        )
+            val segments = readSegments(
+                byteReader,
+                JpegConstants.SOFN_MARKERS +
+                    listOf(JpegConstants.JPEG_APP1_MARKER, JpegConstants.JPEG_APP13_MARKER)
+            )
 
-        val imageSize = getImageSize(segments)
+            val imageSize = getImageSize(segments)
 
-        val exifBytes = getExifBytes(segments)
+            val exifBytes = getExifBytes(segments)
 
-        val exif = if (exifBytes != null) getExif(exifBytes) else null
+            val exif = if (exifBytes != null) getExif(exifBytes) else null
 
-        val iptc = getIptc(segments)
+            val iptc = getIptc(segments)
 
-        val xmp = getXmpXml(segments)
+            val xmp = getXmpXml(segments)
 
-        return ImageMetadata(ImageFormat.JPEG, imageSize, exif, exifBytes, iptc, xmp)
-    }
+            return ImageMetadata(ImageFormat.JPEG, imageSize, exif, exifBytes, iptc, xmp)
+        }
 
     private fun readSegments(byteReader: ByteReader, markers: List<Int>): List<Segment> {
 
