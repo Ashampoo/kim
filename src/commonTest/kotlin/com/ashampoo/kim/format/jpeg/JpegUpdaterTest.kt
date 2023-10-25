@@ -154,7 +154,10 @@ class JpegUpdaterTest {
 
         if (!equals) {
 
-            Path("build/$fileName").sink().use { it.write(actualBytes) }
+            SystemFileSystem
+                .sink(Path("build/$fileName"))
+                .buffered()
+                .use { it.write(actualBytes) }
 
             fail("Photo $fileName has not the expected bytes!")
         }
