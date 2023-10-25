@@ -111,6 +111,7 @@ object TiffReader {
         visitedOffsets: MutableList<Number>
     ): Boolean {
 
+        /* We don't want to visit a directory twice. */
         if (visitedOffsets.contains(directoryOffset))
             return false
 
@@ -118,6 +119,10 @@ object TiffReader {
 
         byteReader.reset()
 
+        /*
+         * Sometimes TIFF offsets are greater than the file itself.
+         * We ignore such corruptions.
+         */
         if (directoryOffset >= byteReader.getLength())
             return true
 
