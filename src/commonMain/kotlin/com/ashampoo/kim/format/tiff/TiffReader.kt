@@ -90,8 +90,6 @@ object TiffReader {
         val offsetToFirstIFD =
             0xFFFFFFFFL and byteReader.read4BytesAsInt("Offset to first IFD", byteOrder).toLong()
 
-        byteReader.skipBytes("skip bytes to first IFD", offsetToFirstIFD - 8)
-
         return TiffHeader(byteOrder, tiffVersion, offsetToFirstIFD)
     }
 
