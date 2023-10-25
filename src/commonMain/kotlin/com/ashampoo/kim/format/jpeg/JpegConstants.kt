@@ -35,7 +35,7 @@ object JpegConstants {
     )
 
     val JFIF0_SIGNATURE_ALTERNATIVE = byteArrayOf(
-        0x4a, // J
+        0x4A, // J
         0x46, // F
         0x49, // I
         0x46, // F
@@ -85,21 +85,18 @@ object JpegConstants {
         0
     )
 
-    val SOI = byteArrayOf(0xFF.toByte(), 0xd8.toByte())
-
-    // val EOI = byteArrayOf(0xFF.toByte(), 0xd9.toByte())
+    val SOI = byteArrayOf(0xFF.toByte(), 0xD8.toByte())
+    val EOI = byteArrayOf(0xFF.toByte(), 0xD9.toByte())
 
     const val JPEG_APP0 = 0xE0
     const val JPEG_APP0_MARKER = 0xFF00 or JPEG_APP0
     const val JPEG_APP1_MARKER = 0xFF00 or JPEG_APP0 + 1
-    const val JPEG_APP2_MARKER = 0xFF00 or JPEG_APP0 + 2
     const val JPEG_APP13_MARKER = 0xFF00 or JPEG_APP0 + 13
-    const val JPEG_APP14_MARKER = 0xFF00 or JPEG_APP0 + 14
     const val JPEG_APP15_MARKER = 0xFF00 or JPEG_APP0 + 15
 
     const val JFIF_MARKER = 0xFFE0
     const val DHT_MARKER = 0xFFC0 + 0x4
-    const val DAC_MARKER = 0xFFC0 + 0xc
+    const val DAC_MARKER = 0xFFC0 + 0xC
 
     const val SOF0_MARKER = 0xFFC0
     const val SOF1_MARKER = 0xFFC0 + 0x1
@@ -110,11 +107,11 @@ object JpegConstants {
     const val SOF7_MARKER = 0xFFC0 + 0x7
     const val SOF8_MARKER = 0xFFC0 + 0x8
     const val SOF9_MARKER = 0xFFC0 + 0x9
-    const val SOF10_MARKER = 0xFFC0 + 0xa
-    const val SOF11_MARKER = 0xFFC0 + 0xb
-    const val SOF13_MARKER = 0xFFC0 + 0xd
-    const val SOF14_MARKER = 0xFFC0 + 0xe
-    const val SOF15_MARKER = 0xFFC0 + 0xf
+    const val SOF10_MARKER = 0xFFC0 + 0xA
+    const val SOF11_MARKER = 0xFFC0 + 0xB
+    const val SOF13_MARKER = 0xFFC0 + 0xD
+    const val SOF14_MARKER = 0xFFC0 + 0xE
+    const val SOF15_MARKER = 0xFFC0 + 0xF
 
     // marker for restart intervals
     const val DRI_MARKER = 0xFFdd
