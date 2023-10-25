@@ -16,7 +16,7 @@
  */
 package com.ashampoo.kim.format.jpeg
 
-import com.ashampoo.kim.common.BinaryFileParser
+import com.ashampoo.kim.common.ByteOrder
 import com.ashampoo.kim.common.ImageWriteException
 import com.ashampoo.kim.common.getRemainingBytes
 import com.ashampoo.kim.common.toBytes
@@ -42,11 +42,7 @@ import io.ktor.utils.io.core.toByteArray
 /**
  * Interface for Exif write/update/remove functionality for Jpeg/JFIF images.
  */
-object JpegRewriter : BinaryFileParser() {
-
-    init {
-        byteOrder = JPEG_BYTE_ORDER
-    }
+object JpegRewriter {
 
     private fun readSegments(byteReader: ByteReader): JFIFPieces {
 
@@ -153,13 +149,13 @@ object JpegRewriter : BinaryFileParser() {
 
         if (newBytes != null) {
 
-            val markerBytes = JpegConstants.JPEG_APP1_MARKER.toShort().toBytes(byteOrder)
+            val markerBytes = JpegConstants.JPEG_APP1_MARKER.toShort().toBytes(JPEG_BYTE_ORDER)
 
             if (newBytes.size > JpegConstants.MAX_SEGMENT_SIZE)
                 throw ImageWriteException("APP1 Segment is too long: " + newBytes.size)
 
             val markerLength = newBytes.size + 2
-            val markerLengthBytes = markerLength.toShort().toBytes(byteOrder)
+            val markerLengthBytes = markerLength.toShort().toBytes(JPEG_BYTE_ORDER)
             var index = 0
 
             val firstSegment = newSegments[index] as JFIFPieceSegment
@@ -190,13 +186,13 @@ object JpegRewriter : BinaryFileParser() {
                 if (newBytes == null)
                     continue
 
-                val markerBytes = JpegConstants.JPEG_APP1_MARKER.toShort().toBytes(byteOrder)
+                val markerBytes = JpegConstants.JPEG_APP1_MARKER.toShort().toBytes(JPEG_BYTE_ORDER)
 
                 if (newBytes.size > JpegConstants.MAX_SEGMENT_SIZE)
                     throw ImageWriteException("APP1 Segment is too long: " + newBytes.size)
 
                 val markerLength = newBytes.size + 2
-                val markerLengthBytes = markerLength.toShort().toBytes(byteOrder)
+                val markerLengthBytes = markerLength.toShort().toBytes(JPEG_BYTE_ORDER)
 
                 byteWriter.write(markerBytes)
                 byteWriter.write(markerLengthBytes)

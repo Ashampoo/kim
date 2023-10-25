@@ -16,7 +16,6 @@
  */
 package com.ashampoo.kim.format.jpeg.iptc
 
-import com.ashampoo.kim.common.BinaryFileParser
 import com.ashampoo.kim.common.ByteOrder
 import com.ashampoo.kim.common.ImageReadException
 import com.ashampoo.kim.common.slice
@@ -31,7 +30,7 @@ import io.ktor.utils.io.charsets.Charset
 import io.ktor.utils.io.charsets.Charsets
 import io.ktor.utils.io.core.String
 
-object IptcParser : BinaryFileParser() {
+object IptcParser {
 
     val EMPTY_BYTE_ARRAY = byteArrayOf()
 
@@ -53,10 +52,6 @@ object IptcParser : BinaryFileParser() {
         byteArrayOf('\u001B'.code.toByte(), '%'.code.toByte(), 'G'.code.toByte())
 
     val APP13_BYTE_ORDER = ByteOrder.BIG_ENDIAN
-
-    init {
-        byteOrder = APP13_BYTE_ORDER
-    }
 
     /**
      * Checks if the ByteArray starts with the Photoshop identifaction header.
@@ -120,7 +115,7 @@ object IptcParser : BinaryFileParser() {
             val recordNumber = bytes[index++].toUInt8()
             val recordType = bytes[index++].toUInt8()
 
-            val recordSize = bytes.toUInt16(index, byteOrder)
+            val recordSize = bytes.toUInt16(index, APP13_BYTE_ORDER)
             index += 2
 
             val extendedDataset = recordSize > IptcConstants.IPTC_NON_EXTENDED_RECORD_MAXIMUM_SIZE

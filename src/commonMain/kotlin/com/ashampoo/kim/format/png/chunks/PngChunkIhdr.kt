@@ -17,6 +17,7 @@
 package com.ashampoo.kim.format.png.chunks
 
 import com.ashampoo.kim.format.png.ChunkType
+import com.ashampoo.kim.format.png.PngConstants.PNG_BYTE_ORDER
 import com.ashampoo.kim.input.ByteArrayByteReader
 
 class PngChunkIhdr(
@@ -32,7 +33,7 @@ class PngChunkIhdr(
 
     init {
         val byteReader = ByteArrayByteReader(bytes)
-        width = byteReader.read4BytesAsInt("width", byteOrder)
-        height = byteReader.read4BytesAsInt("height", byteOrder)
+        width = byteReader.read4BytesAsInt("width", PNG_BYTE_ORDER)
+        height = byteReader.read4BytesAsInt("height", PNG_BYTE_ORDER)
     }
 }

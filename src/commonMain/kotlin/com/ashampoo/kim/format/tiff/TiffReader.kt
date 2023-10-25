@@ -16,7 +16,6 @@
  */
 package com.ashampoo.kim.format.tiff
 
-import com.ashampoo.kim.common.BinaryFileParser
 import com.ashampoo.kim.common.ByteOrder
 import com.ashampoo.kim.common.ImageReadException
 import com.ashampoo.kim.common.toInt
@@ -34,7 +33,11 @@ import com.ashampoo.kim.format.tiff.taginfos.TagInfoLongs
 import com.ashampoo.kim.input.ByteReader
 import com.ashampoo.kim.input.RandomAccessByteReader
 
-class TiffReader : BinaryFileParser() {
+class TiffReader {
+
+    /* Big endian is the most common byte order. */
+    var byteOrder: ByteOrder = ByteOrder.BIG_ENDIAN
+        protected set
 
     fun read(byteReader: RandomAccessByteReader): TiffContents {
 
