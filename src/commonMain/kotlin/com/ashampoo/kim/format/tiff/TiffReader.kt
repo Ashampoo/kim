@@ -130,9 +130,7 @@ object TiffReader {
 
         val fields = mutableListOf<TiffField>()
 
-        val entryCount: Int
-
-        entryCount = try {
+        val entryCount: Int = try {
             byteReader.read2BytesAsInt("entrycount", byteOrder)
         } catch (ignore: ImageReadException) {
             return true
