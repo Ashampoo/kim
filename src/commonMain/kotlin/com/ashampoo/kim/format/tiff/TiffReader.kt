@@ -33,17 +33,25 @@ import com.ashampoo.kim.format.tiff.taginfos.TagInfoLongs
 import com.ashampoo.kim.input.ByteReader
 import com.ashampoo.kim.input.RandomAccessByteReader
 
-class TiffReader {
+object TiffReader {
 
-    /* Big endian is the most common byte order. */
-    var byteOrder: ByteOrder = ByteOrder.BIG_ENDIAN
-        protected set
+    private val offsetFields = listOf(
+        ExifTag.EXIF_TAG_EXIF_OFFSET,
+        ExifTag.EXIF_TAG_GPSINFO,
+        ExifTag.EXIF_TAG_INTEROP_OFFSET,
+        ExifTag.EXIF_TAG_SUB_IFDS_OFFSET
+    )
+
+    private val directoryTypeMap = mapOf(
+        ExifTag.EXIF_TAG_EXIF_OFFSET to TiffConstants.TIFF_EXIF_IFD,
+        ExifTag.EXIF_TAG_GPSINFO to TiffConstants.TIFF_GPS,
+        ExifTag.EXIF_TAG_INTEROP_OFFSET to TiffConstants.TIFF_INTEROP_IFD,
+        ExifTag.EXIF_TAG_SUB_IFDS_OFFSET to TiffConstants.DIRECTORY_TYPE_SUB
+    )
 
     fun read(byteReader: RandomAccessByteReader): TiffContents {
 
         val tiffHeader = readTiffHeader(byteReader)
-
-        byteOrder = tiffHeader.byteOrder
 
         byteReader.reset()
 
@@ -52,6 +60,7 @@ class TiffReader {
 
         readDirectory(
             byteReader = byteReader,
+            byteOrder = tiffHeader.byteOrder,
             directoryOffset = tiffHeader.offsetToFirstIFD,
             dirType = TiffConstants.DIRECTORY_TYPE_ROOT,
             collector = collector,
@@ -66,8 +75,36 @@ class TiffReader {
         return contents
     }
 
+    fun readTiffHeader(byteReader: ByteReader): TiffHeader {
+
+        val byteOrder1 = byteReader.readByte("Byte order: First byte").toInt()
+        val byteOrder2 = byteReader.readByte("Byte Order: Second byte").toInt()
+
+        if (byteOrder1 != byteOrder2)
+            throw ImageReadException("Byte Order bytes don't match ($byteOrder1, $byteOrder2).")
+
+        val byteOrder = getTiffByteOrder(byteOrder1)
+
+        val tiffVersion = byteReader.read2BytesAsInt("TIFF version", byteOrder)
+
+        val offsetToFirstIFD =
+            0xFFFFFFFFL and byteReader.read4BytesAsInt("Offset to first IFD", byteOrder).toLong()
+
+        byteReader.skipBytes("skip bytes to first IFD", offsetToFirstIFD - 8)
+
+        return TiffHeader(byteOrder, tiffVersion, offsetToFirstIFD)
+    }
+
+    private fun getTiffByteOrder(byteOrderByte: Int): ByteOrder =
+        when (byteOrderByte) {
+            'I'.code -> ByteOrder.LITTLE_ENDIAN
+            'M'.code -> ByteOrder.BIG_ENDIAN
+            else -> throw ImageReadException("Invalid TIFF byte order ${byteOrderByte.toUInt()}")
+        }
+
     private fun readDirectory(
         byteReader: RandomAccessByteReader,
+        byteOrder: ByteOrder,
         directoryOffset: Long,
         dirType: Int,
         collector: TiffReaderCollector,
@@ -188,6 +225,7 @@ class TiffReader {
 
                         subDirectoryRead = readDirectory(
                             byteReader = byteReader,
+                            byteOrder = byteOrder,
                             directoryOffset = subDirOffset.toLong(),
                             dirType = subDirectoryType,
                             collector = collector,
@@ -209,6 +247,7 @@ class TiffReader {
         if (directory.nextDirectoryOffset > 0)
             readDirectory(
                 byteReader = byteReader,
+                byteOrder = byteOrder,
                 directoryOffset = directory.nextDirectoryOffset,
                 dirType = dirType + 1,
                 collector = collector,
@@ -250,56 +289,12 @@ class TiffReader {
         return JpegImageData(offset, length, data)
     }
 
-    companion object {
+    private class TiffReaderCollector {
 
-        private val offsetFields = listOf(
-            ExifTag.EXIF_TAG_EXIF_OFFSET,
-            ExifTag.EXIF_TAG_GPSINFO,
-            ExifTag.EXIF_TAG_INTEROP_OFFSET,
-            ExifTag.EXIF_TAG_SUB_IFDS_OFFSET
-        )
+        var tiffHeader: TiffHeader? = null
+        val directories = mutableListOf<TiffDirectory>()
 
-        private val directoryTypeMap = mapOf(
-            ExifTag.EXIF_TAG_EXIF_OFFSET to TiffConstants.TIFF_EXIF_IFD,
-            ExifTag.EXIF_TAG_GPSINFO to TiffConstants.TIFF_GPS,
-            ExifTag.EXIF_TAG_INTEROP_OFFSET to TiffConstants.TIFF_INTEROP_IFD,
-            ExifTag.EXIF_TAG_SUB_IFDS_OFFSET to TiffConstants.DIRECTORY_TYPE_SUB
-        )
-
-        fun getTiffByteOrder(byteOrderByte: Int): ByteOrder =
-            when (byteOrderByte) {
-                'I'.code -> ByteOrder.LITTLE_ENDIAN
-                'M'.code -> ByteOrder.BIG_ENDIAN
-                else -> throw ImageReadException("Invalid TIFF byte order ${byteOrderByte.toUInt()}")
-            }
-
-        fun readTiffHeader(byteReader: ByteReader): TiffHeader {
-
-            val byteOrder1 = byteReader.readByte("Byte order: First byte").toInt()
-            val byteOrder2 = byteReader.readByte("Byte Order: Second byte").toInt()
-
-            if (byteOrder1 != byteOrder2)
-                throw ImageReadException("Byte Order bytes don't match ($byteOrder1, $byteOrder2).")
-
-            val byteOrder = getTiffByteOrder(byteOrder1)
-
-            val tiffVersion = byteReader.read2BytesAsInt("TIFF version", byteOrder)
-
-            val offsetToFirstIFD =
-                0xFFFFFFFFL and byteReader.read4BytesAsInt("Offset to first IFD", byteOrder).toLong()
-
-            byteReader.skipBytes("skip bytes to first IFD", offsetToFirstIFD - 8)
-
-            return TiffHeader(byteOrder, tiffVersion, offsetToFirstIFD)
-        }
+        fun getContents(): TiffContents =
+            TiffContents(requireNotNull(tiffHeader), directories)
     }
-}
-
-private class TiffReaderCollector {
-
-    var tiffHeader: TiffHeader? = null
-    val directories = mutableListOf<TiffDirectory>()
-
-    fun getContents(): TiffContents =
-        TiffContents(requireNotNull(tiffHeader), directories)
 }

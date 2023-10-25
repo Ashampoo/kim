@@ -89,7 +89,7 @@ object JpegImageParser : ImageParser {
 
         val exifByteReader = ByteArrayByteReader(bytes)
 
-        val contents = TiffReader().read(exifByteReader)
+        val contents = TiffReader.read(exifByteReader)
 
         return contents
     }
