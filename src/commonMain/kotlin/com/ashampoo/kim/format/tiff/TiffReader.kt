@@ -126,13 +126,13 @@ object TiffReader {
 
         byteReader.skipBytes("Directory offset", directoryOffset)
 
-        val fields = mutableListOf<TiffField>()
-
-        val entryCount: Int = try {
+        val entryCount = try {
             byteReader.read2BytesAsInt("entrycount", byteOrder)
         } catch (ignore: ImageReadException) {
             return true
         }
+
+        val fields = mutableListOf<TiffField>()
 
         repeat(entryCount) { entryIndex ->
 
