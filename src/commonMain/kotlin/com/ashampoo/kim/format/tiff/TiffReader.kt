@@ -143,9 +143,15 @@ object TiffReader {
                 0xFFFFFFFFL and
                     byteReader.read4BytesAsInt("Entry $entryIndex: 'count'", byteOrder).toLong()
 
-            val offsetBytes = byteReader.readBytes("Entry $entryIndex: 'offset'", 4)
+            /*
+             * These bytes represent either the value for fields like orientation or
+             * an offset to the value for fields like OriginalDateTime that
+             * cannot be accommodated within 4 bytes.
+             */
+            val valueOrOffsetBytes: ByteArray =
+                byteReader.readBytes("Entry $entryIndex: 'offset'", 4)
 
-            val offset = 0xFFFFFFFFL and offsetBytes.toInt(byteOrder).toLong()
+            val valueOrOffset: Long = 0xFFFFFFFFL and valueOrOffsetBytes.toInt(byteOrder).toLong()
 
             /*
              * Skip invalid fields.
@@ -170,16 +176,16 @@ object TiffReader {
             val valueBytes: ByteArray = if (valueLength > TIFF_ENTRY_MAX_VALUE_LENGTH) {
 
                 /* Ignore corrupt offsets */
-                if (offset < 0 || offset + valueLength > byteReader.getLength())
+                if (valueOrOffset < 0 || valueOrOffset + valueLength > byteReader.getLength())
                     continue
 
-                byteReader.readBytes(offset.toInt(), valueLength.toInt())
+                byteReader.readBytes(valueOrOffset.toInt(), valueLength.toInt())
 
             } else
-                offsetBytes
+                valueOrOffsetBytes
 
             fields.add(
-                TiffField(tag, dirType, fieldType, count, offset, valueBytes, byteOrder, entryIndex)
+                TiffField(tag, dirType, fieldType, count, valueOrOffset, valueBytes, byteOrder, entryIndex)
             )
         }
 
