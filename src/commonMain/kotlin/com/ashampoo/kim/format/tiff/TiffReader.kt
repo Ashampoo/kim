@@ -134,7 +134,7 @@ object TiffReader {
 
         val fields = mutableListOf<TiffField>()
 
-        repeat(entryCount) { entryIndex ->
+        for (entryIndex in 0 until entryCount) {
 
             val tag = byteReader.read2BytesAsInt("Entry $entryIndex: 'tag'", byteOrder)
             val type = byteReader.read2BytesAsInt("Entry $entryIndex: 'type'", byteOrder)
@@ -153,7 +153,7 @@ object TiffReader {
              * which can cause OOM problems.
              */
             if (tag == 0)
-                return@repeat
+                continue
 
             val fieldType: FieldType = try {
                 getFieldType(type)
@@ -162,7 +162,7 @@ object TiffReader {
                  * Skip over unknown field types, since we can't calculate
                  * their size without knowing their type
                  */
-                return@repeat
+                continue
             }
 
             val valueLength = count * fieldType.size
@@ -171,16 +171,16 @@ object TiffReader {
 
                 /* Ignore corrupt offsets */
                 if (offset < 0 || offset + valueLength > byteReader.getLength())
-                    return@repeat
+                    continue
 
                 byteReader.readBytes(offset.toInt(), valueLength.toInt())
 
             } else
                 offsetBytes
 
-            val field = TiffField(tag, dirType, fieldType, count, offset, valueBytes, byteOrder, entryIndex)
-
-            fields.add(field)
+            fields.add(
+                TiffField(tag, dirType, fieldType, count, offset, valueBytes, byteOrder, entryIndex)
+            )
         }
 
         val nextDirectoryOffset = 0xFFFFFFFFL and
