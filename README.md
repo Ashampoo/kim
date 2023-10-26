@@ -1,6 +1,6 @@
 # Kim - Kotlin Image Metadata
 
-[![Kotlin](https://img.shields.io/badge/kotlin-1.9.0-blue.svg?logo=kotlin)](httpw://kotlinlang.org)
+[![Kotlin](https://img.shields.io/badge/kotlin-1.9.10-blue.svg?logo=kotlin)](httpw://kotlinlang.org)
 ![JVM](https://img.shields.io/badge/-JVM-gray.svg?style=flat)
 ![Android](https://img.shields.io/badge/-Android-gray.svg?style=flat)
 ![macOS](https://img.shields.io/badge/-macOS-gray.svg?style=flat)
@@ -24,6 +24,7 @@ It's part of [Ashampoo Photos](https://ashampoo.com/photos).
 * Handling of XMP content through
   [XMP Core for Kotlin Multiplatform](https://github.com/Ashampoo/xmpcore)
 * Convenient `Kim.update()` API to perform updates to the relevant places
+    + JPG: Lossless rotation by modifying only one byte (where present)
 
 The future development of features on our part is driven entirely by the needs
 of Ashampoo Photos, which, in turn, is driven by user community feedback.
@@ -31,7 +32,7 @@ of Ashampoo Photos, which, in turn, is driven by user community feedback.
 ## Installation
 
 ```
-implementation("com.ashampoo:kim:0.5.3")
+implementation("com.ashampoo:kim:0.5.4")
 ```
 
 ## Sample usages

@@ -52,7 +52,6 @@ object JpegOrientationOffsetFinder {
             "JPEG magic number mismatch: ${magicNumberBytes.toByteArray().toSingleNumberHexes()}"
         }
 
-        var exifByteOrder = ByteOrder.BIG_ENDIAN
         var orientationOffset: Long? = null
 
         var positionCounter: Long = ImageFormatMagicNumbers.jpegShort.size.toLong()
@@ -119,7 +118,7 @@ object JpegOrientationOffsetFinder {
 
             val tiffHeader = TiffReader.readTiffHeader(byteReader)
 
-            exifByteOrder = tiffHeader.byteOrder
+            val exifByteOrder = tiffHeader.byteOrder
 
             byteReader.skipBytes(
                 "skip bytes to first IFD",
@@ -141,7 +140,7 @@ object JpegOrientationOffsetFinder {
                     if (exifByteOrder == ByteOrder.BIG_ENDIAN)
                         orientationOffset++
 
-                    break
+                    return orientationOffset
 
                 } else {
 
@@ -151,11 +150,14 @@ object JpegOrientationOffsetFinder {
                 }
             }
 
-            /* Break because we found the EXIF Header */
-            break
+            /*
+             * We are now past the EXIF segment.
+             * If we reach this point there is no orientation flag.
+             */
+            return null
 
         } while (true)
 
-        return orientationOffset
+        return null
     }
 }

@@ -99,6 +99,10 @@ internal object JpegUpdater : MetadataUpdater {
         if (exifUpdates.isEmpty())
             return inputBytes
 
+        /*
+         * Verify if it's possible to perform a lossless update by making byte modifications.
+         * For orientation changes, it's feasible to achieve this with a single byte swap.
+         */
         if (exifUpdates.size == 1) {
 
             val onlyUpdate = exifUpdates.first()
