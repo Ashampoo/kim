@@ -16,17 +16,12 @@
  */
 package com.ashampoo.kim.format.jpeg
 
-import com.ashampoo.kim.common.BinaryFileParser
 import com.ashampoo.kim.common.ImageReadException
 import com.ashampoo.kim.common.toUInt16
 import com.ashampoo.kim.format.jpeg.JpegConstants.JPEG_BYTE_ORDER
 import com.ashampoo.kim.input.ByteReader
 
-object JpegUtils : BinaryFileParser() {
-
-    init {
-        byteOrder = JPEG_BYTE_ORDER
-    }
+object JpegUtils {
 
     private fun findNextMarkerBytes(byteReader: ByteReader): ByteArray {
 
@@ -51,7 +46,7 @@ object JpegUtils : BinaryFileParser() {
 
             val markerBytes = findNextMarkerBytes(byteReader)
 
-            val marker = markerBytes.toUInt16(byteOrder)
+            val marker = markerBytes.toUInt16(JPEG_BYTE_ORDER)
 
             if (marker == JpegConstants.EOI_MARKER || marker == JpegConstants.SOS_MARKER) {
 
@@ -67,7 +62,7 @@ object JpegUtils : BinaryFileParser() {
 
             val segmentLengthBytes = byteReader.readBytes("segmentLengthBytes", 2)
 
-            val segmentLength = segmentLengthBytes.toUInt16(byteOrder)
+            val segmentLength = segmentLengthBytes.toUInt16(JPEG_BYTE_ORDER)
 
             if (segmentLength < 2)
                 throw ImageReadException("Invalid segment size: $segmentLength")

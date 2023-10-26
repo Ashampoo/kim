@@ -92,7 +92,7 @@ object PngImageParser : ImageParser {
 
         val exifChunk = chunks.find { it.chunkType == ChunkType.EXIF } ?: return null
 
-        return exifChunk.bytes to TiffReader().read(ByteArrayByteReader(exifChunk.bytes))
+        return exifChunk.bytes to TiffReader.read(ByteArrayByteReader(exifChunk.bytes))
     }
 
     /*
@@ -146,7 +146,7 @@ object PngImageParser : ImageParser {
          * This should be fine now to be fed into the TIFF reader.
          */
         return exifBytesWithoutIdentifier to
-            TiffReader().read(ByteArrayByteReader(exifBytesWithoutIdentifier))
+            TiffReader.read(ByteArrayByteReader(exifBytesWithoutIdentifier))
     }
 
     private fun getIptcFromTextChunk(chunks: List<PngChunk>): IptcMetadata? {

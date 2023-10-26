@@ -36,7 +36,7 @@ object TiffImageParser : ImageParser {
 
             val randomAccessByteReader = DefaultRandomAccessByteReader(byteReader, length)
 
-            val exif = TiffReader().read(randomAccessByteReader)
+            val exif = TiffReader.read(randomAccessByteReader)
 
             val imageSize = getImageSize(exif)
             val xmp = getXmpXml(exif)

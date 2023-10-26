@@ -16,7 +16,6 @@
  */
 package com.ashampoo.kim.format.jpeg.xmp
 
-import com.ashampoo.kim.common.BinaryFileParser
 import com.ashampoo.kim.common.ImageReadException
 import com.ashampoo.kim.common.startsWith
 import com.ashampoo.kim.format.jpeg.JpegConstants
@@ -24,11 +23,7 @@ import com.ashampoo.kim.format.jpeg.JpegConstants.JPEG_BYTE_ORDER
 import io.ktor.utils.io.charsets.Charsets
 import io.ktor.utils.io.core.String
 
-object JpegXmpParser : BinaryFileParser() {
-
-    init {
-        byteOrder = JPEG_BYTE_ORDER
-    }
+object JpegXmpParser {
 
     fun isXmpJpegSegment(segmentData: ByteArray): Boolean =
         segmentData.startsWith(JpegConstants.XMP_IDENTIFIER)

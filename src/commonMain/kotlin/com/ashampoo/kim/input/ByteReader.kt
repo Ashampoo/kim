@@ -123,6 +123,9 @@ interface ByteReader : Closeable {
 
     fun skipBytes(name: String, length: Long) {
 
+        if (length == 0L)
+            return
+
         var total: Long = 0
 
         while (length != total) {
@@ -130,7 +133,7 @@ interface ByteReader : Closeable {
             val skipped = readBytes(length.toInt()).size
 
             if (skipped < 1)
-                throw ImageReadException("$name ($skipped)")
+                throw ImageReadException("$name (skipped $skipped of $length bytes)")
 
             total += skipped
         }

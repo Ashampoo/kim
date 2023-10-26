@@ -16,7 +16,6 @@
  */
 package com.ashampoo.kim.format.png.chunks
 
-import com.ashampoo.kim.common.BinaryFileParser
 import com.ashampoo.kim.format.png.ChunkType
 
 open class PngChunk(
@@ -24,7 +23,7 @@ open class PngChunk(
     val chunkType: ChunkType,
     val crc: Int,
     val bytes: ByteArray
-) : BinaryFileParser() {
+) {
 
     val ancillary: Boolean
     val isPrivate: Boolean

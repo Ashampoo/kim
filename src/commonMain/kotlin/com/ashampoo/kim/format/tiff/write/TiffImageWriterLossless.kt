@@ -40,7 +40,7 @@ class TiffImageWriterLossless(
 
             val byteReader = ByteArrayByteReader(exifBytes)
 
-            val contents = TiffReader().read(byteReader)
+            val contents = TiffReader.read(byteReader)
 
             val elements = mutableListOf<TiffElement>()
 

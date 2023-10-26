@@ -16,7 +16,11 @@
  */
 package com.ashampoo.kim.format.png
 
+import com.ashampoo.kim.common.ByteOrder
+
 object PngConstants {
+
+    val PNG_BYTE_ORDER = ByteOrder.BIG_ENDIAN
 
     /* ChunkType must be always 4 bytes */
     const val TPYE_LENGTH = 4

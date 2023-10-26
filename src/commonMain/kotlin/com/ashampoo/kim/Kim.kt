@@ -135,7 +135,7 @@ object Kim {
 
             val reader = DefaultRandomAccessByteReader(prePendingByteReader, length)
 
-            val tiffContents = TiffReader().read(reader)
+            val tiffContents = TiffReader.read(reader)
 
             /**
              * *Note:* Olympus ORF is currently unsupported because the preview offset
