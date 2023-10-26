@@ -28,6 +28,7 @@ import com.ashampoo.kim.format.xmp.XmpWriter
 import com.ashampoo.kim.input.ByteArrayByteReader
 import com.ashampoo.kim.model.ImageFormat
 import com.ashampoo.kim.model.MetadataUpdate
+import com.ashampoo.kim.model.TiffOrientation
 import com.ashampoo.kim.output.ByteArrayByteWriter
 import com.ashampoo.xmp.XMPMeta
 import com.ashampoo.xmp.XMPMetaFactory
@@ -98,6 +99,19 @@ internal object JpegUpdater : MetadataUpdater {
         if (exifUpdates.isEmpty())
             return inputBytes
 
+        if (exifUpdates.size == 1) {
+
+            val onlyUpdate = exifUpdates.first()
+
+            if (onlyUpdate is MetadataUpdate.Orientation) {
+
+                val updated = tryLosslessOrientationUpdate(inputBytes, onlyUpdate.tiffOrientation)
+
+                if (updated)
+                    return inputBytes
+            }
+        }
+
         val outputSet = exif?.createOutputSet() ?: TiffOutputSet()
 
         outputSet.applyUpdates(exifUpdates)
@@ -111,6 +125,25 @@ internal object JpegUpdater : MetadataUpdater {
         )
 
         return byteWriter.toByteArray()
+    }
+
+    private fun tryLosslessOrientationUpdate(
+        inputBytes: ByteArray,
+        tiffOrientation: TiffOrientation
+    ) : Boolean {
+
+        val byteReader = ByteArrayByteReader(inputBytes)
+
+        val orientationOffset = JpegOrientationOffsetFinder.findOrientationOffset(byteReader)
+
+        if (orientationOffset != null) {
+
+            inputBytes[orientationOffset.toInt()] = tiffOrientation.value.toByte()
+
+            return true
+        }
+
+        return false
     }
 
     private fun updateIptc(
