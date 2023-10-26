@@ -43,7 +43,7 @@ object JpegOrientationOffsetFinder {
     @Suppress("ComplexMethod")
     fun findOrientationOffset(
         byteReader: ByteReader
-    ): JpegOrientationOffset? = tryWithImageReadException {
+    ): Long? = tryWithImageReadException {
 
         val magicNumberBytes = byteReader.readBytes(ImageFormatMagicNumbers.jpegShort.size).toList()
 
@@ -138,6 +138,9 @@ object JpegOrientationOffsetFinder {
 
                     orientationOffset = positionCounter + 8
 
+                    if (exifByteOrder == ByteOrder.BIG_ENDIAN)
+                        orientationOffset++
+
                     break
 
                 } else {
@@ -153,6 +156,6 @@ object JpegOrientationOffsetFinder {
 
         } while (true)
 
-        return orientationOffset?.let { JpegOrientationOffset(exifByteOrder, it) }
+        return orientationOffset
     }
 }

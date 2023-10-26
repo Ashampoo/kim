@@ -15,7 +15,6 @@
  */
 package com.ashampoo.kim.format.jpeg
 
-import com.ashampoo.kim.common.ByteOrder
 import com.ashampoo.kim.input.ByteArrayByteReader
 import com.ashampoo.kim.testdata.KimTestData
 import kotlin.test.Test
@@ -23,30 +22,30 @@ import kotlin.test.assertEquals
 
 class JpegOrientationOffsetFinderTest {
 
-    val expectedMap = mapOf<Int, JpegOrientationOffset>(
-        1 to JpegOrientationOffset(ByteOrder.LITTLE_ENDIAN, 72),
-        2 to JpegOrientationOffset(ByteOrder.LITTLE_ENDIAN, 72),
-        15 to JpegOrientationOffset(ByteOrder.BIG_ENDIAN, 84),
-        19 to JpegOrientationOffset(ByteOrder.LITTLE_ENDIAN, 54),
-        20 to JpegOrientationOffset(ByteOrder.LITTLE_ENDIAN, 84),
-        21 to JpegOrientationOffset(ByteOrder.BIG_ENDIAN, 54),
-        25 to JpegOrientationOffset(ByteOrder.LITTLE_ENDIAN, 54),
-        26 to JpegOrientationOffset(ByteOrder.BIG_ENDIAN, 3446),
-        28 to JpegOrientationOffset(ByteOrder.LITTLE_ENDIAN, 66),
-        29 to JpegOrientationOffset(ByteOrder.LITTLE_ENDIAN, 114),
-        31 to JpegOrientationOffset(ByteOrder.LITTLE_ENDIAN, 54),
-        34 to JpegOrientationOffset(ByteOrder.LITTLE_ENDIAN, 72),
-        36 to JpegOrientationOffset(ByteOrder.BIG_ENDIAN, 72),
-        37 to JpegOrientationOffset(ByteOrder.LITTLE_ENDIAN, 114),
-        38 to JpegOrientationOffset(ByteOrder.LITTLE_ENDIAN, 102),
-        39 to JpegOrientationOffset(ByteOrder.LITTLE_ENDIAN, 66),
-        40 to JpegOrientationOffset(ByteOrder.LITTLE_ENDIAN, 54),
-        41 to JpegOrientationOffset(ByteOrder.BIG_ENDIAN, 54),
-        44 to JpegOrientationOffset(ByteOrder.LITTLE_ENDIAN, 54),
-        45 to JpegOrientationOffset(ByteOrder.LITTLE_ENDIAN, 54),
-        48 to JpegOrientationOffset(ByteOrder.BIG_ENDIAN, 54),
-        49 to JpegOrientationOffset(ByteOrder.LITTLE_ENDIAN, 54),
-        50 to JpegOrientationOffset(ByteOrder.LITTLE_ENDIAN, 54)
+    val expectedMap = mapOf<Int, Long>(
+        1 to 72,
+        2 to 72,
+        15 to 85,
+        19 to 54,
+        20 to 84,
+        21 to 55,
+        25 to 54,
+        26 to 3447,
+        28 to 66,
+        29 to 114,
+        31 to 54,
+        34 to 72,
+        36 to 73,
+        37 to 114,
+        38 to 102,
+        39 to 66,
+        40 to 54,
+        41 to 55,
+        44 to 54,
+        45 to 54,
+        48 to 55,
+        49 to 54,
+        50 to 54
     )
 
     /**
@@ -62,11 +61,11 @@ class JpegOrientationOffsetFinderTest {
 
             val byteReader = ByteArrayByteReader(bytes)
 
-            val result = JpegOrientationOffsetFinder.findOrientationOffset(byteReader)
+            val orientationOffset = JpegOrientationOffsetFinder.findOrientationOffset(byteReader)
 
             assertEquals(
                 expected = expectedMap.get(index),
-                actual = result
+                actual = orientationOffset
             )
         }
     }
