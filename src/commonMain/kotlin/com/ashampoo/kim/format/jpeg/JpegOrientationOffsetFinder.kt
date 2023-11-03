@@ -133,12 +133,12 @@ object JpegOrientationOffsetFinder {
 
                 if (tag == TiffTag.TIFF_TAG_ORIENTATION.tag) {
 
-                    orientationOffset = positionCounter + 8
+                    positionCounter += 8
 
                     if (exifByteOrder == ByteOrder.BIG_ENDIAN)
-                        orientationOffset++
+                        positionCounter++
 
-                    return orientationOffset
+                    return positionCounter
 
                 } else {
 
