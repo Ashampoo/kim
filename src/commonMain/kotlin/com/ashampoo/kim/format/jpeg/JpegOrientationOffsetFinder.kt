@@ -52,8 +52,6 @@ object JpegOrientationOffsetFinder {
             "JPEG magic number mismatch: ${magicNumberBytes.toByteArray().toSingleNumberHexes()}"
         }
 
-        var orientationOffset: Long? = null
-
         var positionCounter: Long = ImageFormatMagicNumbers.jpegShort.size.toLong()
 
         @Suppress("LoopWithTooManyJumpStatements")
