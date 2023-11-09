@@ -26,6 +26,8 @@ import com.ashampoo.kim.format.tiff.constants.ExifTag
 import com.ashampoo.kim.format.tiff.write.TiffImageWriterLossless
 import com.ashampoo.kim.format.tiff.write.TiffImageWriterLossy
 import com.ashampoo.kim.format.tiff.write.TiffOutputSet
+import com.ashampoo.kim.input.ByteArrayByteReader
+import com.ashampoo.kim.input.ByteReader
 import com.ashampoo.kim.output.ByteArrayByteWriter
 import com.ashampoo.kim.testdata.KimTestData
 import kotlinx.io.buffered
@@ -122,8 +124,8 @@ class PngWriterTest {
             )
 
             PngWriter.writeImage(
+                byteReader = ByteArrayByteReader(bytes),
                 byteWriter,
-                bytes,
                 exifBytes,
                 iptcBytes,
                 expectedXmp

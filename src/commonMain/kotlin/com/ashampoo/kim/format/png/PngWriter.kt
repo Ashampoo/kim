@@ -22,6 +22,7 @@ import com.ashampoo.kim.format.png.PngCrc.finishPartialCrc
 import com.ashampoo.kim.format.png.PngCrc.startPartialCrc
 import com.ashampoo.kim.format.png.chunks.PngTextChunk
 import com.ashampoo.kim.input.ByteArrayByteReader
+import com.ashampoo.kim.input.ByteReader
 import com.ashampoo.kim.output.ByteArrayByteWriter
 import com.ashampoo.kim.output.ByteWriter
 import io.ktor.utils.io.core.toByteArray
@@ -129,14 +130,12 @@ object PngWriter {
     }
 
     fun writeImage(
+        byteReader: ByteReader,
         byteWriter: ByteWriter,
-        originalBytes: ByteArray,
         exifBytes: ByteArray?,
         iptcBytes: ByteArray?,
         xmp: String?
     ) {
-
-        val byteReader = ByteArrayByteReader(originalBytes)
 
         val chunks = PngImageParser.readChunks(byteReader, null).toMutableList()
 

@@ -23,6 +23,7 @@ import com.ashampoo.kim.format.tiff.write.TiffImageWriterLossless
 import com.ashampoo.kim.format.tiff.write.TiffImageWriterLossy
 import com.ashampoo.kim.format.tiff.write.TiffOutputSet
 import com.ashampoo.kim.format.xmp.XmpWriter
+import com.ashampoo.kim.input.ByteArrayByteReader
 import com.ashampoo.kim.input.ByteReader
 import com.ashampoo.kim.model.ImageFormat
 import com.ashampoo.kim.model.MetadataUpdate
@@ -94,8 +95,8 @@ internal object PngUpdater : MetadataUpdater {
         }
 
         PngWriter.writeImage(
+            byteReader = ByteArrayByteReader(bytes),
             byteWriter = byteWriter,
-            originalBytes = bytes,
             exifBytes = exifBytes,
             /*
              * IPTC is not written because it's not recognized everywhere.
