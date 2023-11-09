@@ -36,6 +36,7 @@ import com.ashampoo.kim.format.tiff.TiffReader
 import com.ashampoo.kim.input.ByteArrayByteReader
 import com.ashampoo.kim.input.ByteReader
 import com.ashampoo.kim.input.DefaultRandomAccessByteReader
+import com.ashampoo.kim.input.KotlinIoSourceByteReader
 import com.ashampoo.kim.input.KtorByteReadChannelByteReader
 import com.ashampoo.kim.input.KtorInputByteReader
 import com.ashampoo.kim.input.PrePendingByteReader
@@ -44,6 +45,10 @@ import com.ashampoo.kim.model.MetadataUpdate
 import io.ktor.utils.io.ByteReadChannel
 import io.ktor.utils.io.core.ByteReadPacket
 import io.ktor.utils.io.core.use
+import kotlinx.io.Source
+import kotlinx.io.buffered
+import kotlinx.io.files.Path
+import kotlinx.io.files.SystemFileSystem
 
 object Kim {
 
@@ -52,7 +57,28 @@ object Kim {
     @kotlin.jvm.JvmStatic
     @Throws(ImageReadException::class)
     fun readMetadata(bytes: ByteArray): ImageMetadata? =
-        if (bytes.isEmpty()) null else readMetadata(ByteArrayByteReader(bytes), bytes.size.toLong())
+        if (bytes.isEmpty())
+            null
+        else
+            readMetadata(ByteArrayByteReader(bytes), bytes.size.toLong())
+
+    @OptIn(ExperimentalStdlibApi::class)
+    @kotlin.jvm.JvmStatic
+    @Throws(ImageReadException::class)
+    fun readMetadata(path: Path): ImageMetadata? = tryWithImageReadException {
+
+        if (!SystemFileSystem.exists(path))
+            return@tryWithImageReadException null
+
+        val metadata = SystemFileSystem.metadataOrNull(path)
+
+        if (metadata == null || !metadata.isRegularFile)
+            return null
+
+        return@tryWithImageReadException SystemFileSystem.source(path).buffered().use { source ->
+            readMetadata(KotlinIoSourceByteReader(source), metadata.size)
+        }
+    }
 
     @kotlin.jvm.JvmStatic
     @Throws(ImageReadException::class)

@@ -107,6 +107,9 @@ object KimTestData {
 
     fun getFileName(index: Int): String = "photo_$index.${getExtension(index)}"
 
+    fun getFullImageDiskPath(index: Int): String =
+        "$RESOURCE_PATH/full/${getFileName(index)}"
+
     fun getBytesOf(index: Int): ByteArray =
         getBytesOf(getFileName(index))
 

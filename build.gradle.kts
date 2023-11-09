@@ -167,6 +167,9 @@ kotlin {
 
             /* XMP handling */
             api("com.ashampoo:xmpcore:$xmpCoreVersion")
+
+            /* Multiplatform file access */
+            implementation("org.jetbrains.kotlinx:kotlinx-io-core:$ioCoreVersion")
         }
     }
 
@@ -179,9 +182,6 @@ kotlin {
 
             /* Multiplatform test resources */
             implementation("com.goncalossilva:resources:$testRessourcesVersion")
-
-            /* Multiplatform file access */
-            implementation("org.jetbrains.kotlinx:kotlinx-io-core:$ioCoreVersion")
         }
     }
 
