@@ -45,12 +45,28 @@ data class ChunkType internal constructor(
 
     companion object {
 
+        /** Image header */
         val IHDR = of("IHDR".toByteArray())
+
+        /** Image data */
         val IDAT = of("IDAT".toByteArray())
+
+        /** Image end */
         val IEND = of("IEND".toByteArray())
+
+        /** Time */
+        val TIME = of("tIME".toByteArray())
+
+        /** Text */
         val TEXT = of("tEXt".toByteArray())
+
+        /** Compressed text */
         val ZTXT = of("zTXt".toByteArray())
+
+        /** UTF-8 text */
         val ITXT = of("iTXt".toByteArray())
+
+        /** EXIF (since 2017) */
         val EXIF = of("eXIf".toByteArray())
 
         fun of(typeBytes: ByteArray): ChunkType {
