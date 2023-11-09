@@ -169,7 +169,7 @@ kotlin {
             api("com.ashampoo:xmpcore:$xmpCoreVersion")
 
             /* Multiplatform file access */
-            implementation("org.jetbrains.kotlinx:kotlinx-io-core:$ioCoreVersion")
+            api("org.jetbrains.kotlinx:kotlinx-io-core:$ioCoreVersion")
         }
     }
 
