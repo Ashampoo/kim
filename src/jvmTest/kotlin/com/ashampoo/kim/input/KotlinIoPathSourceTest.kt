@@ -21,6 +21,9 @@ import kotlinx.io.files.Path
 import kotlin.test.Test
 import kotlin.test.assertTrue
 
+/*
+ * The test is placed in jvmTest, because iOS Simulator won't run it.
+ */
 class KotlinIoPathSourceTest {
 
     /**
