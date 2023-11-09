@@ -47,10 +47,7 @@ import com.ashampoo.kim.output.ByteWriter
 import io.ktor.utils.io.ByteReadChannel
 import io.ktor.utils.io.core.ByteReadPacket
 import io.ktor.utils.io.core.use
-import kotlinx.io.Source
-import kotlinx.io.buffered
 import kotlinx.io.files.Path
-import kotlinx.io.files.SystemFileSystem
 
 object Kim {
 
@@ -69,16 +66,8 @@ object Kim {
     @Throws(ImageReadException::class)
     fun readMetadata(path: Path): ImageMetadata? = tryWithImageReadException {
 
-        if (!SystemFileSystem.exists(path))
-            return@tryWithImageReadException null
-
-        val metadata = SystemFileSystem.metadataOrNull(path)
-
-        if (metadata == null || !metadata.isRegularFile)
-            return null
-
-        return@tryWithImageReadException SystemFileSystem.source(path).buffered().use { source ->
-            readMetadata(KotlinIoSourceByteReader(source, metadata.size))
+        KotlinIoSourceByteReader.read(path) { byteReader ->
+            byteReader?.let { readMetadata(it) }
         }
     }
 

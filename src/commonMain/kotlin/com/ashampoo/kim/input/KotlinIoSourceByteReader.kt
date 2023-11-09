@@ -34,4 +34,23 @@ class KotlinIoSourceByteReader(
 
     override fun close() =
         source.close()
+
+    companion object {
+
+        @OptIn(ExperimentalStdlibApi::class)
+        fun <T> read(path: Path, block: (ByteReader?) -> T): T {
+
+            if (!SystemFileSystem.exists(path))
+                return block(null)
+
+            val metadata = SystemFileSystem.metadataOrNull(path)
+
+            if (metadata == null || !metadata.isRegularFile)
+                return block(null)
+
+            return SystemFileSystem.source(path).buffered().use { source ->
+                block(KotlinIoSourceByteReader(source, metadata.size))
+            }
+        }
+    }
 }
