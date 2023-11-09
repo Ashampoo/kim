@@ -16,6 +16,7 @@
 package com.ashampoo.kim.format.png
 
 import com.ashampoo.kim.Kim
+import com.ashampoo.kim.common.readBytes
 import com.ashampoo.kim.common.writeBytes
 import com.ashampoo.kim.model.GpsCoordinates
 import com.ashampoo.kim.model.MetadataUpdate
@@ -153,10 +154,8 @@ class PngUpdaterTest {
 
         if (!equals) {
 
-            SystemFileSystem
-                .sink(Path("build/$fileName"))
-                .buffered()
-                .use { it.write(actualBytes) }
+            Path("build/$fileName")
+                .writeBytes(actualBytes)
 
             fail("Photo $fileName has not the expected bytes!")
         }

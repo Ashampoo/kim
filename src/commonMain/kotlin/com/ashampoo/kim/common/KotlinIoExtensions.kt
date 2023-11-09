@@ -18,6 +18,7 @@ package com.ashampoo.kim.common
 import kotlinx.io.buffered
 import kotlinx.io.files.Path
 import kotlinx.io.files.SystemFileSystem
+import kotlinx.io.readByteArray
 
 @OptIn(ExperimentalStdlibApi::class)
 fun Path.copyTo(destination: Path) {
@@ -42,6 +43,13 @@ fun Path.writeBytes(byteArray: ByteArray) =
         .sink(this)
         .buffered()
         .use { it.write(byteArray)  }
+
+@OptIn(ExperimentalStdlibApi::class)
+fun Path.readBytes(): ByteArray =
+    SystemFileSystem
+        .source(this)
+        .buffered()
+        .use { it.readByteArray()  }
 
 @OptIn(ExperimentalStdlibApi::class)
 fun Path.exists() : Boolean =
