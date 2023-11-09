@@ -281,7 +281,7 @@ object PngImageParser : ImageParser {
         return chunks
     }
 
-    fun readSignature(byteReader: ByteReader) =
+    private fun readAndVerifySignature(byteReader: ByteReader) =
         byteReader.readAndVerifyBytes("PNG signature", PngConstants.PNG_SIGNATURE)
 
     fun readChunks(
@@ -289,7 +289,7 @@ object PngImageParser : ImageParser {
         chunkTypeFilter: List<ChunkType>?
     ): List<PngChunk> {
 
-        readSignature(byteReader)
+        readAndVerifySignature(byteReader)
 
         return readChunksInternal(byteReader, chunkTypeFilter)
     }
