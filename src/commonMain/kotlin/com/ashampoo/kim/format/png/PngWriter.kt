@@ -20,13 +20,94 @@ import com.ashampoo.kim.common.toHex
 import com.ashampoo.kim.format.png.PngCrc.continuePartialCrc
 import com.ashampoo.kim.format.png.PngCrc.finishPartialCrc
 import com.ashampoo.kim.format.png.PngCrc.startPartialCrc
+import com.ashampoo.kim.format.png.chunks.PngChunk
 import com.ashampoo.kim.format.png.chunks.PngTextChunk
-import com.ashampoo.kim.input.ByteArrayByteReader
+import com.ashampoo.kim.input.ByteReader
 import com.ashampoo.kim.output.ByteArrayByteWriter
 import com.ashampoo.kim.output.ByteWriter
 import io.ktor.utils.io.core.toByteArray
 
 object PngWriter {
+
+    fun writeImage(
+        byteReader: ByteReader,
+        byteWriter: ByteWriter,
+        exifBytes: ByteArray?,
+        iptcBytes: ByteArray?,
+        xmp: String?
+    ) = writeImage(
+        chunks = PngImageParser.readChunks(byteReader, null),
+        byteWriter = byteWriter,
+        exifBytes = exifBytes,
+        iptcBytes = iptcBytes,
+        xmp = xmp
+    )
+
+    fun writeImage(
+        chunks: List<PngChunk>,
+        byteWriter: ByteWriter,
+        exifBytes: ByteArray?,
+        iptcBytes: ByteArray?,
+        xmp: String?
+    ) {
+
+        val modifiedChunks = chunks.toMutableList()
+
+        /*
+         * Delete old chunks that are going to be replaced.
+         */
+
+        if (exifBytes != null)
+            modifiedChunks.removeAll {
+                it.chunkType == ChunkType.EXIF ||
+                    it is PngTextChunk && it.getKeyword() == PngConstants.EXIF_KEYWORD
+            }
+
+        if (iptcBytes != null)
+            modifiedChunks.removeAll { it is PngTextChunk && it.getKeyword() == PngConstants.IPTC_KEYWORD }
+
+        if (xmp != null)
+            modifiedChunks.removeAll { it is PngTextChunk && it.getKeyword() == PngConstants.XMP_KEYWORD }
+
+        /*
+         * Write the new file
+         */
+
+        byteWriter.write(PngConstants.PNG_SIGNATURE)
+
+        for (chunk in modifiedChunks) {
+
+            writeChunk(byteWriter, chunk.chunkType, chunk.bytes)
+
+            /* Write new metadata chunks right after the header. */
+            if (ChunkType.IHDR == chunk.chunkType) {
+
+                if (exifBytes != null)
+                    writeChunk(byteWriter, ChunkType.EXIF, exifBytes)
+
+                if (iptcBytes != null)
+                    writeIptcChunk(byteWriter, iptcBytes)
+
+                if (xmp != null)
+                    writeXmpChunk(byteWriter, xmp)
+            }
+        }
+
+        byteWriter.close()
+    }
+
+    fun writeImage(
+        chunks: List<PngChunk>,
+        byteWriter: ByteWriter,
+    ) {
+
+        byteWriter.write(PngConstants.PNG_SIGNATURE)
+
+        for (chunk in chunks)
+            writeChunk(byteWriter, chunk.chunkType, chunk.bytes)
+
+        byteWriter.close()
+    }
 
     private fun writeChunk(
         byteWriter: ByteWriter,
@@ -126,60 +207,5 @@ object PngWriter {
         writer.write(textToWrite.encodeToByteArray())
 
         writeChunk(byteWriter, ChunkType.TEXT, writer.toByteArray())
-    }
-
-    fun writeImage(
-        byteWriter: ByteWriter,
-        originalBytes: ByteArray,
-        exifBytes: ByteArray?,
-        iptcBytes: ByteArray?,
-        xmp: String?
-    ) {
-
-        val byteReader = ByteArrayByteReader(originalBytes)
-
-        val chunks = PngImageParser.readChunks(byteReader, null).toMutableList()
-
-        /*
-         * Delete old chunks that are going to be replaced.
-         */
-
-        if (exifBytes != null)
-            chunks.removeAll {
-                it.chunkType == ChunkType.EXIF ||
-                    it is PngTextChunk && it.getKeyword() == PngConstants.EXIF_KEYWORD
-            }
-
-        if (iptcBytes != null)
-            chunks.removeAll { it is PngTextChunk && it.getKeyword() == PngConstants.IPTC_KEYWORD }
-
-        if (xmp != null)
-            chunks.removeAll { it is PngTextChunk && it.getKeyword() == PngConstants.XMP_KEYWORD }
-
-        /*
-         * Write the new file
-         */
-
-        byteWriter.write(PngConstants.PNG_SIGNATURE)
-
-        for (chunk in chunks) {
-
-            writeChunk(byteWriter, chunk.chunkType, chunk.bytes)
-
-            /* Write new metadata chunks right after the header. */
-            if (ChunkType.IHDR == chunk.chunkType) {
-
-                if (exifBytes != null)
-                    writeChunk(byteWriter, ChunkType.EXIF, exifBytes)
-
-                if (iptcBytes != null)
-                    writeIptcChunk(byteWriter, iptcBytes)
-
-                if (xmp != null)
-                    writeXmpChunk(byteWriter, xmp)
-            }
-        }
-
-        byteWriter.close()
     }
 }

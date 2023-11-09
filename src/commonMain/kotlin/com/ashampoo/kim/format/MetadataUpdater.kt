@@ -16,11 +16,16 @@
 package com.ashampoo.kim.format
 
 import com.ashampoo.kim.common.ImageWriteException
+import com.ashampoo.kim.input.ByteReader
 import com.ashampoo.kim.model.MetadataUpdate
+import com.ashampoo.kim.output.ByteWriter
 
 fun interface MetadataUpdater {
 
     @Throws(ImageWriteException::class)
-    fun update(bytes: ByteArray, updates: Set<MetadataUpdate>): ByteArray
-
+    fun update(
+        byteReader: ByteReader,
+        byteWriter: ByteWriter,
+        updates: Set<MetadataUpdate>
+    )
 }

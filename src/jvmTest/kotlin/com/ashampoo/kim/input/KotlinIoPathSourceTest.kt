@@ -13,22 +13,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.ashampoo.kim
+package com.ashampoo.kim.input
 
-import com.ashampoo.kim.common.writeBytes
+import com.ashampoo.kim.Kim
 import com.ashampoo.kim.testdata.KimTestData
 import kotlinx.io.files.Path
 import kotlin.test.Test
-import kotlin.test.fail
+import kotlin.test.assertTrue
 
-class ImageMetadataTest {
+/*
+ * The test is placed in jvmTest, because iOS Simulator won't run it.
+ */
+class KotlinIoPathSourceTest {
 
     /**
-     * Regression test based on a fixed small set of test files.
+     * Test to check that KotlinIoSourceByteReader works correctly.
      */
     @OptIn(ExperimentalStdlibApi::class)
     @Test
-    fun testToString() {
+    fun testToStringWithKotlinIoPath() {
 
         for (index in 1..KimTestData.TEST_PHOTO_COUNT) {
 
@@ -36,9 +39,9 @@ class ImageMetadataTest {
             if (index == 21)
                 continue
 
-            val bytes = KimTestData.getBytesOf(index)
+            val diskPath = KimTestData.getFullImageDiskPath(index)
 
-            val metadata = Kim.readMetadata(bytes)
+            val metadata = Kim.readMetadata(Path(diskPath))
 
             val actualToString = metadata.toString().encodeToByteArray()
 
@@ -46,13 +49,11 @@ class ImageMetadataTest {
 
             val equals = expectedToString.contentEquals(actualToString)
 
-            if (!equals) {
-
-                Path("build/photo_$index.txt")
-                    .writeBytes(actualToString)
-
-                fail("photo_$index.txt is different.")
-            }
+            /*
+             * Note that ImageMetadataTest already writes the expected result.
+             * This test does not write it to avoid confusion.
+             */
+            assertTrue(equals, "photo_$index.txt is different.")
         }
     }
 }

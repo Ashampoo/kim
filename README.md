@@ -32,15 +32,15 @@ of Ashampoo Photos, which, in turn, is driven by user community feedback.
 ## Installation
 
 ```
-implementation("com.ashampoo:kim:0.5.5")
+implementation("com.ashampoo:kim:0.6")
 ```
 
 ## Sample usages
 
 ### Read metadata
 
-`Kim.readMetadata()` takes `kotlin.ByteArray` & `io.ktor.utils.io.core.ByteReadPacket`
-on all platforms and depending on the platform also `java.io.File`,
+`Kim.readMetadata()` takes `kotlin.ByteArray`, `kotlinx.io.files.Path`, Ktor `ByteReadPacket` &
+Ktor `ByteReadChannel` on all platforms and depending on the platform also `java.io.File`,
 `java.io.InputStream`, `NSData` and string paths.
 
 ```kotlin

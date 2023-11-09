@@ -21,6 +21,8 @@ class ByteArrayByteReader(
     private val bytes: ByteArray
 ) : RandomAccessByteReader {
 
+    override val contentLength: Long = bytes.size.toLong()
+
     private var position = 0
 
     override fun readByte(): Byte? {

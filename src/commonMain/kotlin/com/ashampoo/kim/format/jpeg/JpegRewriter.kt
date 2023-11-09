@@ -16,7 +16,6 @@
  */
 package com.ashampoo.kim.format.jpeg
 
-import com.ashampoo.kim.common.ByteOrder
 import com.ashampoo.kim.common.ImageWriteException
 import com.ashampoo.kim.common.getRemainingBytes
 import com.ashampoo.kim.common.toBytes

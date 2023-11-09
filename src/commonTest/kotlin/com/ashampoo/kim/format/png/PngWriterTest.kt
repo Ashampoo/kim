@@ -16,6 +16,7 @@
 package com.ashampoo.kim.format.png
 
 import com.ashampoo.kim.Kim
+import com.ashampoo.kim.common.writeBytes
 import com.ashampoo.kim.format.jpeg.iptc.IptcBlock
 import com.ashampoo.kim.format.jpeg.iptc.IptcConstants
 import com.ashampoo.kim.format.jpeg.iptc.IptcParser
@@ -26,13 +27,10 @@ import com.ashampoo.kim.format.tiff.constants.ExifTag
 import com.ashampoo.kim.format.tiff.write.TiffImageWriterLossless
 import com.ashampoo.kim.format.tiff.write.TiffImageWriterLossy
 import com.ashampoo.kim.format.tiff.write.TiffOutputSet
+import com.ashampoo.kim.input.ByteArrayByteReader
 import com.ashampoo.kim.output.ByteArrayByteWriter
 import com.ashampoo.kim.testdata.KimTestData
-import kotlinx.io.buffered
-import kotlinx.io.files.FileSystem
 import kotlinx.io.files.Path
-import kotlinx.io.files.SystemFileSystem
-import kotlinx.io.files.sink
 import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -122,8 +120,8 @@ class PngWriterTest {
             )
 
             PngWriter.writeImage(
+                byteReader = ByteArrayByteReader(bytes),
                 byteWriter,
-                bytes,
                 exifBytes,
                 iptcBytes,
                 expectedXmp
@@ -148,10 +146,8 @@ class PngWriterTest {
 
             if (!equals) {
 
-                SystemFileSystem
-                    .sink(Path("build/photo_${index}_modified.png"))
-                    .buffered()
-                    .use { it.write(newBytes) }
+                Path("build/photo_${index}_modified.png")
+                    .writeBytes(newBytes)
 
                 fail("Bytes for test image #$index are different.")
             }

@@ -16,6 +16,7 @@
 package com.ashampoo.kim.model
 
 import com.ashampoo.kim.common.PhotoValueFormatter
+import com.ashampoo.xmp.XMPRegionArea
 import kotlinx.datetime.Instant
 import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.TimeZone
@@ -52,7 +53,7 @@ data class PhotoMetadata(
     val keywords: Set<String> = emptySet(),
 
     /* Persons */
-    val faces: Map<String, RegionArea> = emptyMap(),
+    val faces: Map<String, XMPRegionArea> = emptyMap(),
     val personsInImage: Set<String> = emptySet()
 
 ) {

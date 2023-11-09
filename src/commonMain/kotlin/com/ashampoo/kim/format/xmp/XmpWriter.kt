@@ -18,11 +18,9 @@ package com.ashampoo.kim.format.xmp
 import com.ashampoo.kim.Kim.underUnitTesting
 import com.ashampoo.kim.common.GpsUtil
 import com.ashampoo.kim.model.MetadataUpdate
-import com.ashampoo.xmp.XMPConst
 import com.ashampoo.xmp.XMPException
 import com.ashampoo.xmp.XMPMeta
 import com.ashampoo.xmp.XMPMetaFactory
-import com.ashampoo.xmp.options.PropertyOptions
 import com.ashampoo.xmp.options.SerializeOptions
 import kotlinx.datetime.Instant
 import kotlinx.datetime.TimeZone
@@ -37,14 +35,6 @@ object XmpWriter {
             .setUseCompactFormat(true)
             .setUseCanonicalFormat(false)
             .setSort(true)
-
-    private val arrayOptions = PropertyOptions().setArray(true)
-
-    /** GPSVersionID as written by default by ExifTool. */
-    private const val DEFAULT_GPS_VERSION_ID = "2.3.0.0"
-
-    private const val XMP_DC_SUBJECT = "subject"
-    private const val XMP_IPTCEXT_PERSON_IN_IMAGE = "PersonInImage"
 
     /**
      * @param writePackageWrapper Should be "true" for embedded XMP
@@ -62,11 +52,7 @@ object XmpWriter {
             when (update) {
 
                 is MetadataUpdate.Orientation ->
-                    xmpMeta.setPropertyInteger(
-                        XMPConst.NS_TIFF,
-                        "Orientation",
-                        update.tiffOrientation.value
-                    )
+                    xmpMeta.setOrientation(update.tiffOrientation.value)
 
                 is MetadataUpdate.TakenDate -> {
 
@@ -81,135 +67,37 @@ object XmpWriter {
                             .toLocalDateTime(timeZone)
                             .toString()
 
-                        xmpMeta.setProperty(XMPConst.NS_EXIF, "DateTimeOriginal", isoDate)
+                        xmpMeta.setDateTimeOriginal(isoDate)
 
                     } else {
 
-                        xmpMeta.deleteProperty(XMPConst.NS_EXIF, "DateTimeOriginal")
+                        xmpMeta.deleteDateTimeOriginal()
                     }
                 }
 
                 is MetadataUpdate.GpsCoordinates -> {
 
-                    if (update.gpsCoordinates != null) {
-
-                        /* This was a mandatory flag in the past, so we write it. */
-                        xmpMeta.setProperty(
-                            XMPConst.NS_EXIF,
-                            "GPSVersionID",
-                            DEFAULT_GPS_VERSION_ID
-                        )
-
-                        xmpMeta.setProperty(
-                            XMPConst.NS_EXIF, "GPSLatitude",
-                            GpsUtil.decimalLatitudeToDDM(update.gpsCoordinates.latitude)
-                        )
-
-                        xmpMeta.setProperty(
-                            XMPConst.NS_EXIF, "GPSLongitude",
+                    if (update.gpsCoordinates != null)
+                        xmpMeta.setGpsCoordinates(
+                            GpsUtil.decimalLatitudeToDDM(update.gpsCoordinates.latitude),
                             GpsUtil.decimalLongitudeToDDM(update.gpsCoordinates.longitude)
                         )
-
-                    } else {
-
-                        xmpMeta.deleteProperty(XMPConst.NS_EXIF, "GPSVersionID")
-                        xmpMeta.deleteProperty(XMPConst.NS_EXIF, "GPSLatitude")
-                        xmpMeta.deleteProperty(XMPConst.NS_EXIF, "GPSLongitude")
-                    }
+                    else
+                        xmpMeta.deleteGpsCoordinates()
                 }
 
                 is MetadataUpdate.Rating ->
-                    xmpMeta.setPropertyInteger(
-                        XMPConst.NS_XMP,
-                        "Rating",
-                        update.photoRating.value
-                    )
+                    xmpMeta.setRating(update.photoRating.value)
 
-                is MetadataUpdate.Keywords -> {
+                is MetadataUpdate.Keywords ->
+                    xmpMeta.setKeywords(update.keywords)
 
-                    /* Delete existing entries, if any */
-                    xmpMeta.deleteProperty(XMPConst.NS_DC, XMP_DC_SUBJECT)
+//              is MetadataUpdate.Faces -> {
+//                  TODO How do write the fields?
+//              }
 
-                    if (update.keywords.isNotEmpty()) {
-
-                        /* Create a new array property. */
-                        xmpMeta.setProperty(
-                            XMPConst.NS_DC,
-                            XMP_DC_SUBJECT,
-                            null,
-                            arrayOptions
-                        )
-
-                        /* Fill the new array with keywords. */
-                        for (keyword in update.keywords.sorted())
-                            xmpMeta.appendArrayItem(
-                                schemaNS = XMPConst.NS_DC,
-                                arrayName = XMP_DC_SUBJECT,
-                                itemValue = keyword
-                            )
-                    }
-                }
-
-//                is MetadataUpdate.Faces -> {
-//
-//                    error("Writing of faces is not supported right now.")
-//
-//                    // TODO Write faces
-//                    if (update.faces.isNotEmpty()) {
-//
-//                        /* Delete existing entries, if any */
-//                        xmpMeta.deleteProperty(NS_MWG_RS, "Regions")
-//
-//                        xmpMeta.setStructField(
-//                            NS_MWG_RS, "Regions/mwg-rs:AppliedToDimensions",
-//                            XMPConst.TYPE_DIMENSIONS, "w",
-//                            xmpMeta.widthPx.toString()
-//                        )
-//
-//                        xmpMeta.setStructField(
-//                            NS_MWG_RS, "Regions/mwg-rs:AppliedToDimensions",
-//                            XMPConst.TYPE_DIMENSIONS, "h",
-//                            xmpMeta.heightPx.toString()
-//                        )
-//
-//                        xmpMeta.setStructField(
-//                            NS_MWG_RS, "Regions/mwg-rs:AppliedToDimensions",
-//                            XMPConst.TYPE_DIMENSIONS, "unit", "pixel"
-//                        )
-//
-//                        xmpMeta.setStructField(
-//                            NS_MWG_RS, "Regions", NS_MWG_RS, "RegionList", null,
-//                            orderedArrayOptions
-//                        )
-//
-//                        // How to proceed further?
-//                    }
-//                }
-
-                is MetadataUpdate.Persons -> {
-
-                    /* Delete existing entries, if any */
-                    xmpMeta.deleteProperty(XMPConst.NS_IPTC_EXT, XMP_IPTCEXT_PERSON_IN_IMAGE)
-
-                    if (update.personsInImage.isNotEmpty()) {
-
-                        /* Create a new array property. */
-                        xmpMeta.setProperty(
-                            XMPConst.NS_IPTC_EXT,
-                            XMP_IPTCEXT_PERSON_IN_IMAGE,
-                            null,
-                            arrayOptions
-                        )
-
-                        /* Fill the new array with persons. */
-                        for (person in update.personsInImage.sorted())
-                            xmpMeta.appendArrayItem(
-                                schemaNS = XMPConst.NS_IPTC_EXT,
-                                arrayName = XMP_IPTCEXT_PERSON_IN_IMAGE,
-                                itemValue = person
-                            )
-                    }
-                }
+                is MetadataUpdate.Persons ->
+                    xmpMeta.setPersonsInImage(update.personsInImage)
             }
         }
 

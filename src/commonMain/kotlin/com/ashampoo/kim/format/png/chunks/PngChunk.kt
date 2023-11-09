@@ -53,5 +53,10 @@ open class PngChunk(
     }
 
     override fun toString() =
-        "PngChunk " + chunkType.name + " (" + length + ")"
+        "PngChunk ${chunkType.name} " +
+            "($length bytes, " +
+            (if (ancillary) "ancillary" else "critical") + ", " +
+            (if (isPrivate) "private" else "public") + ", " +
+            (if (reserved) "reserved" else "not reserved") + ", " +
+            (if (safeToCopy) "safe to copy" else "not safe to copy") + ")"
 }

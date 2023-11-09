@@ -18,7 +18,8 @@ package com.ashampoo.kim.input
 import java.io.InputStream
 
 open class JvmInputStreamByteReader(
-    private val inputStream: InputStream
+    private val inputStream: InputStream,
+    override val contentLength: Long
 ) : ByteReader {
 
     override fun readByte(): Byte? {

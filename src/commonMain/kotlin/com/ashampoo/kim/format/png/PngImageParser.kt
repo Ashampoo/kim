@@ -44,14 +44,26 @@ object PngImageParser : ImageParser {
 
     private val pngByteOrder = ByteOrder.BIG_ENDIAN
 
+    private val metadataChunkTypes = listOf(
+        ChunkType.IHDR,
+        ChunkType.TEXT,
+        ChunkType.ZTXT,
+        ChunkType.ITXT,
+        ChunkType.EXIF
+    )
+
     @Throws(ImageReadException::class)
-    override fun parseMetadata(byteReader: ByteReader, length: Long): ImageMetadata =
+    override fun parseMetadata(byteReader: ByteReader): ImageMetadata =
         tryWithImageReadException {
 
-            val chunks = readChunks(
-                byteReader,
-                listOf(ChunkType.IHDR, ChunkType.TEXT, ChunkType.ZTXT, ChunkType.ITXT, ChunkType.EXIF)
-            )
+            val chunks = readChunks(byteReader, metadataChunkTypes)
+
+            return@tryWithImageReadException parseMetadataFromChunks(chunks)
+        }
+
+    @Throws(ImageReadException::class)
+    fun parseMetadataFromChunks(chunks: List<PngChunk>): ImageMetadata =
+        tryWithImageReadException {
 
             val imageSize = getImageSize(chunks)
 
@@ -224,7 +236,7 @@ object PngImageParser : ImageParser {
 
     private fun readChunksInternal(
         byteReader: ByteReader,
-        chunkTypes: List<ChunkType>?
+        chunkTypeFilter: List<ChunkType>?
     ): List<PngChunk> {
 
         val chunks = mutableListOf<PngChunk>()
@@ -238,7 +250,7 @@ object PngImageParser : ImageParser {
 
             val chunkType = ChunkType.of(byteReader.readBytes(PngConstants.TPYE_LENGTH))
 
-            val keep = chunkTypes?.contains(chunkType) ?: true
+            val keep = chunkTypeFilter?.contains(chunkType) ?: true
 
             var bytes: ByteArray? = null
 
@@ -269,16 +281,16 @@ object PngImageParser : ImageParser {
         return chunks
     }
 
-    fun readSignature(byteReader: ByteReader) =
-        byteReader.readAndVerifyBytes("png signature", PngConstants.PNG_SIGNATURE)
+    private fun readAndVerifySignature(byteReader: ByteReader) =
+        byteReader.readAndVerifyBytes("PNG signature", PngConstants.PNG_SIGNATURE)
 
     fun readChunks(
         byteReader: ByteReader,
-        chunkTypes: List<ChunkType>?
+        chunkTypeFilter: List<ChunkType>?
     ): List<PngChunk> {
 
-        readSignature(byteReader)
+        readAndVerifySignature(byteReader)
 
-        return readChunksInternal(byteReader, chunkTypes)
+        return readChunksInternal(byteReader, chunkTypeFilter)
     }
 }

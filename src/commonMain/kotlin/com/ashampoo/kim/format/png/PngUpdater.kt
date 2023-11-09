@@ -15,7 +15,6 @@
  */
 package com.ashampoo.kim.format.png
 
-import com.ashampoo.kim.Kim
 import com.ashampoo.kim.common.ImageWriteException
 import com.ashampoo.kim.common.tryWithImageWriteException
 import com.ashampoo.kim.format.MetadataUpdater
@@ -23,9 +22,10 @@ import com.ashampoo.kim.format.tiff.write.TiffImageWriterLossless
 import com.ashampoo.kim.format.tiff.write.TiffImageWriterLossy
 import com.ashampoo.kim.format.tiff.write.TiffOutputSet
 import com.ashampoo.kim.format.xmp.XmpWriter
-import com.ashampoo.kim.model.ImageFormat
+import com.ashampoo.kim.input.ByteReader
 import com.ashampoo.kim.model.MetadataUpdate
 import com.ashampoo.kim.output.ByteArrayByteWriter
+import com.ashampoo.kim.output.ByteWriter
 import com.ashampoo.xmp.XMPMeta
 import com.ashampoo.xmp.XMPMetaFactory
 
@@ -33,20 +33,17 @@ internal object PngUpdater : MetadataUpdater {
 
     @Throws(ImageWriteException::class)
     override fun update(
-        bytes: ByteArray,
+        byteReader: ByteReader,
+        byteWriter: ByteWriter,
         updates: Set<MetadataUpdate>
-    ): ByteArray = tryWithImageWriteException {
+    ) = tryWithImageWriteException {
 
-        if (updates.isEmpty())
-            return bytes
+        /* Prevent accidental calls that have no effect other than unnecessary work. */
+        check(updates.isNotEmpty()) { "There are no updates to perform." }
 
-        val kimMetadata = Kim.readMetadata(bytes)
+        val chunks = PngImageParser.readChunks(byteReader, chunkTypeFilter = null)
 
-        if (kimMetadata == null)
-            throw ImageWriteException("Could not read file.")
-
-        if (kimMetadata.imageFormat != ImageFormat.PNG)
-            throw ImageWriteException("Can only update PNG.")
+        val kimMetadata = PngImageParser.parseMetadataFromChunks(chunks)
 
         val xmpMeta: XMPMeta = if (kimMetadata.xmp != null)
             XMPMetaFactory.parseFromString(kimMetadata.xmp)
@@ -84,11 +81,9 @@ internal object PngUpdater : MetadataUpdater {
             null
         }
 
-        val byteWriter = ByteArrayByteWriter()
-
         PngWriter.writeImage(
+            chunks = chunks,
             byteWriter = byteWriter,
-            originalBytes = bytes,
             exifBytes = exifBytes,
             /*
              * IPTC is not written because it's not recognized everywhere.
@@ -98,7 +93,5 @@ internal object PngUpdater : MetadataUpdater {
             iptcBytes = null,
             xmp = updatedXmp
         )
-
-        return@tryWithImageWriteException byteWriter.toByteArray()
     }
 }

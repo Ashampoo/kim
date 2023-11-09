@@ -20,16 +20,17 @@ package com.ashampoo.kim.input
  * provides random access needed for parsing TIFF files.
  */
 class DefaultRandomAccessByteReader(
-    val byteReader: ByteReader,
-    val size: Long
+    val byteReader: ByteReader
 ) : RandomAccessByteReader {
+
+    override val contentLength: Long = byteReader.contentLength
 
     private var position: Int = 0
     private val buffer: MutableList<Byte> = ArrayList(INITIAL_SIZE)
 
     override fun readByte(): Byte? {
 
-        if (position >= size)
+        if (position >= contentLength)
             return null
 
         val endIndex = position + 1
@@ -42,10 +43,10 @@ class DefaultRandomAccessByteReader(
 
     override fun readBytes(count: Int): ByteArray {
 
-        if (position >= size)
+        if (position >= contentLength)
             return byteArrayOf()
 
-        val endIndex = position + count.coerceAtMost(size.toInt())
+        val endIndex = position + count.coerceAtMost(contentLength.toInt())
 
         if (endIndex > buffer.size)
             readToIndex(endIndex)
@@ -63,8 +64,8 @@ class DefaultRandomAccessByteReader(
 
     override fun skipTo(position: Int) {
 
-        require(position <= size - 1) {
-            "Can't skip after max length: $position > ${size - 1}"
+        require(position <= contentLength - 1) {
+            "Can't skip after max length: $position > ${contentLength - 1}"
         }
 
         this.position = position
@@ -80,7 +81,7 @@ class DefaultRandomAccessByteReader(
         return buffer.subList(start, endIndex).toByteArray()
     }
 
-    override fun getLength(): Long = size
+    override fun getLength(): Long = contentLength
 
     override fun close() =
         byteReader.close()

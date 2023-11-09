@@ -16,16 +16,14 @@
 package com.ashampoo.kim.format.xmp
 
 import com.ashampoo.kim.Kim
+import com.ashampoo.kim.common.writeBytes
 import com.ashampoo.kim.model.GpsCoordinates
 import com.ashampoo.kim.model.MetadataUpdate
 import com.ashampoo.kim.model.PhotoRating
 import com.ashampoo.kim.model.TiffOrientation
 import com.ashampoo.kim.testdata.KimTestData
 import com.ashampoo.xmp.XMPMetaFactory
-import kotlinx.io.buffered
 import kotlinx.io.files.Path
-import kotlinx.io.files.SystemFileSystem
-import kotlinx.io.files.sink
 import kotlin.test.Test
 import kotlin.test.fail
 
@@ -94,10 +92,8 @@ class XmpWriterTest {
 
         if (!equals) {
 
-            SystemFileSystem
-                .sink(Path("build/${baseFileName}_mod.xmp"))
-                .buffered()
-                .use { it.write(actualXmp.encodeToByteArray()) }
+            Path("build/${baseFileName}_mod.xmp")
+                .writeBytes(actualXmp.encodeToByteArray())
 
             fail("Photo $baseFileName has not the expected bytes!")
         }

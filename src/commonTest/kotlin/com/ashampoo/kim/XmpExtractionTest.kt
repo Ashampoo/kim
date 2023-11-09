@@ -15,11 +15,9 @@
  */
 package com.ashampoo.kim
 
+import com.ashampoo.kim.common.writeBytes
 import com.ashampoo.kim.testdata.KimTestData
-import kotlinx.io.buffered
 import kotlinx.io.files.Path
-import kotlinx.io.files.SystemFileSystem
-import kotlinx.io.files.sink
 import kotlin.test.Test
 import kotlin.test.assertNotNull
 import kotlin.test.fail
@@ -73,10 +71,8 @@ class XmpExtractionTest {
 
             if (!equals) {
 
-                SystemFileSystem
-                    .sink(Path("build/photo_$index.xmp"))
-                    .buffered()
-                    .use { it.write(actualXmpBytes) }
+                Path("build/photo_$index.xmp")
+                    .writeBytes(actualXmpBytes)
 
                 fail("Photo $index has not the expected bytes!")
             }

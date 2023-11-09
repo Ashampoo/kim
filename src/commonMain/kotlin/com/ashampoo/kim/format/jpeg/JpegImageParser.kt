@@ -41,7 +41,7 @@ import com.ashampoo.kim.model.ImageSize
 object JpegImageParser : ImageParser {
 
     @Throws(ImageReadException::class)
-    override fun parseMetadata(byteReader: ByteReader, length: Long): ImageMetadata =
+    override fun parseMetadata(byteReader: ByteReader): ImageMetadata =
         tryWithImageReadException {
 
             val segments = readSegments(
