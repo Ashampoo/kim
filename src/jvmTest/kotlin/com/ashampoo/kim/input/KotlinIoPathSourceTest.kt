@@ -13,17 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-package com.ashampoo.kim.format.xmp
+package com.ashampoo.kim.input
 
 import com.ashampoo.kim.Kim
 import com.ashampoo.kim.testdata.KimTestData
-import kotlinx.io.buffered
 import kotlinx.io.files.Path
-import kotlinx.io.files.SystemFileSystem
 import kotlin.test.Test
 import kotlin.test.assertTrue
-import kotlin.test.fail
 
 class KotlinIoPathSourceTest {
 
