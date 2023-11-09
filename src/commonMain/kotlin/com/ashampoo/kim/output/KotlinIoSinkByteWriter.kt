@@ -16,12 +16,9 @@
 package com.ashampoo.kim.output
 
 import kotlinx.io.Sink
-import kotlinx.io.Source
 import kotlinx.io.buffered
 import kotlinx.io.files.Path
 import kotlinx.io.files.SystemFileSystem
-import kotlinx.io.readByteArray
-import kotlin.math.sin
 
 class KotlinIoSinkByteWriter(
     val sink: Sink,

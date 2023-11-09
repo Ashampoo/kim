@@ -29,10 +29,7 @@ import com.ashampoo.kim.input.ByteArrayByteReader
 import com.ashampoo.kim.model.GpsCoordinates
 import com.ashampoo.kim.output.ByteArrayByteWriter
 import com.ashampoo.kim.testdata.KimTestData
-import kotlinx.io.buffered
 import kotlinx.io.files.Path
-import kotlinx.io.files.SystemFileSystem
-import kotlinx.io.files.sink
 import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.test.assertEquals

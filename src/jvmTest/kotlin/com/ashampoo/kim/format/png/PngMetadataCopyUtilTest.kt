@@ -16,17 +16,11 @@
 package com.ashampoo.kim.format.png
 
 import com.ashampoo.kim.common.copyTo
+import com.ashampoo.kim.common.exists
 import com.ashampoo.kim.common.readBytes
-import com.ashampoo.kim.common.writeBytes
 import com.ashampoo.kim.testdata.KimTestData
-import kotlinx.io.buffered
-import kotlinx.io.files.FileSystem
 import kotlinx.io.files.Path
-import kotlinx.io.files.SystemFileSystem
-import kotlinx.io.write
 import org.junit.Test
-import javax.print.attribute.standard.Destination
-import kotlin.math.sin
 import kotlin.test.assertTrue
 import kotlin.test.fail
 
@@ -43,7 +37,7 @@ class PngMetadataCopyUtilTest {
         Path(KimTestData.getFullImageDiskPath(51)).copyTo(destination)
 
         /* Check that the file was actually copied. */
-        assertTrue(SystemFileSystem.exists(destination), "copy_test.png does not exist.")
+        assertTrue(destination.exists(), "copy_test.png does not exist.")
 
         PngMetadataCopyUtil.copy(
             source = source,

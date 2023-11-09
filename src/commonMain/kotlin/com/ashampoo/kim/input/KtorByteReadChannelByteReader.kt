@@ -15,7 +15,6 @@
  */
 package com.ashampoo.kim.input
 
-import com.ashampoo.kim.input.ByteReader
 import io.ktor.utils.io.ByteReadChannel
 import io.ktor.utils.io.cancel
 import io.ktor.utils.io.core.readBytes

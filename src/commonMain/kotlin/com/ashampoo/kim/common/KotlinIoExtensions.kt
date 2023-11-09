@@ -42,15 +42,15 @@ fun Path.writeBytes(byteArray: ByteArray) =
     SystemFileSystem
         .sink(this)
         .buffered()
-        .use { it.write(byteArray)  }
+        .use { it.write(byteArray) }
 
 @OptIn(ExperimentalStdlibApi::class)
 fun Path.readBytes(): ByteArray =
     SystemFileSystem
         .source(this)
         .buffered()
-        .use { it.readByteArray()  }
+        .use { it.readByteArray() }
 
 @OptIn(ExperimentalStdlibApi::class)
-fun Path.exists() : Boolean =
+fun Path.exists(): Boolean =
     SystemFileSystem.exists(this)

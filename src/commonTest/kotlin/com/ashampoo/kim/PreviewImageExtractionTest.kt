@@ -18,10 +18,7 @@ package com.ashampoo.kim
 import com.ashampoo.kim.common.writeBytes
 import com.ashampoo.kim.input.ByteArrayByteReader
 import com.ashampoo.kim.testdata.KimTestData
-import kotlinx.io.buffered
 import kotlinx.io.files.Path
-import kotlinx.io.files.SystemFileSystem
-import kotlinx.io.files.sink
 import kotlin.test.Test
 import kotlin.test.assertNotNull
 import kotlin.test.fail

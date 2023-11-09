@@ -23,10 +23,7 @@ import com.ashampoo.kim.model.PhotoRating
 import com.ashampoo.kim.model.TiffOrientation
 import com.ashampoo.kim.testdata.KimTestData
 import com.ashampoo.xmp.XMPMetaFactory
-import kotlinx.io.buffered
 import kotlinx.io.files.Path
-import kotlinx.io.files.SystemFileSystem
-import kotlinx.io.files.sink
 import kotlin.test.Test
 import kotlin.test.fail
 

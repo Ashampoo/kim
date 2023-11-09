@@ -28,14 +28,9 @@ import com.ashampoo.kim.format.tiff.write.TiffImageWriterLossless
 import com.ashampoo.kim.format.tiff.write.TiffImageWriterLossy
 import com.ashampoo.kim.format.tiff.write.TiffOutputSet
 import com.ashampoo.kim.input.ByteArrayByteReader
-import com.ashampoo.kim.input.ByteReader
 import com.ashampoo.kim.output.ByteArrayByteWriter
 import com.ashampoo.kim.testdata.KimTestData
-import kotlinx.io.buffered
-import kotlinx.io.files.FileSystem
 import kotlinx.io.files.Path
-import kotlinx.io.files.SystemFileSystem
-import kotlinx.io.files.sink
 import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.test.assertEquals

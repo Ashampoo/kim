@@ -18,7 +18,6 @@ package com.ashampoo.kim.format
 import com.ashampoo.kim.common.ImageWriteException
 import com.ashampoo.kim.input.ByteReader
 import com.ashampoo.kim.model.MetadataUpdate
-import com.ashampoo.kim.output.ByteArrayByteWriter
 import com.ashampoo.kim.output.ByteWriter
 
 fun interface MetadataUpdater {

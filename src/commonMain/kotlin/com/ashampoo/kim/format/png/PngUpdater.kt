@@ -15,7 +15,6 @@
  */
 package com.ashampoo.kim.format.png
 
-import com.ashampoo.kim.Kim
 import com.ashampoo.kim.common.ImageWriteException
 import com.ashampoo.kim.common.tryWithImageWriteException
 import com.ashampoo.kim.format.MetadataUpdater
@@ -23,9 +22,7 @@ import com.ashampoo.kim.format.tiff.write.TiffImageWriterLossless
 import com.ashampoo.kim.format.tiff.write.TiffImageWriterLossy
 import com.ashampoo.kim.format.tiff.write.TiffOutputSet
 import com.ashampoo.kim.format.xmp.XmpWriter
-import com.ashampoo.kim.input.ByteArrayByteReader
 import com.ashampoo.kim.input.ByteReader
-import com.ashampoo.kim.model.ImageFormat
 import com.ashampoo.kim.model.MetadataUpdate
 import com.ashampoo.kim.output.ByteArrayByteWriter
 import com.ashampoo.kim.output.ByteWriter
