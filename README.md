@@ -39,8 +39,8 @@ implementation("com.ashampoo:kim:0.5.5")
 
 ### Read metadata
 
-`Kim.readMetadata()` takes `kotlin.ByteArray` & `io.ktor.utils.io.core.ByteReadPacket`
-on all platforms and depending on the platform also `java.io.File`,
+`Kim.readMetadata()` takes `kotlin.ByteArray`, Ktor `ByteReadPacket` &
+Ktor `ByteReadChannel` on all platforms and depending on the platform also `java.io.File`,
 `java.io.InputStream`, `NSData` and string paths.
 
 ```kotlin
