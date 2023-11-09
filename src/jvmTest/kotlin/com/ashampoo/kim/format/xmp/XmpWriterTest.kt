@@ -16,6 +16,7 @@
 package com.ashampoo.kim.format.xmp
 
 import com.ashampoo.kim.Kim
+import com.ashampoo.kim.common.writeBytes
 import com.ashampoo.kim.model.GpsCoordinates
 import com.ashampoo.kim.model.MetadataUpdate
 import com.ashampoo.kim.model.PhotoRating
@@ -94,10 +95,8 @@ class XmpWriterTest {
 
         if (!equals) {
 
-            SystemFileSystem
-                .sink(Path("build/${baseFileName}_mod.xmp"))
-                .buffered()
-                .use { it.write(actualXmp.encodeToByteArray()) }
+            Path("build/${baseFileName}_mod.xmp")
+                .writeBytes(actualXmp.encodeToByteArray())
 
             fail("Photo $baseFileName has not the expected bytes!")
         }

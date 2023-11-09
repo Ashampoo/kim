@@ -16,6 +16,7 @@
 package com.ashampoo.kim.format.jpeg
 
 import com.ashampoo.kim.Kim
+import com.ashampoo.kim.common.writeBytes
 import com.ashampoo.kim.testdata.KimTestData
 import kotlinx.io.buffered
 import kotlinx.io.files.Path
@@ -58,10 +59,8 @@ class ExifThumbnailExtractionTest {
 
             if (!equals) {
 
-                SystemFileSystem
-                    .sink(Path("build/photo_${index}_exifthumb.jpg"))
-                    .buffered()
-                    .use { it.write(actualThumbnailBytes) }
+                Path("build/photo_${index}_exifthumb.jpg")
+                    .writeBytes(actualThumbnailBytes)
 
                 fail("Photo $index has not the expected bytes!")
             }

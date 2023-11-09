@@ -16,6 +16,7 @@
 package com.ashampoo.kim.format.jpeg
 
 import com.ashampoo.kim.Kim
+import com.ashampoo.kim.common.writeBytes
 import com.ashampoo.kim.input.ByteArrayByteReader
 import com.ashampoo.kim.testdata.KimTestData
 import kotlinx.io.buffered
@@ -49,10 +50,8 @@ class JpegMetadataExtractorTest {
 
             if (!equals) {
 
-                SystemFileSystem
-                    .sink(Path("build/photo_${index}_header.jpg"))
-                    .buffered()
-                    .use { it.write(actualMetadataBytes) }
+                Path("build/photo_${index}_header.jpg")
+                    .writeBytes(actualMetadataBytes)
 
                 fail("Photo $index has not the expected bytes!")
             }

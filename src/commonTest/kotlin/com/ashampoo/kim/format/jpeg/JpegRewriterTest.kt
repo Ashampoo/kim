@@ -16,6 +16,7 @@
 package com.ashampoo.kim.format.jpeg
 
 import com.ashampoo.kim.Kim
+import com.ashampoo.kim.common.writeBytes
 import com.ashampoo.kim.format.ImageMetadata
 import com.ashampoo.kim.format.jpeg.iptc.IptcMetadata
 import com.ashampoo.kim.format.jpeg.iptc.IptcRecord
@@ -153,10 +154,8 @@ class JpegRewriterTest {
 
             if (!equals) {
 
-                SystemFileSystem
-                    .sink(Path("build/photo_${index}_modified.jpg"))
-                    .buffered()
-                    .use { it.write(actualMetadataBytes) }
+                Path("build/photo_${index}_modified.jpg")
+                    .writeBytes(actualMetadataBytes)
 
                 fail("Photo $index has not the expected bytes!")
             }

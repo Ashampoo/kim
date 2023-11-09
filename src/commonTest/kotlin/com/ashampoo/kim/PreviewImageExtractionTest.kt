@@ -15,6 +15,7 @@
  */
 package com.ashampoo.kim
 
+import com.ashampoo.kim.common.writeBytes
 import com.ashampoo.kim.input.ByteArrayByteReader
 import com.ashampoo.kim.testdata.KimTestData
 import kotlinx.io.buffered
@@ -66,10 +67,8 @@ class PreviewImageExtractionTest {
 
             if (!equals) {
 
-                SystemFileSystem
-                    .sink(Path("build/photo_${index}_preview.jpg"))
-                    .buffered()
-                    .use { it.write(previewImageBytes) }
+                Path("build/photo_${index}_preview.jpg")
+                    .writeBytes(previewImageBytes)
 
                 fail("Photo $index has not the expected bytes!")
             }

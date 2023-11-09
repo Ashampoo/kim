@@ -15,6 +15,7 @@
  */
 package com.ashampoo.kim
 
+import com.ashampoo.kim.common.writeBytes
 import com.ashampoo.kim.testdata.KimTestData
 import kotlinx.io.buffered
 import kotlinx.io.files.Path
@@ -50,10 +51,8 @@ class ImageMetadataTest {
 
             if (!equals) {
 
-                SystemFileSystem
-                    .sink(Path("build/photo_$index.txt"))
-                    .buffered()
-                    .use { it.write(actualToString) }
+                Path("build/photo_$index.txt")
+                    .writeBytes(actualToString)
 
                 fail("photo_$index.txt is different.")
             }

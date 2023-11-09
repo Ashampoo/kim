@@ -16,6 +16,7 @@
 package com.ashampoo.kim.format.jpeg
 
 import com.ashampoo.kim.Kim
+import com.ashampoo.kim.common.writeBytes
 import com.ashampoo.kim.model.GpsCoordinates
 import com.ashampoo.kim.model.MetadataUpdate
 import com.ashampoo.kim.model.PhotoRating
@@ -140,10 +141,8 @@ class JpegUpdaterTest {
 
         if (!resource.exists()) {
 
-            SystemFileSystem
-                .sink(Path("build/$fileName"))
-                .buffered()
-                .use { it.write(actualBytes) }
+            Path("build/$fileName")
+                .writeBytes(actualBytes)
 
             fail("Reference image $fileName does not exist.")
         }

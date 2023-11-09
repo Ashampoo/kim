@@ -16,6 +16,7 @@
 package com.ashampoo.kim.format.png
 
 import com.ashampoo.kim.Kim
+import com.ashampoo.kim.common.writeBytes
 import com.ashampoo.kim.format.jpeg.iptc.IptcBlock
 import com.ashampoo.kim.format.jpeg.iptc.IptcConstants
 import com.ashampoo.kim.format.jpeg.iptc.IptcParser
@@ -150,10 +151,8 @@ class PngWriterTest {
 
             if (!equals) {
 
-                SystemFileSystem
-                    .sink(Path("build/photo_${index}_modified.png"))
-                    .buffered()
-                    .use { it.write(newBytes) }
+                Path("build/photo_${index}_modified.png")
+                    .writeBytes(newBytes)
 
                 fail("Bytes for test image #$index are different.")
             }

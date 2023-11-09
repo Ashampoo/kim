@@ -13,44 +13,39 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.ashampoo.kim.input
+package com.ashampoo.kim.output
 
-import com.ashampoo.kim.common.exists
+import kotlinx.io.Sink
 import kotlinx.io.Source
 import kotlinx.io.buffered
 import kotlinx.io.files.Path
 import kotlinx.io.files.SystemFileSystem
 import kotlinx.io.readByteArray
+import kotlin.math.sin
 
-class KotlinIoSourceByteReader(
-    val source: Source,
-    override val contentLength: Long
-) : ByteReader {
+class KotlinIoSinkByteWriter(
+    val sink: Sink,
+) : ByteWriter {
 
-    override fun readByte(): Byte? =
-        if (source.exhausted()) null else source.readByte()
+    override fun write(byte: Int) =
+        sink.writeByte(byte.toByte())
 
-    override fun readBytes(count: Int): ByteArray =
-        source.readByteArray(count)
+    override fun write(byteArray: ByteArray) =
+        sink.write(byteArray)
+
+    override fun flush() =
+        sink.flush()
 
     override fun close() =
-        source.close()
+        sink.close()
 
     companion object {
 
         @OptIn(ExperimentalStdlibApi::class)
-        fun <T> read(path: Path, block: (ByteReader?) -> T): T {
+        fun <T> write(path: Path, block: (ByteWriter) -> T): T {
 
-            if (!path.exists())
-                return block(null)
-
-            val metadata = SystemFileSystem.metadataOrNull(path)
-
-            if (metadata == null || !metadata.isRegularFile)
-                return block(null)
-
-            return SystemFileSystem.source(path).buffered().use { source ->
-                block(KotlinIoSourceByteReader(source, metadata.size))
+            return SystemFileSystem.sink(path).buffered().use { sink ->
+                block(KotlinIoSinkByteWriter(sink))
             }
         }
     }
