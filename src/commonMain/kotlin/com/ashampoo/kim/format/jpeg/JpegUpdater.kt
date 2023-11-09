@@ -26,10 +26,12 @@ import com.ashampoo.kim.format.tiff.TiffContents
 import com.ashampoo.kim.format.tiff.write.TiffOutputSet
 import com.ashampoo.kim.format.xmp.XmpWriter
 import com.ashampoo.kim.input.ByteArrayByteReader
+import com.ashampoo.kim.input.ByteReader
 import com.ashampoo.kim.model.ImageFormat
 import com.ashampoo.kim.model.MetadataUpdate
 import com.ashampoo.kim.model.TiffOrientation
 import com.ashampoo.kim.output.ByteArrayByteWriter
+import com.ashampoo.kim.output.ByteWriter
 import com.ashampoo.xmp.XMPMeta
 import com.ashampoo.xmp.XMPMetaFactory
 
@@ -37,12 +39,19 @@ internal object JpegUpdater : MetadataUpdater {
 
     @Throws(ImageWriteException::class)
     override fun update(
-        bytes: ByteArray,
+        byteReader: ByteReader,
+        byteWriter: ByteWriter,
         updates: Set<MetadataUpdate>
-    ): ByteArray = tryWithImageWriteException {
+    ) = tryWithImageWriteException {
 
-        if (updates.isEmpty())
-            return bytes
+        /* Prevent accidental calls that have no effect other than unnecessary work. */
+        check(updates.isNotEmpty()) { "There are no updates to perform." }
+
+        /*
+         * TODO Avoid the read all bytes and stream instead.
+         *  This will require the implementation of single-shot updates to all fields.
+         */
+        val bytes = byteReader.readRemainingBytes()
 
         val kimMetadata = Kim.readMetadata(bytes)
 
@@ -58,7 +67,7 @@ internal object JpegUpdater : MetadataUpdater {
 
         val iptcUpdatedBytes = updateIptc(exifUpdatedBytes, kimMetadata.iptc, updates)
 
-        return@tryWithImageWriteException iptcUpdatedBytes
+        byteWriter.write(iptcUpdatedBytes)
     }
 
     private fun updateXmp(inputBytes: ByteArray, xmp: String?, updates: Set<MetadataUpdate>): ByteArray {

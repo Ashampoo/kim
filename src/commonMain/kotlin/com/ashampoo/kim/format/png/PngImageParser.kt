@@ -45,7 +45,7 @@ object PngImageParser : ImageParser {
     private val pngByteOrder = ByteOrder.BIG_ENDIAN
 
     @Throws(ImageReadException::class)
-    override fun parseMetadata(byteReader: ByteReader, length: Long): ImageMetadata =
+    override fun parseMetadata(byteReader: ByteReader): ImageMetadata =
         tryWithImageReadException {
 
             val chunks = readChunks(

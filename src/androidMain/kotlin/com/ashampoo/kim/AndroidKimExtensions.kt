@@ -25,4 +25,4 @@ import java.io.InputStream
  */
 @Throws(ImageReadException::class)
 fun Kim.readMetadataAndroid(inputStream: InputStream, length: Long): ImageMetadata? =
-    Kim.readMetadata(AndroidInputStreamByteReader(inputStream), length)
+    Kim.readMetadata(AndroidInputStreamByteReader(inputStream, length))

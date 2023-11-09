@@ -25,6 +25,8 @@ import io.ktor.utils.io.core.Closeable
 @Suppress("TooManyFunctions", "ComplexInterface", "MagicNumber")
 interface ByteReader : Closeable {
 
+    val contentLength: Long
+
     /**
      * Returns the next Byte, if any.
      */

@@ -26,6 +26,7 @@ import kotlinx.coroutines.runBlocking
  */
 class KtorByteReadChannelByteReader(
     private val channel: ByteReadChannel,
+    override val contentLength: Long,
     private val bufferSize: Long = DEFAULT_BUFFER_SIZE
 ) : ByteReader {
 

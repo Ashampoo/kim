@@ -23,7 +23,7 @@ import java.io.InputStream
 
 @Throws(ImageReadException::class)
 fun Kim.readMetadata(inputStream: InputStream, length: Long): ImageMetadata? =
-    Kim.readMetadata(JvmInputStreamByteReader(inputStream), length)
+    Kim.readMetadata(JvmInputStreamByteReader(inputStream, length))
 
 @Throws(ImageReadException::class)
 fun Kim.readMetadata(path: String): ImageMetadata? =

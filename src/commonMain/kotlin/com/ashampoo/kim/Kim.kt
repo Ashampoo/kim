@@ -42,6 +42,8 @@ import com.ashampoo.kim.input.KtorInputByteReader
 import com.ashampoo.kim.input.PrePendingByteReader
 import com.ashampoo.kim.model.ImageFormat
 import com.ashampoo.kim.model.MetadataUpdate
+import com.ashampoo.kim.output.ByteArrayByteWriter
+import com.ashampoo.kim.output.ByteWriter
 import io.ktor.utils.io.ByteReadChannel
 import io.ktor.utils.io.core.ByteReadPacket
 import io.ktor.utils.io.core.use
@@ -60,7 +62,7 @@ object Kim {
         if (bytes.isEmpty())
             null
         else
-            readMetadata(ByteArrayByteReader(bytes), bytes.size.toLong())
+            readMetadata(ByteArrayByteReader(bytes))
 
     @OptIn(ExperimentalStdlibApi::class)
     @kotlin.jvm.JvmStatic
@@ -76,25 +78,24 @@ object Kim {
             return null
 
         return@tryWithImageReadException SystemFileSystem.source(path).buffered().use { source ->
-            readMetadata(KotlinIoSourceByteReader(source), metadata.size)
+            readMetadata(KotlinIoSourceByteReader(source, metadata.size))
         }
     }
 
     @kotlin.jvm.JvmStatic
     @Throws(ImageReadException::class)
     fun readMetadata(byteReadPacket: ByteReadPacket): ImageMetadata? =
-        readMetadata(KtorInputByteReader(byteReadPacket), byteReadPacket.remaining)
+        readMetadata(KtorInputByteReader(byteReadPacket))
 
     @kotlin.jvm.JvmStatic
     @Throws(ImageReadException::class)
     fun readMetadata(byteReadChannel: ByteReadChannel, contentLength: Long): ImageMetadata? =
-        readMetadata(KtorByteReadChannelByteReader(byteReadChannel), contentLength)
+        readMetadata(KtorByteReadChannelByteReader(byteReadChannel, contentLength))
 
     @kotlin.jvm.JvmStatic
     @Throws(ImageReadException::class)
     fun readMetadata(
-        byteReader: ByteReader,
-        length: Long
+        byteReader: ByteReader
     ): ImageMetadata? = tryWithImageReadException {
 
         byteReader.use {
@@ -115,7 +116,7 @@ object Kim {
              * "TIFF" for every TIFF-based RAW format like CR2.
              */
             return@use imageParser
-                .parseMetadata(newReader, length)
+                .parseMetadata(newReader)
                 .copy(imageFormat = imageFormat)
         }
     }
@@ -151,8 +152,7 @@ object Kim {
     @kotlin.jvm.JvmStatic
     @Throws(ImageReadException::class)
     fun extractPreviewImage(
-        byteReader: ByteReader,
-        length: Long
+        byteReader: ByteReader
     ): ByteArray? = tryWithImageReadException {
 
         byteReader.use {
@@ -166,7 +166,7 @@ object Kim {
             if (imageFormat == ImageFormat.RAF)
                 return@use RafPreviewExtractor.extractPreviewImage(prePendingByteReader)
 
-            val reader = DefaultRandomAccessByteReader(prePendingByteReader, length)
+            val reader = DefaultRandomAccessByteReader(prePendingByteReader)
 
             val tiffContents = TiffReader.read(reader)
 
@@ -191,10 +191,13 @@ object Kim {
     }
 
     /**
-     * Updates the file with the wanted updates.
+     * Updates the file with the desired changes.
      *
-     * **Note**: We don't have an good API for single-shot write all fields right now.
-     * So this is inefficent at this time. This method is experimental and will likely change.
+     * **Note**: This method is provided for convenience, but it's not recommended for
+     * very large image files that should not be entirely loaded into memory.
+     * Currently, the update logic reads the entire file, which may not be efficient
+     * for large files. Please be aware that this behavior is subject to change in
+     * future updates.
      */
     @kotlin.jvm.JvmStatic
     @Throws(ImageWriteException::class)
@@ -203,15 +206,48 @@ object Kim {
         updates: Set<MetadataUpdate>
     ): ByteArray = tryWithImageWriteException {
 
-        /* If there is nothing to update we return the bytes as is. */
-        if (updates.isEmpty())
-            return bytes
+        /* Prevent accidental calls that have no effect other than unnecessary work. */
+        check(updates.isNotEmpty()) { "There are no updates to perform." }
 
-        val imageFormat = ImageFormat.detect(bytes)
+        val byteArrayByteWriter = ByteArrayByteWriter()
 
-        return@tryWithImageWriteException when (imageFormat) {
-            ImageFormat.JPEG -> JpegUpdater.update(bytes, updates)
-            ImageFormat.PNG -> PngUpdater.update(bytes, updates)
+        update(
+            byteReader = ByteArrayByteReader(bytes),
+            byteWriter = byteArrayByteWriter,
+            updates = updates
+        )
+
+        return@tryWithImageWriteException byteArrayByteWriter.toByteArray()
+    }
+
+    /**
+     * Updates the file with the wanted updates.
+     *
+     * **Note**: We don't have an good API for single-shot write all fields right now.
+     * So this is inefficent at this time as it reads the whole file in.
+     *
+     * But this already represents the planned future API for streaming updates.
+     */
+    @kotlin.jvm.JvmStatic
+    @Throws(ImageWriteException::class)
+    fun update(
+        byteReader: ByteReader,
+        byteWriter: ByteWriter,
+        updates: Set<MetadataUpdate>
+    ) = tryWithImageWriteException {
+
+        /* Prevent accidental calls that have no effect other than unnecessary work. */
+        check(updates.isNotEmpty()) { "There are no updates to perform." }
+
+        val headerBytes = byteReader.readBytes(ImageFormat.REQUIRED_HEADER_BYTE_COUNT_FOR_DETECTION)
+
+        val imageFormat = ImageFormat.detect(headerBytes)
+
+        val prePendingByteReader = PrePendingByteReader(byteReader, headerBytes.toList())
+
+        when (imageFormat) {
+            ImageFormat.JPEG -> JpegUpdater.update(prePendingByteReader, byteWriter, updates)
+            ImageFormat.PNG -> PngUpdater.update(prePendingByteReader, byteWriter, updates)
             null -> throw ImageWriteException("Unsupported or unsupoorted file format.")
             else -> throw ImageWriteException("Can't embed metadata into $imageFormat.")
         }

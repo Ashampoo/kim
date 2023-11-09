@@ -55,8 +55,7 @@ class PreviewImageExtractionTest {
             val bytes = KimTestData.getBytesOf(index)
 
             val previewImageBytes = Kim.extractPreviewImage(
-                byteReader = ByteArrayByteReader(bytes),
-                length = bytes.size.toLong()
+                ByteArrayByteReader(bytes)
             )
 
             assertNotNull(previewImageBytes, "File #$index has no preview.")

@@ -22,7 +22,8 @@ import kotlinx.io.files.SystemFileSystem
 import kotlinx.io.readByteArray
 
 class KotlinIoSourceByteReader(
-    val source: Source
+    val source: Source,
+    override val contentLength: Long
 ) : ByteReader {
 
     override fun readByte(): Byte? =

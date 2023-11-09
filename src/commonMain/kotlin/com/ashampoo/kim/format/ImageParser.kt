@@ -27,7 +27,7 @@ import com.ashampoo.kim.model.ImageFormat
 fun interface ImageParser {
 
     @Throws(ImageReadException::class)
-    fun parseMetadata(byteReader: ByteReader, length: Long): ImageMetadata
+    fun parseMetadata(byteReader: ByteReader): ImageMetadata
 
     companion object {
 

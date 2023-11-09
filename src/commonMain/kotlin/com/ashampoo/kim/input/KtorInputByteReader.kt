@@ -27,6 +27,8 @@ class KtorInputByteReader(
     private val byteReadPacket: ByteReadPacket
 ) : ByteReader {
 
+    override val contentLength: Long = byteReadPacket.remaining
+
     override fun readByte(): Byte? =
         if (byteReadPacket.endOfInput) null else byteReadPacket.readByte()
 

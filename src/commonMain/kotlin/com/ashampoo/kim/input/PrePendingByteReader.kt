@@ -25,6 +25,8 @@ class PrePendingByteReader(
     prependedBytes: List<Byte>
 ) : ByteReader {
 
+    override val contentLength: Long = delegate.contentLength
+
     private val prependedBytesBuffer = ArrayDeque(prependedBytes)
 
     override fun readByte(): Byte? {

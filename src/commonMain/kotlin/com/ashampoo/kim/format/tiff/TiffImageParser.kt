@@ -31,10 +31,10 @@ import io.ktor.utils.io.core.String
 object TiffImageParser : ImageParser {
 
     @Throws(ImageReadException::class)
-    override fun parseMetadata(byteReader: ByteReader, length: Long): ImageMetadata =
+    override fun parseMetadata(byteReader: ByteReader): ImageMetadata =
         tryWithImageReadException {
 
-            val randomAccessByteReader = DefaultRandomAccessByteReader(byteReader, length)
+            val randomAccessByteReader = DefaultRandomAccessByteReader(byteReader)
 
             val exif = TiffReader.read(randomAccessByteReader)
 
