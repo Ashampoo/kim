@@ -19,9 +19,9 @@ import com.ashampoo.kim.Kim
 import com.ashampoo.kim.model.GpsCoordinates
 import com.ashampoo.kim.model.PhotoMetadata
 import com.ashampoo.kim.model.PhotoRating
-import com.ashampoo.kim.model.RegionArea
 import com.ashampoo.kim.model.TiffOrientation
 import com.ashampoo.kim.testdata.KimTestData
+import com.ashampoo.xmp.XMPRegionArea
 import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -90,7 +90,7 @@ class XmpReaderTest {
                 rating = PhotoRating.FOUR_STARS,
                 keywords = setOf("Pflanze", "Ecke", "MacBook"),
                 faces = mapOf(
-                    "MacBook" to RegionArea(0.581172, 0.66247, 0.583093, 0.502398)
+                    "MacBook" to XMPRegionArea(0.581172, 0.66247, 0.583093, 0.502398)
                 ),
                 personsInImage = emptySet()
             ),
@@ -130,7 +130,7 @@ class XmpReaderTest {
                     "was solls"
                 ),
                 faces = mapOf(
-                    "Swiper" to RegionArea(0.404336, 0.422313, 0.124503, 0.240097)
+                    "Swiper" to XMPRegionArea(0.404336, 0.422313, 0.124503, 0.240097)
                 ),
                 personsInImage = setOf("Swiper")
             ),
@@ -165,9 +165,9 @@ class XmpReaderTest {
                 rating = PhotoRating.REJECTED,
                 keywords = setOf("animal", "bird"),
                 faces = mapOf(
-                    "Eye Left" to RegionArea(0.295179, 0.278880, 0.033245, 0.05),
-                    "Eye Right" to RegionArea(0.814990, 0.472579, 0.033245, 0.05),
-                    "Nothing" to RegionArea(0.501552, 0.905484, 0.033245, 0.05)
+                    "Eye Left" to XMPRegionArea(0.295179, 0.278880, 0.033245, 0.05),
+                    "Eye Right" to XMPRegionArea(0.814990, 0.472579, 0.033245, 0.05),
+                    "Nothing" to XMPRegionArea(0.501552, 0.905484, 0.033245, 0.05)
                 ),
                 personsInImage = setOf("Eye Left", "Eye Right", "Nothing")
             ),
@@ -237,7 +237,7 @@ class XmpReaderTest {
                     "was solls"
                 ),
                 faces = mapOf(
-                    "Swiper" to RegionArea(0.404336, 0.422313, 0.124503, 0.240097)
+                    "Swiper" to XMPRegionArea(0.404336, 0.422313, 0.124503, 0.240097)
                 ),
                 personsInImage = setOf("Swiper")
             ),

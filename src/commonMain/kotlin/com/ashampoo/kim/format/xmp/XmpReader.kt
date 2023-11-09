@@ -20,9 +20,7 @@ import com.ashampoo.kim.common.GpsUtil
 import com.ashampoo.kim.model.GpsCoordinates
 import com.ashampoo.kim.model.PhotoMetadata
 import com.ashampoo.kim.model.PhotoRating
-import com.ashampoo.kim.model.RegionArea
 import com.ashampoo.kim.model.TiffOrientation
-import com.ashampoo.xmp.XMPConst
 import com.ashampoo.xmp.XMPException
 import com.ashampoo.xmp.XMPMetaFactory
 import kotlinx.datetime.LocalDateTime
@@ -38,10 +36,6 @@ import kotlinx.datetime.toInstant
  */
 object XmpReader {
 
-    private const val XMP_DC_SUBJECT = "subject"
-    private const val XMP_IPTCEXT_PERSON_IN_IMAGE = "PersonInImage"
-    private const val XMP_ACDSEE_KEYWORDS = "keywords"
-
     @Suppress("LoopWithTooManyJumpStatements")
     @Throws(XMPException::class)
     fun readMetadata(xmp: String): PhotoMetadata {
@@ -52,7 +46,7 @@ object XmpReader {
          * Read taken date
          */
 
-        val takenDateIsoString = xmpMeta.getPropertyString(XMPConst.NS_EXIF, "DateTimeOriginal")
+        val takenDateIsoString = xmpMeta.getDateTimeOriginal()
 
         val timeZone = if (underUnitTesting)
             TimeZone.of("GMT+02:00")
@@ -76,124 +70,17 @@ object XmpReader {
         else
             null
 
-        val orientation =
-            TiffOrientation.of(xmpMeta.getPropertyInteger(XMPConst.NS_TIFF, "Orientation"))
-
-        val rating = PhotoRating.of(xmpMeta.getPropertyString(XMPConst.NS_XMP, "Rating"))
-
         /*
          * Read location
          */
 
-        val latitude =
-            GpsUtil.dmsToDecimal(xmpMeta.getPropertyString(XMPConst.NS_EXIF, "GPSLatitude"))
-
-        val longitude =
-            GpsUtil.dmsToDecimal(xmpMeta.getPropertyString(XMPConst.NS_EXIF, "GPSLongitude"))
+        val latitude = GpsUtil.dmsToDecimal(xmpMeta.getGpsLatitude())
+        val longitude = GpsUtil.dmsToDecimal(xmpMeta.getGpsLongitude())
 
         val gpsCoordinates = if (latitude != null && longitude != null)
             GpsCoordinates(latitude, longitude)
         else
             null
-
-        /*
-         * Read dc:subject for keywords
-         */
-
-        val keywords = mutableSetOf<String>()
-
-        val subjectCount = xmpMeta.countArrayItems(XMPConst.NS_DC, XMP_DC_SUBJECT)
-
-        for (index in 1..subjectCount) {
-
-            val keyword = xmpMeta.getPropertyString(
-                XMPConst.NS_DC,
-                "$XMP_DC_SUBJECT[$index]"
-            ) ?: continue
-
-            keywords.add(keyword)
-        }
-
-        /*
-         * Try to read acdsee:keywords instead, so that ACDSee users see their tags.
-         */
-
-        if (keywords.isEmpty()) {
-
-            val acdseeKeywordsExist = xmpMeta.doesPropertyExist(XMPConst.NS_ACDSEE, XMP_ACDSEE_KEYWORDS)
-
-            if (acdseeKeywordsExist) {
-
-                val acdseeKeywordCount = xmpMeta.countArrayItems(XMPConst.NS_ACDSEE, XMP_ACDSEE_KEYWORDS)
-
-                for (index in 1..acdseeKeywordCount) {
-
-                    val keyword = xmpMeta.getPropertyString(
-                        XMPConst.NS_ACDSEE,
-                        "$XMP_ACDSEE_KEYWORDS[$index]"
-                    ) ?: continue
-
-                    keywords.add(keyword)
-                }
-            }
-        }
-
-        /*
-         * Read mwg-rs:Regions for faces
-         */
-
-        val faces = mutableMapOf<String, RegionArea>()
-
-        val regionListExists = xmpMeta.doesPropertyExist(XMPConst.NS_MWG_RS, "Regions/mwg-rs:RegionList")
-
-        if (regionListExists) {
-
-            val regionCount = xmpMeta.countArrayItems(XMPConst.NS_MWG_RS, "Regions/mwg-rs:RegionList")
-
-            for (index in 1..regionCount) {
-
-                val prefix = "Regions/mwg-rs:RegionList[$index]/mwg-rs"
-
-                val regionType = xmpMeta.getPropertyString(XMPConst.NS_MWG_RS, "$prefix:Type")
-
-                /* We only want faces. */
-                if (regionType != "Face")
-                    continue
-
-                val name = xmpMeta.getPropertyString(XMPConst.NS_MWG_RS, "$prefix:Name")
-                val xPos = xmpMeta.getPropertyDouble(XMPConst.NS_MWG_RS, "$prefix:Area/stArea:x")
-                val yPos = xmpMeta.getPropertyDouble(XMPConst.NS_MWG_RS, "$prefix:Area/stArea:y")
-                val width = xmpMeta.getPropertyDouble(XMPConst.NS_MWG_RS, "$prefix:Area/stArea:w")
-                val height = xmpMeta.getPropertyDouble(XMPConst.NS_MWG_RS, "$prefix:Area/stArea:h")
-
-                /* Skip regions with missing data. */
-                @Suppress("ComplexCondition")
-                if (name == null || xPos == null || yPos == null || width == null || height == null)
-                    continue
-
-                faces[name] = RegionArea(xPos, yPos, width, height)
-            }
-        }
-
-        /*
-         * Read Iptc4xmpExt:PersonInImage for persons
-         */
-
-        val personsInImage = mutableSetOf<String>()
-
-        val personsInImageCount =
-            xmpMeta.countArrayItems(XMPConst.NS_IPTC_EXT, XMP_IPTCEXT_PERSON_IN_IMAGE)
-
-        for (index in 1..personsInImageCount) {
-
-            val personName =
-                xmpMeta.getPropertyString(
-                    XMPConst.NS_IPTC_EXT,
-                    "$XMP_IPTCEXT_PERSON_IN_IMAGE[$index]"
-                ) ?: continue
-
-            personsInImage.add(personName)
-        }
 
         /*
          * Compile into PhotoMetadata object
@@ -202,14 +89,16 @@ object XmpReader {
         return PhotoMetadata(
             widthPx = null,
             heightPx = null,
-            orientation = orientation,
+            orientation = TiffOrientation.of(xmpMeta.getOrientation()),
             takenDate = takenDate,
             gpsCoordinates = gpsCoordinates,
             location = null, // TODO Read location information to avoid GPS resolving!
-            rating = rating,
-            keywords = keywords,
-            faces = faces,
-            personsInImage = personsInImage
+            rating = xmpMeta.getRating()?.let { PhotoRating.of(it) },
+            keywords = xmpMeta.getKeywords().ifEmpty {
+                xmpMeta.getAcdSeeKeywords()
+            },
+            faces = xmpMeta.getFaces(),
+            personsInImage = xmpMeta.getPersonsInImage()
         )
     }
 

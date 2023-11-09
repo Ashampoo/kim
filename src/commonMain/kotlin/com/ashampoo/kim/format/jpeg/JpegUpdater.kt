@@ -134,7 +134,7 @@ internal object JpegUpdater : MetadataUpdater {
     private fun tryLosslessOrientationUpdate(
         inputBytes: ByteArray,
         tiffOrientation: TiffOrientation
-    ) : Boolean {
+    ): Boolean {
 
         val byteReader = ByteArrayByteReader(inputBytes)
 
