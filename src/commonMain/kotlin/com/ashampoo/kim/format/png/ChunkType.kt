@@ -63,7 +63,7 @@ data class ChunkType internal constructor(
         /** Compressed text */
         val ZTXT = of("zTXt".toByteArray())
 
-        /** UTF-8 text */
+        /** UTF-8 text, for example XMP */
         val ITXT = of("iTXt".toByteArray())
 
         /** EXIF (since 2017) */

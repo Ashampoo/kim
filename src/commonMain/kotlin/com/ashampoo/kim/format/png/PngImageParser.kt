@@ -44,7 +44,7 @@ object PngImageParser : ImageParser {
 
     private val pngByteOrder = ByteOrder.BIG_ENDIAN
 
-    val metadataChunkTypes = listOf(
+    private val metadataChunkTypes = listOf(
         ChunkType.IHDR,
         ChunkType.TEXT,
         ChunkType.ZTXT,
