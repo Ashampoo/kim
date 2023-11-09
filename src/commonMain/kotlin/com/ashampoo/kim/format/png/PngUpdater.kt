@@ -44,19 +44,9 @@ internal object PngUpdater : MetadataUpdater {
         /* Prevent accidental calls that have no effect other than unnecessary work. */
         check(updates.isNotEmpty()) { "There are no updates to perform." }
 
-        /*
-         * TODO Avoid the read all bytes and stream instead.
-         *  This will require the implementation of single-shot updates to all fields.
-         */
-        val bytes = byteReader.readRemainingBytes()
+        val chunks = PngImageParser.readChunks(byteReader, chunkTypeFilter = null)
 
-        val kimMetadata = Kim.readMetadata(bytes)
-
-        if (kimMetadata == null)
-            throw ImageWriteException("Could not read file.")
-
-        if (kimMetadata.imageFormat != ImageFormat.PNG)
-            throw ImageWriteException("Can only update PNG.")
+        val kimMetadata = PngImageParser.parseMetadataFromChunks(chunks)
 
         val xmpMeta: XMPMeta = if (kimMetadata.xmp != null)
             XMPMetaFactory.parseFromString(kimMetadata.xmp)
@@ -95,7 +85,7 @@ internal object PngUpdater : MetadataUpdater {
         }
 
         PngWriter.writeImage(
-            byteReader = ByteArrayByteReader(bytes),
+            chunks = chunks,
             byteWriter = byteWriter,
             exifBytes = exifBytes,
             /*

@@ -20,8 +20,8 @@ import com.ashampoo.kim.common.toHex
 import com.ashampoo.kim.format.png.PngCrc.continuePartialCrc
 import com.ashampoo.kim.format.png.PngCrc.finishPartialCrc
 import com.ashampoo.kim.format.png.PngCrc.startPartialCrc
+import com.ashampoo.kim.format.png.chunks.PngChunk
 import com.ashampoo.kim.format.png.chunks.PngTextChunk
-import com.ashampoo.kim.input.ByteArrayByteReader
 import com.ashampoo.kim.input.ByteReader
 import com.ashampoo.kim.output.ByteArrayByteWriter
 import com.ashampoo.kim.output.ByteWriter
@@ -135,25 +135,39 @@ object PngWriter {
         exifBytes: ByteArray?,
         iptcBytes: ByteArray?,
         xmp: String?
+    ) = writeImage(
+        chunks = PngImageParser.readChunks(byteReader, null),
+        byteWriter = byteWriter,
+        exifBytes = exifBytes,
+        iptcBytes = iptcBytes,
+        xmp = xmp
+    )
+
+    fun writeImage(
+        chunks: List<PngChunk>,
+        byteWriter: ByteWriter,
+        exifBytes: ByteArray?,
+        iptcBytes: ByteArray?,
+        xmp: String?
     ) {
 
-        val chunks = PngImageParser.readChunks(byteReader, null).toMutableList()
+        val modifiedChunks = chunks.toMutableList()
 
         /*
          * Delete old chunks that are going to be replaced.
          */
 
         if (exifBytes != null)
-            chunks.removeAll {
+            modifiedChunks.removeAll {
                 it.chunkType == ChunkType.EXIF ||
                     it is PngTextChunk && it.getKeyword() == PngConstants.EXIF_KEYWORD
             }
 
         if (iptcBytes != null)
-            chunks.removeAll { it is PngTextChunk && it.getKeyword() == PngConstants.IPTC_KEYWORD }
+            modifiedChunks.removeAll { it is PngTextChunk && it.getKeyword() == PngConstants.IPTC_KEYWORD }
 
         if (xmp != null)
-            chunks.removeAll { it is PngTextChunk && it.getKeyword() == PngConstants.XMP_KEYWORD }
+            modifiedChunks.removeAll { it is PngTextChunk && it.getKeyword() == PngConstants.XMP_KEYWORD }
 
         /*
          * Write the new file
@@ -161,7 +175,7 @@ object PngWriter {
 
         byteWriter.write(PngConstants.PNG_SIGNATURE)
 
-        for (chunk in chunks) {
+        for (chunk in modifiedChunks) {
 
             writeChunk(byteWriter, chunk.chunkType, chunk.bytes)
 
