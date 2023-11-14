@@ -23,50 +23,6 @@ import kotlin.test.assertNull
 class TiffOrientationTest {
 
     @Test
-    fun testRotateLeft() {
-
-        assertEquals(
-            TiffOrientation.ROTATE_LEFT,
-            TiffOrientation.STANDARD.rotateLeft()
-        )
-
-        assertEquals(
-            TiffOrientation.UPSIDE_DOWN,
-            TiffOrientation.ROTATE_LEFT.rotateLeft()
-        )
-
-        assertEquals(
-            TiffOrientation.ROTATE_RIGHT,
-            TiffOrientation.UPSIDE_DOWN.rotateLeft()
-        )
-
-        assertEquals(
-            TiffOrientation.STANDARD,
-            TiffOrientation.ROTATE_RIGHT.rotateLeft()
-        )
-
-        assertEquals(
-            TiffOrientation.MIRROR_HORIZONTAL_AND_ROTATE_RIGHT,
-            TiffOrientation.MIRROR_HORIZONTAL.rotateLeft()
-        )
-
-        assertEquals(
-            TiffOrientation.MIRROR_VERTICAL,
-            TiffOrientation.MIRROR_HORIZONTAL_AND_ROTATE_RIGHT.rotateLeft()
-        )
-
-        assertEquals(
-            TiffOrientation.MIRROR_VERTICAL_AND_ROTATE_RIGHT,
-            TiffOrientation.MIRROR_VERTICAL.rotateLeft()
-        )
-
-        assertEquals(
-            TiffOrientation.MIRROR_HORIZONTAL,
-            TiffOrientation.MIRROR_VERTICAL_AND_ROTATE_RIGHT.rotateLeft()
-        )
-    }
-
-    @Test
     fun testRotateRight() {
 
         assertEquals(
@@ -75,8 +31,8 @@ class TiffOrientationTest {
         )
 
         assertEquals(
-            TiffOrientation.UPSIDE_DOWN,
-            TiffOrientation.ROTATE_RIGHT.rotateRight()
+            TiffOrientation.STANDARD,
+            TiffOrientation.ROTATE_LEFT.rotateRight()
         )
 
         assertEquals(
@@ -85,27 +41,27 @@ class TiffOrientationTest {
         )
 
         assertEquals(
-            TiffOrientation.STANDARD,
-            TiffOrientation.ROTATE_LEFT.rotateRight()
-        )
-
-        assertEquals(
-            TiffOrientation.MIRROR_VERTICAL_AND_ROTATE_RIGHT,
-            TiffOrientation.MIRROR_HORIZONTAL.rotateRight()
-        )
-
-        assertEquals(
-            TiffOrientation.MIRROR_VERTICAL,
-            TiffOrientation.MIRROR_VERTICAL_AND_ROTATE_RIGHT.rotateRight()
+            TiffOrientation.UPSIDE_DOWN,
+            TiffOrientation.ROTATE_RIGHT.rotateRight()
         )
 
         assertEquals(
             TiffOrientation.MIRROR_HORIZONTAL_AND_ROTATE_RIGHT,
-            TiffOrientation.MIRROR_VERTICAL.rotateRight()
+            TiffOrientation.MIRROR_HORIZONTAL.rotateRight()
         )
 
         assertEquals(
             TiffOrientation.MIRROR_HORIZONTAL,
+            TiffOrientation.MIRROR_HORIZONTAL_AND_ROTATE_LEFT.rotateRight()
+        )
+
+        assertEquals(
+            TiffOrientation.MIRROR_HORIZONTAL_AND_ROTATE_LEFT,
+            TiffOrientation.MIRROR_VERTICAL.rotateRight()
+        )
+
+        assertEquals(
+            TiffOrientation.MIRROR_VERTICAL,
             TiffOrientation.MIRROR_HORIZONTAL_AND_ROTATE_RIGHT.rotateRight()
         )
     }
@@ -119,17 +75,17 @@ class TiffOrientationTest {
         )
 
         assertEquals(
-            TiffOrientation.MIRROR_VERTICAL_AND_ROTATE_RIGHT,
+            TiffOrientation.MIRROR_HORIZONTAL_AND_ROTATE_RIGHT,
             TiffOrientation.ROTATE_LEFT.flipHorizontally()
         )
 
         assertEquals(
-            TiffOrientation.MIRROR_VERTICAL_AND_ROTATE_RIGHT,
+            TiffOrientation.MIRROR_HORIZONTAL_AND_ROTATE_LEFT,
             TiffOrientation.ROTATE_RIGHT.flipHorizontally()
         )
 
         assertEquals(
-            TiffOrientation.MIRROR_HORIZONTAL,
+            TiffOrientation.MIRROR_VERTICAL,
             TiffOrientation.UPSIDE_DOWN.flipHorizontally()
         )
 
@@ -139,18 +95,18 @@ class TiffOrientationTest {
         )
 
         assertEquals(
-            TiffOrientation.ROTATE_LEFT,
-            TiffOrientation.MIRROR_HORIZONTAL_AND_ROTATE_RIGHT.flipHorizontally()
+            TiffOrientation.ROTATE_RIGHT,
+            TiffOrientation.MIRROR_HORIZONTAL_AND_ROTATE_LEFT.flipHorizontally()
         )
 
         assertEquals(
-            TiffOrientation.ROTATE_RIGHT,
+            TiffOrientation.UPSIDE_DOWN,
             TiffOrientation.MIRROR_VERTICAL.flipHorizontally()
         )
 
         assertEquals(
             TiffOrientation.ROTATE_LEFT,
-            TiffOrientation.MIRROR_VERTICAL_AND_ROTATE_RIGHT.flipHorizontally()
+            TiffOrientation.MIRROR_HORIZONTAL_AND_ROTATE_RIGHT.flipHorizontally()
         )
     }
 
@@ -163,28 +119,28 @@ class TiffOrientationTest {
         )
 
         assertEquals(
-            TiffOrientation.ROTATE_RIGHT,
+            TiffOrientation.MIRROR_HORIZONTAL_AND_ROTATE_LEFT,
             TiffOrientation.ROTATE_LEFT.flipVertically()
         )
 
         assertEquals(
-            TiffOrientation.ROTATE_LEFT,
+            TiffOrientation.MIRROR_HORIZONTAL_AND_ROTATE_RIGHT,
             TiffOrientation.ROTATE_RIGHT.flipVertically()
         )
 
         assertEquals(
-            TiffOrientation.MIRROR_VERTICAL,
+            TiffOrientation.MIRROR_HORIZONTAL,
             TiffOrientation.UPSIDE_DOWN.flipVertically()
         )
 
         assertEquals(
-            TiffOrientation.MIRROR_VERTICAL_AND_ROTATE_RIGHT,
+            TiffOrientation.UPSIDE_DOWN,
             TiffOrientation.MIRROR_HORIZONTAL.flipVertically()
         )
 
         assertEquals(
-            TiffOrientation.MIRROR_HORIZONTAL,
-            TiffOrientation.MIRROR_HORIZONTAL_AND_ROTATE_RIGHT.flipVertically()
+            TiffOrientation.ROTATE_LEFT,
+            TiffOrientation.MIRROR_HORIZONTAL_AND_ROTATE_LEFT.flipVertically()
         )
 
         assertEquals(
@@ -194,7 +150,7 @@ class TiffOrientationTest {
 
         assertEquals(
             TiffOrientation.ROTATE_RIGHT,
-            TiffOrientation.MIRROR_VERTICAL_AND_ROTATE_RIGHT.flipVertically()
+            TiffOrientation.MIRROR_HORIZONTAL_AND_ROTATE_RIGHT.flipVertically()
         )
     }
 
@@ -222,7 +178,7 @@ class TiffOrientationTest {
         )
 
         assertEquals(
-            TiffOrientation.MIRROR_HORIZONTAL_AND_ROTATE_RIGHT,
+            TiffOrientation.MIRROR_HORIZONTAL_AND_ROTATE_LEFT,
             TiffOrientation.of(5)
         )
 
@@ -232,7 +188,7 @@ class TiffOrientationTest {
         )
 
         assertEquals(
-            TiffOrientation.MIRROR_VERTICAL_AND_ROTATE_RIGHT,
+            TiffOrientation.MIRROR_HORIZONTAL_AND_ROTATE_RIGHT,
             TiffOrientation.of(7)
         )
 
