@@ -18,76 +18,76 @@ package com.ashampoo.kim.model
 @Suppress("MagicNumber")
 enum class TiffOrientation(val value: Int) {
 
-    /** The image is in its default orientation. */
+    /** 1: The image is in its default orientation. */
     STANDARD(1),
 
-    /** The image has been mirrored horizontally. */
+    /** 2: The image has been mirrored horizontally. */
     MIRROR_HORIZONTAL(2),
 
-    /** The image has been rotated 180 degrees. */
+    /** 3: The image has been rotated 180 degrees. */
     UPSIDE_DOWN(3),
 
-    /** The image has been mirrored vertically. */
+    /** 4: The image has been mirrored vertically. */
     MIRROR_VERTICAL(4),
 
-    /** The image has been mirrored horizontally and rotated to the right. */
-    MIRROR_HORIZONTAL_AND_ROTATE_RIGHT(5),
+    /** 5: The image has been mirrored horizontally and rotated to the right. */
+    MIRROR_HORIZONTAL_AND_ROTATE_LEFT(5),
 
-    /** The image has been rotated to the right. */
+    /** 6: The image has been rotated to the right. */
     ROTATE_RIGHT(6),
 
-    /** The image has been mirrored vertically and rotated to the right. */
-    MIRROR_VERTICAL_AND_ROTATE_RIGHT(7),
+    /** 7: The image has been mirrored vertically and rotated to the left. */
+    MIRROR_HORIZONTAL_AND_ROTATE_RIGHT(7),
 
-    /** The image has been rotated to the left. */
+    /** 8: The image has been rotated to the left. */
     ROTATE_LEFT(8);
 
     /** Returns the orientation after rotating the image to the left. */
     fun rotateLeft(): TiffOrientation = when (this) {
         STANDARD -> ROTATE_LEFT
-        ROTATE_LEFT -> UPSIDE_DOWN
+        MIRROR_HORIZONTAL -> MIRROR_HORIZONTAL_AND_ROTATE_LEFT
         UPSIDE_DOWN -> ROTATE_RIGHT
+        MIRROR_VERTICAL -> MIRROR_HORIZONTAL_AND_ROTATE_RIGHT
+        MIRROR_HORIZONTAL_AND_ROTATE_LEFT -> MIRROR_VERTICAL
         ROTATE_RIGHT -> STANDARD
-        MIRROR_HORIZONTAL -> MIRROR_HORIZONTAL_AND_ROTATE_RIGHT
-        MIRROR_HORIZONTAL_AND_ROTATE_RIGHT -> MIRROR_VERTICAL
-        MIRROR_VERTICAL -> MIRROR_VERTICAL_AND_ROTATE_RIGHT
-        MIRROR_VERTICAL_AND_ROTATE_RIGHT -> MIRROR_HORIZONTAL
+        MIRROR_HORIZONTAL_AND_ROTATE_RIGHT -> MIRROR_HORIZONTAL
+        ROTATE_LEFT -> UPSIDE_DOWN
     }
 
     /** Returns the orientation after rotating the image to the right. */
     fun rotateRight(): TiffOrientation = when (this) {
         STANDARD -> ROTATE_RIGHT
-        ROTATE_RIGHT -> UPSIDE_DOWN
+        MIRROR_HORIZONTAL -> MIRROR_HORIZONTAL_AND_ROTATE_RIGHT
         UPSIDE_DOWN -> ROTATE_LEFT
+        MIRROR_VERTICAL -> MIRROR_HORIZONTAL_AND_ROTATE_LEFT
+        MIRROR_HORIZONTAL_AND_ROTATE_LEFT -> MIRROR_HORIZONTAL
+        ROTATE_RIGHT -> UPSIDE_DOWN
+        MIRROR_HORIZONTAL_AND_ROTATE_RIGHT -> MIRROR_VERTICAL
         ROTATE_LEFT -> STANDARD
-        MIRROR_HORIZONTAL -> MIRROR_VERTICAL_AND_ROTATE_RIGHT
-        MIRROR_VERTICAL_AND_ROTATE_RIGHT -> MIRROR_VERTICAL
-        MIRROR_VERTICAL -> MIRROR_HORIZONTAL_AND_ROTATE_RIGHT
-        MIRROR_HORIZONTAL_AND_ROTATE_RIGHT -> MIRROR_HORIZONTAL
     }
 
     /** Returns the orientation after flipping the image horizontally. */
     fun flipHorizontally(): TiffOrientation = when (this) {
         STANDARD -> MIRROR_HORIZONTAL
-        ROTATE_LEFT -> MIRROR_VERTICAL_AND_ROTATE_RIGHT
-        ROTATE_RIGHT -> MIRROR_VERTICAL_AND_ROTATE_RIGHT
-        UPSIDE_DOWN -> MIRROR_HORIZONTAL
         MIRROR_HORIZONTAL -> STANDARD
+        UPSIDE_DOWN -> MIRROR_VERTICAL
+        MIRROR_VERTICAL -> UPSIDE_DOWN
+        MIRROR_HORIZONTAL_AND_ROTATE_LEFT -> ROTATE_RIGHT
+        ROTATE_RIGHT -> MIRROR_HORIZONTAL_AND_ROTATE_LEFT
         MIRROR_HORIZONTAL_AND_ROTATE_RIGHT -> ROTATE_LEFT
-        MIRROR_VERTICAL -> ROTATE_RIGHT
-        MIRROR_VERTICAL_AND_ROTATE_RIGHT -> ROTATE_LEFT
+        ROTATE_LEFT -> MIRROR_HORIZONTAL_AND_ROTATE_RIGHT
     }
 
     /** Returns the orientation after flipping the image vertically. */
     fun flipVertically(): TiffOrientation = when (this) {
         STANDARD -> MIRROR_VERTICAL
-        ROTATE_LEFT -> ROTATE_RIGHT
-        ROTATE_RIGHT -> ROTATE_LEFT
-        UPSIDE_DOWN -> MIRROR_VERTICAL
-        MIRROR_HORIZONTAL -> MIRROR_VERTICAL_AND_ROTATE_RIGHT
-        MIRROR_HORIZONTAL_AND_ROTATE_RIGHT -> MIRROR_HORIZONTAL
+        MIRROR_HORIZONTAL -> UPSIDE_DOWN
+        UPSIDE_DOWN -> MIRROR_HORIZONTAL
         MIRROR_VERTICAL -> STANDARD
-        MIRROR_VERTICAL_AND_ROTATE_RIGHT -> ROTATE_RIGHT
+        MIRROR_HORIZONTAL_AND_ROTATE_LEFT -> ROTATE_LEFT
+        ROTATE_RIGHT -> MIRROR_HORIZONTAL_AND_ROTATE_RIGHT
+        MIRROR_HORIZONTAL_AND_ROTATE_RIGHT -> ROTATE_RIGHT
+        ROTATE_LEFT -> MIRROR_HORIZONTAL_AND_ROTATE_LEFT
     }
 
     companion object {
@@ -98,9 +98,9 @@ enum class TiffOrientation(val value: Int) {
             2 -> MIRROR_HORIZONTAL
             3 -> UPSIDE_DOWN
             4 -> MIRROR_VERTICAL
-            5 -> MIRROR_HORIZONTAL_AND_ROTATE_RIGHT
+            5 -> MIRROR_HORIZONTAL_AND_ROTATE_LEFT
             6 -> ROTATE_RIGHT
-            7 -> MIRROR_VERTICAL_AND_ROTATE_RIGHT
+            7 -> MIRROR_HORIZONTAL_AND_ROTATE_RIGHT
             8 -> ROTATE_LEFT
             else -> null
         }

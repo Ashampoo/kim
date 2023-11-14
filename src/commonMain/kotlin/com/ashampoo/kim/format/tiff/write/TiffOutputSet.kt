@@ -85,51 +85,48 @@ class TiffOutputSet(
     fun findDirectory(directoryType: Int): TiffOutputDirectory? =
         directories.find { it.type == directoryType }
 
-    fun applyUpdates(updates: Collection<MetadataUpdate>) {
+    fun applyUpdate(update: MetadataUpdate) {
 
         val rootDirectory = getOrCreateRootDirectory()
         val exifDirectory = getOrCreateExifDirectory()
 
-        for (update in updates) {
+        when (update) {
 
-            when (update) {
+            is MetadataUpdate.Orientation -> {
 
-                is MetadataUpdate.Orientation -> {
-
-                    rootDirectory.removeField(TiffTag.TIFF_TAG_ORIENTATION)
-                    rootDirectory.add(TiffTag.TIFF_TAG_ORIENTATION, update.tiffOrientation.value.toShort())
-                }
-
-                is MetadataUpdate.TakenDate -> {
-
-                    rootDirectory.removeField(TiffTag.TIFF_TAG_DATE_TIME)
-                    exifDirectory.removeField(ExifTag.EXIF_TAG_DATE_TIME_ORIGINAL)
-                    exifDirectory.removeField(ExifTag.EXIF_TAG_DATE_TIME_DIGITIZED)
-
-                    if (update.takenDate != null) {
-
-                        val timeZone = if (Kim.underUnitTesting)
-                            TimeZone.of("GMT+02:00")
-                        else
-                            TimeZone.currentSystemDefault()
-
-                        val exifDateString = Instant.fromEpochMilliseconds(update.takenDate)
-                            .toLocalDateTime(timeZone)
-                            .toExifDateString()
-
-                        rootDirectory.add(TiffTag.TIFF_TAG_DATE_TIME, exifDateString)
-                        exifDirectory.add(ExifTag.EXIF_TAG_DATE_TIME_ORIGINAL, exifDateString)
-                        exifDirectory.add(ExifTag.EXIF_TAG_DATE_TIME_DIGITIZED, exifDateString)
-                    }
-                }
-
-                is MetadataUpdate.GpsCoordinates -> {
-
-                    setGpsCoordinates(update.gpsCoordinates)
-                }
-
-                else -> throw ImageWriteException("Can't perform update $update.")
+                rootDirectory.removeField(TiffTag.TIFF_TAG_ORIENTATION)
+                rootDirectory.add(TiffTag.TIFF_TAG_ORIENTATION, update.tiffOrientation.value.toShort())
             }
+
+            is MetadataUpdate.TakenDate -> {
+
+                rootDirectory.removeField(TiffTag.TIFF_TAG_DATE_TIME)
+                exifDirectory.removeField(ExifTag.EXIF_TAG_DATE_TIME_ORIGINAL)
+                exifDirectory.removeField(ExifTag.EXIF_TAG_DATE_TIME_DIGITIZED)
+
+                if (update.takenDate != null) {
+
+                    val timeZone = if (Kim.underUnitTesting)
+                        TimeZone.of("GMT+02:00")
+                    else
+                        TimeZone.currentSystemDefault()
+
+                    val exifDateString = Instant.fromEpochMilliseconds(update.takenDate)
+                        .toLocalDateTime(timeZone)
+                        .toExifDateString()
+
+                    rootDirectory.add(TiffTag.TIFF_TAG_DATE_TIME, exifDateString)
+                    exifDirectory.add(ExifTag.EXIF_TAG_DATE_TIME_ORIGINAL, exifDateString)
+                    exifDirectory.add(ExifTag.EXIF_TAG_DATE_TIME_DIGITIZED, exifDateString)
+                }
+            }
+
+            is MetadataUpdate.GpsCoordinates -> {
+
+                setGpsCoordinates(update.gpsCoordinates)
+            }
+
+            else -> throw ImageWriteException("Can't perform update $update.")
         }
     }
 

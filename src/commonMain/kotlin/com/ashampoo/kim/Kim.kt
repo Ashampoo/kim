@@ -91,12 +91,12 @@ object Kim {
 
             val headerBytes = it.readBytes(ImageFormat.REQUIRED_HEADER_BYTE_COUNT_FOR_DETECTION)
 
-            val imageFormat = ImageFormat.detect(headerBytes) ?: return null
+            val imageFormat = ImageFormat.detect(headerBytes) ?: return@use null
 
             val imageParser = ImageParser.forFormat(imageFormat)
 
             if (imageParser == null)
-                return ImageMetadata(imageFormat, null, null, null, null, null)
+                return@use ImageMetadata(imageFormat, null, null, null, null, null)
 
             val newReader = PrePendingByteReader(it, headerBytes.toList())
 
@@ -180,7 +180,7 @@ object Kim {
     }
 
     /**
-     * Updates the file with the desired changes.
+     * Updates the file with the desired change.
      *
      * **Note**: This method is provided for convenience, but it's not recommended for
      * very large image files that should not be entirely loaded into memory.
@@ -192,25 +192,22 @@ object Kim {
     @Throws(ImageWriteException::class)
     fun update(
         bytes: ByteArray,
-        updates: Set<MetadataUpdate>
+        update: MetadataUpdate
     ): ByteArray = tryWithImageWriteException {
-
-        /* Prevent accidental calls that have no effect other than unnecessary work. */
-        check(updates.isNotEmpty()) { "There are no updates to perform." }
 
         val byteArrayByteWriter = ByteArrayByteWriter()
 
         update(
             byteReader = ByteArrayByteReader(bytes),
             byteWriter = byteArrayByteWriter,
-            updates = updates
+            update = update
         )
 
         return@tryWithImageWriteException byteArrayByteWriter.toByteArray()
     }
 
     /**
-     * Updates the file with the wanted updates.
+     * Updates the file with the desired change.
      *
      * **Note**: We don't have an good API for single-shot write all fields right now.
      * So this is inefficent at this time as it reads the whole file in.
@@ -222,11 +219,8 @@ object Kim {
     fun update(
         byteReader: ByteReader,
         byteWriter: ByteWriter,
-        updates: Set<MetadataUpdate>
+        update: MetadataUpdate
     ) = tryWithImageWriteException {
-
-        /* Prevent accidental calls that have no effect other than unnecessary work. */
-        check(updates.isNotEmpty()) { "There are no updates to perform." }
 
         val headerBytes = byteReader.readBytes(ImageFormat.REQUIRED_HEADER_BYTE_COUNT_FOR_DETECTION)
 
@@ -234,9 +228,9 @@ object Kim {
 
         val prePendingByteReader = PrePendingByteReader(byteReader, headerBytes.toList())
 
-        when (imageFormat) {
-            ImageFormat.JPEG -> JpegUpdater.update(prePendingByteReader, byteWriter, updates)
-            ImageFormat.PNG -> PngUpdater.update(prePendingByteReader, byteWriter, updates)
+        return@tryWithImageWriteException when (imageFormat) {
+            ImageFormat.JPEG -> JpegUpdater.update(prePendingByteReader, byteWriter, update)
+            ImageFormat.PNG -> PngUpdater.update(prePendingByteReader, byteWriter, update)
             null -> throw ImageWriteException("Unsupported or unsupoorted file format.")
             else -> throw ImageWriteException("Can't embed metadata into $imageFormat.")
         }

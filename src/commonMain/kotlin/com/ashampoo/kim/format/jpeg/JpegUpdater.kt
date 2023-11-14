@@ -41,11 +41,8 @@ internal object JpegUpdater : MetadataUpdater {
     override fun update(
         byteReader: ByteReader,
         byteWriter: ByteWriter,
-        updates: Set<MetadataUpdate>
+        update: MetadataUpdate
     ) = tryWithImageWriteException {
-
-        /* Prevent accidental calls that have no effect other than unnecessary work. */
-        check(updates.isNotEmpty()) { "There are no updates to perform." }
 
         /*
          * TODO Avoid the read all bytes and stream instead.
@@ -61,23 +58,23 @@ internal object JpegUpdater : MetadataUpdater {
         if (kimMetadata.imageFormat != ImageFormat.JPEG)
             throw ImageWriteException("Can only update JPEG.")
 
-        val xmpUpdatedBytes = updateXmp(bytes, kimMetadata.xmp, updates)
+        val xmpUpdatedBytes = updateXmp(bytes, kimMetadata.xmp, update)
 
-        val exifUpdatedBytes = updateExif(xmpUpdatedBytes, kimMetadata.exif, updates)
+        val exifUpdatedBytes = updateExif(xmpUpdatedBytes, kimMetadata.exif, update)
 
-        val iptcUpdatedBytes = updateIptc(exifUpdatedBytes, kimMetadata.iptc, updates)
+        val iptcUpdatedBytes = updateIptc(exifUpdatedBytes, kimMetadata.iptc, update)
 
         byteWriter.write(iptcUpdatedBytes)
     }
 
-    private fun updateXmp(inputBytes: ByteArray, xmp: String?, updates: Set<MetadataUpdate>): ByteArray {
+    private fun updateXmp(inputBytes: ByteArray, xmp: String?, update: MetadataUpdate): ByteArray {
 
         val xmpMeta: XMPMeta = if (xmp != null)
             XMPMetaFactory.parseFromString(xmp)
         else
             XMPMetaFactory.create()
 
-        val updatedXmp = XmpWriter.updateXmp(xmpMeta, updates, true)
+        val updatedXmp = XmpWriter.updateXmp(xmpMeta, update, true)
 
         val byteWriter = ByteArrayByteWriter()
 
@@ -93,41 +90,33 @@ internal object JpegUpdater : MetadataUpdater {
     private fun updateExif(
         inputBytes: ByteArray,
         exif: TiffContents?,
-        updates: Set<MetadataUpdate>
+        update: MetadataUpdate
     ): ByteArray {
 
         /*
          * Filter out all updates we can perform on EXIF.
          */
-        val exifUpdates = updates.filter {
-            it is MetadataUpdate.Orientation ||
-                it is MetadataUpdate.TakenDate ||
-                it is MetadataUpdate.GpsCoordinates
-        }
-
-        if (exifUpdates.isEmpty())
+        if (update !is MetadataUpdate.Orientation &&
+            update !is MetadataUpdate.TakenDate &&
+            update !is MetadataUpdate.GpsCoordinates
+        )
             return inputBytes
 
         /*
          * Verify if it's possible to perform a lossless update by making byte modifications.
          * For orientation changes, it's feasible to achieve this with a single byte swap.
          */
-        if (exifUpdates.size == 1) {
+        if (update is MetadataUpdate.Orientation) {
 
-            val onlyUpdate = exifUpdates.first()
+            val updated = tryLosslessOrientationUpdate(inputBytes, update.tiffOrientation)
 
-            if (onlyUpdate is MetadataUpdate.Orientation) {
-
-                val updated = tryLosslessOrientationUpdate(inputBytes, onlyUpdate.tiffOrientation)
-
-                if (updated)
-                    return inputBytes
-            }
+            if (updated)
+                return inputBytes
         }
 
         val outputSet = exif?.createOutputSet() ?: TiffOutputSet()
 
-        outputSet.applyUpdates(exifUpdates)
+        outputSet.applyUpdate(update)
 
         val byteWriter = ByteArrayByteWriter()
 
@@ -162,17 +151,16 @@ internal object JpegUpdater : MetadataUpdater {
     private fun updateIptc(
         inputBytes: ByteArray,
         iptc: IptcMetadata?,
-        updates: Set<MetadataUpdate>
+        update: MetadataUpdate
     ): ByteArray {
 
-        val keywordsUpdate = updates.filterIsInstance<MetadataUpdate.Keywords>().firstOrNull()
-
-        if (keywordsUpdate == null)
+        /* We currently only support to update keywords. */
+        if (update !is MetadataUpdate.Keywords)
             return inputBytes
 
         /* Update IPTC keywords */
 
-        val newKeywords = keywordsUpdate.keywords
+        val newKeywords = update.keywords
 
         val newBlocks = iptc?.nonIptcBlocks ?: emptyList()
         val oldRecords = iptc?.records ?: emptyList()

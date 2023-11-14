@@ -53,9 +53,7 @@ class JpegUpdaterTest {
 
         val newBytes = Kim.update(
             bytes = originalBytes,
-            updates = setOf(
-                MetadataUpdate.Orientation(TiffOrientation.ROTATE_RIGHT)
-            )
+            update = MetadataUpdate.Orientation(TiffOrientation.ROTATE_RIGHT)
         )
 
         compare("rotated_right.jpg", newBytes)
@@ -67,9 +65,7 @@ class JpegUpdaterTest {
 
         val newBytes = Kim.update(
             bytes = originalBytes,
-            updates = setOf(
-                MetadataUpdate.TakenDate(timestamp)
-            )
+            update = MetadataUpdate.TakenDate(timestamp)
         )
 
         compare("new_taken_date.jpg", newBytes)
@@ -81,9 +77,7 @@ class JpegUpdaterTest {
 
         val newBytes = Kim.update(
             bytes = originalBytes,
-            updates = setOf(
-                MetadataUpdate.GpsCoordinates(crashBuildingGps)
-            )
+            update = MetadataUpdate.GpsCoordinates(crashBuildingGps)
         )
 
         compare("new_gps_coordinates.jpg", newBytes)
@@ -95,9 +89,7 @@ class JpegUpdaterTest {
 
         val newBytes = Kim.update(
             bytes = originalBytes,
-            updates = setOf(
-                MetadataUpdate.Rating(PhotoRating.FOUR_STARS)
-            )
+            update = MetadataUpdate.Rating(PhotoRating.FOUR_STARS)
         )
 
         compare("new_rating.jpg", newBytes)
@@ -109,9 +101,7 @@ class JpegUpdaterTest {
 
         val newBytes = Kim.update(
             bytes = originalBytes,
-            updates = setOf(
-                MetadataUpdate.Keywords(setOf("hello", "test", keywordWithUmlauts))
-            )
+            update = MetadataUpdate.Keywords(setOf("hello", "test", keywordWithUmlauts))
         )
 
         compare("new_keywords.jpg", newBytes)
@@ -123,9 +113,7 @@ class JpegUpdaterTest {
 
         val newBytes = Kim.update(
             bytes = originalBytes,
-            updates = setOf(
-                MetadataUpdate.Persons(setOf("Swiper", "Dora"))
-            )
+            update = MetadataUpdate.Persons(setOf("Swiper", "Dora"))
         )
 
         compare("new_persons.jpg", newBytes)
