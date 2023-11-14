@@ -35,11 +35,8 @@ internal object PngUpdater : MetadataUpdater {
     override fun update(
         byteReader: ByteReader,
         byteWriter: ByteWriter,
-        updates: Set<MetadataUpdate>
+        update: MetadataUpdate
     ) = tryWithImageWriteException {
-
-        /* Prevent accidental calls that have no effect other than unnecessary work. */
-        check(updates.isNotEmpty()) { "There are no updates to perform." }
 
         val chunks = PngImageParser.readChunks(byteReader, chunkTypeFilter = null)
 
@@ -50,19 +47,17 @@ internal object PngUpdater : MetadataUpdater {
         else
             XMPMetaFactory.create()
 
-        val updatedXmp = XmpWriter.updateXmp(xmpMeta, updates, true)
+        val updatedXmp = XmpWriter.updateXmp(xmpMeta, update, true)
 
-        val exifUpdates = updates.filter {
-            it is MetadataUpdate.Orientation ||
-                it is MetadataUpdate.TakenDate ||
-                it is MetadataUpdate.GpsCoordinates
-        }
+        val isExifUpdate = update is MetadataUpdate.Orientation ||
+            update is MetadataUpdate.TakenDate ||
+            update is MetadataUpdate.GpsCoordinates
 
-        val exifBytes: ByteArray? = if (exifUpdates.isNotEmpty()) {
+        val exifBytes: ByteArray? = if (isExifUpdate) {
 
             val tiffOutputSet = kimMetadata.exif?.createOutputSet() ?: TiffOutputSet()
 
-            tiffOutputSet.applyUpdates(exifUpdates)
+            tiffOutputSet.applyUpdate(update)
 
             val oldExifBytes = kimMetadata.exifBytes
 

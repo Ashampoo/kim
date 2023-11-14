@@ -36,6 +36,60 @@ object XmpWriter {
             .setUseCanonicalFormat(false)
             .setSort(true)
 
+    fun XMPMeta.applyUpdate(update: MetadataUpdate) {
+
+        when (update) {
+
+            is MetadataUpdate.Orientation ->
+                setOrientation(update.tiffOrientation.value)
+
+            is MetadataUpdate.TakenDate -> {
+
+                if (update.takenDate != null) {
+
+                    val timeZone = if (underUnitTesting)
+                        TimeZone.of("GMT+02:00")
+                    else
+                        TimeZone.currentSystemDefault()
+
+                    val isoDate = Instant.fromEpochMilliseconds(update.takenDate)
+                        .toLocalDateTime(timeZone)
+                        .toString()
+
+                    setDateTimeOriginal(isoDate)
+
+                } else {
+
+                    deleteDateTimeOriginal()
+                }
+            }
+
+            is MetadataUpdate.GpsCoordinates -> {
+
+                if (update.gpsCoordinates != null)
+                    setGpsCoordinates(
+                        GpsUtil.decimalLatitudeToDDM(update.gpsCoordinates.latitude),
+                        GpsUtil.decimalLongitudeToDDM(update.gpsCoordinates.longitude)
+                    )
+                else
+                    deleteGpsCoordinates()
+            }
+
+            is MetadataUpdate.Rating ->
+                setRating(update.photoRating.value)
+
+            is MetadataUpdate.Keywords ->
+                setKeywords(update.keywords)
+
+//              is MetadataUpdate.Faces -> {
+//                  TODO How do write the fields?
+//              }
+
+            is MetadataUpdate.Persons ->
+                setPersonsInImage(update.personsInImage)
+        }
+    }
+
     /**
      * @param writePackageWrapper Should be "true" for embedded XMP
      */
@@ -47,64 +101,36 @@ object XmpWriter {
         writePackageWrapper: Boolean
     ): String {
 
-        for (update in updates) {
+        for (update in updates)
+            xmpMeta.applyUpdate(update)
 
-            when (update) {
+        return xmpMeta.serializeToString(writePackageWrapper)
+    }
 
-                is MetadataUpdate.Orientation ->
-                    xmpMeta.setOrientation(update.tiffOrientation.value)
+    /**
+     * @param writePackageWrapper Should be "true" for embedded XMP
+     */
+    @Throws(XMPException::class)
+    @Suppress("LoopWithTooManyJumpStatements")
+    fun updateXmp(
+        xmpMeta: XMPMeta,
+        update: MetadataUpdate,
+        writePackageWrapper: Boolean
+    ): String {
 
-                is MetadataUpdate.TakenDate -> {
+        xmpMeta.applyUpdate(update)
 
-                    if (update.takenDate != null) {
+        return xmpMeta.serializeToString(writePackageWrapper)
+    }
 
-                        val timeZone = if (underUnitTesting)
-                            TimeZone.of("GMT+02:00")
-                        else
-                            TimeZone.currentSystemDefault()
-
-                        val isoDate = Instant.fromEpochMilliseconds(update.takenDate)
-                            .toLocalDateTime(timeZone)
-                            .toString()
-
-                        xmpMeta.setDateTimeOriginal(isoDate)
-
-                    } else {
-
-                        xmpMeta.deleteDateTimeOriginal()
-                    }
-                }
-
-                is MetadataUpdate.GpsCoordinates -> {
-
-                    if (update.gpsCoordinates != null)
-                        xmpMeta.setGpsCoordinates(
-                            GpsUtil.decimalLatitudeToDDM(update.gpsCoordinates.latitude),
-                            GpsUtil.decimalLongitudeToDDM(update.gpsCoordinates.longitude)
-                        )
-                    else
-                        xmpMeta.deleteGpsCoordinates()
-                }
-
-                is MetadataUpdate.Rating ->
-                    xmpMeta.setRating(update.photoRating.value)
-
-                is MetadataUpdate.Keywords ->
-                    xmpMeta.setKeywords(update.keywords)
-
-//              is MetadataUpdate.Faces -> {
-//                  TODO How do write the fields?
-//              }
-
-                is MetadataUpdate.Persons ->
-                    xmpMeta.setPersonsInImage(update.personsInImage)
-            }
-        }
+    private fun XMPMeta.serializeToString(
+        writePackageWrapper: Boolean
+    ): String {
 
         /* We clone and modify the clone to prevent concurrency issues. */
         val options =
             xmpSerializeOptions.clone().setOmitPacketWrapper(!writePackageWrapper)
 
-        return XMPMetaFactory.serializeToString(xmpMeta, options)
+        return XMPMetaFactory.serializeToString(this, options)
     }
 }

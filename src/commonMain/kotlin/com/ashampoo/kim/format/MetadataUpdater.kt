@@ -26,6 +26,6 @@ fun interface MetadataUpdater {
     fun update(
         byteReader: ByteReader,
         byteWriter: ByteWriter,
-        updates: Set<MetadataUpdate>
+        update: MetadataUpdate
     )
 }

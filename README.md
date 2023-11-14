@@ -32,7 +32,7 @@ of Ashampoo Photos, which, in turn, is driven by user community feedback.
 ## Installation
 
 ```
-implementation("com.ashampoo:kim:0.6")
+implementation("com.ashampoo:kim:0.6.1")
 ```
 
 ## Sample usages
@@ -115,9 +115,7 @@ val bytes: ByteArray = loadBytes()
 
 val newBytes = Kim.update(
     bytes = bytes,
-    updates = setOf(
-        MetadataUpdate.Orientation(TiffOrientation.ROTATE_RIGHT)
-    )
+    update = MetadataUpdate.Orientation(TiffOrientation.ROTATE_RIGHT)
 )
 ```
 
