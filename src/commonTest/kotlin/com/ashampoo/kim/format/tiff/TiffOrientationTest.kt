@@ -23,6 +23,50 @@ import kotlin.test.assertNull
 class TiffOrientationTest {
 
     @Test
+    fun testRotateLeft() {
+
+        assertEquals(
+            TiffOrientation.ROTATE_LEFT,
+            TiffOrientation.STANDARD.rotateLeft()
+        )
+
+        assertEquals(
+            TiffOrientation.UPSIDE_DOWN,
+            TiffOrientation.ROTATE_LEFT.rotateLeft()
+        )
+
+        assertEquals(
+            TiffOrientation.ROTATE_RIGHT,
+            TiffOrientation.UPSIDE_DOWN.rotateLeft()
+        )
+
+        assertEquals(
+            TiffOrientation.STANDARD,
+            TiffOrientation.ROTATE_RIGHT.rotateLeft()
+        )
+
+        assertEquals(
+            TiffOrientation.MIRROR_HORIZONTAL_AND_ROTATE_LEFT,
+            TiffOrientation.MIRROR_HORIZONTAL.rotateLeft()
+        )
+
+        assertEquals(
+            TiffOrientation.MIRROR_VERTICAL,
+            TiffOrientation.MIRROR_HORIZONTAL_AND_ROTATE_LEFT.rotateLeft()
+        )
+
+        assertEquals(
+            TiffOrientation.MIRROR_HORIZONTAL_AND_ROTATE_RIGHT,
+            TiffOrientation.MIRROR_VERTICAL.rotateLeft()
+        )
+
+        assertEquals(
+            TiffOrientation.MIRROR_HORIZONTAL,
+            TiffOrientation.MIRROR_HORIZONTAL_AND_ROTATE_RIGHT.rotateLeft()
+        )
+    }
+
+    @Test
     fun testRotateRight() {
 
         assertEquals(
