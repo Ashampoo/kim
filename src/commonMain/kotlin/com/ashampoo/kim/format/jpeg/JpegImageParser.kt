@@ -40,6 +40,16 @@ import com.ashampoo.kim.model.ImageSize
 
 object JpegImageParser : ImageParser {
 
+    fun getImageSize(byteReader: ByteReader): ImageSize {
+
+        val firstSegment =
+            readSegments(byteReader, JpegConstants.SOFN_MARKERS).firstOrNull() as? SofnSegment
+
+        requireNotNull(firstSegment) { "SOF header not found. Is it really a JPEG?" }
+
+        return ImageSize(firstSegment.width, firstSegment.height)
+    }
+
     @Throws(ImageReadException::class)
     override fun parseMetadata(byteReader: ByteReader): ImageMetadata =
         tryWithImageReadException {
