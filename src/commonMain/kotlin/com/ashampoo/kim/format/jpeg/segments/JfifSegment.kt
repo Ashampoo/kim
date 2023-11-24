@@ -37,8 +37,8 @@ class JfifSegment(marker: Int, markerLength: Int, byteReader: ByteReader) : Segm
         val signature = byteReader.readBytes("Unexpected EOF", JpegConstants.JFIF0_SIGNATURE.size)
 
         if (
-            JpegConstants.JFIF0_SIGNATURE != signature &&
-            JpegConstants.JFIF0_SIGNATURE_ALTERNATIVE != signature
+            !JpegConstants.JFIF0_SIGNATURE.contentEquals(signature) &&
+            !JpegConstants.JFIF0_SIGNATURE_ALTERNATIVE.contentEquals(signature)
         )
             throw ImageReadException("Not a Valid JPEG File: missing JFIF string")
 
@@ -53,7 +53,7 @@ class JfifSegment(marker: Int, markerLength: Int, byteReader: ByteReader) : Segm
         thumbnailSize = xThumbnail * yThumbnail
 
         if (thumbnailSize > 0)
-            byteReader.skipBytes("Missing thumbnail", thumbnailSize.toLong())
+            byteReader.skipBytes("Skip thumbnail", thumbnailSize.toLong())
     }
 
     constructor(marker: Int, segmentBytes: ByteArray) :
