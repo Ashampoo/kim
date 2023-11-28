@@ -25,6 +25,7 @@ import com.ashampoo.kim.format.tiff.TiffReader
 import com.ashampoo.kim.format.tiff.constants.ExifTag
 import com.ashampoo.kim.format.tiff.constants.TiffConstants
 import com.ashampoo.kim.format.tiff.constants.TiffConstants.TIFF_HEADER_SIZE
+import com.ashampoo.kim.format.tiff.constants.TiffConstants.TIFF_IFD0
 import com.ashampoo.kim.input.ByteArrayByteReader
 import com.ashampoo.kim.output.BinaryByteWriter.Companion.createBinaryByteWriter
 import com.ashampoo.kim.output.BufferByteWriter
@@ -212,6 +213,14 @@ class TiffImageWriterLossless(
             .sortedWith(itemLengthComparator)
             .reversed()
             .toMutableList()
+
+//        unplacedItems.find {
+//            it is TiffOutputDirectory && it.type == TIFF_IFD0
+//        }?.let { ifd0dir ->
+//
+//            unplacedItems.remove(ifd0dir)
+//            unplacedItems.add(0, ifd0dir)
+//        }
 
         while (unplacedItems.isNotEmpty()) {
 
