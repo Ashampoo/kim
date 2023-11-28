@@ -19,12 +19,12 @@ package com.ashampoo.kim.format.tiff.write
 import com.ashampoo.kim.common.ByteOrder
 import com.ashampoo.kim.format.tiff.fieldtypes.FieldType
 
-class TiffOutputSummary(val byteOrder: ByteOrder) {
+class TiffOffsetItems(val byteOrder: ByteOrder) {
 
     private val offsetItems = mutableSetOf<TiffOffsetItem>()
 
-    fun add(outputItem: TiffOutputItem, outputField: TiffOutputField) =
-        offsetItems.add(TiffOffsetItem(outputItem, outputField))
+    fun addOffsetItem(offsetItem: TiffOffsetItem) =
+        offsetItems.add(offsetItem)
 
     fun updateOffsets(byteOrder: ByteOrder) =
         offsetItems.forEach {

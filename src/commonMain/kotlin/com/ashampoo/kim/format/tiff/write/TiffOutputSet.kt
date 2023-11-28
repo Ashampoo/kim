@@ -42,7 +42,7 @@ class TiffOutputSet(
 
     private val directories = mutableListOf<TiffOutputDirectory>()
 
-    fun getOutputItems(outputSummary: TiffOutputSummary): List<TiffOutputItem> {
+    fun getOutputItems(outputSummary: TiffOffsetItems): List<TiffOutputItem> {
 
         val outputItems = mutableListOf<TiffOutputItem>()
 

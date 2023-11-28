@@ -602,7 +602,7 @@ class TiffOutputDirectory(val type: Int, private val byteOrder: ByteOrder) : Tif
         findField(tagInfo)?.let { field -> fields.remove(field) }
 
     fun getOutputItems(
-        outputSummary: TiffOutputSummary
+        outputSummary: TiffOffsetItems
     ): List<TiffOutputItem> {
 
         /* First validate directory fields. */
@@ -659,7 +659,7 @@ class TiffOutputDirectory(val type: Int, private val byteOrder: ByteOrder) : Tif
 
             result.add(item)
 
-            outputSummary.add(item, jpegOffsetField!!)
+            outputSummary.addOffsetItem(TiffOffsetItem(item, jpegOffsetField!!))
         }
 
         return result
