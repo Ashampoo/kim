@@ -35,7 +35,7 @@ class TiffImageWriterLossless(
 ) : TiffImageWriterBase(byteOrder) {
 
     private fun analyzeOldTiff(
-        frozenFields: Set<TiffOutputField>
+        makerNoteField: TiffOutputField?
     ): List<TiffElement> {
 
         try {
@@ -56,13 +56,12 @@ class TiffImageWriterLossless(
 
                     if (oversizeValue != null) {
 
-                        val frozenField = frozenFields.firstOrNull()
-
-                        if (frozenField != null &&
-                            frozenField.separateValue != null &&
-                            frozenField.bytesEqual(field.byteArrayValue)
+                        /* MakerNote offsets must stay the same. */
+                        if (makerNoteField != null &&
+                            makerNoteField.separateValue != null &&
+                            makerNoteField.bytesEqual(field.byteArrayValue)
                         )
-                            frozenField.separateValue.offset = field.offset.toLong()
+                            makerNoteField.separateValue.offset = field.offset.toLong()
                         else
                             elements.add(oversizeValue)
                     }
@@ -121,18 +120,12 @@ class TiffImageWriterLossless(
     override fun write(byteWriter: ByteWriter, outputSet: TiffOutputSet) {
 
         /*
-         * There are some fields whose address in the file must not change,
-         * unless of course their value is changed.
-         * If MakerNotes offset changes, it's broken.
+         * The MakerNote field offset must not be changed or
+         * else the data will be corrupted.
          */
-        val frozenFields = mutableSetOf<TiffOutputField>()
-
         val makerNoteField = outputSet.findField(ExifTag.EXIF_TAG_MAKER_NOTE.tag)
 
-        if (makerNoteField != null && makerNoteField.separateValue != null)
-            frozenFields.add(makerNoteField)
-
-        val analysis = analyzeOldTiff(frozenFields)
+        val analysis = analyzeOldTiff(makerNoteField)
 
         val oldLength = exifBytes.size
 
@@ -156,14 +149,16 @@ class TiffImageWriterLossless(
 
         val frozenFieldOffsets = mutableSetOf<Long>()
 
-        for (frozenField in frozenFields)
-            if (frozenField.separateValue!!.offset != TiffOutputItem.UNDEFINED_VALUE)
-                frozenFieldOffsets.add(frozenField.separateValue.offset)
+        makerNoteField?.separateValue?.offset?.let {
+
+            if (it != TiffOutputItem.UNDEFINED_VALUE)
+                frozenFieldOffsets.add(it)
+        }
 
         val offsetItems = createOffsetItems(outputSet)
 
         /*
-         * Receive all items from the OutputSet expect for the frozen MakerNotes.
+         * Receive all items from the OutputSet except for the frozen MakerNotes.
          */
         val outputItems = outputSet.getOutputItems(offsetItems)
             .filterNot { frozenFieldOffsets.contains(it.offset) }
