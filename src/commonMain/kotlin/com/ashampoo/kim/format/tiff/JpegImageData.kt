@@ -16,9 +16,7 @@
  */
 package com.ashampoo.kim.format.tiff
 
-import com.ashampoo.kim.format.tiff.TiffElement.DataElement
-
-class JpegImageData(offset: Long, length: Int, data: ByteArray) : DataElement(offset, length, data) {
+class JpegImageData(offset: Long, length: Int, val bytes: ByteArray) : TiffElement(offset, length) {
 
     override fun toString(): String = "Jpeg image data: ${bytes.size} bytes"
 

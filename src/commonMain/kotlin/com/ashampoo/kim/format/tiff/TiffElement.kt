@@ -21,12 +21,6 @@ abstract class TiffElement(
     val length: Int
 ) {
 
-    abstract class DataElement(
-        offset: Long,
-        length: Int,
-        val bytes: ByteArray
-    ) : TiffElement(offset, length)
-
     class Stub(offset: Long, length: Int) : TiffElement(offset, length) {
 
         override fun toString(): String = "Stub, offset: $offset, length: $length, last: ${offset + length}"

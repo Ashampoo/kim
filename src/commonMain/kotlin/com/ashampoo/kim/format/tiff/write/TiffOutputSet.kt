@@ -151,7 +151,7 @@ class TiffOutputSet(
                 /* Offset will be calculated, but the block should come early in the file. */
                 offset = -1,
                 length = thumbnailBytes.size,
-                data = thumbnailBytes
+                bytes = thumbnailBytes
             )
         )
     }
