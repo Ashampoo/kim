@@ -34,17 +34,19 @@ class TiffImageWriterLossless(
     private val exifBytes: ByteArray
 ) : TiffImageWriterBase(byteOrder) {
 
-    private fun analyzeOldTiff(frozenFields: Map<Int, TiffOutputField>): List<TiffElement> {
+    private fun analyzeOldTiff(
+        frozenFields: Map<Int, TiffOutputField>
+    ): List<TiffElement> {
 
         try {
 
             val byteReader = ByteArrayByteReader(exifBytes)
 
-            val contents = TiffReader.read(byteReader)
+            val tiffContents = TiffReader.read(byteReader)
 
             val elements = mutableListOf<TiffElement>()
 
-            for (directory in contents.directories) {
+            for (directory in tiffContents.directories) {
 
                 elements.add(directory)
 
@@ -66,10 +68,9 @@ class TiffImageWriterLossless(
                     }
                 }
 
-                val jpegImageData = directory.jpegImageData
-
-                if (jpegImageData != null)
-                    elements.add(jpegImageData)
+                directory.jpegImageData?.let {
+                    elements.add(it)
+                }
             }
 
             elements.sortWith(TiffElement.offsetComparator)
@@ -100,13 +101,15 @@ class TiffImageWriterLossless(
                 index = element.offset + element.length
             }
 
-            if (lastElement != null)
+            lastElement?.let {
+
                 rewritableElements.add(
                     TiffElement(
-                        offset = lastElement.offset,
-                        length = (index - lastElement.offset).toInt()
+                        offset = it.offset,
+                        length = (index - it.offset).toInt()
                     )
                 )
+            }
 
             return rewritableElements
 
