@@ -59,7 +59,10 @@ import com.ashampoo.kim.format.tiff.taginfos.TagInfoShorts
 import com.ashampoo.kim.format.tiff.write.TiffOutputItem.Companion.UNDEFINED_VALUE
 import com.ashampoo.kim.output.BinaryByteWriter
 
-class TiffOutputDirectory(val type: Int, private val byteOrder: ByteOrder) : TiffOutputItem {
+class TiffOutputDirectory(
+    val type: Int,
+    private val byteOrder: ByteOrder
+) : TiffOutputItem {
 
     private val fields = mutableListOf<TiffOutputField>()
 
