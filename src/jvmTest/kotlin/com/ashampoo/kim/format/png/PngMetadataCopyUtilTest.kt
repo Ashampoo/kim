@@ -55,4 +55,26 @@ class PngMetadataCopyUtilTest {
         if (!equals)
             fail("copy_test.png has not the expected bytes!")
     }
+
+    @Test
+    fun testCopyByteArray() {
+
+        val sourceBytes = Path(KimTestData.getFullImageDiskPath(52)).readBytes()
+
+        val destinationBytes = Path("build/copy_test.png").readBytes()
+
+        val expectedBytes =
+            Path("src/commonTest/resources/com/ashampoo/kim/copy_test.png")
+                .readBytes()
+
+        val actualBytes = PngMetadataCopyUtil.copy(
+            source = sourceBytes,
+            destination = destinationBytes
+        )
+
+        val equals = expectedBytes.contentEquals(actualBytes)
+
+        if (!equals)
+            fail("copy_test.png has not the expected bytes!")
+    }
 }
