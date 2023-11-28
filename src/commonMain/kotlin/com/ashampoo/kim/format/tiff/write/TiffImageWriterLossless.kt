@@ -166,7 +166,7 @@ class TiffImageWriterLossless(
          * Receive all items from the OutputSet expect for the frozen MakerNotes.
          */
         val outputItems = outputSet.getOutputItems(offsetItems)
-            .filter { !frozenFieldOffsets.containsKey(it.offset) }
+            .filterNot { frozenFieldOffsets.containsKey(it.offset) }
 
         val outputLength = calcNewOffsets(analysis, outputItems)
 
