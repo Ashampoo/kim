@@ -42,6 +42,9 @@ class JpegUpdaterTest {
 
     private val originalBytes = Resource("$resourcePath/original.jpg").readBytes()
 
+    private val thumbnailBytes =
+        Resource("$resourcePath/../testdata/test_thumb.jpg").readBytes()
+
     @BeforeTest
     fun setUp() {
         Kim.underUnitTesting = true
@@ -117,6 +120,18 @@ class JpegUpdaterTest {
         )
 
         compare("new_persons.jpg", newBytes)
+    }
+
+    @OptIn(ExperimentalStdlibApi::class)
+    @Test
+    fun testUpdateThumbnail() {
+
+        val newBytes = Kim.updateThumbnail(
+            bytes = originalBytes,
+            thumbnailBytes = thumbnailBytes
+        )
+
+        compare("new_thumbnail.jpg", newBytes)
     }
 
     @OptIn(ExperimentalStdlibApi::class)

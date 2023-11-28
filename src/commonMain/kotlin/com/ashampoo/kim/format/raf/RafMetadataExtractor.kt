@@ -20,6 +20,7 @@ import com.ashampoo.kim.common.toSingleNumberHexes
 import com.ashampoo.kim.common.tryWithImageReadException
 import com.ashampoo.kim.format.ImageFormatMagicNumbers
 import com.ashampoo.kim.format.MetadataExtractor
+import com.ashampoo.kim.format.jpeg.JpegConstants
 import com.ashampoo.kim.format.jpeg.JpegMetadataExtractor
 import com.ashampoo.kim.input.ByteReader
 import com.ashampoo.kim.input.PrePendingByteReader
@@ -47,7 +48,9 @@ object RafMetadataExtractor : MetadataExtractor {
         /* Create a new reader, prepending the jpegMagicNumbers, and read the contained JPEG. */
         val newReader = PrePendingByteReader(
             delegate = byteReader,
-            prependedBytes = ImageFormatMagicNumbers.jpeg
+            prependedBytes = listOf(
+                JpegConstants.SOI[0], JpegConstants.SOI[1], 0xFF.toByte()
+            )
         )
 
         return@tryWithImageReadException JpegMetadataExtractor.extractMetadataBytes(newReader)
@@ -66,10 +69,10 @@ object RafMetadataExtractor : MetadataExtractor {
             bytes.add(byte)
 
             /* Search the header and then break */
-            if (bytes.size >= ImageFormatMagicNumbers.jpeg.size &&
-                bytes[bytes.lastIndex - 2] == ImageFormatMagicNumbers.jpeg[0] &&
-                bytes[bytes.lastIndex - 1] == ImageFormatMagicNumbers.jpeg[1] &&
-                bytes[bytes.lastIndex - 0] == ImageFormatMagicNumbers.jpeg[2]
+            if (bytes.size >= 3 &&
+                bytes[bytes.lastIndex - 2] == JpegConstants.SOI[0] &&
+                bytes[bytes.lastIndex - 1] == JpegConstants.SOI[1] &&
+                bytes[bytes.lastIndex - 0] == 0xFF.toByte()
             ) break
         }
     }

@@ -239,4 +239,16 @@ abstract class TiffImageWriterBase(
         bos.write2Bytes(TIFF_VERSION)
         bos.write4Bytes(offsetToFirstIFD.toInt())
     }
+
+    companion object {
+
+        /** Returns an appropriate TiffImageWriter instance. */
+        fun createTiffImageWriter(oldExifBytes: ByteArray?): TiffImageWriterBase {
+
+            return if (oldExifBytes != null)
+                TiffImageWriterLossless(exifBytes = oldExifBytes)
+            else
+                TiffImageWriterLossy()
+        }
+    }
 }

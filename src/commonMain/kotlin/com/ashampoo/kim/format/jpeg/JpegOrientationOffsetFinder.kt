@@ -45,14 +45,14 @@ object JpegOrientationOffsetFinder {
         byteReader: ByteReader
     ): Long? = tryWithImageReadException {
 
-        val magicNumberBytes = byteReader.readBytes(ImageFormatMagicNumbers.jpegShort.size).toList()
+        val magicNumberBytes = byteReader.readBytes(ImageFormatMagicNumbers.jpeg.size).toList()
 
         /* Ensure it's actually a JPEG. */
-        require(magicNumberBytes == ImageFormatMagicNumbers.jpegShort) {
+        require(magicNumberBytes == ImageFormatMagicNumbers.jpeg) {
             "JPEG magic number mismatch: ${magicNumberBytes.toByteArray().toSingleNumberHexes()}"
         }
 
-        var positionCounter: Long = ImageFormatMagicNumbers.jpegShort.size.toLong()
+        var positionCounter: Long = ImageFormatMagicNumbers.jpeg.size.toLong()
 
         @Suppress("LoopWithTooManyJumpStatements")
         do {

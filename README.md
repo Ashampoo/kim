@@ -32,7 +32,7 @@ of Ashampoo Photos, which, in turn, is driven by user community feedback.
 ## Installation
 
 ```
-implementation("com.ashampoo:kim:0.6.2")
+implementation("com.ashampoo:kim:0.7")
 ```
 
 ## Sample usages
@@ -86,7 +86,10 @@ val photoMetadata = Kim.readMetadata(bytes).convertToPhotoMetadata()
 ### Change orientation using low level API
 
 ```kotlin
-val metadata = Kim.readMetadata(File("myphoto.jpg"))
+val inputFile = File("myphoto.jpg")
+val outputFile = File("myphoto_changed.jpg")
+
+val metadata = Kim.readMetadata(inputFile)
 
 val outputSet: TiffOutputSet = metadata.exif?.createOutputSet() ?: TiffOutputSet()
 
@@ -95,13 +98,10 @@ val rootDirectory = outputSet.getOrCreateRootDirectory()
 rootDirectory.removeField(TiffTag.TIFF_TAG_ORIENTATION)
 rootDirectory.add(TiffTag.TIFF_TAG_ORIENTATION, 8)
 
-val inputStream = File("myphoto.jpg").inputStream()
-val outputStream = File("myphoto_changed.jpg").outputStream()
-
-OutputStreamByteWriter(outputStream).use { outputStreamByteWriter ->
+OutputStreamByteWriter(outputFile.outputStream()).use { outputStreamByteWriter ->
 
     JpegRewriter.updateExifMetadataLossless(
-        byteReader = JvmInputStreamByteReader(inputStream),
+        byteReader = JvmInputStreamByteReader(inputFile.inputStream(), inputFile.length),
         byteWriter = outputStreamByteWriter,
         outputSet = outputSet
     )
@@ -121,6 +121,18 @@ val newBytes = Kim.update(
 
 See [JpegUpdaterTest](src/commonTest/kotlin/com/ashampoo/kim/format/jpeg/JpegUpdaterTest.kt)
 for more samples.
+
+### Update thumbnail using Kim.update() API
+
+```kotlin
+val bytes: ByteArray = loadBytes()
+val thumbnailBytes: ByteArray = loadThumbnailBytes()
+
+val newBytes = Kim.updateThumbnail(
+    bytes = bytes,
+    thumbnailBytes = thumbnailBytes
+)
+```
 
 ## Limitations
 

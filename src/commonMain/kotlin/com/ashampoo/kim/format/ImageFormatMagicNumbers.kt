@@ -25,10 +25,6 @@ package com.ashampoo.kim.format
 object ImageFormatMagicNumbers {
 
     val jpeg: List<Byte> = byteListOf(
-        0xFF, 0xD8, 0xFF
-    )
-
-    val jpegShort: List<Byte> = byteListOf(
         0xFF, 0xD8
     )
 

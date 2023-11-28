@@ -40,10 +40,10 @@ object JpegMetadataExtractor : MetadataExtractor {
 
         val bytes = mutableListOf<Byte>()
 
-        val magicNumberBytes = byteReader.readBytes(ImageFormatMagicNumbers.jpegShort.size).toList()
+        val magicNumberBytes = byteReader.readBytes(ImageFormatMagicNumbers.jpeg.size).toList()
 
         /* Ensure it's actually a JPEG. */
-        require(magicNumberBytes == ImageFormatMagicNumbers.jpegShort) {
+        require(magicNumberBytes == ImageFormatMagicNumbers.jpeg) {
             "JPEG magic number mismatch: ${magicNumberBytes.toByteArray().toSingleNumberHexes()}"
         }
 

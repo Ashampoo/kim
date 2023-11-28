@@ -587,7 +587,8 @@ class TiffOutputDirectory(val type: Int, private val byteOrder: ByteOrder) : Tif
             bos.write4Bytes(nextDirectoryOffset.toInt())
     }
 
-    fun setJpegImageData(rawJpegImageData: JpegImageData?) {
+    /* Internal, because callers should use setThumbnailBytes() */
+    internal fun setJpegImageData(rawJpegImageData: JpegImageData?) {
         this.rawJpegImageData = rawJpegImageData
     }
 
@@ -660,8 +661,4 @@ class TiffOutputDirectory(val type: Int, private val byteOrder: ByteOrder) : Tif
 
     override fun toString(): String =
         description(type)
-
-//    companion object {
-//        val COMPARATOR = compareBy { directory: TiffOutputDirectory -> directory.type }
-//    }
 }
