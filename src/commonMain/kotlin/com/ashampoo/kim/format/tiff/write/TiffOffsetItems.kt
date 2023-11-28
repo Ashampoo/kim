@@ -26,7 +26,7 @@ class TiffOffsetItems(val byteOrder: ByteOrder) {
     fun addOffsetItem(offsetItem: TiffOffsetItem) =
         offsetItems.add(offsetItem)
 
-    fun updateOffsets(byteOrder: ByteOrder) =
+    fun writeOffsetsToOutputFields(byteOrder: ByteOrder) =
         offsetItems.forEach {
             it.outputField.setBytes(
                 FieldType.LONG.writeData(

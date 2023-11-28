@@ -157,22 +157,22 @@ class TiffImageWriterLossless(
             if (frozenField.separateValue!!.offset != TiffOutputItem.UNDEFINED_VALUE)
                 frozenFieldOffsets[frozenField.separateValue.offset] = frozenField
 
-        val outputSummary = validateDirectories(outputSet)
+        val tiffOffsetItems = validateDirectories(outputSet)
 
         /*
          * Receive all items from the OutputSet expect for the frozen MakerNotes.
          */
-        val outputItems = outputSet.getOutputItems(outputSummary)
+        val outputItems = outputSet.getOutputItems(tiffOffsetItems)
             .filter { !frozenFieldOffsets.containsKey(it.offset) }
 
-        val outputLength = updateOffsetsStep(analysis, outputItems)
+        val outputLength = calcNewOffsets(analysis, outputItems)
 
-        outputSummary.updateOffsets(byteOrder)
+        tiffOffsetItems.writeOffsetsToOutputFields(byteOrder)
 
         writeStep(byteWriter, outputSet, analysis, outputItems, outputLength)
     }
 
-    private fun updateOffsetsStep(
+    private fun calcNewOffsets(
         tiffElements: List<TiffElement>,
         outputItems: List<TiffOutputItem>
     ): Long {

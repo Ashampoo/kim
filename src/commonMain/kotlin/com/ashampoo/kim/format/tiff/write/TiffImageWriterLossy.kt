@@ -36,7 +36,7 @@ class TiffImageWriterLossy(
 
         updateOffsetsStep(outputItems)
 
-        outputSummary.updateOffsets(byteOrder)
+        outputSummary.writeOffsetsToOutputFields(byteOrder)
 
         val binaryByteWriter = createBinaryByteWriter(byteWriter, byteOrder)
 
