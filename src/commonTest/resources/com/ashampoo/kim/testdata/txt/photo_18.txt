@@ -3,7 +3,7 @@ Resolution  : 5332 x 2973
 ---- TIFF ----
 Version 42
 Little-endian (Intel, II)
----- IFD0 ----
+---- Directory IFD0 ----
 0x010f Make = Canon
 0x0110 Model = Canon EOS-1D Mark IV
 0x011a XResolution = 240/1 (240.0)
@@ -14,7 +14,7 @@ Little-endian (Intel, II)
 0x013b Artist = Thomas Lipke
 0x8769 ExifOffset = 250
 
----- ExifIFD ----
+---- Directory ExifIFD ----
 0x829a ExposureTime = 1/125 (0.008)
 0x829d FNumber = 35/10 (3.5)
 0x8822 ExposureProgram = 2
@@ -43,7 +43,7 @@ Little-endian (Intel, II)
 0xa432 LensSpecification = [100/1 (100.0), 100/1 (100.0), Invalid rational (0/0), Invalid rational (0/0)]
 0xa434 LensModel = EF100mm f/2.8L Macro IS USM
 
----- SubIFD ----
+---- Directory SubIFD ----
 0x0103 Compression = 6
 0x011a XResolution = 72/1 (72.0)
 0x011b YResolution = 72/1 (72.0)

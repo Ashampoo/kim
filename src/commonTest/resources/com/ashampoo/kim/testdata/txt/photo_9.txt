@@ -3,7 +3,7 @@ Resolution  : 2862 x 1905
 ---- TIFF ----
 Version 42
 Little-endian (Intel, II)
----- IFD0 ----
+---- Directory IFD0 ----
 0x010f Make = NIKON CORPORATION
 0x0110 Model = NIKON D810
 0x011a XResolution = 300/1 (300.0)
@@ -14,7 +14,7 @@ Little-endian (Intel, II)
 0x8769 ExifOffset = 238
 0x8825 GPSInfo = 914
 
----- ExifIFD ----
+---- Directory ExifIFD ----
 0x829a ExposureTime = 1/2000 (5.0E-4)
 0x829d FNumber = 8/1 (8.0)
 0x8822 ExposureProgram = 4
@@ -56,7 +56,7 @@ Little-endian (Intel, II)
 0xa432 LensSpecification = [2000/10 (200.0), 4000/10 (400.0), 40/10 (4.0), 40/10 (4.0)]
 0xa434 LensModel = 200.0-400.0 mm f/4.0
 
----- GPS ----
+---- Directory GPS ----
 0x0001 GPSLatitudeRef = N
 0x0002 GPSLatitude = [49/1 (49.0), 14/1 (14.0), 18744/625 (29.9904)]
 0x0003 GPSLongitudeRef = W

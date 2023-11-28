@@ -3,7 +3,7 @@ Resolution  : null
 ---- TIFF ----
 Version 85
 Little-endian (Intel, II)
----- IFD0 ----
+---- Directory IFD0 ----
 0x00-1 Unknown = [0x30, 0x33, 0x31, 0x30]
 0x00-1 Unknown = 3696
 0x00-1 Unknown = 2752
@@ -45,7 +45,7 @@ Little-endian (Intel, II)
 0x011b YResolution = [64 bytes]
 0x8769 ExifOffset = 708
 
----- ExifIFD ----
+---- Directory ExifIFD ----
 0x829a ExposureTime = 10/600 (0.016667)
 0x829d FNumber = 14/10 (1.4)
 0x8822 ExposureProgram = 2

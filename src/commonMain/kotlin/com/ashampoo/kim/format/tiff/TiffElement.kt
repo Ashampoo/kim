@@ -17,11 +17,13 @@
 package com.ashampoo.kim.format.tiff
 
 open class TiffElement(
+    val debugDescription: String,
     val offset: Long,
     val length: Int
 ) {
 
-    override fun toString(): String = "TiffElement offset: $offset, length: $length, last: ${offset + length}"
+    override fun toString(): String =
+        debugDescription
 
     companion object {
         val offsetComparator = compareBy { e: TiffElement -> e.offset }

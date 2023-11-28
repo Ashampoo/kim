@@ -3,7 +3,7 @@ Resolution  : 4608 x 3456
 ---- TIFF ----
 Version 42
 Little-endian (Intel, II)
----- IFD0 ----
+---- Directory IFD0 ----
 0x010e ImageDescription = OLYMPUS DIGITAL CAMERA         
 0x010f Make = OLYMPUS IMAGING CORP.  
 0x0110 Model = E-M10           
@@ -20,7 +20,7 @@ Little-endian (Intel, II)
 0x8825 GPSInfo = 13628
 0xc4a5 PrintIM = [528 bytes]
 
----- ExifIFD ----
+---- Directory ExifIFD ----
 0x829a ExposureTime = 1/80 (0.0125)
 0x829d FNumber = 50/10 (5.0)
 0x8822 ExposureProgram = 4
@@ -56,13 +56,13 @@ Little-endian (Intel, II)
 0xa432 LensSpecification = [40/1 (40.0), 150/1 (150.0), 40/10 (4.0), 56/10 (5.6)]
 0xa434 LensModel = OLYMPUS M.40-150mm F4.0-5.6 R
 
----- InteropIFD ----
+---- Directory InteropIFD ----
 0x0001 InteroperabilityIndex = R98
 0x0002 InteroperabilityVersion = [0x30, 0x31, 0x30, 0x30]
 
----- GPS ----
+---- Directory GPS ----
 
----- SubIFD ----
+---- Directory SubIFD ----
 0x0103 Compression = 6
 0x011a XResolution = 72/1 (72.0)
 0x011b YResolution = 72/1 (72.0)

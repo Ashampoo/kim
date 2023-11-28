@@ -3,7 +3,7 @@ Resolution  : 3664 x 2752
 ---- TIFF ----
 Version 42
 Little-endian (Intel, II)
----- IFD0 ----
+---- Directory IFD0 ----
 0x00fe NewSubfileType = 1
 0x0100 ImageWidth = 256
 0x0101 ImageLength = 192
@@ -60,7 +60,7 @@ Little-endian (Intel, II)
 0xc761 Unknown = [2.0641153582055387E-4, 3.0483049720786857E-7]
 0xc7a7 Unknown = [16 bytes]
 
----- ExifIFD ----
+---- Directory ExifIFD ----
 0x829a ExposureTime = 1/60 (0.016667)
 0x829d FNumber = 14/10 (1.4)
 0x8822 ExposureProgram = 2
@@ -95,7 +95,7 @@ Little-endian (Intel, II)
 0xa40a Sharpness = 0
 0xa431 BodySerialNumber = F111311090158
 
----- SubIFD ----
+---- Directory SubIFD ----
 0x00fe NewSubfileType = 0
 0x0100 ImageWidth = 3664
 0x0101 ImageLength = 2752
@@ -125,7 +125,7 @@ Little-endian (Intel, II)
 0xc74e Unknown = [184 bytes]
 0xc761 Unknown = [2.0641153582055387E-4, 3.0483049720786857E-7]
 
----- SubIFD1 ----
+---- Directory SubIFD1 ----
 0x00fe NewSubfileType = 1
 0x0100 ImageWidth = 1024
 0x0101 ImageLength = 768
@@ -147,7 +147,7 @@ Little-endian (Intel, II)
 0xc71a Unknown = 2
 0xc71b Unknown = 2023-07-26T06:11:34+02:00
 
----- SubIFD2 ----
+---- Directory SubIFD2 ----
 0x00fe NewSubfileType = 1
 0x0100 ImageWidth = 2048
 0x0101 ImageLength = 1536
@@ -165,7 +165,7 @@ Little-endian (Intel, II)
 0xc741 Unknown = [256 bytes]
 0xc7aa Unknown = 256
 
----- SubIFD3 ----
+---- Directory SubIFD3 ----
 0x00fe NewSubfileType = 1
 0x0100 ImageWidth = 512
 0x0101 ImageLength = 384
@@ -184,7 +184,7 @@ Little-endian (Intel, II)
 0xc741 Unknown = [256 bytes]
 0xc7aa Unknown = 256
 
----- SubIFD ----
+---- Directory SubIFD ----
 0x00fe NewSubfileType = 1
 0x0100 ImageWidth = 256
 0x0101 ImageLength = 192

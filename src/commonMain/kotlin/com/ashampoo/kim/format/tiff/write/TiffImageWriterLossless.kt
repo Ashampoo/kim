@@ -114,6 +114,7 @@ class TiffImageWriterLossless(
 
                 rewritableElements.add(
                     TiffElement(
+                        debugDescription = lastElement.debugDescription,
                         offset = lastElement.offset,
                         length = (index - lastElement.offset).toInt()
                     )
@@ -129,6 +130,7 @@ class TiffImageWriterLossless(
 
             rewritableElements.add(
                 TiffElement(
+                    debugDescription = it.debugDescription,
                     offset = it.offset,
                     length = (index - it.offset).toInt()
                 )
@@ -260,7 +262,13 @@ class TiffImageWriterLossless(
                     val excessOffset = offset + outputItemLength
                     val excessLength = length - outputItemLength
 
-                    unusedElements.add(TiffElement(excessOffset, excessLength))
+                    unusedElements.add(
+                        TiffElement(
+                            bestFit.debugDescription,
+                            excessOffset,
+                            excessLength
+                        )
+                    )
 
                     /* Make sure the new element is in the correct order. */
                     unusedElements.sortWith(elementLengthComparator)

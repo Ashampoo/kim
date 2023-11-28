@@ -3,7 +3,7 @@ Resolution  : 4094 x 2699
 ---- TIFF ----
 Version 42
 Little-endian (Intel, II)
----- IFD0 ----
+---- Directory IFD0 ----
 0x010f Make = NIKON CORPORATION
 0x0110 Model = NIKON D7000
 0x011a XResolution = 300/1 (300.0)
@@ -13,7 +13,7 @@ Little-endian (Intel, II)
 0x0132 DateTime = 2013:05:07 21:28:50
 0x8769 ExifOffset = 216
 
----- ExifIFD ----
+---- Directory ExifIFD ----
 0x829a ExposureTime = 1/1000 (0.001)
 0x829d FNumber = 63/10 (6.3)
 0x8822 ExposureProgram = 1

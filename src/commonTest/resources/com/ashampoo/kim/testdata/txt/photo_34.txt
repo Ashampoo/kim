@@ -3,7 +3,7 @@ Resolution  : 4928 x 3264
 ---- TIFF ----
 Version 42
 Little-endian (Intel, II)
----- IFD0 ----
+---- Directory IFD0 ----
 0x010f Make = NIKON CORPORATION
 0x0110 Model = NIKON D5100
 0x0112 Orientation = 1
@@ -17,7 +17,7 @@ Little-endian (Intel, II)
 0x8769 ExifOffset = 288
 0x8825 GPSInfo = 12768
 
----- ExifIFD ----
+---- Directory ExifIFD ----
 0x829a ExposureTime = 1/40 (0.025)
 0x829d FNumber = 53/10 (5.3)
 0x8822 ExposureProgram = 2
@@ -57,7 +57,7 @@ Little-endian (Intel, II)
 0xa40a Sharpness = 0
 0xa40c SubjectDistanceRange = 0
 
----- GPS ----
+---- Directory GPS ----
 0x0001 GPSLatitudeRef = N
 0x0002 GPSLatitude = [50/1 (50.0), 24/1 (24.0), 47043/8164 (5.762249)]
 0x0003 GPSLongitudeRef = E

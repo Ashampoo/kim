@@ -3,7 +3,7 @@ Resolution  : 4390 x 2927
 ---- TIFF ----
 Version 42
 Little-endian (Intel, II)
----- IFD0 ----
+---- Directory IFD0 ----
 0x010f Make = Canon
 0x0110 Model = Canon EOS 6D
 0x011a XResolution = 72/1 (72.0)
@@ -15,7 +15,7 @@ Little-endian (Intel, II)
 0x8298 Copyright = 2014
 0x8769 ExifOffset = 262
 
----- ExifIFD ----
+---- Directory ExifIFD ----
 0x829a ExposureTime = 1/200 (0.005)
 0x829d FNumber = 2/1 (2.0)
 0x8822 ExposureProgram = 1
@@ -47,7 +47,7 @@ Little-endian (Intel, II)
 0xa434 LensModel = 100mm
 0xa435 LensSerialNumber = 0000000000
 
----- SubIFD ----
+---- Directory SubIFD ----
 0x0103 Compression = 6
 0x011a XResolution = 72/1 (72.0)
 0x011b YResolution = 72/1 (72.0)

@@ -41,14 +41,13 @@ class TiffDirectory(
     val nextDirectoryOffset: Long,
     val byteOrder: ByteOrder
 ) : TiffElement(
+    debugDescription = "Directory " + description(type),
     offset = offset,
     length = TiffConstants.TIFF_DIRECTORY_HEADER_LENGTH + entries.size *
         TiffConstants.TIFF_ENTRY_LENGTH + TiffConstants.TIFF_DIRECTORY_FOOTER_LENGTH
 ) {
 
     var jpegImageDataElement: JpegImageDataElement? = null
-
-    val description: String = description(type)
 
     fun getDirectoryEntries(): List<TiffField> = entries
 
@@ -170,7 +169,7 @@ class TiffDirectory(
 
         val sb = StringBuilder()
 
-        sb.appendLine("---- $description ----")
+        sb.appendLine("---- $debugDescription ----")
 
         for (entry in entries)
             sb.appendLine(entry)

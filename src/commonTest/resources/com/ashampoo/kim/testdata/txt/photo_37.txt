@@ -3,7 +3,7 @@ Resolution  : 5870 x 2799
 ---- TIFF ----
 Version 42
 Little-endian (Intel, II)
----- IFD0 ----
+---- Directory IFD0 ----
 0x0100 ImageWidth = 5870
 0x0101 ImageLength = 2799
 0x0102 BitsPerSample = [16, 16, 16]
@@ -21,7 +21,7 @@ Little-endian (Intel, II)
 0x0132 DateTime = 2018:07:30 11:31:57
 0x8769 ExifOffset = 314
 
----- ExifIFD ----
+---- Directory ExifIFD ----
 0x829a ExposureTime = 10/1 (10.0)
 0x829d FNumber = 63/10 (6.3)
 0x8822 ExposureProgram = 1
@@ -65,7 +65,7 @@ Little-endian (Intel, II)
 0xa432 LensSpecification = [350/10 (35.0), 350/10 (35.0), 18/10 (1.8), 18/10 (1.8)]
 0xa434 LensModel = 35.0 mm f/1.8
 
----- SubIFD ----
+---- Directory SubIFD ----
 0x0103 Compression = 6
 0x011a XResolution = 72/1 (72.0)
 0x011b YResolution = 72/1 (72.0)
