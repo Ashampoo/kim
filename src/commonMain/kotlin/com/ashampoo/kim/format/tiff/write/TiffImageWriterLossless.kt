@@ -88,7 +88,7 @@ class TiffImageWriterLossless(
                 } else if (element.offset - index > OFFSET_TOLERANCE) {
 
                     rewritableElements.add(
-                        TiffElement.Stub(
+                        TiffElement(
                             offset = lastElement.offset,
                             length = (index - lastElement.offset).toInt()
                         )
@@ -102,7 +102,7 @@ class TiffImageWriterLossless(
 
             if (lastElement != null)
                 rewritableElements.add(
-                    TiffElement.Stub(
+                    TiffElement(
                         offset = lastElement.offset,
                         length = (index - lastElement.offset).toInt()
                     )
@@ -241,7 +241,7 @@ class TiffImageWriterLossless(
                     val excessOffset = offset + outputItemLength
                     val excessLength = length - outputItemLength
 
-                    unusedElements.add(TiffElement.Stub(excessOffset, excessLength))
+                    unusedElements.add(TiffElement(excessOffset, excessLength))
 
                     /* Make sure the new element is in the correct order. */
                     unusedElements.sortWith(elementLengthComparator)

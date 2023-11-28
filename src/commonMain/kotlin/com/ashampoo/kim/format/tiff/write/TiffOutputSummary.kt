@@ -26,11 +26,13 @@ class TiffOutputSummary(val byteOrder: ByteOrder) {
     fun add(outputItem: TiffOutputItem, outputField: TiffOutputField) =
         offsetItems.add(TiffOffsetItem(outputItem, outputField))
 
-    fun updateOffsets(byteOrder: ByteOrder) {
-
-        for (offset in offsetItems)
-            offset.outputField.setBytes(
-                FieldType.LONG.writeData(offset.outputItem.offset.toInt(), byteOrder)
+    fun updateOffsets(byteOrder: ByteOrder) =
+        offsetItems.forEach {
+            it.outputField.setBytes(
+                FieldType.LONG.writeData(
+                    data = it.outputItem.offset.toInt(),
+                    byteOrder = byteOrder
+                )
             )
-    }
+        }
 }
