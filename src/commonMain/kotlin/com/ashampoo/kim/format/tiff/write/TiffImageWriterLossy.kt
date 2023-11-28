@@ -30,13 +30,13 @@ class TiffImageWriterLossy(
 
     override fun write(byteWriter: ByteWriter, outputSet: TiffOutputSet) {
 
-        val outputSummary = validateDirectories(outputSet)
+        val offsetItems = createOffsetItems(outputSet)
 
-        val outputItems = outputSet.getOutputItems(outputSummary)
+        val outputItems = outputSet.getOutputItems(offsetItems)
 
         calcNewOffsets(outputItems)
 
-        outputSummary.writeOffsetsToOutputFields()
+        offsetItems.writeOffsetsToOutputFields()
 
         val binaryByteWriter = createBinaryByteWriter(byteWriter, byteOrder)
 

@@ -32,7 +32,7 @@ abstract class TiffImageWriterBase(
 
     abstract fun write(byteWriter: ByteWriter, outputSet: TiffOutputSet)
 
-    protected fun validateDirectories(outputSet: TiffOutputSet): TiffOffsetItems {
+    protected fun createOffsetItems(outputSet: TiffOutputSet): TiffOffsetItems {
 
         val directories = outputSet.getDirectories()
 
