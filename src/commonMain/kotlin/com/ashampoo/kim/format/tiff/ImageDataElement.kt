@@ -15,7 +15,7 @@
  */
 package com.ashampoo.kim.format.tiff
 
-class ImageDataElement(offset: Long, length: Int) : TiffElement(offset, length) {
+open class ImageDataElement(offset: Long, length: Int) : TiffElement(offset, length) {
 
     override fun toString(): String = "ImageDataElement offset=$offset, length=$length"
 
