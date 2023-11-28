@@ -16,17 +16,31 @@
  */
 package com.ashampoo.kim.format.tiff.write
 
+import com.ashampoo.kim.common.ImageWriteException
+import com.ashampoo.kim.common.toHex
 import com.ashampoo.kim.output.BinaryByteWriter
 
-interface TiffOutputItem {
+class TiffOutputValue internal constructor(
+    private val description: String,
+    private val bytes: ByteArray
+) : TiffOutputItem {
 
-    var offset: Long
+    override var offset: Long = TiffOutputItem.UNDEFINED_VALUE
 
-    fun getItemLength(): Int
+    override fun getItemLength(): Int =
+        bytes.size
 
-    fun writeItem(binaryByteWriter: BinaryByteWriter)
+    fun updateValue(bytes: ByteArray) {
 
-    companion object {
-        const val UNDEFINED_VALUE: Long = -1
+        if (this.bytes.size != bytes.size)
+            throw ImageWriteException("Updated data size mismatch: ${this.bytes.size} != ${bytes.size}")
+
+        bytes.copyInto(this.bytes)
     }
+
+    override fun writeItem(binaryByteWriter: BinaryByteWriter) =
+        binaryByteWriter.write(bytes)
+
+    override fun toString(): String =
+        description + " = " + bytes.toHex()
 }

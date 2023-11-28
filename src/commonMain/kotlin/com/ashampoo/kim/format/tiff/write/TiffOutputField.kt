@@ -33,8 +33,8 @@ class TiffOutputField(
 
     val isLocalValue: Boolean = bytes.size <= TIFF_ENTRY_MAX_VALUE_LENGTH
 
-    val separateValue: TiffOutputItem.Value? =
-        if (isLocalValue) null else TiffOutputItem.Value("Value of $this", bytes)
+    val separateValue: TiffOutputValue? =
+        if (isLocalValue) null else TiffOutputValue("Value of $this", bytes)
 
     var sortHint = -1
 

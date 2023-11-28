@@ -56,13 +56,16 @@ import com.ashampoo.kim.format.tiff.taginfos.TagInfoShortOrLong
 import com.ashampoo.kim.format.tiff.taginfos.TagInfoShortOrLongOrRational
 import com.ashampoo.kim.format.tiff.taginfos.TagInfoShortOrRational
 import com.ashampoo.kim.format.tiff.taginfos.TagInfoShorts
+import com.ashampoo.kim.format.tiff.write.TiffOutputItem.Companion.UNDEFINED_VALUE
 import com.ashampoo.kim.output.BinaryByteWriter
 
-class TiffOutputDirectory(val type: Int, private val byteOrder: ByteOrder) : TiffOutputItem() {
+class TiffOutputDirectory(val type: Int, private val byteOrder: ByteOrder) : TiffOutputItem {
 
     private val fields = mutableListOf<TiffOutputField>()
 
     private var nextDirectory: TiffOutputDirectory? = null
+
+    override var offset: Long = UNDEFINED_VALUE
 
     var rawJpegImageData: JpegImageData? = null
         private set
@@ -568,13 +571,13 @@ class TiffOutputDirectory(val type: Int, private val byteOrder: ByteOrder) : Tif
         fields.sortWith(comparator)
     }
 
-    override fun writeItem(bos: BinaryByteWriter) {
+    override fun writeItem(binaryByteWriter: BinaryByteWriter) {
 
         /* Write directory field count. */
-        bos.write2Bytes(fields.size)
+        binaryByteWriter.write2Bytes(fields.size)
 
         for (field in fields)
-            field.writeField(bos)
+            field.writeField(binaryByteWriter)
 
         var nextDirectoryOffset: Long = 0
 
@@ -582,9 +585,9 @@ class TiffOutputDirectory(val type: Int, private val byteOrder: ByteOrder) : Tif
             nextDirectoryOffset = nextDirectory!!.offset
 
         if (nextDirectoryOffset == UNDEFINED_VALUE)
-            bos.write4Bytes(0)
+            binaryByteWriter.write4Bytes(0)
         else
-            bos.write4Bytes(nextDirectoryOffset.toInt())
+            binaryByteWriter.write4Bytes(nextDirectoryOffset.toInt())
     }
 
     /* Internal, because callers should use setThumbnailBytes() */
@@ -649,7 +652,10 @@ class TiffOutputDirectory(val type: Int, private val byteOrder: ByteOrder) : Tif
 
         if (rawJpegImageData != null) {
 
-            val item: TiffOutputItem = Value("rawJpegImageData", rawJpegImageData!!.bytes)
+            val item: TiffOutputItem = TiffOutputValue(
+                "rawJpegImageData",
+                rawJpegImageData!!.bytes
+            )
 
             result.add(item)
 
