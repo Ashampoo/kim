@@ -167,7 +167,7 @@ class TiffImageWriterLossless(
 
         val outputLength = calcNewOffsets(analysis, outputItems)
 
-        tiffOffsetItems.writeOffsetsToOutputFields(byteOrder)
+        tiffOffsetItems.writeOffsetsToOutputFields()
 
         writeInternal(byteWriter, outputSet, analysis, outputItems, outputLength)
     }

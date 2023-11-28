@@ -34,16 +34,16 @@ class TiffImageWriterLossy(
 
         val outputItems = outputSet.getOutputItems(outputSummary)
 
-        updateOffsetsStep(outputItems)
+        calcNewOffsets(outputItems)
 
-        outputSummary.writeOffsetsToOutputFields(byteOrder)
+        outputSummary.writeOffsetsToOutputFields()
 
         val binaryByteWriter = createBinaryByteWriter(byteWriter, byteOrder)
 
-        writeStep(binaryByteWriter, outputItems)
+        writeInternal(binaryByteWriter, outputItems)
     }
 
-    private fun updateOffsetsStep(outputItems: List<TiffOutputItem>) {
+    private fun calcNewOffsets(outputItems: List<TiffOutputItem>) {
 
         var offset: Int = TIFF_HEADER_SIZE
 
@@ -57,7 +57,7 @@ class TiffImageWriterLossy(
         }
     }
 
-    private fun writeStep(
+    private fun writeInternal(
         bos: BinaryByteWriter,
         outputItems: List<TiffOutputItem>
     ) {
