@@ -169,7 +169,7 @@ class TiffImageWriterLossless(
 
         tiffOffsetItems.writeOffsetsToOutputFields(byteOrder)
 
-        writeStep(byteWriter, outputSet, analysis, outputItems, outputLength)
+        writeInternal(byteWriter, outputSet, analysis, outputItems, outputLength)
     }
 
     private fun calcNewOffsets(
@@ -289,7 +289,7 @@ class TiffImageWriterLossless(
         return Pair(filteredAndSortedElements, newExifBytesLength)
     }
 
-    private fun writeStep(
+    private fun writeInternal(
         byteWriter: ByteWriter,
         outputSet: TiffOutputSet,
         analysis: List<TiffElement>,
