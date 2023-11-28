@@ -30,7 +30,9 @@ import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toInstant
 
-fun ImageMetadata.convertToPhotoMetadata(): PhotoMetadata {
+fun ImageMetadata.convertToPhotoMetadata(
+    includeThumbnail: Boolean = false
+): PhotoMetadata {
 
     val orientation = TiffOrientation.of(findShortValue(TiffTag.TIFF_TAG_ORIENTATION)?.toInt())
 
@@ -103,7 +105,8 @@ fun ImageMetadata.convertToPhotoMetadata(): PhotoMetadata {
         rating = xmpMetadata?.rating,
         keywords = keywords.ifEmpty { xmpMetadata?.keywords ?: emptySet() },
         faces = xmpMetadata?.faces ?: emptyMap(),
-        personsInImage = xmpMetadata?.personsInImage ?: emptySet()
+        personsInImage = xmpMetadata?.personsInImage ?: emptySet(),
+        thumbnailBytes = if (includeThumbnail) getExifThumbnailBytes() else null
     )
 }
 

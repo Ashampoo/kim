@@ -54,7 +54,10 @@ data class PhotoMetadata(
 
     /* Persons */
     val faces: Map<String, XMPRegionArea> = emptyMap(),
-    val personsInImage: Set<String> = emptySet()
+    val personsInImage: Set<String> = emptySet(),
+
+    /* EXIF Thumbnail (IFD1) */
+    val thumbnailBytes: ByteArray? = null
 
 ) {
 
