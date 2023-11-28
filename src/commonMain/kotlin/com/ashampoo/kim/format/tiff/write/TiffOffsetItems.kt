@@ -14,12 +14,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.ashampoo.kim.format.tiff
+package com.ashampoo.kim.format.tiff.write
 
-import com.ashampoo.kim.format.tiff.TiffElement.DataElement
+import com.ashampoo.kim.common.ByteOrder
+import com.ashampoo.kim.format.tiff.fieldtypes.FieldType
 
-class JpegImageData(offset: Long, length: Int, data: ByteArray) : DataElement(offset, length, data) {
+class TiffOffsetItems(val byteOrder: ByteOrder) {
 
-    override fun toString(): String = "Jpeg image data: ${bytes.size} bytes"
+    private val offsetItems = mutableSetOf<TiffOffsetItem>()
 
+    fun addOffsetItem(offsetItem: TiffOffsetItem) =
+        offsetItems.add(offsetItem)
+
+    fun writeOffsetsToOutputFields() =
+        offsetItems.forEach {
+            it.outputField.setBytes(
+                FieldType.LONG.writeData(
+                    data = it.outputItem.offset.toInt(),
+                    byteOrder = byteOrder
+                )
+            )
+        }
 }

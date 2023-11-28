@@ -41,14 +41,13 @@ class TiffDirectory(
     val nextDirectoryOffset: Long,
     val byteOrder: ByteOrder
 ) : TiffElement(
+    debugDescription = "Directory " + description(type),
     offset = offset,
     length = TiffConstants.TIFF_DIRECTORY_HEADER_LENGTH + entries.size *
         TiffConstants.TIFF_ENTRY_LENGTH + TiffConstants.TIFF_DIRECTORY_FOOTER_LENGTH
 ) {
 
-    var jpegImageData: JpegImageData? = null
-
-    val description: String = description(type)
+    var jpegImageDataElement: JpegImageDataElement? = null
 
     fun getDirectoryEntries(): List<TiffField> = entries
 
@@ -158,7 +157,7 @@ class TiffDirectory(
                 outputDirectory.add(outputField)
             }
 
-            outputDirectory.setJpegImageData(jpegImageData)
+            outputDirectory.setJpegImageData(jpegImageDataElement)
             outputDirectory
 
         } catch (ex: ImageReadException) {
@@ -170,7 +169,7 @@ class TiffDirectory(
 
         val sb = StringBuilder()
 
-        sb.appendLine("---- $description ----")
+        sb.appendLine("---- $debugDescription ----")
 
         for (entry in entries)
             sb.appendLine(entry)

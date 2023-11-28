@@ -3,7 +3,7 @@ Resolution  : 2074 x 2592
 ---- TIFF ----
 Version 42
 Little-endian (Intel, II)
----- IFD0 ----
+---- Directory IFD0 ----
 0x010e ImageDescription = OLYMPUS DIGITAL CAMERA
 0x010f Make = OLYMPUS CORPORATION
 0x0110 Model = E-M10 Mark III
@@ -14,7 +14,7 @@ Little-endian (Intel, II)
 0x0132 DateTime = 2020:04:30 21:24:18
 0x8769 ExifOffset = 260
 
----- ExifIFD ----
+---- Directory ExifIFD ----
 0x829a ExposureTime = 1/250 (0.004)
 0x829d FNumber = 56/10 (5.6)
 0x8822 ExposureProgram = 3
@@ -52,7 +52,7 @@ Little-endian (Intel, II)
 0xa434 LensModel = OLYMPUS M.30mm F3.5 Macro
 0xa435 LensSerialNumber = ACBA37456
 
----- SubIFD ----
+---- Directory SubIFD ----
 0x0103 Compression = 6
 0x011a XResolution = 72/1 (72.0)
 0x011b YResolution = 72/1 (72.0)

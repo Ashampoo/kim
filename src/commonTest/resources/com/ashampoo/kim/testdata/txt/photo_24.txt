@@ -3,7 +3,7 @@ Resolution  : 3000 x 2000
 ---- TIFF ----
 Version 42
 Little-endian (Intel, II)
----- IFD0 ----
+---- Directory IFD0 ----
 0x010f Make = SONY
 0x0110 Model = ILCE-7RM3
 0x011a XResolution = 300/1 (300.0)
@@ -13,7 +13,7 @@ Little-endian (Intel, II)
 0x0132 DateTime = 2019:02:11 00:15:52
 0x8769 ExifOffset = 212
 
----- ExifIFD ----
+---- Directory ExifIFD ----
 0x829a ExposureTime = 2/1 (2.0)
 0x829d FNumber = 28/10 (2.8)
 0x8822 ExposureProgram = 1
@@ -50,7 +50,7 @@ Little-endian (Intel, II)
 0xa432 LensSpecification = [240/10 (24.0), 700/10 (70.0), 28/10 (2.8), 28/10 (2.8)]
 0xa434 LensModel = FE 24-70mm F2.8 GM
 
----- SubIFD ----
+---- Directory SubIFD ----
 0x0103 Compression = 6
 0x011a XResolution = 72/1 (72.0)
 0x011b YResolution = 72/1 (72.0)

@@ -27,7 +27,11 @@ object TiffConstants {
 
     const val TIFF_VERSION: Int = 42
 
-    val DEFAULT_TIFF_BYTE_ORDER = ByteOrder.LITTLE_ENDIAN
+    /*
+     * ExifTool defaults to big endian.
+     * It's more natural to read.
+     */
+    val DEFAULT_TIFF_BYTE_ORDER = ByteOrder.BIG_ENDIAN
 
     const val TIFF_HEADER_SIZE = 8
     const val TIFF_DIRECTORY_HEADER_LENGTH = 2

@@ -20,6 +20,7 @@ import com.ashampoo.kim.common.ImageReadException
 import com.ashampoo.kim.common.toSingleNumberHexes
 import com.ashampoo.kim.common.tryWithImageReadException
 import com.ashampoo.kim.format.ImageFormatMagicNumbers
+import com.ashampoo.kim.format.jpeg.JpegConstants
 import com.ashampoo.kim.format.jpeg.JpegMetadataExtractor
 import com.ashampoo.kim.input.ByteReader
 
@@ -41,7 +42,9 @@ object RafPreviewExtractor {
 
         val bytes = mutableListOf<Byte>()
 
-        bytes.addAll(ImageFormatMagicNumbers.jpeg)
+        bytes.addAll(
+            listOf(JpegConstants.SOI[0], JpegConstants.SOI[1], 0xFF.toByte())
+        )
 
         JpegMetadataExtractor.readSegmentBytesIntoList(reader, bytes)
 

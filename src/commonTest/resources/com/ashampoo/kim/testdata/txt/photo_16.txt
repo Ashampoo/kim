@@ -3,7 +3,7 @@ Resolution  : 2072 x 2590
 ---- TIFF ----
 Version 42
 Little-endian (Intel, II)
----- IFD0 ----
+---- Directory IFD0 ----
 0x010f Make = Canon
 0x0110 Model = Canon EOS 5D Mark III
 0x011a XResolution = 5000/1 (5000.0)
@@ -13,7 +13,7 @@ Little-endian (Intel, II)
 0x0132 DateTime = 2018:12:15 19:42:58
 0x8769 ExifOffset = 224
 
----- ExifIFD ----
+---- Directory ExifIFD ----
 0x829a ExposureTime = 1/250 (0.004)
 0x829d FNumber = 28/10 (2.8)
 0x8822 ExposureProgram = 3
@@ -45,7 +45,7 @@ Little-endian (Intel, II)
 0xa434 LensModel = EF100mm f/2.8L Macro IS USM
 0xa435 LensSerialNumber = 0000079489
 
----- SubIFD ----
+---- Directory SubIFD ----
 0x0103 Compression = 6
 0x011a XResolution = 72/1 (72.0)
 0x011b YResolution = 72/1 (72.0)

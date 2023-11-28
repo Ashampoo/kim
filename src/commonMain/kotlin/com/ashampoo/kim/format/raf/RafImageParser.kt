@@ -21,6 +21,7 @@ import com.ashampoo.kim.common.tryWithImageReadException
 import com.ashampoo.kim.format.ImageFormatMagicNumbers
 import com.ashampoo.kim.format.ImageMetadata
 import com.ashampoo.kim.format.ImageParser
+import com.ashampoo.kim.format.jpeg.JpegConstants
 import com.ashampoo.kim.format.jpeg.JpegImageParser
 import com.ashampoo.kim.input.ByteReader
 import com.ashampoo.kim.input.PrePendingByteReader
@@ -49,7 +50,9 @@ object RafImageParser : ImageParser {
             /* Create a new reader, prepending the jpegMagicNumbers, and read the contained JPEG. */
             val newReader = PrePendingByteReader(
                 delegate = byteReader,
-                prependedBytes = ImageFormatMagicNumbers.jpeg
+                prependedBytes = listOf(
+                    JpegConstants.SOI[0], JpegConstants.SOI[1], 0xFF.toByte()
+                )
             )
 
             return@tryWithImageReadException JpegImageParser

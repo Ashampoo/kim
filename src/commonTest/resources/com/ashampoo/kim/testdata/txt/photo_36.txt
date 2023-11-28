@@ -3,7 +3,7 @@ Resolution  : 4240 x 2384
 ---- TIFF ----
 Version 42
 Big-endian (Motorola, MM)
----- IFD0 ----
+---- Directory IFD0 ----
 0x010f Make = FUJIFILM
 0x0110 Model = X-Pro2
 0x0112 Orientation = 1
@@ -15,7 +15,7 @@ Big-endian (Motorola, MM)
 0x8298 Copyright = []
 0x8769 ExifOffset = 712
 
----- ExifIFD ----
+---- Directory ExifIFD ----
 0x829a ExposureTime = 1/4000 (2.5E-4)
 0x829d FNumber = 2/1 (2.0)
 0x8822 ExposureProgram = 1

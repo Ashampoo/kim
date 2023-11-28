@@ -3,7 +3,7 @@ Resolution  : 4231 x 2380
 ---- TIFF ----
 Version 42
 Little-endian (Intel, II)
----- IFD0 ----
+---- Directory IFD0 ----
 0x010f Make = FUJIFILM
 0x0110 Model = X-E2
 0x011a XResolution = 240/1 (240.0)
@@ -14,7 +14,7 @@ Little-endian (Intel, II)
 0x8769 ExifOffset = 218
 0x8825 GPSInfo = 844
 
----- ExifIFD ----
+---- Directory ExifIFD ----
 0x829a ExposureTime = 1/1400 (7.14E-4)
 0x829d FNumber = 56/10 (5.6)
 0x8822 ExposureProgram = 3
@@ -51,13 +51,13 @@ Little-endian (Intel, II)
 0xa434 LensModel = XF55-200mmF3.5-4.8 R LM OIS
 0xa435 LensSerialNumber = 48A00942
 
----- GPS ----
+---- Directory GPS ----
 0x0001 GPSLatitudeRef = S
 0x0002 GPSLatitude = [64/1 (64.0), 8/1 (8.0), 119859/2500 (47.9436)]
 0x0003 GPSLongitudeRef = W
 0x0004 GPSLongitude = [61/1 (61.0), 42/1 (42.0), 71177/1353 (52.6068)]
 
----- SubIFD ----
+---- Directory SubIFD ----
 0x0103 Compression = 6
 0x011a XResolution = 72/1 (72.0)
 0x011b YResolution = 72/1 (72.0)

@@ -3,13 +3,13 @@ Resolution  : 3136 x 3919
 ---- TIFF ----
 Version 42
 Little-endian (Intel, II)
----- IFD0 ----
+---- Directory IFD0 ----
 0x010f Make = NIKON CORPORATION
 0x0110 Model = NIKON D610
 0x0131 Software = Lightroom
 0x8769 ExifOffset = 102
 
----- ExifIFD ----
+---- Directory ExifIFD ----
 0x829a ExposureTime = 1/1250 (8.0E-4)
 0x829d FNumber = 14/10 (1.4)
 0x8827 PhotographicSensitivity = 100

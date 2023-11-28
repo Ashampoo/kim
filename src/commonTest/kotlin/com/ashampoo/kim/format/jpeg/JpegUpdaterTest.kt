@@ -42,6 +42,11 @@ class JpegUpdaterTest {
 
     private val originalBytes = Resource("$resourcePath/original.jpg").readBytes()
 
+    private val noMetadataBytes = Resource("$resourcePath/no_metadata.jpg").readBytes()
+
+    private val thumbnailBytes =
+        Resource("$resourcePath/../testdata/test_thumb.jpg").readBytes()
+
     @BeforeTest
     fun setUp() {
         Kim.underUnitTesting = true
@@ -61,6 +66,18 @@ class JpegUpdaterTest {
 
     @OptIn(ExperimentalStdlibApi::class)
     @Test
+    fun testUpdateOrientationOnEmptyImage() {
+
+        val newBytes = Kim.update(
+            bytes = noMetadataBytes,
+            update = MetadataUpdate.Orientation(TiffOrientation.ROTATE_RIGHT)
+        )
+
+        compare("rotated_right.no_metadata.jpg", newBytes)
+    }
+
+    @OptIn(ExperimentalStdlibApi::class)
+    @Test
     fun testUpdateTakenDate() {
 
         val newBytes = Kim.update(
@@ -69,6 +86,18 @@ class JpegUpdaterTest {
         )
 
         compare("new_taken_date.jpg", newBytes)
+    }
+
+    @OptIn(ExperimentalStdlibApi::class)
+    @Test
+    fun testUpdateTakenDateOnEmptyImage() {
+
+        val newBytes = Kim.update(
+            bytes = noMetadataBytes,
+            update = MetadataUpdate.TakenDate(timestamp)
+        )
+
+        compare("new_taken_date.no_metadata.jpg", newBytes)
     }
 
     @OptIn(ExperimentalStdlibApi::class)
@@ -85,6 +114,18 @@ class JpegUpdaterTest {
 
     @OptIn(ExperimentalStdlibApi::class)
     @Test
+    fun testUpdateGpsCoordinatesOnEmptyImage() {
+
+        val newBytes = Kim.update(
+            bytes = noMetadataBytes,
+            update = MetadataUpdate.GpsCoordinates(crashBuildingGps)
+        )
+
+        compare("new_gps_coordinates.no_metadata.jpg", newBytes)
+    }
+
+    @OptIn(ExperimentalStdlibApi::class)
+    @Test
     fun testUpdateRating() {
 
         val newBytes = Kim.update(
@@ -93,6 +134,18 @@ class JpegUpdaterTest {
         )
 
         compare("new_rating.jpg", newBytes)
+    }
+
+    @OptIn(ExperimentalStdlibApi::class)
+    @Test
+    fun testUpdateRatingOnEmptyImage() {
+
+        val newBytes = Kim.update(
+            bytes = noMetadataBytes,
+            update = MetadataUpdate.Rating(PhotoRating.FOUR_STARS)
+        )
+
+        compare("new_rating.no_metadata.jpg", newBytes)
     }
 
     @OptIn(ExperimentalStdlibApi::class)
@@ -109,6 +162,18 @@ class JpegUpdaterTest {
 
     @OptIn(ExperimentalStdlibApi::class)
     @Test
+    fun testUpdateKeywordsOnEmptyImage() {
+
+        val newBytes = Kim.update(
+            bytes = noMetadataBytes,
+            update = MetadataUpdate.Keywords(setOf("hello", "test", keywordWithUmlauts))
+        )
+
+        compare("new_keywords.no_metadata.jpg", newBytes)
+    }
+
+    @OptIn(ExperimentalStdlibApi::class)
+    @Test
     fun testUpdatePersons() {
 
         val newBytes = Kim.update(
@@ -117,6 +182,42 @@ class JpegUpdaterTest {
         )
 
         compare("new_persons.jpg", newBytes)
+    }
+
+    @OptIn(ExperimentalStdlibApi::class)
+    @Test
+    fun testUpdatePersonsOnEmptyImage() {
+
+        val newBytes = Kim.update(
+            bytes = noMetadataBytes,
+            update = MetadataUpdate.Persons(setOf("Swiper", "Dora"))
+        )
+
+        compare("new_persons.no_metadata.jpg", newBytes)
+    }
+
+    @OptIn(ExperimentalStdlibApi::class)
+    @Test
+    fun testUpdateThumbnail() {
+
+        val newBytes = Kim.updateThumbnail(
+            bytes = originalBytes,
+            thumbnailBytes = thumbnailBytes
+        )
+
+        compare("new_thumbnail.jpg", newBytes)
+    }
+
+    @OptIn(ExperimentalStdlibApi::class)
+    @Test
+    fun testUpdateThumbnailOnEmptyImage() {
+
+        val newBytes = Kim.updateThumbnail(
+            bytes = noMetadataBytes,
+            thumbnailBytes = thumbnailBytes
+        )
+
+        compare("new_thumbnail.no_metadata.jpg", newBytes)
     }
 
     @OptIn(ExperimentalStdlibApi::class)

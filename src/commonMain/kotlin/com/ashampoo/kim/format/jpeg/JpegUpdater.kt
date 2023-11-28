@@ -17,7 +17,9 @@ package com.ashampoo.kim.format.jpeg
 
 import com.ashampoo.kim.Kim
 import com.ashampoo.kim.common.ImageWriteException
+import com.ashampoo.kim.common.startsWith
 import com.ashampoo.kim.common.tryWithImageWriteException
+import com.ashampoo.kim.format.ImageFormatMagicNumbers
 import com.ashampoo.kim.format.MetadataUpdater
 import com.ashampoo.kim.format.jpeg.iptc.IptcMetadata
 import com.ashampoo.kim.format.jpeg.iptc.IptcRecord
@@ -50,13 +52,12 @@ internal object JpegUpdater : MetadataUpdater {
          */
         val bytes = byteReader.readRemainingBytes()
 
-        val kimMetadata = Kim.readMetadata(bytes)
+        if (!bytes.startsWith(ImageFormatMagicNumbers.jpeg))
+            throw ImageWriteException("Provided input bytes are not JPEG!")
 
-        if (kimMetadata == null)
-            throw ImageWriteException("Could not read file.")
-
-        if (kimMetadata.imageFormat != ImageFormat.JPEG)
-            throw ImageWriteException("Can only update JPEG.")
+        val kimMetadata = JpegImageParser.parseMetadata(
+            ByteArrayByteReader(bytes)
+        )
 
         val xmpUpdatedBytes = updateXmp(bytes, kimMetadata.xmp, update)
 
@@ -65,6 +66,32 @@ internal object JpegUpdater : MetadataUpdater {
         val iptcUpdatedBytes = updateIptc(exifUpdatedBytes, kimMetadata.iptc, update)
 
         byteWriter.write(iptcUpdatedBytes)
+    }
+
+    @Throws(ImageWriteException::class)
+    override fun updateThumbnail(
+        bytes: ByteArray,
+        thumbnailBytes: ByteArray
+    ): ByteArray = tryWithImageWriteException {
+
+        if (!bytes.startsWith(ImageFormatMagicNumbers.jpeg))
+            throw ImageWriteException("Provided input bytes are not JPEG!")
+
+        val metadata = JpegImageParser.parseMetadata(ByteArrayByteReader(bytes))
+
+        val outputSet = metadata.exif?.createOutputSet() ?: TiffOutputSet()
+
+        outputSet.setThumbnailBytes(thumbnailBytes)
+
+        val byteWriter = ByteArrayByteWriter()
+
+        JpegRewriter.updateExifMetadataLossless(
+            byteReader = ByteArrayByteReader(bytes),
+            byteWriter = byteWriter,
+            outputSet = outputSet
+        )
+
+        return byteWriter.toByteArray()
     }
 
     private fun updateXmp(inputBytes: ByteArray, xmp: String?, update: MetadataUpdate): ByteArray {

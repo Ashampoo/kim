@@ -231,8 +231,25 @@ object Kim {
         return@tryWithImageWriteException when (imageFormat) {
             ImageFormat.JPEG -> JpegUpdater.update(prePendingByteReader, byteWriter, update)
             ImageFormat.PNG -> PngUpdater.update(prePendingByteReader, byteWriter, update)
-            null -> throw ImageWriteException("Unsupported or unsupoorted file format.")
+            null -> throw ImageWriteException("Unknown or unsupported file format.")
             else -> throw ImageWriteException("Can't embed metadata into $imageFormat.")
+        }
+    }
+
+    @kotlin.jvm.JvmStatic
+    @Throws(ImageWriteException::class)
+    fun updateThumbnail(
+        bytes: ByteArray,
+        thumbnailBytes: ByteArray
+    ): ByteArray = tryWithImageWriteException {
+
+        val imageFormat = ImageFormat.detect(bytes)
+
+        return@tryWithImageWriteException when (imageFormat) {
+            ImageFormat.JPEG -> JpegUpdater.updateThumbnail(bytes, thumbnailBytes)
+            ImageFormat.PNG -> PngUpdater.updateThumbnail(bytes, thumbnailBytes)
+            null -> throw ImageWriteException("Unknown or unsupported file format.")
+            else -> throw ImageWriteException("Can't embed thumbnail into $imageFormat.")
         }
     }
 }

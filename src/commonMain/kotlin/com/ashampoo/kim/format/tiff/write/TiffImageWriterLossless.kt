@@ -19,11 +19,13 @@ package com.ashampoo.kim.format.tiff.write
 import com.ashampoo.kim.common.ByteOrder
 import com.ashampoo.kim.common.ImageReadException
 import com.ashampoo.kim.common.ImageWriteException
+import com.ashampoo.kim.format.tiff.TiffContents
 import com.ashampoo.kim.format.tiff.TiffElement
 import com.ashampoo.kim.format.tiff.TiffReader
 import com.ashampoo.kim.format.tiff.constants.ExifTag
 import com.ashampoo.kim.format.tiff.constants.TiffConstants
 import com.ashampoo.kim.format.tiff.constants.TiffConstants.TIFF_HEADER_SIZE
+import com.ashampoo.kim.format.tiff.constants.TiffConstants.TIFF_IFD0
 import com.ashampoo.kim.input.ByteArrayByteReader
 import com.ashampoo.kim.output.BinaryByteWriter.Companion.createBinaryByteWriter
 import com.ashampoo.kim.output.BufferByteWriter
@@ -34,111 +36,129 @@ class TiffImageWriterLossless(
     private val exifBytes: ByteArray
 ) : TiffImageWriterBase(byteOrder) {
 
-    private fun analyzeOldTiff(frozenFields: Map<Int, TiffOutputField>): List<TiffElement> {
+    private fun analyzeOldTiff(
+        makerNoteField: TiffOutputField?
+    ): List<TiffElement> {
 
         try {
 
             val byteReader = ByteArrayByteReader(exifBytes)
 
-            val contents = TiffReader.read(byteReader)
+            val tiffContents = TiffReader.read(byteReader)
 
-            val elements = mutableListOf<TiffElement>()
+            val existingElements = findExistingTiffElements(
+                tiffContents,
+                makerNoteField
+            )
 
-            for (directory in contents.directories) {
-
-                elements.add(directory)
-
-                for (field in directory.getDirectoryEntries()) {
-
-                    val oversizeValue = field.createOversizeValueElement()
-
-                    if (oversizeValue != null) {
-
-                        val frozenField = frozenFields[field.tag]
-
-                        if (frozenField != null &&
-                            frozenField.separateValue != null &&
-                            frozenField.bytesEqual(field.byteArrayValue)
-                        )
-                            frozenField.separateValue.offset = field.offset.toLong()
-                        else
-                            elements.add(oversizeValue)
-                    }
-                }
-
-                val jpegImageData = directory.jpegImageData
-
-                if (jpegImageData != null)
-                    elements.add(jpegImageData)
-            }
-
-            elements.sortWith(TiffElement.offsetComparator)
-
-            val rewritableElements = mutableListOf<TiffElement>()
-
-            var lastElement: TiffElement? = null
-            var index: Long = -1
-
-            for (element in elements) {
-
-                if (lastElement == null) {
-
-                    lastElement = element
-
-                } else if (element.offset - index > OFFSET_TOLERANCE) {
-
-                    rewritableElements.add(
-                        TiffElement.Stub(
-                            offset = lastElement.offset,
-                            length = (index - lastElement.offset).toInt()
-                        )
-                    )
-
-                    lastElement = element
-                }
-
-                index = element.offset + element.length
-            }
-
-            if (lastElement != null)
-                rewritableElements.add(
-                    TiffElement.Stub(
-                        offset = lastElement.offset,
-                        length = (index - lastElement.offset).toInt()
-                    )
-                )
-
-            return rewritableElements
+            return calcRewritableElements(existingElements)
 
         } catch (ex: ImageReadException) {
             throw ImageWriteException(ex.message, ex)
         }
     }
 
+    private fun findExistingTiffElements(
+        tiffContents: TiffContents,
+        makerNoteField: TiffOutputField?
+    ): MutableList<TiffElement> {
+
+        val elements = mutableListOf<TiffElement>()
+
+        for (directory in tiffContents.directories) {
+
+            elements.add(directory)
+
+            for (field in directory.getDirectoryEntries()) {
+
+                val oversizeValue = field.createOversizeValueElement()
+
+                if (oversizeValue != null) {
+
+                    /* MakerNote offsets must stay the same. */
+                    if (makerNoteField != null &&
+                        makerNoteField.separateValue != null &&
+                        makerNoteField.bytesEqual(field.byteArrayValue)
+                    )
+                        makerNoteField.separateValue.offset = field.offset.toLong()
+                    else
+                        elements.add(oversizeValue)
+                }
+            }
+
+            directory.jpegImageDataElement?.let {
+                elements.add(it)
+            }
+        }
+
+        elements.sortWith(TiffElement.offsetComparator)
+
+        return elements
+    }
+
+    private fun calcRewritableElements(
+        elements: List<TiffElement>
+    ): List<TiffElement> {
+
+        val rewritableElements = mutableListOf<TiffElement>()
+
+        var lastElement: TiffElement? = null
+        var index: Long = -1
+
+        for (element in elements) {
+
+            if (lastElement == null) {
+
+                lastElement = element
+
+            } else if (element.offset - index > OFFSET_TOLERANCE) {
+
+                rewritableElements.add(
+                    TiffElement(
+                        debugDescription = lastElement.debugDescription,
+                        offset = lastElement.offset,
+                        length = (index - lastElement.offset).toInt()
+                    )
+                )
+
+                lastElement = element
+            }
+
+            index = element.offset + element.length
+        }
+
+        lastElement?.let {
+
+            rewritableElements.add(
+                TiffElement(
+                    debugDescription = it.debugDescription,
+                    offset = it.offset,
+                    length = (index - it.offset).toInt()
+                )
+            )
+        }
+
+        return rewritableElements
+    }
+
     override fun write(byteWriter: ByteWriter, outputSet: TiffOutputSet) {
 
         /*
-         * There are some fields whose address in the file must not change,
-         * unless of course their value is changed.
-         * If MakerNotes offset changes, it's broken.
+         * The MakerNote field offset must not be changed or
+         * else the data will be corrupted.
          */
-        val frozenFields = mutableMapOf<Int, TiffOutputField>()
-
         val makerNoteField = outputSet.findField(ExifTag.EXIF_TAG_MAKER_NOTE.tag)
 
-        if (makerNoteField != null && makerNoteField.separateValue != null)
-            frozenFields[ExifTag.EXIF_TAG_MAKER_NOTE.tag] = makerNoteField
-
-        val analysis = analyzeOldTiff(frozenFields)
+        val tiffElements = analyzeOldTiff(makerNoteField)
 
         val oldLength = exifBytes.size
 
-        if (analysis.isEmpty())
+        if (tiffElements.isEmpty())
             throw ImageWriteException("Couldn't analyze old tiff data.")
 
-        if (analysis.size == 1) {
+        if (tiffElements.size == 1) {
 
-            val onlyElement = analysis.first()
+            val onlyElement = tiffElements.first()
 
             val newLength: Long = onlyElement.offset + onlyElement.length + TIFF_HEADER_SIZE
 
@@ -151,28 +171,30 @@ class TiffImageWriterLossless(
             }
         }
 
-        val frozenFieldOffsets = mutableMapOf<Long, TiffOutputField>()
+        val frozenFieldOffsets = mutableSetOf<Long>()
 
-        for ((_, frozenField) in frozenFields)
-            if (frozenField.separateValue!!.offset != TiffOutputItem.UNDEFINED_VALUE)
-                frozenFieldOffsets[frozenField.separateValue.offset] = frozenField
+        makerNoteField?.separateValue?.offset?.let {
 
-        val outputSummary = validateDirectories(outputSet)
+            if (it != TiffOutputItem.UNDEFINED_VALUE)
+                frozenFieldOffsets.add(it)
+        }
+
+        val offsetItems = createOffsetItems(outputSet)
 
         /*
-         * Receive all items from the OutputSet expect for the frozen MakerNotes.
+         * Receive all items from the OutputSet except for the frozen MakerNotes.
          */
-        val outputItems = outputSet.getOutputItems(outputSummary)
-            .filter { !frozenFieldOffsets.containsKey(it.offset) }
+        val outputItems = outputSet.getOutputItems(offsetItems)
+            .filterNot { frozenFieldOffsets.contains(it.offset) }
 
-        val outputLength = updateOffsetsStep(analysis, outputItems)
+        val outputLength = calcNewOffsets(tiffElements, outputItems)
 
-        outputSummary.updateOffsets(byteOrder)
+        offsetItems.writeOffsetsToOutputFields()
 
-        writeStep(byteWriter, outputSet, analysis, outputItems, outputLength)
+        writeInternal(byteWriter, outputSet, tiffElements, outputItems, outputLength)
     }
 
-    private fun updateOffsetsStep(
+    private fun calcNewOffsets(
         tiffElements: List<TiffElement>,
         outputItems: List<TiffOutputItem>
     ): Long {
@@ -184,13 +206,21 @@ class TiffImageWriterLossless(
 
         val unusedElements = filterAndSortElementsResult.first
 
-        /* Keeps track of the total length the exif bytes will have. */
+        /* Keeps track of the total length the exif bytes we have. */
         var newExifBytesLength = filterAndSortElementsResult.second
 
         val unplacedItems = outputItems
             .sortedWith(itemLengthComparator)
             .reversed()
             .toMutableList()
+
+//        unplacedItems.find {
+//            it is TiffOutputDirectory && it.type == TIFF_IFD0
+//        }?.let { ifd0dir ->
+//
+//            unplacedItems.remove(ifd0dir)
+//            unplacedItems.add(0, ifd0dir)
+//        }
 
         while (unplacedItems.isNotEmpty()) {
 
@@ -241,7 +271,13 @@ class TiffImageWriterLossless(
                     val excessOffset = offset + outputItemLength
                     val excessLength = length - outputItemLength
 
-                    unusedElements.add(TiffElement.Stub(excessOffset, excessLength))
+                    unusedElements.add(
+                        TiffElement(
+                            bestFit.debugDescription,
+                            excessOffset,
+                            excessLength
+                        )
+                    )
 
                     /* Make sure the new element is in the correct order. */
                     unusedElements.sortWith(elementLengthComparator)
@@ -289,10 +325,10 @@ class TiffImageWriterLossless(
         return Pair(filteredAndSortedElements, newExifBytesLength)
     }
 
-    private fun writeStep(
+    private fun writeInternal(
         byteWriter: ByteWriter,
         outputSet: TiffOutputSet,
-        analysis: List<TiffElement>,
+        tiffElements: List<TiffElement>,
         outputItems: List<TiffOutputItem>,
         outputLength: Long
     ) {
@@ -307,30 +343,44 @@ class TiffImageWriterLossless(
             endIndex = minOf(exifBytes.size, outputByteArray.size)
         )
 
-        val headerBinaryStream = createBinaryByteWriter(BufferByteWriter(outputByteArray, 0), byteOrder)
-
-        writeImageFileHeader(headerBinaryStream, rootDirectory.offset)
+        /* Write image header */
+        writeImageFileHeader(
+            byteWriter = createBinaryByteWriter(
+                byteWriter = BufferByteWriter(
+                    buffer = outputByteArray,
+                    index = 0
+                ),
+                byteOrder = byteOrder
+            ),
+            offsetToFirstIFD = rootDirectory.offset
+        )
 
         /*
-         * Zero out the parsed pieces of old exif segment, in case we don't overwrite them.
+         * Zero out the parsed pieces of old exif segment,
+         * in case we don't overwrite them.
          */
-        for (element in analysis)
+        for (element in tiffElements)
             outputByteArray.fill(
                 element = 0.toByte(),
                 fromIndex = element.offset.toInt(),
-                toIndex = minOf(element.offset + element.length, outputByteArray.size.toLong()).toInt(),
+                toIndex = minOf(
+                    a = element.offset + element.length,
+                    b = outputByteArray.size.toLong()
+                ).toInt(),
             )
 
         /* Write in the new items */
         for (outputItem in outputItems) {
 
-            val offset = outputItem.offset.toInt()
+            val binaryByteWriter = createBinaryByteWriter(
+                byteWriter = BufferByteWriter(
+                    buffer = outputByteArray,
+                    index = outputItem.offset.toInt()
+                ),
+                byteOrder = byteOrder
+            )
 
-            val newByteWriter = BufferByteWriter(outputByteArray, offset)
-
-            val bos = createBinaryByteWriter(newByteWriter, byteOrder)
-
-            outputItem.writeItem(bos)
+            outputItem.writeItem(binaryByteWriter)
         }
 
         byteWriter.write(outputByteArray)

@@ -3,7 +3,7 @@ Resolution  : 5472 x 3648
 ---- TIFF ----
 Version 42
 Little-endian (Intel, II)
----- IFD0 ----
+---- Directory IFD0 ----
 0x010f Make = Canon
 0x0110 Model = Canon EOS-1D X Mark II
 0x011a XResolution = 240/1 (240.0)
@@ -14,7 +14,7 @@ Little-endian (Intel, II)
 0x013b Artist = Roberto_Nickson
 0x8769 ExifOffset = 254
 
----- ExifIFD ----
+---- Directory ExifIFD ----
 0x829a ExposureTime = 1/1250 (8.0E-4)
 0x829d FNumber = 14/10 (1.4)
 0x8822 ExposureProgram = 1
@@ -46,7 +46,7 @@ Little-endian (Intel, II)
 0xa434 LensModel = EF24mm f/1.4L II USM
 0xa435 LensSerialNumber = 00008011d2
 
----- SubIFD ----
+---- Directory SubIFD ----
 0x0103 Compression = 6
 0x011a XResolution = 72/1 (72.0)
 0x011b YResolution = 72/1 (72.0)

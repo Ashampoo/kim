@@ -19,7 +19,7 @@ package com.ashampoo.kim.format.tiff.write
 import com.ashampoo.kim.common.ByteOrder
 import com.ashampoo.kim.common.ImageWriteException
 import com.ashampoo.kim.common.RationalNumber
-import com.ashampoo.kim.format.tiff.JpegImageData
+import com.ashampoo.kim.format.tiff.JpegImageDataElement
 import com.ashampoo.kim.format.tiff.TiffDirectory.Companion.description
 import com.ashampoo.kim.format.tiff.constants.TiffConstants.TIFF_DIRECTORY_FOOTER_LENGTH
 import com.ashampoo.kim.format.tiff.constants.TiffConstants.TIFF_DIRECTORY_HEADER_LENGTH
@@ -56,15 +56,21 @@ import com.ashampoo.kim.format.tiff.taginfos.TagInfoShortOrLong
 import com.ashampoo.kim.format.tiff.taginfos.TagInfoShortOrLongOrRational
 import com.ashampoo.kim.format.tiff.taginfos.TagInfoShortOrRational
 import com.ashampoo.kim.format.tiff.taginfos.TagInfoShorts
+import com.ashampoo.kim.format.tiff.write.TiffOutputItem.Companion.UNDEFINED_VALUE
 import com.ashampoo.kim.output.BinaryByteWriter
 
-class TiffOutputDirectory(val type: Int, private val byteOrder: ByteOrder) : TiffOutputItem() {
+class TiffOutputDirectory(
+    val type: Int,
+    private val byteOrder: ByteOrder
+) : TiffOutputItem {
 
     private val fields = mutableListOf<TiffOutputField>()
 
     private var nextDirectory: TiffOutputDirectory? = null
 
-    var rawJpegImageData: JpegImageData? = null
+    override var offset: Long = UNDEFINED_VALUE
+
+    var rawJpegImageDataElement: JpegImageDataElement? = null
         private set
 
     fun setNextDirectory(nextDirectory: TiffOutputDirectory?) {
@@ -568,13 +574,13 @@ class TiffOutputDirectory(val type: Int, private val byteOrder: ByteOrder) : Tif
         fields.sortWith(comparator)
     }
 
-    override fun writeItem(bos: BinaryByteWriter) {
+    override fun writeItem(binaryByteWriter: BinaryByteWriter) {
 
         /* Write directory field count. */
-        bos.write2Bytes(fields.size)
+        binaryByteWriter.write2Bytes(fields.size)
 
         for (field in fields)
-            field.writeField(bos)
+            field.writeField(binaryByteWriter)
 
         var nextDirectoryOffset: Long = 0
 
@@ -582,13 +588,14 @@ class TiffOutputDirectory(val type: Int, private val byteOrder: ByteOrder) : Tif
             nextDirectoryOffset = nextDirectory!!.offset
 
         if (nextDirectoryOffset == UNDEFINED_VALUE)
-            bos.write4Bytes(0)
+            binaryByteWriter.write4Bytes(0)
         else
-            bos.write4Bytes(nextDirectoryOffset.toInt())
+            binaryByteWriter.write4Bytes(nextDirectoryOffset.toInt())
     }
 
-    fun setJpegImageData(rawJpegImageData: JpegImageData?) {
-        this.rawJpegImageData = rawJpegImageData
+    /* Internal, because callers should use setThumbnailBytes() */
+    internal fun setJpegImageData(rawJpegImageDataElement: JpegImageDataElement?) {
+        this.rawJpegImageDataElement = rawJpegImageDataElement
     }
 
     override fun getItemLength(): Int =
@@ -598,7 +605,7 @@ class TiffOutputDirectory(val type: Int, private val byteOrder: ByteOrder) : Tif
         findField(tagInfo)?.let { field -> fields.remove(field) }
 
     fun getOutputItems(
-        outputSummary: TiffOutputSummary
+        outputSummary: TiffOffsetItems
     ): List<TiffOutputItem> {
 
         /* First validate directory fields. */
@@ -607,7 +614,7 @@ class TiffOutputDirectory(val type: Int, private val byteOrder: ByteOrder) : Tif
 
         var jpegOffsetField: TiffOutputField? = null
 
-        if (rawJpegImageData != null) {
+        if (rawJpegImageDataElement != null) {
 
             jpegOffsetField = TiffOutputField(
                 TiffTag.TIFF_TAG_JPEG_INTERCHANGE_FORMAT,
@@ -616,7 +623,7 @@ class TiffOutputDirectory(val type: Int, private val byteOrder: ByteOrder) : Tif
 
             add(jpegOffsetField)
 
-            val lengthValue = FieldType.LONG.writeData(rawJpegImageData!!.length, outputSummary.byteOrder)
+            val lengthValue = FieldType.LONG.writeData(rawJpegImageDataElement!!.length, outputSummary.byteOrder)
 
             val jpegLengthField = TiffOutputField(
                 TiffTag.TIFF_TAG_JPEG_INTERCHANGE_FORMAT_LENGTH,
@@ -646,13 +653,16 @@ class TiffOutputDirectory(val type: Int, private val byteOrder: ByteOrder) : Tif
             result.add(item)
         }
 
-        if (rawJpegImageData != null) {
+        if (rawJpegImageDataElement != null) {
 
-            val item: TiffOutputItem = Value("rawJpegImageData", rawJpegImageData!!.bytes)
+            val item: TiffOutputItem = TiffOutputValue(
+                "rawJpegImageData",
+                rawJpegImageDataElement!!.bytes
+            )
 
             result.add(item)
 
-            outputSummary.add(item, jpegOffsetField!!)
+            outputSummary.addOffsetItem(TiffOffsetItem(item, jpegOffsetField!!))
         }
 
         return result
@@ -660,8 +670,4 @@ class TiffOutputDirectory(val type: Int, private val byteOrder: ByteOrder) : Tif
 
     override fun toString(): String =
         description(type)
-
-//    companion object {
-//        val COMPARATOR = compareBy { directory: TiffOutputDirectory -> directory.type }
-//    }
 }

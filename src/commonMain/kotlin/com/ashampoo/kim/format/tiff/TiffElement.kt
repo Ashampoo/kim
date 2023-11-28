@@ -16,22 +16,14 @@
  */
 package com.ashampoo.kim.format.tiff
 
-abstract class TiffElement(
+open class TiffElement(
+    val debugDescription: String,
     val offset: Long,
     val length: Int
 ) {
 
-    abstract class DataElement(
-        offset: Long,
-        length: Int,
-        val bytes: ByteArray
-    ) : TiffElement(offset, length)
-
-    class Stub(offset: Long, length: Int) : TiffElement(offset, length) {
-
-        override fun toString(): String = "Stub, offset: $offset, length: $length, last: ${offset + length}"
-
-    }
+    override fun toString(): String =
+        debugDescription
 
     companion object {
         val offsetComparator = compareBy { e: TiffElement -> e.offset }

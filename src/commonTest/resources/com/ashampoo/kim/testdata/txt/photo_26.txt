@@ -3,7 +3,7 @@ Resolution  : 2304 x 1536
 ---- TIFF ----
 Version 42
 Big-endian (Motorola, MM)
----- IFD0 ----
+---- Directory IFD0 ----
 0x010f Make = NIKON CORPORATION
 0x0110 Model = NIKON D3300
 0x0112 Orientation = 1
@@ -14,7 +14,7 @@ Big-endian (Motorola, MM)
 0x0132 DateTime = 2017:05:03 10:40:16
 0x8769 ExifOffset = 228
 
----- ExifIFD ----
+---- Directory ExifIFD ----
 0x829a ExposureTime = 1/400 (0.0025)
 0x829d FNumber = 4/1 (4.0)
 0x8822 ExposureProgram = 1

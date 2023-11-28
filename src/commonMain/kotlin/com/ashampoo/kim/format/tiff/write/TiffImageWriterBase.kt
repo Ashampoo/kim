@@ -27,21 +27,24 @@ import com.ashampoo.kim.output.BinaryByteWriter
 import com.ashampoo.kim.output.ByteWriter
 
 abstract class TiffImageWriterBase(
-    val byteOrder: ByteOrder = DEFAULT_TIFF_BYTE_ORDER
+    val byteOrder: ByteOrder
 ) {
 
     abstract fun write(byteWriter: ByteWriter, outputSet: TiffOutputSet)
 
-    protected fun validateDirectories(outputSet: TiffOutputSet): TiffOutputSummary {
+    protected fun createOffsetItems(outputSet: TiffOutputSet): TiffOffsetItems {
 
         val directories = outputSet.getDirectories()
 
         if (directories.isEmpty())
             throw ImageWriteException("No directories.")
 
+        /* Directories */
         var exifDirectory: TiffOutputDirectory? = null
         var gpsDirectory: TiffOutputDirectory? = null
         var interoperabilityDirectory: TiffOutputDirectory? = null
+
+        /* Offsets */
         var exifDirectoryOffsetField: TiffOutputField? = null
         var gpsDirectoryOffsetField: TiffOutputField? = null
         var interoperabilityDirectoryOffsetField: TiffOutputField? = null
@@ -160,22 +163,19 @@ abstract class TiffImageWriterBase(
         if (rootDirectory == null)
             throw ImageWriteException("Root directory is missing.")
 
-        /* Prepare results */
-        val result = TiffOutputSummary(byteOrder)
-
         if (interoperabilityDirectory == null && interoperabilityDirectoryOffsetField != null)
             throw ImageWriteException(
                 "Output set has interoperability dir offset field, but no interoperability dir"
             )
+
+        val tiffOffsetItems = TiffOffsetItems(byteOrder)
 
         if (interoperabilityDirectory != null) {
 
             if (exifDirectory == null)
                 exifDirectory = outputSet.addExifDirectory()
 
-            /*
-             * Create offset
-             */
+            /* Create offset if missing */
             if (interoperabilityDirectoryOffsetField == null) {
 
                 interoperabilityDirectoryOffsetField =
@@ -184,15 +184,16 @@ abstract class TiffImageWriterBase(
                 exifDirectory.add(interoperabilityDirectoryOffsetField)
             }
 
-            result.add(interoperabilityDirectory, interoperabilityDirectoryOffsetField)
+            tiffOffsetItems.addOffsetItem(TiffOffsetItem(interoperabilityDirectory, interoperabilityDirectoryOffsetField))
         }
 
-        /* Make sure offset fields and offset'd directories correspond. */
+        /* Make sure offset fields and offset directories correspond. */
         if (exifDirectory == null && exifDirectoryOffsetField != null)
-            throw ImageWriteException("Output set has Exif Directory Offset field, but no Exif Directory")
+            throw ImageWriteException("Output set has EXIF directory offset field, but no EXIF directory")
 
         if (exifDirectory != null) {
 
+            /* Create offset if missing */
             if (exifDirectoryOffsetField == null) {
 
                 exifDirectoryOffsetField =
@@ -201,14 +202,15 @@ abstract class TiffImageWriterBase(
                 rootDirectory.add(exifDirectoryOffsetField)
             }
 
-            result.add(exifDirectory, exifDirectoryOffsetField)
+            tiffOffsetItems.addOffsetItem(TiffOffsetItem(exifDirectory, exifDirectoryOffsetField))
         }
 
         if (gpsDirectory == null && gpsDirectoryOffsetField != null)
-            throw ImageWriteException("Output set has GPS Directory Offset field, but no GPS Directory")
+            throw ImageWriteException("Output set has GPS directory offset field, but no GPS directory")
 
         if (gpsDirectory != null) {
 
+            /* Create offset if missing */
             if (gpsDirectoryOffsetField == null) {
 
                 gpsDirectoryOffsetField =
@@ -217,26 +219,38 @@ abstract class TiffImageWriterBase(
                 rootDirectory.add(gpsDirectoryOffsetField)
             }
 
-            result.add(gpsDirectory, gpsDirectoryOffsetField)
+            tiffOffsetItems.addOffsetItem(TiffOffsetItem(gpsDirectory, gpsDirectoryOffsetField))
         }
 
-        return result
+        return tiffOffsetItems
     }
 
     protected fun writeImageFileHeader(
-        bos: BinaryByteWriter,
+        byteWriter: BinaryByteWriter,
         offsetToFirstIFD: Long = TIFF_HEADER_SIZE.toLong()
     ) {
 
         if (byteOrder == ByteOrder.LITTLE_ENDIAN) {
-            bos.write('I'.code)
-            bos.write('I'.code)
+            byteWriter.write('I'.code)
+            byteWriter.write('I'.code)
         } else {
-            bos.write('M'.code)
-            bos.write('M'.code)
+            byteWriter.write('M'.code)
+            byteWriter.write('M'.code)
         }
 
-        bos.write2Bytes(TIFF_VERSION)
-        bos.write4Bytes(offsetToFirstIFD.toInt())
+        byteWriter.write2Bytes(TIFF_VERSION)
+        byteWriter.write4Bytes(offsetToFirstIFD.toInt())
+    }
+
+    companion object {
+
+        /** Returns an appropriate TiffImageWriter instance. */
+        fun createTiffImageWriter(oldExifBytes: ByteArray?): TiffImageWriterBase {
+
+            return if (oldExifBytes != null)
+                TiffImageWriterLossless(exifBytes = oldExifBytes)
+            else
+                TiffImageWriterLossy()
+        }
     }
 }

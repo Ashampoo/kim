@@ -23,8 +23,12 @@ data class TiffHeader(
     val byteOrder: ByteOrder,
     val tiffVersion: Int,
     val offsetToFirstIFD: Long
-) : TiffElement(0, TiffConstants.TIFF_HEADER_SIZE) {
+) : TiffElement(
+    debugDescription = "Version $tiffVersion\n$byteOrder",
+    offset = 0,
+    length = TiffConstants.TIFF_HEADER_SIZE
+) {
 
-    override fun toString(): String = "Version $tiffVersion\n$byteOrder"
-
+    override fun toString(): String =
+        debugDescription
 }

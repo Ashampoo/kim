@@ -3,7 +3,7 @@ Resolution  : 5344 x 3516
 ---- TIFF ----
 Version 42
 Little-endian (Intel, II)
----- IFD0 ----
+---- Directory IFD0 ----
 0x00fe NewSubfileType = 1
 0x0100 ImageWidth = 256
 0x0101 ImageLength = 171
@@ -64,7 +64,7 @@ Little-endian (Intel, II)
 0xc761 Unknown = [1.366262302586404E-4, 3.882895441490322E-7]
 0xc7a7 Unknown = [16 bytes]
 
----- ExifIFD ----
+---- Directory ExifIFD ----
 0x829a ExposureTime = 1/60 (0.016667)
 0x829d FNumber = 5/1 (5.0)
 0x8822 ExposureProgram = 3
@@ -98,7 +98,7 @@ Little-endian (Intel, II)
 0xa434 LensModel = EF-S15-85mm f/3.5-5.6 IS USM
 0xa435 LensSerialNumber = 0000118484
 
----- SubIFD ----
+---- Directory SubIFD ----
 0x00fe NewSubfileType = 0
 0x0100 ImageWidth = 5344
 0x0101 ImageLength = 3516
@@ -127,7 +127,7 @@ Little-endian (Intel, II)
 0xc68d Unknown = [51, 142, 3516, 5344]
 0xc761 Unknown = [1.366262302586404E-4, 3.882895441490322E-7]
 
----- SubIFD1 ----
+---- Directory SubIFD1 ----
 0x00fe NewSubfileType = 1
 0x0100 ImageWidth = 1024
 0x0101 ImageLength = 683
@@ -149,7 +149,7 @@ Little-endian (Intel, II)
 0xc71a Unknown = 2
 0xc71b Unknown = 2023-07-26T06:11:34+02:00
 
----- SubIFD2 ----
+---- Directory SubIFD2 ----
 0x00fe NewSubfileType = 1
 0x0100 ImageWidth = 1728
 0x0101 ImageLength = 1152
@@ -167,7 +167,7 @@ Little-endian (Intel, II)
 0xc741 Unknown = [256 bytes]
 0xc7aa Unknown = 256
 
----- SubIFD3 ----
+---- Directory SubIFD3 ----
 0x00fe NewSubfileType = 1
 0x0100 ImageWidth = 512
 0x0101 ImageLength = 341
@@ -186,7 +186,7 @@ Little-endian (Intel, II)
 0xc741 Unknown = [256 bytes]
 0xc7aa Unknown = 256
 
----- SubIFD ----
+---- Directory SubIFD ----
 0x00fe NewSubfileType = 1
 0x0100 ImageWidth = 256
 0x0101 ImageLength = 171

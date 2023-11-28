@@ -3,14 +3,14 @@ Resolution  : 1920 x 1080
 ---- TIFF ----
 Version 42
 Big-endian (Motorola, MM)
----- IFD0 ----
+---- Directory IFD0 ----
 0x011a XResolution = 1/1 (1.0)
 0x011b YResolution = 1/1 (1.0)
 0x0128 ResolutionUnit = 1
 0x0213 YCbCrPositioning = 1
 0x8825 GPSInfo = 90
 
----- GPS ----
+---- Directory GPS ----
 0x0001 GPSLatitudeRef = N
 0x0002 GPSLatitude = [34/1 (34.0), 3/1 (3.0), 29285/3641 (8.04312)]
 0x0003 GPSLongitudeRef = W

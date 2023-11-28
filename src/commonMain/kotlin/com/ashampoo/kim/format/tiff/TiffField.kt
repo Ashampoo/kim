@@ -141,10 +141,14 @@ class TiffField(
     fun createOversizeValueElement(): TiffElement? =
         if (isLocalValue) null else OversizeValueElement(offset.toInt(), valueBytes.size)
 
-    inner class OversizeValueElement(offset: Int, length: Int) : TiffElement(offset.toLong(), length) {
+    inner class OversizeValueElement(offset: Int, length: Int) : TiffElement(
+        debugDescription = "OversizeValueElement, tag: $tagInfo, fieldType: $fieldType",
+        offset = offset.toLong(),
+        length = length
+    ) {
 
-        override fun toString(): String = "OversizeValueElement, tag: $tagInfo, fieldType: $fieldType"
-
+        override fun toString(): String =
+            debugDescription
     }
 
     companion object {

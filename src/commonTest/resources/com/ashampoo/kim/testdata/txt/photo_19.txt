@@ -3,7 +3,7 @@ Resolution  : 3948 x 2632
 ---- TIFF ----
 Version 42
 Little-endian (Intel, II)
----- IFD0 ----
+---- Directory IFD0 ----
 0x010f Make = NIKON CORPORATION
 0x0110 Model = NIKON D850
 0x0112 Orientation = 1
@@ -14,7 +14,7 @@ Little-endian (Intel, II)
 0x0132 DateTime = 2020:02:08 08:46:48
 0x8769 ExifOffset = 222
 
----- ExifIFD ----
+---- Directory ExifIFD ----
 0x829a ExposureTime = 1/800 (0.00125)
 0x829d FNumber = 32/10 (3.2)
 0x8822 ExposureProgram = 1
@@ -61,7 +61,7 @@ Little-endian (Intel, II)
 0xa432 LensSpecification = [240/10 (24.0), 700/10 (70.0), 28/10 (2.8), 28/10 (2.8)]
 0xa434 LensModel = 24.0-70.0 mm f/2.8
 
----- SubIFD ----
+---- Directory SubIFD ----
 0x0103 Compression = 6
 0x011a XResolution = 72/1 (72.0)
 0x011b YResolution = 72/1 (72.0)

@@ -16,7 +16,9 @@
 package com.ashampoo.kim.format.png
 
 import com.ashampoo.kim.format.png.chunks.PngChunk
+import com.ashampoo.kim.input.ByteArrayByteReader
 import com.ashampoo.kim.input.KotlinIoSourceByteReader
+import com.ashampoo.kim.output.ByteArrayByteWriter
 import com.ashampoo.kim.output.KotlinIoSinkByteWriter
 import kotlinx.io.files.Path
 import kotlinx.io.files.SystemFileSystem
@@ -90,5 +92,47 @@ object PngMetadataCopyUtil {
             tempFilePath,
             destination
         )
+    }
+
+    fun copy(
+        source: ByteArray,
+        destination: ByteArray
+    ): ByteArray {
+
+        val sourceMetadataChunks: List<PngChunk> =
+            PngImageParser.readChunks(
+                byteReader = ByteArrayByteReader(source),
+                chunkTypeFilter = chunkTypesToCopy
+            )
+
+        checkNotNull(sourceMetadataChunks) { "Failed to read source chunks: $source" }
+
+        val destinationChunks: List<PngChunk> =
+            PngImageParser.readChunks(
+                byteReader = ByteArrayByteReader(destination),
+                chunkTypeFilter = null // = All of them
+            )
+
+        checkNotNull(destinationChunks) { "Failed to read destination chunks: $destination" }
+
+        val filteredDestinationChunks = destinationChunks.filterNot {
+            chunkTypesToCopy.contains(it.chunkType)
+        }
+
+        val newChunks = filteredDestinationChunks.toMutableList().apply {
+            addAll(
+                index = 1, // Index 0 is IHDR
+                elements = sourceMetadataChunks
+            )
+        }
+
+        val byteWriter = ByteArrayByteWriter()
+
+        PngWriter.writeImage(
+            chunks = newChunks,
+            byteWriter = byteWriter
+        )
+
+        return byteWriter.toByteArray()
     }
 }

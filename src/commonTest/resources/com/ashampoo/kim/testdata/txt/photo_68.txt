@@ -3,7 +3,7 @@ Resolution  : 4948 x 3280
 ---- TIFF ----
 Version 42
 Little-endian (Intel, II)
----- IFD0 ----
+---- Directory IFD0 ----
 0x00fe NewSubfileType = 1
 0x0100 ImageWidth = 256
 0x0101 ImageLength = 170
@@ -63,7 +63,7 @@ Little-endian (Intel, II)
 0xc761 Unknown = [5.8872358281834134E-5, 2.4396739365771742E-8, 5.051956969558251E-5, 1.7905222916852902E-8, 5.8139925230792704E-5, 2.000309103754009E-8]
 0xc7a7 Unknown = [16 bytes]
 
----- ExifIFD ----
+---- Directory ExifIFD ----
 0x829a ExposureTime = 1/160 (0.00625)
 0x829d FNumber = 63/10 (6.3)
 0x8822 ExposureProgram = 0
@@ -102,7 +102,7 @@ Little-endian (Intel, II)
 0xa432 LensSpecification = [180/10 (18.0), 550/10 (55.0), 35/10 (3.5), 56/10 (5.6)]
 0xa434 LensModel = 18.0-55.0 mm f/3.5-5.6
 
----- SubIFD ----
+---- Directory SubIFD ----
 0x00fe NewSubfileType = 0
 0x0100 ImageWidth = 4948
 0x0101 ImageLength = 3280
@@ -132,7 +132,7 @@ Little-endian (Intel, II)
 0xc68d Unknown = [0, 0, 3280, 4948]
 0xc761 Unknown = [5.8872358281834134E-5, 2.4396739365771742E-8, 5.051956969558251E-5, 1.7905222916852902E-8, 5.8139925230792704E-5, 2.000309103754009E-8]
 
----- SubIFD1 ----
+---- Directory SubIFD1 ----
 0x00fe NewSubfileType = 1
 0x0100 ImageWidth = 1024
 0x0101 ImageLength = 678
@@ -154,7 +154,7 @@ Little-endian (Intel, II)
 0xc71a Unknown = 2
 0xc71b Unknown = 2023-07-26T06:11:34+02:00
 
----- SubIFD2 ----
+---- Directory SubIFD2 ----
 0x00fe NewSubfileType = 1
 0x0100 ImageWidth = 1642
 0x0101 ImageLength = 1088
@@ -172,7 +172,7 @@ Little-endian (Intel, II)
 0xc741 Unknown = [256 bytes]
 0xc7aa Unknown = 256
 
----- SubIFD3 ----
+---- Directory SubIFD3 ----
 0x00fe NewSubfileType = 1
 0x0100 ImageWidth = 512
 0x0101 ImageLength = 339
@@ -191,7 +191,7 @@ Little-endian (Intel, II)
 0xc741 Unknown = [256 bytes]
 0xc7aa Unknown = 256
 
----- SubIFD ----
+---- Directory SubIFD ----
 0x00fe NewSubfileType = 1
 0x0100 ImageWidth = 256
 0x0101 ImageLength = 170

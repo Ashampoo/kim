@@ -16,12 +16,14 @@
 package com.ashampoo.kim.format.png
 
 import com.ashampoo.kim.common.ImageWriteException
+import com.ashampoo.kim.common.startsWith
 import com.ashampoo.kim.common.tryWithImageWriteException
+import com.ashampoo.kim.format.ImageFormatMagicNumbers
 import com.ashampoo.kim.format.MetadataUpdater
-import com.ashampoo.kim.format.tiff.write.TiffImageWriterLossless
-import com.ashampoo.kim.format.tiff.write.TiffImageWriterLossy
+import com.ashampoo.kim.format.tiff.write.TiffImageWriterBase
 import com.ashampoo.kim.format.tiff.write.TiffOutputSet
 import com.ashampoo.kim.format.xmp.XmpWriter
+import com.ashampoo.kim.input.ByteArrayByteReader
 import com.ashampoo.kim.input.ByteReader
 import com.ashampoo.kim.model.MetadataUpdate
 import com.ashampoo.kim.output.ByteArrayByteWriter
@@ -40,10 +42,10 @@ internal object PngUpdater : MetadataUpdater {
 
         val chunks = PngImageParser.readChunks(byteReader, chunkTypeFilter = null)
 
-        val kimMetadata = PngImageParser.parseMetadataFromChunks(chunks)
+        val metadata = PngImageParser.parseMetadataFromChunks(chunks)
 
-        val xmpMeta: XMPMeta = if (kimMetadata.xmp != null)
-            XMPMetaFactory.parseFromString(kimMetadata.xmp)
+        val xmpMeta: XMPMeta = if (metadata.xmp != null)
+            XMPMetaFactory.parseFromString(metadata.xmp)
         else
             XMPMetaFactory.create()
 
@@ -55,20 +57,15 @@ internal object PngUpdater : MetadataUpdater {
 
         val exifBytes: ByteArray? = if (isExifUpdate) {
 
-            val tiffOutputSet = kimMetadata.exif?.createOutputSet() ?: TiffOutputSet()
+            val outputSet = metadata.exif?.createOutputSet() ?: TiffOutputSet()
 
-            tiffOutputSet.applyUpdate(update)
-
-            val oldExifBytes = kimMetadata.exifBytes
-
-            val writer = if (oldExifBytes != null)
-                TiffImageWriterLossless(exifBytes = oldExifBytes)
-            else
-                TiffImageWriterLossy()
+            outputSet.applyUpdate(update)
 
             val exifBytesWriter = ByteArrayByteWriter()
 
-            writer.write(exifBytesWriter, tiffOutputSet)
+            TiffImageWriterBase
+                .createTiffImageWriter(metadata.exifBytes)
+                .write(exifBytesWriter, outputSet)
 
             exifBytesWriter.toByteArray()
 
@@ -88,5 +85,45 @@ internal object PngUpdater : MetadataUpdater {
             iptcBytes = null,
             xmp = updatedXmp
         )
+    }
+
+    @Throws(ImageWriteException::class)
+    override fun updateThumbnail(
+        bytes: ByteArray,
+        thumbnailBytes: ByteArray
+    ): ByteArray = tryWithImageWriteException {
+
+        if (!bytes.startsWith(ImageFormatMagicNumbers.png))
+            throw ImageWriteException("Provided input bytes are not PNG!")
+
+        val byteReader = ByteArrayByteReader(bytes)
+
+        val chunks = PngImageParser.readChunks(byteReader, chunkTypeFilter = null)
+
+        val metadata = PngImageParser.parseMetadataFromChunks(chunks)
+
+        val outputSet = metadata.exif?.createOutputSet() ?: TiffOutputSet()
+
+        outputSet.setThumbnailBytes(thumbnailBytes)
+
+        val exifBytesWriter = ByteArrayByteWriter()
+
+        TiffImageWriterBase
+            .createTiffImageWriter(metadata.exifBytes)
+            .write(exifBytesWriter, outputSet)
+
+        val exifBytes = exifBytesWriter.toByteArray()
+
+        val byteWriter = ByteArrayByteWriter()
+
+        PngWriter.writeImage(
+            chunks = chunks,
+            byteWriter = byteWriter,
+            exifBytes = exifBytes,
+            iptcBytes = null,
+            xmp = null
+        )
+
+        return byteWriter.toByteArray()
     }
 }

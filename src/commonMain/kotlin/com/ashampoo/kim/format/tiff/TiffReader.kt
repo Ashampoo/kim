@@ -195,7 +195,7 @@ object TiffReader {
         val directory = TiffDirectory(dirType, fields, directoryOffset, nextDirectoryOffset, byteOrder)
 
         if (directory.hasJpegImageData())
-            directory.jpegImageData = getJpegRawImageData(byteReader, directory)
+            directory.jpegImageDataElement = getJpegRawImageData(byteReader, directory)
 
         collector.directories.add(directory)
 
@@ -267,7 +267,7 @@ object TiffReader {
     private fun getJpegRawImageData(
         byteReader: RandomAccessByteReader,
         directory: TiffDirectory
-    ): JpegImageData {
+    ): JpegImageDataElement {
 
         val element = directory.getJpegRawImageDataElement()
 
@@ -293,7 +293,7 @@ object TiffReader {
          * there are some random bytes present.
          */
 
-        return JpegImageData(offset, length, data)
+        return JpegImageDataElement(offset, length, data)
     }
 
     private class TiffReaderCollector {

@@ -22,6 +22,7 @@ import com.ashampoo.kim.common.GpsUtil.MINUTES_PER_HOUR
 import com.ashampoo.kim.common.ImageWriteException
 import com.ashampoo.kim.common.RationalNumber.Companion.valueOf
 import com.ashampoo.kim.common.toExifDateString
+import com.ashampoo.kim.format.tiff.JpegImageDataElement
 import com.ashampoo.kim.format.tiff.constants.ExifTag
 import com.ashampoo.kim.format.tiff.constants.GpsTag
 import com.ashampoo.kim.format.tiff.constants.TiffConstants
@@ -41,7 +42,7 @@ class TiffOutputSet(
 
     private val directories = mutableListOf<TiffOutputDirectory>()
 
-    fun getOutputItems(outputSummary: TiffOutputSummary): List<TiffOutputItem> {
+    fun getOutputItems(outputSummary: TiffOffsetItems): List<TiffOutputItem> {
 
         val outputItems = mutableListOf<TiffOutputItem>()
 
@@ -72,6 +73,14 @@ class TiffOutputSet(
         getOrCreateRootDirectory()
 
         return findDirectory(TiffConstants.TIFF_EXIF_IFD) ?: addExifDirectory()
+    }
+
+    fun getOrCreateThumbnailDirectory(): TiffOutputDirectory {
+
+        /* The Thumbnail directory requires root directory. */
+        getOrCreateRootDirectory()
+
+        return findDirectory(TiffConstants.TIFF_IFD1) ?: addThumbnailDirectory()
     }
 
     fun getOrCreateGPSDirectory(): TiffOutputDirectory {
@@ -128,6 +137,23 @@ class TiffOutputSet(
 
             else -> throw ImageWriteException("Can't perform update $update.")
         }
+    }
+
+    /**
+     * Sets the provided thumbnail bytes to the thumbnail directory (IFD1)
+     */
+    fun setThumbnailBytes(thumbnailBytes: ByteArray) {
+
+        val thumbnailDirectory = getOrCreateThumbnailDirectory()
+
+        thumbnailDirectory.setJpegImageData(
+            JpegImageDataElement(
+                /* Offset will be calculated, but the block should come early in the file. */
+                offset = -1,
+                length = thumbnailBytes.size,
+                bytes = thumbnailBytes
+            )
+        )
     }
 
     /**
@@ -218,6 +244,9 @@ class TiffOutputSet(
 
     fun addExifDirectory(): TiffOutputDirectory =
         addDirectory(TiffOutputDirectory(TiffConstants.TIFF_EXIF_IFD, byteOrder))
+
+    fun addThumbnailDirectory(): TiffOutputDirectory =
+        addDirectory(TiffOutputDirectory(TiffConstants.TIFF_IFD1, byteOrder))
 
     fun addGPSDirectory(): TiffOutputDirectory =
         addDirectory(TiffOutputDirectory(TiffConstants.TIFF_GPS, byteOrder))
