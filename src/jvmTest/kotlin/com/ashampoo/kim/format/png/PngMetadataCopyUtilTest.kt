@@ -61,7 +61,7 @@ class PngMetadataCopyUtilTest {
 
         val sourceBytes = Path(KimTestData.getFullImageDiskPath(52)).readBytes()
 
-        val destinationBytes = Path("build/copy_test.png").readBytes()
+        val destinationBytes = Path(KimTestData.getFullImageDiskPath(51)).readBytes()
 
         val expectedBytes =
             Path("src/commonTest/resources/com/ashampoo/kim/copy_test.png")
