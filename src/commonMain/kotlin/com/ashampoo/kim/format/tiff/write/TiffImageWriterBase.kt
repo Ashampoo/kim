@@ -226,20 +226,20 @@ abstract class TiffImageWriterBase(
     }
 
     protected fun writeImageFileHeader(
-        bos: BinaryByteWriter,
+        byteWriter: BinaryByteWriter,
         offsetToFirstIFD: Long = TIFF_HEADER_SIZE.toLong()
     ) {
 
         if (byteOrder == ByteOrder.LITTLE_ENDIAN) {
-            bos.write('I'.code)
-            bos.write('I'.code)
+            byteWriter.write('I'.code)
+            byteWriter.write('I'.code)
         } else {
-            bos.write('M'.code)
-            bos.write('M'.code)
+            byteWriter.write('M'.code)
+            byteWriter.write('M'.code)
         }
 
-        bos.write2Bytes(TIFF_VERSION)
-        bos.write4Bytes(offsetToFirstIFD.toInt())
+        byteWriter.write2Bytes(TIFF_VERSION)
+        byteWriter.write4Bytes(offsetToFirstIFD.toInt())
     }
 
     companion object {

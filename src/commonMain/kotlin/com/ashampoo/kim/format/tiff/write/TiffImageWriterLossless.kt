@@ -305,30 +305,44 @@ class TiffImageWriterLossless(
             endIndex = minOf(exifBytes.size, outputByteArray.size)
         )
 
-        val headerBinaryStream = createBinaryByteWriter(BufferByteWriter(outputByteArray, 0), byteOrder)
-
-        writeImageFileHeader(headerBinaryStream, rootDirectory.offset)
+        /* Write image header */
+        writeImageFileHeader(
+            byteWriter = createBinaryByteWriter(
+                byteWriter = BufferByteWriter(
+                    buffer = outputByteArray,
+                    index = 0
+                ),
+                byteOrder = byteOrder
+            ),
+            offsetToFirstIFD = rootDirectory.offset
+        )
 
         /*
-         * Zero out the parsed pieces of old exif segment, in case we don't overwrite them.
+         * Zero out the parsed pieces of old exif segment,
+         * in case we don't overwrite them.
          */
         for (element in analysis)
             outputByteArray.fill(
                 element = 0.toByte(),
                 fromIndex = element.offset.toInt(),
-                toIndex = minOf(element.offset + element.length, outputByteArray.size.toLong()).toInt(),
+                toIndex = minOf(
+                    a = element.offset + element.length,
+                    b = outputByteArray.size.toLong()
+                ).toInt(),
             )
 
         /* Write in the new items */
         for (outputItem in outputItems) {
 
-            val offset = outputItem.offset.toInt()
+            val binaryByteWriter = createBinaryByteWriter(
+                byteWriter = BufferByteWriter(
+                    buffer = outputByteArray,
+                    index = outputItem.offset.toInt()
+                ),
+                byteOrder = byteOrder
+            )
 
-            val newByteWriter = BufferByteWriter(outputByteArray, offset)
-
-            val bos = createBinaryByteWriter(newByteWriter, byteOrder)
-
-            outputItem.writeItem(bos)
+            outputItem.writeItem(binaryByteWriter)
         }
 
         byteWriter.write(outputByteArray)
