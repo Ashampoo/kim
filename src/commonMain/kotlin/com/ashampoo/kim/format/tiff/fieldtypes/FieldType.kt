@@ -70,4 +70,7 @@ abstract class FieldType protected constructor(
             throw ImageReadException("Field type $type is unsupported")
         }
     }
+
+    override fun toString(): String =
+        name
 }
