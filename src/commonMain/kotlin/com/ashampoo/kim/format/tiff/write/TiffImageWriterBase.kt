@@ -27,7 +27,7 @@ import com.ashampoo.kim.output.BinaryByteWriter
 import com.ashampoo.kim.output.ByteWriter
 
 abstract class TiffImageWriterBase(
-    val byteOrder: ByteOrder = DEFAULT_TIFF_BYTE_ORDER
+    val byteOrder: ByteOrder
 ) {
 
     abstract fun write(byteWriter: ByteWriter, outputSet: TiffOutputSet)
