@@ -182,7 +182,7 @@ class TiffImageWriterLossless(
 
         val unusedElements = filterAndSortElementsResult.first
 
-        /* Keeps track of the total length the exif bytes will have. */
+        /* Keeps track of the total length the exif bytes we have. */
         var newExifBytesLength = filterAndSortElementsResult.second
 
         val unplacedItems = outputItems
