@@ -22,7 +22,7 @@ import com.ashampoo.kim.common.GpsUtil.MINUTES_PER_HOUR
 import com.ashampoo.kim.common.ImageWriteException
 import com.ashampoo.kim.common.RationalNumber.Companion.valueOf
 import com.ashampoo.kim.common.toExifDateString
-import com.ashampoo.kim.format.tiff.JpegImageData
+import com.ashampoo.kim.format.tiff.JpegImageDataElement
 import com.ashampoo.kim.format.tiff.constants.ExifTag
 import com.ashampoo.kim.format.tiff.constants.GpsTag
 import com.ashampoo.kim.format.tiff.constants.TiffConstants
@@ -147,7 +147,7 @@ class TiffOutputSet(
         val thumbnailDirectory = getOrCreateThumbnailDirectory()
 
         thumbnailDirectory.setJpegImageData(
-            JpegImageData(
+            JpegImageDataElement(
                 /* Offset will be calculated, but the block should come early in the file. */
                 offset = -1,
                 length = thumbnailBytes.size,

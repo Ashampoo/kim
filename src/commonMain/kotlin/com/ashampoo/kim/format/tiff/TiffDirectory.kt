@@ -46,7 +46,7 @@ class TiffDirectory(
         TiffConstants.TIFF_ENTRY_LENGTH + TiffConstants.TIFF_DIRECTORY_FOOTER_LENGTH
 ) {
 
-    var jpegImageData: JpegImageData? = null
+    var jpegImageDataElement: JpegImageDataElement? = null
 
     val description: String = description(type)
 
@@ -158,7 +158,7 @@ class TiffDirectory(
                 outputDirectory.add(outputField)
             }
 
-            outputDirectory.setJpegImageData(jpegImageData)
+            outputDirectory.setJpegImageData(jpegImageDataElement)
             outputDirectory
 
         } catch (ex: ImageReadException) {

@@ -19,7 +19,7 @@ package com.ashampoo.kim.format.tiff.write
 import com.ashampoo.kim.common.ByteOrder
 import com.ashampoo.kim.common.ImageWriteException
 import com.ashampoo.kim.common.RationalNumber
-import com.ashampoo.kim.format.tiff.JpegImageData
+import com.ashampoo.kim.format.tiff.JpegImageDataElement
 import com.ashampoo.kim.format.tiff.TiffDirectory.Companion.description
 import com.ashampoo.kim.format.tiff.constants.TiffConstants.TIFF_DIRECTORY_FOOTER_LENGTH
 import com.ashampoo.kim.format.tiff.constants.TiffConstants.TIFF_DIRECTORY_HEADER_LENGTH
@@ -67,7 +67,7 @@ class TiffOutputDirectory(val type: Int, private val byteOrder: ByteOrder) : Tif
 
     override var offset: Long = UNDEFINED_VALUE
 
-    var rawJpegImageData: JpegImageData? = null
+    var rawJpegImageDataElement: JpegImageDataElement? = null
         private set
 
     fun setNextDirectory(nextDirectory: TiffOutputDirectory?) {
@@ -591,8 +591,8 @@ class TiffOutputDirectory(val type: Int, private val byteOrder: ByteOrder) : Tif
     }
 
     /* Internal, because callers should use setThumbnailBytes() */
-    internal fun setJpegImageData(rawJpegImageData: JpegImageData?) {
-        this.rawJpegImageData = rawJpegImageData
+    internal fun setJpegImageData(rawJpegImageDataElement: JpegImageDataElement?) {
+        this.rawJpegImageDataElement = rawJpegImageDataElement
     }
 
     override fun getItemLength(): Int =
@@ -611,7 +611,7 @@ class TiffOutputDirectory(val type: Int, private val byteOrder: ByteOrder) : Tif
 
         var jpegOffsetField: TiffOutputField? = null
 
-        if (rawJpegImageData != null) {
+        if (rawJpegImageDataElement != null) {
 
             jpegOffsetField = TiffOutputField(
                 TiffTag.TIFF_TAG_JPEG_INTERCHANGE_FORMAT,
@@ -620,7 +620,7 @@ class TiffOutputDirectory(val type: Int, private val byteOrder: ByteOrder) : Tif
 
             add(jpegOffsetField)
 
-            val lengthValue = FieldType.LONG.writeData(rawJpegImageData!!.length, outputSummary.byteOrder)
+            val lengthValue = FieldType.LONG.writeData(rawJpegImageDataElement!!.length, outputSummary.byteOrder)
 
             val jpegLengthField = TiffOutputField(
                 TiffTag.TIFF_TAG_JPEG_INTERCHANGE_FORMAT_LENGTH,
@@ -650,11 +650,11 @@ class TiffOutputDirectory(val type: Int, private val byteOrder: ByteOrder) : Tif
             result.add(item)
         }
 
-        if (rawJpegImageData != null) {
+        if (rawJpegImageDataElement != null) {
 
             val item: TiffOutputItem = TiffOutputValue(
                 "rawJpegImageData",
-                rawJpegImageData!!.bytes
+                rawJpegImageDataElement!!.bytes
             )
 
             result.add(item)

@@ -34,7 +34,7 @@ data class ImageMetadata(
 
     fun getExifThumbnailBytes(): ByteArray? =
         exif?.directories?.asSequence()
-            ?.mapNotNull { it.jpegImageData?.bytes }
+            ?.mapNotNull { it.jpegImageDataElement?.bytes }
             ?.firstOrNull()
 
     fun findStringValue(tagInfo: TagInfo): String? {

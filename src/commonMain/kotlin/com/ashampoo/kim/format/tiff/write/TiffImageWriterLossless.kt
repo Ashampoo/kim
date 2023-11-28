@@ -67,7 +67,7 @@ class TiffImageWriterLossless(
                     }
                 }
 
-                directory.jpegImageData?.let {
+                directory.jpegImageDataElement?.let {
                     elements.add(it)
                 }
             }

@@ -17,18 +17,14 @@ package com.ashampoo.kim
 
 import com.ashampoo.kim.common.ImageReadException
 import com.ashampoo.kim.common.ImageWriteException
-import com.ashampoo.kim.common.startsWith
 import com.ashampoo.kim.common.tryWithImageReadException
 import com.ashampoo.kim.common.tryWithImageWriteException
-import com.ashampoo.kim.format.ImageFormatMagicNumbers
 import com.ashampoo.kim.format.ImageMetadata
 import com.ashampoo.kim.format.ImageParser
 import com.ashampoo.kim.format.arw.ArwPreviewExtractor
 import com.ashampoo.kim.format.cr2.Cr2PreviewExtractor
 import com.ashampoo.kim.format.dng.DngPreviewExtractor
-import com.ashampoo.kim.format.jpeg.JpegImageParser
 import com.ashampoo.kim.format.jpeg.JpegMetadataExtractor
-import com.ashampoo.kim.format.jpeg.JpegRewriter
 import com.ashampoo.kim.format.jpeg.JpegUpdater
 import com.ashampoo.kim.format.nef.NefPreviewExtractor
 import com.ashampoo.kim.format.png.PngMetadataExtractor
@@ -36,9 +32,7 @@ import com.ashampoo.kim.format.png.PngUpdater
 import com.ashampoo.kim.format.raf.RafMetadataExtractor
 import com.ashampoo.kim.format.raf.RafPreviewExtractor
 import com.ashampoo.kim.format.rw2.Rw2PreviewExtractor
-import com.ashampoo.kim.format.tiff.JpegImageData
 import com.ashampoo.kim.format.tiff.TiffReader
-import com.ashampoo.kim.format.tiff.write.TiffOutputSet
 import com.ashampoo.kim.input.ByteArrayByteReader
 import com.ashampoo.kim.input.ByteReader
 import com.ashampoo.kim.input.DefaultRandomAccessByteReader
