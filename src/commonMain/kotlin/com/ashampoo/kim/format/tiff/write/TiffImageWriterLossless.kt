@@ -125,16 +125,16 @@ class TiffImageWriterLossless(
          */
         val makerNoteField = outputSet.findField(ExifTag.EXIF_TAG_MAKER_NOTE.tag)
 
-        val analysis = analyzeOldTiff(makerNoteField)
+        val tiffElements = analyzeOldTiff(makerNoteField)
 
         val oldLength = exifBytes.size
 
-        if (analysis.isEmpty())
+        if (tiffElements.isEmpty())
             throw ImageWriteException("Couldn't analyze old tiff data.")
 
-        if (analysis.size == 1) {
+        if (tiffElements.size == 1) {
 
-            val onlyElement = analysis.first()
+            val onlyElement = tiffElements.first()
 
             val newLength: Long = onlyElement.offset + onlyElement.length + TIFF_HEADER_SIZE
 
@@ -163,11 +163,11 @@ class TiffImageWriterLossless(
         val outputItems = outputSet.getOutputItems(offsetItems)
             .filterNot { frozenFieldOffsets.contains(it.offset) }
 
-        val outputLength = calcNewOffsets(analysis, outputItems)
+        val outputLength = calcNewOffsets(tiffElements, outputItems)
 
         offsetItems.writeOffsetsToOutputFields()
 
-        writeInternal(byteWriter, outputSet, analysis, outputItems, outputLength)
+        writeInternal(byteWriter, outputSet, tiffElements, outputItems, outputLength)
     }
 
     private fun calcNewOffsets(
@@ -290,7 +290,7 @@ class TiffImageWriterLossless(
     private fun writeInternal(
         byteWriter: ByteWriter,
         outputSet: TiffOutputSet,
-        analysis: List<TiffElement>,
+        tiffElements: List<TiffElement>,
         outputItems: List<TiffOutputItem>,
         outputLength: Long
     ) {
@@ -321,7 +321,7 @@ class TiffImageWriterLossless(
          * Zero out the parsed pieces of old exif segment,
          * in case we don't overwrite them.
          */
-        for (element in analysis)
+        for (element in tiffElements)
             outputByteArray.fill(
                 element = 0.toByte(),
                 fromIndex = element.offset.toInt(),
