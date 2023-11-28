@@ -35,7 +35,7 @@ class TiffImageWriterLossless(
 ) : TiffImageWriterBase(byteOrder) {
 
     private fun analyzeOldTiff(
-        frozenFields: Map<Int, TiffOutputField>
+        frozenFields: Set<TiffOutputField>
     ): List<TiffElement> {
 
         try {
@@ -56,7 +56,7 @@ class TiffImageWriterLossless(
 
                     if (oversizeValue != null) {
 
-                        val frozenField = frozenFields[field.tag]
+                        val frozenField = frozenFields.firstOrNull()
 
                         if (frozenField != null &&
                             frozenField.separateValue != null &&
@@ -125,12 +125,12 @@ class TiffImageWriterLossless(
          * unless of course their value is changed.
          * If MakerNotes offset changes, it's broken.
          */
-        val frozenFields = mutableMapOf<Int, TiffOutputField>()
+        val frozenFields = mutableSetOf<TiffOutputField>()
 
         val makerNoteField = outputSet.findField(ExifTag.EXIF_TAG_MAKER_NOTE.tag)
 
         if (makerNoteField != null && makerNoteField.separateValue != null)
-            frozenFields[ExifTag.EXIF_TAG_MAKER_NOTE.tag] = makerNoteField
+            frozenFields.add(makerNoteField)
 
         val analysis = analyzeOldTiff(frozenFields)
 
@@ -154,11 +154,11 @@ class TiffImageWriterLossless(
             }
         }
 
-        val frozenFieldOffsets = mutableMapOf<Long, TiffOutputField>()
+        val frozenFieldOffsets = mutableSetOf<Long>()
 
-        for ((_, frozenField) in frozenFields)
+        for (frozenField in frozenFields)
             if (frozenField.separateValue!!.offset != TiffOutputItem.UNDEFINED_VALUE)
-                frozenFieldOffsets[frozenField.separateValue.offset] = frozenField
+                frozenFieldOffsets.add(frozenField.separateValue.offset)
 
         val offsetItems = createOffsetItems(outputSet)
 
@@ -166,7 +166,7 @@ class TiffImageWriterLossless(
          * Receive all items from the OutputSet expect for the frozen MakerNotes.
          */
         val outputItems = outputSet.getOutputItems(offsetItems)
-            .filterNot { frozenFieldOffsets.containsKey(it.offset) }
+            .filterNot { frozenFieldOffsets.contains(it.offset) }
 
         val outputLength = calcNewOffsets(analysis, outputItems)
 
