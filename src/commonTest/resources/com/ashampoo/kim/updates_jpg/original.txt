@@ -2,5 +2,25 @@ Little Endian file
 
 # IFD0
 Pos: 8 - 170
-Length: 162 (13 Entries)
+13 Entries
 
+Oversize values:
+0x010e ImageDescription = Offset 170 (0x00aa), length 32
+...
+
+# ExifIFD
+Pos: 258 - 768
+42 Entries
+
+# InteropIFD
+Pos: 18822 - 18876
+4 Entries
+
+# GPS
+Pos: 18876 - 18882
+
+# SubIFD
+Pos: 18894 - 18972
+6 Entries
+
+JPEG image data pos: 18988 - 22197
