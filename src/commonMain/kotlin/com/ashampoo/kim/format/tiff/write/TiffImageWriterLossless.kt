@@ -35,7 +35,7 @@ class TiffImageWriterLossless(
     private val exifBytes: ByteArray
 ) : TiffImageWriterBase(byteOrder) {
 
-    private fun analyzeOldTiff(
+    private fun findRewritableElements(
         makerNoteField: TiffOutputField?
     ): List<TiffElement> {
 
@@ -120,15 +120,23 @@ class TiffImageWriterLossless(
                 continue
             }
 
+            /*
+             * We look for the next big gap. This is when an element
+             * has an offset, that does not come next. This way we
+             * know when we collected all bytes of the current directory.
+             */
             if (element.offset - position > OFFSET_TOLERANCE) {
 
                 /* Local variables to support debugging. */
-                val description = lastElement.debugDescription
                 val offset = lastElement.offset
                 val length = (position - lastElement.offset).toInt()
 
                 rewritableElements.add(
-                    TiffElement(description, offset, length)
+                    TiffElement(
+                        debugDescription = "Usable space at $offset to ${length-offset} ($length bytes)",
+                        offset = offset,
+                        length = length
+                    )
                 )
 
                 lastElement = element
@@ -139,11 +147,14 @@ class TiffImageWriterLossless(
 
         lastElement?.let {
 
+            val offset = lastElement.offset
+            val length = (position - lastElement.offset).toInt()
+
             rewritableElements.add(
                 TiffElement(
-                    debugDescription = it.debugDescription,
-                    offset = it.offset,
-                    length = (position - it.offset).toInt()
+                    debugDescription = "Usable space at $offset to ${length-offset} ($length bytes)",
+                    offset = offset,
+                    length = length
                 )
             )
         }
@@ -159,16 +170,16 @@ class TiffImageWriterLossless(
          */
         val makerNoteField = outputSet.findField(ExifTag.EXIF_TAG_MAKER_NOTE.tag)
 
-        val tiffElements = analyzeOldTiff(makerNoteField)
+        val rewritableTiffElements = findRewritableElements(makerNoteField)
 
         val oldLength = exifBytes.size
 
-        if (tiffElements.isEmpty())
+        if (rewritableTiffElements.isEmpty())
             throw ImageWriteException("Couldn't analyze old tiff data.")
 
-        if (tiffElements.size == 1) {
+        if (rewritableTiffElements.size == 1) {
 
-            val onlyElement = tiffElements.first()
+            val onlyElement = rewritableTiffElements.first()
 
             val newLength: Long = onlyElement.offset + onlyElement.length + TIFF_HEADER_SIZE
 
@@ -197,11 +208,11 @@ class TiffImageWriterLossless(
         val outputItems = outputSet.getOutputItems(offsetItems)
             .filterNot { frozenFieldOffsets.contains(it.offset) }
 
-        val outputLength = calcNewOffsets(tiffElements, outputItems)
+        val outputLength = calcNewOffsets(rewritableTiffElements, outputItems)
 
         offsetItems.writeOffsetsToOutputFields()
 
-        writeInternal(byteWriter, outputSet, tiffElements, outputItems, outputLength)
+        writeInternal(byteWriter, outputSet, rewritableTiffElements, outputItems, outputLength)
     }
 
     private fun calcNewOffsets(

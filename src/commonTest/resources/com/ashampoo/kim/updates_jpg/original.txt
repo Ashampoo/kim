@@ -1,8 +1,7 @@
 Little Endian file
 
 # IFD0
-Pos: 8 - 170
-Len: 856 bytes
+Pos: 8 - 170 (236 with oversized values)
 13 Entries
 
 Oversize values:
@@ -10,8 +9,10 @@ Oversize values:
 ...
 
 # ExifIFD
-Pos: 258 - 768
+Pos: 258 - 768 (856 with oversized values)
 42 Entries
+
+==> Free space before MakerNotes is 8 to 864)
 
 # InteropIFD
 Pos: 18822 - 18876
