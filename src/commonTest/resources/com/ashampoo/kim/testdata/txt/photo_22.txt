@@ -10,7 +10,7 @@ Little-endian (Intel, II)
 0x011b YResolution = 300/1 (300.0)
 0x0128 ResolutionUnit = 2
 0x0131 Software = 13.3.1
-0x0132 DateTime = 2020:02:20 01:11:51
+0x0132 ModifyDate = 2020:02:20 01:11:51
 0x0213 YCbCrPositioning = 1
 0x8769 ExifOffset = 190
 
@@ -35,7 +35,7 @@ Little-endian (Intel, II)
 0x9291 SubSecTimeOriginal = 95
 0x9292 SubSecTimeDigitized = 95
 0xa000 FlashpixVersion = [0x30, 0x31, 0x30, 0x30]
-0xa001 Unknown = 1
+0xa001 ColorSpace = 1
 0xa002 ExifImageWidth = 3024
 0xa003 ExifImageLength = 4032
 0xa217 SensingMethod = 2

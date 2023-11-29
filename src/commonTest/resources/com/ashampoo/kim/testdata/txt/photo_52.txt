@@ -12,7 +12,7 @@ Big-endian (Motorola, MM)
 0x011b YResolution = 300/1 (300.0)
 0x0128 ResolutionUnit = 2
 0x0131 Software = darktable 2.6.2
-0x0132 DateTime = 2019:07:15 20:09:19
+0x0132 ModifyDate = 2019:07:15 20:09:19
 0x013b Artist = dxfoto.ru
 0x8298 Copyright = CC-BY 3.0
 0x8769 ExifOffset = 298
@@ -23,8 +23,8 @@ Big-endian (Motorola, MM)
 0x829d FNumber = 71/10 (7.1)
 0x8822 ExposureProgram = 1
 0x8827 PhotographicSensitivity = 250
-0x8830 Unknown = 2
-0x8832 Unknown = 250
+0x8830 SensitivityType = 2
+0x8832 RecommendedExposureIndex = 250
 0x9000 ExifVersion = [0x30, 0x32, 0x33, 0x30]
 0x9003 DateTimeOriginal = 2019:07:14 09:21:11
 0x9004 DateTimeDigitized = 2019:07:14 09:21:11

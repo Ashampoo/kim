@@ -19,7 +19,7 @@ Little-endian (Intel, II)
 0x0117 PreviewImageLength = 130560
 0x011c PlanarConfiguration = 1
 0x0131 Software = Adobe DNG Converter 15.4 (Macintosh)
-0x0132 DateTime = 2023:07:26 06:11:34
+0x0132 ModifyDate = 2023:07:26 06:11:34
 0x014a SubIFD = [187536, 196264, 196656, 197206, 197728]
 0x02bc XMP = [6332 bytes]
 0x8769 ExifOffset = 186902
@@ -68,7 +68,7 @@ Little-endian (Intel, II)
 0x829d FNumber = 63/10 (6.3)
 0x8822 ExposureProgram = 0
 0x8827 PhotographicSensitivity = 200
-0x8830 Unknown = 2
+0x8830 SensitivityType = 2
 0x9000 ExifVersion = [0x30, 0x32, 0x33, 0x31]
 0x9003 DateTimeOriginal = 2014:08:12 09:30:58
 0x9004 DateTimeDigitized = 2014:08:12 09:30:58

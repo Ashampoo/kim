@@ -19,7 +19,7 @@ Little-endian (Intel, II)
 0x0117 PreviewImageLength = 131328
 0x011c PlanarConfiguration = 1
 0x0131 Software = Adobe DNG Converter 15.4 (Macintosh)
-0x0132 DateTime = 2023:07:26 06:11:34
+0x0132 ModifyDate = 2023:07:26 06:11:34
 0x013b Artist = Stefan Oltmann
 0x014a SubIFD = [109546, 112356, 112748, 113298, 113820]
 0x02bc XMP = [6763 bytes]
@@ -69,8 +69,8 @@ Little-endian (Intel, II)
 0x829d FNumber = 5/1 (5.0)
 0x8822 ExposureProgram = 3
 0x8827 PhotographicSensitivity = 400
-0x8830 Unknown = 2
-0x8832 Unknown = 400
+0x8830 SensitivityType = 2
+0x8832 RecommendedExposureIndex = 400
 0x9000 ExifVersion = [0x30, 0x32, 0x33, 0x31]
 0x9003 DateTimeOriginal = 2021:12:06 05:27:33
 0x9004 DateTimeDigitized = 2021:12:06 05:27:33
@@ -84,7 +84,7 @@ Little-endian (Intel, II)
 0x920a FocalLength = 24/1 (24.0)
 0x9291 SubSecTimeOriginal = 82
 0x9292 SubSecTimeDigitized = 82
-0xa001 Unknown = 1
+0xa001 ColorSpace = 1
 0xa20e FocalPlaneXResolution = 5184000/905 (5728.176796)
 0xa20f FocalPlaneYResolution = 3456000/595 (5808.403361)
 0xa210 FocalPlaneResolutionUnit = 2

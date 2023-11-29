@@ -11,7 +11,7 @@ Little-endian (Intel, II)
 0x011b YResolution = 240/1 (240.0)
 0x0128 ResolutionUnit = 2
 0x0131 Software = Adobe Photoshop Lightroom 6.14 (Windows)
-0x0132 DateTime = 2018:07:16 17:40:38
+0x0132 ModifyDate = 2018:07:16 17:40:38
 0x8769 ExifOffset = 258
 
 ---- Directory ExifIFD ----
@@ -19,7 +19,7 @@ Little-endian (Intel, II)
 0x829d FNumber = 28/10 (2.8)
 0x8822 ExposureProgram = 3
 0x8827 PhotographicSensitivity = 500
-0x8830 Unknown = 1
+0x8830 SensitivityType = 1
 0x9000 ExifVersion = [0x30, 0x32, 0x33, 0x30]
 0x9003 DateTimeOriginal = 2018:07:13 19:38:07
 0x9004 DateTimeDigitized = 2018:07:13 19:38:07
@@ -31,7 +31,7 @@ Little-endian (Intel, II)
 0x9208 LightSource = 0
 0x9209 Flash = 24
 0x920a FocalLength = 150/1 (150.0)
-0xa001 Unknown = 1
+0xa001 ColorSpace = 1
 0xa20e FocalPlaneXResolution = 87196351/32768 (2661.021454)
 0xa20f FocalPlaneYResolution = 87196351/32768 (2661.021454)
 0xa210 FocalPlaneResolutionUnit = 3

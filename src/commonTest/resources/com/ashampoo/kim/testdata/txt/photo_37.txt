@@ -18,7 +18,7 @@ Little-endian (Intel, II)
 0x011c PlanarConfiguration = 1
 0x0128 ResolutionUnit = 2
 0x0131 Software = Adobe Photoshop CC 2018 (Macintosh)
-0x0132 DateTime = 2018:07:30 11:31:57
+0x0132 ModifyDate = 2018:07:30 11:31:57
 0x8769 ExifOffset = 314
 
 ---- Directory ExifIFD ----
@@ -26,7 +26,7 @@ Little-endian (Intel, II)
 0x829d FNumber = 63/10 (6.3)
 0x8822 ExposureProgram = 1
 0x8827 PhotographicSensitivity = 100
-0x8830 Unknown = 2
+0x8830 SensitivityType = 2
 0x9000 ExifVersion = [0x30, 0x32, 0x33, 0x30]
 0x9003 DateTimeOriginal = 2018:07:27 22:02:03
 0x9004 DateTimeDigitized = 2018:07:27 22:02:03
@@ -40,7 +40,7 @@ Little-endian (Intel, II)
 0x920a FocalLength = 350/10 (35.0)
 0x9291 SubSecTimeOriginal = 35
 0x9292 SubSecTimeDigitized = 35
-0xa001 Unknown = -1
+0xa001 ColorSpace = -1
 0xa002 ExifImageWidth = 5870
 0xa003 ExifImageLength = 2799
 0xa20e FocalPlaneXResolution = 83841555/32768 (2558.641205)

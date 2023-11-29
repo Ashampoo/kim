@@ -10,7 +10,7 @@ Little-endian (Intel, II)
 0x011b YResolution = 240/1 (240.0)
 0x0128 ResolutionUnit = 2
 0x0131 Software = Adobe Photoshop Lightroom Classic 8.4.1 (Windows)
-0x0132 DateTime = 2019:10:09 20:46:41
+0x0132 ModifyDate = 2019:10:09 20:46:41
 0x013b Artist = Zdenek & Eva Machackovi
 0x8298 Copyright = ZEphoto.zenfolio.com
 0x8769 ExifOffset = 294
@@ -20,8 +20,8 @@ Little-endian (Intel, II)
 0x829d FNumber = 56/10 (5.6)
 0x8822 ExposureProgram = 1
 0x8827 PhotographicSensitivity = 640
-0x8830 Unknown = 2
-0x8832 Unknown = 640
+0x8830 SensitivityType = 2
+0x8832 RecommendedExposureIndex = 640
 0x9000 ExifVersion = [0x30, 0x32, 0x33, 0x31]
 0x9003 DateTimeOriginal = 2019:10:03 13:44:17
 0x9004 DateTimeDigitized = 2019:10:03 13:44:17
@@ -35,7 +35,7 @@ Little-endian (Intel, II)
 0x920a FocalLength = 400/1 (400.0)
 0x9291 SubSecTimeOriginal = 09
 0x9292 SubSecTimeDigitized = 09
-0xa001 Unknown = 1
+0xa001 ColorSpace = 1
 0xa20e FocalPlaneXResolution = 79937569/32768 (2439.501007)
 0xa20f FocalPlaneYResolution = 79937569/32768 (2439.501007)
 0xa210 FocalPlaneResolutionUnit = 3
