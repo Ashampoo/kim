@@ -25,7 +25,6 @@ import com.ashampoo.kim.format.tiff.TiffReader
 import com.ashampoo.kim.format.tiff.constants.ExifTag
 import com.ashampoo.kim.format.tiff.constants.TiffConstants
 import com.ashampoo.kim.format.tiff.constants.TiffConstants.TIFF_HEADER_SIZE
-import com.ashampoo.kim.format.tiff.constants.TiffConstants.TIFF_IFD0
 import com.ashampoo.kim.input.ByteArrayByteReader
 import com.ashampoo.kim.output.BinaryByteWriter.Companion.createBinaryByteWriter
 import com.ashampoo.kim.output.BufferByteWriter
@@ -103,28 +102,38 @@ class TiffImageWriterLossless(
         val rewritableElements = mutableListOf<TiffElement>()
 
         var lastElement: TiffElement? = null
-        var index: Long = -1
+        var position: Long = -1
 
         for (element in elements) {
 
+            /* Usually the root directory IFD0 comes first. */
             if (lastElement == null) {
 
-                lastElement = element
+                /*
+                 * Set IFD0 as first element and our current position to
+                 * where it ends.
+                 */
 
-            } else if (element.offset - index > OFFSET_TOLERANCE) {
+                lastElement = element
+                position = element.offset + element.length
+
+                continue
+            }
+
+            if (element.offset - position > OFFSET_TOLERANCE) {
 
                 rewritableElements.add(
                     TiffElement(
                         debugDescription = lastElement.debugDescription,
                         offset = lastElement.offset,
-                        length = (index - lastElement.offset).toInt()
+                        length = (position - lastElement.offset).toInt()
                     )
                 )
 
                 lastElement = element
             }
 
-            index = element.offset + element.length
+            position = element.offset + element.length
         }
 
         lastElement?.let {
@@ -133,7 +142,7 @@ class TiffImageWriterLossless(
                 TiffElement(
                     debugDescription = it.debugDescription,
                     offset = it.offset,
-                    length = (index - it.offset).toInt()
+                    length = (position - it.offset).toInt()
                 )
             )
         }
