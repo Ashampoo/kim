@@ -218,7 +218,7 @@ class TiffImageWriterLossless(
         outputItems: List<TiffOutputItem>
     ): Long {
 
-        val filterAndSortElementsResult = filterAndSortElements(
+        val filterAndSortElementsResult = filterAndSortRewriteableSpaceRanges(
             rewritableSpaceRanges,
             exifBytes.size.toLong()
         )
@@ -228,18 +228,7 @@ class TiffImageWriterLossless(
         /* Keeps track of the total length the exif bytes we have. */
         var newExifBytesLength = filterAndSortElementsResult.second
 
-        val unplacedItems = outputItems
-            .sortedWith(itemLengthComparator)
-            .reversed()
-            .toMutableList()
-
-//        unplacedItems.find {
-//            it is TiffOutputDirectory && it.type == TIFF_IFD0
-//        }?.let { ifd0dir ->
-//
-//            unplacedItems.remove(ifd0dir)
-//            unplacedItems.add(0, ifd0dir)
-//        }
+        val unplacedItems = outputItems.toMutableList()
 
         while (unplacedItems.isNotEmpty()) {
 
@@ -248,18 +237,14 @@ class TiffImageWriterLossless(
 
             val outputItemLength = outputItem.getItemLength()
 
-            var bestFit: RewritableSpaceRange? = null
-
-            /* Search for the smallest possible element large enough to hold the item. */
-            for (element in unusedSpaceRanges) {
-
-                if (element.length < outputItemLength)
-                    break
-
-                bestFit = element
+            /*
+             * Find the first range large enough to place this item.
+             */
+            val fittingRange: RewritableSpaceRange? = unusedSpaceRanges.first {range ->
+                range.length >= outputItemLength
             }
 
-            if (bestFit == null) {
+            if (fittingRange == null) {
 
                 /* Overflow if we couldn't place this item. */
                 if (newExifBytesLength and 1L != 0L)
@@ -271,8 +256,8 @@ class TiffImageWriterLossless(
 
             } else {
 
-                var offset = bestFit.offset
-                var length = bestFit.length
+                var offset = fittingRange.offset
+                var length = fittingRange.length
 
                 /* Offsets have to be a multiple of 2 */
                 if (offset and 1L != 0L) {
@@ -282,11 +267,11 @@ class TiffImageWriterLossless(
 
                 outputItem.offset = offset
 
-                unusedSpaceRanges.remove(bestFit)
+                unusedSpaceRanges.remove(fittingRange)
 
+                /* If we have space left, create a new range for the reamining space. */
                 if (length > outputItemLength) {
 
-                    /* Not a perfect fit. */
                     val excessOffset = offset + outputItemLength
                     val excessLength = length - outputItemLength
 
@@ -296,6 +281,11 @@ class TiffImageWriterLossless(
                             excessLength
                         )
                     )
+
+                    /* Sort again by offset. */
+                    unusedSpaceRanges.sortBy {
+                        it.offset
+                    }
                 }
             }
         }
@@ -303,14 +293,14 @@ class TiffImageWriterLossless(
         return newExifBytesLength
     }
 
-    private fun filterAndSortElements(
+    private fun filterAndSortRewriteableSpaceRanges(
         rewritableSpaceRanges: List<RewritableSpaceRange>,
         exifBytesLength: Long
     ): Pair<MutableList<RewritableSpaceRange>, Long> {
 
         var newExifBytesLength = exifBytesLength
 
-        val filteredAndSortedElements = rewritableSpaceRanges
+        val filteredAndSortedRewritableSpaceRanges = rewritableSpaceRanges
             .sortedBy { it.offset }
             .toMutableList()
 
@@ -318,25 +308,24 @@ class TiffImageWriterLossless(
          * Any items that represent a gap at the end of
          * the exif segment, can be discarded.
          */
-        while (filteredAndSortedElements.isNotEmpty()) {
+        while (filteredAndSortedRewritableSpaceRanges.isNotEmpty()) {
 
-            val element = filteredAndSortedElements.last()
+            val lastRange = filteredAndSortedRewritableSpaceRanges.last()
 
-            val elementEnd = element.offset + element.length
+            val rangeEnd = lastRange.offset + lastRange.length
 
-            if (elementEnd != newExifBytesLength)
+            /* If there is nothing to do, stop. */
+            if (rangeEnd != newExifBytesLength)
                 break
 
             /* Discarding a tail element. Should only happen once. */
 
-            newExifBytesLength -= element.length.toLong()
+            newExifBytesLength -= lastRange.length.toLong()
 
-            filteredAndSortedElements.removeLast()
+            filteredAndSortedRewritableSpaceRanges.removeLast()
         }
 
-//        filteredAndSortedElements.sortWith(elementLengthComparator.reversed())
-
-        return Pair(filteredAndSortedElements, newExifBytesLength)
+        return Pair(filteredAndSortedRewritableSpaceRanges, newExifBytesLength)
     }
 
     private fun writeInternal(
