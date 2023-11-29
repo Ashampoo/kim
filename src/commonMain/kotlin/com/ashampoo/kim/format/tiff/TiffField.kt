@@ -142,7 +142,7 @@ class TiffField(
         if (isLocalValue) null else OversizeValueElement(offset.toInt(), valueBytes.size)
 
     inner class OversizeValueElement(offset: Int, length: Int) : TiffElement(
-        debugDescription = "OversizeValueElement, tag: $tagInfo, fieldType: $fieldType",
+        debugDescription = "Value of $tagInfo ($fieldType)",
         offset = offset.toLong(),
         length = length
     ) {

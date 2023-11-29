@@ -20,7 +20,7 @@ Little-endian (Intel, II)
 0x0117 PreviewImageLength = 131328
 0x011c PlanarConfiguration = 1
 0x0131 Software = Adobe DNG Converter 15.4 (Macintosh)
-0x0132 DateTime = 2023:07:26 06:11:34
+0x0132 ModifyDate = 2023:07:26 06:11:34
 0x014a SubIFD = [134210, 136300, 136692, 137274, 137796]
 0x02bc XMP = [6431 bytes]
 0x8769 ExifOffset = 133624
@@ -79,7 +79,7 @@ Little-endian (Intel, II)
 0x9208 LightSource = 0
 0x9209 Flash = 16
 0x920a FocalLength = 180/10 (18.0)
-0xa001 Unknown = 1
+0xa001 ColorSpace = 1
 0xa20e FocalPlaneXResolution = 59568041/32768 (1817.872345)
 0xa20f FocalPlaneYResolution = 59568041/32768 (1817.872345)
 0xa210 FocalPlaneResolutionUnit = 3

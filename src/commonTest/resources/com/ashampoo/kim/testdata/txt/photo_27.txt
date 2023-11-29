@@ -10,7 +10,7 @@ Little-endian (Intel, II)
 0x011b YResolution = 240/1 (240.0)
 0x0128 ResolutionUnit = 3
 0x0131 Software = Adobe Photoshop Lightroom 4.2 (Windows)
-0x0132 DateTime = 2012:11:20 21:52:09
+0x0132 ModifyDate = 2012:11:20 21:52:09
 0x8769 ExifOffset = 224
 0x8825 GPSInfo = 732
 

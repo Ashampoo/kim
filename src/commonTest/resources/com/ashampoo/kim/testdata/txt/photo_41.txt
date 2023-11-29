@@ -11,7 +11,7 @@ Big-endian (Motorola, MM)
 0x011b YResolution = 300/1 (300.0)
 0x0128 ResolutionUnit = 2
 0x0131 Software = K-50 Ver. 1.02         
-0x0132 DateTime = 2017:08:24 14:54:00
+0x0132 ModifyDate = 2017:08:24 14:54:00
 0x013b Artist = []
 0x0213 YCbCrPositioning = 2
 0x8298 Copyright = []
@@ -34,7 +34,7 @@ Big-endian (Motorola, MM)
 0x920a FocalLength = 1800/100 (18.0)
 0x927c MakerNote = [4382 bytes]
 0xa000 FlashpixVersion = [0x30, 0x31, 0x30, 0x30]
-0xa001 Unknown = 1
+0xa001 ColorSpace = 1
 0xa002 ExifImageWidth = 4928
 0xa003 ExifImageLength = 3264
 0xa005 InteropOffset = 5452

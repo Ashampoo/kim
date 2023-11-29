@@ -10,7 +10,7 @@ Little-endian (Intel, II)
 0x011b YResolution = 240/1 (240.0)
 0x0128 ResolutionUnit = 2
 0x0131 Software = Adobe Photoshop Lightroom Classic 7.0 (Macintosh)
-0x0132 DateTime = 2017:11:09 18:34:46
+0x0132 ModifyDate = 2017:11:09 18:34:46
 0x8769 ExifOffset = 224
 0x8825 GPSInfo = 782
 
@@ -19,8 +19,8 @@ Little-endian (Intel, II)
 0x829d FNumber = 63/10 (6.3)
 0x8822 ExposureProgram = 1
 0x8827 PhotographicSensitivity = 200
-0x8830 Unknown = 2
-0x8832 Unknown = 200
+0x8830 SensitivityType = 2
+0x8832 RecommendedExposureIndex = 200
 0x9000 ExifVersion = [0x30, 0x32, 0x33, 0x30]
 0x9003 DateTimeOriginal = 2017:11:09 02:25:39
 0x9004 DateTimeDigitized = 2017:11:09 02:25:39
@@ -33,7 +33,7 @@ Little-endian (Intel, II)
 0x9208 LightSource = 255
 0x9209 Flash = 16
 0x920a FocalLength = 1930/10 (193.0)
-0xa001 Unknown = 1
+0xa001 ColorSpace = 1
 0xa300 FileSource = 3
 0xa301 SceneType = 1
 0xa401 CustomRendered = 0

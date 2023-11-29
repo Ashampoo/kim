@@ -19,7 +19,7 @@ Little-endian (Intel, II)
 0x0117 PreviewImageLength = 147456
 0x011c PlanarConfiguration = 1
 0x0131 Software = Adobe DNG Converter 15.4 (Macintosh)
-0x0132 DateTime = 2023:07:26 06:11:34
+0x0132 ModifyDate = 2023:07:26 06:11:34
 0x014a SubIFD = [745174, 747148, 747540, 748122, 748644]
 0x02bc XMP = [6163 bytes]
 0x8769 ExifOffset = 744630

@@ -56,7 +56,8 @@ open class TagInfo(
     open fun encodeValue(fieldType: FieldType, value: Any, byteOrder: ByteOrder): ByteArray =
         fieldType.writeData(value, byteOrder)
 
-    override fun toString(): String = tagFormatted
+    override fun toString(): String =
+        description
 
     open fun isText(): Boolean =
         false

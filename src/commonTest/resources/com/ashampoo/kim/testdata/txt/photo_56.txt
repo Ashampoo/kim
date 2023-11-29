@@ -20,7 +20,7 @@ Little-endian (Intel, II)
 0x011b YResolution = 72/1 (72.0)
 0x011c PlanarConfiguration = 1
 0x0128 ResolutionUnit = 2
-0x0132 DateTime = 2022:09:27 18:57:17
+0x0132 ModifyDate = 2022:09:27 18:57:17
 0x013b Artist = Stefan Oltmann
 0x013d Predictor = 2
 0x02bc XMP = [3509 bytes]
@@ -36,8 +36,8 @@ Little-endian (Intel, II)
 0x829d FNumber = 5/1 (5.0)
 0x8822 ExposureProgram = 3
 0x8827 PhotographicSensitivity = 400
-0x8830 Unknown = 2
-0x8832 Unknown = 400
+0x8830 SensitivityType = 2
+0x8832 RecommendedExposureIndex = 400
 0x9000 ExifVersion = [0x30, 0x32, 0x33, 0x30]
 0x9003 DateTimeOriginal = 2021:11:25 07:40:51
 0x9101 ComponentsConfiguration = [0x01, 0x02, 0x03, 0x00]
@@ -49,7 +49,7 @@ Little-endian (Intel, II)
 0x920a FocalLength = 57/1 (57.0)
 0x9286 UserComment = 
 0x9291 SubSecTimeOriginal = 45
-0xa001 Unknown = 1
+0xa001 ColorSpace = 1
 0xa002 ExifImageWidth = 1200
 0xa003 ExifImageLength = 800
 0xa20e FocalPlaneXResolution = 2592000/905 (2864.088398)

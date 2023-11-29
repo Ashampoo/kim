@@ -10,7 +10,7 @@ Big-endian (Motorola, MM)
 0x011b YResolution = 72/1 (72.0)
 0x0128 ResolutionUnit = 2
 0x0131 Software = 12.1.4
-0x0132 DateTime = 2019:03:22 18:50:02
+0x0132 ModifyDate = 2019:03:22 18:50:02
 0x0142 TileWidth = 512
 0x0143 TileLength = 512
 0x0213 YCbCrPositioning = 1
@@ -38,7 +38,7 @@ Big-endian (Motorola, MM)
 0x9291 SubSecTimeOriginal = 935
 0x9292 SubSecTimeDigitized = 935
 0xa000 FlashpixVersion = [0x30, 0x31, 0x30, 0x30]
-0xa001 Unknown = -1
+0xa001 ColorSpace = -1
 0xa002 ExifImageWidth = 4032
 0xa003 ExifImageLength = 3024
 0xa217 SensingMethod = 2

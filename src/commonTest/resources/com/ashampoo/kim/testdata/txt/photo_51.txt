@@ -14,7 +14,7 @@ Little-endian (Intel, II)
 0x011b YResolution = 300/1 (300.0)
 0x0128 ResolutionUnit = 2
 0x0131 Software = GIMP 2.10.30
-0x0132 DateTime = 2022:09:26 14:17:49
+0x0132 ModifyDate = 2022:09:26 14:17:49
 0x013b Artist = SippakorN
 0x8298 Copyright = @Sippakorn1955
 0x8769 ExifOffset = 294
@@ -25,8 +25,8 @@ Little-endian (Intel, II)
 0x829d FNumber = 63/10 (6.3)
 0x8822 ExposureProgram = 1
 0x8827 PhotographicSensitivity = 125
-0x8830 Unknown = 2
-0x8832 Unknown = 125
+0x8830 SensitivityType = 2
+0x8832 RecommendedExposureIndex = 125
 0x9000 ExifVersion = [0x30, 0x32, 0x33, 0x31]
 0x9003 DateTimeOriginal = 2020:03:11 17:37:33
 0x9004 DateTimeDigitized = 2020:03:11 17:37:33
@@ -42,7 +42,7 @@ Little-endian (Intel, II)
 0x920a FocalLength = 300/1 (300.0)
 0x9291 SubSecTimeOriginal = 36
 0x9292 SubSecTimeDigitized = 36
-0xa001 Unknown = 1
+0xa001 ColorSpace = 1
 0xa20e FocalPlaneXResolution = 4176000/918 (4549.019608)
 0xa20f FocalPlaneYResolution = 2784000/601 (4632.279534)
 0xa210 FocalPlaneResolutionUnit = 2
