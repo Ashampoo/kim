@@ -35,9 +35,9 @@ class TiffImageWriterLossless(
     private val exifBytes: ByteArray
 ) : TiffImageWriterBase(byteOrder) {
 
-    private fun findRewritableElements(
+    private fun findRewritableSpaceRanges(
         makerNoteField: TiffOutputField?
-    ): List<TiffElement> {
+    ): List<RewritableSpaceRange> {
 
         try {
 
@@ -50,7 +50,7 @@ class TiffImageWriterLossless(
                 makerNoteField
             )
 
-            return calcRewritableElements(existingElements)
+            return calcRewritableSpaceRanges(existingElements)
 
         } catch (ex: ImageReadException) {
             throw ImageWriteException(ex.message, ex)
@@ -95,11 +95,11 @@ class TiffImageWriterLossless(
         return elements
     }
 
-    private fun calcRewritableElements(
+    private fun calcRewritableSpaceRanges(
         elements: List<TiffElement>
-    ): List<TiffElement> {
+    ): List<RewritableSpaceRange> {
 
-        val rewritableElements = mutableListOf<TiffElement>()
+        val rewritableSpaceRanges = mutableListOf<RewritableSpaceRange>()
 
         var lastElement: TiffElement? = null
         var position: Long = -1
@@ -129,11 +129,10 @@ class TiffImageWriterLossless(
 
                 /* Local variables to support debugging. */
                 val offset = lastElement.offset
-                val length = (position - lastElement.offset).toInt()
+                val length = position - lastElement.offset
 
-                rewritableElements.add(
-                    TiffElement(
-                        debugDescription = "Usable space at $offset to ${length-offset} ($length bytes)",
+                rewritableSpaceRanges.add(
+                    RewritableSpaceRange(
                         offset = offset,
                         length = length
                     )
@@ -148,18 +147,17 @@ class TiffImageWriterLossless(
         lastElement?.let {
 
             val offset = lastElement.offset
-            val length = (position - lastElement.offset).toInt()
+            val length = position - lastElement.offset
 
-            rewritableElements.add(
-                TiffElement(
-                    debugDescription = "Usable space at $offset to ${length-offset} ($length bytes)",
+            rewritableSpaceRanges.add(
+                RewritableSpaceRange(
                     offset = offset,
                     length = length
                 )
             )
         }
 
-        return rewritableElements
+        return rewritableSpaceRanges
     }
 
     override fun write(byteWriter: ByteWriter, outputSet: TiffOutputSet) {
@@ -170,23 +168,23 @@ class TiffImageWriterLossless(
          */
         val makerNoteField = outputSet.findField(ExifTag.EXIF_TAG_MAKER_NOTE.tag)
 
-        val rewritableTiffElements = findRewritableElements(makerNoteField)
+        val rewritableSpaceRanges = findRewritableSpaceRanges(makerNoteField)
 
         val oldLength = exifBytes.size
 
-        if (rewritableTiffElements.isEmpty())
+        if (rewritableSpaceRanges.isEmpty())
             throw ImageWriteException("Couldn't analyze old tiff data.")
 
-        if (rewritableTiffElements.size == 1) {
+        if (rewritableSpaceRanges.size == 1) {
 
-            val onlyElement = rewritableTiffElements.first()
+            val onlyRange = rewritableSpaceRanges.first()
 
-            val newLength: Long = onlyElement.offset + onlyElement.length + TIFF_HEADER_SIZE
+            val newLength: Long = onlyRange.offset + onlyRange.length + TIFF_HEADER_SIZE
 
             /*
              * Check if there are no gaps in the old data. If so, it's safe to complete overwrite.
              */
-            if (onlyElement.offset == TIFF_HEADER_SIZE.toLong() && newLength == oldLength.toLong()) {
+            if (onlyRange.offset == TIFF_HEADER_SIZE.toLong() && newLength == oldLength.toLong()) {
                 TiffImageWriterLossy(byteOrder).write(byteWriter, outputSet)
                 return
             }
@@ -208,24 +206,24 @@ class TiffImageWriterLossless(
         val outputItems = outputSet.getOutputItems(offsetItems)
             .filterNot { frozenFieldOffsets.contains(it.offset) }
 
-        val outputLength = calcNewOffsets(rewritableTiffElements, outputItems)
+        val outputLength = calcNewOffsets(rewritableSpaceRanges, outputItems)
 
         offsetItems.writeOffsetsToOutputFields()
 
-        writeInternal(byteWriter, outputSet, rewritableTiffElements, outputItems, outputLength)
+        writeInternal(byteWriter, outputSet, rewritableSpaceRanges, outputItems, outputLength)
     }
 
     private fun calcNewOffsets(
-        tiffElements: List<TiffElement>,
+        rewritableSpaceRanges: List<RewritableSpaceRange>,
         outputItems: List<TiffOutputItem>
     ): Long {
 
         val filterAndSortElementsResult = filterAndSortElements(
-            tiffElements,
+            rewritableSpaceRanges,
             exifBytes.size.toLong()
         )
 
-        val unusedElements = filterAndSortElementsResult.first
+        val unusedSpaceRanges = filterAndSortElementsResult.first
 
         /* Keeps track of the total length the exif bytes we have. */
         var newExifBytesLength = filterAndSortElementsResult.second
@@ -250,10 +248,10 @@ class TiffImageWriterLossless(
 
             val outputItemLength = outputItem.getItemLength()
 
-            var bestFit: TiffElement? = null
+            var bestFit: RewritableSpaceRange? = null
 
             /* Search for the smallest possible element large enough to hold the item. */
-            for (element in unusedElements) {
+            for (element in unusedSpaceRanges) {
 
                 if (element.length < outputItemLength)
                     break
@@ -284,7 +282,7 @@ class TiffImageWriterLossless(
 
                 outputItem.offset = offset
 
-                unusedElements.remove(bestFit)
+                unusedSpaceRanges.remove(bestFit)
 
                 if (length > outputItemLength) {
 
@@ -292,17 +290,12 @@ class TiffImageWriterLossless(
                     val excessOffset = offset + outputItemLength
                     val excessLength = length - outputItemLength
 
-                    unusedElements.add(
-                        TiffElement(
-                            bestFit.debugDescription,
+                    unusedSpaceRanges.add(
+                        RewritableSpaceRange(
                             excessOffset,
                             excessLength
                         )
                     )
-
-                    /* Make sure the new element is in the correct order. */
-                    unusedElements.sortWith(elementLengthComparator)
-                    unusedElements.reverse()
                 }
             }
         }
@@ -311,14 +304,14 @@ class TiffImageWriterLossless(
     }
 
     private fun filterAndSortElements(
-        existingTiffElements: List<TiffElement>,
+        rewritableSpaceRanges: List<RewritableSpaceRange>,
         exifBytesLength: Long
-    ): Pair<MutableList<TiffElement>, Long> {
+    ): Pair<MutableList<RewritableSpaceRange>, Long> {
 
         var newExifBytesLength = exifBytesLength
 
-        val filteredAndSortedElements = existingTiffElements
-            .sortedWith(TiffElement.offsetComparator)
+        val filteredAndSortedElements = rewritableSpaceRanges
+            .sortedBy { it.offset }
             .toMutableList()
 
         /*
@@ -341,7 +334,7 @@ class TiffImageWriterLossless(
             filteredAndSortedElements.removeLast()
         }
 
-        filteredAndSortedElements.sortWith(elementLengthComparator.reversed())
+//        filteredAndSortedElements.sortWith(elementLengthComparator.reversed())
 
         return Pair(filteredAndSortedElements, newExifBytesLength)
     }
@@ -349,7 +342,7 @@ class TiffImageWriterLossless(
     private fun writeInternal(
         byteWriter: ByteWriter,
         outputSet: TiffOutputSet,
-        tiffElements: List<TiffElement>,
+        rewritableSpaceRanges: List<RewritableSpaceRange>,
         outputItems: List<TiffOutputItem>,
         outputLength: Long
     ) {
@@ -380,7 +373,7 @@ class TiffImageWriterLossless(
          * Zero out the parsed pieces of old exif segment,
          * in case we don't overwrite them.
          */
-        for (element in tiffElements)
+        for (element in rewritableSpaceRanges)
             outputByteArray.fill(
                 element = 0.toByte(),
                 fromIndex = element.offset.toInt(),
