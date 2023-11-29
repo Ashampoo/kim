@@ -12,7 +12,7 @@ Oversize values:
 Pos: 258 - 768 (856 with oversized values)
 42 Entries
 
-==> Free space before MakerNotes is 8 to 864)
+==> Free space before MakerNotes is 8 to 864 (856 bytes)
 
 # InteropIFD
 Pos: 18822 - 18876
