@@ -1,0 +1,6 @@
+Little Endian file
+
+# IFD0
+Pos: 8 - 170
+Length: 162 (13 Entries)
+
