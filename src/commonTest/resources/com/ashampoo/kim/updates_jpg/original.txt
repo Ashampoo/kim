@@ -2,6 +2,7 @@ Little Endian file
 
 # IFD0
 Pos: 8 - 170
+Len: 856 bytes
 13 Entries
 
 Oversize values:

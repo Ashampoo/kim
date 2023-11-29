@@ -122,12 +122,13 @@ class TiffImageWriterLossless(
 
             if (element.offset - position > OFFSET_TOLERANCE) {
 
+                /* Local variables to support debugging. */
+                val description = lastElement.debugDescription
+                val offset = lastElement.offset
+                val length = (position - lastElement.offset).toInt()
+
                 rewritableElements.add(
-                    TiffElement(
-                        debugDescription = lastElement.debugDescription,
-                        offset = lastElement.offset,
-                        length = (position - lastElement.offset).toInt()
-                    )
+                    TiffElement(description, offset, length)
                 )
 
                 lastElement = element
