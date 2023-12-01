@@ -109,7 +109,6 @@ class TiffOutputSet(
 
             is MetadataUpdate.TakenDate -> {
 
-                rootDirectory.removeField(TiffTag.TIFF_TAG_DATE_TIME)
                 exifDirectory.removeField(ExifTag.EXIF_TAG_DATE_TIME_ORIGINAL)
                 exifDirectory.removeField(ExifTag.EXIF_TAG_DATE_TIME_DIGITIZED)
 
@@ -124,7 +123,6 @@ class TiffOutputSet(
                         .toLocalDateTime(timeZone)
                         .toExifDateString()
 
-                    rootDirectory.add(TiffTag.TIFF_TAG_DATE_TIME, exifDateString)
                     exifDirectory.add(ExifTag.EXIF_TAG_DATE_TIME_ORIGINAL, exifDateString)
                     exifDirectory.add(ExifTag.EXIF_TAG_DATE_TIME_DIGITIZED, exifDateString)
                 }
