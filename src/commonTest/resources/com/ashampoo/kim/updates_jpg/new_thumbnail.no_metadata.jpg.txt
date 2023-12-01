@@ -1,0 +1,12 @@
+File format : JPEG
+Resolution  : 2304 x 1536
+---- TIFF ----
+Version 42
+Big-endian (Motorola, MM)
+---- Directory IFD0 ----
+
+---- Directory SubIFD ----
+0x0201 JpgFromRawStart = 48
+0x0202 JpgFromRawLength = 13884
+
+

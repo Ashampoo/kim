@@ -242,6 +242,10 @@ class JpegUpdaterTest {
             Path("build/$fileName")
                 .writeBytes(actualBytes)
 
+            /* Also write a string representation to see differences more quickly. */
+            Path("build/$fileName.txt")
+                .writeBytes(Kim.readMetadata(actualBytes).toString().encodeToByteArray())
+
             fail("Photo $fileName has not the expected bytes!")
         }
     }

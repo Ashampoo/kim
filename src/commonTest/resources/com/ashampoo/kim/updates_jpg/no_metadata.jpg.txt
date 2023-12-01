@@ -1,0 +1,2 @@
+File format : JPEG
+Resolution  : 2304 x 1536
