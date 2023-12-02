@@ -75,7 +75,7 @@ class JpegRewriterTest {
         for (index in 1..KimTestData.HIGHEST_JPEG_INDEX) {
 
             // FIXME Problematic files
-            if (index in 21..22 || index == 50)
+            if (index in 21..22)
                 continue
 
             val bytes = KimTestData.getBytesOf(index)
