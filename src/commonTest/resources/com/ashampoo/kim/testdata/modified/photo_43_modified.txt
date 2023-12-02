@@ -1,0 +1,91 @@
+File format : JPEG
+Resolution  : 4032 x 3024
+---- TIFF ----
+Version 42
+Big-endian (Motorola, MM)
+---- Directory IFD0 ----
+0x010f Make = Apple
+0x0110 Model = iPhone XS
+0x0112 Orientation = 8
+0x011a XResolution = 72/1 (72.0)
+0x011b YResolution = 72/1 (72.0)
+0x0128 ResolutionUnit = 2
+0x0131 Software = 12.1.4
+0x0132 ModifyDate = 2023:05:10 13:37:42
+0x0142 TileWidth = 512
+0x0143 TileLength = 512
+0x0213 YCbCrPositioning = 1
+0x8769 ExifOffset = 230
+0x8825 GPSInfo = 1812
+
+---- Directory ExifIFD ----
+0x829a ExposureTime = 1/122 (0.008197)
+0x829d FNumber = 12/5 (2.4)
+0x8822 ExposureProgram = 2
+0x8827 PhotographicSensitivity = 50
+0x9000 ExifVersion = [0x30, 0x32, 0x32, 0x31]
+0x9003 DateTimeOriginal = 2023:05:10 13:37:42
+0x9004 DateTimeDigitized = 2023:05:10 13:37:42
+0x9101 ComponentsConfiguration = [0x01, 0x02, 0x03, 0x00]
+0x9201 ShutterSpeedValue = 328711/47450 (6.927524)
+0x9202 ApertureValue = 126503/50079 (2.526069)
+0x9203 BrightnessValue = 685337/119222 (5.748411)
+0x9204 ExposureCompensation = 0/1 (0.0)
+0x9207 MeteringMode = 5
+0x9209 Flash = 24
+0x920a FocalLength = 6/1 (6.0)
+0x9214 SubjectArea = [2007, 1505, 2112, 1270]
+0x927c MakerNote = [996 bytes]
+0x9291 SubSecTimeOriginal = 935
+0x9292 SubSecTimeDigitized = 935
+0xa000 FlashpixVersion = [0x30, 0x31, 0x30, 0x30]
+0xa001 ColorSpace = -1
+0xa002 ExifImageWidth = 4032
+0xa003 ExifImageLength = 3024
+0xa217 SensingMethod = 2
+0xa301 SceneType = 1
+0xa401 CustomRendered = 8
+0xa402 ExposureMode = 0
+0xa403 WhiteBalance = 0
+0xa405 FocalLengthIn35mmFormat = 52
+0xa406 SceneCaptureType = 0
+0xa432 LensSpecification = [17/4 (4.25), 6/1 (6.0), 9/5 (1.8), 12/5 (2.4)]
+0xa433 LensMake = Apple
+0xa434 LensModel = iPhone XS back dual camera 6mm f/2.4
+
+---- Directory GPS ----
+0x0000 GPSVersionID = [0x02, 0x03, 0x00, 0x00]
+0x0001 GPSLatitudeRef = N
+0x0002 GPSLatitude = [53/1 (53.0), 13/1 (13.0), 24519/2500 (9.8076)]
+0x0003 GPSLongitudeRef = E
+0x0004 GPSLongitude = [8/1 (8.0), 14/1 (14.0), 56949/2500 (22.7796)]
+0x0005 GPSAltitudeRef = 0
+0x0006 GPSAltitude = 425411/2445 (173.992229)
+0x0007 GPSTimeStamp = [1/1 (1.0), 50/1 (50.0), 1/1 (1.0)]
+0x000c GPSSpeedRef = K
+0x000d GPSSpeed = 76721/92899 (0.825854)
+0x0010 GPSImgDirectionRef = T
+0x0011 GPSImgDirection = 100129/713 (140.43338)
+0x0017 GPSDestBearingRef = T
+0x0018 GPSDestBearing = 100129/713 (140.43338)
+0x001d GPSDateStamp = 2019:03:23
+0x001f Unknown = 79605/8807 (9.038833)
+
+
+---- IPTC ----
+Keywords (25) = 'nature'
+Keywords (25) = 'field'
+Keywords (25) = 'grassland'
+Keywords (25) = 'outdoors'
+Keywords (25) = 'Umlauts: äöüß'
+
+---- XMP ----
+<?xpacket begin="﻿" id="W5M0MpCehiHzreSzNTczkc9d"?>
+    <x:xmpmeta xmlns:x="adobe:ns:meta/" x:xmptk="Adobe XMP Core 6.1.10">
+      <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+        <rdf:Description rdf:about=""
+            xmlns:xmp="http://ns.adobe.com/xap/1.0/"
+          xmp:Rating="3"/>
+      </rdf:RDF>
+    </x:xmpmeta>
+<?xpacket end="w"?>

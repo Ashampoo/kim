@@ -29,10 +29,10 @@ import com.ashampoo.kim.format.jpeg.jfif.JFIFPiece
 import com.ashampoo.kim.format.jpeg.jfif.JFIFPieceImageData
 import com.ashampoo.kim.format.jpeg.jfif.JFIFPieceSegment
 import com.ashampoo.kim.format.jpeg.jfif.JFIFPieceSegmentExif
-import com.ashampoo.kim.format.tiff.write.TiffImageWriterBase
-import com.ashampoo.kim.format.tiff.write.TiffImageWriterLossless
-import com.ashampoo.kim.format.tiff.write.TiffImageWriterLossy
 import com.ashampoo.kim.format.tiff.write.TiffOutputSet
+import com.ashampoo.kim.format.tiff.write.TiffWriterBase
+import com.ashampoo.kim.format.tiff.write.TiffWriterLossless
+import com.ashampoo.kim.format.tiff.write.TiffWriterLossy
 import com.ashampoo.kim.input.ByteReader
 import com.ashampoo.kim.output.ByteArrayByteWriter
 import com.ashampoo.kim.output.ByteWriter
@@ -51,9 +51,8 @@ object JpegRewriter {
         val visitor: JpegVisitor = object : JpegVisitor {
 
             /* Read the whole file. */
-            override fun beginSOS(): Boolean {
-                return true
-            }
+            override fun beginSOS(): Boolean =
+                true
 
             override fun visitSOS(marker: Int, markerBytes: ByteArray, imageData: ByteArray) {
                 allPieces.add(JFIFPieceImageData(markerBytes, imageData))
@@ -118,7 +117,7 @@ object JpegRewriter {
         val exifSegmentPieces =
             segmentPieces.filterIsInstance<JFIFPieceSegment>().filter { it.isExifSegment() }
 
-        val writer: TiffImageWriterBase
+        val writer: TiffWriterBase
 
         if (exifSegmentPieces.isNotEmpty()) {
 
@@ -126,10 +125,12 @@ object JpegRewriter {
 
             val exifBytes = exifPiece.segmentBytes.getRemainingBytes(JpegConstants.EXIF_IDENTIFIER_CODE.size)
 
-            writer = TiffImageWriterLossless(outputSet.byteOrder, exifBytes)
+            writer = TiffWriterLossless(outputSet.byteOrder, exifBytes)
 
-        } else
-            writer = TiffImageWriterLossy(outputSet.byteOrder)
+        } else {
+
+            writer = TiffWriterLossy(outputSet.byteOrder)
+        }
 
         val newBytes = writeExifSegment(writer, outputSet)
 
@@ -205,7 +206,7 @@ object JpegRewriter {
     }
 
     private fun writeExifSegment(
-        writer: TiffImageWriterBase,
+        writer: TiffWriterBase,
         outputSet: TiffOutputSet
     ): ByteArray {
 

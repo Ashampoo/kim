@@ -1,0 +1,81 @@
+File format : JPEG
+Resolution  : 3705 x 2470
+---- TIFF ----
+Version 42
+Little-endian (Intel, II)
+---- Directory IFD0 ----
+0x010f Make = Canon
+0x0110 Model = Canon EOS REBEL T3i
+0x0112 Orientation = 8
+0x011a XResolution = 240/1 (240.0)
+0x011b YResolution = 240/1 (240.0)
+0x0128 ResolutionUnit = 3
+0x0131 Software = Adobe Photoshop Lightroom 4.2 (Windows)
+0x0132 ModifyDate = 2023:05:10 13:37:42
+0x8769 ExifOffset = 236
+0x8825 GPSInfo = 744
+
+---- Directory ExifIFD ----
+0x829a ExposureTime = 1/640 (0.001563)
+0x829d FNumber = 56/10 (5.6)
+0x8822 ExposureProgram = 1
+0x8827 PhotographicSensitivity = 400
+0x9000 ExifVersion = [0x30, 0x32, 0x33, 0x30]
+0x9003 DateTimeOriginal = 2023:05:10 13:37:42
+0x9004 DateTimeDigitized = 2023:05:10 13:37:42
+0x9201 ShutterSpeedValue = 9321928/1000000 (9.321928)
+0x9202 ApertureValue = 4970854/1000000 (4.970854)
+0x9204 ExposureCompensation = 0/1 (0.0)
+0x9205 MaxApertureValue = 5/1 (5.0)
+0x9207 MeteringMode = 5
+0x9208 LightSource = 255
+0x9209 Flash = 8
+0x920a FocalLength = 400/1 (400.0)
+0x9292 SubSecTimeDigitized = 53
+0xa20e FocalPlaneXResolution = 5184000/905 (5728.176796)
+0xa20f FocalPlaneYResolution = 3456000/595 (5808.403361)
+0xa210 FocalPlaneResolutionUnit = 2
+0xa402 ExposureMode = 1
+0xa403 WhiteBalance = 1
+0xa406 SceneCaptureType = 0
+0xa431 BodySerialNumber = 102025013293
+0xa432 LensSpecification = [400/1 (400.0), 400/1 (400.0), Invalid rational (0/0), Invalid rational (0/0)]
+0xa434 LensModel = EF400mm f/5.6L USM
+0xa435 LensSerialNumber = 0000000000
+
+---- Directory GPS ----
+0x0000 GPSVersionID = [0x02, 0x03, 0x00, 0x00]
+0x0001 GPSLatitudeRef = N
+0x0002 GPSLatitude = [53/1 (53.0), 13/1 (13.0), 24519/2500 (9.8076)]
+0x0003 GPSLongitudeRef = E
+0x0004 GPSLongitude = [8/1 (8.0), 14/1 (14.0), 56949/2500 (22.7796)]
+
+---- Directory SubIFD ----
+0x0103 Compression = 6
+0x011a XResolution = 72/1 (72.0)
+0x011b YResolution = 72/1 (72.0)
+0x0128 ResolutionUnit = 2
+0x0201 JpgFromRawStart = 10626
+0x0202 JpgFromRawLength = 9685
+
+
+---- IPTC ----
+Caption/Abstract (120) = 'brown butterfly on orange petaled flower'
+Digital Creation Time (63) = '081655'
+Digital Creation Date (62) = '20110626'
+Time Created (60) = '081655'
+Date Created (55) = '20110626'
+Keywords (25) = 'invertebrate'
+Keywords (25) = 'cosmos'
+Keywords (25) = 'Umlauts: äöüß'
+
+---- XMP ----
+<?xpacket begin="﻿" id="W5M0MpCehiHzreSzNTczkc9d"?>
+    <x:xmpmeta xmlns:x="adobe:ns:meta/" x:xmptk="Adobe XMP Core 6.1.10">
+      <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+        <rdf:Description rdf:about=""
+            xmlns:xmp="http://ns.adobe.com/xap/1.0/"
+          xmp:Rating="3"/>
+      </rdf:RDF>
+    </x:xmpmeta>
+<?xpacket end="w"?>

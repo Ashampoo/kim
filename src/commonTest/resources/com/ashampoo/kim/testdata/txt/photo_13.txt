@@ -11,6 +11,7 @@ Big-endian (Motorola, MM)
 0x8825 GPSInfo = 90
 
 ---- Directory GPS ----
+0x0000 GPSVersionID = [0x02, 0x03, 0x00, 0x00]
 0x0001 GPSLatitudeRef = N
 0x0002 GPSLatitude = [34/1 (34.0), 3/1 (3.0), 29285/3641 (8.04312)]
 0x0003 GPSLongitudeRef = W

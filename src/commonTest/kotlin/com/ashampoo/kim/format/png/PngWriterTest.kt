@@ -24,9 +24,9 @@ import com.ashampoo.kim.format.jpeg.iptc.IptcRecord
 import com.ashampoo.kim.format.jpeg.iptc.IptcTypes
 import com.ashampoo.kim.format.jpeg.iptc.IptcWriter
 import com.ashampoo.kim.format.tiff.constants.ExifTag
-import com.ashampoo.kim.format.tiff.write.TiffImageWriterLossless
-import com.ashampoo.kim.format.tiff.write.TiffImageWriterLossy
 import com.ashampoo.kim.format.tiff.write.TiffOutputSet
+import com.ashampoo.kim.format.tiff.write.TiffWriterLossless
+import com.ashampoo.kim.format.tiff.write.TiffWriterLossy
 import com.ashampoo.kim.input.ByteArrayByteReader
 import com.ashampoo.kim.output.ByteArrayByteWriter
 import com.ashampoo.kim.testdata.KimTestData
@@ -94,9 +94,9 @@ class PngWriterTest {
             val oldExifBytes = oldMetadata.exifBytes
 
             val writer = if (oldExifBytes != null)
-                TiffImageWriterLossless(exifBytes = oldExifBytes)
+                TiffWriterLossless(exifBytes = oldExifBytes)
             else
-                TiffImageWriterLossy()
+                TiffWriterLossy()
 
             writer.write(exifBytesWriter, tiffOutputSet)
 
@@ -148,6 +148,10 @@ class PngWriterTest {
 
                 Path("build/photo_${index}_modified.png")
                     .writeBytes(newBytes)
+
+                /* Also write a string representation to see differences more quickly. */
+                Path("build/photo_${index}_modified.txt")
+                    .writeBytes(Kim.readMetadata(newBytes).toString().encodeToByteArray())
 
                 fail("Bytes for test image #$index are different.")
             }
