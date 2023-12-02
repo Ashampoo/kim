@@ -295,6 +295,14 @@ class JpegRewriterTest {
                     )
                         continue
 
+                    /* Some fields will be auto-corrected. */
+                    if (
+                        expectedField.tag == ExifTag.EXIF_TAG_USER_COMMENT.tag ||
+                        expectedField.tag == TiffTag.TIFF_TAG_ARTIST.tag ||
+                        expectedField.tag == TiffTag.TIFF_TAG_COPYRIGHT.tag
+                    )
+                        continue
+
                     val expectedValue = expectedMetadata.findTiffField(expectedField.tagInfo)?.value
                     val actualValue = actualMetadata.findTiffField(actualField.tagInfo)?.value
 

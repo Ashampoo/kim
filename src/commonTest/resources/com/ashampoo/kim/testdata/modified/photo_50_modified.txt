@@ -12,11 +12,11 @@ Little-endian (Intel, II)
 0x0128 ResolutionUnit = 2
 0x0131 Software = Digital Camera X-T4 Ver1.72
 0x0132 ModifyDate = 2023:05:10 13:37:42
-0x013b Artist = Stefan Oltmann                                                                                                                                                                                                                                                 
+0x013b Artist = Stefan Oltmann
 0x0213 YCbCrPositioning = 2
-0x8298 Copyright = Stefan Oltmann                                                                                                                                                                                                                                                 
-0x8769 ExifOffset = 880
-0x8825 GPSInfo = 2030
+0x8298 Copyright = Stefan Oltmann
+0x8769 ExifOffset = 400
+0x8825 GPSInfo = 1298
 0xc4a5 PrintIM = [106 bytes]
 
 ---- Directory ExifIFD ----
@@ -40,12 +40,11 @@ Little-endian (Intel, II)
 0x9209 Flash = 0
 0x920a FocalLength = 3500/100 (35.0)
 0x927c MakerNote = [1192 bytes]
-0x9286 UserComment =                                                                                                                                                                                                                                                         
 0xa000 FlashpixVersion = [0x30, 0x31, 0x30, 0x30]
 0xa001 ColorSpace = 1
 0xa002 ExifImageWidth = 6240
 0xa003 ExifImageLength = 4160
-0xa005 InteropOffset = 1870
+0xa005 InteropOffset = 1122
 0xa20e FocalPlaneXResolution = 2660/1 (2660.0)
 0xa20f FocalPlaneYResolution = 2660/1 (2660.0)
 0xa210 FocalPlaneResolutionUnit = 3
@@ -82,7 +81,7 @@ Little-endian (Intel, II)
 0x011a XResolution = 72/1 (72.0)
 0x011b YResolution = 72/1 (72.0)
 0x0128 ResolutionUnit = 2
-0x013b Artist = Stefan Oltmann                                                                                                                                                                                                                                                 
+0x013b Artist = Stefan Oltmann
 0x0201 JpgFromRawStart = 3796
 0x0202 JpgFromRawLength = 9359
 0x0213 YCbCrPositioning = 2

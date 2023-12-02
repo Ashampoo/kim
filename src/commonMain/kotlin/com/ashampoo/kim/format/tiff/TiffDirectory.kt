@@ -19,6 +19,7 @@ package com.ashampoo.kim.format.tiff
 import com.ashampoo.kim.common.ByteOrder
 import com.ashampoo.kim.common.ImageReadException
 import com.ashampoo.kim.common.ImageWriteException
+import com.ashampoo.kim.format.tiff.constants.ExifTag
 import com.ashampoo.kim.format.tiff.constants.TiffConstants
 import com.ashampoo.kim.format.tiff.constants.TiffTag
 import com.ashampoo.kim.format.tiff.taginfos.TagInfo
@@ -146,8 +147,23 @@ class TiffDirectory(
 
                 val tagInfo = entry.tagInfo
                 val fieldType = entry.fieldType
-                val value = entry.value
+                var value = entry.value
+
+                /*
+                 * Automatic correction: Trim certain values like "Copyright"
+                 * that come with huge amount of empty spaces and wasting space this way.
+                 */
+                if (value is String && tagsToTrim.contains(tagInfo)) {
+
+                    value = value.replace("\u0000", "").trim()
+
+                    /* Skip fields that only had whitespaces in it. */
+                    if (value.isEmpty())
+                        continue
+                }
+
                 val bytes = tagInfo.encodeValue(fieldType, value, byteOrder)
+
                 val count = bytes.size / fieldType.size
 
                 val outputField = TiffOutputField(entry.tag, tagInfo, fieldType, count, bytes)
@@ -179,6 +195,12 @@ class TiffDirectory(
     }
 
     companion object {
+
+        private val tagsToTrim = setOf(
+            TiffTag.TIFF_TAG_COPYRIGHT,
+            TiffTag.TIFF_TAG_ARTIST,
+            ExifTag.EXIF_TAG_USER_COMMENT
+        )
 
         @kotlin.jvm.JvmStatic
         fun description(type: Int): String {
