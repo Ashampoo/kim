@@ -15,7 +15,6 @@
  */
 package com.ashampoo.kim.format.jpeg
 
-import com.ashampoo.kim.Kim
 import com.ashampoo.kim.common.ImageWriteException
 import com.ashampoo.kim.common.startsWith
 import com.ashampoo.kim.common.tryWithImageWriteException
@@ -29,7 +28,6 @@ import com.ashampoo.kim.format.tiff.write.TiffOutputSet
 import com.ashampoo.kim.format.xmp.XmpWriter
 import com.ashampoo.kim.input.ByteArrayByteReader
 import com.ashampoo.kim.input.ByteReader
-import com.ashampoo.kim.model.ImageFormat
 import com.ashampoo.kim.model.MetadataUpdate
 import com.ashampoo.kim.model.TiffOrientation
 import com.ashampoo.kim.output.ByteArrayByteWriter

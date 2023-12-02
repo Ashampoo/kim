@@ -20,7 +20,6 @@ import com.ashampoo.kim.common.ByteOrder
 import com.ashampoo.kim.common.ImageWriteException
 import com.ashampoo.kim.format.tiff.constants.ExifTag
 import com.ashampoo.kim.format.tiff.constants.TiffConstants
-import com.ashampoo.kim.format.tiff.constants.TiffConstants.DEFAULT_TIFF_BYTE_ORDER
 import com.ashampoo.kim.format.tiff.constants.TiffConstants.TIFF_HEADER_SIZE
 import com.ashampoo.kim.format.tiff.constants.TiffConstants.TIFF_VERSION
 import com.ashampoo.kim.output.BinaryByteWriter
