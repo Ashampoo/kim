@@ -244,7 +244,7 @@ abstract class TiffWriterBase(
     companion object {
 
         /** Returns an appropriate TiffImageWriter instance. */
-        fun createTiffImageWriter(oldExifBytes: ByteArray?): TiffWriterBase {
+        fun createTiffWriter(oldExifBytes: ByteArray?): TiffWriterBase {
 
             return if (oldExifBytes != null)
                 TiffWriterLossless(exifBytes = oldExifBytes)
