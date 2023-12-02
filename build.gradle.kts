@@ -23,7 +23,7 @@ repositories {
 val productName = "Ashampoo Kim"
 
 val ktorVersion: String = "2.3.6"
-val xmpCoreVersion: String = "0.2.1"
+val xmpCoreVersion: String = "0.2.2"
 val dateTimeVersion: String = "0.4.1"
 val testRessourcesVersion: String = "0.4.0"
 val ioCoreVersion: String = "0.3.0"
@@ -260,7 +260,7 @@ android {
 
     namespace = "com.ashampoo.kim"
 
-    compileSdk = 33
+    compileSdk = 34
 
     sourceSets["main"].res.srcDirs("src/commonMain/resources")
 
@@ -269,8 +269,8 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.toVersion(11)
-        targetCompatibility = JavaVersion.toVersion(11)
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
 
     publishing {
