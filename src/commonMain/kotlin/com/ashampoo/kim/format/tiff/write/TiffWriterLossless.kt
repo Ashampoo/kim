@@ -30,10 +30,10 @@ import com.ashampoo.kim.output.BinaryByteWriter.Companion.createBinaryByteWriter
 import com.ashampoo.kim.output.BufferByteWriter
 import com.ashampoo.kim.output.ByteWriter
 
-class TiffImageWriterLossless(
+class TiffWriterLossless(
     byteOrder: ByteOrder = TiffConstants.DEFAULT_TIFF_BYTE_ORDER,
     private val exifBytes: ByteArray
-) : TiffImageWriterBase(byteOrder) {
+) : TiffWriterBase(byteOrder) {
 
     private fun findRewritableSpaceRanges(
         makerNoteField: TiffOutputField?
@@ -185,7 +185,7 @@ class TiffImageWriterLossless(
              * Check if there are no gaps in the old data. If so, it's safe to complete overwrite.
              */
             if (onlyRange.offset == TIFF_HEADER_SIZE.toLong() && newLength == oldLength.toLong()) {
-                TiffImageWriterLossy(byteOrder).write(byteWriter, outputSet)
+                TiffWriterLossy(byteOrder).write(byteWriter, outputSet)
                 return
             }
         }

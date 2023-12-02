@@ -25,7 +25,7 @@ import com.ashampoo.kim.format.tiff.constants.TiffConstants.TIFF_VERSION
 import com.ashampoo.kim.output.BinaryByteWriter
 import com.ashampoo.kim.output.ByteWriter
 
-abstract class TiffImageWriterBase(
+abstract class TiffWriterBase(
     val byteOrder: ByteOrder
 ) {
 
@@ -244,12 +244,12 @@ abstract class TiffImageWriterBase(
     companion object {
 
         /** Returns an appropriate TiffImageWriter instance. */
-        fun createTiffImageWriter(oldExifBytes: ByteArray?): TiffImageWriterBase {
+        fun createTiffImageWriter(oldExifBytes: ByteArray?): TiffWriterBase {
 
             return if (oldExifBytes != null)
-                TiffImageWriterLossless(exifBytes = oldExifBytes)
+                TiffWriterLossless(exifBytes = oldExifBytes)
             else
-                TiffImageWriterLossy()
+                TiffWriterLossy()
         }
     }
 }

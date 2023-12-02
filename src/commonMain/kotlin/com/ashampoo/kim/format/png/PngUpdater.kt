@@ -20,8 +20,8 @@ import com.ashampoo.kim.common.startsWith
 import com.ashampoo.kim.common.tryWithImageWriteException
 import com.ashampoo.kim.format.ImageFormatMagicNumbers
 import com.ashampoo.kim.format.MetadataUpdater
-import com.ashampoo.kim.format.tiff.write.TiffImageWriterBase
 import com.ashampoo.kim.format.tiff.write.TiffOutputSet
+import com.ashampoo.kim.format.tiff.write.TiffWriterBase
 import com.ashampoo.kim.format.xmp.XmpWriter
 import com.ashampoo.kim.input.ByteArrayByteReader
 import com.ashampoo.kim.input.ByteReader
@@ -63,7 +63,7 @@ internal object PngUpdater : MetadataUpdater {
 
             val exifBytesWriter = ByteArrayByteWriter()
 
-            TiffImageWriterBase
+            TiffWriterBase
                 .createTiffImageWriter(metadata.exifBytes)
                 .write(exifBytesWriter, outputSet)
 
@@ -108,7 +108,7 @@ internal object PngUpdater : MetadataUpdater {
 
         val exifBytesWriter = ByteArrayByteWriter()
 
-        TiffImageWriterBase
+        TiffWriterBase
             .createTiffImageWriter(metadata.exifBytes)
             .write(exifBytesWriter, outputSet)
 
