@@ -49,6 +49,7 @@ Little-endian (Intel, II)
 0xa434 LensModel = E 55-210mm F4.5-6.3 OSS
 
 ---- Directory GPS ----
+0x0000 GPSVersionID = [0x02, 0x03, 0x00, 0x00]
 0x0001 GPSLatitudeRef = N
 0x0002 GPSLatitude = [43/1 (43.0), 37/1 (37.0), 33554/4561 (7.35672)]
 0x0003 GPSLongitudeRef = W

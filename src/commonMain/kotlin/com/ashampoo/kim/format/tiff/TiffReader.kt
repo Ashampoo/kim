@@ -155,10 +155,14 @@ object TiffReader {
 
             /*
              * Skip invalid fields.
+             *
              * These are seen very rarely, but can have invalid value lengths,
              * which can cause OOM problems.
+             *
+             * Except for the GPS directory where GPSVersionID is indeed zero,
+             * but a valid field. So we shouldn't skip it.
              */
-            if (tag == 0)
+            if (tag == 0 && dirType != TiffConstants.TIFF_GPS)
                 continue
 
             val fieldType: FieldType = try {

@@ -56,6 +56,7 @@ Little-endian (Intel, II)
 0xa435 LensSerialNumber = 7820004130
 
 ---- Directory GPS ----
+0x0000 GPSVersionID = [0x02, 0x03, 0x00, 0x00]
 0x0001 GPSLatitudeRef = N
 0x0002 GPSLatitude = [14/1 (14.0), 57/1 (57.0), 55899/1250 (44.7192)]
 0x0003 GPSLongitudeRef = E

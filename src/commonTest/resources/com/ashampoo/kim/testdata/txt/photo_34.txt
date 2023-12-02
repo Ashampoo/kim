@@ -58,6 +58,7 @@ Little-endian (Intel, II)
 0xa40c SubjectDistanceRange = 0
 
 ---- Directory GPS ----
+0x0000 GPSVersionID = [0x02, 0x03, 0x00, 0x00]
 0x0001 GPSLatitudeRef = N
 0x0002 GPSLatitude = [50/1 (50.0), 24/1 (24.0), 47043/8164 (5.762249)]
 0x0003 GPSLongitudeRef = E

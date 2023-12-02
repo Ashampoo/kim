@@ -1,0 +1,89 @@
+File format : JPEG
+Resolution  : 3000 x 2000
+---- TIFF ----
+Version 42
+Little-endian (Intel, II)
+---- Directory IFD0 ----
+0x010f Make = SONY
+0x0110 Model = ILCE-7RM3
+0x0112 Orientation = 8
+0x011a XResolution = 300/1 (300.0)
+0x011b YResolution = 300/1 (300.0)
+0x0128 ResolutionUnit = 2
+0x0131 Software = Adobe Photoshop Lightroom Classic 8.0 (Macintosh)
+0x0132 ModifyDate = 2023:05:10 13:37:42
+0x8769 ExifOffset = 236
+0x8825 GPSInfo = 11610
+
+---- Directory ExifIFD ----
+0x829a ExposureTime = 2/1 (2.0)
+0x829d FNumber = 28/10 (2.8)
+0x8822 ExposureProgram = 1
+0x8827 PhotographicSensitivity = 2000
+0x8830 SensitivityType = 2
+0x8832 RecommendedExposureIndex = 2000
+0x9000 ExifVersion = [0x30, 0x32, 0x33, 0x31]
+0x9003 DateTimeOriginal = 2023:05:10 13:37:42
+0x9004 DateTimeDigitized = 2023:05:10 13:37:42
+0x9201 ShutterSpeedValue = -1/1 (-1.0)
+0x9202 ApertureValue = 2970854/1000000 (2.970854)
+0x9203 BrightnessValue = -18086/2560 (-7.064844)
+0x9204 ExposureCompensation = 0/10 (0.0)
+0x9205 MaxApertureValue = 760/256 (2.96875)
+0x9207 MeteringMode = 5
+0x9208 LightSource = 0
+0x9209 Flash = 16
+0x920a FocalLength = 250/10 (25.0)
+0xa001 ColorSpace = 1
+0xa20e FocalPlaneXResolution = 70924134/32768 (2164.4328)
+0xa20f FocalPlaneYResolution = 70924134/32768 (2164.4328)
+0xa210 FocalPlaneResolutionUnit = 3
+0xa300 FileSource = 3
+0xa301 SceneType = 1
+0xa401 CustomRendered = 0
+0xa402 ExposureMode = 1
+0xa403 WhiteBalance = 1
+0xa404 DigitalZoomRatio = 16/16 (1.0)
+0xa405 FocalLengthIn35mmFormat = 25
+0xa406 SceneCaptureType = 0
+0xa408 Contrast = 0
+0xa409 Saturation = 0
+0xa40a Sharpness = 0
+0xa432 LensSpecification = [240/10 (24.0), 700/10 (70.0), 28/10 (2.8), 28/10 (2.8)]
+0xa434 LensModel = FE 24-70mm F2.8 GM
+
+---- Directory GPS ----
+0x0000 GPSVersionID = [0x02, 0x03, 0x00, 0x00]
+0x0001 GPSLatitudeRef = N
+0x0002 GPSLatitude = [53/1 (53.0), 13/1 (13.0), 24519/2500 (9.8076)]
+0x0003 GPSLongitudeRef = E
+0x0004 GPSLongitude = [8/1 (8.0), 14/1 (14.0), 56949/2500 (22.7796)]
+
+---- Directory SubIFD ----
+0x0103 Compression = 6
+0x011a XResolution = 72/1 (72.0)
+0x011b YResolution = 72/1 (72.0)
+0x0128 ResolutionUnit = 2
+0x0201 JpgFromRawStart = 936
+0x0202 JpgFromRawLength = 10674
+
+
+---- IPTC ----
+Caption/Abstract (120) = 'selective focus photography of dirt road near red bridge'
+Digital Creation Time (63) = '091915'
+Digital Creation Date (62) = '20190208'
+Time Created (60) = '091915'
+Date Created (55) = '20190208'
+Keywords (25) = 'puddle'
+Keywords (25) = 'Umlauts: äöüß'
+
+---- XMP ----
+<?xpacket begin="﻿" id="W5M0MpCehiHzreSzNTczkc9d"?>
+    <x:xmpmeta xmlns:x="adobe:ns:meta/" x:xmptk="Adobe XMP Core 6.1.10">
+      <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+        <rdf:Description rdf:about=""
+            xmlns:xmp="http://ns.adobe.com/xap/1.0/"
+          xmp:Rating="3"/>
+      </rdf:RDF>
+    </x:xmpmeta>
+<?xpacket end="w"?>

@@ -1,0 +1,86 @@
+File format : JPEG
+Resolution  : 5332 x 2973
+---- TIFF ----
+Version 42
+Little-endian (Intel, II)
+---- Directory IFD0 ----
+0x010f Make = Canon
+0x0110 Model = Canon EOS-1D Mark IV
+0x0112 Orientation = 8
+0x011a XResolution = 240/1 (240.0)
+0x011b YResolution = 240/1 (240.0)
+0x0128 ResolutionUnit = 2
+0x0131 Software = Adobe Photoshop Lightroom Classic 8.0 (Macintosh)
+0x0132 ModifyDate = 2023:05:10 13:37:42
+0x013b Artist = Thomas Lipke
+0x8769 ExifOffset = 274
+0x8825 GPSInfo = 15802
+
+---- Directory ExifIFD ----
+0x829a ExposureTime = 1/125 (0.008)
+0x829d FNumber = 35/10 (3.5)
+0x8822 ExposureProgram = 2
+0x8827 PhotographicSensitivity = 400
+0x9000 ExifVersion = [0x30, 0x32, 0x33, 0x30]
+0x9003 DateTimeOriginal = 2023:05:10 13:37:42
+0x9004 DateTimeDigitized = 2023:05:10 13:37:42
+0x9201 ShutterSpeedValue = 6965784/1000000 (6.965784)
+0x9202 ApertureValue = 361471/100000 (3.61471)
+0x9204 ExposureCompensation = 0/1 (0.0)
+0x9205 MaxApertureValue = 3/1 (3.0)
+0x9206 Subject Distance = 41/100 (0.41)
+0x9207 MeteringMode = 6
+0x9209 Flash = 16
+0x920a FocalLength = 100/1 (100.0)
+0x9291 SubSecTimeOriginal = 52
+0xa001 ColorSpace = -1
+0xa20e FocalPlaneXResolution = 4896000/1290 (3795.348837)
+0xa20f FocalPlaneYResolution = 3264000/836 (3904.30622)
+0xa210 FocalPlaneResolutionUnit = 2
+0xa401 CustomRendered = 0
+0xa402 ExposureMode = 0
+0xa403 WhiteBalance = 0
+0xa406 SceneCaptureType = 0
+0xa431 BodySerialNumber = 630602135
+0xa432 LensSpecification = [100/1 (100.0), 100/1 (100.0), Invalid rational (0/0), Invalid rational (0/0)]
+0xa434 LensModel = EF100mm f/2.8L Macro IS USM
+
+---- Directory GPS ----
+0x0000 GPSVersionID = [0x02, 0x03, 0x00, 0x00]
+0x0001 GPSLatitudeRef = N
+0x0002 GPSLatitude = [53/1 (53.0), 13/1 (13.0), 24519/2500 (9.8076)]
+0x0003 GPSLongitudeRef = E
+0x0004 GPSLongitude = [8/1 (8.0), 14/1 (14.0), 56949/2500 (22.7796)]
+
+---- Directory SubIFD ----
+0x0103 Compression = 6
+0x011a XResolution = 72/1 (72.0)
+0x011b YResolution = 72/1 (72.0)
+0x0128 ResolutionUnit = 2
+0x0201 JpgFromRawStart = 888
+0x0202 JpgFromRawLength = 14914
+
+
+---- IPTC ----
+Caption/Abstract (120) = 'selective focus photo of crocodile eye'
+By-line (80) = 'Thomas Lipke'
+Digital Creation Time (63) = '203857'
+Digital Creation Date (62) = '20110822'
+Time Created (60) = '203857'
+Date Created (55) = '20110822'
+Keywords (25) = 'animal'
+Keywords (25) = 'snake'
+Keywords (25) = 'lizard'
+Keywords (25) = 'reptile'
+Keywords (25) = 'Umlauts: äöüß'
+
+---- XMP ----
+<?xpacket begin="﻿" id="W5M0MpCehiHzreSzNTczkc9d"?>
+    <x:xmpmeta xmlns:x="adobe:ns:meta/" x:xmptk="Adobe XMP Core 6.1.10">
+      <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+        <rdf:Description rdf:about=""
+            xmlns:xmp="http://ns.adobe.com/xap/1.0/"
+          xmp:Rating="3"/>
+      </rdf:RDF>
+    </x:xmpmeta>
+<?xpacket end="w"?>

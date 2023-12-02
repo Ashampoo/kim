@@ -154,6 +154,10 @@ class JpegRewriterTest {
                 Path("build/photo_${index}_modified.jpg")
                     .writeBytes(actualMetadataBytes)
 
+                /* Also write a string representation to see differences more quickly. */
+                Path("build/photo_${index}_modified.txt")
+                    .writeBytes(Kim.readMetadata(actualMetadataBytes).toString().encodeToByteArray())
+
                 fail("Photo $index has not the expected bytes!")
             }
         }
