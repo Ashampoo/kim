@@ -15,7 +15,7 @@ Little-endian (Intel, II)
 0x0213 YCbCrPositioning = 1
 0x0214 ReferenceBlackWhite = [0/1 (0.0), 255/1 (255.0), 0/1 (0.0), 255/1 (255.0), 0/1 (0.0), 255/1 (255.0)]
 0x8769 ExifOffset = 286
-0x8825 GPSInfo = 12768
+0x8825 GPSInfo = 12716
 
 ---- Directory ExifIFD ----
 0x829a ExposureTime = 1/40 (0.025)
@@ -33,7 +33,6 @@ Little-endian (Intel, II)
 0x9209 Flash = 0
 0x920a FocalLength = 75/1 (75.0)
 0x927c MakerNote = [11878 bytes]
-0x9286 UserComment =                                     
 0x9290 SubSecTime = 20
 0x9291 SubSecTimeOriginal = 20
 0x9292 SubSecTimeDigitized = 20

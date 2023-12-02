@@ -13,11 +13,11 @@ Little-endian (Intel, II)
 0x0128 ResolutionUnit = 2
 0x0131 Software = Version 1.2                    
 0x0132 ModifyDate = 2023:05:10 13:37:42
-0x013b Artist = Fleur Hocking                                                  
+0x013b Artist = Fleur Hocking
 0x0213 YCbCrPositioning = 2
-0x8298 Copyright = Fleur Hocking                                                  
-0x8769 ExifOffset = 992
-0x8825 GPSInfo = 13626
+0x8298 Copyright = Fleur Hocking
+0x8769 ExifOffset = 892
+0x8825 GPSInfo = 13400
 0xc4a5 PrintIM = [528 bytes]
 
 ---- Directory ExifIFD ----
@@ -37,12 +37,11 @@ Little-endian (Intel, II)
 0x9209 Flash = 8
 0x920a FocalLength = 102/1 (102.0)
 0x927c MakerNote = [11914 bytes]
-0x9286 UserComment =                                                                                                                      
 0xa000 FlashpixVersion = [0x30, 0x31, 0x30, 0x30]
 0xa001 ColorSpace = 1
 0xa002 ExifImageWidth = 4608
 0xa003 ExifImageLength = 3456
-0xa005 InteropOffset = 13596
+0xa005 InteropOffset = 1444
 0xa300 FileSource = 3
 0xa401 CustomRendered = 0
 0xa402 ExposureMode = 1
@@ -72,7 +71,7 @@ Little-endian (Intel, II)
 0x011a XResolution = 72/1 (72.0)
 0x011b YResolution = 72/1 (72.0)
 0x0128 ResolutionUnit = 2
-0x0201 JpgFromRawStart = 13834
+0x0201 JpgFromRawStart = 13600
 0x0202 JpgFromRawLength = 9032
 
 

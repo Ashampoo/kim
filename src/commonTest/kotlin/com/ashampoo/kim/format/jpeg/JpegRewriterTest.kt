@@ -27,6 +27,7 @@ import com.ashampoo.kim.format.tiff.constants.TiffTag
 import com.ashampoo.kim.format.tiff.write.TiffOutputSet
 import com.ashampoo.kim.input.ByteArrayByteReader
 import com.ashampoo.kim.model.GpsCoordinates
+import com.ashampoo.kim.model.TiffOrientation
 import com.ashampoo.kim.output.ByteArrayByteWriter
 import com.ashampoo.kim.testdata.KimTestData
 import kotlinx.io.files.Path
@@ -75,7 +76,7 @@ class JpegRewriterTest {
         for (index in 1..KimTestData.HIGHEST_JPEG_INDEX) {
 
             // FIXME Problematic files
-            if (index in 21..22 || index == 50)
+            if (index in 21..22)
                 continue
 
             val bytes = KimTestData.getBytesOf(index)
@@ -295,8 +296,24 @@ class JpegRewriterTest {
                     )
                         continue
 
+                    /* Some fields will be auto-corrected. */
+                    if (
+                        expectedField.tag == ExifTag.EXIF_TAG_USER_COMMENT.tag ||
+                        expectedField.tag == TiffTag.TIFF_TAG_ARTIST.tag ||
+                        expectedField.tag == TiffTag.TIFF_TAG_COPYRIGHT.tag
+                    )
+                        continue
+
                     val expectedValue = expectedMetadata.findTiffField(expectedField.tagInfo)?.value
                     val actualValue = actualMetadata.findTiffField(actualField.tagInfo)?.value
+
+                    /* Ignore the auto-correction of setting the orientation flag to default. */
+                    if (
+                        expectedField.tag == TiffTag.TIFF_TAG_ORIENTATION.tag &&
+                        expectedValue == null &&
+                        actualValue == TiffOrientation.STANDARD.value.toShort()
+                    )
+                        continue
 
                     if (!isEquals(expectedValue, actualValue)) {
 

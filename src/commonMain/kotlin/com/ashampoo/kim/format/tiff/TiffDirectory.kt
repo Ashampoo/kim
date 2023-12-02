@@ -19,7 +19,9 @@ package com.ashampoo.kim.format.tiff
 import com.ashampoo.kim.common.ByteOrder
 import com.ashampoo.kim.common.ImageReadException
 import com.ashampoo.kim.common.ImageWriteException
+import com.ashampoo.kim.format.tiff.constants.ExifTag
 import com.ashampoo.kim.format.tiff.constants.TiffConstants
+import com.ashampoo.kim.format.tiff.constants.TiffDirectoryType
 import com.ashampoo.kim.format.tiff.constants.TiffTag
 import com.ashampoo.kim.format.tiff.taginfos.TagInfo
 import com.ashampoo.kim.format.tiff.taginfos.TagInfoBytes
@@ -27,6 +29,7 @@ import com.ashampoo.kim.format.tiff.taginfos.TagInfoLong
 import com.ashampoo.kim.format.tiff.taginfos.TagInfoLongs
 import com.ashampoo.kim.format.tiff.write.TiffOutputDirectory
 import com.ashampoo.kim.format.tiff.write.TiffOutputField
+import com.ashampoo.kim.model.TiffOrientation
 
 /**
  * Provides methods and elements for accessing an Image File Directory (IFD)
@@ -128,9 +131,9 @@ class TiffDirectory(
         throw ImageReadException("Couldn't find image data.")
     }
 
-    fun getOutputDirectory(byteOrder: ByteOrder): TiffOutputDirectory {
+    fun createOutputDirectory(byteOrder: ByteOrder): TiffOutputDirectory {
 
-        return try {
+        try {
 
             val outputDirectory = TiffOutputDirectory(type, byteOrder)
 
@@ -146,8 +149,23 @@ class TiffDirectory(
 
                 val tagInfo = entry.tagInfo
                 val fieldType = entry.fieldType
-                val value = entry.value
+                var value = entry.value
+
+                /*
+                 * Automatic correction: Trim certain values like "Copyright"
+                 * that come with huge amount of empty spaces and wasting space this way.
+                 */
+                if (value is String && tagsToTrim.contains(tagInfo)) {
+
+                    value = value.replace("\u0000", "").trim()
+
+                    /* Skip fields that only had whitespaces in it. */
+                    if (value.isEmpty())
+                        continue
+                }
+
                 val bytes = tagInfo.encodeValue(fieldType, value, byteOrder)
+
                 val count = bytes.size / fieldType.size
 
                 val outputField = TiffOutputField(entry.tag, tagInfo, fieldType, count, bytes)
@@ -157,8 +175,26 @@ class TiffDirectory(
                 outputDirectory.add(outputField)
             }
 
+            /*
+             * Check if the root directory has an orientation flag and
+             * add this per default it is missing. If it is present we
+             * can update the orientation easily the next time we need
+             * to touch the file.
+             */
+            if (type == TiffDirectoryType.TIFF_DIRECTORY_IFD0.directoryType) {
+
+                val orientationField = outputDirectory.findField(TiffTag.TIFF_TAG_ORIENTATION)
+
+                if (orientationField == null)
+                    outputDirectory.add(
+                        tagInfo = TiffTag.TIFF_TAG_ORIENTATION,
+                        value = TiffOrientation.STANDARD.value.toShort()
+                    )
+            }
+
             outputDirectory.setJpegImageData(jpegImageDataElement)
-            outputDirectory
+
+            return outputDirectory
 
         } catch (ex: ImageReadException) {
             throw ImageWriteException(ex.message, ex)
@@ -178,6 +214,12 @@ class TiffDirectory(
     }
 
     companion object {
+
+        private val tagsToTrim = setOf(
+            TiffTag.TIFF_TAG_COPYRIGHT,
+            TiffTag.TIFF_TAG_ARTIST,
+            ExifTag.EXIF_TAG_USER_COMMENT
+        )
 
         @kotlin.jvm.JvmStatic
         fun description(type: Int): String {
