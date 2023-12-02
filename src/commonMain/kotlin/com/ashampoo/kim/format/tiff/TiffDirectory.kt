@@ -21,6 +21,7 @@ import com.ashampoo.kim.common.ImageReadException
 import com.ashampoo.kim.common.ImageWriteException
 import com.ashampoo.kim.format.tiff.constants.ExifTag
 import com.ashampoo.kim.format.tiff.constants.TiffConstants
+import com.ashampoo.kim.format.tiff.constants.TiffDirectoryType
 import com.ashampoo.kim.format.tiff.constants.TiffTag
 import com.ashampoo.kim.format.tiff.taginfos.TagInfo
 import com.ashampoo.kim.format.tiff.taginfos.TagInfoBytes
@@ -28,6 +29,7 @@ import com.ashampoo.kim.format.tiff.taginfos.TagInfoLong
 import com.ashampoo.kim.format.tiff.taginfos.TagInfoLongs
 import com.ashampoo.kim.format.tiff.write.TiffOutputDirectory
 import com.ashampoo.kim.format.tiff.write.TiffOutputField
+import com.ashampoo.kim.model.TiffOrientation
 
 /**
  * Provides methods and elements for accessing an Image File Directory (IFD)
@@ -171,6 +173,23 @@ class TiffDirectory(
                 outputField.sortHint = entry.sortHint
 
                 outputDirectory.add(outputField)
+            }
+
+            /*
+             * Check if the root directory has an orientation flag and
+             * add this per default it is missing. If it is present we
+             * can update the orientation easily the next time we need
+             * to touch the file.
+             */
+            if (type == TiffDirectoryType.TIFF_DIRECTORY_IFD0.directoryType) {
+
+                val orientationField = outputDirectory.findField(TiffTag.TIFF_TAG_ORIENTATION)
+
+                if (orientationField == null)
+                    outputDirectory.add(
+                        tagInfo = TiffTag.TIFF_TAG_ORIENTATION,
+                        value = TiffOrientation.STANDARD.value.toShort()
+                    )
             }
 
             outputDirectory.setJpegImageData(jpegImageDataElement)

@@ -27,6 +27,7 @@ import com.ashampoo.kim.format.tiff.constants.TiffTag
 import com.ashampoo.kim.format.tiff.write.TiffOutputSet
 import com.ashampoo.kim.input.ByteArrayByteReader
 import com.ashampoo.kim.model.GpsCoordinates
+import com.ashampoo.kim.model.TiffOrientation
 import com.ashampoo.kim.output.ByteArrayByteWriter
 import com.ashampoo.kim.testdata.KimTestData
 import kotlinx.io.files.Path
@@ -305,6 +306,14 @@ class JpegRewriterTest {
 
                     val expectedValue = expectedMetadata.findTiffField(expectedField.tagInfo)?.value
                     val actualValue = actualMetadata.findTiffField(actualField.tagInfo)?.value
+
+                    /* Ignore the auto-correction of setting the orientation flag to default. */
+                    if (
+                        expectedField.tag == TiffTag.TIFF_TAG_ORIENTATION.tag &&
+                        expectedValue == null &&
+                        actualValue == TiffOrientation.STANDARD.value.toShort()
+                    )
+                        continue
 
                     if (!isEquals(expectedValue, actualValue)) {
 
