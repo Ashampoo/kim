@@ -128,9 +128,9 @@ class TiffDirectory(
         throw ImageReadException("Couldn't find image data.")
     }
 
-    fun getOutputDirectory(byteOrder: ByteOrder): TiffOutputDirectory {
+    fun createOutputDirectory(byteOrder: ByteOrder): TiffOutputDirectory {
 
-        return try {
+        try {
 
             val outputDirectory = TiffOutputDirectory(type, byteOrder)
 
@@ -158,7 +158,8 @@ class TiffDirectory(
             }
 
             outputDirectory.setJpegImageData(jpegImageDataElement)
-            outputDirectory
+
+            return outputDirectory
 
         } catch (ex: ImageReadException) {
             throw ImageWriteException(ex.message, ex)

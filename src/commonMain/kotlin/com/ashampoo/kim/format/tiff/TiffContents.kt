@@ -37,7 +37,7 @@ data class TiffContents(
                 continue
 
             result.addDirectory(
-                directory.getOutputDirectory(header.byteOrder)
+                directory.createOutputDirectory(header.byteOrder)
             )
         }
 
