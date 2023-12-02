@@ -51,9 +51,8 @@ object JpegRewriter {
         val visitor: JpegVisitor = object : JpegVisitor {
 
             /* Read the whole file. */
-            override fun beginSOS(): Boolean {
-                return true
-            }
+            override fun beginSOS(): Boolean =
+                true
 
             override fun visitSOS(marker: Int, markerBytes: ByteArray, imageData: ByteArray) {
                 allPieces.add(JFIFPieceImageData(markerBytes, imageData))
@@ -128,8 +127,10 @@ object JpegRewriter {
 
             writer = TiffWriterLossless(outputSet.byteOrder, exifBytes)
 
-        } else
+        } else {
+
             writer = TiffWriterLossy(outputSet.byteOrder)
+        }
 
         val newBytes = writeExifSegment(writer, outputSet)
 
