@@ -3,7 +3,7 @@ import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
 
 plugins {
     kotlin("multiplatform") version "1.9.21"
-    id("com.android.library") version "7.4.2"
+    id("com.android.library") version "8.0.2"
     id("maven-publish")
     id("signing")
     id("io.gitlab.arturbosch.detekt") version "1.23.4"
