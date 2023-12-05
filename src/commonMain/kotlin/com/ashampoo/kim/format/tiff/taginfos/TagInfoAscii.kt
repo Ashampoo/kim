@@ -81,6 +81,6 @@ class TagInfoAscii(
         return strings
     }
 
-    fun encodeValue(byteOrder: ByteOrder, values: List<String>): ByteArray =
-        FieldType.ASCII.writeData(values, byteOrder)
+    fun encodeValue(byteOrder: ByteOrder, value: String): ByteArray =
+        FieldType.ASCII.writeData(value, byteOrder)
 }
