@@ -113,9 +113,12 @@ object JpegImageParser : ImageParser {
         if (exifSegments.isEmpty())
             return null
 
-        if (exifSegments.size > 1)
-            throw ImageReadException("Multiple APP1 EXIF segments are unsupported right now.")
-
+        /*
+         * Always take the first APP1 EXIF segment and ignore all others.
+         * This seems to be the way ExifTool handles this, too.
+         * Trying to merge different EXIF segments will most likely lead
+         * to inconsistencies.
+         */
         val firstSegment = exifSegments.first()
 
         return firstSegment.segmentBytes.getRemainingBytes(JpegConstants.EXIF_IDENTIFIER_CODE.size)

@@ -1,52 +1,51 @@
 File format : JPEG
-Resolution  : 5472 x 3648
+Resolution  : 3024 x 4032
 ---- TIFF ----
 Version 42
 Little-endian (Intel, II)
 ---- Directory IFD0 ----
-0x010f Make = Canon
-0x0110 Model = Canon EOS-1D X Mark II
+0x010f Make = Apple
+0x0110 Model = iPhone 11 Pro Max
 0x0112 Orientation = 8
-0x011a XResolution = 240/1 (240.0)
-0x011b YResolution = 240/1 (240.0)
+0x011a XResolution = 300/1 (300.0)
+0x011b YResolution = 300/1 (300.0)
 0x0128 ResolutionUnit = 2
-0x0131 Software = Adobe Photoshop Lightroom Classic 8.2 (Macintosh)
+0x0131 Software = 13.3.1
 0x0132 ModifyDate = 2023:05:10 13:37:42
-0x013b Artist = Roberto_Nickson
-0x8769 ExifOffset = 278
-0x8825 GPSInfo = 12274
+0x0213 YCbCrPositioning = 1
+0x8769 ExifOffset = 220
+0x8825 GPSInfo = 4848
 
 ---- Directory ExifIFD ----
-0x829a ExposureTime = 1/1250 (8.0E-4)
-0x829d FNumber = 14/10 (1.4)
-0x8822 ExposureProgram = 1
-0x8827 PhotographicSensitivity = 125
-0x8830 SensitivityType = 2
-0x8832 RecommendedExposureIndex = 125
+0x829a ExposureTime = 1/120 (0.008333)
+0x829d FNumber = 2/1 (2.0)
+0x8822 ExposureProgram = 2
+0x8827 PhotographicSensitivity = 80
 0x9000 ExifVersion = [0x30, 0x32, 0x33, 0x31]
 0x9003 DateTimeOriginal = 2023:05:10 13:37:42
 0x9004 DateTimeDigitized = 2023:05:10 13:37:42
-0x9201 ShutterSpeedValue = 10287712/1000000 (10.287712)
-0x9202 ApertureValue = 970854/1000000 (0.970854)
+0x9101 ComponentsConfiguration = [0x01, 0x02, 0x03, 0x00]
+0x9201 ShutterSpeedValue = 133006/19257 (6.906891)
+0x9202 ApertureValue = 2/1 (2.0)
+0x9203 BrightnessValue = 270370/52511 (5.148826)
 0x9204 ExposureCompensation = 0/1 (0.0)
-0x9205 MaxApertureValue = 1/1 (1.0)
-0x9207 MeteringMode = 5
+0x9207 MeteringMode = 3
 0x9209 Flash = 16
-0x920a FocalLength = 24/1 (24.0)
-0x9291 SubSecTimeOriginal = 40
-0x9292 SubSecTimeDigitized = 40
+0x920a FocalLength = 6/1 (6.0)
+0x9214 SubjectArea = [1898, 2488, 716, 713]
+0x9291 SubSecTimeOriginal = 95
+0x9292 SubSecTimeDigitized = 95
+0xa000 FlashpixVersion = [0x30, 0x31, 0x30, 0x30]
 0xa001 ColorSpace = 1
-0xa20e FocalPlaneXResolution = 49807360/32768 (1520.0)
-0xa20f FocalPlaneYResolution = 49807360/32768 (1520.0)
-0xa210 FocalPlaneResolutionUnit = 3
-0xa401 CustomRendered = 0
-0xa402 ExposureMode = 1
+0xa002 ExifImageWidth = 3024
+0xa003 ExifImageLength = 4032
+0xa217 SensingMethod = 2
+0xa301 SceneType = 1
+0xa401 CustomRendered = 7
+0xa402 ExposureMode = 0
 0xa403 WhiteBalance = 0
+0xa405 FocalLengthIn35mmFormat = 52
 0xa406 SceneCaptureType = 0
-0xa431 BodySerialNumber = 282028000176
-0xa432 LensSpecification = [24/1 (24.0), 24/1 (24.0), Invalid rational (0/0), Invalid rational (0/0)]
-0xa434 LensModel = EF24mm f/1.4L II USM
-0xa435 LensSerialNumber = 00008011d2
 
 ---- Directory GPS ----
 0x0000 GPSVersionID = [0x02, 0x03, 0x00, 0x00]
@@ -60,25 +59,15 @@ Little-endian (Intel, II)
 0x011a XResolution = 72/1 (72.0)
 0x011b YResolution = 72/1 (72.0)
 0x0128 ResolutionUnit = 2
-0x0201 JpgFromRawStart = 930
-0x0202 JpgFromRawLength = 11344
+0x0201 JpgFromRawStart = 776
+0x0202 JpgFromRawLength = 4070
 
 
 ---- IPTC ----
-Caption/Abstract (120) = 'blue beach'
-By-line (80) = 'Roberto_Nickson'
-Digital Creation Time (63) = '214132'
-Digital Creation Date (62) = '20190324'
-Time Created (60) = '214132'
-Date Created (55) = '20190324'
-Keywords (25) = 'sea'
-Keywords (25) = 'outdoors'
-Keywords (25) = 'nature'
-Keywords (25) = 'red sky'
-Keywords (25) = 'dusk'
-Keywords (25) = 'water'
-Keywords (25) = 'shoreline'
-Keywords (25) = 'dawn'
+Digital Creation Time (63) = '144746'
+Digital Creation Date (62) = '20200217'
+Time Created (60) = '144746'
+Date Created (55) = '20200217'
 Keywords (25) = 'Umlauts: äöüß'
 
 ---- XMP ----

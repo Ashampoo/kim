@@ -1,0 +1,144 @@
+---- ExifTool ----
+ExifTool Version Number         : 12.64
+Warning                         : IPTCDigest is not current. XMP may be out of sync
+---- System ----
+File Name                       : photo_30.jpg
+Directory                       : .
+File Size                       : 5.1 MB
+File Modification Date/Time     : 2023:07:04 14:14:26+02:00
+File Access Date/Time           : 2023:12:05 11:10:04+01:00
+File Inode Change Date/Time     : 2023:12:05 11:03:38+01:00
+File Permissions                : -rw-r--r--
+---- File ----
+File Type                       : JPEG
+File Type Extension             : jpg
+MIME Type                       : image/jpeg
+Exif Byte Order                 : Big-endian (Motorola, MM)
+Current IPTC Digest             : bf7d9ded99b248178614de656e1f6b6f
+Comment                         : Optimized by JPEGmini 3.14.12.71901706 0x01ee8039
+Image Width                     : 3024
+Image Height                    : 4032
+Encoding Process                : Baseline DCT, Huffman coding
+Bits Per Sample                 : 8
+Color Components                : 3
+Y Cb Cr Sub Sampling            : YCbCr4:4:4 (1 1)
+---- IFD0 ----
+Make                            : Apple
+Camera Model Name               : iPhone 11 Pro Max
+Orientation                     : Horizontal (normal)
+X Resolution                    : 300
+Y Resolution                    : 300
+Resolution Unit                 : inches
+Software                        : 13.3.1
+Modify Date                     : 2020:02:20 01:11:51
+Y Cb Cr Positioning             : Centered
+---- ExifIFD ----
+Exposure Time                   : 1/120
+F Number                        : 2.0
+Exposure Program                : Program AE
+ISO                             : 80
+Date/Time Original              : 2020:02:17 14:47:46
+Create Date                     : 2020:02:17 14:47:46
+Components Configuration        : Y, Cb, Cr, -
+Shutter Speed Value             : 1/120
+Aperture Value                  : 2.0
+Brightness Value                : 5.14882596
+Exposure Compensation           : 0
+Metering Mode                   : Spot
+Flash                           : Off, Did not fire
+Focal Length                    : 6.0 mm
+Subject Area                    : 1898 2488 716 713
+Sub Sec Time Original           : 95
+Sub Sec Time Digitized          : 95
+Exif Image Width                : 3024
+Exif Image Height               : 4032
+Sensing Method                  : One-chip color area
+Scene Type                      : Directly photographed
+Custom Rendered                 : Portrait HDR
+Exposure Mode                   : Auto
+White Balance                   : Auto
+Focal Length In 35mm Format     : 52 mm
+Scene Capture Type              : Standard
+Exif Version                    : 0210
+Flashpix Version                : 0100
+Color Space                     : Uncalibrated
+---- IFD1 ----
+Compression                     : JPEG (old-style)
+Thumbnail Offset                : 766
+Thumbnail Length                : 4070
+Thumbnail Image                 : (Binary data 4070 bytes, use -b option to extract)
+---- ICC-header ----
+Profile CMM Type                : Linotronic
+Profile Version                 : 2.1.0
+Profile Class                   : Display Device Profile
+Color Space Data                : RGB
+Profile Connection Space        : XYZ
+Profile Date Time               : 1998:02:09 06:49:00
+Profile File Signature          : acsp
+Primary Platform                : Microsoft Corporation
+CMM Flags                       : Not Embedded, Independent
+Device Manufacturer             : Hewlett-Packard
+Device Model                    : sRGB
+Device Attributes               : Reflective, Glossy, Positive, Color
+Rendering Intent                : Perceptual
+Connection Space Illuminant     : 0.9642 1 0.82491
+Profile Creator                 : Hewlett-Packard
+Profile ID                      : 0
+---- ICC_Profile ----
+Profile Copyright               : Copyright (c) 1998 Hewlett-Packard Company
+Profile Description             : sRGB IEC61966-2.1
+Media White Point               : 0.95045 1 1.08905
+Media Black Point               : 0 0 0
+Red Matrix Column               : 0.43607 0.22249 0.01392
+Green Matrix Column             : 0.38515 0.71687 0.09708
+Blue Matrix Column              : 0.14307 0.06061 0.7141
+Device Mfg Desc                 : IEC http://www.iec.ch
+Device Model Desc               : IEC 61966-2.1 Default RGB colour space - sRGB
+Viewing Cond Desc               : Reference Viewing Condition in IEC61966-2.1
+Luminance                       : 76.03647 80 87.12462
+Technology                      : Cathode Ray Tube Display
+Red Tone Reproduction Curve     : (Binary data 2060 bytes, use -b option to extract)
+Green Tone Reproduction Curve   : (Binary data 2060 bytes, use -b option to extract)
+Blue Tone Reproduction Curve    : (Binary data 2060 bytes, use -b option to extract)
+---- ICC-view ----
+Viewing Cond Illuminant         : 19.6445 20.3718 16.8089
+Viewing Cond Surround           : 3.92889 4.07439 3.36179
+Viewing Cond Illuminant Type    : D50
+---- ICC-meas ----
+Measurement Observer            : CIE 1931
+Measurement Backing             : 0 0 0
+Measurement Geometry            : Unknown
+Measurement Flare               : 0.999%
+Measurement Illuminant          : D65
+---- Photoshop ----
+Displayed Units X               : inches
+Displayed Units Y               : inches
+Photoshop Thumbnail             : (Binary data 9202 bytes, use -b option to extract)
+IPTC Digest                     : 10a03bc0a492fd6cc4b298be7382bb42
+---- IPTC ----
+Coded Character Set             : UTF8
+Application Record Version      : 4
+Date Created                    : 2020:02:17
+Time Created                    : 14:47:46
+Digital Creation Date           : 2020:02:17
+Digital Creation Time           : 14:47:46
+---- Adobe ----
+DCT Encode Version              : 100
+APP14 Flags 0                   : [14], Encoded with Blend=1 downsampling
+APP14 Flags 1                   : (none)
+Color Transform                 : YCbCr
+---- Composite ----
+Aperture                        : 2.0
+Image Size                      : 3024x4032
+Megapixels                      : 12.2
+Scale Factor To 35 mm Equivalent: 8.7
+Shutter Speed                   : 1/120
+Create Date                     : 2020:02:17 14:47:46.95
+Date/Time Original              : 2020:02:17 14:47:46.95
+Date/Time Created               : 2020:02:17 14:47:46
+Digital Creation Date/Time      : 2020:02:17 14:47:46
+Circle Of Confusion             : 0.003 mm
+Field Of View                   : 38.2 deg
+Focal Length                    : 6.0 mm (35 mm equivalent: 52.0 mm)
+Hyperfocal Distance             : 5.19 m
+Light Value                     : 9.2

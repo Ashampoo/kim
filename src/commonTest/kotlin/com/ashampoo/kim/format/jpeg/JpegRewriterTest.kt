@@ -343,7 +343,7 @@ class JpegRewriterTest {
         for (index in 1..KimTestData.HIGHEST_JPEG_INDEX) {
 
             /* Skip files without embedded XMP */
-            if (index == 2 || index == 20 || index == 48)
+            if (index == 2 || index == 20 || index == 30 || index == 48)
                 continue
 
             val bytes = KimTestData.getBytesOf(index)
