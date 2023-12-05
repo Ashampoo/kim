@@ -333,6 +333,9 @@ class JpegRewriterTest {
         }
     }
 
+    private val photosWithoutEmbeddedXmp =
+        setOf(2, 20, 23, 30, 48)
+
     /**
      * Regression test based on a fixed small set of test files.
      */
@@ -343,7 +346,7 @@ class JpegRewriterTest {
         for (index in 1..KimTestData.HIGHEST_JPEG_INDEX) {
 
             /* Skip files without embedded XMP */
-            if (index == 2 || index == 20 || index == 30 || index == 48)
+            if (photosWithoutEmbeddedXmp.contains(index))
                 continue
 
             val bytes = KimTestData.getBytesOf(index)

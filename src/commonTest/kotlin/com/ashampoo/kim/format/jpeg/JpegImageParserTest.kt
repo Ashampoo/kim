@@ -46,7 +46,7 @@ class JpegImageParserTest {
         20 to ImageSize(250, 250),
         21 to ImageSize(4522, 6783),
         22 to ImageSize(3024, 4032),
-        23 to ImageSize(4231, 2380),
+        23 to ImageSize(6144, 8192),
         24 to ImageSize(3000, 2000),
         25 to ImageSize(4660, 3106),
         26 to ImageSize(2304, 1536),
