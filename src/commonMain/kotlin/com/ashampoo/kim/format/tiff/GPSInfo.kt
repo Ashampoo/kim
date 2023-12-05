@@ -72,8 +72,7 @@ data class GPSInfo private constructor(
                 ?: return null
 
             /*
-             * When exporting data from an smartphone like the Nothing Phone
-             * or Motorola Edge 20 we often have seen emptied GPS data.
+             * The popular Android App "Aves Gallery" nullifies all GPS fields on export.
              */
             if (latitudeRef == "" || longitudeRef == "")
                 return null
