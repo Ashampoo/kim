@@ -71,7 +71,10 @@ data class GPSInfo private constructor(
             val longitudeRef = gpsDirectory.findField(GpsTag.GPS_TAG_GPS_LONGITUDE_REF)?.toStringValue()
                 ?: return null
 
-            /* The Nothing Phone writes all-empty GPS data. */
+            /*
+             * When exporting data from an smartphone like the Nothing Phone
+             * or Motorola Edge 20 we often have seen emptied GPS data.
+             */
             if (latitudeRef == "" || longitudeRef == "")
                 return null
 
