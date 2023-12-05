@@ -38,14 +38,8 @@ class PhotoMetadataConverterTest {
 
         val metadataMap = mutableMapOf<String, PhotoMetadata>()
 
-        for (index in 1..KimTestData.TEST_PHOTO_COUNT) {
-
-            // TODO Handle broken file (bad IFD1)
-            if (index == 21)
-                continue
-
+        for (index in 1..KimTestData.TEST_PHOTO_COUNT)
             calculateAndAppendMetadata(index, metadataMap)
-        }
 
         assertEquals(
             expected = KimTestData.getMetadataCsvString(),

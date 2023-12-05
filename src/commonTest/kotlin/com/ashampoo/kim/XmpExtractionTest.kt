@@ -53,10 +53,6 @@ class XmpExtractionTest {
             if (indicesWithoutXmp.contains(index) || indicesUnsupported.contains(index))
                 continue
 
-            // TODO Handle broken file (bad IFD1)
-            if (index == 21)
-                continue
-
             val bytes = KimTestData.getBytesOf(index)
 
             val actualXmp = Kim.readMetadata(bytes)?.xmp

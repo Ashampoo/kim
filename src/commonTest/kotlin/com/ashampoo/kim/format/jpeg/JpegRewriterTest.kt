@@ -76,7 +76,7 @@ class JpegRewriterTest {
         for (index in 1..KimTestData.HIGHEST_JPEG_INDEX) {
 
             // FIXME Problematic files
-            if (index in 21..22)
+            if (index == 22)
                 continue
 
             val bytes = KimTestData.getBytesOf(index)
@@ -172,10 +172,6 @@ class JpegRewriterTest {
     fun testRewriteMetadataUnchanged() {
 
         for (index in 1..KimTestData.HIGHEST_JPEG_INDEX) {
-
-            // TODO Handle broken file (bad IFD1)
-            if (index == 21)
-                continue
 
             val bytes = KimTestData.getBytesOf(index)
 
@@ -345,10 +341,6 @@ class JpegRewriterTest {
 
         @Suppress("LoopWithTooManyJumpStatements")
         for (index in 1..KimTestData.HIGHEST_JPEG_INDEX) {
-
-            // TODO Handle broken file (bad IFD1)
-            if (index == 21)
-                continue
 
             /* Skip files without embedded XMP */
             if (index == 2 || index == 20 || index == 48)

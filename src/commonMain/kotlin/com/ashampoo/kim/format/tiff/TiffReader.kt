@@ -26,6 +26,7 @@ import com.ashampoo.kim.format.tiff.constants.TiffConstants.EXIF_SUB_IFD1
 import com.ashampoo.kim.format.tiff.constants.TiffConstants.EXIF_SUB_IFD2
 import com.ashampoo.kim.format.tiff.constants.TiffConstants.EXIF_SUB_IFD3
 import com.ashampoo.kim.format.tiff.constants.TiffConstants.TIFF_ENTRY_MAX_VALUE_LENGTH
+import com.ashampoo.kim.format.tiff.constants.TiffDirectoryType
 import com.ashampoo.kim.format.tiff.fieldtypes.FieldType
 import com.ashampoo.kim.format.tiff.fieldtypes.FieldType.Companion.getFieldType
 import com.ashampoo.kim.format.tiff.taginfos.TagInfoLong
@@ -124,73 +125,27 @@ object TiffReader {
         if (directoryOffset >= byteReader.getLength())
             return true
 
-        byteReader.skipBytes("Directory offset", directoryOffset)
+        val fields = try {
 
-        val entryCount = try {
-            byteReader.read2BytesAsInt("entrycount", byteOrder)
-        } catch (ignore: ImageReadException) {
-            return true
-        }
+            byteReader.skipBytes("Directory offset", directoryOffset)
 
-        val fields = mutableListOf<TiffField>()
+            val entryCount = byteReader.read2BytesAsInt("entrycount", byteOrder)
 
-        for (entryIndex in 0 until entryCount) {
+            readTiffFields(entryCount, byteReader, byteOrder, dirType)
 
-            val tag = byteReader.read2BytesAsInt("Entry $entryIndex: 'tag'", byteOrder)
-            val type = byteReader.read2BytesAsInt("Entry $entryIndex: 'type'", byteOrder)
-
-            val count =
-                0xFFFFFFFFL and
-                    byteReader.read4BytesAsInt("Entry $entryIndex: 'count'", byteOrder).toLong()
+        } catch (ex: Exception) {
 
             /*
-             * These bytes represent either the value for fields like orientation or
-             * an offset to the value for fields like OriginalDateTime that
-             * cannot be accommodated within 4 bytes.
+             * Check if it's just the thumbnail directory and if so, ignore this error.
+             * Thumbnails are not essential and can be re-created anytime.
              */
-            val valueOrOffsetBytes: ByteArray =
-                byteReader.readBytes("Entry $entryIndex: 'offset'", 4)
 
-            val valueOrOffset: Long = 0xFFFFFFFFL and valueOrOffsetBytes.toInt(byteOrder).toLong()
+            val isThumbnailDirectory = dirType == TiffConstants.TIFF_IFD1
 
-            /*
-             * Skip invalid fields.
-             *
-             * These are seen very rarely, but can have invalid value lengths,
-             * which can cause OOM problems.
-             *
-             * Except for the GPS directory where GPSVersionID is indeed zero,
-             * but a valid field. So we shouldn't skip it.
-             */
-            if (tag == 0 && dirType != TiffConstants.TIFF_GPS)
-                continue
+            if (isThumbnailDirectory)
+                return true
 
-            val fieldType: FieldType = try {
-                getFieldType(type)
-            } catch (ignore: ImageReadException) {
-                /*
-                 * Skip over unknown field types, since we can't calculate
-                 * their size without knowing their type
-                 */
-                continue
-            }
-
-            val valueLength = count * fieldType.size
-
-            val valueBytes: ByteArray = if (valueLength > TIFF_ENTRY_MAX_VALUE_LENGTH) {
-
-                /* Ignore corrupt offsets */
-                if (valueOrOffset < 0 || valueOrOffset + valueLength > byteReader.getLength())
-                    continue
-
-                byteReader.readBytes(valueOrOffset.toInt(), valueLength.toInt())
-
-            } else
-                valueOrOffsetBytes
-
-            fields.add(
-                TiffField(tag, dirType, fieldType, count, valueOrOffset, valueBytes, byteOrder, entryIndex)
-            )
+            throw ex
         }
 
         val nextDirectoryOffset = 0xFFFFFFFFL and
@@ -266,6 +221,77 @@ object TiffReader {
             )
 
         return true
+    }
+
+    private fun readTiffFields(
+        entryCount: Int,
+        byteReader: RandomAccessByteReader,
+        byteOrder: ByteOrder,
+        dirType: Int
+    ): MutableList<TiffField> {
+
+        val fields = mutableListOf<TiffField>()
+
+        for (entryIndex in 0 until entryCount) {
+
+            val tag = byteReader.read2BytesAsInt("Entry $entryIndex: 'tag'", byteOrder)
+            val type = byteReader.read2BytesAsInt("Entry $entryIndex: 'type'", byteOrder)
+
+            val count =
+                0xFFFFFFFFL and
+                        byteReader.read4BytesAsInt("Entry $entryIndex: 'count'", byteOrder).toLong()
+
+            /*
+             * These bytes represent either the value for fields like orientation or
+             * an offset to the value for fields like OriginalDateTime that
+             * cannot be accommodated within 4 bytes.
+             */
+            val valueOrOffsetBytes: ByteArray =
+                byteReader.readBytes("Entry $entryIndex: 'offset'", 4)
+
+            val valueOrOffset: Long = 0xFFFFFFFFL and valueOrOffsetBytes.toInt(byteOrder).toLong()
+
+            /*
+             * Skip invalid fields.
+             *
+             * These are seen very rarely, but can have invalid value lengths,
+             * which can cause OOM problems.
+             *
+             * Except for the GPS directory where GPSVersionID is indeed zero,
+             * but a valid field. So we shouldn't skip it.
+             */
+            if (tag == 0 && dirType != TiffConstants.TIFF_GPS)
+                continue
+
+            val fieldType: FieldType = try {
+                getFieldType(type)
+            } catch (ignore: ImageReadException) {
+                /*
+                 * Skip over unknown field types, since we can't calculate
+                 * their size without knowing their type
+                 */
+                continue
+            }
+
+            val valueLength = count * fieldType.size
+
+            val valueBytes: ByteArray = if (valueLength > TIFF_ENTRY_MAX_VALUE_LENGTH) {
+
+                /* Ignore corrupt offsets */
+                if (valueOrOffset < 0 || valueOrOffset + valueLength > byteReader.getLength())
+                    continue
+
+                byteReader.readBytes(valueOrOffset.toInt(), valueLength.toInt())
+
+            } else
+                valueOrOffsetBytes
+
+            fields.add(
+                TiffField(tag, dirType, fieldType, count, valueOrOffset, valueBytes, byteOrder, entryIndex)
+            )
+        }
+
+        return fields
     }
 
     private fun getJpegRawImageData(

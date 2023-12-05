@@ -32,10 +32,6 @@ class ImageMetadataTest {
 
         for (index in 1..KimTestData.TEST_PHOTO_COUNT) {
 
-            // TODO Handle broken file (bad IFD1)
-            if (index == 21)
-                continue
-
             val bytes = KimTestData.getBytesOf(index)
 
             val metadata = Kim.readMetadata(bytes)

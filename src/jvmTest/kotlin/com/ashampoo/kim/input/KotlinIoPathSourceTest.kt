@@ -35,10 +35,6 @@ class KotlinIoPathSourceTest {
 
         for (index in 1..KimTestData.TEST_PHOTO_COUNT) {
 
-            // TODO Handle broken file (bad IFD1)
-            if (index == 21)
-                continue
-
             val diskPath = KimTestData.getFullImageDiskPath(index)
 
             val metadata = Kim.readMetadata(Path(diskPath))

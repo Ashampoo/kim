@@ -81,9 +81,16 @@ object TiffConstants {
     const val TIFF_GPS = -3
     const val TIFF_INTEROP_IFD = -4
     const val TIFF_MAKER_NOTES = -5
+
+    /** Root directory */
     const val TIFF_IFD0 = 0
+
+    /** Thumbnail directory */
     const val TIFF_IFD1 = 1
+
     const val TIFF_IFD2 = 2
+
     const val TIFF_IFD3 = 3
+
     const val DIRECTORY_TYPE_DIR_4 = 4
 }

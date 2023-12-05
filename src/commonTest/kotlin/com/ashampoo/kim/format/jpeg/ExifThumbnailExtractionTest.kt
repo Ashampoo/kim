@@ -34,7 +34,7 @@ class ExifThumbnailExtractionTest {
 
         for (index in KimTestData.photoIdsWithExifThumbnail) {
 
-            // TODO Handle broken file (bad IFD1)
+            /* Thumbnail directory IFD1 is corrupt. */
             if (index == 21)
                 continue
 
@@ -48,7 +48,7 @@ class ExifThumbnailExtractionTest {
 
             val actualThumbnailBytes = metadata?.getExifThumbnailBytes()
 
-            assertNotNull(actualThumbnailBytes, "Photo $index has not thumbnail bytes.")
+            assertNotNull(actualThumbnailBytes, "Photo $index has no thumbnail bytes.")
 
             val expectedThumbnailBytes = KimTestData.getExifThumbnailBytesOf(index)
 
