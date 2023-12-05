@@ -4,7 +4,7 @@ Resolution  : 250 x 250
 Version 42
 Little-endian (Intel, II)
 ---- Directory IFD0 ----
-0x010e ImageDescription = []
+0x010e ImageDescription =                                                                                                                      
 0x010f Make = OLYMPUS OPTICAL CO.,LTD
 0x0110 Model = C750UZ
 0x0112 Orientation = 6

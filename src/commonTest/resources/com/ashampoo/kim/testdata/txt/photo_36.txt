@@ -12,7 +12,7 @@ Big-endian (Motorola, MM)
 0x0128 ResolutionUnit = 2
 0x0131 Software = Digital Camera X-Pro2 Ver3.00
 0x013b Artist = "                                                                                                                                                                                                                                                               "
-0x8298 Copyright = []
+0x8298 Copyright =                                                                                                                                                                                                                                                                
 0x8769 ExifOffset = 712
 
 ---- Directory ExifIFD ----

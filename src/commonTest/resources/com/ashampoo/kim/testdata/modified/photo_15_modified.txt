@@ -13,10 +13,8 @@ Big-endian (Motorola, MM)
 0x0128 ResolutionUnit = 2
 0x0131 Software = Windows Photo Editor 10.0.10011.16384
 0x0132 ModifyDate = 2023:05:10 13:37:42
-0x013b Artist = []
 0x0213 YCbCrPositioning = 2
-0x8298 Copyright = []
-0x8769 ExifOffset = 2396
+0x8769 ExifOffset = 2372
 0x8825 GPSInfo = 22226
 0xea1c Unknown = [2060 bytes]
 
@@ -46,7 +44,7 @@ Big-endian (Motorola, MM)
 0xa001 ColorSpace = 1
 0xa002 ExifImageWidth = 6000
 0xa003 ExifImageLength = 4000
-0xa005 InteropOffset = 3022
+0xa005 InteropOffset = 2998
 0xa217 SensingMethod = 2
 0xa300 FileSource = 3
 0xa301 SceneType = 1
@@ -86,7 +84,7 @@ Big-endian (Motorola, MM)
 0x011a XResolution = 96/1 (96.0)
 0x011b YResolution = 96/1 (96.0)
 0x0128 ResolutionUnit = 2
-0x0201 JpgFromRawStart = 22486
+0x0201 JpgFromRawStart = 22462
 0x0202 JpgFromRawLength = 13995
 
 

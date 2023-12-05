@@ -4,7 +4,7 @@ Resolution  : 2304 x 1536
 Version 42
 Little-endian (Intel, II)
 ---- Directory IFD0 ----
-0x010e ImageDescription = []
+0x010e ImageDescription =                                
 0x010f Make = Canon
 0x0110 Model = Canon EOS M3
 0x0112 Orientation = 8
@@ -12,11 +12,9 @@ Little-endian (Intel, II)
 0x011b YResolution = 180/1 (180.0)
 0x0128 ResolutionUnit = 2
 0x0132 ModifyDate = 2023:05:10 13:37:42
-0x013b Artist = []
 0x0213 YCbCrPositioning = 2
-0x8298 Copyright = []
-0x8769 ExifOffset = 226
-0x8825 GPSInfo = 18574
+0x8769 ExifOffset = 234
+0x8825 GPSInfo = 18576
 
 ---- Directory ExifIFD ----
 0x829a ExposureTime = 1/4000 (2.5E-4)
@@ -37,14 +35,14 @@ Little-endian (Intel, II)
 0x9209 Flash = 16
 0x920a FocalLength = 55/1 (55.0)
 0x927c MakerNote = [17582 bytes]
-0x9290 SubSecTime = []
+0x9290 SubSecTime =   
 0x9291 SubSecTimeOriginal = 76
 0x9292 SubSecTimeDigitized = 76
 0xa000 FlashpixVersion = [0x30, 0x31, 0x30, 0x30]
 0xa001 ColorSpace = 1
 0xa002 ExifImageWidth = 2304
 0xa003 ExifImageLength = 1536
-0xa005 InteropOffset = 18520
+0xa005 InteropOffset = 18522
 0xa20e FocalPlaneXResolution = 2304000/879 (2621.16041)
 0xa20f FocalPlaneYResolution = 1536000/586 (2621.16041)
 0xa210 FocalPlaneResolutionUnit = 2
@@ -55,7 +53,7 @@ Little-endian (Intel, II)
 0xa403 WhiteBalance = 1
 0xa404 DigitalZoomRatio = 6000/6000 (1.0)
 0xa406 SceneCaptureType = 0
-0xa430 CameraOwnerName = []
+0xa430 CameraOwnerName = 
 0xa431 BodySerialNumber = 073043001183
 0xa432 LensSpecification = [18/1 (18.0), 55/1 (55.0), 0/1 (0.0), 0/1 (0.0)]
 0xa434 LensModel = EF-M18-55mm f/3.5-5.6 IS STM
@@ -79,7 +77,7 @@ Little-endian (Intel, II)
 0x011a XResolution = 180/1 (180.0)
 0x011b YResolution = 180/1 (180.0)
 0x0128 ResolutionUnit = 2
-0x0201 JpgFromRawStart = 18782
+0x0201 JpgFromRawStart = 18784
 0x0202 JpgFromRawLength = 3209
 
 

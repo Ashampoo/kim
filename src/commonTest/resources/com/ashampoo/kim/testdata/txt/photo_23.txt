@@ -27,9 +27,9 @@ Big-endian (Motorola, MM)
 0x9202 ApertureValue = 188/100 (1.88)
 
 ---- Directory GPS ----
-0x0001 GPSLatitudeRef = []
+0x0001 GPSLatitudeRef = 
 0x0002 GPSLatitude = [Invalid rational (0/0), Invalid rational (0/0), Invalid rational (0/0)]
-0x0003 GPSLongitudeRef = []
+0x0003 GPSLongitudeRef = 
 0x0004 GPSLongitude = [Invalid rational (0/0), Invalid rational (0/0), Invalid rational (0/0)]
 
 

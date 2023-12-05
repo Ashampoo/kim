@@ -4,7 +4,7 @@ Resolution  : 250 x 250
 Version 42
 Little-endian (Intel, II)
 ---- Directory IFD0 ----
-0x010e ImageDescription = []
+0x010e ImageDescription =                                                                                                                      
 0x010f Make = OLYMPUS OPTICAL CO.,LTD
 0x0110 Model = C750UZ
 0x0112 Orientation = 8
@@ -14,8 +14,8 @@ Little-endian (Intel, II)
 0x0131 Software = GIMP 2.10.30
 0x0132 ModifyDate = 2023:05:10 13:37:42
 0x0213 YCbCrPositioning = 2
-0x8769 ExifOffset = 512
-0x8825 GPSInfo = 6742
+0x8769 ExifOffset = 630
+0x8825 GPSInfo = 6860
 0xc4a5 PrintIM = [260 bytes]
 
 ---- Directory ExifIFD ----
@@ -65,7 +65,7 @@ Little-endian (Intel, II)
 0x0103 Compression = 6
 0x0106 PhotometricInterpretation = 6
 0x0115 SamplesPerPixel = 3
-0x0201 JpgFromRawStart = 1094
+0x0201 JpgFromRawStart = 1212
 0x0202 JpgFromRawLength = 5648
 
 

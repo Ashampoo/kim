@@ -17,6 +17,8 @@
 package com.ashampoo.kim.format.tiff.fieldtypes
 
 import com.ashampoo.kim.common.ByteOrder
+import com.ashampoo.kim.common.ImageWriteException
+import com.ashampoo.kim.common.indexOfNullTerminator
 import com.ashampoo.kim.format.tiff.TiffField
 import io.ktor.utils.io.charsets.Charsets
 import io.ktor.utils.io.core.String
@@ -24,65 +26,42 @@ import io.ktor.utils.io.core.toByteArray
 
 class FieldTypeAscii(type: Int, name: String) : FieldType(type, name, 1) {
 
-    override fun getValue(entry: TiffField): Any {
+    override fun getValue(entry: TiffField): String {
 
         /*
          * According to EXIF specification:
          * "2 = ASCII An 8-bit byte containing one 7-bit ASCII code. The final byte is terminated with NULL."
          *
          * Most fields are only one String, but some fields like
-         * User Comment (0x9286) are often having multiple strings.
+         * User Comment (0x9286) are sometimes having multiple strings.
+         * We read it all as one String for simplicity.
          */
 
         val bytes = entry.byteArrayValue
 
-        val strings = mutableListOf<String>()
+        val nullTerminatorIndex = bytes.indexOfNullTerminator()
 
-        var nextStringPos = 0
+        val length = if (nullTerminatorIndex > -1)
+            nullTerminatorIndex
+        else
+            bytes.size
+
+        if (length == 0)
+            return ""
 
         /*
          * According to the Exiftool FAQ, http://www.metadataworkinggroup.org
          * specifies that the TIFF ASCII fields are actually UTF-8.
          * Exiftool however allows you to configure the charset used.
          */
-        for (index in bytes.indices) {
+        val string = String(
+            bytes = bytes,
+            offset = 0,
+            length = length,
+            charset = Charsets.UTF_8
+        )
 
-            if (bytes[index].toInt() == 0) {
-
-                val string = String(
-                    bytes = bytes,
-                    offset = nextStringPos,
-                    length = index - nextStringPos,
-                    charset = Charsets.UTF_8
-                )
-
-                /* Ignore blank strings and rewrite files without them. */
-                if (string.isNotBlank())
-                    strings.add(string)
-
-                nextStringPos = index + 1
-            }
-        }
-
-        if (nextStringPos < bytes.size) {
-
-            /* Handle buggy files where the String is not terminated. */
-            val string = String(
-                bytes = bytes,
-                offset = nextStringPos,
-                length = bytes.size - nextStringPos,
-                charset = Charsets.UTF_8
-            )
-
-            /* Ignore blank strings and rewrite files without them. */
-            if (string.isNotBlank())
-                strings.add(string)
-        }
-
-        return if (strings.size == 1)
-            strings.first()
-        else
-            strings
+        return string
     }
 
     override fun writeData(data: Any, byteOrder: ByteOrder): ByteArray {
@@ -100,30 +79,6 @@ class FieldTypeAscii(type: Int, name: String) : FieldType(type, name, 1) {
             return result
         }
 
-        val strings: List<String> = data as List<String>
-
-        var totalLength = 0
-
-        for (string in strings)
-            totalLength += string.toByteArray().size + 1
-
-        val result = ByteArray(totalLength)
-
-        var position = 0
-
-        for (string in strings) {
-
-            val bytes = string.toByteArray()
-
-            bytes.copyInto(
-                destination = result,
-                destinationOffset = position,
-                endIndex = bytes.size
-            )
-
-            position += bytes.size + 1
-        }
-
-        return result
+        throw ImageWriteException("Data must be ByteArray or String")
     }
 }

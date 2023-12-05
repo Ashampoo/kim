@@ -12,12 +12,10 @@ Big-endian (Motorola, MM)
 0x0128 ResolutionUnit = 2
 0x0131 Software = Polarr Photo Editor
 0x0132 ModifyDate = 2023:05:10 13:37:42
-0x013b Artist = []
 0x0211 YCbCrCoefficients = [299/1000 (0.299), 587/1000 (0.587), 57/500 (0.114)]
 0x0213 YCbCrPositioning = 2
-0x8298 Copyright = []
-0x8769 ExifOffset = 292
-0x8825 GPSInfo = 20778
+0x8769 ExifOffset = 268
+0x8825 GPSInfo = 20770
 
 ---- Directory ExifIFD ----
 0x829a ExposureTime = 1/200 (0.005)

@@ -53,7 +53,7 @@ Little-endian (Intel, II)
 0xa402 ExposureMode = 1
 0xa403 WhiteBalance = 0
 0xa406 SceneCaptureType = 0
-0xa430 CameraOwnerName = []
+0xa430 CameraOwnerName = 
 0xa431 BodySerialNumber = 103025021031
 0xa432 LensSpecification = [55/1 (55.0), 250/1 (250.0), 0/1 (0.0), 0/1 (0.0)]
 0xa434 LensModel = EF-S55-250mm f/4-5.6 IS STM

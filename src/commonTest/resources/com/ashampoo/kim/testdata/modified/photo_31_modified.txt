@@ -11,11 +11,9 @@ Little-endian (Intel, II)
 0x011b YResolution = 72/1 (72.0)
 0x0128 ResolutionUnit = 2
 0x0132 ModifyDate = 2023:05:10 13:37:42
-0x013b Artist = []
 0x0213 YCbCrPositioning = 2
-0x8298 Copyright = []
-0x8769 ExifOffset = 214
-0x8825 GPSInfo = 9078
+0x8769 ExifOffset = 190
+0x8825 GPSInfo = 9056
 
 ---- Directory ExifIFD ----
 0x829a ExposureTime = 1/60 (0.016667)
@@ -42,7 +40,7 @@ Little-endian (Intel, II)
 0xa001 ColorSpace = 1
 0xa002 ExifImageWidth = 5472
 0xa003 ExifImageLength = 3648
-0xa005 InteropOffset = 9048
+0xa005 InteropOffset = 9026
 0xa20e FocalPlaneXResolution = 5472000/899 (6086.76307)
 0xa20f FocalPlaneYResolution = 3648000/599 (6090.15025)
 0xa210 FocalPlaneResolutionUnit = 2
@@ -50,7 +48,7 @@ Little-endian (Intel, II)
 0xa402 ExposureMode = 0
 0xa403 WhiteBalance = 0
 0xa406 SceneCaptureType = 0
-0xa430 CameraOwnerName = []
+0xa430 CameraOwnerName = 
 0xa431 BodySerialNumber = 053022005903
 0xa432 LensSpecification = [50/1 (50.0), 50/1 (50.0), 0/1 (0.0), 0/1 (0.0)]
 0xa434 LensModel = EF50mm f/1.8 STM
@@ -72,7 +70,7 @@ Little-endian (Intel, II)
 0x011a XResolution = 72/1 (72.0)
 0x011b YResolution = 72/1 (72.0)
 0x0128 ResolutionUnit = 2
-0x0201 JpgFromRawStart = 9286
+0x0201 JpgFromRawStart = 9264
 0x0202 JpgFromRawLength = 8567
 
 

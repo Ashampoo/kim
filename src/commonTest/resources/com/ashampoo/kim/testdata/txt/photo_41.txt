@@ -12,9 +12,9 @@ Big-endian (Motorola, MM)
 0x0128 ResolutionUnit = 2
 0x0131 Software = K-50 Ver. 1.02         
 0x0132 ModifyDate = 2017:08:24 14:54:00
-0x013b Artist = []
+0x013b Artist = 
 0x0213 YCbCrPositioning = 2
-0x8298 Copyright = []
+0x8298 Copyright = 
 0x8769 ExifOffset = 632
 0x8825 GPSInfo = 5482
 0xc4a5 PrintIM = [350 bytes]
