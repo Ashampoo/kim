@@ -85,8 +85,15 @@ class TiffField(
 
     fun toStringValue(): String {
 
-        if (value is List<*>)
-            value.firstOrNull().let { return@let it }
+        if (value is List<*>) {
+
+            /*
+             * If the field is all NULLs, this wil result in an empty list.
+             */
+            val firstValue = value.firstOrNull() ?: return ""
+
+            return firstValue.toString()
+        }
 
         if (value !is String)
             throw ImageReadException("Expected String value(" + tagInfo.tagFormatted + "): " + value)

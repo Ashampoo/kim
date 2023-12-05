@@ -68,10 +68,14 @@ data class GPSInfo private constructor(
             val latitudeRef = gpsDirectory.findField(GpsTag.GPS_TAG_GPS_LATITUDE_REF)?.toStringValue()
                 ?: return null
 
-            val latitudeField = gpsDirectory.findField(GpsTag.GPS_TAG_GPS_LATITUDE)
+            val longitudeRef = gpsDirectory.findField(GpsTag.GPS_TAG_GPS_LONGITUDE_REF)?.toStringValue()
                 ?: return null
 
-            val longitudeRef = gpsDirectory.findField(GpsTag.GPS_TAG_GPS_LONGITUDE_REF)?.toStringValue()
+            /* The Nothing Phone writes all-empty GPS data. */
+            if (latitudeRef == "" || longitudeRef == "")
+                return null
+
+            val latitudeField = gpsDirectory.findField(GpsTag.GPS_TAG_GPS_LATITUDE)
                 ?: return null
 
             val longitudeField = gpsDirectory.findField(GpsTag.GPS_TAG_GPS_LONGITUDE)
