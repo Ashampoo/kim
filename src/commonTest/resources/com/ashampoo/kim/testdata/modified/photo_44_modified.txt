@@ -13,9 +13,8 @@ Little-endian (Intel, II)
 0x0132 ModifyDate = 2023:05:10 13:37:42
 0x013b Artist = HENRIK HANSEN
 0x0213 YCbCrPositioning = 2
-0x8298 Copyright = []
-0x8769 ExifOffset = 228
-0x8825 GPSInfo = 10416
+0x8769 ExifOffset = 216
+0x8825 GPSInfo = 10408
 
 ---- Directory ExifIFD ----
 0x829a ExposureTime = 1/500 (0.002)
@@ -42,7 +41,7 @@ Little-endian (Intel, II)
 0xa001 ColorSpace = 1
 0xa002 ExifImageWidth = 6000
 0xa003 ExifImageLength = 4000
-0xa005 InteropOffset = 10386
+0xa005 InteropOffset = 10378
 0xa20e FocalPlaneXResolution = 6000000/921 (6514.65798)
 0xa20f FocalPlaneYResolution = 4000000/594 (6734.006734)
 0xa210 FocalPlaneResolutionUnit = 2
@@ -50,7 +49,7 @@ Little-endian (Intel, II)
 0xa402 ExposureMode = 0
 0xa403 WhiteBalance = 0
 0xa406 SceneCaptureType = 0
-0xa430 CameraOwnerName = []
+0xa430 CameraOwnerName = 
 0xa431 BodySerialNumber = 143031003387
 0xa432 LensSpecification = [100/1 (100.0), 400/1 (400.0), 0/1 (0.0), 0/1 (0.0)]
 0xa434 LensModel = EF100-400mm f/4.5-5.6L IS USM
@@ -72,7 +71,7 @@ Little-endian (Intel, II)
 0x011a XResolution = 72/1 (72.0)
 0x011b YResolution = 72/1 (72.0)
 0x0128 ResolutionUnit = 2
-0x0201 JpgFromRawStart = 10624
+0x0201 JpgFromRawStart = 10608
 0x0202 JpgFromRawLength = 7437
 
 

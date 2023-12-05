@@ -56,7 +56,7 @@ object KimTestData {
     @Suppress("MagicNumber")
     val photoIdsWithExifThumbnail: Set<Int> = setOf(
         2, 3, 4, 5, 6, 7, 8, 10, 12, 15, 16, 18, 19, 20, 21,
-        22, 23, 24, 25, 27, 28, 29, 30, 31, 32, 33, 35, 37,
+        22, 24, 25, 27, 28, 29, 30, 31, 32, 33, 35, 37,
         38, 39, 40, 41, 42, 44, 45, 46, 47, 48, 49, 50,
         PNG_TEST_IMAGE_INDEX,
         PNG_GIMP_TEST_IMAGE_INDEX,

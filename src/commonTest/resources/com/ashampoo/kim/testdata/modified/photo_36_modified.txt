@@ -13,9 +13,8 @@ Big-endian (Motorola, MM)
 0x0131 Software = Digital Camera X-Pro2 Ver3.00
 0x0132 ModifyDate = 2023:05:10 13:37:42
 0x013b Artist = "                                                                                                                                                                                                                                                               "
-0x8298 Copyright = []
-0x8769 ExifOffset = 500
-0x8825 GPSInfo = 1160
+0x8769 ExifOffset = 488
+0x8825 GPSInfo = 1148
 
 ---- Directory ExifIFD ----
 0x829a ExposureTime = 1/4000 (2.5E-4)

@@ -26,5 +26,5 @@ internal data class RewritableSpaceRange(
 ) {
 
     override fun toString(): String =
-        "Rewritable space at $offset to ${length-offset} ($length bytes)"
+        "Rewritable space at $offset to ${length - offset} ($length bytes)"
 }

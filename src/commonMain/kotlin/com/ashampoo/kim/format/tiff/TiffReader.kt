@@ -26,7 +26,6 @@ import com.ashampoo.kim.format.tiff.constants.TiffConstants.EXIF_SUB_IFD1
 import com.ashampoo.kim.format.tiff.constants.TiffConstants.EXIF_SUB_IFD2
 import com.ashampoo.kim.format.tiff.constants.TiffConstants.EXIF_SUB_IFD3
 import com.ashampoo.kim.format.tiff.constants.TiffConstants.TIFF_ENTRY_MAX_VALUE_LENGTH
-import com.ashampoo.kim.format.tiff.constants.TiffDirectoryType
 import com.ashampoo.kim.format.tiff.fieldtypes.FieldType
 import com.ashampoo.kim.format.tiff.fieldtypes.FieldType.Companion.getFieldType
 import com.ashampoo.kim.format.tiff.taginfos.TagInfoLong
@@ -239,7 +238,7 @@ object TiffReader {
 
             val count =
                 0xFFFFFFFFL and
-                        byteReader.read4BytesAsInt("Entry $entryIndex: 'count'", byteOrder).toLong()
+                    byteReader.read4BytesAsInt("Entry $entryIndex: 'count'", byteOrder).toLong()
 
             /*
              * These bytes represent either the value for fields like orientation or

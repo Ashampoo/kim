@@ -68,10 +68,16 @@ data class GPSInfo private constructor(
             val latitudeRef = gpsDirectory.findField(GpsTag.GPS_TAG_GPS_LATITUDE_REF)?.toStringValue()
                 ?: return null
 
-            val latitudeField = gpsDirectory.findField(GpsTag.GPS_TAG_GPS_LATITUDE)
+            val longitudeRef = gpsDirectory.findField(GpsTag.GPS_TAG_GPS_LONGITUDE_REF)?.toStringValue()
                 ?: return null
 
-            val longitudeRef = gpsDirectory.findField(GpsTag.GPS_TAG_GPS_LONGITUDE_REF)?.toStringValue()
+            /*
+             * The popular Android App "Aves Gallery" nullifies all GPS fields on export.
+             */
+            if (latitudeRef == "" || longitudeRef == "")
+                return null
+
+            val latitudeField = gpsDirectory.findField(GpsTag.GPS_TAG_GPS_LATITUDE)
                 ?: return null
 
             val longitudeField = gpsDirectory.findField(GpsTag.GPS_TAG_GPS_LONGITUDE)

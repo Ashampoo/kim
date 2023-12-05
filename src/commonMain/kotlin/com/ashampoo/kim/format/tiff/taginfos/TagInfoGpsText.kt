@@ -73,23 +73,8 @@ class TagInfoGpsText(
 
         val fieldType = entry.fieldType
 
-        if (fieldType === FieldType.ASCII) {
-
-            val value = FieldType.ASCII.getValue(entry)
-
-            if (value is String)
-                return value
-
-            /*
-             * Use of arrays with the ASCII type should be extremely rare, and use of
-             * ASCII type in GPS fields should be forbidden. So assume the 2 never happen
-             * together and return incomplete strings if they do.
-             */
-            if (value is List<*>)
-                return value[0] as String
-
-            throw ImageReadException("Unexpected ASCII type decoded")
-        }
+        if (fieldType === FieldType.ASCII)
+            return FieldType.ASCII.getValue(entry)
 
         if (fieldType === FieldType.UNDEFINED) {
             /* TODO Handle */

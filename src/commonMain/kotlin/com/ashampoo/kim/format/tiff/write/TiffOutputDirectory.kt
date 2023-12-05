@@ -99,26 +99,11 @@ class TiffOutputDirectory(
 
     fun add(tagInfo: TagInfoAscii, value: String) {
 
-        val bytes = tagInfo.encodeValue(byteOrder, listOf(value))
+        val bytes = tagInfo.encodeValue(byteOrder, value)
 
         checkMatchingLength(tagInfo, bytes.size)
 
         add(TiffOutputField(tagInfo.tag, tagInfo, FieldType.ASCII, bytes.size, bytes))
-    }
-
-    fun add(tagInfo: TagInfoAscii, values: List<String>) {
-
-        val bytes = tagInfo.encodeValue(byteOrder, values)
-
-        checkMatchingLength(tagInfo, bytes.size)
-
-        val tiffOutputField = TiffOutputField(
-            tagInfo.tag,
-            tagInfo, FieldType.ASCII, bytes.size,
-            bytes
-        )
-
-        add(tiffOutputField)
     }
 
     fun add(tagInfo: TagInfoShort, value: Short) {
