@@ -30,6 +30,9 @@ abstract class FieldType protected constructor(
 
     abstract fun writeData(data: Any, byteOrder: ByteOrder): ByteArray
 
+    override fun toString(): String =
+        name
+
     companion object {
 
         val BYTE = FieldTypeByte(1, "Byte")
@@ -70,7 +73,4 @@ abstract class FieldType protected constructor(
             throw ImageReadException("Field type $type is unsupported")
         }
     }
-
-    override fun toString(): String =
-        name
 }
