@@ -183,7 +183,12 @@ abstract class TiffWriterBase(
                 exifDirectory.add(interoperabilityDirectoryOffsetField)
             }
 
-            tiffOffsetItems.addOffsetItem(TiffOffsetItem(interoperabilityDirectory, interoperabilityDirectoryOffsetField))
+            tiffOffsetItems.addOffsetItem(
+                TiffOffsetItem(
+                    interoperabilityDirectory,
+                    interoperabilityDirectoryOffsetField
+                )
+            )
         }
 
         /* Make sure offset fields and offset directories correspond. */

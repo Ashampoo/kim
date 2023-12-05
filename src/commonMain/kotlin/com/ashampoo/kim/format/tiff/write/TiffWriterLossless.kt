@@ -240,7 +240,7 @@ class TiffWriterLossless(
             /*
              * Find the first range large enough to place this item.
              */
-            val fittingRange: RewritableSpaceRange? = unusedSpaceRanges.firstOrNull {range ->
+            val fittingRange: RewritableSpaceRange? = unusedSpaceRanges.firstOrNull { range ->
                 range.length >= outputItemLength
             }
 
