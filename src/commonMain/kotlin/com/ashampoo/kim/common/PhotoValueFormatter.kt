@@ -239,8 +239,9 @@ object PhotoValueFormatter {
 
             "$cameraName | $modLensName"
 
-        } else
+        } else {
             cameraName ?: lensName
+        }
     }
 
     fun formatIso(iso: Int): String = "ISO $iso"

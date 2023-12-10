@@ -67,6 +67,7 @@ data class ChunkType internal constructor(
         /** EXIF (since 2017) */
         val EXIF = of("eXIf".encodeToByteArray())
 
+        @Suppress("MagicNumber")
         fun of(typeBytes: ByteArray): ChunkType {
 
             require(typeBytes.size == PngConstants.TPYE_LENGTH) { "ChunkType must be always 4 bytes!" }

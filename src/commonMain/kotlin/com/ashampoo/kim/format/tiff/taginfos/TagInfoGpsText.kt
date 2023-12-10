@@ -81,8 +81,9 @@ class TagInfoGpsText(
             /* TODO Handle */
         } else if (fieldType === FieldType.BYTE) {
             /* TODO Handle */
-        } else
+        } else {
             throw ImageReadException("GPS text field not encoded as bytes.")
+        }
 
         val bytes = entry.byteArrayValue
 

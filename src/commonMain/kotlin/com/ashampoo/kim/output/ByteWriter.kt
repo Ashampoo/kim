@@ -25,6 +25,7 @@ interface ByteWriter : Closeable {
 
     fun flush()
 
+    @Suppress("MagicNumber")
     fun writeInt(value: Int) {
         write(0xFF and (value shr 24))
         write(0xFF and (value shr 16))

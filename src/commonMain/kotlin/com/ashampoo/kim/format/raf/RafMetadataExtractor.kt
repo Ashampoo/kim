@@ -56,7 +56,7 @@ object RafMetadataExtractor : MetadataExtractor {
         return@tryWithImageReadException JpegMetadataExtractor.extractMetadataBytes(newReader)
     }
 
-    @Suppress("ComplexCondition", "LoopWithTooManyJumpStatements")
+    @Suppress("ComplexCondition", "LoopWithTooManyJumpStatements", "MagicNumber")
     internal fun skipToJpegMagicBytes(byteReader: ByteReader) {
 
         @Suppress("kotlin:S1481") // false positive
