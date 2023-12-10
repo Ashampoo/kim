@@ -19,6 +19,7 @@ package com.ashampoo.kim.format.tiff.taginfos
 import com.ashampoo.kim.common.ByteOrder
 import com.ashampoo.kim.common.ImageReadException
 import com.ashampoo.kim.common.ImageWriteException
+import com.ashampoo.kim.common.decodeToIso8859String
 import com.ashampoo.kim.common.isEquals
 import com.ashampoo.kim.format.tiff.TiffField
 import com.ashampoo.kim.format.tiff.constants.TiffDirectoryType
@@ -87,7 +88,7 @@ class TagInfoGpsText(
 
         /* Try ASCII with NO prefix. */
         if (bytes.size < 8)
-            return String(bytes, charset = Charsets.ISO_8859_1)
+            return bytes.decodeToIso8859String()
 
         for (encoding in TEXT_ENCODINGS) {
 
@@ -119,7 +120,7 @@ class TagInfoGpsText(
             }
         }
 
-        return String(bytes, charset = Charsets.ISO_8859_1)
+        return bytes.decodeToIso8859String()
     }
 
     companion object {

@@ -17,10 +17,9 @@
 package com.ashampoo.kim.format.png.chunks
 
 import com.ashampoo.kim.common.ImageReadException
+import com.ashampoo.kim.common.decodeToIso8859String
 import com.ashampoo.kim.common.indexOfNullTerminator
 import com.ashampoo.kim.format.png.ChunkType
-import io.ktor.utils.io.charsets.Charsets
-import io.ktor.utils.io.core.String
 
 class PngChunkText(
     length: Int,
@@ -42,11 +41,17 @@ class PngChunkText(
         if (index < 0)
             throw ImageReadException("PNG tEXt chunk keyword is not terminated.")
 
-        keyword = String(bytes, 0, index, Charsets.ISO_8859_1)
+        keyword = bytes.copyOfRange(
+            fromIndex = 0,
+            toIndex = index
+        ).decodeToIso8859String()
 
         val textLength = bytes.size - (index + 1)
 
-        text = String(bytes, index + 1, textLength, Charsets.ISO_8859_1)
+        text = bytes.copyOfRange(
+            fromIndex = index + 1,
+            toIndex = textLength
+        ).decodeToIso8859String()
     }
 
     override fun getKeyword(): String =

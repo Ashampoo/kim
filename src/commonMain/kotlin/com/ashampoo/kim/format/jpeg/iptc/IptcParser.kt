@@ -18,6 +18,7 @@ package com.ashampoo.kim.format.jpeg.iptc
 
 import com.ashampoo.kim.common.ByteOrder
 import com.ashampoo.kim.common.ImageReadException
+import com.ashampoo.kim.common.decodeToIso8859String
 import com.ashampoo.kim.common.slice
 import com.ashampoo.kim.common.startsWith
 import com.ashampoo.kim.common.toInt
@@ -26,9 +27,6 @@ import com.ashampoo.kim.common.toUInt8
 import com.ashampoo.kim.format.jpeg.JpegConstants
 import com.ashampoo.kim.format.jpeg.iptc.IptcTypes.Companion.getIptcType
 import com.ashampoo.kim.input.ByteArrayByteReader
-import io.ktor.utils.io.charsets.Charset
-import io.ktor.utils.io.charsets.Charsets
-import io.ktor.utils.io.core.String
 
 object IptcParser {
 
@@ -42,8 +40,6 @@ object IptcParser {
      */
     @Suppress("MagicNumber")
     private val PHOTOSHOP_IGNORED_BLOCK_TYPE = listOf(1084, 1085, 1086, 1087)
-
-    private val DEFAULT_CHARSET = Charsets.ISO_8859_1
 
     const val CODED_CHARACTER_SET_IPTC_CODE = 90
 
@@ -147,10 +143,7 @@ object IptcParser {
                     value = if (isUtf8)
                         recordData.decodeToString()
                     else
-                        String(
-                            bytes = recordData,
-                            charset = DEFAULT_CHARSET
-                        )
+                        recordData.decodeToIso8859String()
                 )
             )
         }

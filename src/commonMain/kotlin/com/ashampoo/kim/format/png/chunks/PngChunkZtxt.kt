@@ -17,12 +17,11 @@
 package com.ashampoo.kim.format.png.chunks
 
 import com.ashampoo.kim.common.ImageReadException
+import com.ashampoo.kim.common.decodeToIso8859String
 import com.ashampoo.kim.common.decompress
 import com.ashampoo.kim.common.indexOfNullTerminator
 import com.ashampoo.kim.format.png.ChunkType
 import com.ashampoo.kim.format.png.PngConstants
-import io.ktor.utils.io.charsets.Charsets
-import io.ktor.utils.io.core.String
 
 class PngChunkZtxt(
     length: Int,
@@ -44,7 +43,11 @@ class PngChunkZtxt(
         if (index < 0)
             throw ImageReadException("PNG zTXt chunk keyword is not terminated.")
 
-        keyword = String(bytes, 0, index, Charsets.ISO_8859_1)
+        keyword = bytes.copyOfRange(
+            fromIndex = 0,
+            toIndex = index
+        ).decodeToIso8859String()
+
         index++
 
         val compressionMethod = bytes[index++].toInt()
