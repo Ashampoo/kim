@@ -43,7 +43,7 @@ object IptcParser {
     @Suppress("MagicNumber")
     private val PHOTOSHOP_IGNORED_BLOCK_TYPE = listOf(1084, 1085, 1086, 1087)
 
-    val DEFAULT_CHARSET = Charsets.ISO_8859_1
+    private val DEFAULT_CHARSET = Charsets.ISO_8859_1
 
     const val CODED_CHARACTER_SET_IPTC_CODE = 90
 
@@ -97,7 +97,7 @@ object IptcParser {
 
     private fun parseIPTCBlock(bytes: ByteArray): List<IptcRecord> {
 
-        var charset = DEFAULT_CHARSET
+        var isUtf8 = false
 
         val records = mutableListOf<IptcRecord>()
 
@@ -131,7 +131,7 @@ object IptcParser {
             if (recordNumber == IptcConstants.IPTC_ENVELOPE_RECORD_NUMBER &&
                 recordType == CODED_CHARACTER_SET_IPTC_CODE
             ) {
-                charset = findCharset(recordData)
+                isUtf8 = isUtf8(recordData)
                 continue
             }
 
@@ -144,7 +144,13 @@ object IptcParser {
             records.add(
                 IptcRecord(
                     iptcType = getIptcType(recordType),
-                    value = String(recordData, charset = charset)
+                    value = if (isUtf8)
+                        recordData.decodeToString()
+                    else
+                        String(
+                            bytes = recordData,
+                            charset = DEFAULT_CHARSET
+                        )
                 )
             )
         }
@@ -260,7 +266,7 @@ object IptcParser {
         return blocks
     }
 
-    private fun findCharset(codedCharset: ByteArray): Charset {
+    private fun isUtf8(codedCharset: ByteArray): Boolean {
 
         /*
          * check if encoding is a escape sequence
@@ -273,8 +279,6 @@ object IptcParser {
             if (element != ' '.code.toByte())
                 codedCharsetNormalized[index++] = element
 
-        val utf8 = UTF8_CHARACTER_ESCAPE_SEQUENCE.contentEquals(codedCharsetNormalized)
-
-        return if (utf8) Charsets.UTF_8 else DEFAULT_CHARSET
+        return UTF8_CHARACTER_ESCAPE_SEQUENCE.contentEquals(codedCharsetNormalized)
     }
 }
