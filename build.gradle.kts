@@ -7,7 +7,7 @@ plugins {
     id("maven-publish")
     id("signing")
     id("io.gitlab.arturbosch.detekt") version "1.23.4"
-    id("org.sonarqube") version "4.4.1.3373"
+    id("org.sonarqube") version "4.3.1.3277"
     id("org.jetbrains.kotlinx.kover") version "0.6.1"
     id("com.asarkar.gradle.build-time-tracker") version "4.3.0"
     id("me.qoomon.git-versioning") version "6.4.3"
