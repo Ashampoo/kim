@@ -91,7 +91,7 @@ object XmpWriter {
     }
 
     /**
-     * @param writePackageWrapper Should be "true" for embedded XMP
+     * Note: Parameter 'writePackageWrapper' should be "true" for embedded XMP
      */
     @Throws(XMPException::class)
     @Suppress("LoopWithTooManyJumpStatements")
@@ -108,7 +108,7 @@ object XmpWriter {
     }
 
     /**
-     * @param writePackageWrapper Should be "true" for embedded XMP
+     * Note: Parameter 'writePackageWrapper' should be "true" for embedded XMP
      */
     @Throws(XMPException::class)
     @Suppress("LoopWithTooManyJumpStatements")

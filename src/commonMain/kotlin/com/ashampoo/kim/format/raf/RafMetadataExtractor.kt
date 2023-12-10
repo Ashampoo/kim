@@ -56,7 +56,7 @@ object RafMetadataExtractor : MetadataExtractor {
         return@tryWithImageReadException JpegMetadataExtractor.extractMetadataBytes(newReader)
     }
 
-    @Suppress("ComplexCondition", "LoopWithTooManyJumpStatements")
+    @Suppress("ComplexCondition", "LoopWithTooManyJumpStatements", "MagicNumber")
     internal fun skipToJpegMagicBytes(byteReader: ByteReader) {
 
         @Suppress("kotlin:S1481") // false positive
@@ -73,7 +73,8 @@ object RafMetadataExtractor : MetadataExtractor {
                 bytes[bytes.lastIndex - 2] == JpegConstants.SOI[0] &&
                 bytes[bytes.lastIndex - 1] == JpegConstants.SOI[1] &&
                 bytes[bytes.lastIndex - 0] == 0xFF.toByte()
-            ) break
+            )
+                break
         }
     }
 }

@@ -619,6 +619,7 @@ style:
       - '0'
       - '1'
       - '2'
+      - '0xFF'
     ignoreHashCodeFunction: true
     ignorePropertyDeclaration: false
     ignoreLocalVariableDeclaration: false

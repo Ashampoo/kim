@@ -16,8 +16,6 @@
  */
 package com.ashampoo.kim.format.png
 
-import io.ktor.utils.io.core.toByteArray
-
 /**
  * Type of a PNG chunk.
  *
@@ -46,29 +44,30 @@ data class ChunkType internal constructor(
     companion object {
 
         /** Image header */
-        val IHDR = of("IHDR".toByteArray())
+        val IHDR = of("IHDR".encodeToByteArray())
 
         /** Image data */
-        val IDAT = of("IDAT".toByteArray())
+        val IDAT = of("IDAT".encodeToByteArray())
 
         /** Image end */
-        val IEND = of("IEND".toByteArray())
+        val IEND = of("IEND".encodeToByteArray())
 
         /** Time */
-        val TIME = of("tIME".toByteArray())
+        val TIME = of("tIME".encodeToByteArray())
 
         /** Text */
-        val TEXT = of("tEXt".toByteArray())
+        val TEXT = of("tEXt".encodeToByteArray())
 
         /** Compressed text */
-        val ZTXT = of("zTXt".toByteArray())
+        val ZTXT = of("zTXt".encodeToByteArray())
 
         /** UTF-8 text, for example XMP */
-        val ITXT = of("iTXt".toByteArray())
+        val ITXT = of("iTXt".encodeToByteArray())
 
         /** EXIF (since 2017) */
-        val EXIF = of("eXIf".toByteArray())
+        val EXIF = of("eXIf".encodeToByteArray())
 
+        @Suppress("MagicNumber")
         fun of(typeBytes: ByteArray): ChunkType {
 
             require(typeBytes.size == PngConstants.TPYE_LENGTH) { "ChunkType must be always 4 bytes!" }

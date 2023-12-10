@@ -17,6 +17,7 @@
 package com.ashampoo.kim.format.tiff.taginfos
 
 import com.ashampoo.kim.common.ByteOrder
+import com.ashampoo.kim.common.HEX_RADIX
 import com.ashampoo.kim.format.tiff.TiffField
 import com.ashampoo.kim.format.tiff.constants.ExifTag.EXIF_DIRECTORY_UNKNOWN
 import com.ashampoo.kim.format.tiff.constants.TiffDirectoryType
@@ -33,7 +34,7 @@ open class TagInfo(
 
     /** Return a proper Tag ID like 0x0100 */
     val tagFormatted: String =
-        "0x" + tag.toString(16).padStart(4, '0')
+        "0x" + tag.toString(HEX_RADIX).padStart(4, '0')
 
     val description: String =
         "$tagFormatted $name"

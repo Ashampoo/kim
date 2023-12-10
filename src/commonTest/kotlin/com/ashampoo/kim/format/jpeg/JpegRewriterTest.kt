@@ -61,6 +61,9 @@ class JpegRewriterTest {
         <?xpacket end="w"?>
     """.trimIndent()
 
+    private val photosWithoutEmbeddedXmp =
+        setOf(2, 20, 23, 30, 48)
+
     @BeforeTest
     fun setUp() {
         Kim.underUnitTesting = true
@@ -209,9 +212,8 @@ class JpegRewriterTest {
                     val expectedTagInfos = expectedDirectory.getFields().map { it.tagInfo.tag }.sorted()
                     val actualTagInfos = actualDirectory.getFields().map { it.tagInfo.tag }.sorted()
 
+                    /* For some reason these offsets disappear, even if they are written. */
                     val missingTagInfos = expectedTagInfos - actualTagInfos.toSet() -
-                        /* For some reason this offsets disappear, even if they are written. */
-                        // FIXME Find out, why
                         ExifTag.EXIF_TAG_EXIF_OFFSET.tag -
                         ExifTag.EXIF_TAG_GPSINFO.tag -
                         ExifTag.EXIF_TAG_INTEROP_OFFSET.tag -
@@ -332,9 +334,6 @@ class JpegRewriterTest {
             }
         }
     }
-
-    private val photosWithoutEmbeddedXmp =
-        setOf(2, 20, 23, 30, 48)
 
     /**
      * Regression test based on a fixed small set of test files.

@@ -15,6 +15,7 @@
  */
 package com.ashampoo.kim.input
 
+import com.ashampoo.kim.common.slice
 import java.io.InputStream
 
 open class AndroidInputStreamByteReader(
@@ -46,7 +47,7 @@ open class AndroidInputStreamByteReader(
         return if (bytes == count)
             buffer
         else
-            buffer.sliceArray(0..count)
+            buffer.slice(startIndex = 0, count = count)
     }
 
     override fun close() =

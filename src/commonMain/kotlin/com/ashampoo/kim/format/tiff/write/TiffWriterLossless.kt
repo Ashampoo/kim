@@ -392,11 +392,5 @@ class TiffWriterLossless(
     companion object {
 
         const val OFFSET_TOLERANCE = 3
-
-        private val elementLengthComparator =
-            compareBy { element: TiffElement -> element.length }
-
-        private val itemLengthComparator =
-            compareBy { item: TiffOutputItem -> item.getItemLength() }
     }
 }

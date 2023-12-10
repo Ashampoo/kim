@@ -22,9 +22,9 @@ repositories {
 
 val productName = "Ashampoo Kim"
 
-val ktorVersion: String = "2.3.6"
-val xmpCoreVersion: String = "0.2.2"
-val dateTimeVersion: String = "0.4.1"
+val ktorVersion: String = "2.3.7"
+val xmpCoreVersion: String = "0.2.3"
+val dateTimeVersion: String = "0.5.0"
 val testRessourcesVersion: String = "0.4.0"
 val ioCoreVersion: String = "0.3.0"
 
@@ -84,25 +84,16 @@ sonar {
             )
         )
 
-        /* Include Android Lint */
-        property("sonar.android.lint.report", "${project.buildDir}/reports/lint-results.xml")
-
-        /* Include Detekt issues */
-        val detektPath = "${project.buildDir}/reports/detekt/detekt.xml"
-        println("Detekt report: $detektPath")
-        property("sonar.kotlin.detekt.reportPaths", detektPath)
-
-        /* Include Kover code coverage */
-        val koverPath = "${project.buildDir}/reports/kover/xml/report.xml"
-        println("Kover report: $koverPath")
-        property("sonar.coverage.jacoco.xmlReportPaths", koverPath)
+        property("sonar.android.lint.report", "build/reports/lint-results.xml")
+        property("sonar.kotlin.detekt.reportPaths", "build/reports/detekt/detekt.xml")
+        property("sonar.coverage.jacoco.xmlReportPaths", "build/reports/kover/xml/report.xml")
     }
 }
 
 detekt {
-    source = files("src", "build.gradle.kts")
+    source.from("src", "build.gradle.kts")
     allRules = true
-    config = files("detekt.yml")
+    config.setFrom("$projectDir/detekt.yml")
     parallel = true
     ignoreFailures = true
     autoCorrect = true

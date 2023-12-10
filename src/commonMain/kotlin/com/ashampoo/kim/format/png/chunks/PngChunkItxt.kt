@@ -17,12 +17,12 @@
 package com.ashampoo.kim.format.png.chunks
 
 import com.ashampoo.kim.common.ImageReadException
+import com.ashampoo.kim.common.decodeToIso8859String
 import com.ashampoo.kim.common.decompress
 import com.ashampoo.kim.common.indexOfNullTerminator
+import com.ashampoo.kim.common.slice
 import com.ashampoo.kim.format.png.ChunkType
 import com.ashampoo.kim.format.png.PngConstants
-import io.ktor.utils.io.charsets.Charsets
-import io.ktor.utils.io.core.String
 
 class PngChunkItxt(
     length: Int,
@@ -48,7 +48,10 @@ class PngChunkItxt(
         if (terminatorIndex < 0)
             throw ImageReadException("PNG iTXt chunk keyword is not terminated.")
 
-        keyword = String(bytes, 0, terminatorIndex, Charsets.ISO_8859_1)
+        keyword = bytes.slice(
+            startIndex = 0,
+            count = terminatorIndex
+        ).decodeToIso8859String()
 
         var index = terminatorIndex + 1
 
@@ -69,7 +72,10 @@ class PngChunkItxt(
         if (terminatorIndex < 0)
             throw ImageReadException("PNG iTXt chunk language tag is not terminated.")
 
-        languageTag = String(bytes, index, terminatorIndex - index, Charsets.ISO_8859_1)
+        languageTag = bytes.copyOfRange(
+            fromIndex = index,
+            toIndex = terminatorIndex
+        ).decodeToIso8859String()
 
         index = terminatorIndex + 1
 
@@ -78,14 +84,22 @@ class PngChunkItxt(
         if (terminatorIndex < 0)
             throw ImageReadException("PNG iTXt chunk translated keyword is not terminated.")
 
-        translatedKeyword = String(bytes, index, terminatorIndex - index, Charsets.UTF_8)
+        translatedKeyword = bytes.copyOfRange(
+            fromIndex = index,
+            toIndex = terminatorIndex
+        ).decodeToString()
 
         index = terminatorIndex + 1
 
+        val subBytes = bytes.copyOfRange(
+            fromIndex = index,
+            toIndex = bytes.size
+        )
+
         text = if (compressed)
-            decompress(bytes.copyOfRange(index, bytes.size))
+            decompress(subBytes)
         else
-            String(bytes, index, bytes.size - index, Charsets.UTF_8)
+            subBytes.decodeToString()
     }
 
     /**

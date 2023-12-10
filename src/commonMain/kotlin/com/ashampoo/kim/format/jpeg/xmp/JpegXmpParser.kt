@@ -17,10 +17,9 @@
 package com.ashampoo.kim.format.jpeg.xmp
 
 import com.ashampoo.kim.common.ImageReadException
+import com.ashampoo.kim.common.slice
 import com.ashampoo.kim.common.startsWith
 import com.ashampoo.kim.format.jpeg.JpegConstants
-import io.ktor.utils.io.charsets.Charsets
-import io.ktor.utils.io.core.String
 
 object JpegXmpParser {
 
@@ -35,6 +34,9 @@ object JpegXmpParser {
         val index = JpegConstants.XMP_IDENTIFIER.size
 
         /* The data is UTF-8 encoded XML */
-        return String(segmentData, index, segmentData.size - index, Charsets.UTF_8)
+        return segmentData.slice(
+            startIndex = index,
+            count = segmentData.size - index
+        ).decodeToString()
     }
 }

@@ -158,11 +158,14 @@ interface ByteReader : Closeable {
 
                 position++
 
-                if (position == needle.size)
+                if (position == needle.size) {
                     return true
+                }
 
-            } else
+            } else {
+
                 position = 0
+            }
         }
 
         return false
