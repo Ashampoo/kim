@@ -25,7 +25,6 @@ import com.ashampoo.kim.format.png.chunks.PngTextChunk
 import com.ashampoo.kim.input.ByteReader
 import com.ashampoo.kim.output.ByteArrayByteWriter
 import com.ashampoo.kim.output.ByteWriter
-import io.ktor.utils.io.core.toByteArray
 
 object PngWriter {
 
@@ -166,11 +165,11 @@ object PngWriter {
         writer.write(0) // No language tag
 
         /* XMP keyword - null-terminated */
-        writer.write(PngConstants.XMP_KEYWORD.toByteArray())
+        writer.write(PngConstants.XMP_KEYWORD.encodeToByteArray())
         writer.write(0)
 
         /* XMP bytes */
-        writer.write(xmpXml.toByteArray())
+        writer.write(xmpXml.encodeToByteArray())
 
         writeChunk(byteWriter, ChunkType.ITXT, writer.toByteArray())
     }

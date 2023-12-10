@@ -73,7 +73,7 @@ class FieldTypeAscii(type: Int, name: String) : FieldType(type, name, 1) {
         }
 
         if (data is String) {
-            val bytes = data.toByteArray()
+            val bytes = data.encodeToByteArray()
             val result = bytes.copyOf(bytes.size + 1)
             result[result.lastIndex] = 0
             return result

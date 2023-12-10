@@ -22,7 +22,6 @@ import com.ashampoo.kim.format.jpeg.iptc.IptcParser.APP13_BYTE_ORDER
 import com.ashampoo.kim.output.BigEndianBinaryByteWriter
 import com.ashampoo.kim.output.BinaryByteWriter
 import com.ashampoo.kim.output.ByteArrayByteWriter
-import io.ktor.utils.io.core.toByteArray
 
 object IptcWriter {
 
@@ -120,7 +119,7 @@ object IptcWriter {
 
             binaryWriter.write(iptcType.type)
 
-            val recordData = value.toByteArray()
+            val recordData = value.encodeToByteArray()
 
             binaryWriter.write2Bytes(recordData.size)
             binaryWriter.write(recordData)
