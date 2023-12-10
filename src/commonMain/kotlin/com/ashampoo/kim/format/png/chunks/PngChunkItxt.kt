@@ -78,14 +78,22 @@ class PngChunkItxt(
         if (terminatorIndex < 0)
             throw ImageReadException("PNG iTXt chunk translated keyword is not terminated.")
 
-        translatedKeyword = String(bytes, index, terminatorIndex - index, Charsets.UTF_8)
+        translatedKeyword = bytes.copyOfRange(
+            fromIndex = index,
+            toIndex = terminatorIndex
+        ).decodeToString()
 
         index = terminatorIndex + 1
 
+        val subBytes = bytes.copyOfRange(
+            fromIndex = index,
+            toIndex = bytes.size
+        )
+
         text = if (compressed)
-            decompress(bytes.copyOfRange(index, bytes.size))
+            decompress(subBytes)
         else
-            String(bytes, index, bytes.size - index, Charsets.UTF_8)
+            subBytes.decodeToString()
     }
 
     /**

@@ -19,9 +19,8 @@ package com.ashampoo.kim.format.tiff.fieldtypes
 import com.ashampoo.kim.common.ByteOrder
 import com.ashampoo.kim.common.ImageWriteException
 import com.ashampoo.kim.common.indexOfNullTerminator
+import com.ashampoo.kim.common.slice
 import com.ashampoo.kim.format.tiff.TiffField
-import io.ktor.utils.io.charsets.Charsets
-import io.ktor.utils.io.core.String
 
 class FieldTypeAscii(type: Int, name: String) : FieldType(type, name, 1) {
 
@@ -53,12 +52,10 @@ class FieldTypeAscii(type: Int, name: String) : FieldType(type, name, 1) {
          * specifies that the TIFF ASCII fields are actually UTF-8.
          * Exiftool however allows you to configure the charset used.
          */
-        val string = String(
-            bytes = bytes,
-            offset = 0,
-            length = length,
-            charset = Charsets.UTF_8
-        )
+        val string = bytes.slice(
+            startIndex = 0,
+            count = length
+        ).decodeToString()
 
         return string
     }

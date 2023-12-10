@@ -25,8 +25,6 @@ import com.ashampoo.kim.input.ByteReader
 import com.ashampoo.kim.input.DefaultRandomAccessByteReader
 import com.ashampoo.kim.model.ImageFormat
 import com.ashampoo.kim.model.ImageSize
-import io.ktor.utils.io.charsets.Charsets
-import io.ktor.utils.io.core.String
 
 object TiffImageParser : ImageParser {
 
@@ -91,6 +89,6 @@ object TiffImageParser : ImageParser {
         if (bytes.isEmpty())
             return null
 
-        return String(bytes, charset = Charsets.UTF_8)
+        return bytes.decodeToString()
     }
 }

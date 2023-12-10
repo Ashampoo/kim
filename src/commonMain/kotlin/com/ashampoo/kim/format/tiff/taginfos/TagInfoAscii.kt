@@ -19,8 +19,6 @@ package com.ashampoo.kim.format.tiff.taginfos
 import com.ashampoo.kim.common.ByteOrder
 import com.ashampoo.kim.format.tiff.constants.TiffDirectoryType
 import com.ashampoo.kim.format.tiff.fieldtypes.FieldType
-import io.ktor.utils.io.charsets.Charsets
-import io.ktor.utils.io.core.String
 
 class TagInfoAscii(
     name: String,
@@ -45,12 +43,10 @@ class TagInfoAscii(
 
             if (bytes[index].toInt() == 0) {
 
-                val string = String(
-                    bytes = bytes,
-                    offset = nextStringPos,
-                    length = index - nextStringPos,
-                    charset = Charsets.UTF_8
-                )
+                val string = bytes.copyOfRange(
+                    fromIndex = nextStringPos,
+                    toIndex = index
+                ).decodeToString()
 
                 /* Ignore blank strings and rewrite files without them. */
                 if (string.isNotBlank())
@@ -66,12 +62,10 @@ class TagInfoAscii(
          */
         if (nextStringPos < bytes.size) {
 
-            val string = String(
-                bytes = bytes,
-                offset = nextStringPos,
-                length = bytes.size - nextStringPos,
-                charset = Charsets.UTF_8
-            )
+            val string = bytes.copyOfRange(
+                fromIndex = nextStringPos,
+                toIndex = bytes.size
+            ).decodeToString()
 
             /* Ignore blank strings and rewrite files without them. */
             if (string.isNotBlank())
