@@ -282,8 +282,10 @@ object TiffReader {
 
                 byteReader.readBytes(valueOrOffset.toInt(), valueLength.toInt())
 
-            } else
+            } else {
+
                 valueOrOffsetBytes
+            }
 
             fields.add(
                 TiffField(tag, dirType, fieldType, count, valueOrOffset, valueBytes, byteOrder, entryIndex)

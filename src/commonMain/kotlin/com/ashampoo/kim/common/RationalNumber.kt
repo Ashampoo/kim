@@ -119,14 +119,14 @@ class RationalNumber {
          */
         if (isUnsignedType && negatedNumerator < 0) {
 
-            if (commonDivisor != 0L) {
-
-                val reducedNumerator = numerator / commonDivisor
-                val reducedDivisor = divisor / commonDivisor
-                return RationalNumber(-reducedNumerator, reducedDivisor, false)
-
-            } else
+            if (commonDivisor == 0L)
                 throw NumberFormatException("Unsigned numerator is too large to negate: $numerator")
+
+            return RationalNumber(
+                numerator = -(numerator / commonDivisor),
+                divisor = divisor / commonDivisor,
+                unsignedType = false
+            )
         }
 
         return RationalNumber(negatedNumerator, divisor, false)

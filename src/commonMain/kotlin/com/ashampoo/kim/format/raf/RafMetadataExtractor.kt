@@ -73,7 +73,8 @@ object RafMetadataExtractor : MetadataExtractor {
                 bytes[bytes.lastIndex - 2] == JpegConstants.SOI[0] &&
                 bytes[bytes.lastIndex - 1] == JpegConstants.SOI[1] &&
                 bytes[bytes.lastIndex - 0] == 0xFF.toByte()
-            ) break
+            )
+                break
         }
     }
 }

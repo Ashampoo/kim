@@ -63,7 +63,8 @@ object RafPreviewExtractor {
             if (bytes.size >= 2 &&
                 bytes[bytes.lastIndex - 1] == JpegMetadataExtractor.SEGMENT_IDENTIFIER &&
                 bytes[bytes.lastIndex - 0] == JpegMetadataExtractor.MARKER_END_OF_IMAGE
-            ) break
+            )
+                break
         }
 
         return@tryWithImageReadException bytes.toByteArray()

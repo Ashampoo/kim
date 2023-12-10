@@ -219,7 +219,9 @@ object PhotoValueFormatter {
              */
             lensName.replaceFirst(cameraName, "").trim()
 
-        } else lensName
+        } else {
+            lensName
+        }
     }
 
     fun createCameraAndLensName(
@@ -237,7 +239,8 @@ object PhotoValueFormatter {
 
             "$cameraName | $modLensName"
 
-        } else cameraName ?: lensName
+        } else
+            cameraName ?: lensName
     }
 
     fun formatIso(iso: Int): String = "ISO $iso"

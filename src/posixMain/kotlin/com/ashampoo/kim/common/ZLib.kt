@@ -38,6 +38,8 @@ import platform.zlib.inflateInit
 import platform.zlib.uByteVar
 import platform.zlib.z_stream
 
+private const val OUTPUT_BUFFER_LENGTH = 4096
+
 @OptIn(UnsafeNumber::class, ExperimentalForeignApi::class)
 actual fun compress(input: String): ByteArray {
 
@@ -93,8 +95,7 @@ actual fun decompress(byteArray: ByteArray): String {
         /* Specify the decompression mode */
         inflateInit(stream.ptr)
 
-        val outputBufferLength = 4096
-        val outputBuffer = ByteArray(outputBufferLength)
+        val outputBuffer = ByteArray(OUTPUT_BUFFER_LENGTH)
         var decompressedData = ""
 
         try {
@@ -102,7 +103,7 @@ actual fun decompress(byteArray: ByteArray): String {
 
                 /* Set the output buffer and its length */
                 stream.next_out = outputBuffer.refTo(0).getPointer(this) as CPointer<uByteVar>
-                stream.avail_out = outputBufferLength.toUInt()
+                stream.avail_out = OUTPUT_BUFFER_LENGTH.toUInt()
 
                 /* Decompress the data */
                 val result = inflate(stream.ptr, Z_NO_FLUSH)
@@ -111,14 +112,14 @@ actual fun decompress(byteArray: ByteArray): String {
 
                     Z_STREAM_END -> {
                         /* The end of the compressed data was reached */
-                        val bytesWritten = outputBufferLength - stream.avail_out.toInt()
+                        val bytesWritten = OUTPUT_BUFFER_LENGTH - stream.avail_out.toInt()
                         decompressedData += outputBuffer.decodeToString(0, bytesWritten)
                         break
                     }
 
                     Z_OK -> {
                         /* More decompressed data is available */
-                        val bytesWritten = outputBufferLength - stream.avail_out.toInt()
+                        val bytesWritten = OUTPUT_BUFFER_LENGTH - stream.avail_out.toInt()
                         decompressedData += outputBuffer.decodeToString(0, bytesWritten)
                     }
 
