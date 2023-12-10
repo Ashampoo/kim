@@ -20,7 +20,6 @@ import com.ashampoo.kim.common.ImageReadException
 import com.ashampoo.kim.common.slice
 import com.ashampoo.kim.common.startsWith
 import com.ashampoo.kim.format.jpeg.JpegConstants
-import io.ktor.utils.io.core.String
 
 object JpegXmpParser {
 

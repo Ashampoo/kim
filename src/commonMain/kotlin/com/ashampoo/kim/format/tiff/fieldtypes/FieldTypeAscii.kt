@@ -22,7 +22,6 @@ import com.ashampoo.kim.common.indexOfNullTerminator
 import com.ashampoo.kim.format.tiff.TiffField
 import io.ktor.utils.io.charsets.Charsets
 import io.ktor.utils.io.core.String
-import io.ktor.utils.io.core.toByteArray
 
 class FieldTypeAscii(type: Int, name: String) : FieldType(type, name, 1) {
 
