@@ -15,6 +15,8 @@
  */
 package com.ashampoo.kim.common
 
+import io.ktor.utils.io.charsets.Charsets
+import io.ktor.utils.io.core.toByteArray
 import kotlin.test.Test
 import kotlin.test.assertContentEquals
 import kotlin.test.assertEquals
@@ -115,20 +117,20 @@ class ByteArrayExtensionsTest {
     }
 
     @Test
-    fun testToAsciiString() {
+    fun testDecodeToIso8859String() {
 
         assertEquals(
             "RIFF",
             byteArrayOf(
                 0x52, 0x49, 0x46, 0x46
-            ).toAsciiString()
+            ).decodeToIso8859String()
         )
 
         assertEquals(
             "WEBP",
             byteArrayOf(
                 0x57, 0x45, 0x42, 0x50
-            ).toAsciiString()
+            ).decodeToIso8859String()
         )
 
         assertEquals(
@@ -136,7 +138,30 @@ class ByteArrayExtensionsTest {
             byteArrayOf(
                 0x46, 0x55, 0x4A, 0x49, 0x46, 0x49, 0x4C, 0x4D,
                 0x43, 0x43, 0x44, 0x2D, 0x52, 0x41, 0x57
-            ).toAsciiString()
+            ).decodeToIso8859String()
+        )
+
+        /* ISO 8859-1 bytes */
+        assertEquals(
+            "Äußerst öffentliches Ü!",
+            byteArrayOf(
+                0xC4.toByte(), 0x75, 0xDF.toByte(), 0x65, 0x72,
+                0x73, 0x74, 0x20, 0xF6.toByte(), 0x66, 0x66,
+                0x65, 0x6E, 0x74, 0x6C, 0x69, 0x63, 0x68, 0x65,
+                0x73, 0x20, 0xDC.toByte(), 0x21
+            ).decodeToIso8859String()
+        )
+
+        /* Just for comparison the UTF-8 bytes. */
+        assertEquals(
+            "Äußerst öffentliches Ü!",
+            byteArrayOf(
+                0xC3.toByte(), 0x84.toByte(), 0x75, 0xC3.toByte(),
+                0x9F.toByte(), 0x65, 0x72, 0x73, 0x74, 0x20,
+                0xC3.toByte(), 0xB6.toByte(), 0x66, 0x66, 0x65,
+                0x6E, 0x74, 0x6C, 0x69, 0x63, 0x68, 0x65, 0x73,
+                0x20, 0xC3.toByte(), 0x9C.toByte(), 0x21
+            ).decodeToString()
         )
     }
 }
