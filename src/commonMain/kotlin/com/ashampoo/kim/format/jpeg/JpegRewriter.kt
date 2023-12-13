@@ -36,7 +36,6 @@ import com.ashampoo.kim.format.tiff.write.TiffWriterLossy
 import com.ashampoo.kim.input.ByteReader
 import com.ashampoo.kim.output.ByteArrayByteWriter
 import com.ashampoo.kim.output.ByteWriter
-import io.ktor.utils.io.core.toByteArray
 
 /**
  * Interface for Exif write/update/remove functionality for Jpeg/JFIF images.
@@ -264,7 +263,7 @@ object JpegRewriter {
 
         val newPieces = mutableListOf<JFIFPieceSegment>()
 
-        val xmpXmlBytes = xmpXml.toByteArray()
+        val xmpXmlBytes = xmpXml.encodeToByteArray()
 
         /*
          * If the XMP is larger than the maximal JPEG segment size (around 65 kb),
