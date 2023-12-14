@@ -21,6 +21,8 @@ import com.ashampoo.kim.common.ImageReadException
 import com.ashampoo.kim.common.ImageWriteException
 import com.ashampoo.kim.common.decodeToIso8859String
 import com.ashampoo.kim.common.isEquals
+import com.ashampoo.kim.common.slice
+import com.ashampoo.kim.common.toHex
 import com.ashampoo.kim.format.tiff.TiffField
 import com.ashampoo.kim.format.tiff.constants.TiffDirectoryType
 import com.ashampoo.kim.format.tiff.fieldtypes.FieldType
@@ -53,17 +55,17 @@ class TagInfoGpsText(
 
         val asciiBytes = value.toByteArray(Charsets.ISO_8859_1)
 
-        val result = ByteArray(asciiBytes.size + TEXT_ENCODING_ASCII.prefix.size)
+        val result = ByteArray(asciiBytes.size + TEXT_ENCODING_ASCII_BYTES.size)
 
-        TEXT_ENCODING_ASCII.prefix.copyInto(
+        TEXT_ENCODING_ASCII_BYTES.copyInto(
             destination = result,
             destinationOffset = 0,
-            endIndex = TEXT_ENCODING_ASCII.prefix.size
+            endIndex = TEXT_ENCODING_ASCII_BYTES.size
         )
 
         asciiBytes.copyInto(
             destination = result,
-            destinationOffset = TEXT_ENCODING_ASCII.prefix.size,
+            destinationOffset = TEXT_ENCODING_ASCII_BYTES.size,
             endIndex = asciiBytes.size
         )
 
@@ -91,34 +93,32 @@ class TagInfoGpsText(
         if (bytes.size < 8)
             return bytes.decodeToIso8859String()
 
-        for (encoding in TEXT_ENCODINGS) {
+        val encodingPrefixBytes = bytes.slice(0, count = 8)
 
-            if (bytes.isEquals(0, encoding.prefix, 0, encoding.prefix.size)) {
+        val hasEncoding =
+            encodingPrefixBytes.contentEquals(TEXT_ENCODING_ASCII_BYTES) ||
+                encodingPrefixBytes.contentEquals(TEXT_ENCODING_UNDEFINED_BYTES)
 
-                if (!Charset.isSupported(encoding.encodingName))
-                    throw ImageWriteException("No support for charset ${encoding.encodingName}")
+        if (hasEncoding) {
 
-                val charset = Charset.forName(encoding.encodingName)
+            val decodedString = String(
+                bytes = bytes,
+                offset = 8,
+                length = bytes.size - 8,
+                Charsets.ISO_8859_1
+            )
 
-                val decodedString = String(
-                    bytes,
-                    encoding.prefix.size,
-                    bytes.size - encoding.prefix.size,
-                    charset
-                )
+            val reEncodedBytes = decodedString.toByteArray()
 
-                val reEncodedBytes = decodedString.toByteArray(charset)
+            val bytesEqual = bytes.isEquals(
+                start = 8,
+                other = reEncodedBytes,
+                otherStart = 0,
+                length = reEncodedBytes.size
+            )
 
-                val bytesEqual = bytes.isEquals(
-                    encoding.prefix.size,
-                    reEncodedBytes,
-                    0,
-                    reEncodedBytes.size
-                )
-
-                if (bytesEqual)
-                    return decodedString
-            }
+            if (bytesEqual)
+                return decodedString
         }
 
         return bytes.decodeToIso8859String()
@@ -126,22 +126,20 @@ class TagInfoGpsText(
 
     companion object {
 
-        /*
-         * This byte sequence is for US-ASCII, but that's not supported
-         * in Ktor IO. Therefore we use ISO-8859-1 as a replacement.
+        /**
+         * Code for US-ASCII.
+         *
+         * This is a subset of ISO-8859-1 (Latin), so we can use that.
          */
-        private val TEXT_ENCODING_ASCII = TextEncoding(
-            byteArrayOf(0x41, 0x53, 0x43, 0x49, 0x49, 0x00, 0x00, 0x00),
-            "ISO-8859-1"
-        )
+        private val TEXT_ENCODING_ASCII_BYTES =
+            byteArrayOf(0x41, 0x53, 0x43, 0x49, 0x49, 0x00, 0x00, 0x00)
 
-        // Undefined
-        // Try to interpret an undefined text as ISO-8859-1 (Latin)
-        private val TEXT_ENCODING_UNDEFINED = TextEncoding(
-            byteArrayOf(0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00),
-            "ISO-8859-1"
-        )
-
-        private val TEXT_ENCODINGS = listOf(TEXT_ENCODING_ASCII, TEXT_ENCODING_UNDEFINED)
+        /*
+         * Undefined
+         *
+         * Try to interpret an undefined text as ISO-8859-1 (Latin)
+         */
+        private val TEXT_ENCODING_UNDEFINED_BYTES =
+            byteArrayOf(0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00)
     }
 }
