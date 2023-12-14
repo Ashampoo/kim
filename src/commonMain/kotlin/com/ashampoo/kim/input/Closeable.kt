@@ -13,23 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.ashampoo.kim.output
+package com.ashampoo.kim.input
 
-import com.ashampoo.kim.input.Closeable
-
-interface ByteWriter : Closeable {
-
-    fun write(byte: Int)
-
-    fun write(byteArray: ByteArray)
-
-    fun flush()
-
-    @Suppress("MagicNumber")
-    fun writeInt(value: Int) {
-        write(0xFF and (value shr 24))
-        write(0xFF and (value shr 16))
-        write(0xFF and (value shr 8))
-        write(0xFF and (value shr 0))
-    }
+fun interface Closeable {
+    fun close()
 }
+
+/** Executes the code and closes the source after. */
+public inline fun <CLOSEABLE : Closeable, RESULT> CLOSEABLE.use(
+    block: (CLOSEABLE) -> RESULT
+): RESULT =
+    try {
+        block(this)
+    } finally {
+        close()
+    }

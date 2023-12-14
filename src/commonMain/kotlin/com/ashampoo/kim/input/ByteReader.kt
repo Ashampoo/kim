@@ -20,7 +20,6 @@ import com.ashampoo.kim.common.ImageReadException
 import com.ashampoo.kim.common.quadsToByteArray
 import com.ashampoo.kim.common.toHex
 import com.ashampoo.kim.output.ByteArrayByteWriter
-import io.ktor.utils.io.core.Closeable
 
 @Suppress("TooManyFunctions", "ComplexInterface", "MagicNumber")
 interface ByteReader : Closeable {

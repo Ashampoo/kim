@@ -16,8 +16,8 @@
  */
 package com.ashampoo.kim.output
 
+import com.ashampoo.kim.input.Closeable
 import com.ashampoo.kim.input.DEFAULT_BUFFER_SIZE
-import io.ktor.utils.io.core.Closeable
 
 class ByteArrayByteWriter : ByteWriter, Closeable {
 

@@ -40,13 +40,13 @@ import com.ashampoo.kim.input.KotlinIoSourceByteReader
 import com.ashampoo.kim.input.KtorByteReadChannelByteReader
 import com.ashampoo.kim.input.KtorInputByteReader
 import com.ashampoo.kim.input.PrePendingByteReader
+import com.ashampoo.kim.input.use
 import com.ashampoo.kim.model.ImageFormat
 import com.ashampoo.kim.model.MetadataUpdate
 import com.ashampoo.kim.output.ByteArrayByteWriter
 import com.ashampoo.kim.output.ByteWriter
 import io.ktor.utils.io.ByteReadChannel
 import io.ktor.utils.io.core.ByteReadPacket
-import io.ktor.utils.io.core.use
 import kotlinx.io.files.Path
 
 object Kim {
