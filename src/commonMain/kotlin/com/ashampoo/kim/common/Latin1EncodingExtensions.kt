@@ -15,9 +15,6 @@
  */
 package com.ashampoo.kim.common
 
-import io.ktor.utils.io.charsets.Charsets
-import io.ktor.utils.io.core.toByteArray
-
 private val latin1CharArray = charArrayOf(
     '\u0000', '\u0001', '\u0002', '\u0003', '\u0004', '\u0005', '\u0006', '\u0007', '\u0008',
     '\u0009', '\u000A', '\u000B', '\u000C', '\u000D', '\u000E', '\u000F', '\u0010', '\u0011',
@@ -42,8 +39,10 @@ private val latin1CharArray = charArrayOf(
 private val charToIndexMap =
     latin1CharArray.withIndex().associate { it.value to it.index }
 
+private const val UNKNOWN_CHAR_BYTE: Byte = 0X3F.toByte()
+
 /*
- * Replacement for Ktor:
+ * Replacement for this Ktor code:
  *
  * io.ktor.utils.io.core.String(
  *     bytes = this,
@@ -52,11 +51,11 @@ private val charToIndexMap =
  */
 fun ByteArray.decodeLatin1BytesToString(): String =
     map { latin1CharArray[it.toUInt8()] }.joinToString("")
-//    io.ktor.utils.io.core.String(
-//        bytes = this,
-//        charset = Charsets.ISO_8859_1
-//    )
 
+/*
+ * Replacement for this Ktor code:
+ *
+ * this.toByteArray(Charsets.ISO_8859_1)
+ */
 fun String.encodeToLatin1Bytes(): ByteArray =
-    map { charToIndexMap[it]?.toByte() ?: 0.toByte() }.toByteArray()
-//    toByteArray(Charsets.ISO_8859_1)
+    map { charToIndexMap[it]?.toByte() ?: UNKNOWN_CHAR_BYTE }.toByteArray()
