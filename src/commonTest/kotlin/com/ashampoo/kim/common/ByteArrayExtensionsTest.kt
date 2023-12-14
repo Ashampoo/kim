@@ -115,7 +115,7 @@ class ByteArrayExtensionsTest {
     }
 
     @Test
-    fun testDecodeToIso8859String() {
+    fun testDecodeIso8859BytesToString() {
 
         assertEquals(
             "RIFF",
