@@ -17,9 +17,9 @@
 package com.ashampoo.kim.format.png.chunks
 
 import com.ashampoo.kim.common.ImageReadException
+import com.ashampoo.kim.common.decodeLatin1BytesToString
 import com.ashampoo.kim.common.indexOfNullTerminator
 import com.ashampoo.kim.format.png.ChunkType
-import decodeLatin1BytesToString
 
 class PngChunkText(
     length: Int,

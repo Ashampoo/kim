@@ -18,6 +18,7 @@ package com.ashampoo.kim.format.jpeg.iptc
 
 import com.ashampoo.kim.common.ByteOrder
 import com.ashampoo.kim.common.ImageReadException
+import com.ashampoo.kim.common.decodeLatin1BytesToString
 import com.ashampoo.kim.common.slice
 import com.ashampoo.kim.common.startsWith
 import com.ashampoo.kim.common.toInt
@@ -26,7 +27,6 @@ import com.ashampoo.kim.common.toUInt8
 import com.ashampoo.kim.format.jpeg.JpegConstants
 import com.ashampoo.kim.format.jpeg.iptc.IptcTypes.Companion.getIptcType
 import com.ashampoo.kim.input.ByteArrayByteReader
-import decodeLatin1BytesToString
 
 object IptcParser {
 

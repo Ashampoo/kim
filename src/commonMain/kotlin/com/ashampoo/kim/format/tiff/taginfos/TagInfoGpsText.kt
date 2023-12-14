@@ -19,15 +19,15 @@ package com.ashampoo.kim.format.tiff.taginfos
 import com.ashampoo.kim.common.ByteOrder
 import com.ashampoo.kim.common.ImageReadException
 import com.ashampoo.kim.common.ImageWriteException
+import com.ashampoo.kim.common.decodeLatin1BytesToString
+import com.ashampoo.kim.common.encodeToLatin1Bytes
 import com.ashampoo.kim.common.isEquals
 import com.ashampoo.kim.common.slice
 import com.ashampoo.kim.format.tiff.TiffField
 import com.ashampoo.kim.format.tiff.constants.TiffDirectoryType
 import com.ashampoo.kim.format.tiff.fieldtypes.FieldType
-import decodeLatin1BytesToString
 import io.ktor.utils.io.charsets.Charsets
 import io.ktor.utils.io.core.String
-import io.ktor.utils.io.core.toByteArray
 
 /**
  * Used by some GPS tags and the EXIF user comment tag,
@@ -51,7 +51,7 @@ class TagInfoGpsText(
         if (value !is String)
             throw ImageWriteException("GPS text value not String: $value")
 
-        val asciiBytes = value.toByteArray(Charsets.ISO_8859_1)
+        val asciiBytes = value.encodeToLatin1Bytes()
 
         val result = ByteArray(asciiBytes.size + TEXT_ENCODING_ASCII_BYTES.size)
 
@@ -77,13 +77,8 @@ class TagInfoGpsText(
         if (fieldType === FieldType.ASCII)
             return FieldType.ASCII.getValue(entry)
 
-        if (fieldType === FieldType.UNDEFINED) {
-            /* TODO Handle */
-        } else if (fieldType === FieldType.BYTE) {
-            /* TODO Handle */
-        } else {
+        if (fieldType !== FieldType.UNDEFINED && fieldType !== FieldType.BYTE)
             throw ImageReadException("GPS text field not encoded as bytes.")
-        }
 
         val bytes = entry.byteArrayValue
 
@@ -109,7 +104,7 @@ class TagInfoGpsText(
                 Charsets.ISO_8859_1
             )
 
-            val reEncodedBytes = decodedString.toByteArray()
+            val reEncodedBytes = decodedString.encodeToLatin1Bytes()
 
             val bytesEqual = bytes.isEquals(
                 start = TEXT_ENCODING_BYTE_LENGTH,

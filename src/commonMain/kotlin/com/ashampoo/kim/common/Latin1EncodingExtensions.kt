@@ -13,8 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package com.ashampoo.kim.common
 
 import io.ktor.utils.io.charsets.Charsets
+import io.ktor.utils.io.core.toByteArray
 
 @Suppress("MagicNumber")
 fun ByteArray.decodeLatin1BytesToString(): String =
@@ -22,3 +24,6 @@ fun ByteArray.decodeLatin1BytesToString(): String =
         bytes = this,
         charset = Charsets.ISO_8859_1
     )
+
+fun String.encodeToLatin1Bytes(): ByteArray =
+    toByteArray(Charsets.ISO_8859_1)

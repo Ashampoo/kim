@@ -13,10 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.ashampoo.kim.common
 
-import decodeLatin1BytesToString
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
