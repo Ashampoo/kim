@@ -26,8 +26,6 @@ import com.ashampoo.kim.common.slice
 import com.ashampoo.kim.format.tiff.TiffField
 import com.ashampoo.kim.format.tiff.constants.TiffDirectoryType
 import com.ashampoo.kim.format.tiff.fieldtypes.FieldType
-import io.ktor.utils.io.charsets.Charsets
-import io.ktor.utils.io.core.String
 
 /**
  * Used by some GPS tags and the EXIF user comment tag,
@@ -97,12 +95,10 @@ class TagInfoGpsText(
 
         if (hasEncoding) {
 
-            val decodedString = String(
-                bytes = bytes,
-                offset = 8,
-                length = bytes.size - TEXT_ENCODING_BYTE_LENGTH,
-                Charsets.ISO_8859_1
-            )
+            val decodedString = bytes.copyOfRange(
+                fromIndex = TEXT_ENCODING_BYTE_LENGTH,
+                toIndex = bytes.size
+            ).decodeLatin1BytesToString()
 
             val reEncodedBytes = decodedString.encodeToLatin1Bytes()
 
