@@ -41,7 +41,7 @@ fun ByteArray.toSingleNumberHexes(): String =
     joinToString(", ") { "0x" + it.toHex() }
 
 @Suppress("MagicNumber")
-fun ByteArray.decodeToIso8859String(): String =
+fun ByteArray.decodeIso8859BytesToString(): String =
     io.ktor.utils.io.core.String(
         bytes = this,
         charset = Charsets.ISO_8859_1

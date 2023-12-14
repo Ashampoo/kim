@@ -17,7 +17,7 @@
 package com.ashampoo.kim.format.png.chunks
 
 import com.ashampoo.kim.common.ImageReadException
-import com.ashampoo.kim.common.decodeToIso8859String
+import com.ashampoo.kim.common.decodeIso8859BytesToString
 import com.ashampoo.kim.common.decompress
 import com.ashampoo.kim.common.indexOfNullTerminator
 import com.ashampoo.kim.common.slice
@@ -51,7 +51,7 @@ class PngChunkItxt(
         keyword = bytes.slice(
             startIndex = 0,
             count = terminatorIndex
-        ).decodeToIso8859String()
+        ).decodeIso8859BytesToString()
 
         var index = terminatorIndex + 1
 
@@ -75,7 +75,7 @@ class PngChunkItxt(
         languageTag = bytes.copyOfRange(
             fromIndex = index,
             toIndex = terminatorIndex
-        ).decodeToIso8859String()
+        ).decodeIso8859BytesToString()
 
         index = terminatorIndex + 1
 

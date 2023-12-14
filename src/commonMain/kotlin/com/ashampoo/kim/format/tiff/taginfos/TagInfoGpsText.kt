@@ -19,14 +19,12 @@ package com.ashampoo.kim.format.tiff.taginfos
 import com.ashampoo.kim.common.ByteOrder
 import com.ashampoo.kim.common.ImageReadException
 import com.ashampoo.kim.common.ImageWriteException
-import com.ashampoo.kim.common.decodeToIso8859String
+import com.ashampoo.kim.common.decodeIso8859BytesToString
 import com.ashampoo.kim.common.isEquals
 import com.ashampoo.kim.common.slice
-import com.ashampoo.kim.common.toHex
 import com.ashampoo.kim.format.tiff.TiffField
 import com.ashampoo.kim.format.tiff.constants.TiffDirectoryType
 import com.ashampoo.kim.format.tiff.fieldtypes.FieldType
-import io.ktor.utils.io.charsets.Charset
 import io.ktor.utils.io.charsets.Charsets
 import io.ktor.utils.io.core.String
 import io.ktor.utils.io.core.toByteArray
@@ -90,10 +88,13 @@ class TagInfoGpsText(
         val bytes = entry.byteArrayValue
 
         /* Try ASCII with NO prefix. */
-        if (bytes.size < 8)
-            return bytes.decodeToIso8859String()
+        if (bytes.size < TEXT_ENCODING_BYTE_LENGTH)
+            return bytes.decodeIso8859BytesToString()
 
-        val encodingPrefixBytes = bytes.slice(0, count = 8)
+        val encodingPrefixBytes = bytes.slice(
+            startIndex = 0,
+            count = TEXT_ENCODING_BYTE_LENGTH
+        )
 
         val hasEncoding =
             encodingPrefixBytes.contentEquals(TEXT_ENCODING_ASCII_BYTES) ||
@@ -104,14 +105,14 @@ class TagInfoGpsText(
             val decodedString = String(
                 bytes = bytes,
                 offset = 8,
-                length = bytes.size - 8,
+                length = bytes.size - TEXT_ENCODING_BYTE_LENGTH,
                 Charsets.ISO_8859_1
             )
 
             val reEncodedBytes = decodedString.toByteArray()
 
             val bytesEqual = bytes.isEquals(
-                start = 8,
+                start = TEXT_ENCODING_BYTE_LENGTH,
                 other = reEncodedBytes,
                 otherStart = 0,
                 length = reEncodedBytes.size
@@ -121,10 +122,12 @@ class TagInfoGpsText(
                 return decodedString
         }
 
-        return bytes.decodeToIso8859String()
+        return bytes.decodeIso8859BytesToString()
     }
 
     companion object {
+
+        private val TEXT_ENCODING_BYTE_LENGTH = 8
 
         /**
          * Code for US-ASCII.

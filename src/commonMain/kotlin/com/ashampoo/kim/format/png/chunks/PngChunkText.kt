@@ -17,7 +17,7 @@
 package com.ashampoo.kim.format.png.chunks
 
 import com.ashampoo.kim.common.ImageReadException
-import com.ashampoo.kim.common.decodeToIso8859String
+import com.ashampoo.kim.common.decodeIso8859BytesToString
 import com.ashampoo.kim.common.indexOfNullTerminator
 import com.ashampoo.kim.format.png.ChunkType
 
@@ -44,14 +44,14 @@ class PngChunkText(
         keyword = bytes.copyOfRange(
             fromIndex = 0,
             toIndex = index
-        ).decodeToIso8859String()
+        ).decodeIso8859BytesToString()
 
         val textLength = bytes.size - (index + 1)
 
         text = bytes.copyOfRange(
             fromIndex = index + 1,
             toIndex = textLength
-        ).decodeToIso8859String()
+        ).decodeIso8859BytesToString()
     }
 
     override fun getKeyword(): String =

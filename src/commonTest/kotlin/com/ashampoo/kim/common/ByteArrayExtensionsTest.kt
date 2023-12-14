@@ -121,14 +121,14 @@ class ByteArrayExtensionsTest {
             "RIFF",
             byteArrayOf(
                 0x52, 0x49, 0x46, 0x46
-            ).decodeToIso8859String()
+            ).decodeIso8859BytesToString()
         )
 
         assertEquals(
             "WEBP",
             byteArrayOf(
                 0x57, 0x45, 0x42, 0x50
-            ).decodeToIso8859String()
+            ).decodeIso8859BytesToString()
         )
 
         assertEquals(
@@ -136,7 +136,7 @@ class ByteArrayExtensionsTest {
             byteArrayOf(
                 0x46, 0x55, 0x4A, 0x49, 0x46, 0x49, 0x4C, 0x4D,
                 0x43, 0x43, 0x44, 0x2D, 0x52, 0x41, 0x57
-            ).decodeToIso8859String()
+            ).decodeIso8859BytesToString()
         )
 
         /* ISO 8859-1 bytes */
@@ -147,7 +147,7 @@ class ByteArrayExtensionsTest {
                 0x73, 0x74, 0x20, 0xF6.toByte(), 0x66, 0x66,
                 0x65, 0x6E, 0x74, 0x6C, 0x69, 0x63, 0x68, 0x65,
                 0x73, 0x20, 0xDC.toByte(), 0x21
-            ).decodeToIso8859String()
+            ).decodeIso8859BytesToString()
         )
 
         /* Just for comparison the UTF-8 bytes. */
