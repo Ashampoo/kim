@@ -39,6 +39,9 @@ private val latin1CharArray = charArrayOf(
     'ð', 'ñ', 'ò', 'ó', 'ô', 'õ', 'ö', '÷', 'ø', 'ù', 'ú', 'û', 'ü', 'ý', 'þ', 'ÿ'
 )
 
+private val charToIndexMap =
+    latin1CharArray.withIndex().associate { it.value to it.index }
+
 /*
  * Replacement for Ktor:
  *
@@ -55,4 +58,5 @@ fun ByteArray.decodeLatin1BytesToString(): String =
 //    )
 
 fun String.encodeToLatin1Bytes(): ByteArray =
-    toByteArray(Charsets.ISO_8859_1)
+    map { charToIndexMap[it]?.toByte() ?: 0.toByte() }.toByteArray()
+//    toByteArray(Charsets.ISO_8859_1)
