@@ -23,6 +23,13 @@ class Latin1EncodingTest {
 
     private val shortTestString = "Äußerst öffentliches Ü!"
 
+    private val longTestString = " !\"#$%&'()*+,-./0123456789:;<=>?@" +
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~" +
+        "¡¢£¤¥¦§¨©ª«¬®¯°±²³´µ¶·¸¹º»¼½¾¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ" +
+        "×ØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõö÷øùúûüýþÿ"
+
+    private val nonLatin1TestString = "abc123€αβγδ★"
+
     private val shortTestStringLatin1Bytes: ByteArray =
         byteArrayOf(
             0xC4.toByte(), 0x75, 0xDF.toByte(), 0x65, 0x72,
@@ -83,10 +90,17 @@ class Latin1EncodingTest {
             0XBE, 0XC3, 0XBF
         ).map { it.toByte() }.toByteArray()
 
-    private val longTestString = " !\"#$%&'()*+,-./0123456789:;<=>?@" +
-        "ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~" +
-        "¡¢£¤¥¦§¨©ª«¬®¯°±²³´µ¶·¸¹º»¼½¾¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ" +
-        "×ØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõö÷øùúûüýþÿ"
+    private val nonLatin1TestStringLatin1Bytes: ByteArray =
+        intArrayOf(
+            0X61, 0X62, 0X63, 0X31, 0X32, 0X33,
+            0X3F, 0X3F, 0X3F, 0X3F, 0X3F, 0X3F
+        ).map { it.toByte() }.toByteArray()
+
+    private val nonLatin1TestStringUtf8Bytes: ByteArray =
+        intArrayOf(
+            0X61, 0X62, 0X63, 0X31, 0X32, 0X33, 0XE2, 0X82, 0XAC, 0XCE,
+            0XB1, 0XCE, 0XB2, 0XCE, 0XB3, 0XCE, 0XB4, 0XE2, 0X98, 0X85
+        ).map { it.toByte() }.toByteArray()
 
     @Test
     fun testEncodeToLatin1Bytes() {
@@ -99,6 +113,11 @@ class Latin1EncodingTest {
         assertContentEquals(
             expected = longTestStringLatin1Bytes,
             actual = longTestString.encodeToLatin1Bytes()
+        )
+
+        assertContentEquals(
+            expected = nonLatin1TestStringLatin1Bytes,
+            actual = nonLatin1TestString.encodeToLatin1Bytes()
         )
     }
 
@@ -114,6 +133,11 @@ class Latin1EncodingTest {
             expected = longTestStringUtf8Bytes,
             actual = longTestString.encodeToByteArray()
         )
+
+        assertContentEquals(
+            expected = nonLatin1TestStringUtf8Bytes,
+            actual = nonLatin1TestString.encodeToByteArray()
+        )
     }
 
     @Test
@@ -127,6 +151,11 @@ class Latin1EncodingTest {
         assertEquals(
             expected = longTestString,
             actual = longTestStringLatin1Bytes.decodeLatin1BytesToString()
+        )
+
+        assertEquals(
+            expected = "abc123??????",
+            actual = nonLatin1TestStringLatin1Bytes.decodeLatin1BytesToString()
         )
     }
 
@@ -142,6 +171,11 @@ class Latin1EncodingTest {
         assertEquals(
             expected = longTestString,
             actual = longTestStringUtf8Bytes.decodeToString()
+        )
+
+        assertEquals(
+            expected = nonLatin1TestString,
+            actual = nonLatin1TestStringUtf8Bytes.decodeToString()
         )
     }
 }
