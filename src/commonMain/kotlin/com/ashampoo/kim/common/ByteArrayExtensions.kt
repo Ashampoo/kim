@@ -17,8 +17,6 @@
 
 package com.ashampoo.kim.common
 
-import io.ktor.utils.io.charsets.Charsets
-
 private const val FF = 0xFF
 
 const val HEX_RADIX = 16
