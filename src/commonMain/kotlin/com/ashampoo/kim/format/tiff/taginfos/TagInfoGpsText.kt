@@ -80,6 +80,9 @@ class TagInfoGpsText(
 
         val bytes = entry.byteArrayValue
 
+        if (bytes.all { it == ZERO_BYTE })
+            return ""
+
         /* Try ASCII with NO prefix. */
         if (bytes.size < TEXT_ENCODING_BYTE_LENGTH)
             return bytes.decodeLatin1BytesToString()
@@ -95,10 +98,15 @@ class TagInfoGpsText(
 
         if (hasEncoding) {
 
-            val decodedString = bytes.copyOfRange(
+            val bytesWithoutPrefix = bytes.copyOfRange(
                 fromIndex = TEXT_ENCODING_BYTE_LENGTH,
                 toIndex = bytes.size
-            ).decodeLatin1BytesToString()
+            )
+
+            if (bytesWithoutPrefix.all { it == ZERO_BYTE })
+                return ""
+
+            val decodedString = bytesWithoutPrefix.decodeLatin1BytesToString()
 
             val reEncodedBytes = decodedString.encodeToLatin1Bytes()
 
@@ -118,7 +126,9 @@ class TagInfoGpsText(
 
     companion object {
 
-        private val TEXT_ENCODING_BYTE_LENGTH = 8
+        private const val ZERO_BYTE: Byte = 0.toByte()
+
+        private const val TEXT_ENCODING_BYTE_LENGTH = 8
 
         /**
          * Code for US-ASCII.
