@@ -19,12 +19,12 @@ package com.ashampoo.kim.format.tiff.taginfos
 import com.ashampoo.kim.common.ByteOrder
 import com.ashampoo.kim.common.ImageReadException
 import com.ashampoo.kim.common.ImageWriteException
-import com.ashampoo.kim.common.decodeIso8859BytesToString
 import com.ashampoo.kim.common.isEquals
 import com.ashampoo.kim.common.slice
 import com.ashampoo.kim.format.tiff.TiffField
 import com.ashampoo.kim.format.tiff.constants.TiffDirectoryType
 import com.ashampoo.kim.format.tiff.fieldtypes.FieldType
+import decodeLatin1BytesToString
 import io.ktor.utils.io.charsets.Charsets
 import io.ktor.utils.io.core.String
 import io.ktor.utils.io.core.toByteArray
@@ -89,7 +89,7 @@ class TagInfoGpsText(
 
         /* Try ASCII with NO prefix. */
         if (bytes.size < TEXT_ENCODING_BYTE_LENGTH)
-            return bytes.decodeIso8859BytesToString()
+            return bytes.decodeLatin1BytesToString()
 
         val encodingPrefixBytes = bytes.slice(
             startIndex = 0,
@@ -122,7 +122,7 @@ class TagInfoGpsText(
                 return decodedString
         }
 
-        return bytes.decodeIso8859BytesToString()
+        return bytes.decodeLatin1BytesToString()
     }
 
     companion object {

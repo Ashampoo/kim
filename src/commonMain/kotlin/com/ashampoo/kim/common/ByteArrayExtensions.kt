@@ -40,13 +40,6 @@ fun ByteArray.toHex(): String =
 fun ByteArray.toSingleNumberHexes(): String =
     joinToString(", ") { "0x" + it.toHex() }
 
-@Suppress("MagicNumber")
-fun ByteArray.decodeIso8859BytesToString(): String =
-    io.ktor.utils.io.core.String(
-        bytes = this,
-        charset = Charsets.ISO_8859_1
-    )
-
 fun ByteArray.indexOfNullTerminator(): Int =
     indexOfNullTerminator(0)
 
