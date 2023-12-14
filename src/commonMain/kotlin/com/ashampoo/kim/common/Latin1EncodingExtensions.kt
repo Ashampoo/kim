@@ -50,7 +50,10 @@ private const val UNKNOWN_CHAR_BYTE: Byte = 0X3F.toByte()
  * )
  */
 fun ByteArray.decodeLatin1BytesToString(): String =
-    map { latin1CharArray[it.toUInt8()] }.joinToString("")
+    buildString {
+        for (char in this@decodeLatin1BytesToString)
+            append(latin1CharArray[char.toUInt8()])
+    }
 
 /*
  * Replacement for this Ktor code:
