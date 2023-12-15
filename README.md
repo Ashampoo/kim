@@ -34,7 +34,7 @@ of Ashampoo Photos, which, in turn, is driven by user community feedback.
 ## Installation
 
 ```
-implementation("com.ashampoo:kim:0.8")
+implementation("com.ashampoo:kim:0.8.1")
 ```
 
 ## Sample usages
@@ -139,7 +139,6 @@ val newBytes = Kim.updateThumbnail(
 ## Limitations
 
 * Inability to update EXIF, IPTC and XMP in JPG files simultaneously.
-* There is no implementation of WebAssembly (WASM) for ZLib compression, which means that PNG files utilizing this compression cannot be processed.
 
 ## Contributions
 
