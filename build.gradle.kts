@@ -146,7 +146,9 @@ kotlin {
     }
 
     @OptIn(ExperimentalWasmDsl::class)
-    wasmJs()
+    wasmJs {
+        nodejs()
+    }
 
 //  Note: Missing support in kotlinx-datetime
 //    @OptIn(ExperimentalWasmDsl::class)
@@ -278,6 +280,10 @@ kotlin {
 
         wasmJsMain.dependsOn(this)
         // wasmWasiMain.dependsOn(this)
+
+        dependencies {
+            implementation(npm("pako", "2.1.0"))
+        }
     }
 }
 
