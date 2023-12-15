@@ -1,5 +1,6 @@
 import org.jetbrains.kotlin.gradle.plugin.mpp.NativeBuildType
 import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
+import org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalWasmDsl
 
 plugins {
     kotlin("multiplatform") version "1.9.21"
@@ -144,6 +145,13 @@ kotlin {
         }
     }
 
+    @OptIn(ExperimentalWasmDsl::class)
+    wasmJs()
+
+//  Note: Missing support in kotlinx-datetime
+//    @OptIn(ExperimentalWasmDsl::class)
+//    wasmWasi()
+
     @Suppress("UnusedPrivateMember") // False positive
     val commonMain by sourceSets.getting {
 
@@ -151,10 +159,6 @@ kotlin {
 
             /* Date handling */
             implementation("org.jetbrains.kotlinx:kotlinx-datetime:$dateTimeVersion")
-
-            /* Needed for Charset class. */
-            /* Defined as api() to prevent problems when used from a pure-java project. */
-            api("io.ktor:ktor-io:$ktorVersion")
 
             /* XMP handling */
             api("com.ashampoo:xmpcore:$xmpCoreVersion")
@@ -172,7 +176,7 @@ kotlin {
             implementation(kotlin("test"))
 
             /* Multiplatform test resources */
-            implementation("com.goncalossilva:resources:$testRessourcesVersion")
+            // implementation("com.goncalossilva:resources:$testRessourcesVersion")
         }
     }
 
@@ -202,15 +206,31 @@ kotlin {
         }
     }
 
-    val jvmMain by sourceSets.getting
+    val ktorMain by sourceSets.creating {
+
+        dependsOn(commonMain)
+
+        dependencies {
+
+            api("io.ktor:ktor-io:$ktorVersion")
+        }
+    }
+
+    val posixMain by sourceSets.creating {
+
+        dependsOn(commonMain)
+        dependsOn(ktorMain)
+    }
+
+    val jvmMain by sourceSets.getting {
+
+        dependsOn(commonMain)
+        dependsOn(ktorMain)
+    }
 
     @Suppress("UnusedPrivateMember", "UNUSED_VARIABLE") // False positive
     val androidMain by sourceSets.getting {
         dependsOn(jvmMain)
-    }
-
-    val posixMain by sourceSets.creating {
-        dependsOn(commonMain)
     }
 
     @Suppress("UnusedPrivateMember", "UNUSED_VARIABLE") // False positive
@@ -227,12 +247,24 @@ kotlin {
     val appleMain by sourceSets.creating {
 
         dependsOn(commonMain)
+        dependsOn(ktorMain)
         dependsOn(posixMain)
 
         iosArm64Main.dependsOn(this)
         iosSimulatorArm64Main.dependsOn(this)
         macosX64Main.dependsOn(this)
         macosArm64Main.dependsOn(this)
+    }
+
+    val wasmJsMain by sourceSets.getting
+    // val wasmWasiMain by sourceSets.getting
+
+    val wasmMain by sourceSets.creating {
+
+        dependsOn(commonMain)
+
+        wasmJsMain.dependsOn(this)
+        // wasmWasiMain.dependsOn(this)
     }
 }
 
@@ -303,6 +335,8 @@ afterEvaluate {
         val signMacosArm64Publication by tasks.getting
         val signMacosX64Publication by tasks.getting
         val signWinPublication by tasks.getting
+        val signWasmJsPublication by tasks.getting
+        val signWasmWasiPublication by tasks.getting
         val signKotlinMultiplatformPublication by tasks.getting
 
         val publishJvmPublicationToSonatypeRepository by tasks.getting
@@ -312,6 +346,8 @@ afterEvaluate {
         val publishMacosArm64PublicationToSonatypeRepository by tasks.getting
         val publishMacosX64PublicationToSonatypeRepository by tasks.getting
         val publishWinPublicationToSonatypeRepository by tasks.getting
+        val publishWasmJsPublicationToSonatypeRepository by tasks.getting
+        val publishWasmWasiPublicationToSonatypeRepository by tasks.getting
         val publishKotlinMultiplatformPublicationToSonatypeRepository by tasks.getting
         val publishAllPublicationsToSonatypeRepository by tasks.getting
 
@@ -319,7 +355,8 @@ afterEvaluate {
             signJvmPublication, signAndroidReleasePublication,
             signIosArm64Publication, signIosSimulatorArm64Publication,
             signMacosArm64Publication, signMacosX64Publication,
-            signWinPublication, signKotlinMultiplatformPublication
+            signWinPublication, signWasmJsPublication, signWasmWasiPublication,
+            signKotlinMultiplatformPublication
         )
 
         val publishTasks = listOf(
@@ -330,6 +367,8 @@ afterEvaluate {
             publishMacosArm64PublicationToSonatypeRepository,
             publishMacosX64PublicationToSonatypeRepository,
             publishWinPublicationToSonatypeRepository,
+            publishWasmJsPublicationToSonatypeRepository,
+            publishWasmWasiPublicationToSonatypeRepository,
             publishKotlinMultiplatformPublicationToSonatypeRepository,
             publishAllPublicationsToSonatypeRepository
         )
