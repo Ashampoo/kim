@@ -15,8 +15,31 @@
  */
 package com.ashampoo.kim.common
 
+import org.khronos.webgl.Uint8Array
+import org.khronos.webgl.get
+import org.khronos.webgl.set
+
 actual fun compress(input: String): ByteArray =
-    TODO("NOT implemented!") // FIXME
+    Pako.deflate(input).toByteArray()
 
 actual fun decompress(byteArray: ByteArray): String =
-    TODO("NOT implemented!") // FIXME
+    Pako.inflate(byteArray.toUint8Array(), toStringOptions)
+
+private val toStringOptions: JsAny = js("({to: 'string'})")
+
+private fun Uint8Array.toByteArray(): ByteArray =
+    ByteArray(length) { this[it] }
+
+private fun ByteArray.toUint8Array(): Uint8Array {
+    val result = Uint8Array(size)
+    forEachIndexed { index, byte ->
+        result[index] = byte
+    }
+    return result
+}
+
+@JsModule("pako")
+private external object Pako {
+    fun deflate(data: String): Uint8Array
+    fun inflate(data: Uint8Array, options: JsAny): String
+}

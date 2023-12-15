@@ -1,6 +1,7 @@
 import org.jetbrains.kotlin.gradle.plugin.mpp.NativeBuildType
 import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
 import org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalWasmDsl
+import org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootExtension
 
 plugins {
     kotlin("multiplatform") version "1.9.21"
@@ -146,7 +147,11 @@ kotlin {
     }
 
     @OptIn(ExperimentalWasmDsl::class)
-    wasmJs()
+    wasmJs {
+        // All tests reading from files fail, because kotlinx-io
+        // has no Path support for WASM (yet?).
+        // nodejs()
+    }
 
 //  Note: Missing support in kotlinx-datetime
 //    @OptIn(ExperimentalWasmDsl::class)
@@ -278,6 +283,10 @@ kotlin {
 
         wasmJsMain.dependsOn(this)
         // wasmWasiMain.dependsOn(this)
+
+        dependencies {
+            implementation(npm("pako", "2.1.0"))
+        }
     }
 }
 
@@ -450,3 +459,12 @@ publishing {
     }
 }
 // endregion
+
+//rootProject.the<NodeJsRootExtension>().apply {
+//    nodeVersion = "21.0.0-v8-canary202309143a48826a08"
+//    nodeDownloadBaseUrl = "https://nodejs.org/download/v8-canary"
+//}
+//
+//tasks.withType<org.jetbrains.kotlin.gradle.targets.js.npm.tasks.KotlinNpmInstallTask>().configureEach {
+//    args.add("--ignore-engines")
+//}
