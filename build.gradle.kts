@@ -176,7 +176,7 @@ kotlin {
             implementation(kotlin("test"))
 
             /* Multiplatform test resources */
-            // implementation("com.goncalossilva:resources:$testRessourcesVersion")
+            implementation("com.goncalossilva:resources:$testRessourcesVersion")
         }
     }
 
