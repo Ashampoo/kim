@@ -15,6 +15,8 @@
  */
 package com.ashampoo.kim.common
 
+import com.ashampoo.kim.getPathForResource
+import kotlinx.io.files.Path
 import kotlin.test.Test
 import kotlin.test.assertContentEquals
 import kotlin.test.assertEquals
@@ -129,5 +131,27 @@ class ZLibTest {
 
         for (entry in zlibTestData)
             assertEquals(entry.key, decompress(entry.value))
+    }
+
+    @Test
+    fun testRoundtripWithLongText() {
+
+        val testString = Path(getPathForResource(RESOURCE_PATH)).readBytes().decodeToString()
+
+        val compressed = compress(testString)
+
+        val decompressed = decompress(compressed)
+
+        assertEquals(
+            expected = testString,
+            actual = decompressed,
+            message = "Test string differs."
+        )
+    }
+
+    companion object {
+
+        private const val RESOURCE_PATH: String =
+            "src/commonTest/resources/com/ashampoo/kim/testdata/alice_in_wonderland.txt"
     }
 }
