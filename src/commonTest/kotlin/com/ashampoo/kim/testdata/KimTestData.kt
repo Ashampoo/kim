@@ -15,7 +15,9 @@
  */
 package com.ashampoo.kim.testdata
 
-import com.goncalossilva.resources.Resource
+import com.ashampoo.kim.common.readBytes
+import com.ashampoo.kim.getPathForResource
+import kotlinx.io.files.Path
 
 /**
  * This object extracts the bundled test
@@ -108,44 +110,45 @@ object KimTestData {
     fun getFileName(index: Int): String = "photo_$index.${getExtension(index)}"
 
     fun getFullImageDiskPath(index: Int): String =
-        "$RESOURCE_PATH/full/${getFileName(index)}"
+        getPathForResource("$RESOURCE_PATH/full/${getFileName(index)}")
 
     fun getBytesOf(index: Int): ByteArray =
         getBytesOf(getFileName(index))
 
     fun getBytesOf(fileName: String): ByteArray =
-        Resource("$RESOURCE_PATH/full/$fileName").readBytes()
+        Path(getPathForResource("$RESOURCE_PATH/full/$fileName")).readBytes()
 
     fun getHeaderBytesOf(index: Int): ByteArray =
-        Resource("$RESOURCE_PATH/headers/photo_${index}_header.${getExtension(index)}").readBytes()
+        Path(getPathForResource("$RESOURCE_PATH/headers/photo_${index}_header.${getExtension(index)}")).readBytes()
 
     fun getModifiedBytesOf(index: Int): ByteArray =
-        Resource("$RESOURCE_PATH/modified/photo_${index}_modified.${getExtension(index)}").readBytes()
+        Path(getPathForResource("$RESOURCE_PATH/modified/photo_${index}_modified.${getExtension(index)}")).readBytes()
 
     fun getExifThumbnailBytesOf(index: Int): ByteArray =
-        Resource("$RESOURCE_PATH/exifthumbs/photo_${index}_exifthumb.jpg").readBytes()
+        Path(getPathForResource("$RESOURCE_PATH/exifthumbs/photo_${index}_exifthumb.jpg")).readBytes()
 
     fun getPreviewBytesOf(index: Int): ByteArray =
-        Resource("$RESOURCE_PATH/previews/photo_${index}_preview.jpg").readBytes()
+        Path(getPathForResource("$RESOURCE_PATH/previews/photo_${index}_preview.jpg")).readBytes()
 
     fun getHeaderExifBytesOf(index: Int): ByteArray =
-        Resource("$RESOURCE_PATH/headers/photo_${index}_header_exif.tif").readBytes()
+        Path(getPathForResource("$RESOURCE_PATH/headers/photo_${index}_header_exif.tif")).readBytes()
 
     fun getHeaderTextFile(index: Int, identifier: String): String =
-        Resource("$RESOURCE_PATH/headers/photo_${index}_header_$identifier.txt").readText()
+        Path(getPathForResource("$RESOURCE_PATH/headers/photo_${index}_header_$identifier.txt")).readBytes()
+            .decodeToString()
 
     fun getToStringText(index: Int): ByteArray =
-        Resource("$RESOURCE_PATH/txt/photo_$index.txt").readBytes()
+        Path(getPathForResource("$RESOURCE_PATH/txt/photo_$index.txt")).readBytes()
 
     fun getXmp(fileName: String): String =
-        Resource("$RESOURCE_PATH/xmp/$fileName").readText()
+        Path(getPathForResource("$RESOURCE_PATH/xmp/$fileName")).readBytes().decodeToString()
 
     fun getOriginalXmp(index: Int): ByteArray =
-        Resource("$RESOURCE_PATH/xmp/photo_$index.xmp").readBytes()
+        Path(getPathForResource("$RESOURCE_PATH/xmp/photo_$index.xmp")).readBytes()
 
     fun getFormattedXmp(index: Int): String =
-        Resource("$RESOURCE_PATH/xmp/photo_${index}_formatted.xmp").readText()
+        Path(getPathForResource("$RESOURCE_PATH/xmp/photo_${index}_formatted.xmp")).readBytes().decodeToString()
 
     fun getMetadataCsvString(): String =
-        Resource("$RESOURCE_PATH/metadata.csv").readText()
+        Path(getPathForResource("$RESOURCE_PATH/metadata.csv")).readBytes().decodeToString()
 }

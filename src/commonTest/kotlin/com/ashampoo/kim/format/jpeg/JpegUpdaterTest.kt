@@ -16,12 +16,14 @@
 package com.ashampoo.kim.format.jpeg
 
 import com.ashampoo.kim.Kim
+import com.ashampoo.kim.common.exists
+import com.ashampoo.kim.common.readBytes
 import com.ashampoo.kim.common.writeBytes
+import com.ashampoo.kim.getPathForResource
 import com.ashampoo.kim.model.GpsCoordinates
 import com.ashampoo.kim.model.MetadataUpdate
 import com.ashampoo.kim.model.PhotoRating
 import com.ashampoo.kim.model.TiffOrientation
-import com.goncalossilva.resources.Resource
 import kotlinx.io.files.Path
 import kotlin.test.BeforeTest
 import kotlin.test.Test
@@ -40,12 +42,17 @@ class JpegUpdaterTest {
 
     private val resourcePath: String = "src/commonTest/resources/com/ashampoo/kim/updates_jpg"
 
-    private val originalBytes = Resource("$resourcePath/original.jpg").readBytes()
+    private val originalBytes = Path(
+        getPathForResource("$resourcePath/original.jpg")
+    ).readBytes()
 
-    private val noMetadataBytes = Resource("$resourcePath/no_metadata.jpg").readBytes()
+    private val noMetadataBytes = Path(
+        getPathForResource("$resourcePath/no_metadata.jpg")
+    ).readBytes()
 
-    private val thumbnailBytes =
-        Resource("$resourcePath/../testdata/test_thumb.jpg").readBytes()
+    private val thumbnailBytes = Path(
+        getPathForResource("$resourcePath/../testdata/test_thumb.jpg")
+    ).readBytes()
 
     @BeforeTest
     fun setUp() {
@@ -223,9 +230,9 @@ class JpegUpdaterTest {
     @OptIn(ExperimentalStdlibApi::class)
     private fun compare(fileName: String, actualBytes: ByteArray) {
 
-        val resource = Resource("$resourcePath/$fileName")
+        val path = Path(getPathForResource("$resourcePath/$fileName"))
 
-        if (!resource.exists()) {
+        if (!path.exists()) {
 
             Path("build/$fileName")
                 .writeBytes(actualBytes)
@@ -233,7 +240,7 @@ class JpegUpdaterTest {
             fail("Reference image $fileName does not exist.")
         }
 
-        val expectedBytes = resource.readBytes()
+        val expectedBytes = path.readBytes()
 
         val equals = expectedBytes.contentEquals(actualBytes)
 
