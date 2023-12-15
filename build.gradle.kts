@@ -336,7 +336,7 @@ afterEvaluate {
         val signMacosX64Publication by tasks.getting
         val signWinPublication by tasks.getting
         val signWasmJsPublication by tasks.getting
-        val signWasmWasiPublication by tasks.getting
+        // val signWasmWasiPublication by tasks.getting
         val signKotlinMultiplatformPublication by tasks.getting
 
         val publishJvmPublicationToSonatypeRepository by tasks.getting
@@ -347,7 +347,7 @@ afterEvaluate {
         val publishMacosX64PublicationToSonatypeRepository by tasks.getting
         val publishWinPublicationToSonatypeRepository by tasks.getting
         val publishWasmJsPublicationToSonatypeRepository by tasks.getting
-        val publishWasmWasiPublicationToSonatypeRepository by tasks.getting
+        // val publishWasmWasiPublicationToSonatypeRepository by tasks.getting
         val publishKotlinMultiplatformPublicationToSonatypeRepository by tasks.getting
         val publishAllPublicationsToSonatypeRepository by tasks.getting
 
@@ -355,7 +355,7 @@ afterEvaluate {
             signJvmPublication, signAndroidReleasePublication,
             signIosArm64Publication, signIosSimulatorArm64Publication,
             signMacosArm64Publication, signMacosX64Publication,
-            signWinPublication, signWasmJsPublication, signWasmWasiPublication,
+            signWinPublication, signWasmJsPublication, // signWasmWasiPublication,
             signKotlinMultiplatformPublication
         )
 
@@ -368,7 +368,7 @@ afterEvaluate {
             publishMacosX64PublicationToSonatypeRepository,
             publishWinPublicationToSonatypeRepository,
             publishWasmJsPublicationToSonatypeRepository,
-            publishWasmWasiPublicationToSonatypeRepository,
+            // publishWasmWasiPublicationToSonatypeRepository,
             publishKotlinMultiplatformPublicationToSonatypeRepository,
             publishAllPublicationsToSonatypeRepository
         )
