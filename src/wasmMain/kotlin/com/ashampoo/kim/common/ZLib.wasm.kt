@@ -13,23 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.ashampoo.kim.output
+package com.ashampoo.kim.common
 
-import com.ashampoo.kim.input.Closeable
+actual fun compress(input: String): ByteArray =
+    TODO("NOT implemented!") // FIXME
 
-interface ByteWriter : Closeable {
-
-    fun write(byte: Int)
-
-    fun write(byteArray: ByteArray)
-
-    fun flush()
-
-    @Suppress("MagicNumber")
-    fun writeInt(value: Int) {
-        write(0xFF and (value shr 24))
-        write(0xFF and (value shr 16))
-        write(0xFF and (value shr 8))
-        write(0xFF and (value shr 0))
-    }
-}
+actual fun decompress(byteArray: ByteArray): String =
+    TODO("NOT implemented!") // FIXME

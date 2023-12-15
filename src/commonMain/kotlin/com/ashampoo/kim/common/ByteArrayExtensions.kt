@@ -17,8 +17,6 @@
 
 package com.ashampoo.kim.common
 
-import io.ktor.utils.io.charsets.Charsets
-
 private const val FF = 0xFF
 
 const val HEX_RADIX = 16
@@ -39,13 +37,6 @@ fun ByteArray.toHex(): String =
 @Suppress("MagicNumber")
 fun ByteArray.toSingleNumberHexes(): String =
     joinToString(", ") { "0x" + it.toHex() }
-
-@Suppress("MagicNumber")
-fun ByteArray.decodeToIso8859String(): String =
-    io.ktor.utils.io.core.String(
-        bytes = this,
-        charset = Charsets.ISO_8859_1
-    )
 
 fun ByteArray.indexOfNullTerminator(): Int =
     indexOfNullTerminator(0)

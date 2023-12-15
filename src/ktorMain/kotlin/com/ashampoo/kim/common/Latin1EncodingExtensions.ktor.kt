@@ -13,23 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.ashampoo.kim.output
+package com.ashampoo.kim.common
 
-import com.ashampoo.kim.input.Closeable
+import io.ktor.utils.io.charsets.Charsets
+import io.ktor.utils.io.core.toByteArray
 
-interface ByteWriter : Closeable {
+actual fun ByteArray.decodeLatin1BytesToString(): String =
+    io.ktor.utils.io.core.String(
+        bytes = this,
+        charset = Charsets.ISO_8859_1
+    )
 
-    fun write(byte: Int)
-
-    fun write(byteArray: ByteArray)
-
-    fun flush()
-
-    @Suppress("MagicNumber")
-    fun writeInt(value: Int) {
-        write(0xFF and (value shr 24))
-        write(0xFF and (value shr 16))
-        write(0xFF and (value shr 8))
-        write(0xFF and (value shr 0))
-    }
-}
+actual fun String.encodeToLatin1Bytes(): ByteArray =
+    this.toByteArray(Charsets.ISO_8859_1)

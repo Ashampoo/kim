@@ -13,23 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.ashampoo.kim.output
+package com.ashampoo.kim.common
 
-import com.ashampoo.kim.input.Closeable
+expect fun ByteArray.decodeLatin1BytesToString(): String
 
-interface ByteWriter : Closeable {
-
-    fun write(byte: Int)
-
-    fun write(byteArray: ByteArray)
-
-    fun flush()
-
-    @Suppress("MagicNumber")
-    fun writeInt(value: Int) {
-        write(0xFF and (value shr 24))
-        write(0xFF and (value shr 16))
-        write(0xFF and (value shr 8))
-        write(0xFF and (value shr 0))
-    }
-}
+expect fun String.encodeToLatin1Bytes(): ByteArray

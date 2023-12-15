@@ -19,15 +19,13 @@ package com.ashampoo.kim.format.tiff.taginfos
 import com.ashampoo.kim.common.ByteOrder
 import com.ashampoo.kim.common.ImageReadException
 import com.ashampoo.kim.common.ImageWriteException
-import com.ashampoo.kim.common.decodeToIso8859String
+import com.ashampoo.kim.common.decodeLatin1BytesToString
+import com.ashampoo.kim.common.encodeToLatin1Bytes
 import com.ashampoo.kim.common.isEquals
+import com.ashampoo.kim.common.slice
 import com.ashampoo.kim.format.tiff.TiffField
 import com.ashampoo.kim.format.tiff.constants.TiffDirectoryType
 import com.ashampoo.kim.format.tiff.fieldtypes.FieldType
-import io.ktor.utils.io.charsets.Charset
-import io.ktor.utils.io.charsets.Charsets
-import io.ktor.utils.io.core.String
-import io.ktor.utils.io.core.toByteArray
 
 /**
  * Used by some GPS tags and the EXIF user comment tag,
@@ -51,19 +49,19 @@ class TagInfoGpsText(
         if (value !is String)
             throw ImageWriteException("GPS text value not String: $value")
 
-        val asciiBytes = value.toByteArray(Charsets.ISO_8859_1)
+        val asciiBytes = value.encodeToLatin1Bytes()
 
-        val result = ByteArray(asciiBytes.size + TEXT_ENCODING_ASCII.prefix.size)
+        val result = ByteArray(asciiBytes.size + TEXT_ENCODING_ASCII_BYTES.size)
 
-        TEXT_ENCODING_ASCII.prefix.copyInto(
+        TEXT_ENCODING_ASCII_BYTES.copyInto(
             destination = result,
             destinationOffset = 0,
-            endIndex = TEXT_ENCODING_ASCII.prefix.size
+            endIndex = TEXT_ENCODING_ASCII_BYTES.size
         )
 
         asciiBytes.copyInto(
             destination = result,
-            destinationOffset = TEXT_ENCODING_ASCII.prefix.size,
+            destinationOffset = TEXT_ENCODING_ASCII_BYTES.size,
             endIndex = asciiBytes.size
         )
 
@@ -77,71 +75,75 @@ class TagInfoGpsText(
         if (fieldType === FieldType.ASCII)
             return FieldType.ASCII.getValue(entry)
 
-        if (fieldType === FieldType.UNDEFINED) {
-            /* TODO Handle */
-        } else if (fieldType === FieldType.BYTE) {
-            /* TODO Handle */
-        } else {
+        if (fieldType !== FieldType.UNDEFINED && fieldType !== FieldType.BYTE)
             throw ImageReadException("GPS text field not encoded as bytes.")
-        }
 
         val bytes = entry.byteArrayValue
 
+        if (bytes.all { it == ZERO_BYTE })
+            return ""
+
         /* Try ASCII with NO prefix. */
-        if (bytes.size < 8)
-            return bytes.decodeToIso8859String()
+        if (bytes.size < TEXT_ENCODING_BYTE_LENGTH)
+            return bytes.decodeLatin1BytesToString()
 
-        for (encoding in TEXT_ENCODINGS) {
+        val encodingPrefixBytes = bytes.slice(
+            startIndex = 0,
+            count = TEXT_ENCODING_BYTE_LENGTH
+        )
 
-            if (bytes.isEquals(0, encoding.prefix, 0, encoding.prefix.size)) {
+        val hasEncoding =
+            encodingPrefixBytes.contentEquals(TEXT_ENCODING_ASCII_BYTES) ||
+                encodingPrefixBytes.contentEquals(TEXT_ENCODING_UNDEFINED_BYTES)
 
-                if (!Charset.isSupported(encoding.encodingName))
-                    throw ImageWriteException("No support for charset ${encoding.encodingName}")
+        if (hasEncoding) {
 
-                val charset = Charset.forName(encoding.encodingName)
+            val bytesWithoutPrefix = bytes.copyOfRange(
+                fromIndex = TEXT_ENCODING_BYTE_LENGTH,
+                toIndex = bytes.size
+            )
 
-                val decodedString = String(
-                    bytes,
-                    encoding.prefix.size,
-                    bytes.size - encoding.prefix.size,
-                    charset
-                )
+            if (bytesWithoutPrefix.all { it == ZERO_BYTE })
+                return ""
 
-                val reEncodedBytes = decodedString.toByteArray(charset)
+            val decodedString = bytesWithoutPrefix.decodeLatin1BytesToString()
 
-                val bytesEqual = bytes.isEquals(
-                    encoding.prefix.size,
-                    reEncodedBytes,
-                    0,
-                    reEncodedBytes.size
-                )
+            val reEncodedBytes = decodedString.encodeToLatin1Bytes()
 
-                if (bytesEqual)
-                    return decodedString
-            }
+            val bytesEqual = bytes.isEquals(
+                start = TEXT_ENCODING_BYTE_LENGTH,
+                other = reEncodedBytes,
+                otherStart = 0,
+                length = reEncodedBytes.size
+            )
+
+            if (bytesEqual)
+                return decodedString
         }
 
-        return bytes.decodeToIso8859String()
+        return bytes.decodeLatin1BytesToString()
     }
 
     companion object {
 
-        /*
-         * This byte sequence is for US-ASCII, but that's not supported
-         * in Ktor IO. Therefore we use ISO-8859-1 as a replacement.
+        private const val ZERO_BYTE: Byte = 0.toByte()
+
+        private const val TEXT_ENCODING_BYTE_LENGTH = 8
+
+        /**
+         * Code for US-ASCII.
+         *
+         * This is a subset of ISO-8859-1 (Latin), so we can use that.
          */
-        private val TEXT_ENCODING_ASCII = TextEncoding(
-            byteArrayOf(0x41, 0x53, 0x43, 0x49, 0x49, 0x00, 0x00, 0x00),
-            "ISO-8859-1"
-        )
+        private val TEXT_ENCODING_ASCII_BYTES =
+            byteArrayOf(0x41, 0x53, 0x43, 0x49, 0x49, 0x00, 0x00, 0x00)
 
-        // Undefined
-        // Try to interpret an undefined text as ISO-8859-1 (Latin)
-        private val TEXT_ENCODING_UNDEFINED = TextEncoding(
-            byteArrayOf(0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00),
-            "ISO-8859-1"
-        )
-
-        private val TEXT_ENCODINGS = listOf(TEXT_ENCODING_ASCII, TEXT_ENCODING_UNDEFINED)
+        /*
+         * Undefined
+         *
+         * Try to interpret an undefined text as ISO-8859-1 (Latin)
+         */
+        private val TEXT_ENCODING_UNDEFINED_BYTES =
+            byteArrayOf(0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00)
     }
 }

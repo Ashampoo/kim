@@ -37,16 +37,12 @@ import com.ashampoo.kim.input.ByteArrayByteReader
 import com.ashampoo.kim.input.ByteReader
 import com.ashampoo.kim.input.DefaultRandomAccessByteReader
 import com.ashampoo.kim.input.KotlinIoSourceByteReader
-import com.ashampoo.kim.input.KtorByteReadChannelByteReader
-import com.ashampoo.kim.input.KtorInputByteReader
 import com.ashampoo.kim.input.PrePendingByteReader
+import com.ashampoo.kim.input.use
 import com.ashampoo.kim.model.ImageFormat
 import com.ashampoo.kim.model.MetadataUpdate
 import com.ashampoo.kim.output.ByteArrayByteWriter
 import com.ashampoo.kim.output.ByteWriter
-import io.ktor.utils.io.ByteReadChannel
-import io.ktor.utils.io.core.ByteReadPacket
-import io.ktor.utils.io.core.use
 import kotlinx.io.files.Path
 
 object Kim {
@@ -70,16 +66,6 @@ object Kim {
             byteReader?.let { readMetadata(it) }
         }
     }
-
-    @kotlin.jvm.JvmStatic
-    @Throws(ImageReadException::class)
-    fun readMetadata(byteReadPacket: ByteReadPacket): ImageMetadata? =
-        readMetadata(KtorInputByteReader(byteReadPacket))
-
-    @kotlin.jvm.JvmStatic
-    @Throws(ImageReadException::class)
-    fun readMetadata(byteReadChannel: ByteReadChannel, contentLength: Long): ImageMetadata? =
-        readMetadata(KtorByteReadChannelByteReader(byteReadChannel, contentLength))
 
     @kotlin.jvm.JvmStatic
     @Throws(ImageReadException::class)

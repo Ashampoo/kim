@@ -17,7 +17,7 @@
 package com.ashampoo.kim.format.png.chunks
 
 import com.ashampoo.kim.common.ImageReadException
-import com.ashampoo.kim.common.decodeToIso8859String
+import com.ashampoo.kim.common.decodeLatin1BytesToString
 import com.ashampoo.kim.common.decompress
 import com.ashampoo.kim.common.indexOfNullTerminator
 import com.ashampoo.kim.format.png.ChunkType
@@ -46,7 +46,7 @@ class PngChunkZtxt(
         keyword = bytes.copyOfRange(
             fromIndex = 0,
             toIndex = index
-        ).decodeToIso8859String()
+        ).decodeLatin1BytesToString()
 
         index++
 

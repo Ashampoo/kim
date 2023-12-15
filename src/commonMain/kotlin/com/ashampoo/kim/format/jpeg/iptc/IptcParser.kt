@@ -18,7 +18,7 @@ package com.ashampoo.kim.format.jpeg.iptc
 
 import com.ashampoo.kim.common.ByteOrder
 import com.ashampoo.kim.common.ImageReadException
-import com.ashampoo.kim.common.decodeToIso8859String
+import com.ashampoo.kim.common.decodeLatin1BytesToString
 import com.ashampoo.kim.common.slice
 import com.ashampoo.kim.common.startsWith
 import com.ashampoo.kim.common.toInt
@@ -143,7 +143,7 @@ object IptcParser {
                     value = if (isUtf8)
                         recordData.decodeToString()
                     else
-                        recordData.decodeToIso8859String()
+                        recordData.decodeLatin1BytesToString()
                 )
             )
         }
