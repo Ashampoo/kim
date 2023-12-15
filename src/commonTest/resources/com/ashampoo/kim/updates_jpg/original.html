@@ -8,15 +8,51 @@
     <style type="text/css">
         <!--
         /* character style ID's */
-        .D { color: #000000 } /* default color */
-        .V { color: #ff0000 } /* duplicate block 1 */
-        .W { color: #004400 } /* normal block 1 */
-        .X { color: #ff4488 } /* duplicate block 2 */
-        .Y { color: #448844 } /* normal block 2 */
-        .U { color: #cc8844 } /* unused data block */
-        .H { color: #0000ff } /* highlighted tag name */
-        .F { color: #aa00dd } /* actual offset differs */
-        .M { text-decoration: underline } /* maker notes data */
+        .D {
+            color: #000000
+        }
+
+        /* default color */
+        .V {
+            color: #ff0000
+        }
+
+        /* duplicate block 1 */
+        .W {
+            color: #004400
+        }
+
+        /* normal block 1 */
+        .X {
+            color: #ff4488
+        }
+
+        /* duplicate block 2 */
+        .Y {
+            color: #448844
+        }
+
+        /* normal block 2 */
+        .U {
+            color: #cc8844
+        }
+
+        /* unused data block */
+        .H {
+            color: #0000ff
+        }
+
+        /* highlighted tag name */
+        .F {
+            color: #aa00dd
+        }
+
+        /* actual offset differs */
+        .M {
+            text-decoration: underline
+        }
+
+        /* maker notes data */
         .tt { /* tooltip text */
             visibility: hidden;
             position: absolute;
@@ -29,6 +65,7 @@
             border: 1px solid gray;
             z-index: 3;
         }
+
         .tb { /* tooltip background */
             visibility: hidden;
             position: absolute;
@@ -41,23 +78,40 @@
             opacity: 0.8;
             z-index: 2;
         }
+
         /* table styles */
         table.dump {
-          border-top: 1px solid gray;
-          border-bottom: 1px solid gray;
+            border-top: 1px solid gray;
+            border-bottom: 1px solid gray;
         }
-        table.dump td { padding: .2em .3em }
+
+        table.dump td {
+            padding: .2em .3em
+        }
+
         td.c2 {
-          border-left: 1px solid gray;
-          border-right: 1px solid gray;
+            border-left: 1px solid gray;
+            border-right: 1px solid gray;
         }
-        pre   { margin: 0 }
-        table { font-size: .9em }
-        body  { color: black; background: white }
+
+        pre {
+            margin: 0
+        }
+
+        table {
+            font-size: .9em
+        }
+
+        body {
+            color: black;
+            background: white
+        }
+
         -->
     </style>
     <script language="JavaScript" type="text/JavaScript">
-        <!-- Begin
+        <!--
+        Begin
         // tooltip positioning constants
         var TMAR = 4;   // top/left margins
         var BMAR = 16;  // bottom/right margins (scrollbars may overhang inner dimensions)
@@ -73,141 +127,139 @@
         var hlist, tt, tb, firstOutEvt, lastInEvt;
 
         function GetElementsByClass(classname, tagname) {
-          var found = new Array();
-          var list = document.getElementsByTagName(tagname);
-          var len = list.length;
-          for (var i=0, j=0; i<len; ++i) {
-            var classes = list[i].className.split(' ');
-            for (var k=0; k<classes.length; ++k) {
-              if (classes[k] == classname) {
-                found[j++] = list[i];
-                break;
-              }
+            var found = new Array();
+            var list = document.getElementsByTagName(tagname);
+            var len = list.length;
+            for (var i = 0, j = 0; i < len; ++i) {
+                var classes = list[i].className.split(' ');
+                for (var k = 0; k < classes.length; ++k) {
+                    if (classes[k] == classname) {
+                        found[j++] = list[i];
+                        break;
+                    }
+                }
             }
-          }
-          return found;
+            return found;
         }
 
         // click mouse
-        function doClick(e)
-        {
-          if (!clicked) {
-            firstOutEvt = lastInEvt = undefined;
-            high(e, 2);
-            if (hlist) clicked = 1;
-          } else {
-            clicked = 0;
-            if (firstOutEvt) high(firstOutEvt, 0);
-            if (lastInEvt) high(lastInEvt, 1);
-          }
+        function doClick(e) {
+            if (!clicked) {
+                firstOutEvt = lastInEvt = undefined;
+                high(e, 2);
+                if (hlist) clicked = 1;
+            } else {
+                clicked = 0;
+                if (firstOutEvt) high(firstOutEvt, 0);
+                if (lastInEvt) high(lastInEvt, 1);
+            }
         }
 
         // move tooltip
-        function move(e)
-        {
-          if (!tt) return;
-          if (ie6 && (tt.style.top  == '' || tt.style.top  == 0) &&
-                     (tt.style.left == '' || tt.style.left == 0))
-          {
-            tt.style.width  = tt.offsetWidth  + 'px';
-            tt.style.height = tt.offsetHeight + 'px';
-          }
-          var w, h;
-          // browser inconsistencies make getting window size more complex than it should be,
-          // and even then we don't know if it is smaller due to scrollbar width
-          if (typeof(window.innerWidth) == 'number') {
-            w = window.innerWidth;
-            h = window.innerHeight;
-          } else if (document.documentElement && document.documentElement.clientWidth) {
-            w = document.documentElement.clientWidth;
-            h = document.documentElement.clientHeight;
-          } else {
-            w = document.body.clientWidth;
-            h = document.body.clientHeight;
-          }
-          var x = e.clientX + XOFF;
-          var y = e.clientY + YOFF;
-          if (safari1) { // patch for people still using OS X 10.3.9
-            x -= document.body.scrollLeft + document.documentElement.scrollLeft;
-            y -= document.body.scrollTop  + document.documentElement.scrollTop;
-          }
-          var mx = w - BMAR - tt.offsetWidth;
-          var my = h - BMAR - tt.offsetHeight;
-          if (y > my + YOFF - YMIN) y = e.clientY - YTOP - tt.offsetHeight;
-          if (x > mx) x = mx;
-          if (y > my) y = my;
-          if (x < TMAR) x = TMAR;
-          if (y < TMAR) y = TMAR;
-          x += document.body.scrollLeft + document.documentElement.scrollLeft;
-          y += document.body.scrollTop  + document.documentElement.scrollTop;
-          tb.style.width  = tt.offsetWidth  + 'px';
-          tb.style.height = tt.offsetHeight + 'px';
-          tt.style.top  = tb.style.top  = y + 'px';
-          tt.style.left = tb.style.left = x + 'px';
-          tt.style.visibility = tb.style.visibility = 'visible';
+        function move(e) {
+            if (!tt) return;
+            if (ie6 && (tt.style.top == '' || tt.style.top == 0) &&
+                (tt.style.left == '' || tt.style.left == 0)) {
+                tt.style.width = tt.offsetWidth + 'px';
+                tt.style.height = tt.offsetHeight + 'px';
+            }
+            var w, h;
+            // browser inconsistencies make getting window size more complex than it should be,
+            // and even then we don't know if it is smaller due to scrollbar width
+            if (typeof (window.innerWidth) == 'number') {
+                w = window.innerWidth;
+                h = window.innerHeight;
+            } else if (document.documentElement && document.documentElement.clientWidth) {
+                w = document.documentElement.clientWidth;
+                h = document.documentElement.clientHeight;
+            } else {
+                w = document.body.clientWidth;
+                h = document.body.clientHeight;
+            }
+            var x = e.clientX + XOFF;
+            var y = e.clientY + YOFF;
+            if (safari1) { // patch for people still using OS X 10.3.9
+                x -= document.body.scrollLeft + document.documentElement.scrollLeft;
+                y -= document.body.scrollTop + document.documentElement.scrollTop;
+            }
+            var mx = w - BMAR - tt.offsetWidth;
+            var my = h - BMAR - tt.offsetHeight;
+            if (y > my + YOFF - YMIN) y = e.clientY - YTOP - tt.offsetHeight;
+            if (x > mx) x = mx;
+            if (y > my) y = my;
+            if (x < TMAR) x = TMAR;
+            if (y < TMAR) y = TMAR;
+            x += document.body.scrollLeft + document.documentElement.scrollLeft;
+            y += document.body.scrollTop + document.documentElement.scrollTop;
+            tb.style.width = tt.offsetWidth + 'px';
+            tb.style.height = tt.offsetHeight + 'px';
+            tt.style.top = tb.style.top = y + 'px';
+            tt.style.left = tb.style.left = x + 'px';
+            tt.style.visibility = tb.style.visibility = 'visible';
         }
 
         // highlight/unhighlight text
-        function high(e,on) {
-          if (on) {
-            lastInEvt = e;
-          } else {
-            if (!firstOutEvt) firstOutEvt = e;
-          }
-          if (clicked) return;
-          var targ;
-          if (e.target) targ = e.target;
-          else if (e.srcElement) targ = e.srcElement;
-          if (targ.nodeType == 3) targ = targ.parentNode; // defeat Safari bug
-          if (!targ.name) targ = targ.parentNode; // go up another level if necessary
-          if (targ.name && document.getElementsByName) {
-            // un-highlight current objects
-            if (hlist) {
-              for (var i=0; i<hlist.length; ++i) {
-                for (var j=0; j<hlist[i].length; ++j) {
-                  hlist[i][j].style.background = 'transparent';
-                }
-              }
-              hlist = null;
-            }
-            if (tt) {
-              // hide old tooltip
-              tt.style.visibility = tb.style.visibility = 'hidden';
-              tt = null;
-            }
+        function high(e, on) {
             if (on) {
-              if (targ.name.substring(0,1) == 't') {
-                // show our tooltip (ID is different than name to avoid confusing IE)
-                tt = document.getElementById('p' + targ.name.substring(1));
-                if (tt) {
-                  tb = document.getElementById('tb');
-                  move(e);
-                }
-              }
-              // highlight anchor elements with the same name
-              hlist = new Array;
-              hlist.push(document.getElementsByName(targ.name));
-              // is this an IFD pointer?
-              var pos = targ.className.indexOf('Offset_');
-              if (pos > 0) {
-                // add elements from this IFD to our highlight list
-                hlist.push(document.getElementsByClassName(targ.className.substr(pos+7)));
-              }
-              // use class name to highlight span elements if necessary
-              for (var i=0; i<mspan.length; ++i) {
-                if (mspan[i] != targ.name) continue;
-                // add these span elements to our highlight list
-                hlist.push(GetElementsByClass(targ.name, 'span'));
-                break;
-              }
-              for (var i=0; i<hlist.length; ++i) {
-                for (var j=0; j<hlist[i].length; ++j) {
-                  hlist[i][j].style.background = on == 2 ? '#ffbbbb' : '#ffcc99';
-                }
-              }
+                lastInEvt = e;
+            } else {
+                if (!firstOutEvt) firstOutEvt = e;
             }
-          }
+            if (clicked) return;
+            var targ;
+            if (e.target) targ = e.target;
+            else if (e.srcElement) targ = e.srcElement;
+            if (targ.nodeType == 3) targ = targ.parentNode; // defeat Safari bug
+            if (!targ.name) targ = targ.parentNode; // go up another level if necessary
+            if (targ.name && document.getElementsByName) {
+                // un-highlight current objects
+                if (hlist) {
+                    for (var i = 0; i < hlist.length; ++i) {
+                        for (var j = 0; j < hlist[i].length; ++j) {
+                            hlist[i][j].style.background = 'transparent';
+                        }
+                    }
+                    hlist = null;
+                }
+                if (tt) {
+                    // hide old tooltip
+                    tt.style.visibility = tb.style.visibility = 'hidden';
+                    tt = null;
+                }
+                if (on) {
+                    if (targ.name.substring(0, 1) == 't') {
+                        // show our tooltip (ID is different than name to avoid confusing IE)
+                        tt = document.getElementById('p' + targ.name.substring(1));
+                        if (tt) {
+                            tb = document.getElementById('tb');
+                            move(e);
+                        }
+                    }
+                    // highlight anchor elements with the same name
+                    hlist = new Array;
+                    hlist.push(document.getElementsByName(targ.name));
+                    // is this an IFD pointer?
+                    var pos = targ.className.indexOf('Offset_');
+                    if (pos > 0) {
+                        // add elements from this IFD to our highlight list
+                        hlist.push(document.getElementsByClassName(targ.className.substr(pos + 7)));
+                    }
+                    // use class name to highlight span elements if necessary
+                    for (var i = 0; i < mspan.length; ++i) {
+                        if (mspan[i] != targ.name) continue;
+                        // add these span elements to our highlight list
+                        hlist.push(GetElementsByClass(targ.name, 'span'));
+                        break;
+                    }
+                    for (var i = 0; i < hlist.length; ++i) {
+                        for (var j = 0; j < hlist[i].length; ++j) {
+                            hlist[i][j].style.background = on == 2 ? '#ffbbbb' : '#ffcc99';
+                        }
+                    }
+                }
+            }
         }
+
         mspan[0] = "t38";
 
         // End --->

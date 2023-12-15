@@ -5,6 +5,8 @@
 ![Android](https://img.shields.io/badge/-Android-gray.svg?style=flat)
 ![macOS](https://img.shields.io/badge/-macOS-gray.svg?style=flat)
 ![iOS](https://img.shields.io/badge/-iOS-gray.svg?style=flat)
+![Windows](https://img.shields.io/badge/-Windows-gray.svg?style=flat)
+![WASM](https://img.shields.io/badge/-WASM-gray.svg?style=flat)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=kim&metric=coverage)](https://sonarcloud.io/summary/new_code?id=kim)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.ashampoo/kim/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.ashampoo/kim)
 
@@ -137,7 +139,7 @@ val newBytes = Kim.updateThumbnail(
 ## Limitations
 
 * Inability to update EXIF, IPTC and XMP in JPG files simultaneously.
-* Insufficient error handling for broken or non-standard conforming files.
+* There is no implementation of WebAssembly (WASM) for ZLib compression, which means that PNG files utilizing this compression cannot be processed.
 
 ## Contributions
 

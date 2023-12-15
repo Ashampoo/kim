@@ -15,6 +15,14 @@
  */
 package com.ashampoo.kim.common
 
-expect fun ByteArray.decodeLatin1BytesToString(): String
+import io.ktor.utils.io.charsets.Charsets
+import io.ktor.utils.io.core.toByteArray
 
-expect fun String.encodeToLatin1Bytes(): ByteArray
+actual fun ByteArray.decodeLatin1BytesToString(): String =
+    io.ktor.utils.io.core.String(
+        bytes = this,
+        charset = Charsets.ISO_8859_1
+    )
+
+actual fun String.encodeToLatin1Bytes(): ByteArray =
+    this.toByteArray(Charsets.ISO_8859_1)
