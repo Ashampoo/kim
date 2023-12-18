@@ -1,7 +1,6 @@
 import org.jetbrains.kotlin.gradle.plugin.mpp.NativeBuildType
 import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
 import org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalWasmDsl
-import org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootExtension
 
 plugins {
     kotlin("multiplatform") version "1.9.21"
@@ -15,6 +14,7 @@ plugins {
     id("me.qoomon.git-versioning") version "6.4.3"
     id("com.goncalossilva.resources") version "0.4.0"
     id("com.github.ben-manes.versions") version "0.50.0"
+    id("org.jetbrains.dokka") version "1.9.10"
 }
 
 repositories {
