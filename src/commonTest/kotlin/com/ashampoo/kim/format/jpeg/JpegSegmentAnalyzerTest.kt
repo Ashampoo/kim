@@ -15,6 +15,8 @@
  */
 package com.ashampoo.kim.format.jpeg
 
+import com.ashampoo.kim.common.toUInt16
+import com.ashampoo.kim.format.jpeg.JpegConstants.JPEG_BYTE_ORDER
 import com.ashampoo.kim.input.ByteArrayByteReader
 import com.ashampoo.kim.testdata.KimTestData
 import kotlin.test.Test
@@ -845,6 +847,22 @@ class JpegSegmentAnalyzerTest {
                 actual = segmentInfos.sumOf { it.length },
                 message = "Sum of lengths should match bytes size."
             )
+
+            for (segmentInfo in segmentInfos) {
+
+                val offset = segmentInfo.offset.toInt()
+
+                val markerAtOffset = byteArrayOf(
+                    bytes[offset],
+                    bytes[offset + 1]
+                ).toUInt16(JPEG_BYTE_ORDER)
+
+                assertEquals(
+                    expected = segmentInfo.marker,
+                    actual = markerAtOffset,
+                    message = "Unexpected marker."
+                )
+            }
 
             /* Compare previously saved results. */
             assertEquals(
