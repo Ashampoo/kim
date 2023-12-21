@@ -17,7 +17,9 @@ package com.ashampoo.kim.format.jpeg
 
 import com.ashampoo.kim.common.ByteOrder
 import com.ashampoo.kim.common.ImageReadException
+import com.ashampoo.kim.common.toInt
 import com.ashampoo.kim.common.toSingleNumberHexes
+import com.ashampoo.kim.common.toUInt16
 import com.ashampoo.kim.common.tryWithImageReadException
 import com.ashampoo.kim.format.ImageFormatMagicNumbers
 import com.ashampoo.kim.format.jpeg.JpegConstants.JPEG_BYTE_ORDER
@@ -31,19 +33,16 @@ import com.ashampoo.kim.format.tiff.constants.TiffTag
 import com.ashampoo.kim.input.ByteReader
 
 /**
- * This algorithm quickly identifies the EXIF orientation offset.
- * If the file already has one no restructuring of the whole file is necessary.
+ * Algorithm to find segment offsets, types and lengths
  */
-object JpegOrientationOffsetFinder {
-
-    const val APP1_MARKER = 0xE1.toByte()
+object JpegSegmentAnalyzer {
 
     @OptIn(ExperimentalStdlibApi::class)
     @Throws(ImageReadException::class)
     @Suppress("ComplexMethod")
-    fun findOrientationOffset(
+    fun findSegmentInfos(
         byteReader: ByteReader
-    ): Long? = tryWithImageReadException {
+    ): List<JpegSegmentInfo> = tryWithImageReadException {
 
         val magicNumberBytes = byteReader.readBytes(ImageFormatMagicNumbers.jpeg.size).toList()
 
@@ -51,6 +50,8 @@ object JpegOrientationOffsetFinder {
         require(magicNumberBytes == ImageFormatMagicNumbers.jpeg) {
             "JPEG magic number mismatch: ${magicNumberBytes.toByteArray().toSingleNumberHexes()}"
         }
+
+        val segmentInfos = mutableListOf<JpegSegmentInfo>()
 
         var positionCounter: Long = ImageFormatMagicNumbers.jpeg.size.toLong()
 
@@ -88,74 +89,31 @@ object JpegOrientationOffsetFinder {
             val segmentLength =
                 byteReader.read2BytesAsInt("segmentLength", JPEG_BYTE_ORDER) - 2
 
+            segmentInfos.add(
+                JpegSegmentInfo(
+                    offset = positionCounter,
+                    marker = byteArrayOf(segmentIdentifier, segmentType).toUInt16(JPEG_BYTE_ORDER),
+                    length = segmentLength
+                )
+            )
+
             positionCounter += 2
 
             if (segmentLength <= 0)
                 throw ImageReadException("Illegal JPEG segment length: $segmentLength")
 
-            /* We are only looking for the EXIF segment. */
-            if (segmentType != APP1_MARKER) {
+            byteReader.skipBytes("skip segment", segmentLength.toLong())
 
-                byteReader.skipBytes("skip segment", segmentLength.toLong())
-
-                positionCounter += segmentLength
-
-                continue
-            }
-
-            val exifIdentifierBytes = byteReader.readBytes("EXIF identifier", 6)
-
-            positionCounter += 6
-
-            /* Skip the APP1 XMP segment. */
-            if (!exifIdentifierBytes.contentEquals(JpegConstants.EXIF_IDENTIFIER_CODE)) {
-                byteReader.skipBytes("skip segment", segmentLength.toLong() - 6)
-                positionCounter += segmentLength - 6
-                continue
-            }
-
-            val tiffHeader = TiffReader.readTiffHeader(byteReader)
-
-            val exifByteOrder = tiffHeader.byteOrder
-
-            byteReader.skipBytes(
-                "skip bytes to first IFD",
-                tiffHeader.offsetToFirstIFD - TIFF_HEADER_SIZE
-            )
-
-            val entryCount = byteReader.read2BytesAsInt("entrycount", exifByteOrder)
-
-            positionCounter += tiffHeader.offsetToFirstIFD + 2
-
-            for (entryIndex in 0 until entryCount) {
-
-                val tag = byteReader.read2BytesAsInt("Entry $entryIndex: 'tag'", exifByteOrder)
-
-                if (tag == TiffTag.TIFF_TAG_ORIENTATION.tag) {
-
-                    positionCounter += 8
-
-                    if (exifByteOrder == ByteOrder.BIG_ENDIAN)
-                        positionCounter++
-
-                    return positionCounter
-
-                } else {
-
-                    byteReader.skipBytes("skip TIFF entry", TIFF_ENTRY_LENGTH - 2L)
-
-                    positionCounter += TIFF_ENTRY_LENGTH
-                }
-            }
-
-            /*
-             * We are now past the EXIF segment.
-             * If we reach this point there is no orientation flag.
-             */
-            return null
+            positionCounter += segmentLength
 
         } while (true)
 
-        return null
+        return segmentInfos
     }
+
+    data class JpegSegmentInfo(
+        val offset: Long,
+        val marker: Int,
+        val length: Int
+    )
 }
