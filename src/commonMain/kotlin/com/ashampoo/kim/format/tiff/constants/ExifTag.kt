@@ -55,6 +55,16 @@ object ExifTag {
         TiffDirectoryType.EXIF_DIRECTORY_INTEROP_IFD
     )
 
+    val EXIF_TAG_INTEROPERABILITY_RELATED_IMAGE_WIDTH = TagInfoShort(
+        "RelatedImageWidth", 0x1001,
+        TiffDirectoryType.EXIF_DIRECTORY_INTEROP_IFD
+    )
+
+    val EXIF_TAG_INTEROPERABILITY_RELATED_IMAGE_HEIGHT = TagInfoShort(
+        "RelatedImageHeight", 0x1002,
+        TiffDirectoryType.EXIF_DIRECTORY_INTEROP_IFD
+    )
+
     val EXIF_TAG_PROCESSING_SOFTWARE = TagInfoAscii(
         "ProcessingSoftware", 0x000b, -1,
         TIFF_DIRECTORY_IFD0
@@ -917,6 +927,8 @@ object ExifTag {
 
     val ALL_EXIF_TAGS = listOf(
         EXIF_TAG_INTEROPERABILITY_INDEX, EXIF_TAG_INTEROPERABILITY_VERSION,
+        EXIF_TAG_INTEROPERABILITY_RELATED_IMAGE_WIDTH,
+        EXIF_TAG_INTEROPERABILITY_RELATED_IMAGE_HEIGHT,
         EXIF_TAG_PROCESSING_SOFTWARE,
         EXIF_TAG_SOFTWARE,
         EXIF_TAG_PREVIEW_IMAGE_START_IFD0,
