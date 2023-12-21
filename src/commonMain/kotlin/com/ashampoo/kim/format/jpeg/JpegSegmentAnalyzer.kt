@@ -15,21 +15,16 @@
  */
 package com.ashampoo.kim.format.jpeg
 
-import com.ashampoo.kim.common.ByteOrder
 import com.ashampoo.kim.common.ImageReadException
-import com.ashampoo.kim.common.toInt
 import com.ashampoo.kim.common.toSingleNumberHexes
 import com.ashampoo.kim.common.toUInt16
 import com.ashampoo.kim.common.tryWithImageReadException
 import com.ashampoo.kim.format.ImageFormatMagicNumbers
+import com.ashampoo.kim.format.jpeg.JpegConstants.EOI_MARKER
 import com.ashampoo.kim.format.jpeg.JpegConstants.JPEG_BYTE_ORDER
-import com.ashampoo.kim.format.jpeg.JpegMetadataExtractor.MARKER_END_OF_IMAGE
+import com.ashampoo.kim.format.jpeg.JpegConstants.markerDescription
 import com.ashampoo.kim.format.jpeg.JpegMetadataExtractor.SEGMENT_IDENTIFIER
 import com.ashampoo.kim.format.jpeg.JpegMetadataExtractor.SEGMENT_START_OF_SCAN
-import com.ashampoo.kim.format.tiff.TiffReader
-import com.ashampoo.kim.format.tiff.constants.TiffConstants.TIFF_ENTRY_LENGTH
-import com.ashampoo.kim.format.tiff.constants.TiffConstants.TIFF_HEADER_SIZE
-import com.ashampoo.kim.format.tiff.constants.TiffTag
 import com.ashampoo.kim.input.ByteReader
 
 /**
@@ -82,29 +77,60 @@ object JpegSegmentAnalyzer {
                 segmentType = nextSegmentType
             }
 
-            if (segmentType == SEGMENT_START_OF_SCAN || segmentType == MARKER_END_OF_IMAGE)
+            if (segmentType == SEGMENT_START_OF_SCAN) {
+
+                val remainingBytesCount = byteReader.contentLength - positionCounter
+
+                segmentInfos.add(
+                    JpegSegmentInfo(
+                        offset = positionCounter - 2,
+                        marker = byteArrayOf(segmentIdentifier, segmentType).toUInt16(JPEG_BYTE_ORDER),
+                        length = remainingBytesCount.toInt()
+                    )
+                )
+
+                byteReader.skipBytes("image bytes", remainingBytesCount - 2)
+
+                positionCounter += remainingBytesCount
+
+                val eoiMarker = byteReader.read2BytesAsInt("EOI", JPEG_BYTE_ORDER)
+
+                if (eoiMarker == EOI_MARKER) {
+
+                    /* Write the EOI marker if it's really there. */
+
+                    segmentInfos.add(
+                        JpegSegmentInfo(
+                            offset = positionCounter - 2,
+                            marker = EOI_MARKER,
+                            length = 2
+                        )
+                    )
+                }
+
                 break
+            }
 
             /* Note: Segment length includes size bytes */
-            val segmentLength =
+            val remainingSegmentLength =
                 byteReader.read2BytesAsInt("segmentLength", JPEG_BYTE_ORDER) - 2
 
             segmentInfos.add(
                 JpegSegmentInfo(
-                    offset = positionCounter,
+                    offset = positionCounter - 2,
                     marker = byteArrayOf(segmentIdentifier, segmentType).toUInt16(JPEG_BYTE_ORDER),
-                    length = segmentLength
+                    length = remainingSegmentLength + 4
                 )
             )
 
             positionCounter += 2
 
-            if (segmentLength <= 0)
-                throw ImageReadException("Illegal JPEG segment length: $segmentLength")
+            if (remainingSegmentLength <= 0)
+                throw ImageReadException("Illegal JPEG segment length: $remainingSegmentLength")
 
-            byteReader.skipBytes("skip segment", segmentLength.toLong())
+            byteReader.skipBytes("skip segment", remainingSegmentLength.toLong())
 
-            positionCounter += segmentLength
+            positionCounter += remainingSegmentLength
 
         } while (true)
 
@@ -115,5 +141,9 @@ object JpegSegmentAnalyzer {
         val offset: Long,
         val marker: Int,
         val length: Int
-    )
+    ) {
+
+        override fun toString(): String =
+            "$offset = ${markerDescription(marker)} [$length bytes]"
+    }
 }
