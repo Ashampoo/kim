@@ -848,6 +848,7 @@ class JpegSegmentAnalyzerTest {
                 message = "Sum of lengths should match bytes size."
             )
 
+            /* Check that markers are correct. */
             for (segmentInfo in segmentInfos) {
 
                 val offset = segmentInfo.offset.toInt()
