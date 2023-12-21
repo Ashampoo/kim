@@ -781,8 +781,6 @@ class JpegSegmentAnalyzerTest {
     @Test
     fun testFindSegmentInfos() {
 
-        val sb = StringBuilder()
-
         for (index in 1..KimTestData.HIGHEST_JPEG_INDEX) {
 
             val bytes = KimTestData.getBytesOf(index)
