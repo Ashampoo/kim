@@ -831,8 +831,6 @@ class JpegSegmentAnalyzerTest {
     @Test
     fun testFindSegmentInfos() {
 
-        val sb = StringBuilder()
-
         for (index in 1..KimTestData.HIGHEST_JPEG_INDEX) {
 
             val bytes = KimTestData.getBytesOf(index)
@@ -841,12 +839,18 @@ class JpegSegmentAnalyzerTest {
 
             val segmentInfos = JpegSegmentAnalyzer.findSegmentInfos(byteReader)
 
+            /* Integrity check to prevent persistance of wrong results. */
+            assertEquals(
+                expected = bytes.size,
+                actual = segmentInfos.sumOf { it.length },
+                message = "Sum of lengths should match bytes size."
+            )
+
+            /* Compare previously saved results. */
             assertEquals(
                 expected = expectedMap.get(index),
                 actual = segmentInfos
             )
         }
-
-        println(sb.toString())
     }
 }
