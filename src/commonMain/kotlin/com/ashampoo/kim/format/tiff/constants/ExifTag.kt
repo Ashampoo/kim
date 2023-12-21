@@ -894,6 +894,22 @@ object ExifTag {
         TIFF_DIRECTORY_IFD0
     )
 
+    /*
+     * Page 18 of the XMPSpecificationPart1.pdf:
+     * When XMP is embedded within digital files, including white-space padding
+     * is sometimes helpful. Doing so facilitates modification of the XMP packet
+     * in-place. The rest of the file is unaffected, which could eliminate a need
+     * to rewrite the entire file if the XMP changes in size. Appropriate padding
+     * is SPACE characters placed anywhere white space is allowed by the general
+     * XML syntax and XMP serialization rules, with a linefeed (U+000A) every
+     * 100 characters or so to improve human display. The amount of padding is
+     * workflow-dependent; around 2000 bytes is often a reasonable amount.
+     */
+    val EXIF_TAG_PADDING = TagInfoUndefined(
+        "Padding", 0xEA1C,
+        TIFF_DIRECTORY_IFD0
+    )
+
     val ALL_EXIF_TAGS = listOf(
         EXIF_TAG_INTEROPERABILITY_INDEX, EXIF_TAG_INTEROPERABILITY_VERSION,
         EXIF_TAG_PROCESSING_SOFTWARE,
@@ -980,6 +996,7 @@ object ExifTag {
         EXIF_TAG_MAKER_NOTE, EXIF_TAG_RATING, EXIF_TAG_RATING_PERCENT,
         EXIF_TAG_SUB_IFDS_OFFSET, EXIF_TAG_MODIFY_DATE, EXIF_TAG_SENSITIVITY_TYPE,
         EXIF_TAG_RECOMMENDED_EXPOSURE_INDEX, EXIF_TAG_COLOR_SPACE,
-        EXIF_TAG_ICC_PROFILE_OFFSET, EXIF_TAG_AFFINITY_PHOTO_OFFSET
+        EXIF_TAG_ICC_PROFILE_OFFSET, EXIF_TAG_AFFINITY_PHOTO_OFFSET,
+        EXIF_TAG_PADDING
     )
 }
