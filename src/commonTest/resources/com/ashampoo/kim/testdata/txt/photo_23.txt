@@ -17,7 +17,7 @@ Big-endian (Motorola, MM)
 0x829a ExposureTime = 40/1000 (0.04)
 0x9012 Unknown = +01:00
 0x9011 OffsetTimeOriginal = +01:00
-0x9010 Unknown = +01:00
+0x9010 OffsetTime = +01:00
 0x920a FocalLength = 559/100 (5.59)
 0x9209 Flash = 0
 0x8827 PhotographicSensitivity = 1939

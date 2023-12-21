@@ -13,12 +13,12 @@ Little-endian (Intel, II)
 0x0131 Software = darktable 2.6.2
 0x0132 ModifyDate = 2019:07:15 20:09:19
 0x013b Artist = dxfoto.ru
-0x00-1 Unknown = 0
-0x00-1 Unknown = 0
+0x4746 Unknown = 0
+0x4749 Unknown = 0
 0x8298 Copyright = CC-BY 3.0
 0x8769 ExifOffset = 306
 0x8825 GPSInfo = 6526
-0x00-1 Unknown = 2019:07:14 09:21:11
+0x9003 Unknown = 2019:07:14 09:21:11
 
 ---- Directory ExifIFD ----
 0x829a ExposureTime = 1/400 (0.0025)

@@ -55,6 +55,16 @@ object ExifTag {
         TiffDirectoryType.EXIF_DIRECTORY_INTEROP_IFD
     )
 
+    val EXIF_TAG_INTEROPERABILITY_RELATED_IMAGE_WIDTH = TagInfoShort(
+        "RelatedImageWidth", 0x1001,
+        TiffDirectoryType.EXIF_DIRECTORY_INTEROP_IFD
+    )
+
+    val EXIF_TAG_INTEROPERABILITY_RELATED_IMAGE_HEIGHT = TagInfoShort(
+        "RelatedImageHeight", 0x1002,
+        TiffDirectoryType.EXIF_DIRECTORY_INTEROP_IFD
+    )
+
     val EXIF_TAG_PROCESSING_SOFTWARE = TagInfoAscii(
         "ProcessingSoftware", 0x000b, -1,
         TIFF_DIRECTORY_IFD0
@@ -501,6 +511,11 @@ object ExifTag {
         TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD
     )
 
+    val EXIF_TAG_OFFSET_TIME = TagInfoAscii(
+        "OffsetTime", 0x9010, -1,
+        TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD
+    )
+
     val EXIF_TAG_OFFSET_TIME_ORIGINAL = TagInfoAscii(
         "OffsetTimeOriginal", 0x9011, -1,
         TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD
@@ -883,8 +898,37 @@ object ExifTag {
         TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD
     )
 
+    val EXIF_TAG_ICC_PROFILE_OFFSET = TagInfoUndefined(
+        "ICC_Profile", 0x8773,
+        TIFF_DIRECTORY_IFD0
+    )
+
+    /* Affinity Photo creates it's own tag with custom data. */
+    val EXIF_TAG_AFFINITY_PHOTO_OFFSET = TagInfoUndefined(
+        "AffinityPhoto", 0xC7E0,
+        TIFF_DIRECTORY_IFD0
+    )
+
+    /*
+     * Page 18 of the XMPSpecificationPart1.pdf:
+     * When XMP is embedded within digital files, including white-space padding
+     * is sometimes helpful. Doing so facilitates modification of the XMP packet
+     * in-place. The rest of the file is unaffected, which could eliminate a need
+     * to rewrite the entire file if the XMP changes in size. Appropriate padding
+     * is SPACE characters placed anywhere white space is allowed by the general
+     * XML syntax and XMP serialization rules, with a linefeed (U+000A) every
+     * 100 characters or so to improve human display. The amount of padding is
+     * workflow-dependent; around 2000 bytes is often a reasonable amount.
+     */
+    val EXIF_TAG_PADDING = TagInfoUndefined(
+        "Padding", 0xEA1C,
+        TIFF_DIRECTORY_IFD0
+    )
+
     val ALL_EXIF_TAGS = listOf(
         EXIF_TAG_INTEROPERABILITY_INDEX, EXIF_TAG_INTEROPERABILITY_VERSION,
+        EXIF_TAG_INTEROPERABILITY_RELATED_IMAGE_WIDTH,
+        EXIF_TAG_INTEROPERABILITY_RELATED_IMAGE_HEIGHT,
         EXIF_TAG_PROCESSING_SOFTWARE,
         EXIF_TAG_SOFTWARE,
         EXIF_TAG_PREVIEW_IMAGE_START_IFD0,
@@ -938,7 +982,7 @@ object ExifTag {
         EXIF_TAG_SUBJECT_AREA,
         EXIF_TAG_STO_NITS, EXIF_TAG_SUB_SEC_TIME,
         EXIF_TAG_SUB_SEC_TIME_ORIGINAL, EXIF_TAG_SUB_SEC_TIME_DIGITIZED,
-        EXIF_TAG_OFFSET_TIME_ORIGINAL,
+        EXIF_TAG_OFFSET_TIME, EXIF_TAG_OFFSET_TIME_ORIGINAL,
         EXIF_TAG_FLASHPIX_VERSION,
         EXIF_TAG_EXIF_IMAGE_WIDTH, EXIF_TAG_EXIF_IMAGE_LENGTH,
         EXIF_TAG_RELATED_SOUND_FILE, EXIF_TAG_INTEROP_OFFSET,
@@ -968,6 +1012,8 @@ object ExifTag {
         EXIF_TAG_MOIRE_FILTER, EXIF_TAG_USER_COMMENT,
         EXIF_TAG_MAKER_NOTE, EXIF_TAG_RATING, EXIF_TAG_RATING_PERCENT,
         EXIF_TAG_SUB_IFDS_OFFSET, EXIF_TAG_MODIFY_DATE, EXIF_TAG_SENSITIVITY_TYPE,
-        EXIF_TAG_RECOMMENDED_EXPOSURE_INDEX, EXIF_TAG_COLOR_SPACE
+        EXIF_TAG_RECOMMENDED_EXPOSURE_INDEX, EXIF_TAG_COLOR_SPACE,
+        EXIF_TAG_ICC_PROFILE_OFFSET, EXIF_TAG_AFFINITY_PHOTO_OFFSET,
+        EXIF_TAG_PADDING
     )
 }

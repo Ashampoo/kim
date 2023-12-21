@@ -27,7 +27,7 @@ Big-endian (Motorola, MM)
 0x0214 ReferenceBlackWhite = [0/1 (0.0), 255/1 (255.0), 0/1 (0.0), 255/1 (255.0), 0/1 (0.0), 255/1 (255.0)]
 0x8769 ExifOffset = 480
 0x8825 GPSInfo = 124124
-0x00-1 Unknown = 2014:08:12 09:30:58
+0x9003 Unknown = 2014:08:12 09:30:58
 0x9216 Unknown = [0x01, 0x00, 0x00, 0x00]
 
 ---- Directory ExifIFD ----

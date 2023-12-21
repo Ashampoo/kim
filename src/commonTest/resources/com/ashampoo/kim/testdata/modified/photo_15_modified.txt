@@ -16,7 +16,7 @@ Big-endian (Motorola, MM)
 0x0213 YCbCrPositioning = 2
 0x8769 ExifOffset = 2372
 0x8825 GPSInfo = 22226
-0xea1c Unknown = [2060 bytes]
+0xea1c Padding = [2060 bytes]
 
 ---- Directory ExifIFD ----
 0x829a ExposureTime = 10/1250 (0.008)

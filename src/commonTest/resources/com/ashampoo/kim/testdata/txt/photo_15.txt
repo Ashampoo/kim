@@ -18,7 +18,7 @@ Big-endian (Motorola, MM)
 0x8298 Copyright = 
 0x8769 ExifOffset = 2490
 0x8825 GPSInfo = 22304
-0xea1c Unknown = [2060 bytes]
+0xea1c Padding = [2060 bytes]
 
 ---- Directory ExifIFD ----
 0x829a ExposureTime = 10/1250 (0.008)

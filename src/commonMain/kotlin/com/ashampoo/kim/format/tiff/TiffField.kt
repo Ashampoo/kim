@@ -17,6 +17,7 @@
 package com.ashampoo.kim.format.tiff
 
 import com.ashampoo.kim.common.ByteOrder
+import com.ashampoo.kim.common.HEX_RADIX
 import com.ashampoo.kim.common.ImageReadException
 import com.ashampoo.kim.common.RationalNumber
 import com.ashampoo.kim.common.head
@@ -39,6 +40,10 @@ class TiffField(
     val byteOrder: ByteOrder,
     val sortHint: Int
 ) {
+
+    /** Return a proper Tag ID like 0x0100 */
+    val tagFormatted: String =
+        "0x" + tag.toString(HEX_RADIX).padStart(4, '0')
 
     val tagInfo: TagInfo = getTag(directoryType, tag)
 
@@ -142,8 +147,12 @@ class TiffField(
         else
             (value as Number).toDouble()
 
+    /*
+     * Note that we need to show the local 'tagFormatted', because
+     * 'tagInfo' might be an Unknown tag and show a placeholder.
+     */
     override fun toString(): String =
-        "${tagInfo.description} = $valueDescription"
+        "$tagFormatted ${tagInfo.name} = $valueDescription"
 
     fun createOversizeValueElement(): TiffElement? =
         if (isLocalValue) null else OversizeValueElement(offset.toInt(), valueBytes.size)

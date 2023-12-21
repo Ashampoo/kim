@@ -21,6 +21,9 @@ import com.ashampoo.kim.common.toSingleNumberHexes
 import com.ashampoo.kim.common.tryWithImageReadException
 import com.ashampoo.kim.format.ImageFormatMagicNumbers
 import com.ashampoo.kim.format.jpeg.JpegConstants.JPEG_BYTE_ORDER
+import com.ashampoo.kim.format.jpeg.JpegMetadataExtractor.MARKER_END_OF_IMAGE
+import com.ashampoo.kim.format.jpeg.JpegMetadataExtractor.SEGMENT_IDENTIFIER
+import com.ashampoo.kim.format.jpeg.JpegMetadataExtractor.SEGMENT_START_OF_SCAN
 import com.ashampoo.kim.format.tiff.TiffReader
 import com.ashampoo.kim.format.tiff.constants.TiffConstants.TIFF_ENTRY_LENGTH
 import com.ashampoo.kim.format.tiff.constants.TiffConstants.TIFF_HEADER_SIZE
@@ -33,9 +36,6 @@ import com.ashampoo.kim.input.ByteReader
  */
 object JpegOrientationOffsetFinder {
 
-    const val SEGMENT_IDENTIFIER = 0xFF.toByte()
-    const val SEGMENT_START_OF_SCAN = 0xDA.toByte()
-    const val MARKER_END_OF_IMAGE = 0xD9.toByte()
     const val APP1_MARKER = 0xE1.toByte()
 
     @OptIn(ExperimentalStdlibApi::class)

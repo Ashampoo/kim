@@ -50,6 +50,9 @@ open class TagInfo(
     /**
      * @param entry the TIFF field whose value to return
      * @return the value of the TIFF field
+     *
+     * Implementation detail: This indirection exists because
+     * [TagInfoGpsText] has some special logic to interpret the value.
      */
     open fun getValue(entry: TiffField): Any =
         entry.fieldType.getValue(entry)

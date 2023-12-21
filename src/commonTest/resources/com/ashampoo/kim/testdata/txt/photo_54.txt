@@ -27,8 +27,8 @@ Little-endian (Intel, II)
 0x83bb IPTC-NAA = [53 bytes]
 0x8649 PhotoshopSettings = [28 bytes]
 0x8769 ExifOffset = 2887292
-0x8773 Unknown = [596 bytes]
-0xc7e0 Unknown = [110 bytes]
+0x8773 ICC_Profile = [596 bytes]
+0xc7e0 AffinityPhoto = [110 bytes]
 
 ---- Directory ExifIFD ----
 0x829a ExposureTime = 1/30 (0.033333)

@@ -91,6 +91,7 @@ object JpegConstants {
     const val JPEG_APP0 = 0xE0
     const val JPEG_APP0_MARKER = 0xFF00 or JPEG_APP0
     const val JPEG_APP1_MARKER = 0xFF00 or JPEG_APP0 + 1
+    const val JPEG_APP2_MARKER = 0xFF00 or JPEG_APP0 + 2
     const val JPEG_APP13_MARKER = 0xFF00 or JPEG_APP0 + 13
     const val JPEG_APP15_MARKER = 0xFF00 or JPEG_APP0 + 15
 
@@ -114,7 +115,7 @@ object JpegConstants {
     const val SOF15_MARKER = 0xFFC0 + 0xF
 
     // marker for restart intervals
-    const val DRI_MARKER = 0xFFdd
+    const val DRI_MARKER = 0xFFDD
     const val RST0_MARKER = 0xFFD0
     const val RST1_MARKER = 0xFFD0 + 0x1
     const val RST2_MARKER = 0xFFD0 + 0x2
@@ -124,11 +125,14 @@ object JpegConstants {
     const val RST6_MARKER = 0xFFD0 + 0x6
     const val RST7_MARKER = 0xFFD0 + 0x7
 
+    const val SOI_MARKER = 0xFFD8
     const val EOI_MARKER = 0xFFD9
     const val SOS_MARKER = 0xFFDA
     const val DQT_MARKER = 0xFFDB
     const val DNL_MARKER = 0xFFDC
-    const val COM_MARKER = 0xFFFE
+
+    const val COM_MARKER_1 = 0xFFFE
+    const val COM_MARKER_2 = 0xFFEE
 
     val SOFN_MARKERS = listOf(
         JpegConstants.SOF0_MARKER,
@@ -145,6 +149,27 @@ object JpegConstants {
         JpegConstants.SOF14_MARKER,
         JpegConstants.SOF15_MARKER
     )
+
+    @OptIn(ExperimentalStdlibApi::class)
+    fun markerDescription(marker: Int): String =
+        when (marker) {
+            COM_MARKER_1 -> "COM (Comment)"
+            COM_MARKER_2 -> "COM (Comment)"
+            DHT_MARKER -> "DHT (Define Huffman Table)"
+            DQT_MARKER -> "DQT (Define Quantization Table)"
+            DRI_MARKER -> "DRI (Define Restart Interval)"
+            EOI_MARKER -> "EOI (End of Image)"
+            JPEG_APP0_MARKER -> "APP0 JFIF"
+            JPEG_APP1_MARKER -> "APP1"
+            JPEG_APP2_MARKER -> "APP2"
+            JPEG_APP13_MARKER -> "APP13 IPTC"
+            JPEG_APP15_MARKER -> "APP15"
+            SOF0_MARKER -> "SOF0 (Start of Frame, Baseline DCT)"
+            SOF2_MARKER -> "SOF2 (Start of Frame, Progressive DCT)"
+            SOI_MARKER -> "SOI (Start of Image)"
+            SOS_MARKER -> "SOS (Start of Scan)"
+            else -> marker.toShort().toHexString(HexFormat.UpperCase)
+        }
 
 //    val MARKERS = listOf(
 //        JPEG_APP0, JPEG_APP0_MARKER,

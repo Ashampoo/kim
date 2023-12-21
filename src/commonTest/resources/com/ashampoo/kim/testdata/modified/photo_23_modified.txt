@@ -17,7 +17,7 @@ Big-endian (Motorola, MM)
 0x8827 PhotographicSensitivity = 1939
 0x9003 DateTimeOriginal = 2023:05:10 13:37:42
 0x9004 DateTimeDigitized = 2023:05:10 13:37:42
-0x9010 Unknown = +01:00
+0x9010 OffsetTime = +01:00
 0x9011 OffsetTimeOriginal = +01:00
 0x9012 Unknown = +01:00
 0x9202 ApertureValue = 188/100 (1.88)

@@ -24,7 +24,7 @@ Little-endian (Intel, II)
 0x9000 ExifVersion = [0x30, 0x32, 0x33, 0x31]
 0x9003 DateTimeOriginal = 2020:01:18 17:28:22
 0x9004 DateTimeDigitized = 2020:01:18 17:28:22
-0x9010 Unknown = -07:00
+0x9010 OffsetTime = -07:00
 0x9011 OffsetTimeOriginal = -08:00
 0x9012 Unknown = -08:00
 0x9201 ShutterSpeedValue = 9643856/1000000 (9.643856)
