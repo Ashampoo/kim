@@ -10,6 +10,7 @@ Big-endian (Motorola, MM)
 ---- Directory ExifIFD ----
 
 ---- Directory GPS ----
+0x0000 GPSVersionID = [0x02, 0x03, 0x00, 0x00]
 0x0001 GPSLatitudeRef = N
 0x0002 GPSLatitude = [53/1 (53.0), 13/1 (13.0), 24519/2500 (9.8076)]
 0x0003 GPSLongitudeRef = E
