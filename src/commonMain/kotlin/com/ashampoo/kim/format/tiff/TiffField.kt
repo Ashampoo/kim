@@ -147,6 +147,10 @@ class TiffField(
         else
             (value as Number).toDouble()
 
+    /*
+     * Note that we need to show the local 'tagFormatted', because
+     * 'tagInfo' might be an Unknown tag and show a placeholder.
+     */
     override fun toString(): String =
         "$tagFormatted ${tagInfo.name} = $valueDescription"
 
