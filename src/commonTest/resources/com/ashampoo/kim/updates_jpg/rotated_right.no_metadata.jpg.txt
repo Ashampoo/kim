@@ -3,11 +3,11 @@ Resolution  : 2304 x 1536
 ---- TIFF ----
 Version 42
 Big-endian (Motorola, MM)
----- Directory IFD0 ----
-0x0112 Orientation = 6
-0x8769 ExifOffset = 40
+---- Directory IFD0 @ 8 ----
+0000000010 0x0112 Orientation = 6
+0000000022 0x8769 ExifOffset = 40
 
----- Directory ExifIFD ----
+---- Directory ExifIFD @ 40 ----
 
 
 ---- XMP ----

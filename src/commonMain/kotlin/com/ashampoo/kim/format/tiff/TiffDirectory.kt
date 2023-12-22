@@ -40,11 +40,11 @@ import com.ashampoo.kim.model.TiffOrientation
 class TiffDirectory(
     val type: Int,
     val entries: List<TiffField>,
-    offset: Long,
-    val nextDirectoryOffset: Long,
+    offset: Int,
+    val nextDirectoryOffset: Int,
     val byteOrder: ByteOrder
 ) : TiffElement(
-    debugDescription = "Directory " + description(type),
+    debugDescription = "Directory " + description(type) + " @ $offset",
     offset = offset,
     length = TiffConstants.TIFF_DIRECTORY_HEADER_LENGTH + entries.size *
         TiffConstants.TIFF_ENTRY_LENGTH + TiffConstants.TIFF_DIRECTORY_FOOTER_LENGTH
@@ -99,7 +99,7 @@ class TiffDirectory(
         if (!tag.dataTypes.contains(field.fieldType))
             throw ImageReadException("Required field ${tag.name} has incorrect type ${field.fieldType.name}")
 
-        if (field.count != 1L)
+        if (field.count != 1)
             throw ImageReadException("Field ${tag.name} has wrong count ${field.count}")
 
         return tag.getValue(field.byteOrder, field.byteArrayValue)
@@ -123,9 +123,11 @@ class TiffDirectory(
         val jpegInterchangeFormatLength = findField(TiffTag.TIFF_TAG_JPEG_INTERCHANGE_FORMAT_LENGTH)
 
         if (jpegInterchangeFormat != null && jpegInterchangeFormatLength != null) {
-            val offSet = jpegInterchangeFormat.toIntArray()[0]
+
+            val offset = jpegInterchangeFormat.toIntArray()[0]
             val byteCount = jpegInterchangeFormatLength.toIntArray()[0]
-            return ImageDataElement(offSet.toLong(), byteCount)
+
+            return ImageDataElement(offset, byteCount)
         }
 
         throw ImageReadException("Couldn't find image data.")

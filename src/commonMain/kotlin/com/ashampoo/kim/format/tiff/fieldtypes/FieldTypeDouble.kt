@@ -28,7 +28,7 @@ class FieldTypeDouble(type: Int, name: String) : FieldType(type, name, 8) {
 
         val bytes = entry.byteArrayValue
 
-        return if (entry.count == 1L)
+        return if (entry.count == 1)
             bytes.toDouble(entry.byteOrder)
         else
             bytes.toDoubles(entry.byteOrder)

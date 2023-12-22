@@ -3,33 +3,33 @@ Resolution  : 6144 x 8192
 ---- TIFF ----
 Version 42
 Big-endian (Motorola, MM)
----- Directory IFD0 ----
-0x0110 Model = A063
-0x0112 Orientation = 1
-0x0132 ModifyDate = 2023:12:05 08:50:44
-0x8769 ExifOffset = 119
-0x8825 GPSInfo = 423
-0x010f Make = Nothing
+---- Directory IFD0 @ 8 ----
+0000000010 0x0110 Model = A063
+0000000022 0x0112 Orientation = 1
+0000000034 0x0132 ModifyDate = 2023:12:05 08:50:44
+0000000046 0x8769 ExifOffset = 119
+0000000058 0x8825 GPSInfo = 423
+0000000070 0x010f Make = Nothing
 
----- Directory ExifIFD ----
-0x829d FNumber = 188/100 (1.88)
-0x927c MakerNote = [49 bytes]
-0x829a ExposureTime = 40/1000 (0.04)
-0x9012 Unknown = +01:00
-0x9011 OffsetTimeOriginal = +01:00
-0x9010 OffsetTime = +01:00
-0x920a FocalLength = 559/100 (5.59)
-0x9209 Flash = 0
-0x8827 PhotographicSensitivity = 1939
-0x9004 DateTimeDigitized = 2023:12:05 08:50:44
-0x9003 DateTimeOriginal = 2023:12:05 08:50:44
-0xa403 WhiteBalance = 0
-0x9202 ApertureValue = 188/100 (1.88)
+---- Directory ExifIFD @ 119 ----
+0000000121 0x829d FNumber = 188/100 (1.88)
+0000000133 0x927c MakerNote = [49 bytes]
+0000000145 0x829a ExposureTime = 40/1000 (0.04)
+0000000157 0x9012 Unknown = +01:00
+0000000169 0x9011 OffsetTimeOriginal = +01:00
+0000000181 0x9010 OffsetTime = +01:00
+0000000193 0x920a FocalLength = 559/100 (5.59)
+0000000205 0x9209 Flash = 0
+0000000217 0x8827 PhotographicSensitivity = 1939
+0000000229 0x9004 DateTimeDigitized = 2023:12:05 08:50:44
+0000000241 0x9003 DateTimeOriginal = 2023:12:05 08:50:44
+0000000253 0xa403 WhiteBalance = 0
+0000000265 0x9202 ApertureValue = 188/100 (1.88)
 
----- Directory GPS ----
-0x0001 GPSLatitudeRef = 
-0x0002 GPSLatitude = [Invalid rational (0/0), Invalid rational (0/0), Invalid rational (0/0)]
-0x0003 GPSLongitudeRef = 
-0x0004 GPSLongitude = [Invalid rational (0/0), Invalid rational (0/0), Invalid rational (0/0)]
+---- Directory GPS @ 423 ----
+0000000425 0x0001 GPSLatitudeRef = 
+0000000437 0x0002 GPSLatitude = [Invalid rational (0/0), Invalid rational (0/0), Invalid rational (0/0)]
+0000000449 0x0003 GPSLongitudeRef = 
+0000000461 0x0004 GPSLongitude = [Invalid rational (0/0), Invalid rational (0/0), Invalid rational (0/0)]
 
 

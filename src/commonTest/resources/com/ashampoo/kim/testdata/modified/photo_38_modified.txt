@@ -3,69 +3,69 @@ Resolution  : 2371 x 1580
 ---- TIFF ----
 Version 42
 Little-endian (Intel, II)
----- Directory IFD0 ----
-0x0100 ImageWidth = 4741
-0x0101 ImageLength = 3160
-0x0102 BitsPerSample = [8, 8, 8]
-0x0106 PhotometricInterpretation = 2
-0x010f Make = Canon
-0x0110 Model = Canon EOS 550D
-0x0112 Orientation = 8
-0x0115 SamplesPerPixel = 3
-0x011a XResolution = 3000000/10000 (300.0)
-0x011b YResolution = 3000000/10000 (300.0)
-0x0128 ResolutionUnit = 2
-0x0131 Software = Adobe Photoshop CS6 (Macintosh)
-0x0132 ModifyDate = 2023:05:10 13:37:42
-0x8769 ExifOffset = 290
-0x8825 GPSInfo = 926
+---- Directory IFD0 @ 8 ----
+0000000010 0x0100 ImageWidth = 4741
+0000000022 0x0101 ImageLength = 3160
+0000000034 0x0102 BitsPerSample = [8, 8, 8]
+0000000046 0x0106 PhotometricInterpretation = 2
+0000000058 0x010f Make = Canon
+0000000070 0x0110 Model = Canon EOS 550D
+0000000082 0x0112 Orientation = 8
+0000000094 0x0115 SamplesPerPixel = 3
+0000000106 0x011a XResolution = 3000000/10000 (300.0)
+0000000118 0x011b YResolution = 3000000/10000 (300.0)
+0000000130 0x0128 ResolutionUnit = 2
+0000000142 0x0131 Software = Adobe Photoshop CS6 (Macintosh)
+0000000154 0x0132 ModifyDate = 2023:05:10 13:37:42
+0000000166 0x8769 ExifOffset = 290
+0000000178 0x8825 GPSInfo = 926
 
----- Directory ExifIFD ----
-0x829a ExposureTime = 1/1250 (8.0E-4)
-0x829d FNumber = 4/1 (4.0)
-0x8822 ExposureProgram = 6
-0x8827 PhotographicSensitivity = 400
-0x9000 ExifVersion = [0x30, 0x32, 0x32, 0x31]
-0x9003 DateTimeOriginal = 2023:05:10 13:37:42
-0x9004 DateTimeDigitized = 2023:05:10 13:37:42
-0x9201 ShutterSpeedValue = 10287712/1000000 (10.287712)
-0x9202 ApertureValue = 4/1 (4.0)
-0x9204 ExposureCompensation = 0/1 (0.0)
-0x9205 MaxApertureValue = 4/1 (4.0)
-0x9207 MeteringMode = 5
-0x9209 Flash = 16
-0x920a FocalLength = 154/1 (154.0)
-0x9290 SubSecTime = 76
-0x9291 SubSecTimeOriginal = 76
-0x9292 SubSecTimeDigitized = 76
-0xa001 ColorSpace = -1
-0xa002 ExifImageWidth = 2371
-0xa003 ExifImageLength = 1580
-0xa20e FocalPlaneXResolution = 5184000/905 (5728.176796)
-0xa20f FocalPlaneYResolution = 3456000/595 (5808.403361)
-0xa210 FocalPlaneResolutionUnit = 2
-0xa401 CustomRendered = 0
-0xa402 ExposureMode = 0
-0xa403 WhiteBalance = 0
-0xa406 SceneCaptureType = 0
-0xa431 BodySerialNumber = 1835918691
-0xa432 LensSpecification = [70/1 (70.0), 200/1 (200.0), Invalid rational (0/0), Invalid rational (0/0)]
-0xa434 LensModel = EF70-200mm f/4L USM
+---- Directory ExifIFD @ 290 ----
+0000000292 0x829a ExposureTime = 1/1250 (8.0E-4)
+0000000304 0x829d FNumber = 4/1 (4.0)
+0000000316 0x8822 ExposureProgram = 6
+0000000328 0x8827 PhotographicSensitivity = 400
+0000000340 0x9000 ExifVersion = [0x30, 0x32, 0x32, 0x31]
+0000000352 0x9003 DateTimeOriginal = 2023:05:10 13:37:42
+0000000364 0x9004 DateTimeDigitized = 2023:05:10 13:37:42
+0000000376 0x9201 ShutterSpeedValue = 10287712/1000000 (10.287712)
+0000000388 0x9202 ApertureValue = 4/1 (4.0)
+0000000400 0x9204 ExposureCompensation = 0/1 (0.0)
+0000000412 0x9205 MaxApertureValue = 4/1 (4.0)
+0000000424 0x9207 MeteringMode = 5
+0000000436 0x9209 Flash = 16
+0000000448 0x920a FocalLength = 154/1 (154.0)
+0000000460 0x9290 SubSecTime = 76
+0000000472 0x9291 SubSecTimeOriginal = 76
+0000000484 0x9292 SubSecTimeDigitized = 76
+0000000496 0xa001 ColorSpace = -1
+0000000508 0xa002 ExifImageWidth = 2371
+0000000520 0xa003 ExifImageLength = 1580
+0000000532 0xa20e FocalPlaneXResolution = 5184000/905 (5728.176796)
+0000000544 0xa20f FocalPlaneYResolution = 3456000/595 (5808.403361)
+0000000556 0xa210 FocalPlaneResolutionUnit = 2
+0000000568 0xa401 CustomRendered = 0
+0000000580 0xa402 ExposureMode = 0
+0000000592 0xa403 WhiteBalance = 0
+0000000604 0xa406 SceneCaptureType = 0
+0000000616 0xa431 BodySerialNumber = 1835918691
+0000000628 0xa432 LensSpecification = [70/1 (70.0), 200/1 (200.0), Invalid rational (0/0), Invalid rational (0/0)]
+0000000640 0xa434 LensModel = EF70-200mm f/4L USM
 
----- Directory GPS ----
-0x0000 GPSVersionID = [0x02, 0x03, 0x00, 0x00]
-0x0001 GPSLatitudeRef = N
-0x0002 GPSLatitude = [53/1 (53.0), 13/1 (13.0), 24519/2500 (9.8076)]
-0x0003 GPSLongitudeRef = E
-0x0004 GPSLongitude = [8/1 (8.0), 14/1 (14.0), 56949/2500 (22.7796)]
+---- Directory GPS @ 926 ----
+0000000928 0x0000 GPSVersionID = [0x02, 0x03, 0x00, 0x00]
+0000000940 0x0001 GPSLatitudeRef = N
+0000000952 0x0002 GPSLatitude = [53/1 (53.0), 13/1 (13.0), 24519/2500 (9.8076)]
+0000000964 0x0003 GPSLongitudeRef = E
+0000000976 0x0004 GPSLongitude = [8/1 (8.0), 14/1 (14.0), 56949/2500 (22.7796)]
 
----- Directory SubIFD ----
-0x0103 Compression = 6
-0x011a XResolution = 72/1 (72.0)
-0x011b YResolution = 72/1 (72.0)
-0x0128 ResolutionUnit = 2
-0x0201 JpgFromRawStart = 11980
-0x0202 JpgFromRawLength = 11065
+---- Directory SubIFD @ 832 ----
+0000000834 0x0103 Compression = 6
+0000000846 0x011a XResolution = 72/1 (72.0)
+0000000858 0x011b YResolution = 72/1 (72.0)
+0000000870 0x0128 ResolutionUnit = 2
+0000000882 0x0201 JpgFromRawStart = 11980
+0000000894 0x0202 JpgFromRawLength = 11065
 
 
 ---- IPTC ----

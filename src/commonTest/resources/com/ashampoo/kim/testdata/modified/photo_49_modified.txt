@@ -3,77 +3,77 @@ Resolution  : 5184 x 3456
 ---- TIFF ----
 Version 42
 Little-endian (Intel, II)
----- Directory IFD0 ----
-0x010f Make = Canon
-0x0110 Model = Canon EOS 60D
-0x0112 Orientation = 8
-0x011a XResolution = 72/1 (72.0)
-0x011b YResolution = 72/1 (72.0)
-0x0128 ResolutionUnit = 2
-0x0132 ModifyDate = 2023:05:10 13:37:42
-0x013b Artist = Stefan Oltmann
-0x0213 YCbCrPositioning = 2
-0x8298 Copyright = Stefan Oltmann
-0x8769 ExifOffset = 364
-0x8825 GPSInfo = 20044
+---- Directory IFD0 @ 8 ----
+0000000010 0x010f Make = Canon
+0000000022 0x0110 Model = Canon EOS 60D
+0000000034 0x0112 Orientation = 8
+0000000046 0x011a XResolution = 72/1 (72.0)
+0000000058 0x011b YResolution = 72/1 (72.0)
+0000000070 0x0128 ResolutionUnit = 2
+0000000082 0x0132 ModifyDate = 2023:05:10 13:37:42
+0000000094 0x013b Artist = Stefan Oltmann
+0000000106 0x0213 YCbCrPositioning = 2
+0000000118 0x8298 Copyright = Stefan Oltmann
+0000000130 0x8769 ExifOffset = 364
+0000000142 0x8825 GPSInfo = 20044
 
----- Directory ExifIFD ----
-0x829a ExposureTime = 1/60 (0.016667)
-0x829d FNumber = 5/1 (5.0)
-0x8822 ExposureProgram = 3
-0x8827 PhotographicSensitivity = 400
-0x8830 SensitivityType = 2
-0x8832 RecommendedExposureIndex = 400
-0x9000 ExifVersion = [0x30, 0x32, 0x33, 0x30]
-0x9003 DateTimeOriginal = 2023:05:10 13:37:42
-0x9004 DateTimeDigitized = 2023:05:10 13:37:42
-0x9101 ComponentsConfiguration = [0x01, 0x02, 0x03, 0x00]
-0x9201 ShutterSpeedValue = 393216/65536 (6.0)
-0x9202 ApertureValue = 303104/65536 (4.625)
-0x9204 ExposureCompensation = 0/1 (0.0)
-0x9207 MeteringMode = 5
-0x9209 Flash = 16
-0x920a FocalLength = 24/1 (24.0)
-0x927c MakerNote = [7696 bytes]
-0x9290 SubSecTime = 82
-0x9291 SubSecTimeOriginal = 82
-0x9292 SubSecTimeDigitized = 82
-0xa000 FlashpixVersion = [0x30, 0x31, 0x30, 0x30]
-0xa001 ColorSpace = 1
-0xa002 ExifImageWidth = 5184
-0xa003 ExifImageLength = 3456
-0xa005 InteropOffset = 8720
-0xa20e FocalPlaneXResolution = 5184000/905 (5728.176796)
-0xa20f FocalPlaneYResolution = 3456000/595 (5808.403361)
-0xa210 FocalPlaneResolutionUnit = 2
-0xa401 CustomRendered = 0
-0xa402 ExposureMode = 0
-0xa403 WhiteBalance = 0
-0xa406 SceneCaptureType = 0
-0xa430 CameraOwnerName = Stefan Oltmann
-0xa431 BodySerialNumber = 1581036387
-0xa432 LensSpecification = [15/1 (15.0), 85/1 (85.0), Invalid rational (0/0), Invalid rational (0/0)]
-0xa434 LensModel = EF-S15-85mm f/3.5-5.6 IS USM
-0xa435 LensSerialNumber = 0000118484
+---- Directory ExifIFD @ 364 ----
+0000000366 0x829a ExposureTime = 1/60 (0.016667)
+0000000378 0x829d FNumber = 5/1 (5.0)
+0000000390 0x8822 ExposureProgram = 3
+0000000402 0x8827 PhotographicSensitivity = 400
+0000000414 0x8830 SensitivityType = 2
+0000000426 0x8832 RecommendedExposureIndex = 400
+0000000438 0x9000 ExifVersion = [0x30, 0x32, 0x33, 0x30]
+0000000450 0x9003 DateTimeOriginal = 2023:05:10 13:37:42
+0000000462 0x9004 DateTimeDigitized = 2023:05:10 13:37:42
+0000000474 0x9101 ComponentsConfiguration = [0x01, 0x02, 0x03, 0x00]
+0000000486 0x9201 ShutterSpeedValue = 393216/65536 (6.0)
+0000000498 0x9202 ApertureValue = 303104/65536 (4.625)
+0000000510 0x9204 ExposureCompensation = 0/1 (0.0)
+0000000522 0x9207 MeteringMode = 5
+0000000534 0x9209 Flash = 16
+0000000546 0x920a FocalLength = 24/1 (24.0)
+0000000558 0x927c MakerNote = [7696 bytes]
+0000000570 0x9290 SubSecTime = 82
+0000000582 0x9291 SubSecTimeOriginal = 82
+0000000594 0x9292 SubSecTimeDigitized = 82
+0000000606 0xa000 FlashpixVersion = [0x30, 0x31, 0x30, 0x30]
+0000000618 0xa001 ColorSpace = 1
+0000000630 0xa002 ExifImageWidth = 5184
+0000000642 0xa003 ExifImageLength = 3456
+0000000654 0xa005 InteropOffset = 8720
+0000000666 0xa20e FocalPlaneXResolution = 5184000/905 (5728.176796)
+0000000678 0xa20f FocalPlaneYResolution = 3456000/595 (5808.403361)
+0000000690 0xa210 FocalPlaneResolutionUnit = 2
+0000000702 0xa401 CustomRendered = 0
+0000000714 0xa402 ExposureMode = 0
+0000000726 0xa403 WhiteBalance = 0
+0000000738 0xa406 SceneCaptureType = 0
+0000000750 0xa430 CameraOwnerName = Stefan Oltmann
+0000000762 0xa431 BodySerialNumber = 1581036387
+0000000774 0xa432 LensSpecification = [15/1 (15.0), 85/1 (85.0), Invalid rational (0/0), Invalid rational (0/0)]
+0000000786 0xa434 LensModel = EF-S15-85mm f/3.5-5.6 IS USM
+0000000798 0xa435 LensSerialNumber = 0000118484
 
----- Directory InteropIFD ----
-0x0001 InteroperabilityIndex = R98
-0x0002 InteroperabilityVersion = [0x30, 0x31, 0x30, 0x30]
+---- Directory InteropIFD @ 8720 ----
+0000008722 0x0001 InteroperabilityIndex = R98
+0000008734 0x0002 InteroperabilityVersion = [0x30, 0x31, 0x30, 0x30]
 
----- Directory GPS ----
-0x0000 GPSVersionID = [0x02, 0x03, 0x00, 0x00]
-0x0001 GPSLatitudeRef = N
-0x0002 GPSLatitude = [53/1 (53.0), 13/1 (13.0), 24519/2500 (9.8076)]
-0x0003 GPSLongitudeRef = E
-0x0004 GPSLongitude = [8/1 (8.0), 14/1 (14.0), 56949/2500 (22.7796)]
+---- Directory GPS @ 20044 ----
+0000020046 0x0000 GPSVersionID = [0x02, 0x03, 0x00, 0x00]
+0000020058 0x0001 GPSLatitudeRef = N
+0000020070 0x0002 GPSLatitude = [53/1 (53.0), 13/1 (13.0), 24519/2500 (9.8076)]
+0000020082 0x0003 GPSLongitudeRef = E
+0000020094 0x0004 GPSLongitude = [8/1 (8.0), 14/1 (14.0), 56949/2500 (22.7796)]
 
----- Directory SubIFD ----
-0x0103 Compression = 6
-0x011a XResolution = 72/1 (72.0)
-0x011b YResolution = 72/1 (72.0)
-0x0128 ResolutionUnit = 2
-0x0201 JpgFromRawStart = 8844
-0x0202 JpgFromRawLength = 11200
+---- Directory SubIFD @ 8750 ----
+0000008752 0x0103 Compression = 6
+0000008764 0x011a XResolution = 72/1 (72.0)
+0000008776 0x011b YResolution = 72/1 (72.0)
+0000008788 0x0128 ResolutionUnit = 2
+0000008800 0x0201 JpgFromRawStart = 8844
+0000008812 0x0202 JpgFromRawLength = 11200
 
 
 ---- IPTC ----

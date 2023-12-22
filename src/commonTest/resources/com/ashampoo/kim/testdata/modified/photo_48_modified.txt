@@ -3,72 +3,72 @@ Resolution  : 4032 x 3024
 ---- TIFF ----
 Version 42
 Big-endian (Motorola, MM)
----- Directory IFD0 ----
-0x010f Make = Apple
-0x0110 Model = iPhone SE (3rd generation)
-0x0112 Orientation = 8
-0x011a XResolution = 72/1 (72.0)
-0x011b YResolution = 72/1 (72.0)
-0x0128 ResolutionUnit = 2
-0x0131 Software = 16.0.3
-0x0132 ModifyDate = 2023:05:10 13:37:42
-0x013c HostComputer = iPhone SE (3rd generation)
-0x0213 YCbCrPositioning = 1
-0x8769 ExifOffset = 264
-0x8825 GPSInfo = 2398
+---- Directory IFD0 @ 8 ----
+0000000010 0x010f Make = Apple
+0000000022 0x0110 Model = iPhone SE (3rd generation)
+0000000034 0x0112 Orientation = 8
+0000000046 0x011a XResolution = 72/1 (72.0)
+0000000058 0x011b YResolution = 72/1 (72.0)
+0000000070 0x0128 ResolutionUnit = 2
+0000000082 0x0131 Software = 16.0.3
+0000000094 0x0132 ModifyDate = 2023:05:10 13:37:42
+0000000106 0x013c HostComputer = iPhone SE (3rd generation)
+0000000118 0x0213 YCbCrPositioning = 1
+0000000130 0x8769 ExifOffset = 264
+0000000142 0x8825 GPSInfo = 2398
 
----- Directory ExifIFD ----
-0x829a ExposureTime = 1/100 (0.01)
-0x829d FNumber = 9/5 (1.8)
-0x8822 ExposureProgram = 2
-0x8827 PhotographicSensitivity = 50
-0x9000 ExifVersion = [0x30, 0x32, 0x33, 0x32]
-0x9003 DateTimeOriginal = 2023:05:10 13:37:42
-0x9004 DateTimeDigitized = 2023:05:10 13:37:42
-0x9010 OffsetTime = +01:00
-0x9011 OffsetTimeOriginal = +01:00
-0x9012 Unknown = +01:00
-0x9101 ComponentsConfiguration = [0x01, 0x02, 0x03, 0x00]
-0x9201 ShutterSpeedValue = 6287/946 (6.645877)
-0x9202 ApertureValue = 54823/32325 (1.695994)
-0x9203 BrightnessValue = 341522/74591 (4.578595)
-0x9204 ExposureCompensation = 0/1 (0.0)
-0x9207 MeteringMode = 5
-0x9209 Flash = 16
-0x920a FocalLength = 399/100 (3.99)
-0x9214 SubjectArea = [2013, 1511, 2217, 1330]
-0x927c MakerNote = [1380 bytes]
-0x9291 SubSecTimeOriginal = 203
-0x9292 SubSecTimeDigitized = 203
-0xa000 FlashpixVersion = [0x30, 0x31, 0x30, 0x30]
-0xa001 ColorSpace = -1
-0xa002 ExifImageWidth = 4032
-0xa003 ExifImageLength = 3024
-0xa217 SensingMethod = 2
-0xa301 SceneType = 1
-0xa402 ExposureMode = 0
-0xa403 WhiteBalance = 0
-0xa405 FocalLengthIn35mmFormat = 28
-0xa406 SceneCaptureType = 0
-0xa432 LensSpecification = [4183519/1048501 (3.99), 4183519/1048501 (3.99), 9/5 (1.8), 9/5 (1.8)]
-0xa433 LensMake = Apple
-0xa434 LensModel = iPhone SE (3rd generation) back camera 3.99mm f/1.8
-0xa460 Unknown = 2
+---- Directory ExifIFD @ 264 ----
+0000000266 0x829a ExposureTime = 1/100 (0.01)
+0000000278 0x829d FNumber = 9/5 (1.8)
+0000000290 0x8822 ExposureProgram = 2
+0000000302 0x8827 PhotographicSensitivity = 50
+0000000314 0x9000 ExifVersion = [0x30, 0x32, 0x33, 0x32]
+0000000326 0x9003 DateTimeOriginal = 2023:05:10 13:37:42
+0000000338 0x9004 DateTimeDigitized = 2023:05:10 13:37:42
+0000000350 0x9010 OffsetTime = +01:00
+0000000362 0x9011 OffsetTimeOriginal = +01:00
+0000000374 0x9012 Unknown = +01:00
+0000000386 0x9101 ComponentsConfiguration = [0x01, 0x02, 0x03, 0x00]
+0000000398 0x9201 ShutterSpeedValue = 6287/946 (6.645877)
+0000000410 0x9202 ApertureValue = 54823/32325 (1.695994)
+0000000422 0x9203 BrightnessValue = 341522/74591 (4.578595)
+0000000434 0x9204 ExposureCompensation = 0/1 (0.0)
+0000000446 0x9207 MeteringMode = 5
+0000000458 0x9209 Flash = 16
+0000000470 0x920a FocalLength = 399/100 (3.99)
+0000000482 0x9214 SubjectArea = [2013, 1511, 2217, 1330]
+0000000494 0x927c MakerNote = [1380 bytes]
+0000000506 0x9291 SubSecTimeOriginal = 203
+0000000518 0x9292 SubSecTimeDigitized = 203
+0000000530 0xa000 FlashpixVersion = [0x30, 0x31, 0x30, 0x30]
+0000000542 0xa001 ColorSpace = -1
+0000000554 0xa002 ExifImageWidth = 4032
+0000000566 0xa003 ExifImageLength = 3024
+0000000578 0xa217 SensingMethod = 2
+0000000590 0xa301 SceneType = 1
+0000000602 0xa402 ExposureMode = 0
+0000000614 0xa403 WhiteBalance = 0
+0000000626 0xa405 FocalLengthIn35mmFormat = 28
+0000000638 0xa406 SceneCaptureType = 0
+0000000650 0xa432 LensSpecification = [4183519/1048501 (3.99), 4183519/1048501 (3.99), 9/5 (1.8), 9/5 (1.8)]
+0000000662 0xa433 LensMake = Apple
+0000000674 0xa434 LensModel = iPhone SE (3rd generation) back camera 3.99mm f/1.8
+0000000686 0xa460 Unknown = 2
 
----- Directory GPS ----
-0x0000 GPSVersionID = [0x02, 0x03, 0x00, 0x00]
-0x0001 GPSLatitudeRef = N
-0x0002 GPSLatitude = [53/1 (53.0), 13/1 (13.0), 24519/2500 (9.8076)]
-0x0003 GPSLongitudeRef = E
-0x0004 GPSLongitude = [8/1 (8.0), 14/1 (14.0), 56949/2500 (22.7796)]
+---- Directory GPS @ 2398 ----
+0000002400 0x0000 GPSVersionID = [0x02, 0x03, 0x00, 0x00]
+0000002412 0x0001 GPSLatitudeRef = N
+0000002424 0x0002 GPSLatitude = [53/1 (53.0), 13/1 (13.0), 24519/2500 (9.8076)]
+0000002436 0x0003 GPSLongitudeRef = E
+0000002448 0x0004 GPSLongitude = [8/1 (8.0), 14/1 (14.0), 56949/2500 (22.7796)]
 
----- Directory SubIFD ----
-0x0103 Compression = 6
-0x011a XResolution = 72/1 (72.0)
-0x011b YResolution = 72/1 (72.0)
-0x0128 ResolutionUnit = 2
-0x0201 JpgFromRawStart = 13514
-0x0202 JpgFromRawLength = 11130
+---- Directory SubIFD @ 2304 ----
+0000002306 0x0103 Compression = 6
+0000002318 0x011a XResolution = 72/1 (72.0)
+0000002330 0x011b YResolution = 72/1 (72.0)
+0000002342 0x0128 ResolutionUnit = 2
+0000002354 0x0201 JpgFromRawStart = 13514
+0000002366 0x0202 JpgFromRawLength = 11130
 
 
 ---- IPTC ----

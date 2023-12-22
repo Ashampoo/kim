@@ -3,55 +3,55 @@ Resolution  : 3320 x 2490
 ---- TIFF ----
 Version 42
 Little-endian (Intel, II)
----- Directory IFD0 ----
-0x010f Make = Canon
-0x0110 Model = Canon EOS 5D Mark IV
-0x011a XResolution = 240/1 (240.0)
-0x011b YResolution = 240/1 (240.0)
-0x0128 ResolutionUnit = 2
-0x0131 Software = Adobe Photoshop Lightroom Classic 8.2.1 (Windows)
-0x0132 ModifyDate = 2019:05:13 14:38:08
-0x8769 ExifOffset = 224
+---- Directory IFD0 @ 8 ----
+0000000010 0x010f Make = Canon
+0000000022 0x0110 Model = Canon EOS 5D Mark IV
+0000000034 0x011a XResolution = 240/1 (240.0)
+0000000046 0x011b YResolution = 240/1 (240.0)
+0000000058 0x0128 ResolutionUnit = 2
+0000000070 0x0131 Software = Adobe Photoshop Lightroom Classic 8.2.1 (Windows)
+0000000082 0x0132 ModifyDate = 2019:05:13 14:38:08
+0000000094 0x8769 ExifOffset = 224
 
----- Directory ExifIFD ----
-0x829a ExposureTime = 1/1600 (6.25E-4)
-0x829d FNumber = 4/1 (4.0)
-0x8822 ExposureProgram = 1
-0x8827 PhotographicSensitivity = 160
-0x8830 SensitivityType = 2
-0x8832 RecommendedExposureIndex = 160
-0x9000 ExifVersion = [0x30, 0x32, 0x33, 0x30]
-0x9003 DateTimeOriginal = 2019:05:10 16:43:59
-0x9004 DateTimeDigitized = 2019:05:10 16:43:59
-0x9201 ShutterSpeedValue = 10643856/1000000 (10.643856)
-0x9202 ApertureValue = 4/1 (4.0)
-0x9204 ExposureCompensation = 0/1 (0.0)
-0x9205 MaxApertureValue = 3/1 (3.0)
-0x9207 MeteringMode = 6
-0x9209 Flash = 16
-0x920a FocalLength = 300/1 (300.0)
-0x9291 SubSecTimeOriginal = 77
-0x9292 SubSecTimeDigitized = 77
-0xa001 ColorSpace = 1
-0xa20e FocalPlaneXResolution = 61166933/32768 (1866.666656)
-0xa20f FocalPlaneYResolution = 61166933/32768 (1866.666656)
-0xa210 FocalPlaneResolutionUnit = 3
-0xa401 CustomRendered = 0
-0xa402 ExposureMode = 1
-0xa403 WhiteBalance = 0
-0xa406 SceneCaptureType = 0
-0xa431 BodySerialNumber = 043052000677
-0xa432 LensSpecification = [300/1 (300.0), 300/1 (300.0), Invalid rational (0/0), Invalid rational (0/0)]
-0xa434 LensModel = EF300mm f/2.8L IS II USM
-0xa435 LensSerialNumber = 4250000105
+---- Directory ExifIFD @ 224 ----
+0000000226 0x829a ExposureTime = 1/1600 (6.25E-4)
+0000000238 0x829d FNumber = 4/1 (4.0)
+0000000250 0x8822 ExposureProgram = 1
+0000000262 0x8827 PhotographicSensitivity = 160
+0000000274 0x8830 SensitivityType = 2
+0000000286 0x8832 RecommendedExposureIndex = 160
+0000000298 0x9000 ExifVersion = [0x30, 0x32, 0x33, 0x30]
+0000000310 0x9003 DateTimeOriginal = 2019:05:10 16:43:59
+0000000322 0x9004 DateTimeDigitized = 2019:05:10 16:43:59
+0000000334 0x9201 ShutterSpeedValue = 10643856/1000000 (10.643856)
+0000000346 0x9202 ApertureValue = 4/1 (4.0)
+0000000358 0x9204 ExposureCompensation = 0/1 (0.0)
+0000000370 0x9205 MaxApertureValue = 3/1 (3.0)
+0000000382 0x9207 MeteringMode = 6
+0000000394 0x9209 Flash = 16
+0000000406 0x920a FocalLength = 300/1 (300.0)
+0000000418 0x9291 SubSecTimeOriginal = 77
+0000000430 0x9292 SubSecTimeDigitized = 77
+0000000442 0xa001 ColorSpace = 1
+0000000454 0xa20e FocalPlaneXResolution = 61166933/32768 (1866.666656)
+0000000466 0xa20f FocalPlaneYResolution = 61166933/32768 (1866.666656)
+0000000478 0xa210 FocalPlaneResolutionUnit = 3
+0000000490 0xa401 CustomRendered = 0
+0000000502 0xa402 ExposureMode = 1
+0000000514 0xa403 WhiteBalance = 0
+0000000526 0xa406 SceneCaptureType = 0
+0000000538 0xa431 BodySerialNumber = 043052000677
+0000000550 0xa432 LensSpecification = [300/1 (300.0), 300/1 (300.0), Invalid rational (0/0), Invalid rational (0/0)]
+0000000562 0xa434 LensModel = EF300mm f/2.8L IS II USM
+0000000574 0xa435 LensSerialNumber = 4250000105
 
----- Directory SubIFD ----
-0x0103 Compression = 6
-0x011a XResolution = 72/1 (72.0)
-0x011b YResolution = 72/1 (72.0)
-0x0128 ResolutionUnit = 2
-0x0201 JpgFromRawStart = 880
-0x0202 JpgFromRawLength = 15009
+---- Directory SubIFD @ 786 ----
+0000000788 0x0103 Compression = 6
+0000000800 0x011a XResolution = 72/1 (72.0)
+0000000812 0x011b YResolution = 72/1 (72.0)
+0000000824 0x0128 ResolutionUnit = 2
+0000000836 0x0201 JpgFromRawStart = 880
+0000000848 0x0202 JpgFromRawLength = 15009
 
 
 ---- IPTC ----

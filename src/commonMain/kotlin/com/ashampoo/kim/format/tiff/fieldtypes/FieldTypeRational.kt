@@ -33,7 +33,7 @@ class FieldTypeRational(type: Int, name: String) : FieldType(type, name, 8) {
 
         val unsignedType = entry.fieldType !== SRATIONAL
 
-        return if (entry.count == 1L)
+        return if (entry.count == 1)
             bytes.toRational(entry.byteOrder, unsignedType)
         else
             bytes.toRationals(entry.byteOrder, unsignedType)

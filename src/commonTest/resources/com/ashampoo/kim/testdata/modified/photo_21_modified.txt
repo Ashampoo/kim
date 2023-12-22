@@ -3,68 +3,68 @@ Resolution  : 4522 x 6783
 ---- TIFF ----
 Version 42
 Big-endian (Motorola, MM)
----- Directory IFD0 ----
-0x010f Make = NIKON CORPORATION
-0x0110 Model = NIKON D810
-0x0112 Orientation = 8
-0x011a XResolution = 300/1 (300.0)
-0x011b YResolution = 300/1 (300.0)
-0x0128 ResolutionUnit = 2
-0x0131 Software = Polarr Photo Editor
-0x0132 ModifyDate = 2023:05:10 13:37:42
-0x0211 YCbCrCoefficients = [299/1000 (0.299), 587/1000 (0.587), 57/500 (0.114)]
-0x0213 YCbCrPositioning = 2
-0x8769 ExifOffset = 268
-0x8825 GPSInfo = 20770
+---- Directory IFD0 @ 8 ----
+0000000010 0x010f Make = NIKON CORPORATION
+0000000022 0x0110 Model = NIKON D810
+0000000034 0x0112 Orientation = 8
+0000000046 0x011a XResolution = 300/1 (300.0)
+0000000058 0x011b YResolution = 300/1 (300.0)
+0000000070 0x0128 ResolutionUnit = 2
+0000000082 0x0131 Software = Polarr Photo Editor
+0000000094 0x0132 ModifyDate = 2023:05:10 13:37:42
+0000000106 0x0211 YCbCrCoefficients = [299/1000 (0.299), 587/1000 (0.587), 57/500 (0.114)]
+0000000118 0x0213 YCbCrPositioning = 2
+0000000130 0x8769 ExifOffset = 268
+0000000142 0x8825 GPSInfo = 20770
 
----- Directory ExifIFD ----
-0x829a ExposureTime = 1/200 (0.005)
-0x829d FNumber = 28/5 (5.6)
-0x8822 ExposureProgram = 1
-0x8827 PhotographicSensitivity = 200
-0x8830 SensitivityType = 2
-0x9000 ExifVersion = [0x30, 0x32, 0x33, 0x31]
-0x9003 DateTimeOriginal = 2023:05:10 13:37:42
-0x9004 DateTimeDigitized = 2023:05:10 13:37:42
-0x9101 ComponentsConfiguration = [0x01, 0x02, 0x03, 0x00]
-0x9102 CompressedBitsPerPixel = 4/1 (4.0)
-0x9204 ExposureCompensation = 0/1 (0.0)
-0x9205 MaxApertureValue = 1/1 (1.0)
-0x9207 MeteringMode = 5
-0x9208 LightSource = 0
-0x9209 Flash = 16
-0x920a FocalLength = 85/1 (85.0)
-0x927c MakerNote = [19876 bytes]
-0x9290 SubSecTime = 70
-0x9291 SubSecTimeOriginal = 70
-0x9292 SubSecTimeDigitized = 70
-0xa000 FlashpixVersion = [0x30, 0x31, 0x30, 0x30]
-0xa001 ColorSpace = 1
-0xa002 ExifImageWidth = 4522
-0xa003 ExifImageLength = 6783
-0xa217 SensingMethod = 2
-0xa300 FileSource = 3
-0xa301 SceneType = 1
-0xa302 CFAPattern = [0x02, 0x00, 0x02, 0x00, 0x00, 0x01, 0x01, 0x02]
-0xa401 CustomRendered = 0
-0xa402 ExposureMode = 1
-0xa403 WhiteBalance = 0
-0xa404 DigitalZoomRatio = 1/1 (1.0)
-0xa405 FocalLengthIn35mmFormat = 85
-0xa406 SceneCaptureType = 0
-0xa407 GainControl = 0/1 (0.0)
-0xa408 Contrast = 0
-0xa409 Saturation = 0
-0xa40a Sharpness = 0
-0xa40c SubjectDistanceRange = 0
-0xa500 Gamma = 11/5 (2.2)
+---- Directory ExifIFD @ 268 ----
+0000000270 0x829a ExposureTime = 1/200 (0.005)
+0000000282 0x829d FNumber = 28/5 (5.6)
+0000000294 0x8822 ExposureProgram = 1
+0000000306 0x8827 PhotographicSensitivity = 200
+0000000318 0x8830 SensitivityType = 2
+0000000330 0x9000 ExifVersion = [0x30, 0x32, 0x33, 0x31]
+0000000342 0x9003 DateTimeOriginal = 2023:05:10 13:37:42
+0000000354 0x9004 DateTimeDigitized = 2023:05:10 13:37:42
+0000000366 0x9101 ComponentsConfiguration = [0x01, 0x02, 0x03, 0x00]
+0000000378 0x9102 CompressedBitsPerPixel = 4/1 (4.0)
+0000000390 0x9204 ExposureCompensation = 0/1 (0.0)
+0000000402 0x9205 MaxApertureValue = 1/1 (1.0)
+0000000414 0x9207 MeteringMode = 5
+0000000426 0x9208 LightSource = 0
+0000000438 0x9209 Flash = 16
+0000000450 0x920a FocalLength = 85/1 (85.0)
+0000000462 0x927c MakerNote = [19876 bytes]
+0000000474 0x9290 SubSecTime = 70
+0000000486 0x9291 SubSecTimeOriginal = 70
+0000000498 0x9292 SubSecTimeDigitized = 70
+0000000510 0xa000 FlashpixVersion = [0x30, 0x31, 0x30, 0x30]
+0000000522 0xa001 ColorSpace = 1
+0000000534 0xa002 ExifImageWidth = 4522
+0000000546 0xa003 ExifImageLength = 6783
+0000000558 0xa217 SensingMethod = 2
+0000000570 0xa300 FileSource = 3
+0000000582 0xa301 SceneType = 1
+0000000594 0xa302 CFAPattern = [0x02, 0x00, 0x02, 0x00, 0x00, 0x01, 0x01, 0x02]
+0000000606 0xa401 CustomRendered = 0
+0000000618 0xa402 ExposureMode = 1
+0000000630 0xa403 WhiteBalance = 0
+0000000642 0xa404 DigitalZoomRatio = 1/1 (1.0)
+0000000654 0xa405 FocalLengthIn35mmFormat = 85
+0000000666 0xa406 SceneCaptureType = 0
+0000000678 0xa407 GainControl = 0/1 (0.0)
+0000000690 0xa408 Contrast = 0
+0000000702 0xa409 Saturation = 0
+0000000714 0xa40a Sharpness = 0
+0000000726 0xa40c SubjectDistanceRange = 0
+0000000738 0xa500 Gamma = 11/5 (2.2)
 
----- Directory GPS ----
-0x0000 GPSVersionID = [0x02, 0x03, 0x00, 0x00]
-0x0001 GPSLatitudeRef = N
-0x0002 GPSLatitude = [53/1 (53.0), 13/1 (13.0), 24519/2500 (9.8076)]
-0x0003 GPSLongitudeRef = E
-0x0004 GPSLongitude = [8/1 (8.0), 14/1 (14.0), 56949/2500 (22.7796)]
+---- Directory GPS @ 20770 ----
+0000020772 0x0000 GPSVersionID = [0x02, 0x03, 0x00, 0x00]
+0000020784 0x0001 GPSLatitudeRef = N
+0000020796 0x0002 GPSLatitude = [53/1 (53.0), 13/1 (13.0), 24519/2500 (9.8076)]
+0000020808 0x0003 GPSLongitudeRef = E
+0000020820 0x0004 GPSLongitude = [8/1 (8.0), 14/1 (14.0), 56949/2500 (22.7796)]
 
 
 ---- IPTC ----

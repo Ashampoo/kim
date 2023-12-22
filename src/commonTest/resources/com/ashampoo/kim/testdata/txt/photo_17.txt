@@ -3,22 +3,22 @@ Resolution  : 3136 x 3919
 ---- TIFF ----
 Version 42
 Little-endian (Intel, II)
----- Directory IFD0 ----
-0x010f Make = NIKON CORPORATION
-0x0110 Model = NIKON D610
-0x0131 Software = Lightroom
-0x8769 ExifOffset = 102
+---- Directory IFD0 @ 8 ----
+0000000010 0x010f Make = NIKON CORPORATION
+0000000022 0x0110 Model = NIKON D610
+0000000034 0x0131 Software = Lightroom
+0000000046 0x8769 ExifOffset = 102
 
----- Directory ExifIFD ----
-0x829a ExposureTime = 1/1250 (8.0E-4)
-0x829d FNumber = 14/10 (1.4)
-0x8827 PhotographicSensitivity = 100
-0x9000 ExifVersion = [0x30, 0x32, 0x33, 0x30]
-0x9003 DateTimeOriginal = 2019:01:08 14:48:21
-0x9202 ApertureValue = 970854/1000000 (0.970854)
-0x920a FocalLength = 850/10 (85.0)
-0xa001 ColorSpace = -1
-0xa434 LensModel = 85.0 mm f/1.4
+---- Directory ExifIFD @ 102 ----
+0000000104 0x829a ExposureTime = 1/1250 (8.0E-4)
+0000000116 0x829d FNumber = 14/10 (1.4)
+0000000128 0x8827 PhotographicSensitivity = 100
+0000000140 0x9000 ExifVersion = [0x30, 0x32, 0x33, 0x30]
+0000000152 0x9003 DateTimeOriginal = 2019:01:08 14:48:21
+0000000164 0x9202 ApertureValue = 970854/1000000 (0.970854)
+0000000176 0x920a FocalLength = 850/10 (85.0)
+0000000188 0xa001 ColorSpace = -1
+0000000200 0xa434 LensModel = 85.0 mm f/1.4
 
 
 ---- IPTC ----

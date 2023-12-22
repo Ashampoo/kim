@@ -32,6 +32,10 @@ object TiffImageParser : ImageParser {
     override fun parseMetadata(byteReader: ByteReader): ImageMetadata =
         tryWithImageReadException {
 
+            /**
+             * TIFF files, such as CR2 RAW files, can be extremely large.
+             * It is not advisable to load them entirely into a ByteArray.
+             */
             val randomAccessByteReader = DefaultRandomAccessByteReader(byteReader)
 
             val exif = TiffReader.read(randomAccessByteReader)

@@ -57,7 +57,7 @@ object JpegSegmentAnalyzer {
             )
         )
 
-        var positionCounter: Long = ImageFormatMagicNumbers.jpeg.size.toLong()
+        var positionCounter: Int = ImageFormatMagicNumbers.jpeg.size
 
         @Suppress("LoopWithTooManyJumpStatements")
         do {
@@ -98,9 +98,9 @@ object JpegSegmentAnalyzer {
                     )
                 )
 
-                byteReader.skipBytes("image bytes", remainingBytesCount - 2)
+                byteReader.skipBytes("image bytes", (remainingBytesCount - 2).toInt())
 
-                positionCounter += remainingBytesCount
+                positionCounter += remainingBytesCount.toInt()
 
                 val eoiMarker = byteReader.read2BytesAsInt("EOI", JPEG_BYTE_ORDER)
 
@@ -137,7 +137,7 @@ object JpegSegmentAnalyzer {
             if (remainingSegmentLength <= 0)
                 throw ImageReadException("Illegal JPEG segment length: $remainingSegmentLength")
 
-            byteReader.skipBytes("skip segment", remainingSegmentLength.toLong())
+            byteReader.skipBytes("skip segment", remainingSegmentLength)
 
             positionCounter += remainingSegmentLength
 
@@ -147,7 +147,7 @@ object JpegSegmentAnalyzer {
     }
 
     data class JpegSegmentInfo(
-        val offset: Long,
+        val offset: Int,
         val marker: Int,
         val length: Int
     ) {

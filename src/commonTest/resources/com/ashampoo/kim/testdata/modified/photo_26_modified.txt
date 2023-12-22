@@ -3,61 +3,61 @@ Resolution  : 2304 x 1536
 ---- TIFF ----
 Version 42
 Big-endian (Motorola, MM)
----- Directory IFD0 ----
-0x010f Make = NIKON CORPORATION
-0x0110 Model = NIKON D3300
-0x0112 Orientation = 8
-0x011a XResolution = 240/1 (240.0)
-0x011b YResolution = 240/1 (240.0)
-0x0128 ResolutionUnit = 2
-0x0131 Software = Adobe Photoshop Lightroom 6.0 (Windows)
-0x0132 ModifyDate = 2023:05:10 13:37:42
-0x8769 ExifOffset = 240
-0x8825 GPSInfo = 834
+---- Directory IFD0 @ 8 ----
+0000000010 0x010f Make = NIKON CORPORATION
+0000000022 0x0110 Model = NIKON D3300
+0000000034 0x0112 Orientation = 8
+0000000046 0x011a XResolution = 240/1 (240.0)
+0000000058 0x011b YResolution = 240/1 (240.0)
+0000000070 0x0128 ResolutionUnit = 2
+0000000082 0x0131 Software = Adobe Photoshop Lightroom 6.0 (Windows)
+0000000094 0x0132 ModifyDate = 2023:05:10 13:37:42
+0000000106 0x8769 ExifOffset = 240
+0000000118 0x8825 GPSInfo = 834
 
----- Directory ExifIFD ----
-0x829a ExposureTime = 1/400 (0.0025)
-0x829d FNumber = 4/1 (4.0)
-0x8822 ExposureProgram = 1
-0x8827 PhotographicSensitivity = 1600
-0x9000 ExifVersion = [0x30, 0x32, 0x33, 0x30]
-0x9003 DateTimeOriginal = 2023:05:10 13:37:42
-0x9004 DateTimeDigitized = 2023:05:10 13:37:42
-0x9201 ShutterSpeedValue = 11747/1359 (8.643856)
-0x9202 ApertureValue = 4/1 (4.0)
-0x9204 ExposureCompensation = 0/1 (0.0)
-0x9205 MaxApertureValue = 4/1 (4.0)
-0x9207 MeteringMode = 5
-0x9208 LightSource = 0
-0x9209 Flash = 0
-0x920a FocalLength = 55/1 (55.0)
-0x9291 SubSecTimeOriginal = 5
-0x9292 SubSecTimeDigitized = 5
-0xa001 ColorSpace = 1
-0xa002 ExifImageWidth = 2304
-0xa003 ExifImageLength = 1536
-0xa217 SensingMethod = 2
-0xa401 CustomRendered = 0
-0xa402 ExposureMode = 1
-0xa403 WhiteBalance = 0
-0xa404 DigitalZoomRatio = 1/1 (1.0)
-0xa405 FocalLengthIn35mmFormat = 82
-0xa406 SceneCaptureType = 0
-0xa407 GainControl = 2
-0xa408 Contrast = 0
-0xa409 Saturation = 0
-0xa40a Sharpness = 0
-0xa40c SubjectDistanceRange = 0
-0xa431 BodySerialNumber = 8919190
-0xa432 LensSpecification = [55/1 (55.0), 200/1 (200.0), 4/1 (4.0), 28/5 (5.6)]
-0xa434 LensModel = 55.0-200.0 mm f/4.0-5.6
+---- Directory ExifIFD @ 240 ----
+0000000242 0x829a ExposureTime = 1/400 (0.0025)
+0000000254 0x829d FNumber = 4/1 (4.0)
+0000000266 0x8822 ExposureProgram = 1
+0000000278 0x8827 PhotographicSensitivity = 1600
+0000000290 0x9000 ExifVersion = [0x30, 0x32, 0x33, 0x30]
+0000000302 0x9003 DateTimeOriginal = 2023:05:10 13:37:42
+0000000314 0x9004 DateTimeDigitized = 2023:05:10 13:37:42
+0000000326 0x9201 ShutterSpeedValue = 11747/1359 (8.643856)
+0000000338 0x9202 ApertureValue = 4/1 (4.0)
+0000000350 0x9204 ExposureCompensation = 0/1 (0.0)
+0000000362 0x9205 MaxApertureValue = 4/1 (4.0)
+0000000374 0x9207 MeteringMode = 5
+0000000386 0x9208 LightSource = 0
+0000000398 0x9209 Flash = 0
+0000000410 0x920a FocalLength = 55/1 (55.0)
+0000000422 0x9291 SubSecTimeOriginal = 5
+0000000434 0x9292 SubSecTimeDigitized = 5
+0000000446 0xa001 ColorSpace = 1
+0000000458 0xa002 ExifImageWidth = 2304
+0000000470 0xa003 ExifImageLength = 1536
+0000000482 0xa217 SensingMethod = 2
+0000000494 0xa401 CustomRendered = 0
+0000000506 0xa402 ExposureMode = 1
+0000000518 0xa403 WhiteBalance = 0
+0000000530 0xa404 DigitalZoomRatio = 1/1 (1.0)
+0000000542 0xa405 FocalLengthIn35mmFormat = 82
+0000000554 0xa406 SceneCaptureType = 0
+0000000566 0xa407 GainControl = 2
+0000000578 0xa408 Contrast = 0
+0000000590 0xa409 Saturation = 0
+0000000602 0xa40a Sharpness = 0
+0000000614 0xa40c SubjectDistanceRange = 0
+0000000626 0xa431 BodySerialNumber = 8919190
+0000000638 0xa432 LensSpecification = [55/1 (55.0), 200/1 (200.0), 4/1 (4.0), 28/5 (5.6)]
+0000000650 0xa434 LensModel = 55.0-200.0 mm f/4.0-5.6
 
----- Directory GPS ----
-0x0000 GPSVersionID = [0x02, 0x03, 0x00, 0x00]
-0x0001 GPSLatitudeRef = N
-0x0002 GPSLatitude = [53/1 (53.0), 13/1 (13.0), 24519/2500 (9.8076)]
-0x0003 GPSLongitudeRef = E
-0x0004 GPSLongitude = [8/1 (8.0), 14/1 (14.0), 56949/2500 (22.7796)]
+---- Directory GPS @ 834 ----
+0000000836 0x0000 GPSVersionID = [0x02, 0x03, 0x00, 0x00]
+0000000848 0x0001 GPSLatitudeRef = N
+0000000860 0x0002 GPSLatitude = [53/1 (53.0), 13/1 (13.0), 24519/2500 (9.8076)]
+0000000872 0x0003 GPSLongitudeRef = E
+0000000884 0x0004 GPSLongitude = [8/1 (8.0), 14/1 (14.0), 56949/2500 (22.7796)]
 
 
 ---- IPTC ----

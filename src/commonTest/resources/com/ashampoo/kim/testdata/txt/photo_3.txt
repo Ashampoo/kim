@@ -3,62 +3,62 @@ Resolution  : 2074 x 2592
 ---- TIFF ----
 Version 42
 Little-endian (Intel, II)
----- Directory IFD0 ----
-0x010e ImageDescription = OLYMPUS DIGITAL CAMERA
-0x010f Make = OLYMPUS CORPORATION
-0x0110 Model = E-M10 Mark III
-0x011a XResolution = 240/1 (240.0)
-0x011b YResolution = 240/1 (240.0)
-0x0128 ResolutionUnit = 2
-0x0131 Software = Adobe Photoshop Lightroom 6.14 (Windows)
-0x0132 ModifyDate = 2020:04:30 21:24:18
-0x8769 ExifOffset = 260
+---- Directory IFD0 @ 8 ----
+0000000010 0x010e ImageDescription = OLYMPUS DIGITAL CAMERA
+0000000022 0x010f Make = OLYMPUS CORPORATION
+0000000034 0x0110 Model = E-M10 Mark III
+0000000046 0x011a XResolution = 240/1 (240.0)
+0000000058 0x011b YResolution = 240/1 (240.0)
+0000000070 0x0128 ResolutionUnit = 2
+0000000082 0x0131 Software = Adobe Photoshop Lightroom 6.14 (Windows)
+0000000094 0x0132 ModifyDate = 2020:04:30 21:24:18
+0000000106 0x8769 ExifOffset = 260
 
----- Directory ExifIFD ----
-0x829a ExposureTime = 1/250 (0.004)
-0x829d FNumber = 56/10 (5.6)
-0x8822 ExposureProgram = 3
-0x8827 PhotographicSensitivity = 500
-0x8830 SensitivityType = 1
-0x9000 ExifVersion = [0x30, 0x32, 0x33, 0x31]
-0x9003 DateTimeOriginal = 2020:04:30 15:08:15
-0x9004 DateTimeDigitized = 2020:04:30 15:08:15
-0x9201 ShutterSpeedValue = 7965784/1000000 (7.965784)
-0x9202 ApertureValue = 4970854/1000000 (4.970854)
-0x9204 ExposureCompensation = 0/10 (0.0)
-0x9205 MaxApertureValue = 925/256 (3.613281)
-0x9207 MeteringMode = 5
-0x9208 LightSource = 0
-0x9209 Flash = 8
-0x920a FocalLength = 30/1 (30.0)
-0xa001 ColorSpace = 1
-0xa20e FocalPlaneXResolution = 87196351/32768 (2661.021454)
-0xa20f FocalPlaneYResolution = 87196351/32768 (2661.021454)
-0xa210 FocalPlaneResolutionUnit = 3
-0xa300 FileSource = 3
-0xa302 CFAPattern = [0x02, 0x00, 0x02, 0x00, 0x00, 0x01, 0x01, 0x02]
-0xa401 CustomRendered = 0
-0xa402 ExposureMode = 0
-0xa403 WhiteBalance = 0
-0xa404 DigitalZoomRatio = 100/100 (1.0)
-0xa405 FocalLengthIn35mmFormat = 60
-0xa406 SceneCaptureType = 0
-0xa407 GainControl = 2
-0xa408 Contrast = 0
-0xa409 Saturation = 0
-0xa40a Sharpness = 0
-0xa431 BodySerialNumber = BHXB09700
-0xa432 LensSpecification = [30/1 (30.0), 30/1 (30.0), 35/10 (3.5), 35/10 (3.5)]
-0xa434 LensModel = OLYMPUS M.30mm F3.5 Macro
-0xa435 LensSerialNumber = ACBA37456
+---- Directory ExifIFD @ 260 ----
+0000000262 0x829a ExposureTime = 1/250 (0.004)
+0000000274 0x829d FNumber = 56/10 (5.6)
+0000000286 0x8822 ExposureProgram = 3
+0000000298 0x8827 PhotographicSensitivity = 500
+0000000310 0x8830 SensitivityType = 1
+0000000322 0x9000 ExifVersion = [0x30, 0x32, 0x33, 0x31]
+0000000334 0x9003 DateTimeOriginal = 2020:04:30 15:08:15
+0000000346 0x9004 DateTimeDigitized = 2020:04:30 15:08:15
+0000000358 0x9201 ShutterSpeedValue = 7965784/1000000 (7.965784)
+0000000370 0x9202 ApertureValue = 4970854/1000000 (4.970854)
+0000000382 0x9204 ExposureCompensation = 0/10 (0.0)
+0000000394 0x9205 MaxApertureValue = 925/256 (3.613281)
+0000000406 0x9207 MeteringMode = 5
+0000000418 0x9208 LightSource = 0
+0000000430 0x9209 Flash = 8
+0000000442 0x920a FocalLength = 30/1 (30.0)
+0000000454 0xa001 ColorSpace = 1
+0000000466 0xa20e FocalPlaneXResolution = 87196351/32768 (2661.021454)
+0000000478 0xa20f FocalPlaneYResolution = 87196351/32768 (2661.021454)
+0000000490 0xa210 FocalPlaneResolutionUnit = 3
+0000000502 0xa300 FileSource = 3
+0000000514 0xa302 CFAPattern = [0x02, 0x00, 0x02, 0x00, 0x00, 0x01, 0x01, 0x02]
+0000000526 0xa401 CustomRendered = 0
+0000000538 0xa402 ExposureMode = 0
+0000000550 0xa403 WhiteBalance = 0
+0000000562 0xa404 DigitalZoomRatio = 100/100 (1.0)
+0000000574 0xa405 FocalLengthIn35mmFormat = 60
+0000000586 0xa406 SceneCaptureType = 0
+0000000598 0xa407 GainControl = 2
+0000000610 0xa408 Contrast = 0
+0000000622 0xa409 Saturation = 0
+0000000634 0xa40a Sharpness = 0
+0000000646 0xa431 BodySerialNumber = BHXB09700
+0000000658 0xa432 LensSpecification = [30/1 (30.0), 30/1 (30.0), 35/10 (3.5), 35/10 (3.5)]
+0000000670 0xa434 LensModel = OLYMPUS M.30mm F3.5 Macro
+0000000682 0xa435 LensSerialNumber = ACBA37456
 
----- Directory SubIFD ----
-0x0103 Compression = 6
-0x011a XResolution = 72/1 (72.0)
-0x011b YResolution = 72/1 (72.0)
-0x0128 ResolutionUnit = 2
-0x0201 JpgFromRawStart = 998
-0x0202 JpgFromRawLength = 12001
+---- Directory SubIFD @ 904 ----
+0000000906 0x0103 Compression = 6
+0000000918 0x011a XResolution = 72/1 (72.0)
+0000000930 0x011b YResolution = 72/1 (72.0)
+0000000942 0x0128 ResolutionUnit = 2
+0000000954 0x0201 JpgFromRawStart = 998
+0000000966 0x0202 JpgFromRawLength = 12001
 
 
 ---- IPTC ----

@@ -1,6 +1,6 @@
 # Kim - Kotlin Image Metadata
 
-[![Kotlin](https://img.shields.io/badge/kotlin-1.9.21-blue.svg?logo=kotlin)](httpw://kotlinlang.org)
+[![Kotlin](https://img.shields.io/badge/kotlin-1.9.22-blue.svg?logo=kotlin)](httpw://kotlinlang.org)
 ![JVM](https://img.shields.io/badge/-JVM-gray.svg?style=flat)
 ![Android](https://img.shields.io/badge/-Android-gray.svg?style=flat)
 ![macOS](https://img.shields.io/badge/-macOS-gray.svg?style=flat)
@@ -33,7 +33,7 @@ of Ashampoo Photos, which, in turn, is driven by user community feedback.
 ## Installation
 
 ```
-implementation("com.ashampoo:kim:0.8.2")
+implementation("com.ashampoo:kim:0.8.3")
 ```
 
 ## Sample usages

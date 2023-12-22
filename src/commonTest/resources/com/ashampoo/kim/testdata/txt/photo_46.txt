@@ -3,57 +3,57 @@ Resolution  : 4390 x 2927
 ---- TIFF ----
 Version 42
 Little-endian (Intel, II)
----- Directory IFD0 ----
-0x010f Make = Canon
-0x0110 Model = Canon EOS 6D
-0x011a XResolution = 72/1 (72.0)
-0x011b YResolution = 72/1 (72.0)
-0x0128 ResolutionUnit = 2
-0x0131 Software = Adobe Photoshop Lightroom Classic 8.0 (Macintosh)
-0x0132 ModifyDate = 2019:03:04 15:08:58
-0x013b Artist = Jonathan Cooper
-0x8298 Copyright = 2014
-0x8769 ExifOffset = 262
+---- Directory IFD0 @ 8 ----
+0000000010 0x010f Make = Canon
+0000000022 0x0110 Model = Canon EOS 6D
+0000000034 0x011a XResolution = 72/1 (72.0)
+0000000046 0x011b YResolution = 72/1 (72.0)
+0000000058 0x0128 ResolutionUnit = 2
+0000000070 0x0131 Software = Adobe Photoshop Lightroom Classic 8.0 (Macintosh)
+0000000082 0x0132 ModifyDate = 2019:03:04 15:08:58
+0000000094 0x013b Artist = Jonathan Cooper
+0000000106 0x8298 Copyright = 2014
+0000000118 0x8769 ExifOffset = 262
 
----- Directory ExifIFD ----
-0x829a ExposureTime = 1/200 (0.005)
-0x829d FNumber = 2/1 (2.0)
-0x8822 ExposureProgram = 1
-0x8827 PhotographicSensitivity = 125
-0x8830 SensitivityType = 2
-0x8832 RecommendedExposureIndex = 125
-0x9000 ExifVersion = [0x30, 0x32, 0x33, 0x30]
-0x9003 DateTimeOriginal = 2018:10:20 15:19:58
-0x9004 DateTimeDigitized = 2018:10:20 15:19:58
-0x9201 ShutterSpeedValue = 7643856/1000000 (7.643856)
-0x9202 ApertureValue = 2/1 (2.0)
-0x9204 ExposureCompensation = 0/1 (0.0)
-0x9205 MaxApertureValue = 2/1 (2.0)
-0x9207 MeteringMode = 5
-0x9209 Flash = 16
-0x920a FocalLength = 100/1 (100.0)
-0x9291 SubSecTimeOriginal = 62
-0x9292 SubSecTimeDigitized = 62
-0xa001 ColorSpace = 1
-0xa20e FocalPlaneXResolution = 49807360/32768 (1520.0)
-0xa20f FocalPlaneYResolution = 49807360/32768 (1520.0)
-0xa210 FocalPlaneResolutionUnit = 3
-0xa401 CustomRendered = 0
-0xa402 ExposureMode = 1
-0xa403 WhiteBalance = 0
-0xa406 SceneCaptureType = 0
-0xa431 BodySerialNumber = 022123002072
-0xa432 LensSpecification = [100/1 (100.0), 100/1 (100.0), Invalid rational (0/0), Invalid rational (0/0)]
-0xa434 LensModel = 100mm
-0xa435 LensSerialNumber = 0000000000
+---- Directory ExifIFD @ 262 ----
+0000000264 0x829a ExposureTime = 1/200 (0.005)
+0000000276 0x829d FNumber = 2/1 (2.0)
+0000000288 0x8822 ExposureProgram = 1
+0000000300 0x8827 PhotographicSensitivity = 125
+0000000312 0x8830 SensitivityType = 2
+0000000324 0x8832 RecommendedExposureIndex = 125
+0000000336 0x9000 ExifVersion = [0x30, 0x32, 0x33, 0x30]
+0000000348 0x9003 DateTimeOriginal = 2018:10:20 15:19:58
+0000000360 0x9004 DateTimeDigitized = 2018:10:20 15:19:58
+0000000372 0x9201 ShutterSpeedValue = 7643856/1000000 (7.643856)
+0000000384 0x9202 ApertureValue = 2/1 (2.0)
+0000000396 0x9204 ExposureCompensation = 0/1 (0.0)
+0000000408 0x9205 MaxApertureValue = 2/1 (2.0)
+0000000420 0x9207 MeteringMode = 5
+0000000432 0x9209 Flash = 16
+0000000444 0x920a FocalLength = 100/1 (100.0)
+0000000456 0x9291 SubSecTimeOriginal = 62
+0000000468 0x9292 SubSecTimeDigitized = 62
+0000000480 0xa001 ColorSpace = 1
+0000000492 0xa20e FocalPlaneXResolution = 49807360/32768 (1520.0)
+0000000504 0xa20f FocalPlaneYResolution = 49807360/32768 (1520.0)
+0000000516 0xa210 FocalPlaneResolutionUnit = 3
+0000000528 0xa401 CustomRendered = 0
+0000000540 0xa402 ExposureMode = 1
+0000000552 0xa403 WhiteBalance = 0
+0000000564 0xa406 SceneCaptureType = 0
+0000000576 0xa431 BodySerialNumber = 022123002072
+0000000588 0xa432 LensSpecification = [100/1 (100.0), 100/1 (100.0), Invalid rational (0/0), Invalid rational (0/0)]
+0000000600 0xa434 LensModel = 100mm
+0000000612 0xa435 LensSerialNumber = 0000000000
 
----- Directory SubIFD ----
-0x0103 Compression = 6
-0x011a XResolution = 72/1 (72.0)
-0x011b YResolution = 72/1 (72.0)
-0x0128 ResolutionUnit = 2
-0x0201 JpgFromRawStart = 898
-0x0202 JpgFromRawLength = 10447
+---- Directory SubIFD @ 804 ----
+0000000806 0x0103 Compression = 6
+0000000818 0x011a XResolution = 72/1 (72.0)
+0000000830 0x011b YResolution = 72/1 (72.0)
+0000000842 0x0128 ResolutionUnit = 2
+0000000854 0x0201 JpgFromRawStart = 898
+0000000866 0x0202 JpgFromRawLength = 10447
 
 
 ---- IPTC ----

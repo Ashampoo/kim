@@ -3,12 +3,12 @@ Resolution  : 2304 x 1536
 ---- TIFF ----
 Version 42
 Big-endian (Motorola, MM)
----- Directory IFD0 ----
-0x8769 ExifOffset = 28
+---- Directory IFD0 @ 8 ----
+0000000010 0x8769 ExifOffset = 28
 
----- Directory ExifIFD ----
-0x9003 DateTimeOriginal = 2023:07:12 14:48:45
-0x9004 DateTimeDigitized = 2023:07:12 14:48:45
+---- Directory ExifIFD @ 28 ----
+0000000030 0x9003 DateTimeOriginal = 2023:07:12 14:48:45
+0000000042 0x9004 DateTimeDigitized = 2023:07:12 14:48:45
 
 
 ---- XMP ----

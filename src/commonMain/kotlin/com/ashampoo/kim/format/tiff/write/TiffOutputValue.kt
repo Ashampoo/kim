@@ -25,7 +25,8 @@ class TiffOutputValue internal constructor(
     private val bytes: ByteArray
 ) : TiffOutputItem {
 
-    override var offset: Long = TiffOutputItem.UNDEFINED_VALUE
+    override var offset: Int =
+        TiffOutputItem.UNDEFINED_VALUE
 
     override fun getItemLength(): Int =
         bytes.size

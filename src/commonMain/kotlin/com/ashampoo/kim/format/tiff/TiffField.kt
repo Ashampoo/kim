@@ -31,23 +31,33 @@ import com.ashampoo.kim.format.tiff.taginfos.TagInfo
  * A TIFF field in a TIFF directory.
  */
 class TiffField(
+    /** Offset relative to TIFF header */
+    val offset: Int,
     val tag: Int,
     val directoryType: Int,
     val fieldType: FieldType,
-    val count: Long,
-    val offset: Long,
+    val count: Int,
+    /** Set if field has a local value. */
+    val localValue: Int?,
+    /** Set if field has a offset pointer to its value. */
+    val valueOffset: Int?,
     val valueBytes: ByteArray,
     val byteOrder: ByteOrder,
     val sortHint: Int
 ) {
+
+    /**
+     * Returns the offset with padding.
+     * Because TIFF files can be as big as 4 GB we need 10 digits to present that.
+     */
+    val offsetFormatted: String =
+        offset.toString().padStart(10, '0')
 
     /** Return a proper Tag ID like 0x0100 */
     val tagFormatted: String =
         "0x" + tag.toString(HEX_RADIX).padStart(4, '0')
 
     val tagInfo: TagInfo = getTag(directoryType, tag)
-
-    val isLocalValue: Boolean = count * fieldType.size <= TiffConstants.TIFF_ENTRY_MAX_VALUE_LENGTH
 
     val bytesLength: Int = count.toInt() * fieldType.size
 
@@ -152,14 +162,14 @@ class TiffField(
      * 'tagInfo' might be an Unknown tag and show a placeholder.
      */
     override fun toString(): String =
-        "$tagFormatted ${tagInfo.name} = $valueDescription"
+        "$offsetFormatted $tagFormatted ${tagInfo.name} = $valueDescription"
 
     fun createOversizeValueElement(): TiffElement? =
-        if (isLocalValue) null else OversizeValueElement(offset.toInt(), valueBytes.size)
+        valueOffset?.let { OversizeValueElement(it.toInt(), valueBytes.size) }
 
     inner class OversizeValueElement(offset: Int, length: Int) : TiffElement(
-        debugDescription = "Value of $tagInfo ($fieldType)",
-        offset = offset.toLong(),
+        debugDescription = "Value of $tagInfo ($fieldType) @ $offset",
+        offset = offset,
         length = length
     ) {
 

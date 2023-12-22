@@ -3,61 +3,61 @@ Resolution  : 3771 x 2121
 ---- TIFF ----
 Version 42
 Little-endian (Intel, II)
----- Directory IFD0 ----
-0x010f Make = FUJIFILM
-0x0110 Model = X-T20
-0x011a XResolution = 240/1 (240.0)
-0x011b YResolution = 240/1 (240.0)
-0x0128 ResolutionUnit = 2
-0x0131 Software = Adobe Photoshop Lightroom Classic 8.1 (Macintosh)
-0x0132 ModifyDate = 2019:01:22 20:56:19
-0x8769 ExifOffset = 212
+---- Directory IFD0 @ 8 ----
+0000000010 0x010f Make = FUJIFILM
+0000000022 0x0110 Model = X-T20
+0000000034 0x011a XResolution = 240/1 (240.0)
+0000000046 0x011b YResolution = 240/1 (240.0)
+0000000058 0x0128 ResolutionUnit = 2
+0000000070 0x0131 Software = Adobe Photoshop Lightroom Classic 8.1 (Macintosh)
+0000000082 0x0132 ModifyDate = 2019:01:22 20:56:19
+0000000094 0x8769 ExifOffset = 212
 
----- Directory ExifIFD ----
-0x829a ExposureTime = 1/200 (0.005)
-0x829d FNumber = 2/1 (2.0)
-0x8822 ExposureProgram = 3
-0x8827 PhotographicSensitivity = 250
-0x8830 SensitivityType = 1
-0x9000 ExifVersion = [0x30, 0x32, 0x33, 0x30]
-0x9003 DateTimeOriginal = 2019:01:21 20:13:58
-0x9004 DateTimeDigitized = 2019:01:21 20:13:58
-0x9201 ShutterSpeedValue = 7643856/1000000 (7.643856)
-0x9202 ApertureValue = 2/1 (2.0)
-0x9203 BrightnessValue = 343/100 (3.43)
-0x9204 ExposureCompensation = 0/100 (0.0)
-0x9205 MaxApertureValue = 200/100 (2.0)
-0x9207 MeteringMode = 2
-0x9208 LightSource = 0
-0x9209 Flash = 0
-0x920a FocalLength = 9000/100 (90.0)
-0xa001 ColorSpace = 1
-0xa20e FocalPlaneXResolution = 83663736/32768 (2553.2146)
-0xa20f FocalPlaneYResolution = 83663736/32768 (2553.2146)
-0xa210 FocalPlaneResolutionUnit = 3
-0xa217 SensingMethod = 2
-0xa300 FileSource = 3
-0xa301 SceneType = 1
-0xa401 CustomRendered = 0
-0xa402 ExposureMode = 0
-0xa403 WhiteBalance = 0
-0xa405 FocalLengthIn35mmFormat = 135
-0xa406 SceneCaptureType = 0
-0xa40a Sharpness = 0
-0xa40c SubjectDistanceRange = 0
-0xa431 BodySerialNumber = 7AA03899
-0xa432 LensSpecification = [9000/100 (90.0), 9000/100 (90.0), 200/100 (2.0), 200/100 (2.0)]
-0xa433 LensMake = FUJIFILM
-0xa434 LensModel = XF90mmF2 R LM WR
-0xa435 LensSerialNumber = 65B00914
+---- Directory ExifIFD @ 212 ----
+0000000214 0x829a ExposureTime = 1/200 (0.005)
+0000000226 0x829d FNumber = 2/1 (2.0)
+0000000238 0x8822 ExposureProgram = 3
+0000000250 0x8827 PhotographicSensitivity = 250
+0000000262 0x8830 SensitivityType = 1
+0000000274 0x9000 ExifVersion = [0x30, 0x32, 0x33, 0x30]
+0000000286 0x9003 DateTimeOriginal = 2019:01:21 20:13:58
+0000000298 0x9004 DateTimeDigitized = 2019:01:21 20:13:58
+0000000310 0x9201 ShutterSpeedValue = 7643856/1000000 (7.643856)
+0000000322 0x9202 ApertureValue = 2/1 (2.0)
+0000000334 0x9203 BrightnessValue = 343/100 (3.43)
+0000000346 0x9204 ExposureCompensation = 0/100 (0.0)
+0000000358 0x9205 MaxApertureValue = 200/100 (2.0)
+0000000370 0x9207 MeteringMode = 2
+0000000382 0x9208 LightSource = 0
+0000000394 0x9209 Flash = 0
+0000000406 0x920a FocalLength = 9000/100 (90.0)
+0000000418 0xa001 ColorSpace = 1
+0000000430 0xa20e FocalPlaneXResolution = 83663736/32768 (2553.2146)
+0000000442 0xa20f FocalPlaneYResolution = 83663736/32768 (2553.2146)
+0000000454 0xa210 FocalPlaneResolutionUnit = 3
+0000000466 0xa217 SensingMethod = 2
+0000000478 0xa300 FileSource = 3
+0000000490 0xa301 SceneType = 1
+0000000502 0xa401 CustomRendered = 0
+0000000514 0xa402 ExposureMode = 0
+0000000526 0xa403 WhiteBalance = 0
+0000000538 0xa405 FocalLengthIn35mmFormat = 135
+0000000550 0xa406 SceneCaptureType = 0
+0000000562 0xa40a Sharpness = 0
+0000000574 0xa40c SubjectDistanceRange = 0
+0000000586 0xa431 BodySerialNumber = 7AA03899
+0000000598 0xa432 LensSpecification = [9000/100 (90.0), 9000/100 (90.0), 200/100 (2.0), 200/100 (2.0)]
+0000000610 0xa433 LensMake = FUJIFILM
+0000000622 0xa434 LensModel = XF90mmF2 R LM WR
+0000000634 0xa435 LensSerialNumber = 65B00914
 
----- Directory SubIFD ----
-0x0103 Compression = 6
-0x011a XResolution = 72/1 (72.0)
-0x011b YResolution = 72/1 (72.0)
-0x0128 ResolutionUnit = 2
-0x0201 JpgFromRawStart = 944
-0x0202 JpgFromRawLength = 12539
+---- Directory SubIFD @ 850 ----
+0000000852 0x0103 Compression = 6
+0000000864 0x011a XResolution = 72/1 (72.0)
+0000000876 0x011b YResolution = 72/1 (72.0)
+0000000888 0x0128 ResolutionUnit = 2
+0000000900 0x0201 JpgFromRawStart = 944
+0000000912 0x0202 JpgFromRawLength = 12539
 
 
 ---- IPTC ----

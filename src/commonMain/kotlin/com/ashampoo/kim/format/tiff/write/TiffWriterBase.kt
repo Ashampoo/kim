@@ -231,7 +231,7 @@ abstract class TiffWriterBase(
 
     protected fun writeImageFileHeader(
         byteWriter: BinaryByteWriter,
-        offsetToFirstIFD: Long = TIFF_HEADER_SIZE.toLong()
+        offsetToFirstIFD: Int = TIFF_HEADER_SIZE
     ) {
 
         if (byteOrder == ByteOrder.LITTLE_ENDIAN) {

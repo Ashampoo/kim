@@ -3,100 +3,100 @@ Resolution  : 4288 x 2858
 ---- TIFF ----
 Version 42
 Little-endian (Intel, II)
----- Directory IFD0 ----
-0x00fe NewSubfileType = 1
-0x0103 Compression = 6
-0x010e ImageDescription = SONY DSC                       
-0x010f Make = SONY
-0x0110 Model = DSLR-A500
-0x0112 Orientation = 1
-0x011a XResolution = 350/1 (350.0)
-0x011b YResolution = 350/1 (350.0)
-0x0128 ResolutionUnit = 2
-0x0131 Software = DSLR-A500 v1.00
-0x0132 ModifyDate = 2010:02:01 16:03:48
-0x014a SubIFD = 118108
-0x0201 JPEGInterchangeFormat = 163891
-0x0202 JPEGInterchangeFormatLength = 736202
-0x0213 YCbCrPositioning = 2
-0x8769 ExifOffset = 454
-0xc4a5 PrintIM = [124 bytes]
-0xc634 Unknown = [0x00, 0x00, 0x01, 0x00]
+---- Directory IFD0 @ 8 ----
+0000000010 0x00fe NewSubfileType = 1
+0000000022 0x0103 Compression = 6
+0000000034 0x010e ImageDescription = SONY DSC                       
+0000000046 0x010f Make = SONY
+0000000058 0x0110 Model = DSLR-A500
+0000000070 0x0112 Orientation = 1
+0000000082 0x011a XResolution = 350/1 (350.0)
+0000000094 0x011b YResolution = 350/1 (350.0)
+0000000106 0x0128 ResolutionUnit = 2
+0000000118 0x0131 Software = DSLR-A500 v1.00
+0000000130 0x0132 ModifyDate = 2010:02:01 16:03:48
+0000000142 0x014a SubIFD = 118108
+0000000154 0x0201 JPEGInterchangeFormat = 163891
+0000000166 0x0202 JPEGInterchangeFormatLength = 736202
+0000000178 0x0213 YCbCrPositioning = 2
+0000000190 0x8769 ExifOffset = 454
+0000000202 0xc4a5 PrintIM = [124 bytes]
+0000000214 0xc634 Unknown = [0x00, 0x00, 0x01, 0x00]
 
----- Directory ExifIFD ----
-0x829a ExposureTime = 1/60 (0.016667)
-0x829d FNumber = 80/10 (8.0)
-0x8822 ExposureProgram = 3
-0x8827 PhotographicSensitivity = 200
-0x9000 ExifVersion = [0x30, 0x32, 0x32, 0x31]
-0x9003 DateTimeOriginal = 2010:02:01 16:03:48
-0x9004 DateTimeDigitized = 2010:02:01 16:03:48
-0x9101 ComponentsConfiguration = [0x01, 0x02, 0x03, 0x00]
-0x9102 CompressedBitsPerPixel = 8/1 (8.0)
-0x9203 BrightnessValue = 587/100 (5.87)
-0x9204 ExposureCompensation = 0/10 (0.0)
-0x9205 MaxApertureValue = 361/100 (3.61)
-0x9207 MeteringMode = 5
-0x9208 LightSource = 0
-0x9209 Flash = 16
-0x920a FocalLength = 180/10 (18.0)
-0x927c MakerNote = [43132 bytes]
-0x9286 UserComment = 
-0xa000 FlashpixVersion = [0x30, 0x31, 0x30, 0x30]
-0xa001 ColorSpace = 1
-0xa002 ExifImageWidth = 4272
-0xa003 ExifImageLength = 2848
-0xa005 InteropOffset = 44148
-0xa300 FileSource = 3
-0xa301 SceneType = 1
-0xa401 CustomRendered = 0
-0xa402 ExposureMode = 0
-0xa403 WhiteBalance = 0
-0xa405 FocalLengthIn35mmFormat = 27
-0xa406 SceneCaptureType = 0
-0xa408 Contrast = 0
-0xa409 Saturation = 0
-0xa40a Sharpness = 0
+---- Directory ExifIFD @ 454 ----
+0000000456 0x829a ExposureTime = 1/60 (0.016667)
+0000000468 0x829d FNumber = 80/10 (8.0)
+0000000480 0x8822 ExposureProgram = 3
+0000000492 0x8827 PhotographicSensitivity = 200
+0000000504 0x9000 ExifVersion = [0x30, 0x32, 0x32, 0x31]
+0000000516 0x9003 DateTimeOriginal = 2010:02:01 16:03:48
+0000000528 0x9004 DateTimeDigitized = 2010:02:01 16:03:48
+0000000540 0x9101 ComponentsConfiguration = [0x01, 0x02, 0x03, 0x00]
+0000000552 0x9102 CompressedBitsPerPixel = 8/1 (8.0)
+0000000564 0x9203 BrightnessValue = 587/100 (5.87)
+0000000576 0x9204 ExposureCompensation = 0/10 (0.0)
+0000000588 0x9205 MaxApertureValue = 361/100 (3.61)
+0000000600 0x9207 MeteringMode = 5
+0000000612 0x9208 LightSource = 0
+0000000624 0x9209 Flash = 16
+0000000636 0x920a FocalLength = 180/10 (18.0)
+0000000648 0x927c MakerNote = [43132 bytes]
+0000000660 0x9286 UserComment = 
+0000000672 0xa000 FlashpixVersion = [0x30, 0x31, 0x30, 0x30]
+0000000684 0xa001 ColorSpace = 1
+0000000696 0xa002 ExifImageWidth = 4272
+0000000708 0xa003 ExifImageLength = 2848
+0000000720 0xa005 InteropOffset = 44148
+0000000732 0xa300 FileSource = 3
+0000000744 0xa301 SceneType = 1
+0000000756 0xa401 CustomRendered = 0
+0000000768 0xa402 ExposureMode = 0
+0000000780 0xa403 WhiteBalance = 0
+0000000792 0xa405 FocalLengthIn35mmFormat = 27
+0000000804 0xa406 SceneCaptureType = 0
+0000000816 0xa408 Contrast = 0
+0000000828 0xa409 Saturation = 0
+0000000840 0xa40a Sharpness = 0
 
----- Directory InteropIFD ----
-0x0001 InteroperabilityIndex = R98
-0x0002 InteroperabilityVersion = [0x30, 0x31, 0x30, 0x30]
+---- Directory InteropIFD @ 44148 ----
+0000044150 0x0001 InteroperabilityIndex = R98
+0000044162 0x0002 InteroperabilityVersion = [0x30, 0x31, 0x30, 0x30]
 
----- Directory SubIFD ----
-0x00fe NewSubfileType = 0
-0x0100 ImageWidth = 4288
-0x0101 ImageLength = 2858
-0x0102 BitsPerSample = 12
-0x0103 Compression = 32767
-0x0106 PhotometricInterpretation = -32733
-0x0115 SamplesPerPixel = 1
-0x011c PlanarConfiguration = 1
-0x011a XResolution = 350/1 (350.0)
-0x011b YResolution = 350/1 (350.0)
-0x0128 ResolutionUnit = 2
-0x828d Unknown = [2, 2]
-0x828e Unknown = [0x00, 0x01, 0x01, 0x02]
-0x7000 Unknown = 2
-0x7001 Unknown = 1
-0x7010 Unknown = [8000, 10400, 12900, 14100]
-0x7011 Unknown = [4000, 7200, 10050, 12075]
-0x7020 Unknown = 0
-0x0111 PreviewImageStart = 917504
-0x0116 RowsPerStrip = 2858
-0x0117 PreviewImageLength = 12255104
+---- Directory SubIFD @ 118108 ----
+0000118110 0x00fe NewSubfileType = 0
+0000118122 0x0100 ImageWidth = 4288
+0000118134 0x0101 ImageLength = 2858
+0000118146 0x0102 BitsPerSample = 12
+0000118158 0x0103 Compression = 32767
+0000118170 0x0106 PhotometricInterpretation = -32733
+0000118182 0x0115 SamplesPerPixel = 1
+0000118194 0x011c PlanarConfiguration = 1
+0000118206 0x011a XResolution = 350/1 (350.0)
+0000118218 0x011b YResolution = 350/1 (350.0)
+0000118230 0x0128 ResolutionUnit = 2
+0000118242 0x828d Unknown = [2, 2]
+0000118254 0x828e Unknown = [0x00, 0x01, 0x01, 0x02]
+0000118266 0x7000 Unknown = 2
+0000118278 0x7001 Unknown = 1
+0000118290 0x7010 Unknown = [8000, 10400, 12900, 14100]
+0000118302 0x7011 Unknown = [4000, 7200, 10050, 12075]
+0000118314 0x7020 Unknown = 0
+0000118326 0x0111 PreviewImageStart = 917504
+0000118338 0x0116 RowsPerStrip = 2858
+0000118350 0x0117 PreviewImageLength = 12255104
 
----- Directory SubIFD ----
-0x00fe NewSubfileType = 1
-0x0103 Compression = 6
-0x010f Make = SONY
-0x0110 Model = DSLR-A500
-0x0112 Orientation = 1
-0x011a XResolution = 350/1 (350.0)
-0x011b YResolution = 350/1 (350.0)
-0x0128 ResolutionUnit = 2
-0x0132 ModifyDate = 2010:02:01 16:03:48
-0x0201 JpgFromRawStart = 47796
-0x0202 JpgFromRawLength = 3884
-0x0213 YCbCrPositioning = 2
+---- Directory SubIFD @ 44178 ----
+0000044180 0x00fe NewSubfileType = 1
+0000044192 0x0103 Compression = 6
+0000044204 0x010f Make = SONY
+0000044216 0x0110 Model = DSLR-A500
+0000044228 0x0112 Orientation = 1
+0000044240 0x011a XResolution = 350/1 (350.0)
+0000044252 0x011b YResolution = 350/1 (350.0)
+0000044264 0x0128 ResolutionUnit = 2
+0000044276 0x0132 ModifyDate = 2010:02:01 16:03:48
+0000044288 0x0201 JpgFromRawStart = 47796
+0000044300 0x0202 JpgFromRawLength = 3884
+0000044312 0x0213 YCbCrPositioning = 2
 
 

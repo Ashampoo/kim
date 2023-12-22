@@ -3,89 +3,89 @@ Resolution  : 5045 x 4000
 ---- TIFF ----
 Version 42
 Big-endian (Motorola, MM)
----- Directory IFD0 ----
-0x000b ProcessingSoftware = Windows Photo Editor 10.0.10011.16384
-0x010f Make = NIKON CORPORATION
-0x0110 Model = NIKON D5600
-0x0112 Orientation = 8
-0x011a XResolution = 300/1 (300.0)
-0x011b YResolution = 300/1 (300.0)
-0x0128 ResolutionUnit = 2
-0x0131 Software = Windows Photo Editor 10.0.10011.16384
-0x0132 ModifyDate = 2023:05:10 13:37:42
-0x0213 YCbCrPositioning = 2
-0x8769 ExifOffset = 2372
-0x8825 GPSInfo = 22226
-0xea1c Padding = [2060 bytes]
+---- Directory IFD0 @ 8 ----
+0000000010 0x000b ProcessingSoftware = Windows Photo Editor 10.0.10011.16384
+0000000022 0x010f Make = NIKON CORPORATION
+0000000034 0x0110 Model = NIKON D5600
+0000000046 0x0112 Orientation = 8
+0000000058 0x011a XResolution = 300/1 (300.0)
+0000000070 0x011b YResolution = 300/1 (300.0)
+0000000082 0x0128 ResolutionUnit = 2
+0000000094 0x0131 Software = Windows Photo Editor 10.0.10011.16384
+0000000106 0x0132 ModifyDate = 2023:05:10 13:37:42
+0000000118 0x0213 YCbCrPositioning = 2
+0000000130 0x8769 ExifOffset = 2372
+0000000142 0x8825 GPSInfo = 22226
+0000000154 0xea1c Padding = [2060 bytes]
 
----- Directory ExifIFD ----
-0x829a ExposureTime = 10/1250 (0.008)
-0x829d FNumber = 63/10 (6.3)
-0x8822 ExposureProgram = 0
-0x8827 PhotographicSensitivity = 2800
-0x8830 SensitivityType = 2
-0x8832 RecommendedExposureIndex = 2800
-0x9000 ExifVersion = [0x30, 0x32, 0x33, 0x30]
-0x9003 DateTimeOriginal = 2023:05:10 13:37:42
-0x9004 DateTimeDigitized = 2023:05:10 13:37:42
-0x9101 ComponentsConfiguration = [0x01, 0x02, 0x03, 0x00]
-0x9102 CompressedBitsPerPixel = 4/1 (4.0)
-0x9204 ExposureCompensation = 0/6 (0.0)
-0x9205 MaxApertureValue = 53/10 (5.3)
-0x9207 MeteringMode = 5
-0x9208 LightSource = 0
-0x9209 Flash = 16
-0x920a FocalLength = 2000/10 (200.0)
-0x927c MakerNote = [17054 bytes]
-0x9290 SubSecTime = 57
-0x9291 SubSecTimeOriginal = 57
-0x9292 SubSecTimeDigitized = 57
-0xa000 FlashpixVersion = [0x30, 0x31, 0x30, 0x30]
-0xa001 ColorSpace = 1
-0xa002 ExifImageWidth = 6000
-0xa003 ExifImageLength = 4000
-0xa005 InteropOffset = 2998
-0xa217 SensingMethod = 2
-0xa300 FileSource = 3
-0xa301 SceneType = 1
-0xa302 CFAPattern = [0x02, 0x00, 0x02, 0x00, 0x00, 0x01, 0x01, 0x02]
-0xa401 CustomRendered = 0
-0xa402 ExposureMode = 0
-0xa403 WhiteBalance = 0
-0xa404 DigitalZoomRatio = 1/1 (1.0)
-0xa405 FocalLengthIn35mmFormat = 300
-0xa406 SceneCaptureType = 0
-0xa407 GainControl = 2
-0xa408 Contrast = 0
-0xa409 Saturation = 0
-0xa40a Sharpness = 0
-0xa40c SubjectDistanceRange = 0
-0xea1c Unknown = [2060 bytes]
-0xea1d OffsetSchema = 4164
+---- Directory ExifIFD @ 2372 ----
+0000002374 0x829a ExposureTime = 10/1250 (0.008)
+0000002386 0x829d FNumber = 63/10 (6.3)
+0000002398 0x8822 ExposureProgram = 0
+0000002410 0x8827 PhotographicSensitivity = 2800
+0000002422 0x8830 SensitivityType = 2
+0000002434 0x8832 RecommendedExposureIndex = 2800
+0000002446 0x9000 ExifVersion = [0x30, 0x32, 0x33, 0x30]
+0000002458 0x9003 DateTimeOriginal = 2023:05:10 13:37:42
+0000002470 0x9004 DateTimeDigitized = 2023:05:10 13:37:42
+0000002482 0x9101 ComponentsConfiguration = [0x01, 0x02, 0x03, 0x00]
+0000002494 0x9102 CompressedBitsPerPixel = 4/1 (4.0)
+0000002506 0x9204 ExposureCompensation = 0/6 (0.0)
+0000002518 0x9205 MaxApertureValue = 53/10 (5.3)
+0000002530 0x9207 MeteringMode = 5
+0000002542 0x9208 LightSource = 0
+0000002554 0x9209 Flash = 16
+0000002566 0x920a FocalLength = 2000/10 (200.0)
+0000002578 0x927c MakerNote = [17054 bytes]
+0000002590 0x9290 SubSecTime = 57
+0000002602 0x9291 SubSecTimeOriginal = 57
+0000002614 0x9292 SubSecTimeDigitized = 57
+0000002626 0xa000 FlashpixVersion = [0x30, 0x31, 0x30, 0x30]
+0000002638 0xa001 ColorSpace = 1
+0000002650 0xa002 ExifImageWidth = 6000
+0000002662 0xa003 ExifImageLength = 4000
+0000002674 0xa005 InteropOffset = 2998
+0000002686 0xa217 SensingMethod = 2
+0000002698 0xa300 FileSource = 3
+0000002710 0xa301 SceneType = 1
+0000002722 0xa302 CFAPattern = [0x02, 0x00, 0x02, 0x00, 0x00, 0x01, 0x01, 0x02]
+0000002734 0xa401 CustomRendered = 0
+0000002746 0xa402 ExposureMode = 0
+0000002758 0xa403 WhiteBalance = 0
+0000002770 0xa404 DigitalZoomRatio = 1/1 (1.0)
+0000002782 0xa405 FocalLengthIn35mmFormat = 300
+0000002794 0xa406 SceneCaptureType = 0
+0000002806 0xa407 GainControl = 2
+0000002818 0xa408 Contrast = 0
+0000002830 0xa409 Saturation = 0
+0000002842 0xa40a Sharpness = 0
+0000002854 0xa40c SubjectDistanceRange = 0
+0000002866 0xea1c Unknown = [2060 bytes]
+0000002878 0xea1d OffsetSchema = 4164
 
----- Directory InteropIFD ----
-0x0002 InteroperabilityVersion = [0x30, 0x31, 0x30, 0x30]
+---- Directory InteropIFD @ 2998 ----
+0000003000 0x0002 InteroperabilityVersion = [0x30, 0x31, 0x30, 0x30]
 
----- Directory GPS ----
-0x0000 GPSVersionID = [0x02, 0x03, 0x00, 0x00]
-0x0001 GPSLatitudeRef = N
-0x0002 GPSLatitude = [53/1 (53.0), 13/1 (13.0), 24519/2500 (9.8076)]
-0x0003 GPSLongitudeRef = E
-0x0004 GPSLongitude = [8/1 (8.0), 14/1 (14.0), 56949/2500 (22.7796)]
-0x0005 GPSAltitudeRef = 0
-0x0006 GPSAltitude = 56/1 (56.0)
-0x0007 GPSTimeStamp = [9/1 (9.0), 55/1 (55.0), 385/100 (3.85)]
-0x0008 GPSSatellites = 00
-0x0012 GPSMapDatum = WGS-84
-0x001d GPSDateStamp = 2019:10:18
+---- Directory GPS @ 22226 ----
+0000022228 0x0000 GPSVersionID = [0x02, 0x03, 0x00, 0x00]
+0000022240 0x0001 GPSLatitudeRef = N
+0000022252 0x0002 GPSLatitude = [53/1 (53.0), 13/1 (13.0), 24519/2500 (9.8076)]
+0000022264 0x0003 GPSLongitudeRef = E
+0000022276 0x0004 GPSLongitude = [8/1 (8.0), 14/1 (14.0), 56949/2500 (22.7796)]
+0000022288 0x0005 GPSAltitudeRef = 0
+0000022300 0x0006 GPSAltitude = 56/1 (56.0)
+0000022312 0x0007 GPSTimeStamp = [9/1 (9.0), 55/1 (55.0), 385/100 (3.85)]
+0000022324 0x0008 GPSSatellites = 00
+0000022336 0x0012 GPSMapDatum = WGS-84
+0000022348 0x001d GPSDateStamp = 2019:10:18
 
----- Directory SubIFD ----
-0x0103 Compression = 6
-0x011a XResolution = 96/1 (96.0)
-0x011b YResolution = 96/1 (96.0)
-0x0128 ResolutionUnit = 2
-0x0201 JpgFromRawStart = 22462
-0x0202 JpgFromRawLength = 13995
+---- Directory SubIFD @ 22376 ----
+0000022378 0x0103 Compression = 6
+0000022390 0x011a XResolution = 96/1 (96.0)
+0000022402 0x011b YResolution = 96/1 (96.0)
+0000022414 0x0128 ResolutionUnit = 2
+0000022426 0x0201 JpgFromRawStart = 22462
+0000022438 0x0202 JpgFromRawLength = 13995
 
 
 ---- IPTC ----

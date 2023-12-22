@@ -68,7 +68,7 @@ class TiffOutputDirectory(
 
     private var nextDirectory: TiffOutputDirectory? = null
 
-    override var offset: Long = UNDEFINED_VALUE
+    override var offset: Int = UNDEFINED_VALUE
 
     var rawJpegImageDataElement: JpegImageDataElement? = null
         private set
@@ -567,7 +567,7 @@ class TiffOutputDirectory(
         for (field in fields)
             field.writeField(binaryByteWriter)
 
-        var nextDirectoryOffset: Long = 0
+        var nextDirectoryOffset: Int = 0
 
         if (nextDirectory != null)
             nextDirectoryOffset = nextDirectory!!.offset

@@ -3,68 +3,68 @@ Resolution  : 3482 x 2460
 ---- TIFF ----
 Version 42
 Little-endian (Intel, II)
----- Directory IFD0 ----
-0x010e ImageDescription = 4
-0x010f Make = SONY
-0x0110 Model = DSLR-A700
-0x0112 Orientation = 8
-0x011a XResolution = 240/1 (240.0)
-0x011b YResolution = 240/1 (240.0)
-0x0128 ResolutionUnit = 2
-0x0131 Software = Adobe Photoshop Lightroom Classic 8.2 (Windows)
-0x0132 ModifyDate = 2023:05:10 13:37:42
-0x8769 ExifOffset = 246
-0x8825 GPSInfo = 12928
+---- Directory IFD0 @ 8 ----
+0000000010 0x010e ImageDescription = 4
+0000000022 0x010f Make = SONY
+0000000034 0x0110 Model = DSLR-A700
+0000000046 0x0112 Orientation = 8
+0000000058 0x011a XResolution = 240/1 (240.0)
+0000000070 0x011b YResolution = 240/1 (240.0)
+0000000082 0x0128 ResolutionUnit = 2
+0000000094 0x0131 Software = Adobe Photoshop Lightroom Classic 8.2 (Windows)
+0000000106 0x0132 ModifyDate = 2023:05:10 13:37:42
+0000000118 0x8769 ExifOffset = 246
+0000000130 0x8825 GPSInfo = 12928
 
----- Directory ExifIFD ----
-0x829a ExposureTime = 1/2000 (5.0E-4)
-0x829d FNumber = 56/10 (5.6)
-0x8822 ExposureProgram = 1
-0x8827 PhotographicSensitivity = 400
-0x9000 ExifVersion = [0x30, 0x32, 0x33, 0x30]
-0x9003 DateTimeOriginal = 2023:05:10 13:37:42
-0x9004 DateTimeDigitized = 2023:05:10 13:37:42
-0x9201 ShutterSpeedValue = 10965784/1000000 (10.965784)
-0x9202 ApertureValue = 4970854/1000000 (4.970854)
-0x9203 BrightnessValue = 812/100 (8.12)
-0x9204 ExposureCompensation = 0/10 (0.0)
-0x9205 MaxApertureValue = 400/100 (4.0)
-0x9207 MeteringMode = 3
-0x9208 LightSource = 0
-0x9209 Flash = 16
-0x920a FocalLength = 2500/10 (250.0)
-0xa001 ColorSpace = 1
-0xa20e FocalPlaneXResolution = 59791142/32768 (1824.680847)
-0xa20f FocalPlaneYResolution = 59791142/32768 (1824.680847)
-0xa210 FocalPlaneResolutionUnit = 3
-0xa300 FileSource = 3
-0xa301 SceneType = 1
-0xa401 CustomRendered = 0
-0xa402 ExposureMode = 1
-0xa403 WhiteBalance = 0
-0xa404 DigitalZoomRatio = 0/1 (0.0)
-0xa405 FocalLengthIn35mmFormat = 375
-0xa406 SceneCaptureType = 0
-0xa408 Contrast = 0
-0xa409 Saturation = 0
-0xa40a Sharpness = 0
-0xa432 LensSpecification = [100/1 (100.0), 300/1 (300.0), 45/10 (4.5), 56/10 (5.6)]
-0xa434 LensModel = 100-300mm F4.5-5.6
+---- Directory ExifIFD @ 246 ----
+0000000248 0x829a ExposureTime = 1/2000 (5.0E-4)
+0000000260 0x829d FNumber = 56/10 (5.6)
+0000000272 0x8822 ExposureProgram = 1
+0000000284 0x8827 PhotographicSensitivity = 400
+0000000296 0x9000 ExifVersion = [0x30, 0x32, 0x33, 0x30]
+0000000308 0x9003 DateTimeOriginal = 2023:05:10 13:37:42
+0000000320 0x9004 DateTimeDigitized = 2023:05:10 13:37:42
+0000000332 0x9201 ShutterSpeedValue = 10965784/1000000 (10.965784)
+0000000344 0x9202 ApertureValue = 4970854/1000000 (4.970854)
+0000000356 0x9203 BrightnessValue = 812/100 (8.12)
+0000000368 0x9204 ExposureCompensation = 0/10 (0.0)
+0000000380 0x9205 MaxApertureValue = 400/100 (4.0)
+0000000392 0x9207 MeteringMode = 3
+0000000404 0x9208 LightSource = 0
+0000000416 0x9209 Flash = 16
+0000000428 0x920a FocalLength = 2500/10 (250.0)
+0000000440 0xa001 ColorSpace = 1
+0000000452 0xa20e FocalPlaneXResolution = 59791142/32768 (1824.680847)
+0000000464 0xa20f FocalPlaneYResolution = 59791142/32768 (1824.680847)
+0000000476 0xa210 FocalPlaneResolutionUnit = 3
+0000000488 0xa300 FileSource = 3
+0000000500 0xa301 SceneType = 1
+0000000512 0xa401 CustomRendered = 0
+0000000524 0xa402 ExposureMode = 1
+0000000536 0xa403 WhiteBalance = 0
+0000000548 0xa404 DigitalZoomRatio = 0/1 (0.0)
+0000000560 0xa405 FocalLengthIn35mmFormat = 375
+0000000572 0xa406 SceneCaptureType = 0
+0000000584 0xa408 Contrast = 0
+0000000596 0xa409 Saturation = 0
+0000000608 0xa40a Sharpness = 0
+0000000620 0xa432 LensSpecification = [100/1 (100.0), 300/1 (300.0), 45/10 (4.5), 56/10 (5.6)]
+0000000632 0xa434 LensModel = 100-300mm F4.5-5.6
 
----- Directory GPS ----
-0x0000 GPSVersionID = [0x02, 0x03, 0x00, 0x00]
-0x0001 GPSLatitudeRef = N
-0x0002 GPSLatitude = [53/1 (53.0), 13/1 (13.0), 24519/2500 (9.8076)]
-0x0003 GPSLongitudeRef = E
-0x0004 GPSLongitude = [8/1 (8.0), 14/1 (14.0), 56949/2500 (22.7796)]
+---- Directory GPS @ 12928 ----
+0000012930 0x0000 GPSVersionID = [0x02, 0x03, 0x00, 0x00]
+0000012942 0x0001 GPSLatitudeRef = N
+0000012954 0x0002 GPSLatitude = [53/1 (53.0), 13/1 (13.0), 24519/2500 (9.8076)]
+0000012966 0x0003 GPSLongitudeRef = E
+0000012978 0x0004 GPSLongitude = [8/1 (8.0), 14/1 (14.0), 56949/2500 (22.7796)]
 
----- Directory SubIFD ----
-0x0103 Compression = 6
-0x011a XResolution = 72/1 (72.0)
-0x011b YResolution = 72/1 (72.0)
-0x0128 ResolutionUnit = 2
-0x0201 JpgFromRawStart = 922
-0x0202 JpgFromRawLength = 12006
+---- Directory SubIFD @ 828 ----
+0000000830 0x0103 Compression = 6
+0000000842 0x011a XResolution = 72/1 (72.0)
+0000000854 0x011b YResolution = 72/1 (72.0)
+0000000866 0x0128 ResolutionUnit = 2
+0000000878 0x0201 JpgFromRawStart = 922
+0000000890 0x0202 JpgFromRawLength = 12006
 
 
 ---- IPTC ----

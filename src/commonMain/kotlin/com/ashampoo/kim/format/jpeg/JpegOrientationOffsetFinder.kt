@@ -96,21 +96,30 @@ object JpegOrientationOffsetFinder {
             /* We are only looking for the EXIF segment. */
             if (segmentType != APP1_MARKER) {
 
-                byteReader.skipBytes("skip segment", segmentLength.toLong())
+                byteReader.skipBytes("skip segment", segmentLength)
 
                 positionCounter += segmentLength
 
                 continue
             }
 
-            val exifIdentifierBytes = byteReader.readBytes("EXIF identifier", 6)
+            val exifIdentifierBytes = byteReader.readBytes(
+                "EXIF identifier",
+                JpegConstants.EXIF_IDENTIFIER_CODE.size
+            )
 
-            positionCounter += 6
+            positionCounter += JpegConstants.EXIF_IDENTIFIER_CODE.size
 
             /* Skip the APP1 XMP segment. */
             if (!exifIdentifierBytes.contentEquals(JpegConstants.EXIF_IDENTIFIER_CODE)) {
-                byteReader.skipBytes("skip segment", segmentLength.toLong() - 6)
-                positionCounter += segmentLength - 6
+
+                byteReader.skipBytes(
+                    "skip segment",
+                    segmentLength - JpegConstants.EXIF_IDENTIFIER_CODE.size
+                )
+
+                positionCounter += segmentLength - JpegConstants.EXIF_IDENTIFIER_CODE.size
+
                 continue
             }
 
@@ -142,7 +151,7 @@ object JpegOrientationOffsetFinder {
 
                 } else {
 
-                    byteReader.skipBytes("skip TIFF entry", TIFF_ENTRY_LENGTH - 2L)
+                    byteReader.skipBytes("skip TIFF entry", TIFF_ENTRY_LENGTH - 2)
 
                     positionCounter += TIFF_ENTRY_LENGTH
                 }

@@ -81,8 +81,6 @@ class DefaultRandomAccessByteReader(
         return buffer.subList(start, endIndex).toByteArray()
     }
 
-    override fun getLength(): Long = contentLength
-
     override fun close() =
         byteReader.close()
 

@@ -22,7 +22,7 @@ import com.ashampoo.kim.format.tiff.constants.TiffConstants
 data class TiffHeader(
     val byteOrder: ByteOrder,
     val tiffVersion: Int,
-    val offsetToFirstIFD: Long
+    val offsetToFirstIFD: Int
 ) : TiffElement(
     debugDescription = "Version $tiffVersion\n$byteOrder",
     offset = 0,

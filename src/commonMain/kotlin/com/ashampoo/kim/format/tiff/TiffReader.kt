@@ -25,11 +25,11 @@ import com.ashampoo.kim.format.tiff.constants.TiffConstants.DIRECTORY_TYPE_SUB
 import com.ashampoo.kim.format.tiff.constants.TiffConstants.EXIF_SUB_IFD1
 import com.ashampoo.kim.format.tiff.constants.TiffConstants.EXIF_SUB_IFD2
 import com.ashampoo.kim.format.tiff.constants.TiffConstants.EXIF_SUB_IFD3
-import com.ashampoo.kim.format.tiff.constants.TiffConstants.TIFF_ENTRY_MAX_VALUE_LENGTH
 import com.ashampoo.kim.format.tiff.fieldtypes.FieldType
 import com.ashampoo.kim.format.tiff.fieldtypes.FieldType.Companion.getFieldType
 import com.ashampoo.kim.format.tiff.taginfos.TagInfoLong
 import com.ashampoo.kim.format.tiff.taginfos.TagInfoLongs
+import com.ashampoo.kim.input.ByteArrayByteReader
 import com.ashampoo.kim.input.ByteReader
 import com.ashampoo.kim.input.RandomAccessByteReader
 
@@ -49,6 +49,13 @@ object TiffReader {
         ExifTag.EXIF_TAG_SUB_IFDS_OFFSET to TiffConstants.DIRECTORY_TYPE_SUB
     )
 
+    /**
+     * Convenience method for calls with short byte array like
+     * the EXIF bytes in JPG, which are limited to 64 KB.
+     */
+    fun read(exifBytes: ByteArray): TiffContents =
+        read(ByteArrayByteReader(exifBytes))
+
     fun read(byteReader: RandomAccessByteReader): TiffContents {
 
         val tiffHeader = readTiffHeader(byteReader)
@@ -56,15 +63,16 @@ object TiffReader {
         byteReader.reset()
 
         val collector = TiffReaderCollector()
+
         collector.tiffHeader = tiffHeader
 
         readDirectory(
             byteReader = byteReader,
             byteOrder = tiffHeader.byteOrder,
             directoryOffset = tiffHeader.offsetToFirstIFD,
-            dirType = TiffConstants.DIRECTORY_TYPE_ROOT,
+            directoryType = TiffConstants.DIRECTORY_TYPE_ROOT,
             collector = collector,
-            visitedOffsets = mutableListOf<Number>()
+            visitedOffsets = mutableListOf<Int>()
         )
 
         val contents = collector.getContents()
@@ -77,8 +85,8 @@ object TiffReader {
 
     fun readTiffHeader(byteReader: ByteReader): TiffHeader {
 
-        val byteOrder1 = byteReader.readByte("Byte order: First byte").toInt()
-        val byteOrder2 = byteReader.readByte("Byte Order: Second byte").toInt()
+        val byteOrder1 = byteReader.readByte("Byte order: First byte")
+        val byteOrder2 = byteReader.readByte("Byte Order: Second byte")
 
         if (byteOrder1 != byteOrder2)
             throw ImageReadException("Byte Order bytes don't match ($byteOrder1, $byteOrder2).")
@@ -88,13 +96,13 @@ object TiffReader {
         val tiffVersion = byteReader.read2BytesAsInt("TIFF version", byteOrder)
 
         val offsetToFirstIFD =
-            0xFFFFFFFFL and byteReader.read4BytesAsInt("Offset to first IFD", byteOrder).toLong()
+            byteReader.read4BytesAsInt("Offset to first IFD", byteOrder)
 
         return TiffHeader(byteOrder, tiffVersion, offsetToFirstIFD)
     }
 
-    private fun getTiffByteOrder(byteOrderByte: Int): ByteOrder =
-        when (byteOrderByte) {
+    private fun getTiffByteOrder(byteOrderByte: Byte): ByteOrder =
+        when (byteOrderByte.toInt()) {
             'I'.code -> ByteOrder.LITTLE_ENDIAN
             'M'.code -> ByteOrder.BIG_ENDIAN
             else -> throw ImageReadException("Invalid TIFF byte order ${byteOrderByte.toUInt()}")
@@ -103,10 +111,10 @@ object TiffReader {
     private fun readDirectory(
         byteReader: RandomAccessByteReader,
         byteOrder: ByteOrder,
-        directoryOffset: Long,
-        dirType: Int,
+        directoryOffset: Int,
+        directoryType: Int,
         collector: TiffReaderCollector,
-        visitedOffsets: MutableList<Number>
+        visitedOffsets: MutableList<Int>
     ): Boolean {
 
         /* We don't want to visit a directory twice. */
@@ -121,7 +129,7 @@ object TiffReader {
          * Sometimes TIFF offsets are greater than the file itself.
          * We ignore such corruptions.
          */
-        if (directoryOffset >= byteReader.getLength())
+        if (directoryOffset >= byteReader.contentLength)
             return true
 
         val fields = try {
@@ -130,7 +138,13 @@ object TiffReader {
 
             val entryCount = byteReader.read2BytesAsInt("entrycount", byteOrder)
 
-            readTiffFields(entryCount, byteReader, byteOrder, dirType)
+            readTiffFields(
+                byteReader = byteReader,
+                fieldsOffset = directoryOffset + 2,
+                entryCount = entryCount,
+                byteOrder = byteOrder,
+                directoryType = directoryType
+            )
 
         } catch (ex: Exception) {
 
@@ -139,7 +153,7 @@ object TiffReader {
              * Thumbnails are not essential and can be re-created anytime.
              */
 
-            val isThumbnailDirectory = dirType == TiffConstants.TIFF_IFD1
+            val isThumbnailDirectory = directoryType == TiffConstants.TIFF_IFD1
 
             if (isThumbnailDirectory)
                 return true
@@ -147,10 +161,10 @@ object TiffReader {
             throw ex
         }
 
-        val nextDirectoryOffset = 0xFFFFFFFFL and
-            byteReader.read4BytesAsInt("Next directory offset", byteOrder).toLong()
+        val nextDirectoryOffset =
+            byteReader.read4BytesAsInt("Next directory offset", byteOrder)
 
-        val directory = TiffDirectory(dirType, fields, directoryOffset, nextDirectoryOffset, byteOrder)
+        val directory = TiffDirectory(directoryType, fields, directoryOffset, nextDirectoryOffset, byteOrder)
 
         if (directory.hasJpegImageData())
             directory.jpegImageDataElement = getJpegRawImageData(byteReader, directory)
@@ -191,8 +205,8 @@ object TiffReader {
                         subDirectoryRead = readDirectory(
                             byteReader = byteReader,
                             byteOrder = byteOrder,
-                            directoryOffset = subDirOffset.toLong(),
-                            dirType = subDirectoryType,
+                            directoryOffset = subDirOffset,
+                            directoryType = subDirectoryType,
                             collector = collector,
                             visitedOffsets = visitedOffsets
                         )
@@ -214,7 +228,7 @@ object TiffReader {
                 byteReader = byteReader,
                 byteOrder = byteOrder,
                 directoryOffset = directory.nextDirectoryOffset,
-                dirType = dirType + 1,
+                directoryType = directoryType + 1,
                 collector = collector,
                 visitedOffsets = visitedOffsets
             )
@@ -223,22 +237,23 @@ object TiffReader {
     }
 
     private fun readTiffFields(
-        entryCount: Int,
         byteReader: RandomAccessByteReader,
+        fieldsOffset: Int,
+        entryCount: Int,
         byteOrder: ByteOrder,
-        dirType: Int
+        directoryType: Int
     ): MutableList<TiffField> {
 
         val fields = mutableListOf<TiffField>()
 
         for (entryIndex in 0 until entryCount) {
 
+            val offset = fieldsOffset + entryIndex * TiffConstants.TIFF_ENTRY_LENGTH
+
             val tag = byteReader.read2BytesAsInt("Entry $entryIndex: 'tag'", byteOrder)
             val type = byteReader.read2BytesAsInt("Entry $entryIndex: 'type'", byteOrder)
 
-            val count =
-                0xFFFFFFFFL and
-                    byteReader.read4BytesAsInt("Entry $entryIndex: 'count'", byteOrder).toLong()
+            val count = byteReader.read4BytesAsInt("Entry $entryIndex: 'count'", byteOrder)
 
             /*
              * These bytes represent either the value for fields like orientation or
@@ -248,7 +263,7 @@ object TiffReader {
             val valueOrOffsetBytes: ByteArray =
                 byteReader.readBytes("Entry $entryIndex: 'offset'", 4)
 
-            val valueOrOffset: Long = 0xFFFFFFFFL and valueOrOffsetBytes.toInt(byteOrder).toLong()
+            val valueOrOffset: Int = valueOrOffsetBytes.toInt(byteOrder)
 
             /*
              * Skip invalid fields.
@@ -259,7 +274,7 @@ object TiffReader {
              * Except for the GPS directory where GPSVersionID is indeed zero,
              * but a valid field. So we shouldn't skip it.
              */
-            if (tag == 0 && dirType != TiffConstants.TIFF_GPS)
+            if (tag == 0 && directoryType != TiffConstants.TIFF_GPS)
                 continue
 
             val fieldType: FieldType = try {
@@ -274,10 +289,13 @@ object TiffReader {
 
             val valueLength = count * fieldType.size
 
-            val valueBytes: ByteArray = if (valueLength > TIFF_ENTRY_MAX_VALUE_LENGTH) {
+            val isLocalValue: Boolean =
+                count * fieldType.size <= TiffConstants.TIFF_ENTRY_MAX_VALUE_LENGTH
+
+            val valueBytes: ByteArray = if (!isLocalValue) {
 
                 /* Ignore corrupt offsets */
-                if (valueOrOffset < 0 || valueOrOffset + valueLength > byteReader.getLength())
+                if (valueOrOffset < 0 || valueOrOffset + valueLength > byteReader.contentLength)
                     continue
 
                 byteReader.readBytes(valueOrOffset.toInt(), valueLength.toInt())
@@ -288,7 +306,18 @@ object TiffReader {
             }
 
             fields.add(
-                TiffField(tag, dirType, fieldType, count, valueOrOffset, valueBytes, byteOrder, entryIndex)
+                TiffField(
+                    offset = offset,
+                    tag = tag,
+                    directoryType = directoryType,
+                    fieldType = fieldType,
+                    count = count,
+                    localValue = if (isLocalValue) valueOrOffset else null,
+                    valueOffset = if (!isLocalValue) valueOrOffset else null,
+                    valueBytes = valueBytes,
+                    byteOrder = byteOrder,
+                    sortHint = entryIndex
+                )
             )
         }
 
@@ -308,8 +337,8 @@ object TiffReader {
         /*
          * If the length is not correct (going beyond the file size), we adjust it.
          */
-        if (offset + length > byteReader.getLength())
-            length = (byteReader.getLength() - offset).toInt()
+        if (offset + length > byteReader.contentLength)
+            length = (byteReader.contentLength - offset).toInt()
 
         val data = byteReader.readBytes(offset.toInt(), length)
 

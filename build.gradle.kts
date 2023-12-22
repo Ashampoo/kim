@@ -3,7 +3,7 @@ import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
 import org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalWasmDsl
 
 plugins {
-    kotlin("multiplatform") version "1.9.21"
+    kotlin("multiplatform") version "1.9.22"
     id("com.android.library") version "8.0.2"
     id("maven-publish")
     id("signing")

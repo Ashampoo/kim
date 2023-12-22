@@ -29,7 +29,7 @@ class FieldTypeLong(type: Int, name: String) : FieldType(type, name, 4) {
 
         val bytes = entry.byteArrayValue
 
-        return if (entry.count == 1L)
+        return if (entry.count == 1)
             bytes.toInt(entry.byteOrder)
         else
             bytes.toInts(entry.byteOrder)

@@ -122,12 +122,12 @@ interface ByteReader : Closeable {
         return os.toByteArray()
     }
 
-    fun skipBytes(name: String, length: Long) {
+    fun skipBytes(name: String, length: Int) {
 
-        if (length == 0L)
+        if (length == 0)
             return
 
-        var total: Long = 0
+        var total: Int = 0
 
         while (length != total) {
 

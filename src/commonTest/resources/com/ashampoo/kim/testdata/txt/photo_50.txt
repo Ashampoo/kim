@@ -3,81 +3,81 @@ Resolution  : 6240 x 4160
 ---- TIFF ----
 Version 42
 Little-endian (Intel, II)
----- Directory IFD0 ----
-0x010f Make = FUJIFILM
-0x0110 Model = X-T4
-0x0112 Orientation = 1
-0x011a XResolution = 72/1 (72.0)
-0x011b YResolution = 72/1 (72.0)
-0x0128 ResolutionUnit = 2
-0x0131 Software = Digital Camera X-T4 Ver1.72
-0x0132 ModifyDate = 2023:05:19 18:41:50
-0x013b Artist = Stefan Oltmann                                                                                                                                                                                                                                                 
-0x0213 YCbCrPositioning = 2
-0x8298 Copyright = Stefan Oltmann                                                                                                                                                                                                                                                 
-0x8769 ExifOffset = 1124
-0xc4a5 PrintIM = [106 bytes]
+---- Directory IFD0 @ 8 ----
+0000000010 0x010f Make = FUJIFILM
+0000000022 0x0110 Model = X-T4
+0000000034 0x0112 Orientation = 1
+0000000046 0x011a XResolution = 72/1 (72.0)
+0000000058 0x011b YResolution = 72/1 (72.0)
+0000000070 0x0128 ResolutionUnit = 2
+0000000082 0x0131 Software = Digital Camera X-T4 Ver1.72
+0000000094 0x0132 ModifyDate = 2023:05:19 18:41:50
+0000000106 0x013b Artist = Stefan Oltmann                                                                                                                                                                                                                                                 
+0000000118 0x0213 YCbCrPositioning = 2
+0000000130 0x8298 Copyright = Stefan Oltmann                                                                                                                                                                                                                                                 
+0000000142 0x8769 ExifOffset = 1124
+0000000154 0xc4a5 PrintIM = [106 bytes]
 
----- Directory ExifIFD ----
-0x829a ExposureTime = 10/400 (0.025)
-0x829d FNumber = 400/100 (4.0)
-0x8822 ExposureProgram = 3
-0x8827 PhotographicSensitivity = 400
-0x8830 SensitivityType = 1
-0x9000 ExifVersion = [0x30, 0x32, 0x33, 0x30]
-0x9003 DateTimeOriginal = 2023:05:19 18:41:50
-0x9004 DateTimeDigitized = 2023:05:19 18:41:50
-0x9101 ComponentsConfiguration = [0x01, 0x02, 0x03, 0x00]
-0x9102 CompressedBitsPerPixel = 48/10 (4.8)
-0x9201 ShutterSpeedValue = 530/100 (5.3)
-0x9202 ApertureValue = 400/100 (4.0)
-0x9203 BrightnessValue = 315/100 (3.15)
-0x9204 ExposureCompensation = 33/100 (0.33)
-0x9205 MaxApertureValue = 200/100 (2.0)
-0x9207 MeteringMode = 5
-0x9208 LightSource = 0
-0x9209 Flash = 0
-0x920a FocalLength = 3500/100 (35.0)
-0x927c MakerNote = [1192 bytes]
-0x9286 UserComment =                                                                                                                                                                                                                                                         
-0xa000 FlashpixVersion = [0x30, 0x31, 0x30, 0x30]
-0xa001 ColorSpace = 1
-0xa002 ExifImageWidth = 6240
-0xa003 ExifImageLength = 4160
-0xa005 InteropOffset = 3368
-0xa20e FocalPlaneXResolution = 2660/1 (2660.0)
-0xa20f FocalPlaneYResolution = 2660/1 (2660.0)
-0xa210 FocalPlaneResolutionUnit = 3
-0xa217 SensingMethod = 2
-0xa300 FileSource = 3
-0xa301 SceneType = 1
-0xa401 CustomRendered = 0
-0xa402 ExposureMode = 0
-0xa403 WhiteBalance = 0
-0xa405 FocalLengthIn35mmFormat = 53
-0xa406 SceneCaptureType = 0
-0xa40a Sharpness = 2
-0xa40c SubjectDistanceRange = 0
-0xa431 BodySerialNumber = 0BQ04402
-0xa432 LensSpecification = [3500/100 (35.0), 3500/100 (35.0), 200/100 (2.0), 200/100 (2.0)]
-0xa433 LensMake = FUJIFILM
-0xa434 LensModel = XC35mmF2
-0xa435 LensSerialNumber = 0AA16656
+---- Directory ExifIFD @ 1124 ----
+0000001126 0x829a ExposureTime = 10/400 (0.025)
+0000001138 0x829d FNumber = 400/100 (4.0)
+0000001150 0x8822 ExposureProgram = 3
+0000001162 0x8827 PhotographicSensitivity = 400
+0000001174 0x8830 SensitivityType = 1
+0000001186 0x9000 ExifVersion = [0x30, 0x32, 0x33, 0x30]
+0000001198 0x9003 DateTimeOriginal = 2023:05:19 18:41:50
+0000001210 0x9004 DateTimeDigitized = 2023:05:19 18:41:50
+0000001222 0x9101 ComponentsConfiguration = [0x01, 0x02, 0x03, 0x00]
+0000001234 0x9102 CompressedBitsPerPixel = 48/10 (4.8)
+0000001246 0x9201 ShutterSpeedValue = 530/100 (5.3)
+0000001258 0x9202 ApertureValue = 400/100 (4.0)
+0000001270 0x9203 BrightnessValue = 315/100 (3.15)
+0000001282 0x9204 ExposureCompensation = 33/100 (0.33)
+0000001294 0x9205 MaxApertureValue = 200/100 (2.0)
+0000001306 0x9207 MeteringMode = 5
+0000001318 0x9208 LightSource = 0
+0000001330 0x9209 Flash = 0
+0000001342 0x920a FocalLength = 3500/100 (35.0)
+0000001354 0x927c MakerNote = [1192 bytes]
+0000001366 0x9286 UserComment =                                                                                                                                                                                                                                                         
+0000001378 0xa000 FlashpixVersion = [0x30, 0x31, 0x30, 0x30]
+0000001390 0xa001 ColorSpace = 1
+0000001402 0xa002 ExifImageWidth = 6240
+0000001414 0xa003 ExifImageLength = 4160
+0000001426 0xa005 InteropOffset = 3368
+0000001438 0xa20e FocalPlaneXResolution = 2660/1 (2660.0)
+0000001450 0xa20f FocalPlaneYResolution = 2660/1 (2660.0)
+0000001462 0xa210 FocalPlaneResolutionUnit = 3
+0000001474 0xa217 SensingMethod = 2
+0000001486 0xa300 FileSource = 3
+0000001498 0xa301 SceneType = 1
+0000001510 0xa401 CustomRendered = 0
+0000001522 0xa402 ExposureMode = 0
+0000001534 0xa403 WhiteBalance = 0
+0000001546 0xa405 FocalLengthIn35mmFormat = 53
+0000001558 0xa406 SceneCaptureType = 0
+0000001570 0xa40a Sharpness = 2
+0000001582 0xa40c SubjectDistanceRange = 0
+0000001594 0xa431 BodySerialNumber = 0BQ04402
+0000001606 0xa432 LensSpecification = [3500/100 (35.0), 3500/100 (35.0), 200/100 (2.0), 200/100 (2.0)]
+0000001618 0xa433 LensMake = FUJIFILM
+0000001630 0xa434 LensModel = XC35mmF2
+0000001642 0xa435 LensSerialNumber = 0AA16656
 
----- Directory InteropIFD ----
-0x0001 InteroperabilityIndex = R98
-0x0002 InteroperabilityVersion = [0x30, 0x31, 0x30, 0x30]
+---- Directory InteropIFD @ 3368 ----
+0000003370 0x0001 InteroperabilityIndex = R98
+0000003382 0x0002 InteroperabilityVersion = [0x30, 0x31, 0x30, 0x30]
 
----- Directory SubIFD ----
-0x0103 Compression = 6
-0x0112 Orientation = 1
-0x011a XResolution = 72/1 (72.0)
-0x011b YResolution = 72/1 (72.0)
-0x0128 ResolutionUnit = 2
-0x013b Artist = Stefan Oltmann                                                                                                                                                                                                                                                 
-0x0201 JpgFromRawStart = 3796
-0x0202 JpgFromRawLength = 9359
-0x0213 YCbCrPositioning = 2
+---- Directory SubIFD @ 3398 ----
+0000003400 0x0103 Compression = 6
+0000003412 0x0112 Orientation = 1
+0000003424 0x011a XResolution = 72/1 (72.0)
+0000003436 0x011b YResolution = 72/1 (72.0)
+0000003448 0x0128 ResolutionUnit = 2
+0000003460 0x013b Artist = Stefan Oltmann                                                                                                                                                                                                                                                 
+0000003472 0x0201 JpgFromRawStart = 3796
+0000003484 0x0202 JpgFromRawLength = 9359
+0000003496 0x0213 YCbCrPositioning = 2
 
 
 ---- XMP ----
