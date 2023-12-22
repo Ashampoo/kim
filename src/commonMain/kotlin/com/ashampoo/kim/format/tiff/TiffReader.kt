@@ -76,8 +76,8 @@ object TiffReader {
 
     fun readTiffHeader(byteReader: ByteReader): TiffHeader {
 
-        val byteOrder1 = byteReader.readByte("Byte order: First byte").toInt()
-        val byteOrder2 = byteReader.readByte("Byte Order: Second byte").toInt()
+        val byteOrder1 = byteReader.readByte("Byte order: First byte")
+        val byteOrder2 = byteReader.readByte("Byte Order: Second byte")
 
         if (byteOrder1 != byteOrder2)
             throw ImageReadException("Byte Order bytes don't match ($byteOrder1, $byteOrder2).")
@@ -92,8 +92,8 @@ object TiffReader {
         return TiffHeader(byteOrder, tiffVersion, offsetToFirstIFD)
     }
 
-    private fun getTiffByteOrder(byteOrderByte: Int): ByteOrder =
-        when (byteOrderByte) {
+    private fun getTiffByteOrder(byteOrderByte: Byte): ByteOrder =
+        when (byteOrderByte.toInt()) {
             'I'.code -> ByteOrder.LITTLE_ENDIAN
             'M'.code -> ByteOrder.BIG_ENDIAN
             else -> throw ImageReadException("Invalid TIFF byte order ${byteOrderByte.toUInt()}")
