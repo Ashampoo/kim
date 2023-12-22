@@ -61,7 +61,7 @@ object TiffReader {
             byteReader = byteReader,
             byteOrder = tiffHeader.byteOrder,
             directoryOffset = tiffHeader.offsetToFirstIFD,
-            dirType = TiffConstants.DIRECTORY_TYPE_ROOT,
+            directoryType = TiffConstants.DIRECTORY_TYPE_ROOT,
             collector = collector,
             visitedOffsets = mutableListOf<Number>()
         )
@@ -103,7 +103,7 @@ object TiffReader {
         byteReader: RandomAccessByteReader,
         byteOrder: ByteOrder,
         directoryOffset: Int,
-        dirType: Int,
+        directoryType: Int,
         collector: TiffReaderCollector,
         visitedOffsets: MutableList<Number>
     ): Boolean {
@@ -129,7 +129,7 @@ object TiffReader {
 
             val entryCount = byteReader.read2BytesAsInt("entrycount", byteOrder)
 
-            readTiffFields(entryCount, byteReader, byteOrder, dirType)
+            readTiffFields(entryCount, byteReader, byteOrder, directoryType)
 
         } catch (ex: Exception) {
 
@@ -138,7 +138,7 @@ object TiffReader {
              * Thumbnails are not essential and can be re-created anytime.
              */
 
-            val isThumbnailDirectory = dirType == TiffConstants.TIFF_IFD1
+            val isThumbnailDirectory = directoryType == TiffConstants.TIFF_IFD1
 
             if (isThumbnailDirectory)
                 return true
@@ -149,7 +149,7 @@ object TiffReader {
         val nextDirectoryOffset =
             byteReader.read4BytesAsInt("Next directory offset", byteOrder)
 
-        val directory = TiffDirectory(dirType, fields, directoryOffset, nextDirectoryOffset, byteOrder)
+        val directory = TiffDirectory(directoryType, fields, directoryOffset, nextDirectoryOffset, byteOrder)
 
         if (directory.hasJpegImageData())
             directory.jpegImageDataElement = getJpegRawImageData(byteReader, directory)
@@ -191,7 +191,7 @@ object TiffReader {
                             byteReader = byteReader,
                             byteOrder = byteOrder,
                             directoryOffset = subDirOffset,
-                            dirType = subDirectoryType,
+                            directoryType = subDirectoryType,
                             collector = collector,
                             visitedOffsets = visitedOffsets
                         )
@@ -213,7 +213,7 @@ object TiffReader {
                 byteReader = byteReader,
                 byteOrder = byteOrder,
                 directoryOffset = directory.nextDirectoryOffset,
-                dirType = dirType + 1,
+                directoryType = directoryType + 1,
                 collector = collector,
                 visitedOffsets = visitedOffsets
             )
@@ -225,7 +225,7 @@ object TiffReader {
         entryCount: Int,
         byteReader: RandomAccessByteReader,
         byteOrder: ByteOrder,
-        dirType: Int
+        directoryType: Int
     ): MutableList<TiffField> {
 
         val fields = mutableListOf<TiffField>()
@@ -256,7 +256,7 @@ object TiffReader {
              * Except for the GPS directory where GPSVersionID is indeed zero,
              * but a valid field. So we shouldn't skip it.
              */
-            if (tag == 0 && dirType != TiffConstants.TIFF_GPS)
+            if (tag == 0 && directoryType != TiffConstants.TIFF_GPS)
                 continue
 
             val fieldType: FieldType = try {
@@ -290,7 +290,7 @@ object TiffReader {
             fields.add(
                 TiffField(
                     tag = tag,
-                    directoryType = dirType,
+                    directoryType = directoryType,
                     fieldType = fieldType,
                     count = count,
                     localValue = if (isLocalValue) valueOrOffset else null,
