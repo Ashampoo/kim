@@ -41,9 +41,7 @@ class TiffWriterLossless(
 
         try {
 
-            val byteReader = ByteArrayByteReader(exifBytes)
-
-            val tiffContents = TiffReader.read(byteReader)
+            val tiffContents = TiffReader.read(exifBytes)
 
             val existingElements = findExistingTiffElements(
                 tiffContents,

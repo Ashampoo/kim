@@ -29,6 +29,7 @@ import com.ashampoo.kim.format.tiff.fieldtypes.FieldType
 import com.ashampoo.kim.format.tiff.fieldtypes.FieldType.Companion.getFieldType
 import com.ashampoo.kim.format.tiff.taginfos.TagInfoLong
 import com.ashampoo.kim.format.tiff.taginfos.TagInfoLongs
+import com.ashampoo.kim.input.ByteArrayByteReader
 import com.ashampoo.kim.input.ByteReader
 import com.ashampoo.kim.input.RandomAccessByteReader
 
@@ -47,6 +48,13 @@ object TiffReader {
         ExifTag.EXIF_TAG_INTEROP_OFFSET to TiffConstants.TIFF_INTEROP_IFD,
         ExifTag.EXIF_TAG_SUB_IFDS_OFFSET to TiffConstants.DIRECTORY_TYPE_SUB
     )
+
+    /**
+     * Convenience method for calls with short byte array like
+     * the EXIF bytes in JPG, which are limited to 64 KB.
+     */
+    fun read(exifBytes: ByteArray): TiffContents =
+        read(ByteArrayByteReader(exifBytes))
 
     fun read(byteReader: RandomAccessByteReader): TiffContents {
 
