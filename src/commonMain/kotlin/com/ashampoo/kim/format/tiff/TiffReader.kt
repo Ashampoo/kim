@@ -63,6 +63,7 @@ object TiffReader {
         byteReader.reset()
 
         val collector = TiffReaderCollector()
+
         collector.tiffHeader = tiffHeader
 
         readDirectory(
@@ -71,7 +72,7 @@ object TiffReader {
             directoryOffset = tiffHeader.offsetToFirstIFD,
             directoryType = TiffConstants.DIRECTORY_TYPE_ROOT,
             collector = collector,
-            visitedOffsets = mutableListOf<Number>()
+            visitedOffsets = mutableListOf<Int>()
         )
 
         val contents = collector.getContents()
@@ -113,7 +114,7 @@ object TiffReader {
         directoryOffset: Int,
         directoryType: Int,
         collector: TiffReaderCollector,
-        visitedOffsets: MutableList<Number>
+        visitedOffsets: MutableList<Int>
     ): Boolean {
 
         /* We don't want to visit a directory twice. */
