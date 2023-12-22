@@ -3,7 +3,7 @@ Resolution  : 5184 x 3456
 ---- TIFF ----
 Version 42
 Little-endian (Intel, II)
----- Directory IFD0 ----
+---- Directory IFD0 @ 8 ----
 0000000010 0x010f Make = Canon
 0000000022 0x0110 Model = Canon EOS REBEL T5i
 0000000034 0x011a XResolution = 300/1 (300.0)
@@ -13,7 +13,7 @@ Little-endian (Intel, II)
 0000000082 0x0132 ModifyDate = 2019:12:23 13:28:07
 0000000094 0x8769 ExifOffset = 222
 
----- Directory ExifIFD ----
+---- Directory ExifIFD @ 222 ----
 0000000224 0x829a ExposureTime = 1/640 (0.001563)
 0000000236 0x829d FNumber = 56/10 (5.6)
 0000000248 0x8822 ExposureProgram = 1
@@ -46,7 +46,7 @@ Little-endian (Intel, II)
 0000000572 0xa434 LensModel = EF-S18-55mm f/3.5-5.6 IS STM
 0000000584 0xa435 LensSerialNumber = 0000070a01
 
----- Directory SubIFD ----
+---- Directory SubIFD @ 808 ----
 0000000810 0x0103 Compression = 6
 0000000822 0x011a XResolution = 72/1 (72.0)
 0000000834 0x011b YResolution = 72/1 (72.0)

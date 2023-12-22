@@ -44,7 +44,7 @@ class TiffDirectory(
     val nextDirectoryOffset: Int,
     val byteOrder: ByteOrder
 ) : TiffElement(
-    debugDescription = "Directory " + description(type),
+    debugDescription = "Directory " + description(type) + " @ $offset",
     offset = offset,
     length = TiffConstants.TIFF_DIRECTORY_HEADER_LENGTH + entries.size *
         TiffConstants.TIFF_ENTRY_LENGTH + TiffConstants.TIFF_DIRECTORY_FOOTER_LENGTH

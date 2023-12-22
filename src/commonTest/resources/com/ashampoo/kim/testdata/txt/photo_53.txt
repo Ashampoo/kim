@@ -3,7 +3,7 @@ Resolution  : 1000 x 668
 ---- TIFF ----
 Version 42
 Little-endian (Intel, II)
----- Directory IFD0 ----
+---- Directory IFD0 @ 8 ----
 0000000010 0x0100 ImageWidth = 1000
 0000000022 0x0101 ImageLength = 668
 0000000034 0x0102 BitsPerSample = [8, 8, 8]
@@ -23,7 +23,7 @@ Little-endian (Intel, II)
 0000000202 0x8825 GPSInfo = 9672
 0000000214 0x9003 Unknown = 2019:07:14 09:21:11
 
----- Directory ExifIFD ----
+---- Directory ExifIFD @ 346 ----
 0000000348 0x829a ExposureTime = 1/400 (0.0025)
 0000000360 0x829d FNumber = 71/10 (7.1)
 0000000372 0x8822 ExposureProgram = 1
@@ -59,14 +59,14 @@ Little-endian (Intel, II)
 0000000732 0xa434 LensModel = EF-S55-250mm f/4-5.6 IS STM
 0000000744 0xa435 LensSerialNumber = 0000800dcf
 
----- Directory GPS ----
+---- Directory GPS @ 9672 ----
 0000009674 0x0000 GPSVersionID = [0x02, 0x02, 0x00, 0x00]
 0000009686 0x0001 GPSLatitudeRef = N
 0000009698 0x0002 GPSLatitude = [55/1 (55.0), 54678955/1000000 (54.678955), 0/1 (0.0)]
 0000009710 0x0003 GPSLongitudeRef = E
 0000009722 0x0004 GPSLongitude = [36/1 (36.0), 57808914/1000000 (57.808914), 0/1 (0.0)]
 
----- Directory SubIFD ----
+---- Directory SubIFD @ 9786 ----
 0000009788 0x00fe NewSubfileType = 1
 0000009800 0x0100 ImageWidth = 256
 0000009812 0x0101 ImageLength = 171

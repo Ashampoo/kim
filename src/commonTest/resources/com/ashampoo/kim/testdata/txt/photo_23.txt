@@ -3,7 +3,7 @@ Resolution  : 6144 x 8192
 ---- TIFF ----
 Version 42
 Big-endian (Motorola, MM)
----- Directory IFD0 ----
+---- Directory IFD0 @ 8 ----
 0000000010 0x0110 Model = A063
 0000000022 0x0112 Orientation = 1
 0000000034 0x0132 ModifyDate = 2023:12:05 08:50:44
@@ -11,7 +11,7 @@ Big-endian (Motorola, MM)
 0000000058 0x8825 GPSInfo = 423
 0000000070 0x010f Make = Nothing
 
----- Directory ExifIFD ----
+---- Directory ExifIFD @ 119 ----
 0000000121 0x829d FNumber = 188/100 (1.88)
 0000000133 0x927c MakerNote = [49 bytes]
 0000000145 0x829a ExposureTime = 40/1000 (0.04)
@@ -26,7 +26,7 @@ Big-endian (Motorola, MM)
 0000000253 0xa403 WhiteBalance = 0
 0000000265 0x9202 ApertureValue = 188/100 (1.88)
 
----- Directory GPS ----
+---- Directory GPS @ 423 ----
 0000000425 0x0001 GPSLatitudeRef = 
 0000000437 0x0002 GPSLatitude = [Invalid rational (0/0), Invalid rational (0/0), Invalid rational (0/0)]
 0000000449 0x0003 GPSLongitudeRef = 

@@ -3,7 +3,7 @@ Resolution  : 6240 x 4160
 ---- TIFF ----
 Version 42
 Little-endian (Intel, II)
----- Directory IFD0 ----
+---- Directory IFD0 @ 8 ----
 0000000010 0x010f Make = FUJIFILM
 0000000022 0x0110 Model = X-T4
 0000000034 0x0112 Orientation = 1
@@ -18,7 +18,7 @@ Little-endian (Intel, II)
 0000000142 0x8769 ExifOffset = 1124
 0000000154 0xc4a5 PrintIM = [106 bytes]
 
----- Directory ExifIFD ----
+---- Directory ExifIFD @ 1124 ----
 0000001126 0x829a ExposureTime = 10/400 (0.025)
 0000001138 0x829d FNumber = 400/100 (4.0)
 0000001150 0x8822 ExposureProgram = 3
@@ -64,11 +64,11 @@ Little-endian (Intel, II)
 0000001630 0xa434 LensModel = XC35mmF2
 0000001642 0xa435 LensSerialNumber = 0AA16656
 
----- Directory InteropIFD ----
+---- Directory InteropIFD @ 3368 ----
 0000003370 0x0001 InteroperabilityIndex = R98
 0000003382 0x0002 InteroperabilityVersion = [0x30, 0x31, 0x30, 0x30]
 
----- Directory SubIFD ----
+---- Directory SubIFD @ 3398 ----
 0000003400 0x0103 Compression = 6
 0000003412 0x0112 Orientation = 1
 0000003424 0x011a XResolution = 72/1 (72.0)

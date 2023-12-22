@@ -3,7 +3,7 @@ Resolution  : 4288 x 2858
 ---- TIFF ----
 Version 42
 Little-endian (Intel, II)
----- Directory IFD0 ----
+---- Directory IFD0 @ 8 ----
 0000000010 0x00fe NewSubfileType = 1
 0000000022 0x0100 ImageWidth = 256
 0000000034 0x0101 ImageLength = 171
@@ -61,7 +61,7 @@ Little-endian (Intel, II)
 0000000658 0xc761 Unknown = [4.711375600823987E-5, 2.1540751533546545E-7]
 0000000670 0xc7a7 Unknown = [16 bytes]
 
----- Directory ExifIFD ----
+---- Directory ExifIFD @ 133624 ----
 0000133626 0x829a ExposureTime = 1/60 (0.016667)
 0000133638 0x829d FNumber = 8/1 (8.0)
 0000133650 0x8822 ExposureProgram = 3
@@ -96,7 +96,7 @@ Little-endian (Intel, II)
 0000133998 0xa432 LensSpecification = [18/1 (18.0), 55/1 (55.0), 35/10 (3.5), 56/10 (5.6)]
 0000134010 0xa434 LensModel = DT 18-55mm F3.5-5.6 SAM
 
----- Directory SubIFD ----
+---- Directory SubIFD @ 134210 ----
 0000134212 0x00fe NewSubfileType = 0
 0000134224 0x0100 ImageWidth = 4288
 0000134236 0x0101 ImageLength = 2858
@@ -125,7 +125,7 @@ Little-endian (Intel, II)
 0000134512 0xc68d Unknown = [0, 0, 2858, 4288]
 0000134524 0xc761 Unknown = [4.711375600823987E-5, 2.1540751533546545E-7]
 
----- Directory SubIFD1 ----
+---- Directory SubIFD1 @ 136300 ----
 0000136302 0x00fe NewSubfileType = 1
 0000136314 0x0100 ImageWidth = 1024
 0000136326 0x0101 ImageLength = 683
@@ -147,7 +147,7 @@ Little-endian (Intel, II)
 0000136518 0xc71a Unknown = 2
 0000136530 0xc71b Unknown = 2023-07-26T06:11:34+02:00
 
----- Directory SubIFD2 ----
+---- Directory SubIFD2 @ 136692 ----
 0000136694 0x00fe NewSubfileType = 1
 0000136706 0x0100 ImageWidth = 2048
 0000136718 0x0101 ImageLength = 1365
@@ -165,7 +165,7 @@ Little-endian (Intel, II)
 0000136862 0xc741 Unknown = [256 bytes]
 0000136874 0xc7aa Unknown = 256
 
----- Directory SubIFD3 ----
+---- Directory SubIFD3 @ 137274 ----
 0000137276 0x00fe NewSubfileType = 1
 0000137288 0x0100 ImageWidth = 512
 0000137300 0x0101 ImageLength = 341
@@ -184,7 +184,7 @@ Little-endian (Intel, II)
 0000137456 0xc741 Unknown = [256 bytes]
 0000137468 0xc7aa Unknown = 256
 
----- Directory SubIFD ----
+---- Directory SubIFD @ 137796 ----
 0000137798 0x00fe NewSubfileType = 1
 0000137810 0x0100 ImageWidth = 256
 0000137822 0x0101 ImageLength = 171

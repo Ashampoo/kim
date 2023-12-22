@@ -3,7 +3,7 @@ Resolution  : 1367 x 2000
 ---- TIFF ----
 Version 42
 Little-endian (Intel, II)
----- Directory IFD0 ----
+---- Directory IFD0 @ 8 ----
 0000000010 0x010f Make = NIKON CORPORATION
 0000000022 0x0110 Model = NIKON D810
 0000000034 0x0112 Orientation = 1
@@ -15,7 +15,7 @@ Little-endian (Intel, II)
 0000000106 0x013b Artist = Alexander Andrews
 0000000118 0x8769 ExifOffset = 232
 
----- Directory ExifIFD ----
+---- Directory ExifIFD @ 232 ----
 0000000234 0x829a ExposureTime = 1/40 (0.025)
 0000000246 0x829d FNumber = 28/10 (2.8)
 0000000258 0x8822 ExposureProgram = 3
@@ -58,7 +58,7 @@ Little-endian (Intel, II)
 0000000702 0xa431 BodySerialNumber = 8020595
 0000000714 0xa432 LensSpecification = [700/10 (70.0), 2000/10 (200.0), 28/10 (2.8), 28/10 (2.8)]
 
----- Directory SubIFD ----
+---- Directory SubIFD @ 898 ----
 0000000900 0x00fe NewSubfileType = 1
 0000000912 0x0100 ImageWidth = 174
 0000000924 0x0101 ImageLength = 256

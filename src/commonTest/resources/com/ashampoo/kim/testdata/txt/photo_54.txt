@@ -3,7 +3,7 @@ Resolution  : 1200 x 800
 ---- TIFF ----
 Version 42
 Little-endian (Intel, II)
----- Directory IFD0 ----
+---- Directory IFD0 @ 2883322 ----
 0002883324 0x0100 ImageWidth = 1200
 0002883336 0x0101 ImageLength = 800
 0002883348 0x0102 BitsPerSample = [8, 8, 8]
@@ -30,7 +30,7 @@ Little-endian (Intel, II)
 0002883600 0x8773 ICC_Profile = [596 bytes]
 0002883612 0xc7e0 AffinityPhoto = [110 bytes]
 
----- Directory ExifIFD ----
+---- Directory ExifIFD @ 2887292 ----
 0002887294 0x829a ExposureTime = 1/30 (0.033333)
 0002887306 0x829d FNumber = 5/1 (5.0)
 0002887318 0x8822 ExposureProgram = 3

@@ -3,7 +3,7 @@ Resolution  : 3024 x 4032
 ---- TIFF ----
 Version 42
 Little-endian (Intel, II)
----- Directory IFD0 ----
+---- Directory IFD0 @ 8 ----
 0000000010 0x010f Make = Apple
 0000000022 0x0110 Model = iPhone 11 Pro Max
 0000000034 0x0112 Orientation = 1
@@ -15,7 +15,7 @@ Little-endian (Intel, II)
 0000000106 0x0213 YCbCrPositioning = 1
 0000000118 0x8769 ExifOffset = 202
 
----- Directory ExifIFD ----
+---- Directory ExifIFD @ 202 ----
 0000000204 0x829a ExposureTime = 1/120 (0.008333)
 0000000216 0x829d FNumber = 2/1 (2.0)
 0000000228 0x8822 ExposureProgram = 2
@@ -46,7 +46,7 @@ Little-endian (Intel, II)
 0000000528 0xa405 FocalLengthIn35mmFormat = 52
 0000000540 0xa406 SceneCaptureType = 0
 
----- Directory SubIFD ----
+---- Directory SubIFD @ 660 ----
 0000000662 0x0103 Compression = 6
 0000000674 0x011a XResolution = 72/1 (72.0)
 0000000686 0x011b YResolution = 72/1 (72.0)

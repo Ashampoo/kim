@@ -3,7 +3,7 @@ Resolution  : 1500 x 1000
 ---- TIFF ----
 Version 42
 Little-endian (Intel, II)
----- Directory IFD0 ----
+---- Directory IFD0 @ 8 ----
 0000000010 0x0100 ImageWidth = 1500
 0000000022 0x0101 ImageLength = 1000
 0000000034 0x0102 BitsPerSample = [8, 8, 8]
@@ -20,7 +20,7 @@ Little-endian (Intel, II)
 0000000166 0x8769 ExifOffset = 294
 0000000178 0x8825 GPSInfo = 918
 
----- Directory ExifIFD ----
+---- Directory ExifIFD @ 294 ----
 0000000296 0x829a ExposureTime = 1/125 (0.008)
 0000000308 0x829d FNumber = 63/10 (6.3)
 0000000320 0x8822 ExposureProgram = 1
@@ -55,14 +55,14 @@ Little-endian (Intel, II)
 0000000668 0xa434 LensModel = EF70-300mm f/4-5.6L IS USM
 0000000680 0xa435 LensSerialNumber = 7820004130
 
----- Directory GPS ----
+---- Directory GPS @ 918 ----
 0000000920 0x0000 GPSVersionID = [0x02, 0x03, 0x00, 0x00]
 0000000932 0x0001 GPSLatitudeRef = N
 0000000944 0x0002 GPSLatitude = [14/1 (14.0), 57/1 (57.0), 55899/1250 (44.7192)]
 0000000956 0x0003 GPSLongitudeRef = E
 0000000968 0x0004 GPSLongitude = [102/1 (102.0), 5/1 (5.0), 64797/2500 (25.9188)]
 
----- Directory SubIFD ----
+---- Directory SubIFD @ 1032 ----
 0000001034 0x00fe NewSubfileType = 1
 0000001046 0x0100 ImageWidth = 256
 0000001058 0x0101 ImageLength = 170

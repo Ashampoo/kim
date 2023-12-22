@@ -3,7 +3,7 @@ Resolution  : 3038 x 3038
 ---- TIFF ----
 Version 42
 Little-endian (Intel, II)
----- Directory IFD0 ----
+---- Directory IFD0 @ 8 ----
 0000000010 0x010e ImageDescription = OLYMPUS DIGITAL CAMERA
 0000000022 0x010f Make = OLYMPUS IMAGING CORP.
 0000000034 0x0110 Model = E-M5MarkII
@@ -14,7 +14,7 @@ Little-endian (Intel, II)
 0000000094 0x0132 ModifyDate = 2018:07:16 17:40:38
 0000000106 0x8769 ExifOffset = 258
 
----- Directory ExifIFD ----
+---- Directory ExifIFD @ 258 ----
 0000000260 0x829a ExposureTime = 1/320 (0.003125)
 0000000272 0x829d FNumber = 28/10 (2.8)
 0000000284 0x8822 ExposureProgram = 3
@@ -52,7 +52,7 @@ Little-endian (Intel, II)
 0000000668 0xa434 LensModel = OLYMPUS M.40-150mm F2.8
 0000000680 0xa435 LensSerialNumber = ABV25833600
 
----- Directory SubIFD ----
+---- Directory SubIFD @ 902 ----
 0000000904 0x0103 Compression = 6
 0000000916 0x011a XResolution = 72/1 (72.0)
 0000000928 0x011b YResolution = 72/1 (72.0)

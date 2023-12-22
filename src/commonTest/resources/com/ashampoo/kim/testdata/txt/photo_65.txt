@@ -3,7 +3,7 @@ Resolution  : 3680 x 2760
 ---- TIFF ----
 Version 20306
 Little-endian (Intel, II)
----- Directory IFD0 ----
+---- Directory IFD0 @ 8 ----
 0000000010 0x0100 ImageWidth = 3680
 0000000022 0x0101 ImageLength = 2760
 0000000034 0x0102 BitsPerSample = 16
@@ -28,7 +28,7 @@ Little-endian (Intel, II)
 0000000262 0x8769 ExifOffset = 290
 0000000274 0xc4a5 PrintIM = [528 bytes]
 
----- Directory ExifIFD ----
+---- Directory ExifIFD @ 290 ----
 0000000292 0x829a ExposureTime = 1/640 (0.001563)
 0000000304 0x829d FNumber = 40/10 (4.0)
 0000000316 0x8822 ExposureProgram = 2

@@ -3,7 +3,7 @@ Resolution  : 4928 x 3264
 ---- TIFF ----
 Version 42
 Big-endian (Motorola, MM)
----- Directory IFD0 ----
+---- Directory IFD0 @ 8 ----
 0000000010 0x010f Make = PENTAX             
 0000000022 0x0110 Model = PENTAX K-50        
 0000000034 0x0112 Orientation = 1
@@ -19,7 +19,7 @@ Big-endian (Motorola, MM)
 0000000154 0x8825 GPSInfo = 5482
 0000000166 0xc4a5 PrintIM = [350 bytes]
 
----- Directory ExifIFD ----
+---- Directory ExifIFD @ 632 ----
 0000000634 0x829a ExposureTime = 1/400 (0.0025)
 0000000646 0x829d FNumber = 35/10 (3.5)
 0000000658 0x8822 ExposureProgram = 3
@@ -51,14 +51,14 @@ Big-endian (Motorola, MM)
 0000000970 0xa40a Sharpness = 0
 0000000982 0xa40c SubjectDistanceRange = 2
 
----- Directory InteropIFD ----
+---- Directory InteropIFD @ 5452 ----
 0000005454 0x0001 InteroperabilityIndex = R98
 0000005466 0x0002 InteroperabilityVersion = [0x30, 0x31, 0x30, 0x30]
 
----- Directory GPS ----
+---- Directory GPS @ 5482 ----
 0000005484 0x0000 GPSVersionID = [0x02, 0x03, 0x00, 0x00]
 
----- Directory SubIFD ----
+---- Directory SubIFD @ 5500 ----
 0000005502 0x0103 Compression = 6
 0000005514 0x011a XResolution = 300/1 (300.0)
 0000005526 0x011b YResolution = 300/1 (300.0)

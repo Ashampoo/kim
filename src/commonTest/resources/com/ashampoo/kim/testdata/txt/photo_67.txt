@@ -3,7 +3,7 @@ Resolution  : 6240 x 4160
 ---- TIFF ----
 Version 42
 Little-endian (Intel, II)
----- Directory IFD0 ----
+---- Directory IFD0 @ 8 ----
 0000000010 0x00fe NewSubfileType = 1
 0000000022 0x0100 ImageWidth = 256
 0000000034 0x0101 ImageLength = 171
@@ -66,7 +66,7 @@ Little-endian (Intel, II)
 0000000718 0xc761 Unknown = [6.145418478675516E-5, 5.6966083730003E-8, 6.068665598535134E-5, 5.223482066536774E-8, 5.957579919127184E-5, 5.131278317836205E-8]
 0000000730 0xc7a7 Unknown = [16 bytes]
 
----- Directory ExifIFD ----
+---- Directory ExifIFD @ 151888 ----
 0000151890 0x829a ExposureTime = 1/40 (0.025)
 0000151902 0x829d FNumber = 4/1 (4.0)
 0000151914 0x8822 ExposureProgram = 3
@@ -105,7 +105,7 @@ Little-endian (Intel, II)
 0000152310 0xa434 LensModel = XC35mmF2
 0000152322 0xa435 LensSerialNumber = 0AA16656
 
----- Directory SubIFD ----
+---- Directory SubIFD @ 152538 ----
 0000152540 0x00fe NewSubfileType = 0
 0000152552 0x0100 ImageWidth = 6240
 0000152564 0x0101 ImageLength = 4160
@@ -134,7 +134,7 @@ Little-endian (Intel, II)
 0000152840 0xc74e Unknown = [184 bytes]
 0000152852 0xc761 Unknown = [6.145418478675516E-5, 5.6966083730003E-8, 6.068665598535134E-5, 5.223482066536774E-8, 5.957579919127184E-5, 5.131278317836205E-8]
 
----- Directory SubIFD1 ----
+---- Directory SubIFD1 @ 156904 ----
 0000156906 0x00fe NewSubfileType = 1
 0000156918 0x0100 ImageWidth = 1024
 0000156930 0x0101 ImageLength = 683
@@ -156,7 +156,7 @@ Little-endian (Intel, II)
 0000157122 0xc71a Unknown = 2
 0000157134 0xc71b Unknown = 2023-07-26T06:11:34+02:00
 
----- Directory SubIFD2 ----
+---- Directory SubIFD2 @ 157296 ----
 0000157298 0x00fe NewSubfileType = 1
 0000157310 0x0100 ImageWidth = 2048
 0000157322 0x0101 ImageLength = 1365
@@ -175,7 +175,7 @@ Little-endian (Intel, II)
 0000157478 0xc741 Unknown = [256 bytes]
 0000157490 0xc7aa Unknown = 256
 
----- Directory SubIFD3 ----
+---- Directory SubIFD3 @ 157914 ----
 0000157916 0x00fe NewSubfileType = 1
 0000157928 0x0100 ImageWidth = 512
 0000157940 0x0101 ImageLength = 341
@@ -194,7 +194,7 @@ Little-endian (Intel, II)
 0000158096 0xc741 Unknown = [256 bytes]
 0000158108 0xc7aa Unknown = 256
 
----- Directory SubIFD ----
+---- Directory SubIFD @ 158436 ----
 0000158438 0x00fe NewSubfileType = 1
 0000158450 0x0100 ImageWidth = 256
 0000158462 0x0101 ImageLength = 171

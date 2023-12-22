@@ -3,7 +3,7 @@ Resolution  : 2304 x 1536
 ---- TIFF ----
 Version 42
 Little-endian (Intel, II)
----- Directory IFD0 ----
+---- Directory IFD0 @ 8 ----
 0000000010 0x010e ImageDescription =                                
 0000000022 0x010f Make = Canon
 0000000034 0x0110 Model = Canon EOS M3
@@ -18,7 +18,7 @@ Little-endian (Intel, II)
 0000000142 0x8769 ExifOffset = 258
 0000000154 0x8825 GPSInfo = 18876
 
----- Directory ExifIFD ----
+---- Directory ExifIFD @ 258 ----
 0000000260 0x829a ExposureTime = 1/4000 (2.5E-4)
 0000000272 0x829d FNumber = 56/10 (5.6)
 0000000284 0x8822 ExposureProgram = 4
@@ -62,16 +62,16 @@ Little-endian (Intel, II)
 0000000740 0xa434 LensModel = EF-M18-55mm f/3.5-5.6 IS STM
 0000000752 0xa435 LensSerialNumber = 0000455071
 
----- Directory InteropIFD ----
+---- Directory InteropIFD @ 18822 ----
 0000018824 0x0001 InteroperabilityIndex = R98
 0000018836 0x0002 InteroperabilityVersion = [0x30, 0x31, 0x30, 0x30]
 0000018848 0x1001 RelatedImageWidth = 2304
 0000018860 0x1002 RelatedImageHeight = 1536
 
----- Directory GPS ----
+---- Directory GPS @ 18876 ----
 0000018878 0x0000 GPSVersionID = [0x02, 0x03, 0x00, 0x00]
 
----- Directory SubIFD ----
+---- Directory SubIFD @ 18894 ----
 0000018896 0x0103 Compression = 6
 0000018908 0x011a XResolution = 180/1 (180.0)
 0000018920 0x011b YResolution = 180/1 (180.0)

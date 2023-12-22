@@ -3,7 +3,7 @@ Resolution  : 3664 x 2752
 ---- TIFF ----
 Version 42
 Little-endian (Intel, II)
----- Directory IFD0 ----
+---- Directory IFD0 @ 8 ----
 0000000010 0x00fe NewSubfileType = 1
 0000000022 0x0100 ImageWidth = 256
 0000000034 0x0101 ImageLength = 192
@@ -60,7 +60,7 @@ Little-endian (Intel, II)
 0000000646 0xc761 Unknown = [2.0641153582055387E-4, 3.0483049720786857E-7]
 0000000658 0xc7a7 Unknown = [16 bytes]
 
----- Directory ExifIFD ----
+---- Directory ExifIFD @ 744630 ----
 0000744632 0x829a ExposureTime = 1/60 (0.016667)
 0000744644 0x829d FNumber = 14/10 (1.4)
 0000744656 0x8822 ExposureProgram = 2
@@ -95,7 +95,7 @@ Little-endian (Intel, II)
 0000745004 0xa40a Sharpness = 0
 0000745016 0xa431 BodySerialNumber = F111311090158
 
----- Directory SubIFD ----
+---- Directory SubIFD @ 745174 ----
 0000745176 0x00fe NewSubfileType = 0
 0000745188 0x0100 ImageWidth = 3664
 0000745200 0x0101 ImageLength = 2752
@@ -125,7 +125,7 @@ Little-endian (Intel, II)
 0000745488 0xc74e Unknown = [184 bytes]
 0000745500 0xc761 Unknown = [2.0641153582055387E-4, 3.0483049720786857E-7]
 
----- Directory SubIFD1 ----
+---- Directory SubIFD1 @ 747148 ----
 0000747150 0x00fe NewSubfileType = 1
 0000747162 0x0100 ImageWidth = 1024
 0000747174 0x0101 ImageLength = 768
@@ -147,7 +147,7 @@ Little-endian (Intel, II)
 0000747366 0xc71a Unknown = 2
 0000747378 0xc71b Unknown = 2023-07-26T06:11:34+02:00
 
----- Directory SubIFD2 ----
+---- Directory SubIFD2 @ 747540 ----
 0000747542 0x00fe NewSubfileType = 1
 0000747554 0x0100 ImageWidth = 2048
 0000747566 0x0101 ImageLength = 1536
@@ -165,7 +165,7 @@ Little-endian (Intel, II)
 0000747710 0xc741 Unknown = [256 bytes]
 0000747722 0xc7aa Unknown = 256
 
----- Directory SubIFD3 ----
+---- Directory SubIFD3 @ 748122 ----
 0000748124 0x00fe NewSubfileType = 1
 0000748136 0x0100 ImageWidth = 512
 0000748148 0x0101 ImageLength = 384
@@ -184,7 +184,7 @@ Little-endian (Intel, II)
 0000748304 0xc741 Unknown = [256 bytes]
 0000748316 0xc7aa Unknown = 256
 
----- Directory SubIFD ----
+---- Directory SubIFD @ 748644 ----
 0000748646 0x00fe NewSubfileType = 1
 0000748658 0x0100 ImageWidth = 256
 0000748670 0x0101 ImageLength = 192

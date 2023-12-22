@@ -3,7 +3,7 @@ Resolution  : 4522 x 6783
 ---- TIFF ----
 Version 42
 Big-endian (Motorola, MM)
----- Directory IFD0 ----
+---- Directory IFD0 @ 8 ----
 0000000010 0x010f Make = NIKON CORPORATION
 0000000022 0x0110 Model = NIKON D810
 0000000034 0x0112 Orientation = 1
@@ -19,7 +19,7 @@ Big-endian (Motorola, MM)
 0000000154 0x8769 ExifOffset = 299
 0000000166 0x8825 GPSInfo = 20853
 
----- Directory ExifIFD ----
+---- Directory ExifIFD @ 299 ----
 0000000301 0x829a ExposureTime = 1/200 (0.005)
 0000000313 0x829d FNumber = 28/5 (5.6)
 0000000325 0x8822 ExposureProgram = 1
@@ -62,7 +62,7 @@ Big-endian (Motorola, MM)
 0000000769 0xa40c SubjectDistanceRange = 0
 0000000781 0xa500 Gamma = 11/5 (2.2)
 
----- Directory GPS ----
+---- Directory GPS @ 20853 ----
 0000020855 0x0000 GPSVersionID = [0x02, 0x03, 0x00, 0x00]
 
 

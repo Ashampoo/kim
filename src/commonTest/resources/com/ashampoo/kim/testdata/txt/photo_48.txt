@@ -3,7 +3,7 @@ Resolution  : 4032 x 3024
 ---- TIFF ----
 Version 42
 Big-endian (Motorola, MM)
----- Directory IFD0 ----
+---- Directory IFD0 @ 8 ----
 0000000010 0x010f Make = Apple
 0000000022 0x0110 Model = iPhone SE (3rd generation)
 0000000034 0x0112 Orientation = 6
@@ -16,7 +16,7 @@ Big-endian (Motorola, MM)
 0000000118 0x0213 YCbCrPositioning = 1
 0000000130 0x8769 ExifOffset = 252
 
----- Directory ExifIFD ----
+---- Directory ExifIFD @ 252 ----
 0000000254 0x829a ExposureTime = 1/100 (0.01)
 0000000266 0x829d FNumber = 9/5 (1.8)
 0000000278 0x8822 ExposureProgram = 2
@@ -54,7 +54,7 @@ Big-endian (Motorola, MM)
 0000000662 0xa434 LensModel = iPhone SE (3rd generation) back camera 3.99mm f/1.8
 0000000674 0xa460 Unknown = 2
 
----- Directory SubIFD ----
+---- Directory SubIFD @ 2288 ----
 0000002290 0x0103 Compression = 6
 0000002302 0x011a XResolution = 72/1 (72.0)
 0000002314 0x011b YResolution = 72/1 (72.0)

@@ -3,7 +3,7 @@ Resolution  : 6000 x 4000
 ---- TIFF ----
 Version 42
 Little-endian (Intel, II)
----- Directory IFD0 ----
+---- Directory IFD0 @ 8 ----
 0000000010 0x010f Make = SONY
 0000000022 0x0110 Model = ILCE-6300
 0000000034 0x011a XResolution = 240/1 (240.0)
@@ -14,7 +14,7 @@ Little-endian (Intel, II)
 0000000094 0x8769 ExifOffset = 224
 0000000106 0x8825 GPSInfo = 782
 
----- Directory ExifIFD ----
+---- Directory ExifIFD @ 224 ----
 0000000226 0x829a ExposureTime = 1/100 (0.01)
 0000000238 0x829d FNumber = 63/10 (6.3)
 0000000250 0x8822 ExposureProgram = 1
@@ -48,14 +48,14 @@ Little-endian (Intel, II)
 0000000586 0xa432 LensSpecification = [550/10 (55.0), 2100/10 (210.0), 45/10 (4.5), 63/10 (6.3)]
 0000000598 0xa434 LensModel = E 55-210mm F4.5-6.3 OSS
 
----- Directory GPS ----
+---- Directory GPS @ 782 ----
 0000000784 0x0000 GPSVersionID = [0x02, 0x03, 0x00, 0x00]
 0000000796 0x0001 GPSLatitudeRef = N
 0000000808 0x0002 GPSLatitude = [43/1 (43.0), 37/1 (37.0), 33554/4561 (7.35672)]
 0000000820 0x0003 GPSLongitudeRef = W
 0000000832 0x0004 GPSLongitude = [116/1 (116.0), 12/1 (12.0), 95546/1817 (52.58448)]
 
----- Directory SubIFD ----
+---- Directory SubIFD @ 896 ----
 0000000898 0x0103 Compression = 6
 0000000910 0x011a XResolution = 72/1 (72.0)
 0000000922 0x011b YResolution = 72/1 (72.0)

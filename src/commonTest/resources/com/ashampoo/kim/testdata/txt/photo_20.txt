@@ -3,7 +3,7 @@ Resolution  : 250 x 250
 ---- TIFF ----
 Version 42
 Little-endian (Intel, II)
----- Directory IFD0 ----
+---- Directory IFD0 @ 8 ----
 0000000010 0x010e ImageDescription =                                                                                                                      
 0000000022 0x010f Make = OLYMPUS OPTICAL CO.,LTD
 0000000034 0x0110 Model = C750UZ
@@ -17,7 +17,7 @@ Little-endian (Intel, II)
 0000000130 0x8769 ExifOffset = 618
 0000000142 0xc4a5 PrintIM = [260 bytes]
 
----- Directory ExifIFD ----
+---- Directory ExifIFD @ 618 ----
 0000000620 0x829a ExposureTime = 10/300 (0.033333)
 0000000632 0x829d FNumber = 40/10 (4.0)
 0000000644 0x8822 ExposureProgram = 5
@@ -50,7 +50,7 @@ Little-endian (Intel, II)
 0000000968 0xa409 Saturation = 0
 0000000980 0xa40a Sharpness = 0
 
----- Directory SubIFD ----
+---- Directory SubIFD @ 1218 ----
 0000001220 0x00fe NewSubfileType = 1
 0000001232 0x0100 ImageWidth = 256
 0000001244 0x0101 ImageLength = 256

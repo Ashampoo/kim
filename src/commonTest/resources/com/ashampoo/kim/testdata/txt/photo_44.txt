@@ -3,7 +3,7 @@ Resolution  : 6000 x 4000
 ---- TIFF ----
 Version 42
 Little-endian (Intel, II)
----- Directory IFD0 ----
+---- Directory IFD0 @ 8 ----
 0000000010 0x010f Make = Canon
 0000000022 0x0110 Model = Canon EOS 77D
 0000000034 0x0112 Orientation = 1
@@ -17,7 +17,7 @@ Little-endian (Intel, II)
 0000000130 0x8769 ExifOffset = 228
 0000000142 0x8825 GPSInfo = 10688
 
----- Directory ExifIFD ----
+---- Directory ExifIFD @ 228 ----
 0000000230 0x829a ExposureTime = 1/500 (0.002)
 0000000242 0x829d FNumber = 8/1 (8.0)
 0000000254 0x8822 ExposureProgram = 2
@@ -57,14 +57,14 @@ Little-endian (Intel, II)
 0000000662 0xa434 LensModel = EF100-400mm f/4.5-5.6L IS USM
 0000000674 0xa435 LensSerialNumber = 0000000000
 
----- Directory InteropIFD ----
+---- Directory InteropIFD @ 10658 ----
 0000010660 0x0001 InteroperabilityIndex = R98
 0000010672 0x0002 InteroperabilityVersion = [0x30, 0x31, 0x30, 0x30]
 
----- Directory GPS ----
+---- Directory GPS @ 10688 ----
 0000010690 0x0000 GPSVersionID = [0x02, 0x03, 0x00, 0x00]
 
----- Directory SubIFD ----
+---- Directory SubIFD @ 10706 ----
 0000010708 0x0103 Compression = 6
 0000010720 0x011a XResolution = 72/1 (72.0)
 0000010732 0x011b YResolution = 72/1 (72.0)

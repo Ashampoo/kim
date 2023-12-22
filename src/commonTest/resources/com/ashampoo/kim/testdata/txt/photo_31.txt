@@ -3,7 +3,7 @@ Resolution  : 5472 x 3648
 ---- TIFF ----
 Version 42
 Little-endian (Intel, II)
----- Directory IFD0 ----
+---- Directory IFD0 @ 8 ----
 0000000010 0x010f Make = Canon
 0000000022 0x0110 Model = Canon EOS 70D
 0000000034 0x0112 Orientation = 1
@@ -17,7 +17,7 @@ Little-endian (Intel, II)
 0000000130 0x8769 ExifOffset = 214
 0000000142 0x8825 GPSInfo = 9350
 
----- Directory ExifIFD ----
+---- Directory ExifIFD @ 214 ----
 0000000216 0x829a ExposureTime = 1/60 (0.016667)
 0000000228 0x829d FNumber = 32/10 (3.2)
 0000000240 0x8822 ExposureProgram = 2
@@ -57,14 +57,14 @@ Little-endian (Intel, II)
 0000000648 0xa434 LensModel = EF50mm f/1.8 STM
 0000000660 0xa435 LensSerialNumber = 0000214e1c
 
----- Directory InteropIFD ----
+---- Directory InteropIFD @ 9320 ----
 0000009322 0x0001 InteroperabilityIndex = R98
 0000009334 0x0002 InteroperabilityVersion = [0x30, 0x31, 0x30, 0x30]
 
----- Directory GPS ----
+---- Directory GPS @ 9350 ----
 0000009352 0x0000 GPSVersionID = [0x02, 0x03, 0x00, 0x00]
 
----- Directory SubIFD ----
+---- Directory SubIFD @ 9368 ----
 0000009370 0x0103 Compression = 6
 0000009382 0x011a XResolution = 72/1 (72.0)
 0000009394 0x011b YResolution = 72/1 (72.0)

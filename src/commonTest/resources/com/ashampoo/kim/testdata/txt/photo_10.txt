@@ -3,7 +3,7 @@ Resolution  : 3320 x 2490
 ---- TIFF ----
 Version 42
 Little-endian (Intel, II)
----- Directory IFD0 ----
+---- Directory IFD0 @ 8 ----
 0000000010 0x010f Make = Canon
 0000000022 0x0110 Model = Canon EOS 5D Mark IV
 0000000034 0x011a XResolution = 240/1 (240.0)
@@ -13,7 +13,7 @@ Little-endian (Intel, II)
 0000000082 0x0132 ModifyDate = 2019:05:13 14:38:08
 0000000094 0x8769 ExifOffset = 224
 
----- Directory ExifIFD ----
+---- Directory ExifIFD @ 224 ----
 0000000226 0x829a ExposureTime = 1/1600 (6.25E-4)
 0000000238 0x829d FNumber = 4/1 (4.0)
 0000000250 0x8822 ExposureProgram = 1
@@ -45,7 +45,7 @@ Little-endian (Intel, II)
 0000000562 0xa434 LensModel = EF300mm f/2.8L IS II USM
 0000000574 0xa435 LensSerialNumber = 4250000105
 
----- Directory SubIFD ----
+---- Directory SubIFD @ 786 ----
 0000000788 0x0103 Compression = 6
 0000000800 0x011a XResolution = 72/1 (72.0)
 0000000812 0x011b YResolution = 72/1 (72.0)

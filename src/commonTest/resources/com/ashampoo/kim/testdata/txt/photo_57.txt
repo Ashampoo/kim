@@ -3,7 +3,7 @@ Resolution  : 5184 x 3456
 ---- TIFF ----
 Version 42
 Little-endian (Intel, II)
----- Directory IFD0 ----
+---- Directory IFD0 @ 16 ----
 0000000018 0x0100 ImageWidth = 5184
 0000000030 0x0101 ImageLength = 3456
 0000000042 0x0102 BitsPerSample = [8, 8, 8]
@@ -22,7 +22,7 @@ Little-endian (Intel, II)
 0000000198 0x8298 Copyright = Stefan Oltmann
 0000000210 0x8769 ExifOffset = 434
 
----- Directory ExifIFD ----
+---- Directory ExifIFD @ 434 ----
 0000000436 0x829a ExposureTime = 1/60 (0.016667)
 0000000448 0x829d FNumber = 5/1 (5.0)
 0000000460 0x8822 ExposureProgram = 3
@@ -62,15 +62,15 @@ Little-endian (Intel, II)
 0000000868 0xa434 LensModel = EF-S15-85mm f/3.5-5.6 IS USM
 0000000880 0xa435 LensSerialNumber = 0000118484
 
----- Directory InteropIFD ----
+---- Directory InteropIFD @ 46452 ----
 0000046454 0x0001 InteroperabilityIndex = R98
 0000046466 0x0002 InteroperabilityVersion = [0x30, 0x31, 0x30, 0x30]
 
----- Directory SubIFD ----
+---- Directory SubIFD @ 46654 ----
 0000046656 0x0201 JpgFromRawStart = 55156
 0000046668 0x0202 JpgFromRawLength = 11248
 
----- Directory SubIFD1 ----
+---- Directory SubIFD1 @ 46684 ----
 0000046686 0x0100 ImageWidth = 668
 0000046698 0x0101 ImageLength = 432
 0000046710 0x0102 BitsPerSample = [16, 16, 16]
@@ -85,7 +85,7 @@ Little-endian (Intel, II)
 0000046818 0xc6c5 Unknown = 3
 0000046830 0xc6dc Unknown = [649, 432, 19, 0]
 
----- Directory SubIFD2 ----
+---- Directory SubIFD2 @ 46868 ----
 0000046870 0x0103 Compression = 6
 0000046882 0x0111 JpgFromRawStart = 5038148
 0000046894 0x0117 JpgFromRawLength = 20971770

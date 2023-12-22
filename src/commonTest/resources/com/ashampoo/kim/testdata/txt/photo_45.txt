@@ -3,7 +3,7 @@ Resolution  : 3594 x 2446
 ---- TIFF ----
 Version 42
 Little-endian (Intel, II)
----- Directory IFD0 ----
+---- Directory IFD0 @ 8 ----
 0000000010 0x010f Make = SONY
 0000000022 0x0110 Model = ILCE-7S
 0000000034 0x0112 Orientation = 1
@@ -14,7 +14,7 @@ Little-endian (Intel, II)
 0000000094 0x0132 ModifyDate = 2017:07:17 22:04:13
 0000000106 0x8769 ExifOffset = 214
 
----- Directory ExifIFD ----
+---- Directory ExifIFD @ 214 ----
 0000000216 0x829a ExposureTime = 1/640 (0.001563)
 0000000228 0x829d FNumber = 63/10 (6.3)
 0000000240 0x8822 ExposureProgram = 1
@@ -51,7 +51,7 @@ Little-endian (Intel, II)
 0000000612 0xa432 LensSpecification = [240/10 (24.0), 2400/10 (240.0), 35/10 (3.5), 63/10 (6.3)]
 0000000624 0xa434 LensModel = FE 24-240mm F3.5-6.3 OSS
 
----- Directory SubIFD ----
+---- Directory SubIFD @ 826 ----
 0000000828 0x0103 Compression = 6
 0000000840 0x011a XResolution = 72/1 (72.0)
 0000000852 0x011b YResolution = 72/1 (72.0)

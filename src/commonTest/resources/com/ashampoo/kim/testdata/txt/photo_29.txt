@@ -3,7 +3,7 @@ Resolution  : 2920 x 4045
 ---- TIFF ----
 Version 42
 Little-endian (Intel, II)
----- Directory IFD0 ----
+---- Directory IFD0 @ 8 ----
 0000000010 0x0100 ImageWidth = 2920
 0000000022 0x0101 ImageLength = 4045
 0000000034 0x0102 BitsPerSample = [8, 8, 8]
@@ -20,7 +20,7 @@ Little-endian (Intel, II)
 0000000166 0x0132 ModifyDate = 2017:07:17 23:54:12
 0000000178 0x8769 ExifOffset = 318
 
----- Directory ExifIFD ----
+---- Directory ExifIFD @ 318 ----
 0000000320 0x829a ExposureTime = 1/250 (0.004)
 0000000332 0x829d FNumber = 35/10 (3.5)
 0000000344 0x8822 ExposureProgram = 1
@@ -60,7 +60,7 @@ Little-endian (Intel, II)
 0000000752 0xa434 LensModel = OLYMPUS M.14-42mm F3.5-5.6 II R
 0000000764 0xa435 LensSerialNumber = ABGD50966
 
----- Directory SubIFD ----
+---- Directory SubIFD @ 992 ----
 0000000994 0x0103 Compression = 6
 0000001006 0x011a XResolution = 72/1 (72.0)
 0000001018 0x011b YResolution = 72/1 (72.0)

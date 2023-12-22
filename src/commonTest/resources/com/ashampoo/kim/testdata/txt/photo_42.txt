@@ -3,7 +3,7 @@ Resolution  : 3870 x 3131
 ---- TIFF ----
 Version 42
 Little-endian (Intel, II)
----- Directory IFD0 ----
+---- Directory IFD0 @ 8 ----
 0000000010 0x010f Make = Canon
 0000000022 0x0110 Model = Canon EOS 7D Mark II
 0000000034 0x011a XResolution = 240/1 (240.0)
@@ -15,7 +15,7 @@ Little-endian (Intel, II)
 0000000106 0x8298 Copyright = ZEphoto.zenfolio.com
 0000000118 0x8769 ExifOffset = 294
 
----- Directory ExifIFD ----
+---- Directory ExifIFD @ 294 ----
 0000000296 0x829a ExposureTime = 1/800 (0.00125)
 0000000308 0x829d FNumber = 56/10 (5.6)
 0000000320 0x8822 ExposureProgram = 1
@@ -48,7 +48,7 @@ Little-endian (Intel, II)
 0000000644 0xa434 LensModel = EF100-400mm f/4.5-5.6L IS II USM
 0000000656 0xa435 LensSerialNumber = 3610001521
 
----- Directory SubIFD ----
+---- Directory SubIFD @ 884 ----
 0000000886 0x0103 Compression = 6
 0000000898 0x011a XResolution = 72/1 (72.0)
 0000000910 0x011b YResolution = 72/1 (72.0)

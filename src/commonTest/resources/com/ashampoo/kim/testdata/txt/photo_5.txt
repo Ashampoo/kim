@@ -3,7 +3,7 @@ Resolution  : 3771 x 2121
 ---- TIFF ----
 Version 42
 Little-endian (Intel, II)
----- Directory IFD0 ----
+---- Directory IFD0 @ 8 ----
 0000000010 0x010f Make = FUJIFILM
 0000000022 0x0110 Model = X-T20
 0000000034 0x011a XResolution = 240/1 (240.0)
@@ -13,7 +13,7 @@ Little-endian (Intel, II)
 0000000082 0x0132 ModifyDate = 2019:01:22 20:56:19
 0000000094 0x8769 ExifOffset = 212
 
----- Directory ExifIFD ----
+---- Directory ExifIFD @ 212 ----
 0000000214 0x829a ExposureTime = 1/200 (0.005)
 0000000226 0x829d FNumber = 2/1 (2.0)
 0000000238 0x8822 ExposureProgram = 3
@@ -51,7 +51,7 @@ Little-endian (Intel, II)
 0000000622 0xa434 LensModel = XF90mmF2 R LM WR
 0000000634 0xa435 LensSerialNumber = 65B00914
 
----- Directory SubIFD ----
+---- Directory SubIFD @ 850 ----
 0000000852 0x0103 Compression = 6
 0000000864 0x011a XResolution = 72/1 (72.0)
 0000000876 0x011b YResolution = 72/1 (72.0)

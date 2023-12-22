@@ -3,7 +3,7 @@ Resolution  : 3680 x 2760
 ---- TIFF ----
 Version 42
 Little-endian (Intel, II)
----- Directory IFD0 ----
+---- Directory IFD0 @ 8 ----
 0000000010 0x00fe NewSubfileType = 1
 0000000022 0x0100 ImageWidth = 256
 0000000034 0x0101 ImageLength = 192
@@ -61,7 +61,7 @@ Little-endian (Intel, II)
 0000000658 0xc761 Unknown = [1.2908674753948272E-4, 5.275777425016946E-7]
 0000000670 0xc7a7 Unknown = [16 bytes]
 
----- Directory ExifIFD ----
+---- Directory ExifIFD @ 1538236 ----
 0001538238 0x829a ExposureTime = 1/640 (0.001563)
 0001538250 0x829d FNumber = 4/1 (4.0)
 0001538262 0x8822 ExposureProgram = 2
@@ -93,7 +93,7 @@ Little-endian (Intel, II)
 0001538574 0xa40a Sharpness = 0
 0001538586 0xa431 BodySerialNumber = AAM516822
 
----- Directory SubIFD ----
+---- Directory SubIFD @ 1538732 ----
 0001538734 0x00fe NewSubfileType = 0
 0001538746 0x0100 ImageWidth = 3680
 0001538758 0x0101 ImageLength = 2760
@@ -123,7 +123,7 @@ Little-endian (Intel, II)
 0001539046 0xc74e Unknown = [88 bytes]
 0001539058 0xc761 Unknown = [1.2908674753948272E-4, 5.275777425016946E-7]
 
----- Directory SubIFD1 ----
+---- Directory SubIFD1 @ 1540610 ----
 0001540612 0x00fe NewSubfileType = 1
 0001540624 0x0100 ImageWidth = 1024
 0001540636 0x0101 ImageLength = 768
@@ -145,7 +145,7 @@ Little-endian (Intel, II)
 0001540828 0xc71a Unknown = 2
 0001540840 0xc71b Unknown = 2023-07-26T06:11:34+02:00
 
----- Directory SubIFD2 ----
+---- Directory SubIFD2 @ 1541002 ----
 0001541004 0x00fe NewSubfileType = 1
 0001541016 0x0100 ImageWidth = 1824
 0001541028 0x0101 ImageLength = 1368
@@ -163,7 +163,7 @@ Little-endian (Intel, II)
 0001541172 0xc741 Unknown = [256 bytes]
 0001541184 0xc7aa Unknown = 256
 
----- Directory SubIFD3 ----
+---- Directory SubIFD3 @ 1541584 ----
 0001541586 0x00fe NewSubfileType = 1
 0001541598 0x0100 ImageWidth = 512
 0001541610 0x0101 ImageLength = 384
@@ -182,7 +182,7 @@ Little-endian (Intel, II)
 0001541766 0xc741 Unknown = [256 bytes]
 0001541778 0xc7aa Unknown = 256
 
----- Directory SubIFD ----
+---- Directory SubIFD @ 1542106 ----
 0001542108 0x00fe NewSubfileType = 1
 0001542120 0x0100 ImageWidth = 256
 0001542132 0x0101 ImageLength = 192

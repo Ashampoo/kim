@@ -3,7 +3,7 @@ Resolution  : 4000 x 2670
 ---- TIFF ----
 Version 42
 Little-endian (Intel, II)
----- Directory IFD0 ----
+---- Directory IFD0 @ 8 ----
 0000000010 0x010f Make = Canon
 0000000022 0x0110 Model = Canon EOS 70D
 0000000034 0x0112 Orientation = 1
@@ -20,7 +20,7 @@ Little-endian (Intel, II)
 0000000166 0x8825 GPSInfo = 6526
 0000000178 0x9003 Unknown = 2019:07:14 09:21:11
 
----- Directory ExifIFD ----
+---- Directory ExifIFD @ 306 ----
 0000000308 0x829a ExposureTime = 1/400 (0.0025)
 0000000320 0x829d FNumber = 71/10 (7.1)
 0000000332 0x8822 ExposureProgram = 1
@@ -59,11 +59,11 @@ Little-endian (Intel, II)
 0000000728 0xa434 LensModel = EF-S55-250mm f/4-5.6 IS STM
 0000000740 0xa435 LensSerialNumber = 0000800dcf
 
----- Directory InteropIFD ----
+---- Directory InteropIFD @ 6496 ----
 0000006498 0x0001 InteroperabilityIndex = R98
 0000006510 0x0002 InteroperabilityVersion = [0x30, 0x31, 0x30, 0x30]
 
----- Directory GPS ----
+---- Directory GPS @ 6526 ----
 0000006528 0x0000 GPSVersionID = [0x02, 0x02, 0x00, 0x00]
 0000006540 0x0001 GPSLatitudeRef = N
 0000006552 0x0002 GPSLatitude = [55/1 (55.0), 54678955/1000000 (54.678955), 0/1 (0.0)]

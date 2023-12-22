@@ -3,7 +3,7 @@ Resolution  : 1000 x 668
 ---- TIFF ----
 Version 42
 Big-endian (Motorola, MM)
----- Directory IFD0 ----
+---- Directory IFD0 @ 8 ----
 0000000010 0x010e ImageDescription = honeybee perching on yellow flower
 0000000022 0x010f Make = Canon
 0000000034 0x0110 Model = Canon EOS 70D
@@ -18,7 +18,7 @@ Big-endian (Motorola, MM)
 0000000142 0x8769 ExifOffset = 298
 0000000154 0x8825 GPSInfo = 910
 
----- Directory ExifIFD ----
+---- Directory ExifIFD @ 298 ----
 0000000300 0x829a ExposureTime = 1/400 (0.0025)
 0000000312 0x829d FNumber = 71/10 (7.1)
 0000000324 0x8822 ExposureProgram = 1
@@ -54,7 +54,7 @@ Big-endian (Motorola, MM)
 0000000684 0xa434 LensModel = EF-S55-250mm f/4-5.6 IS STM
 0000000696 0xa435 LensSerialNumber = 0000800dcf
 
----- Directory GPS ----
+---- Directory GPS @ 910 ----
 0000000912 0x0000 GPSVersionID = [0x02, 0x02, 0x00, 0x00]
 0000000924 0x0001 GPSLatitudeRef = N
 0000000936 0x0002 GPSLatitude = [55/1 (55.0), 54/1 (54.0), 4074/100 (40.74)]

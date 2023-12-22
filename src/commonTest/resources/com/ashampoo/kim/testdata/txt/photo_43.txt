@@ -3,7 +3,7 @@ Resolution  : 4032 x 3024
 ---- TIFF ----
 Version 42
 Big-endian (Motorola, MM)
----- Directory IFD0 ----
+---- Directory IFD0 @ 8 ----
 0000000010 0x010f Make = Apple
 0000000022 0x0110 Model = iPhone XS
 0000000034 0x011a XResolution = 72/1 (72.0)
@@ -17,7 +17,7 @@ Big-endian (Motorola, MM)
 0000000130 0x8769 ExifOffset = 218
 0000000142 0x8825 GPSInfo = 1796
 
----- Directory ExifIFD ----
+---- Directory ExifIFD @ 218 ----
 0000000220 0x829a ExposureTime = 1/122 (0.008197)
 0000000232 0x829d FNumber = 12/5 (2.4)
 0000000244 0x8822 ExposureProgram = 2
@@ -52,7 +52,7 @@ Big-endian (Motorola, MM)
 0000000592 0xa433 LensMake = Apple
 0000000604 0xa434 LensModel = iPhone XS back dual camera 6mm f/2.4
 
----- Directory GPS ----
+---- Directory GPS @ 1796 ----
 0000001798 0x0001 GPSLatitudeRef = N
 0000001810 0x0002 GPSLatitude = [34/1 (34.0), 27/1 (27.0), 4701/100 (47.01)]
 0000001822 0x0003 GPSLongitudeRef = W

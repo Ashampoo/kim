@@ -3,7 +3,7 @@ Resolution  : 4272 x 2848
 ---- TIFF ----
 Version 42
 Little-endian (Intel, II)
----- Directory IFD0 ----
+---- Directory IFD0 @ 8 ----
 0000000010 0x010f Make = NIKON CORPORATION
 0000000022 0x0110 Model = NIKON D500
 0000000034 0x0112 Orientation = 1
@@ -16,7 +16,7 @@ Little-endian (Intel, II)
 0000000118 0x8298 Copyright = Peter Neumann
 0000000130 0x8769 ExifOffset = 274
 
----- Directory ExifIFD ----
+---- Directory ExifIFD @ 274 ----
 0000000276 0x829a ExposureTime = 1/320 (0.003125)
 0000000288 0x829d FNumber = 8/1 (8.0)
 0000000300 0x8822 ExposureProgram = 1
@@ -60,7 +60,7 @@ Little-endian (Intel, II)
 0000000756 0xa432 LensSpecification = [700/10 (70.0), 2000/10 (200.0), 28/10 (2.8), 28/10 (2.8)]
 0000000768 0xa434 LensModel = 70.0-200.0 mm f/2.8
 
----- Directory SubIFD ----
+---- Directory SubIFD @ 964 ----
 0000000966 0x0103 Compression = 6
 0000000978 0x011a XResolution = 72/1 (72.0)
 0000000990 0x011b YResolution = 72/1 (72.0)

@@ -3,7 +3,7 @@ Resolution  : 3705 x 2470
 ---- TIFF ----
 Version 42
 Little-endian (Intel, II)
----- Directory IFD0 ----
+---- Directory IFD0 @ 8 ----
 0000000010 0x010f Make = Canon
 0000000022 0x0110 Model = Canon EOS REBEL T3i
 0000000034 0x011a XResolution = 240/1 (240.0)
@@ -14,7 +14,7 @@ Little-endian (Intel, II)
 0000000094 0x8769 ExifOffset = 224
 0000000106 0x8825 GPSInfo = 732
 
----- Directory ExifIFD ----
+---- Directory ExifIFD @ 224 ----
 0000000226 0x829a ExposureTime = 1/640 (0.001563)
 0000000238 0x829d FNumber = 56/10 (5.6)
 0000000250 0x8822 ExposureProgram = 1
@@ -42,14 +42,14 @@ Little-endian (Intel, II)
 0000000514 0xa434 LensModel = EF400mm f/5.6L USM
 0000000526 0xa435 LensSerialNumber = 0000000000
 
----- Directory GPS ----
+---- Directory GPS @ 732 ----
 0000000734 0x0000 GPSVersionID = [0x02, 0x03, 0x00, 0x00]
 0000000746 0x0001 GPSLatitudeRef = N
 0000000758 0x0002 GPSLatitude = [22/1 (22.0), 48/1 (48.0), 18531/3125 (5.92992)]
 0000000770 0x0003 GPSLongitudeRef = E
 0000000782 0x0004 GPSLongitude = [120/1 (120.0), 17/1 (17.0), 40807/4443 (9.18456)]
 
----- Directory SubIFD ----
+---- Directory SubIFD @ 846 ----
 0000000848 0x0103 Compression = 6
 0000000860 0x011a XResolution = 72/1 (72.0)
 0000000872 0x011b YResolution = 72/1 (72.0)
