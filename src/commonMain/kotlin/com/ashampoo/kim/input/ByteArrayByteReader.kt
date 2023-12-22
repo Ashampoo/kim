@@ -53,8 +53,6 @@ class ByteArrayByteReader(
     override fun readBytes(start: Int, length: Int): ByteArray =
         bytes.copyOfRange(start, start + length)
 
-    override fun getLength(): Long = bytes.size.toLong()
-
     override fun close() {
         /* Does nothing. */
     }

@@ -23,6 +23,4 @@ interface RandomAccessByteReader : ByteReader {
 
     fun readBytes(start: Int, length: Int): ByteArray
 
-    fun getLength(): Long
-
 }

@@ -120,7 +120,7 @@ object TiffReader {
          * Sometimes TIFF offsets are greater than the file itself.
          * We ignore such corruptions.
          */
-        if (directoryOffset >= byteReader.getLength())
+        if (directoryOffset >= byteReader.contentLength)
             return true
 
         val fields = try {
@@ -277,7 +277,7 @@ object TiffReader {
             val valueBytes: ByteArray = if (!isLocalValue) {
 
                 /* Ignore corrupt offsets */
-                if (valueOrOffset < 0 || valueOrOffset + valueLength > byteReader.getLength())
+                if (valueOrOffset < 0 || valueOrOffset + valueLength > byteReader.contentLength)
                     continue
 
                 byteReader.readBytes(valueOrOffset.toInt(), valueLength.toInt())
@@ -318,8 +318,8 @@ object TiffReader {
         /*
          * If the length is not correct (going beyond the file size), we adjust it.
          */
-        if (offset + length > byteReader.getLength())
-            length = (byteReader.getLength() - offset).toInt()
+        if (offset + length > byteReader.contentLength)
+            length = (byteReader.contentLength - offset).toInt()
 
         val data = byteReader.readBytes(offset.toInt(), length)
 
