@@ -288,7 +288,16 @@ object TiffReader {
             }
 
             fields.add(
-                TiffField(tag, dirType, fieldType, count, valueOrOffset, valueBytes, byteOrder, entryIndex)
+                TiffField(
+                    tag,
+                    dirType,
+                    fieldType,
+                    count,
+                    valueOrOffset,
+                    valueBytes,
+                    byteOrder,
+                    entryIndex
+                )
             )
         }
 
