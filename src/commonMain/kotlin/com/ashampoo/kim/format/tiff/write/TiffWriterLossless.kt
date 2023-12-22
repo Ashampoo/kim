@@ -79,7 +79,7 @@ class TiffWriterLossless(
                         makerNoteField.separateValue != null &&
                         makerNoteField.bytesEqual(field.byteArrayValue)
                     )
-                        makerNoteField.separateValue.offset = field.offset.toLong()
+                        makerNoteField.separateValue.offset = field.valueOffset!!.toLong()
                     else
                         elements.add(oversizeValue)
                 }
