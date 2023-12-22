@@ -87,7 +87,7 @@ object TiffReader {
         val tiffVersion = byteReader.read2BytesAsInt("TIFF version", byteOrder)
 
         val offsetToFirstIFD =
-            0xFFFFF and byteReader.read4BytesAsInt("Offset to first IFD", byteOrder)
+            byteReader.read4BytesAsInt("Offset to first IFD", byteOrder)
 
         return TiffHeader(byteOrder, tiffVersion, offsetToFirstIFD)
     }
@@ -146,7 +146,7 @@ object TiffReader {
             throw ex
         }
 
-        val nextDirectoryOffset = 0xFFFF and
+        val nextDirectoryOffset =
             byteReader.read4BytesAsInt("Next directory offset", byteOrder)
 
         val directory = TiffDirectory(dirType, fields, directoryOffset, nextDirectoryOffset, byteOrder)
@@ -235,9 +235,7 @@ object TiffReader {
             val tag = byteReader.read2BytesAsInt("Entry $entryIndex: 'tag'", byteOrder)
             val type = byteReader.read2BytesAsInt("Entry $entryIndex: 'type'", byteOrder)
 
-            val count =
-                0xFFFF and
-                    byteReader.read4BytesAsInt("Entry $entryIndex: 'count'", byteOrder)
+            val count = byteReader.read4BytesAsInt("Entry $entryIndex: 'count'", byteOrder)
 
             /*
              * These bytes represent either the value for fields like orientation or
@@ -247,7 +245,7 @@ object TiffReader {
             val valueOrOffsetBytes: ByteArray =
                 byteReader.readBytes("Entry $entryIndex: 'offset'", 4)
 
-            val valueOrOffset: Int = 0xFFFF and valueOrOffsetBytes.toInt(byteOrder)
+            val valueOrOffset: Int = valueOrOffsetBytes.toInt(byteOrder)
 
             /*
              * Skip invalid fields.
