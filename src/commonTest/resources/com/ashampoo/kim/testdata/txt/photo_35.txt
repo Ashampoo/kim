@@ -4,54 +4,54 @@ Resolution  : 3382 x 2673
 Version 42
 Little-endian (Intel, II)
 ---- Directory IFD0 ----
-0x010f Make = Canon
-0x0110 Model = Canon EOS 5D Mark IV
-0x011a XResolution = 240/1 (240.0)
-0x011b YResolution = 240/1 (240.0)
-0x0128 ResolutionUnit = 2
-0x0131 Software = Adobe Photoshop Lightroom Classic 8.1 (Windows)
-0x0132 ModifyDate = 2019:01:12 20:37:50
-0x8769 ExifOffset = 222
+0000000010 0x010f Make = Canon
+0000000022 0x0110 Model = Canon EOS 5D Mark IV
+0000000034 0x011a XResolution = 240/1 (240.0)
+0000000046 0x011b YResolution = 240/1 (240.0)
+0000000058 0x0128 ResolutionUnit = 2
+0000000070 0x0131 Software = Adobe Photoshop Lightroom Classic 8.1 (Windows)
+0000000082 0x0132 ModifyDate = 2019:01:12 20:37:50
+0000000094 0x8769 ExifOffset = 222
 
 ---- Directory ExifIFD ----
-0x829a ExposureTime = 1/160 (0.00625)
-0x829d FNumber = 63/10 (6.3)
-0x8822 ExposureProgram = 1
-0x8827 PhotographicSensitivity = 1600
-0x8830 SensitivityType = 2
-0x8832 RecommendedExposureIndex = 1600
-0x9000 ExifVersion = [0x30, 0x32, 0x33, 0x30]
-0x9003 DateTimeOriginal = 2018:12:12 17:11:15
-0x9004 DateTimeDigitized = 2018:12:12 17:11:15
-0x9201 ShutterSpeedValue = 7321928/1000000 (7.321928)
-0x9202 ApertureValue = 5310704/1000000 (5.310704)
-0x9204 ExposureCompensation = 0/1 (0.0)
-0x9205 MaxApertureValue = 3/1 (3.0)
-0x9207 MeteringMode = 5
-0x9209 Flash = 16
-0x920a FocalLength = 100/1 (100.0)
-0x9291 SubSecTimeOriginal = 89
-0x9292 SubSecTimeDigitized = 89
-0xa001 ColorSpace = 1
-0xa20e FocalPlaneXResolution = 61166933/32768 (1866.666656)
-0xa20f FocalPlaneYResolution = 61166933/32768 (1866.666656)
-0xa210 FocalPlaneResolutionUnit = 3
-0xa401 CustomRendered = 0
-0xa402 ExposureMode = 1
-0xa403 WhiteBalance = 1
-0xa406 SceneCaptureType = 0
-0xa431 BodySerialNumber = 043052000677
-0xa432 LensSpecification = [100/1 (100.0), 100/1 (100.0), Invalid rational (0/0), Invalid rational (0/0)]
-0xa434 LensModel = EF100mm f/2.8L Macro IS USM
-0xa435 LensSerialNumber = 000002e702
+0000000224 0x829a ExposureTime = 1/160 (0.00625)
+0000000236 0x829d FNumber = 63/10 (6.3)
+0000000248 0x8822 ExposureProgram = 1
+0000000260 0x8827 PhotographicSensitivity = 1600
+0000000272 0x8830 SensitivityType = 2
+0000000284 0x8832 RecommendedExposureIndex = 1600
+0000000296 0x9000 ExifVersion = [0x30, 0x32, 0x33, 0x30]
+0000000308 0x9003 DateTimeOriginal = 2018:12:12 17:11:15
+0000000320 0x9004 DateTimeDigitized = 2018:12:12 17:11:15
+0000000332 0x9201 ShutterSpeedValue = 7321928/1000000 (7.321928)
+0000000344 0x9202 ApertureValue = 5310704/1000000 (5.310704)
+0000000356 0x9204 ExposureCompensation = 0/1 (0.0)
+0000000368 0x9205 MaxApertureValue = 3/1 (3.0)
+0000000380 0x9207 MeteringMode = 5
+0000000392 0x9209 Flash = 16
+0000000404 0x920a FocalLength = 100/1 (100.0)
+0000000416 0x9291 SubSecTimeOriginal = 89
+0000000428 0x9292 SubSecTimeDigitized = 89
+0000000440 0xa001 ColorSpace = 1
+0000000452 0xa20e FocalPlaneXResolution = 61166933/32768 (1866.666656)
+0000000464 0xa20f FocalPlaneYResolution = 61166933/32768 (1866.666656)
+0000000476 0xa210 FocalPlaneResolutionUnit = 3
+0000000488 0xa401 CustomRendered = 0
+0000000500 0xa402 ExposureMode = 1
+0000000512 0xa403 WhiteBalance = 1
+0000000524 0xa406 SceneCaptureType = 0
+0000000536 0xa431 BodySerialNumber = 043052000677
+0000000548 0xa432 LensSpecification = [100/1 (100.0), 100/1 (100.0), Invalid rational (0/0), Invalid rational (0/0)]
+0000000560 0xa434 LensModel = EF100mm f/2.8L Macro IS USM
+0000000572 0xa435 LensSerialNumber = 000002e702
 
 ---- Directory SubIFD ----
-0x0103 Compression = 6
-0x011a XResolution = 72/1 (72.0)
-0x011b YResolution = 72/1 (72.0)
-0x0128 ResolutionUnit = 2
-0x0201 JpgFromRawStart = 880
-0x0202 JpgFromRawLength = 11636
+0000000788 0x0103 Compression = 6
+0000000800 0x011a XResolution = 72/1 (72.0)
+0000000812 0x011b YResolution = 72/1 (72.0)
+0000000824 0x0128 ResolutionUnit = 2
+0000000836 0x0201 JpgFromRawStart = 880
+0000000848 0x0202 JpgFromRawLength = 11636
 
 
 ---- IPTC ----

@@ -4,54 +4,54 @@ Resolution  : 6000 x 3376
 Version 42
 Little-endian (Intel, II)
 ---- Directory IFD0 ----
-0x010f Make = SONY
-0x0110 Model = ILCE-6000
-0x011a XResolution = 240/1 (240.0)
-0x011b YResolution = 240/1 (240.0)
-0x0128 ResolutionUnit = 2
-0x0131 Software = Adobe Photoshop Lightroom 4.4 (Windows)
-0x0132 ModifyDate = 2019:04:19 13:15:50
-0x8769 ExifOffset = 202
+0000000010 0x010f Make = SONY
+0000000022 0x0110 Model = ILCE-6000
+0000000034 0x011a XResolution = 240/1 (240.0)
+0000000046 0x011b YResolution = 240/1 (240.0)
+0000000058 0x0128 ResolutionUnit = 2
+0000000070 0x0131 Software = Adobe Photoshop Lightroom 4.4 (Windows)
+0000000082 0x0132 ModifyDate = 2019:04:19 13:15:50
+0000000094 0x8769 ExifOffset = 202
 
 ---- Directory ExifIFD ----
-0x829a ExposureTime = 1/500 (0.002)
-0x829d FNumber = 18/10 (1.8)
-0x8822 ExposureProgram = 1
-0x8827 PhotographicSensitivity = 100
-0x8830 SensitivityType = 2
-0x8832 RecommendedExposureIndex = 100
-0x9000 ExifVersion = [0x30, 0x32, 0x33, 0x30]
-0x9003 DateTimeOriginal = 2019:04:17 18:11:48
-0x9004 DateTimeDigitized = 2019:04:17 18:11:48
-0x9201 ShutterSpeedValue = 8965784/1000000 (8.965784)
-0x9202 ApertureValue = 1695994/1000000 (1.695994)
-0x9203 BrightnessValue = 19324/2560 (7.548438)
-0x9204 ExposureCompensation = 0/10 (0.0)
-0x9205 MaxApertureValue = 434/256 (1.695313)
-0x9207 MeteringMode = 2
-0x9208 LightSource = 0
-0x9209 Flash = 16
-0x920a FocalLength = 500/10 (50.0)
-0xa300 FileSource = 3
-0xa301 SceneType = 1
-0xa401 CustomRendered = 0
-0xa402 ExposureMode = 1
-0xa403 WhiteBalance = 0
-0xa404 DigitalZoomRatio = 16/16 (1.0)
-0xa405 FocalLengthIn35mmFormat = 75
-0xa406 SceneCaptureType = 0
-0xa408 Contrast = 0
-0xa409 Saturation = 0
-0xa40a Sharpness = 0
-0xa434 LensModel = DT 0mm F0 SAM
+0000000204 0x829a ExposureTime = 1/500 (0.002)
+0000000216 0x829d FNumber = 18/10 (1.8)
+0000000228 0x8822 ExposureProgram = 1
+0000000240 0x8827 PhotographicSensitivity = 100
+0000000252 0x8830 SensitivityType = 2
+0000000264 0x8832 RecommendedExposureIndex = 100
+0000000276 0x9000 ExifVersion = [0x30, 0x32, 0x33, 0x30]
+0000000288 0x9003 DateTimeOriginal = 2019:04:17 18:11:48
+0000000300 0x9004 DateTimeDigitized = 2019:04:17 18:11:48
+0000000312 0x9201 ShutterSpeedValue = 8965784/1000000 (8.965784)
+0000000324 0x9202 ApertureValue = 1695994/1000000 (1.695994)
+0000000336 0x9203 BrightnessValue = 19324/2560 (7.548438)
+0000000348 0x9204 ExposureCompensation = 0/10 (0.0)
+0000000360 0x9205 MaxApertureValue = 434/256 (1.695313)
+0000000372 0x9207 MeteringMode = 2
+0000000384 0x9208 LightSource = 0
+0000000396 0x9209 Flash = 16
+0000000408 0x920a FocalLength = 500/10 (50.0)
+0000000420 0xa300 FileSource = 3
+0000000432 0xa301 SceneType = 1
+0000000444 0xa401 CustomRendered = 0
+0000000456 0xa402 ExposureMode = 1
+0000000468 0xa403 WhiteBalance = 0
+0000000480 0xa404 DigitalZoomRatio = 16/16 (1.0)
+0000000492 0xa405 FocalLengthIn35mmFormat = 75
+0000000504 0xa406 SceneCaptureType = 0
+0000000516 0xa408 Contrast = 0
+0000000528 0xa409 Saturation = 0
+0000000540 0xa40a Sharpness = 0
+0000000552 0xa434 LensModel = DT 0mm F0 SAM
 
 ---- Directory SubIFD ----
-0x0103 Compression = 6
-0x011a XResolution = 72/1 (72.0)
-0x011b YResolution = 72/1 (72.0)
-0x0128 ResolutionUnit = 2
-0x0201 JpgFromRawStart = 788
-0x0202 JpgFromRawLength = 8586
+0000000696 0x0103 Compression = 6
+0000000708 0x011a XResolution = 72/1 (72.0)
+0000000720 0x011b YResolution = 72/1 (72.0)
+0000000732 0x0128 ResolutionUnit = 2
+0000000744 0x0201 JpgFromRawStart = 788
+0000000756 0x0202 JpgFromRawLength = 8586
 
 
 ---- IPTC ----

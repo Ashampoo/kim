@@ -4,64 +4,64 @@ Resolution  : 6000 x 4000
 Version 42
 Little-endian (Intel, II)
 ---- Directory IFD0 ----
-0x010f Make = SONY
-0x0110 Model = ILCE-6300
-0x011a XResolution = 240/1 (240.0)
-0x011b YResolution = 240/1 (240.0)
-0x0128 ResolutionUnit = 2
-0x0131 Software = Adobe Photoshop Lightroom Classic 7.0 (Macintosh)
-0x0132 ModifyDate = 2017:11:09 18:34:46
-0x8769 ExifOffset = 224
-0x8825 GPSInfo = 782
+0000000010 0x010f Make = SONY
+0000000022 0x0110 Model = ILCE-6300
+0000000034 0x011a XResolution = 240/1 (240.0)
+0000000046 0x011b YResolution = 240/1 (240.0)
+0000000058 0x0128 ResolutionUnit = 2
+0000000070 0x0131 Software = Adobe Photoshop Lightroom Classic 7.0 (Macintosh)
+0000000082 0x0132 ModifyDate = 2017:11:09 18:34:46
+0000000094 0x8769 ExifOffset = 224
+0000000106 0x8825 GPSInfo = 782
 
 ---- Directory ExifIFD ----
-0x829a ExposureTime = 1/100 (0.01)
-0x829d FNumber = 63/10 (6.3)
-0x8822 ExposureProgram = 1
-0x8827 PhotographicSensitivity = 200
-0x8830 SensitivityType = 2
-0x8832 RecommendedExposureIndex = 200
-0x9000 ExifVersion = [0x30, 0x32, 0x33, 0x30]
-0x9003 DateTimeOriginal = 2017:11:09 02:25:39
-0x9004 DateTimeDigitized = 2017:11:09 02:25:39
-0x9201 ShutterSpeedValue = 6643856/1000000 (6.643856)
-0x9202 ApertureValue = 5310704/1000000 (5.310704)
-0x9203 BrightnessValue = 16614/2560 (6.489844)
-0x9204 ExposureCompensation = 0/10 (0.0)
-0x9205 MaxApertureValue = 1360/256 (5.3125)
-0x9207 MeteringMode = 5
-0x9208 LightSource = 255
-0x9209 Flash = 16
-0x920a FocalLength = 1930/10 (193.0)
-0xa001 ColorSpace = 1
-0xa300 FileSource = 3
-0xa301 SceneType = 1
-0xa401 CustomRendered = 0
-0xa402 ExposureMode = 1
-0xa403 WhiteBalance = 1
-0xa404 DigitalZoomRatio = 16/16 (1.0)
-0xa405 FocalLengthIn35mmFormat = 289
-0xa406 SceneCaptureType = 0
-0xa408 Contrast = 0
-0xa409 Saturation = 0
-0xa40a Sharpness = 0
-0xa432 LensSpecification = [550/10 (55.0), 2100/10 (210.0), 45/10 (4.5), 63/10 (6.3)]
-0xa434 LensModel = E 55-210mm F4.5-6.3 OSS
+0000000226 0x829a ExposureTime = 1/100 (0.01)
+0000000238 0x829d FNumber = 63/10 (6.3)
+0000000250 0x8822 ExposureProgram = 1
+0000000262 0x8827 PhotographicSensitivity = 200
+0000000274 0x8830 SensitivityType = 2
+0000000286 0x8832 RecommendedExposureIndex = 200
+0000000298 0x9000 ExifVersion = [0x30, 0x32, 0x33, 0x30]
+0000000310 0x9003 DateTimeOriginal = 2017:11:09 02:25:39
+0000000322 0x9004 DateTimeDigitized = 2017:11:09 02:25:39
+0000000334 0x9201 ShutterSpeedValue = 6643856/1000000 (6.643856)
+0000000346 0x9202 ApertureValue = 5310704/1000000 (5.310704)
+0000000358 0x9203 BrightnessValue = 16614/2560 (6.489844)
+0000000370 0x9204 ExposureCompensation = 0/10 (0.0)
+0000000382 0x9205 MaxApertureValue = 1360/256 (5.3125)
+0000000394 0x9207 MeteringMode = 5
+0000000406 0x9208 LightSource = 255
+0000000418 0x9209 Flash = 16
+0000000430 0x920a FocalLength = 1930/10 (193.0)
+0000000442 0xa001 ColorSpace = 1
+0000000454 0xa300 FileSource = 3
+0000000466 0xa301 SceneType = 1
+0000000478 0xa401 CustomRendered = 0
+0000000490 0xa402 ExposureMode = 1
+0000000502 0xa403 WhiteBalance = 1
+0000000514 0xa404 DigitalZoomRatio = 16/16 (1.0)
+0000000526 0xa405 FocalLengthIn35mmFormat = 289
+0000000538 0xa406 SceneCaptureType = 0
+0000000550 0xa408 Contrast = 0
+0000000562 0xa409 Saturation = 0
+0000000574 0xa40a Sharpness = 0
+0000000586 0xa432 LensSpecification = [550/10 (55.0), 2100/10 (210.0), 45/10 (4.5), 63/10 (6.3)]
+0000000598 0xa434 LensModel = E 55-210mm F4.5-6.3 OSS
 
 ---- Directory GPS ----
-0x0000 GPSVersionID = [0x02, 0x03, 0x00, 0x00]
-0x0001 GPSLatitudeRef = N
-0x0002 GPSLatitude = [43/1 (43.0), 37/1 (37.0), 33554/4561 (7.35672)]
-0x0003 GPSLongitudeRef = W
-0x0004 GPSLongitude = [116/1 (116.0), 12/1 (12.0), 95546/1817 (52.58448)]
+0000000784 0x0000 GPSVersionID = [0x02, 0x03, 0x00, 0x00]
+0000000796 0x0001 GPSLatitudeRef = N
+0000000808 0x0002 GPSLatitude = [43/1 (43.0), 37/1 (37.0), 33554/4561 (7.35672)]
+0000000820 0x0003 GPSLongitudeRef = W
+0000000832 0x0004 GPSLongitude = [116/1 (116.0), 12/1 (12.0), 95546/1817 (52.58448)]
 
 ---- Directory SubIFD ----
-0x0103 Compression = 6
-0x011a XResolution = 72/1 (72.0)
-0x011b YResolution = 72/1 (72.0)
-0x0128 ResolutionUnit = 2
-0x0201 JpgFromRawStart = 990
-0x0202 JpgFromRawLength = 12748
+0000000898 0x0103 Compression = 6
+0000000910 0x011a XResolution = 72/1 (72.0)
+0000000922 0x011b YResolution = 72/1 (72.0)
+0000000934 0x0128 ResolutionUnit = 2
+0000000946 0x0201 JpgFromRawStart = 990
+0000000958 0x0202 JpgFromRawLength = 12748
 
 
 ---- IPTC ----

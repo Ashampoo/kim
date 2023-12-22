@@ -138,7 +138,13 @@ object TiffReader {
 
             val entryCount = byteReader.read2BytesAsInt("entrycount", byteOrder)
 
-            readTiffFields(entryCount, byteReader, byteOrder, directoryType)
+            readTiffFields(
+                byteReader = byteReader,
+                fieldsOffset = directoryOffset + 2,
+                entryCount = entryCount,
+                byteOrder = byteOrder,
+                directoryType = directoryType
+            )
 
         } catch (ex: Exception) {
 
@@ -231,8 +237,9 @@ object TiffReader {
     }
 
     private fun readTiffFields(
-        entryCount: Int,
         byteReader: RandomAccessByteReader,
+        fieldsOffset: Int,
+        entryCount: Int,
         byteOrder: ByteOrder,
         directoryType: Int
     ): MutableList<TiffField> {
@@ -240,6 +247,8 @@ object TiffReader {
         val fields = mutableListOf<TiffField>()
 
         for (entryIndex in 0 until entryCount) {
+
+            val offset = fieldsOffset + entryIndex * TiffConstants.TIFF_ENTRY_LENGTH
 
             val tag = byteReader.read2BytesAsInt("Entry $entryIndex: 'tag'", byteOrder)
             val type = byteReader.read2BytesAsInt("Entry $entryIndex: 'type'", byteOrder)
@@ -298,6 +307,7 @@ object TiffReader {
 
             fields.add(
                 TiffField(
+                    offset = offset,
                     tag = tag,
                     directoryType = directoryType,
                     fieldType = fieldType,

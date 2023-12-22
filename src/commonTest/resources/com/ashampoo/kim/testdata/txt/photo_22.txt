@@ -4,58 +4,58 @@ Resolution  : 3024 x 4032
 Version 42
 Little-endian (Intel, II)
 ---- Directory IFD0 ----
-0x010f Make = Apple
-0x0110 Model = iPhone 11 Pro Max
-0x011a XResolution = 300/1 (300.0)
-0x011b YResolution = 300/1 (300.0)
-0x0128 ResolutionUnit = 2
-0x0131 Software = 13.3.1
-0x0132 ModifyDate = 2020:02:20 01:11:51
-0x0213 YCbCrPositioning = 1
-0x8769 ExifOffset = 190
+0000000010 0x010f Make = Apple
+0000000022 0x0110 Model = iPhone 11 Pro Max
+0000000034 0x011a XResolution = 300/1 (300.0)
+0000000046 0x011b YResolution = 300/1 (300.0)
+0000000058 0x0128 ResolutionUnit = 2
+0000000070 0x0131 Software = 13.3.1
+0000000082 0x0132 ModifyDate = 2020:02:20 01:11:51
+0000000094 0x0213 YCbCrPositioning = 1
+0000000106 0x8769 ExifOffset = 190
 
 ---- Directory ExifIFD ----
-0x829a ExposureTime = 1/120 (0.008333)
-0x829d FNumber = 2/1 (2.0)
-0x8822 ExposureProgram = 2
-0x8827 PhotographicSensitivity = 80
-0x9000 ExifVersion = [0x30, 0x32, 0x33, 0x31]
-0x9003 DateTimeOriginal = 2020:02:17 14:47:46
-0x9004 DateTimeDigitized = 2020:02:17 14:47:46
-0x9010 OffsetTime = +00:00
-0x9101 ComponentsConfiguration = [0x01, 0x02, 0x03, 0x00]
-0x9201 ShutterSpeedValue = 133006/19257 (6.906891)
-0x9202 ApertureValue = 2/1 (2.0)
-0x9203 BrightnessValue = 270370/52511 (5.148826)
-0x9204 ExposureCompensation = 0/1 (0.0)
-0x9207 MeteringMode = 3
-0x9209 Flash = 16
-0x920a FocalLength = 6/1 (6.0)
-0x9214 SubjectArea = [1898, 2488, 716, 713]
-0x9291 SubSecTimeOriginal = 95
-0x9292 SubSecTimeDigitized = 95
-0xa000 FlashpixVersion = [0x30, 0x31, 0x30, 0x30]
-0xa001 ColorSpace = 1
-0xa002 ExifImageWidth = 3024
-0xa003 ExifImageLength = 4032
-0xa217 SensingMethod = 2
-0xa301 SceneType = 1
-0xa401 CustomRendered = 7
-0xa402 ExposureMode = 0
-0xa403 WhiteBalance = 0
-0xa405 FocalLengthIn35mmFormat = 52
-0xa406 SceneCaptureType = 0
-0xa432 LensSpecification = [17/4 (4.25), 6/1 (6.0), 9/5 (1.8), 2/1 (2.0)]
-0xa433 LensMake = Apple
-0xa434 LensModel = iPhone 11 Pro Max back dual camera 6mm f/2
+0000000192 0x829a ExposureTime = 1/120 (0.008333)
+0000000204 0x829d FNumber = 2/1 (2.0)
+0000000216 0x8822 ExposureProgram = 2
+0000000228 0x8827 PhotographicSensitivity = 80
+0000000240 0x9000 ExifVersion = [0x30, 0x32, 0x33, 0x31]
+0000000252 0x9003 DateTimeOriginal = 2020:02:17 14:47:46
+0000000264 0x9004 DateTimeDigitized = 2020:02:17 14:47:46
+0000000276 0x9010 OffsetTime = +00:00
+0000000288 0x9101 ComponentsConfiguration = [0x01, 0x02, 0x03, 0x00]
+0000000300 0x9201 ShutterSpeedValue = 133006/19257 (6.906891)
+0000000312 0x9202 ApertureValue = 2/1 (2.0)
+0000000324 0x9203 BrightnessValue = 270370/52511 (5.148826)
+0000000336 0x9204 ExposureCompensation = 0/1 (0.0)
+0000000348 0x9207 MeteringMode = 3
+0000000360 0x9209 Flash = 16
+0000000372 0x920a FocalLength = 6/1 (6.0)
+0000000384 0x9214 SubjectArea = [1898, 2488, 716, 713]
+0000000396 0x9291 SubSecTimeOriginal = 95
+0000000408 0x9292 SubSecTimeDigitized = 95
+0000000420 0xa000 FlashpixVersion = [0x30, 0x31, 0x30, 0x30]
+0000000432 0xa001 ColorSpace = 1
+0000000444 0xa002 ExifImageWidth = 3024
+0000000456 0xa003 ExifImageLength = 4032
+0000000468 0xa217 SensingMethod = 2
+0000000480 0xa301 SceneType = 1
+0000000492 0xa401 CustomRendered = 7
+0000000504 0xa402 ExposureMode = 0
+0000000516 0xa403 WhiteBalance = 0
+0000000528 0xa405 FocalLengthIn35mmFormat = 52
+0000000540 0xa406 SceneCaptureType = 0
+0000000552 0xa432 LensSpecification = [17/4 (4.25), 6/1 (6.0), 9/5 (1.8), 2/1 (2.0)]
+0000000564 0xa433 LensMake = Apple
+0000000576 0xa434 LensModel = iPhone 11 Pro Max back dual camera 6mm f/2
 
 ---- Directory SubIFD ----
-0x0103 Compression = 6
-0x011a XResolution = 72/1 (72.0)
-0x011b YResolution = 72/1 (72.0)
-0x0128 ResolutionUnit = 2
-0x0201 JpgFromRawStart = 880
-0x0202 JpgFromRawLength = 7487
+0000000788 0x0103 Compression = 6
+0000000800 0x011a XResolution = 72/1 (72.0)
+0000000812 0x011b YResolution = 72/1 (72.0)
+0000000824 0x0128 ResolutionUnit = 2
+0000000836 0x0201 JpgFromRawStart = 880
+0000000848 0x0202 JpgFromRawLength = 7487
 
 
 ---- IPTC ----

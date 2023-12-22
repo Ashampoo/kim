@@ -4,73 +4,73 @@ Resolution  : 5472 x 3648
 Version 42
 Little-endian (Intel, II)
 ---- Directory IFD0 ----
-0x010f Make = Canon
-0x0110 Model = Canon EOS 70D
-0x0112 Orientation = 1
-0x011a XResolution = 72/1 (72.0)
-0x011b YResolution = 72/1 (72.0)
-0x0128 ResolutionUnit = 2
-0x0132 ModifyDate = 2015:10:11 14:41:44
-0x013b Artist = 
-0x0213 YCbCrPositioning = 2
-0x8298 Copyright = 
-0x8769 ExifOffset = 214
-0x8825 GPSInfo = 9350
+0000000010 0x010f Make = Canon
+0000000022 0x0110 Model = Canon EOS 70D
+0000000034 0x0112 Orientation = 1
+0000000046 0x011a XResolution = 72/1 (72.0)
+0000000058 0x011b YResolution = 72/1 (72.0)
+0000000070 0x0128 ResolutionUnit = 2
+0000000082 0x0132 ModifyDate = 2015:10:11 14:41:44
+0000000094 0x013b Artist = 
+0000000106 0x0213 YCbCrPositioning = 2
+0000000118 0x8298 Copyright = 
+0000000130 0x8769 ExifOffset = 214
+0000000142 0x8825 GPSInfo = 9350
 
 ---- Directory ExifIFD ----
-0x829a ExposureTime = 1/60 (0.016667)
-0x829d FNumber = 32/10 (3.2)
-0x8822 ExposureProgram = 2
-0x8827 PhotographicSensitivity = 400
-0x8830 SensitivityType = 2
-0x8832 RecommendedExposureIndex = 400
-0x9000 ExifVersion = [0x30, 0x32, 0x33, 0x30]
-0x9003 DateTimeOriginal = 2015:10:11 14:41:44
-0x9004 DateTimeDigitized = 2015:10:11 14:41:44
-0x9101 ComponentsConfiguration = [0x01, 0x02, 0x03, 0x00]
-0x9201 ShutterSpeedValue = 393216/65536 (6.0)
-0x9202 ApertureValue = 221184/65536 (3.375)
-0x9204 ExposureCompensation = 0/1 (0.0)
-0x9207 MeteringMode = 5
-0x9209 Flash = 16
-0x920a FocalLength = 50/1 (50.0)
-0x927c MakerNote = [8200 bytes]
-0x9286 UserComment = 
-0x9290 SubSecTime = 00
-0x9291 SubSecTimeOriginal = 00
-0x9292 SubSecTimeDigitized = 00
-0xa000 FlashpixVersion = [0x30, 0x31, 0x30, 0x30]
-0xa001 ColorSpace = 1
-0xa002 ExifImageWidth = 5472
-0xa003 ExifImageLength = 3648
-0xa005 InteropOffset = 9320
-0xa20e FocalPlaneXResolution = 5472000/899 (6086.76307)
-0xa20f FocalPlaneYResolution = 3648000/599 (6090.15025)
-0xa210 FocalPlaneResolutionUnit = 2
-0xa401 CustomRendered = 0
-0xa402 ExposureMode = 0
-0xa403 WhiteBalance = 0
-0xa406 SceneCaptureType = 0
-0xa430 CameraOwnerName = 
-0xa431 BodySerialNumber = 053022005903
-0xa432 LensSpecification = [50/1 (50.0), 50/1 (50.0), 0/1 (0.0), 0/1 (0.0)]
-0xa434 LensModel = EF50mm f/1.8 STM
-0xa435 LensSerialNumber = 0000214e1c
+0000000216 0x829a ExposureTime = 1/60 (0.016667)
+0000000228 0x829d FNumber = 32/10 (3.2)
+0000000240 0x8822 ExposureProgram = 2
+0000000252 0x8827 PhotographicSensitivity = 400
+0000000264 0x8830 SensitivityType = 2
+0000000276 0x8832 RecommendedExposureIndex = 400
+0000000288 0x9000 ExifVersion = [0x30, 0x32, 0x33, 0x30]
+0000000300 0x9003 DateTimeOriginal = 2015:10:11 14:41:44
+0000000312 0x9004 DateTimeDigitized = 2015:10:11 14:41:44
+0000000324 0x9101 ComponentsConfiguration = [0x01, 0x02, 0x03, 0x00]
+0000000336 0x9201 ShutterSpeedValue = 393216/65536 (6.0)
+0000000348 0x9202 ApertureValue = 221184/65536 (3.375)
+0000000360 0x9204 ExposureCompensation = 0/1 (0.0)
+0000000372 0x9207 MeteringMode = 5
+0000000384 0x9209 Flash = 16
+0000000396 0x920a FocalLength = 50/1 (50.0)
+0000000408 0x927c MakerNote = [8200 bytes]
+0000000420 0x9286 UserComment = 
+0000000432 0x9290 SubSecTime = 00
+0000000444 0x9291 SubSecTimeOriginal = 00
+0000000456 0x9292 SubSecTimeDigitized = 00
+0000000468 0xa000 FlashpixVersion = [0x30, 0x31, 0x30, 0x30]
+0000000480 0xa001 ColorSpace = 1
+0000000492 0xa002 ExifImageWidth = 5472
+0000000504 0xa003 ExifImageLength = 3648
+0000000516 0xa005 InteropOffset = 9320
+0000000528 0xa20e FocalPlaneXResolution = 5472000/899 (6086.76307)
+0000000540 0xa20f FocalPlaneYResolution = 3648000/599 (6090.15025)
+0000000552 0xa210 FocalPlaneResolutionUnit = 2
+0000000564 0xa401 CustomRendered = 0
+0000000576 0xa402 ExposureMode = 0
+0000000588 0xa403 WhiteBalance = 0
+0000000600 0xa406 SceneCaptureType = 0
+0000000612 0xa430 CameraOwnerName = 
+0000000624 0xa431 BodySerialNumber = 053022005903
+0000000636 0xa432 LensSpecification = [50/1 (50.0), 50/1 (50.0), 0/1 (0.0), 0/1 (0.0)]
+0000000648 0xa434 LensModel = EF50mm f/1.8 STM
+0000000660 0xa435 LensSerialNumber = 0000214e1c
 
 ---- Directory InteropIFD ----
-0x0001 InteroperabilityIndex = R98
-0x0002 InteroperabilityVersion = [0x30, 0x31, 0x30, 0x30]
+0000009322 0x0001 InteroperabilityIndex = R98
+0000009334 0x0002 InteroperabilityVersion = [0x30, 0x31, 0x30, 0x30]
 
 ---- Directory GPS ----
-0x0000 GPSVersionID = [0x02, 0x03, 0x00, 0x00]
+0000009352 0x0000 GPSVersionID = [0x02, 0x03, 0x00, 0x00]
 
 ---- Directory SubIFD ----
-0x0103 Compression = 6
-0x011a XResolution = 72/1 (72.0)
-0x011b YResolution = 72/1 (72.0)
-0x0128 ResolutionUnit = 2
-0x0201 JpgFromRawStart = 9462
-0x0202 JpgFromRawLength = 8567
+0000009370 0x0103 Compression = 6
+0000009382 0x011a XResolution = 72/1 (72.0)
+0000009394 0x011b YResolution = 72/1 (72.0)
+0000009406 0x0128 ResolutionUnit = 2
+0000009418 0x0201 JpgFromRawStart = 9462
+0000009430 0x0202 JpgFromRawLength = 8567
 
 
 ---- IPTC ----

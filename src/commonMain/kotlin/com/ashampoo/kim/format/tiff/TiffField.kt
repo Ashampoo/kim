@@ -31,6 +31,8 @@ import com.ashampoo.kim.format.tiff.taginfos.TagInfo
  * A TIFF field in a TIFF directory.
  */
 class TiffField(
+    /** Offset relative to TIFF header */
+    val offset: Int,
     val tag: Int,
     val directoryType: Int,
     val fieldType: FieldType,
@@ -43,6 +45,13 @@ class TiffField(
     val byteOrder: ByteOrder,
     val sortHint: Int
 ) {
+
+    /**
+     * Returns the offset with padding.
+     * Because TIFF files can be as big as 4 GB we need 10 digits to present that.
+     */
+    val offsetFormatted: String =
+        offset.toString().padStart(10, '0')
 
     /** Return a proper Tag ID like 0x0100 */
     val tagFormatted: String =
@@ -153,13 +162,13 @@ class TiffField(
      * 'tagInfo' might be an Unknown tag and show a placeholder.
      */
     override fun toString(): String =
-        "$tagFormatted ${tagInfo.name} = $valueDescription"
+        "$offsetFormatted $tagFormatted ${tagInfo.name} = $valueDescription"
 
     fun createOversizeValueElement(): TiffElement? =
         valueOffset?.let { OversizeValueElement(it.toInt(), valueBytes.size) }
 
     inner class OversizeValueElement(offset: Int, length: Int) : TiffElement(
-        debugDescription = "Value of $tagInfo ($fieldType)",
+        debugDescription = "Value of $tagInfo ($fieldType) @ $offset",
         offset = offset,
         length = length
     ) {

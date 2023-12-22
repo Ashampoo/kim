@@ -4,73 +4,73 @@ Resolution  : 6000 x 4000
 Version 42
 Little-endian (Intel, II)
 ---- Directory IFD0 ----
-0x010f Make = Canon
-0x0110 Model = Canon EOS 77D
-0x0112 Orientation = 1
-0x011a XResolution = 72/1 (72.0)
-0x011b YResolution = 72/1 (72.0)
-0x0128 ResolutionUnit = 2
-0x0132 ModifyDate = 2018:10:09 11:55:20
-0x013b Artist = HENRIK HANSEN
-0x0213 YCbCrPositioning = 2
-0x8298 Copyright = 
-0x8769 ExifOffset = 228
-0x8825 GPSInfo = 10688
+0000000010 0x010f Make = Canon
+0000000022 0x0110 Model = Canon EOS 77D
+0000000034 0x0112 Orientation = 1
+0000000046 0x011a XResolution = 72/1 (72.0)
+0000000058 0x011b YResolution = 72/1 (72.0)
+0000000070 0x0128 ResolutionUnit = 2
+0000000082 0x0132 ModifyDate = 2018:10:09 11:55:20
+0000000094 0x013b Artist = HENRIK HANSEN
+0000000106 0x0213 YCbCrPositioning = 2
+0000000118 0x8298 Copyright = 
+0000000130 0x8769 ExifOffset = 228
+0000000142 0x8825 GPSInfo = 10688
 
 ---- Directory ExifIFD ----
-0x829a ExposureTime = 1/500 (0.002)
-0x829d FNumber = 8/1 (8.0)
-0x8822 ExposureProgram = 2
-0x8827 PhotographicSensitivity = 400
-0x8830 SensitivityType = 2
-0x8832 RecommendedExposureIndex = 400
-0x9000 ExifVersion = [0x30, 0x32, 0x33, 0x30]
-0x9003 DateTimeOriginal = 2018:10:09 11:55:20
-0x9004 DateTimeDigitized = 2018:10:09 11:55:20
-0x9101 ComponentsConfiguration = [0x01, 0x02, 0x03, 0x00]
-0x9201 ShutterSpeedValue = 589824/65536 (9.0)
-0x9202 ApertureValue = 393216/65536 (6.0)
-0x9204 ExposureCompensation = 0/1 (0.0)
-0x9207 MeteringMode = 5
-0x9209 Flash = 16
-0x920a FocalLength = 400/1 (400.0)
-0x927c MakerNote = [9512 bytes]
-0x9286 UserComment = 
-0x9290 SubSecTime = 86
-0x9291 SubSecTimeOriginal = 86
-0x9292 SubSecTimeDigitized = 86
-0xa000 FlashpixVersion = [0x30, 0x31, 0x30, 0x30]
-0xa001 ColorSpace = 1
-0xa002 ExifImageWidth = 6000
-0xa003 ExifImageLength = 4000
-0xa005 InteropOffset = 10658
-0xa20e FocalPlaneXResolution = 6000000/921 (6514.65798)
-0xa20f FocalPlaneYResolution = 4000000/594 (6734.006734)
-0xa210 FocalPlaneResolutionUnit = 2
-0xa401 CustomRendered = 0
-0xa402 ExposureMode = 0
-0xa403 WhiteBalance = 0
-0xa406 SceneCaptureType = 0
-0xa430 CameraOwnerName = 
-0xa431 BodySerialNumber = 143031003387
-0xa432 LensSpecification = [100/1 (100.0), 400/1 (400.0), 0/1 (0.0), 0/1 (0.0)]
-0xa434 LensModel = EF100-400mm f/4.5-5.6L IS USM
-0xa435 LensSerialNumber = 0000000000
+0000000230 0x829a ExposureTime = 1/500 (0.002)
+0000000242 0x829d FNumber = 8/1 (8.0)
+0000000254 0x8822 ExposureProgram = 2
+0000000266 0x8827 PhotographicSensitivity = 400
+0000000278 0x8830 SensitivityType = 2
+0000000290 0x8832 RecommendedExposureIndex = 400
+0000000302 0x9000 ExifVersion = [0x30, 0x32, 0x33, 0x30]
+0000000314 0x9003 DateTimeOriginal = 2018:10:09 11:55:20
+0000000326 0x9004 DateTimeDigitized = 2018:10:09 11:55:20
+0000000338 0x9101 ComponentsConfiguration = [0x01, 0x02, 0x03, 0x00]
+0000000350 0x9201 ShutterSpeedValue = 589824/65536 (9.0)
+0000000362 0x9202 ApertureValue = 393216/65536 (6.0)
+0000000374 0x9204 ExposureCompensation = 0/1 (0.0)
+0000000386 0x9207 MeteringMode = 5
+0000000398 0x9209 Flash = 16
+0000000410 0x920a FocalLength = 400/1 (400.0)
+0000000422 0x927c MakerNote = [9512 bytes]
+0000000434 0x9286 UserComment = 
+0000000446 0x9290 SubSecTime = 86
+0000000458 0x9291 SubSecTimeOriginal = 86
+0000000470 0x9292 SubSecTimeDigitized = 86
+0000000482 0xa000 FlashpixVersion = [0x30, 0x31, 0x30, 0x30]
+0000000494 0xa001 ColorSpace = 1
+0000000506 0xa002 ExifImageWidth = 6000
+0000000518 0xa003 ExifImageLength = 4000
+0000000530 0xa005 InteropOffset = 10658
+0000000542 0xa20e FocalPlaneXResolution = 6000000/921 (6514.65798)
+0000000554 0xa20f FocalPlaneYResolution = 4000000/594 (6734.006734)
+0000000566 0xa210 FocalPlaneResolutionUnit = 2
+0000000578 0xa401 CustomRendered = 0
+0000000590 0xa402 ExposureMode = 0
+0000000602 0xa403 WhiteBalance = 0
+0000000614 0xa406 SceneCaptureType = 0
+0000000626 0xa430 CameraOwnerName = 
+0000000638 0xa431 BodySerialNumber = 143031003387
+0000000650 0xa432 LensSpecification = [100/1 (100.0), 400/1 (400.0), 0/1 (0.0), 0/1 (0.0)]
+0000000662 0xa434 LensModel = EF100-400mm f/4.5-5.6L IS USM
+0000000674 0xa435 LensSerialNumber = 0000000000
 
 ---- Directory InteropIFD ----
-0x0001 InteroperabilityIndex = R98
-0x0002 InteroperabilityVersion = [0x30, 0x31, 0x30, 0x30]
+0000010660 0x0001 InteroperabilityIndex = R98
+0000010672 0x0002 InteroperabilityVersion = [0x30, 0x31, 0x30, 0x30]
 
 ---- Directory GPS ----
-0x0000 GPSVersionID = [0x02, 0x03, 0x00, 0x00]
+0000010690 0x0000 GPSVersionID = [0x02, 0x03, 0x00, 0x00]
 
 ---- Directory SubIFD ----
-0x0103 Compression = 6
-0x011a XResolution = 72/1 (72.0)
-0x011b YResolution = 72/1 (72.0)
-0x0128 ResolutionUnit = 2
-0x0201 JpgFromRawStart = 10800
-0x0202 JpgFromRawLength = 7437
+0000010708 0x0103 Compression = 6
+0000010720 0x011a XResolution = 72/1 (72.0)
+0000010732 0x011b YResolution = 72/1 (72.0)
+0000010744 0x0128 ResolutionUnit = 2
+0000010756 0x0201 JpgFromRawStart = 10800
+0000010768 0x0202 JpgFromRawLength = 7437
 
 
 ---- IPTC ----
