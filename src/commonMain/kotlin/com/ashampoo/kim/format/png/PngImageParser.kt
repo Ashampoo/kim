@@ -257,7 +257,7 @@ object PngImageParser : ImageParser {
             if (keep)
                 bytes = byteReader.readBytes("chunk data", length)
             else
-                byteReader.skipBytes("chunk data", length.toLong())
+                byteReader.skipBytes("chunk data", length)
 
             val crc = byteReader.read4BytesAsInt("crc", pngByteOrder)
 

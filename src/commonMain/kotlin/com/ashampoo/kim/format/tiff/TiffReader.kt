@@ -87,7 +87,7 @@ object TiffReader {
         val tiffVersion = byteReader.read2BytesAsInt("TIFF version", byteOrder)
 
         val offsetToFirstIFD =
-            0xFFFFFFFFL and byteReader.read4BytesAsInt("Offset to first IFD", byteOrder).toLong()
+            0xFFFFF and byteReader.read4BytesAsInt("Offset to first IFD", byteOrder)
 
         return TiffHeader(byteOrder, tiffVersion, offsetToFirstIFD)
     }
@@ -102,7 +102,7 @@ object TiffReader {
     private fun readDirectory(
         byteReader: RandomAccessByteReader,
         byteOrder: ByteOrder,
-        directoryOffset: Long,
+        directoryOffset: Int,
         dirType: Int,
         collector: TiffReaderCollector,
         visitedOffsets: MutableList<Number>
@@ -146,8 +146,8 @@ object TiffReader {
             throw ex
         }
 
-        val nextDirectoryOffset = 0xFFFFFFFFL and
-            byteReader.read4BytesAsInt("Next directory offset", byteOrder).toLong()
+        val nextDirectoryOffset = 0xFFFF and
+            byteReader.read4BytesAsInt("Next directory offset", byteOrder)
 
         val directory = TiffDirectory(dirType, fields, directoryOffset, nextDirectoryOffset, byteOrder)
 
@@ -190,7 +190,7 @@ object TiffReader {
                         subDirectoryRead = readDirectory(
                             byteReader = byteReader,
                             byteOrder = byteOrder,
-                            directoryOffset = subDirOffset.toLong(),
+                            directoryOffset = subDirOffset,
                             dirType = subDirectoryType,
                             collector = collector,
                             visitedOffsets = visitedOffsets
@@ -236,8 +236,8 @@ object TiffReader {
             val type = byteReader.read2BytesAsInt("Entry $entryIndex: 'type'", byteOrder)
 
             val count =
-                0xFFFFFFFFL and
-                    byteReader.read4BytesAsInt("Entry $entryIndex: 'count'", byteOrder).toLong()
+                0xFFFF and
+                    byteReader.read4BytesAsInt("Entry $entryIndex: 'count'", byteOrder)
 
             /*
              * These bytes represent either the value for fields like orientation or
@@ -247,7 +247,7 @@ object TiffReader {
             val valueOrOffsetBytes: ByteArray =
                 byteReader.readBytes("Entry $entryIndex: 'offset'", 4)
 
-            val valueOrOffset: Long = 0xFFFFFFFFL and valueOrOffsetBytes.toInt(byteOrder).toLong()
+            val valueOrOffset: Int = 0xFFFF and valueOrOffsetBytes.toInt(byteOrder)
 
             /*
              * Skip invalid fields.

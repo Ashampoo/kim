@@ -18,7 +18,7 @@ package com.ashampoo.kim.format.tiff
 
 open class TiffElement(
     val debugDescription: String,
-    val offset: Long,
+    val offset: Int,
     val length: Int
 ) {
 

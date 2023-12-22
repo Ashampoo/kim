@@ -21,8 +21,8 @@ package com.ashampoo.kim.format.tiff.write
  * everything except for the MakerNotes.
  */
 internal data class RewritableSpaceRange(
-    val offset: Long,
-    val length: Long
+    val offset: Int,
+    val length: Int
 ) {
 
     override fun toString(): String =

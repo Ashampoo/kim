@@ -34,11 +34,11 @@ class TiffField(
     val tag: Int,
     val directoryType: Int,
     val fieldType: FieldType,
-    val count: Long,
+    val count: Int,
     /** Set if field has a local value. */
-    val localValue: Long?,
+    val localValue: Int?,
     /** Set if field has a offset pointer to its value. */
-    val valueOffset: Long?,
+    val valueOffset: Int?,
     val valueBytes: ByteArray,
     val byteOrder: ByteOrder,
     val sortHint: Int
@@ -160,7 +160,7 @@ class TiffField(
 
     inner class OversizeValueElement(offset: Int, length: Int) : TiffElement(
         debugDescription = "Value of $tagInfo ($fieldType)",
-        offset = offset.toLong(),
+        offset = offset,
         length = length
     ) {
 

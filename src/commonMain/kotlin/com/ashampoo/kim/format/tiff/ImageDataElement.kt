@@ -16,7 +16,7 @@
 package com.ashampoo.kim.format.tiff
 
 open class ImageDataElement(
-    offset: Long,
+    offset: Int,
     length: Int
 ) : TiffElement(
     debugDescription = "ImageDataElement offset=$offset, length=$length",

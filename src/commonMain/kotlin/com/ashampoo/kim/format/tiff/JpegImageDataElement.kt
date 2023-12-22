@@ -17,7 +17,7 @@
 package com.ashampoo.kim.format.tiff
 
 class JpegImageDataElement(
-    offset: Long,
+    offset: Int,
     length: Int,
     val bytes: ByteArray
 ) : ImageDataElement(

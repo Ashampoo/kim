@@ -53,7 +53,7 @@ class JfifSegment(marker: Int, markerLength: Int, byteReader: ByteReader) : Segm
         thumbnailSize = xThumbnail * yThumbnail
 
         if (thumbnailSize > 0)
-            byteReader.skipBytes("Skip thumbnail", thumbnailSize.toLong())
+            byteReader.skipBytes("Skip thumbnail", thumbnailSize)
     }
 
     constructor(marker: Int, segmentBytes: ByteArray) :

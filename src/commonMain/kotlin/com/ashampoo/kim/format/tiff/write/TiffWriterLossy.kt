@@ -49,7 +49,7 @@ class TiffWriterLossy(
 
         for (outputItem in outputItems) {
 
-            outputItem.offset = offset.toLong()
+            outputItem.offset = offset
 
             val itemLength = outputItem.getItemLength()
 

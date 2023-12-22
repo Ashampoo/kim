@@ -26,7 +26,7 @@ class FieldTypeByte(type: Int, name: String) : FieldType(type, name, 1) {
 
         val bytes = entry.byteArrayValue
 
-        return if (entry.count == 1L)
+        return if (entry.count == 1)
             bytes[0]
         else
             bytes

@@ -20,13 +20,13 @@ import com.ashampoo.kim.output.BinaryByteWriter
 
 interface TiffOutputItem {
 
-    var offset: Long
+    var offset: Int
 
     fun getItemLength(): Int
 
     fun writeItem(binaryByteWriter: BinaryByteWriter)
 
     companion object {
-        const val UNDEFINED_VALUE: Long = -1
+        const val UNDEFINED_VALUE: Int = -1
     }
 }

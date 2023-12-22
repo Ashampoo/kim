@@ -29,7 +29,7 @@ class FieldTypeShort(type: Int, name: String) : FieldType(type, name, 2) {
 
         val bytes = entry.byteArrayValue
 
-        return if (entry.count == 1L)
+        return if (entry.count == 1)
             bytes.toShort(entry.byteOrder)
         else
             bytes.toShorts(entry.byteOrder)

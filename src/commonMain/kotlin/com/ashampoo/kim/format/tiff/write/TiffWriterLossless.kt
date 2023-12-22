@@ -79,7 +79,7 @@ class TiffWriterLossless(
                         makerNoteField.separateValue != null &&
                         makerNoteField.bytesEqual(field.byteArrayValue)
                     )
-                        makerNoteField.separateValue.offset = field.valueOffset!!.toLong()
+                        makerNoteField.separateValue.offset = field.valueOffset!!
                     else
                         elements.add(oversizeValue)
                 }
@@ -102,7 +102,7 @@ class TiffWriterLossless(
         val rewritableSpaceRanges = mutableListOf<RewritableSpaceRange>()
 
         var lastElement: TiffElement? = null
-        var position: Long = -1
+        var position: Int = -1
 
         for (element in elements) {
 
@@ -179,18 +179,18 @@ class TiffWriterLossless(
 
             val onlyRange = rewritableSpaceRanges.first()
 
-            val newLength: Long = onlyRange.offset + onlyRange.length + TIFF_HEADER_SIZE
+            val newLength: Int = onlyRange.offset + onlyRange.length + TIFF_HEADER_SIZE
 
             /*
              * Check if there are no gaps in the old data. If so, it's safe to complete overwrite.
              */
-            if (onlyRange.offset == TIFF_HEADER_SIZE.toLong() && newLength == oldLength.toLong()) {
+            if (onlyRange.offset == TIFF_HEADER_SIZE && newLength == oldLength) {
                 TiffWriterLossy(byteOrder).write(byteWriter, outputSet)
                 return
             }
         }
 
-        val frozenFieldOffsets = mutableSetOf<Long>()
+        val frozenFieldOffsets = mutableSetOf<Int>()
 
         makerNoteField?.separateValue?.offset?.let {
 
@@ -216,11 +216,11 @@ class TiffWriterLossless(
     private fun calcNewOffsets(
         rewritableSpaceRanges: List<RewritableSpaceRange>,
         outputItems: List<TiffOutputItem>
-    ): Long {
+    ): Int {
 
         val filterAndSortElementsResult = filterAndSortRewriteableSpaceRanges(
             rewritableSpaceRanges,
-            exifBytes.size.toLong()
+            exifBytes.size
         )
 
         val unusedSpaceRanges = filterAndSortElementsResult.first
@@ -247,12 +247,12 @@ class TiffWriterLossless(
             if (fittingRange == null) {
 
                 /* Overflow if we couldn't place this item. */
-                if (newExifBytesLength and 1L != 0L)
+                if (newExifBytesLength and 1 != 0)
                     newExifBytesLength += 1
 
                 outputItem.offset = newExifBytesLength
 
-                newExifBytesLength += outputItemLength.toLong()
+                newExifBytesLength += outputItemLength
 
             } else {
 
@@ -260,7 +260,7 @@ class TiffWriterLossless(
                 var length = fittingRange.length
 
                 /* Offsets have to be a multiple of 2 */
-                if (offset and 1L != 0L) {
+                if (offset and 1 != 0) {
                     offset += 1
                     length -= 1
                 }
@@ -295,8 +295,8 @@ class TiffWriterLossless(
 
     private fun filterAndSortRewriteableSpaceRanges(
         rewritableSpaceRanges: List<RewritableSpaceRange>,
-        exifBytesLength: Long
-    ): Pair<MutableList<RewritableSpaceRange>, Long> {
+        exifBytesLength: Int
+    ): Pair<MutableList<RewritableSpaceRange>, Int> {
 
         var newExifBytesLength = exifBytesLength
 
@@ -320,7 +320,7 @@ class TiffWriterLossless(
 
             /* Discarding a tail element. Should only happen once. */
 
-            newExifBytesLength -= lastRange.length.toLong()
+            newExifBytesLength -= lastRange.length
 
             filteredAndSortedRewritableSpaceRanges.removeLast()
         }
@@ -333,7 +333,7 @@ class TiffWriterLossless(
         outputSet: TiffOutputSet,
         rewritableSpaceRanges: List<RewritableSpaceRange>,
         outputItems: List<TiffOutputItem>,
-        outputLength: Long
+        outputLength: Int
     ) {
 
         val rootDirectory = outputSet.getOrCreateRootDirectory()
@@ -368,7 +368,7 @@ class TiffWriterLossless(
                 fromIndex = element.offset.toInt(),
                 toIndex = minOf(
                     a = element.offset + element.length,
-                    b = outputByteArray.size.toLong()
+                    b = outputByteArray.size
                 ).toInt(),
             )
 
