@@ -3,79 +3,79 @@ Resolution  : 1367 x 2000
 ---- TIFF ----
 Version 42
 Little-endian (Intel, II)
----- Directory IFD0 ----
-0x010f Make = NIKON CORPORATION
-0x0110 Model = NIKON D810
-0x0112 Orientation = 8
-0x011a XResolution = 238/1 (238.0)
-0x011b YResolution = 238/1 (238.0)
-0x0128 ResolutionUnit = 2
-0x0131 Software = GIMP 2.10.30
-0x0132 ModifyDate = 2023:05:10 13:37:42
-0x013b Artist = Alexander Andrews
-0x8769 ExifOffset = 244
-0x8825 GPSInfo = 10830
+---- Directory IFD0 @ 8 ----
+0000000010 0x010f Make = NIKON CORPORATION
+0000000022 0x0110 Model = NIKON D810
+0000000034 0x0112 Orientation = 8
+0000000046 0x011a XResolution = 238/1 (238.0)
+0000000058 0x011b YResolution = 238/1 (238.0)
+0000000070 0x0128 ResolutionUnit = 2
+0000000082 0x0131 Software = GIMP 2.10.30
+0000000094 0x0132 ModifyDate = 2023:05:10 13:37:42
+0000000106 0x013b Artist = Alexander Andrews
+0000000118 0x8769 ExifOffset = 244
+0000000130 0x8825 GPSInfo = 10830
 
----- Directory ExifIFD ----
-0x829a ExposureTime = 1/40 (0.025)
-0x829d FNumber = 28/10 (2.8)
-0x8822 ExposureProgram = 3
-0x8827 PhotographicSensitivity = 4000
-0x8830 SensitivityType = 2
-0x9000 ExifVersion = [0x30, 0x32, 0x33, 0x30]
-0x9003 DateTimeOriginal = 2023:05:10 13:37:42
-0x9004 DateTimeDigitized = 2023:05:10 13:37:42
-0x9201 ShutterSpeedValue = 5321928/1000000 (5.321928)
-0x9202 ApertureValue = 2970854/1000000 (2.970854)
-0x9204 ExposureCompensation = 0/6 (0.0)
-0x9205 MaxApertureValue = 30/10 (3.0)
-0x9207 MeteringMode = 5
-0x9208 LightSource = 0
-0x9209 Flash = 16
-0x920a FocalLength = 2000/10 (200.0)
-0x9291 SubSecTimeOriginal = 91
-0x9292 SubSecTimeDigitized = 91
-0xa001 ColorSpace = 1
-0xa002 ExifImageWidth = 4525
-0xa003 ExifImageLength = 6623
-0xa20e FocalPlaneXResolution = 67122044/32768 (2048.402222)
-0xa20f FocalPlaneYResolution = 67122044/32768 (2048.402222)
-0xa210 FocalPlaneResolutionUnit = 3
-0xa217 SensingMethod = 2
-0xa300 FileSource = 3
-0xa301 SceneType = 1
-0xa302 CFAPattern = [0x02, 0x00, 0x02, 0x00, 0x00, 0x01, 0x01, 0x02]
-0xa401 CustomRendered = 0
-0xa402 ExposureMode = 0
-0xa403 WhiteBalance = 0
-0xa404 DigitalZoomRatio = 1/1 (1.0)
-0xa405 FocalLengthIn35mmFormat = 200
-0xa406 SceneCaptureType = 0
-0xa407 GainControl = 2
-0xa408 Contrast = 2
-0xa409 Saturation = 2
-0xa40a Sharpness = 2
-0xa40c SubjectDistanceRange = 0
-0xa431 BodySerialNumber = 8020595
-0xa432 LensSpecification = [700/10 (70.0), 2000/10 (200.0), 28/10 (2.8), 28/10 (2.8)]
+---- Directory ExifIFD @ 244 ----
+0000000246 0x829a ExposureTime = 1/40 (0.025)
+0000000258 0x829d FNumber = 28/10 (2.8)
+0000000270 0x8822 ExposureProgram = 3
+0000000282 0x8827 PhotographicSensitivity = 4000
+0000000294 0x8830 SensitivityType = 2
+0000000306 0x9000 ExifVersion = [0x30, 0x32, 0x33, 0x30]
+0000000318 0x9003 DateTimeOriginal = 2023:05:10 13:37:42
+0000000330 0x9004 DateTimeDigitized = 2023:05:10 13:37:42
+0000000342 0x9201 ShutterSpeedValue = 5321928/1000000 (5.321928)
+0000000354 0x9202 ApertureValue = 2970854/1000000 (2.970854)
+0000000366 0x9204 ExposureCompensation = 0/6 (0.0)
+0000000378 0x9205 MaxApertureValue = 30/10 (3.0)
+0000000390 0x9207 MeteringMode = 5
+0000000402 0x9208 LightSource = 0
+0000000414 0x9209 Flash = 16
+0000000426 0x920a FocalLength = 2000/10 (200.0)
+0000000438 0x9291 SubSecTimeOriginal = 91
+0000000450 0x9292 SubSecTimeDigitized = 91
+0000000462 0xa001 ColorSpace = 1
+0000000474 0xa002 ExifImageWidth = 4525
+0000000486 0xa003 ExifImageLength = 6623
+0000000498 0xa20e FocalPlaneXResolution = 67122044/32768 (2048.402222)
+0000000510 0xa20f FocalPlaneYResolution = 67122044/32768 (2048.402222)
+0000000522 0xa210 FocalPlaneResolutionUnit = 3
+0000000534 0xa217 SensingMethod = 2
+0000000546 0xa300 FileSource = 3
+0000000558 0xa301 SceneType = 1
+0000000570 0xa302 CFAPattern = [0x02, 0x00, 0x02, 0x00, 0x00, 0x01, 0x01, 0x02]
+0000000582 0xa401 CustomRendered = 0
+0000000594 0xa402 ExposureMode = 0
+0000000606 0xa403 WhiteBalance = 0
+0000000618 0xa404 DigitalZoomRatio = 1/1 (1.0)
+0000000630 0xa405 FocalLengthIn35mmFormat = 200
+0000000642 0xa406 SceneCaptureType = 0
+0000000654 0xa407 GainControl = 2
+0000000666 0xa408 Contrast = 2
+0000000678 0xa409 Saturation = 2
+0000000690 0xa40a Sharpness = 2
+0000000702 0xa40c SubjectDistanceRange = 0
+0000000714 0xa431 BodySerialNumber = 8020595
+0000000726 0xa432 LensSpecification = [700/10 (70.0), 2000/10 (200.0), 28/10 (2.8), 28/10 (2.8)]
 
----- Directory GPS ----
-0x0000 GPSVersionID = [0x02, 0x03, 0x00, 0x00]
-0x0001 GPSLatitudeRef = N
-0x0002 GPSLatitude = [53/1 (53.0), 13/1 (13.0), 24519/2500 (9.8076)]
-0x0003 GPSLongitudeRef = E
-0x0004 GPSLongitude = [8/1 (8.0), 14/1 (14.0), 56949/2500 (22.7796)]
+---- Directory GPS @ 10830 ----
+0000010832 0x0000 GPSVersionID = [0x02, 0x03, 0x00, 0x00]
+0000010844 0x0001 GPSLatitudeRef = N
+0000010856 0x0002 GPSLatitude = [53/1 (53.0), 13/1 (13.0), 24519/2500 (9.8076)]
+0000010868 0x0003 GPSLongitudeRef = E
+0000010880 0x0004 GPSLongitude = [8/1 (8.0), 14/1 (14.0), 56949/2500 (22.7796)]
 
----- Directory SubIFD ----
-0x00fe NewSubfileType = 1
-0x0100 ImageWidth = 174
-0x0101 ImageLength = 256
-0x0102 BitsPerSample = [8, 8, 8]
-0x0103 Compression = 6
-0x0106 PhotometricInterpretation = 6
-0x0115 SamplesPerPixel = 3
-0x0201 JpgFromRawStart = 1030
-0x0202 JpgFromRawLength = 9800
+---- Directory SubIFD @ 910 ----
+0000000912 0x00fe NewSubfileType = 1
+0000000924 0x0100 ImageWidth = 174
+0000000936 0x0101 ImageLength = 256
+0000000948 0x0102 BitsPerSample = [8, 8, 8]
+0000000960 0x0103 Compression = 6
+0000000972 0x0106 PhotometricInterpretation = 6
+0000000984 0x0115 SamplesPerPixel = 3
+0000000996 0x0201 JpgFromRawStart = 1030
+0000001008 0x0202 JpgFromRawLength = 9800
 
 
 ---- IPTC ----

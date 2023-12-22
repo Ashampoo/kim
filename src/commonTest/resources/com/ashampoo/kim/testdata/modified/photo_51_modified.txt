@@ -3,79 +3,78 @@ Resolution  : 1500 x 1000
 ---- TIFF ----
 Version 42
 Big-endian (Motorola, MM)
----- Directory IFD0 ----
-0x0100 ImageWidth = -603652096
-0x0101 ImageLength = -402456576
-0x0102 BitsPerSample = [2048, 2048, 2048]
-0x010f Make = Canon
-0x0110 Model = Canon EOS R
-0x0112 Orientation = 256
-0x011a XResolution = 738263040/16777216 (44.003906)
-0x011b YResolution = 738263040/16777216 (44.003906)
-0x0128 ResolutionUnit = 512
-0x0131 Software = GIMP 2.10.30
-0x0132 ModifyDate = 2022:09:26 14:17:49
-0x013b Artist = SippakorN
-0x8298 Copyright = @Sippakorn1955
-0x8769 ExifOffset = 294
-0x8825 GPSInfo = 918
+---- Directory IFD0 @ 8 ----
+0000000010 0x0100 ImageWidth = -603652096
+0000000022 0x0101 ImageLength = -402456576
+0000000034 0x0102 BitsPerSample = [2048, 2048, 2048]
+0000000046 0x010f Make = Canon
+0000000058 0x0110 Model = Canon EOS R
+0000000070 0x0112 Orientation = 256
+0000000082 0x011a XResolution = 738263040/16777216 (44.003906)
+0000000094 0x011b YResolution = 738263040/16777216 (44.003906)
+0000000106 0x0128 ResolutionUnit = 512
+0000000118 0x0131 Software = GIMP 2.10.30
+0000000130 0x0132 ModifyDate = 2022:09:26 14:17:49
+0000000142 0x013b Artist = SippakorN
+0000000154 0x8298 Copyright = @Sippakorn1955
+0000000166 0x8769 ExifOffset = 294
+0000000178 0x8825 GPSInfo = 918
 
----- Directory ExifIFD ----
-0x829a ExposureTime = 16777216/2097152000 (0.008)
-0x829d FNumber = 1056964608/167772160 (6.3)
-0x8822 ExposureProgram = 256
-0x8827 PhotographicSensitivity = 32000
-0x8830 SensitivityType = 512
-0x8832 RecommendedExposureIndex = 2097152000
-0x9000 ExifVersion = [0x30, 0x32, 0x33, 0x31]
-0x9003 DateTimeOriginal = 2023:08:01 08:00:00
-0x9004 DateTimeDigitized = 2020:03:11 17:37:33
-0x9010 Unknown = +07:00
-0x9011 OffsetTimeOriginal = +08:00
-0x9012 Unknown = +08:00
-0x9201 ShutterSpeedValue = 407529984/1078071040 (0.378018)
-0x9202 ApertureValue = 4027076864/1078071040 (3.735447)
-0x9204 ExposureCompensation = 0/16777216 (0.0)
-0x9205 MaxApertureValue = 83886080/16777216 (5.0)
-0x9207 MeteringMode = 512
-0x9209 Flash = 0
-0x920a FocalLength = 738263040/16777216 (44.003906)
-0x9291 SubSecTimeOriginal = 36
-0x9292 SubSecTimeDigitized = 36
-0xa001 ColorSpace = 256
-0xa20e FocalPlaneXResolution = 2159558400/2516779008 (0.858064)
-0xa20f FocalPlaneYResolution = 8071680/1493303296 (0.005405)
-0xa210 FocalPlaneResolutionUnit = 512
-0xa401 CustomRendered = 0
-0xa402 ExposureMode = 256
-0xa403 WhiteBalance = 256
-0xa406 SceneCaptureType = 0
-0xa431 BodySerialNumber = 058021001133
-0xa432 LensSpecification = [1174405120/16777216 (70.0), 738263040/16777216 (44.003906), Invalid rational (0/0), Invalid rational (0/0)]
-0xa434 LensModel = EF70-300mm f/4-5.6L IS USM
-0xa435 LensSerialNumber = 7820004130
+---- Directory ExifIFD @ 294 ----
+0000000296 0x829a ExposureTime = 16777216/2097152000 (0.008)
+0000000308 0x829d FNumber = 1056964608/167772160 (6.3)
+0000000320 0x8822 ExposureProgram = 256
+0000000332 0x8827 PhotographicSensitivity = 32000
+0000000344 0x8830 SensitivityType = 512
+0000000356 0x8832 RecommendedExposureIndex = 2097152000
+0000000368 0x9000 ExifVersion = [0x30, 0x32, 0x33, 0x31]
+0000000380 0x9003 DateTimeOriginal = 2023:08:01 08:00:00
+0000000392 0x9004 DateTimeDigitized = 2020:03:11 17:37:33
+0000000404 0x9010 OffsetTime = +07:00
+0000000416 0x9011 OffsetTimeOriginal = +08:00
+0000000428 0x9012 Unknown = +08:00
+0000000440 0x9201 ShutterSpeedValue = 407529984/1078071040 (0.378018)
+0000000452 0x9202 ApertureValue = 4027076864/1078071040 (3.735447)
+0000000464 0x9204 ExposureCompensation = 0/16777216 (0.0)
+0000000476 0x9205 MaxApertureValue = 83886080/16777216 (5.0)
+0000000488 0x9207 MeteringMode = 512
+0000000500 0x9209 Flash = 0
+0000000512 0x920a FocalLength = 738263040/16777216 (44.003906)
+0000000524 0x9291 SubSecTimeOriginal = 36
+0000000536 0x9292 SubSecTimeDigitized = 36
+0000000548 0xa001 ColorSpace = 256
+0000000560 0xa20e FocalPlaneXResolution = 2159558400/2516779008 (0.858064)
+0000000572 0xa20f FocalPlaneYResolution = 8071680/1493303296 (0.005405)
+0000000584 0xa210 FocalPlaneResolutionUnit = 512
+0000000596 0xa401 CustomRendered = 0
+0000000608 0xa402 ExposureMode = 256
+0000000620 0xa403 WhiteBalance = 256
+0000000632 0xa406 SceneCaptureType = 0
+0000000644 0xa431 BodySerialNumber = 058021001133
+0000000656 0xa432 LensSpecification = [1174405120/16777216 (70.0), 738263040/16777216 (44.003906), Invalid rational (0/0), Invalid rational (0/0)]
+0000000668 0xa434 LensModel = EF70-300mm f/4-5.6L IS USM
+0000000680 0xa435 LensSerialNumber = 7820004130
 
----- Directory GPS ----
-0x0000 GPSVersionID = [0x02, 0x03, 0x00, 0x00]
-0x0001 GPSLatitudeRef = N
-0x0002 GPSLatitude = [234881024/16777216 (14.0), 956301312/16777216 (57.0), 1541013504/3791912960 (0.406395)]
-0x0003 GPSLongitudeRef = E
-0x0004 GPSLongitude = [1711276032/16777216 (102.0), 83886080/16777216 (5.0), 503119872/3288924160 (0.152974)]
+---- Directory GPS @ 918 ----
+0000000920 0x0000 GPSVersionID = [0x02, 0x03, 0x00, 0x00]
+0000000932 0x0001 GPSLatitudeRef = N
+0000000944 0x0002 GPSLatitude = [234881024/16777216 (14.0), 956301312/16777216 (57.0), 1541013504/3791912960 (0.406395)]
+0000000956 0x0003 GPSLongitudeRef = E
+0000000968 0x0004 GPSLongitude = [1711276032/16777216 (102.0), 83886080/16777216 (5.0), 503119872/3288924160 (0.152974)]
 
----- Directory SubIFD ----
-0x00fe NewSubfileType = 16777216
-0x0100 ImageWidth = 65536
-0x0101 ImageLength = -1442840576
-0x0102 BitsPerSample = [2048, 2048, 2048]
-0x0103 Compression = 1536
-0x0106 PhotometricInterpretation = 1536
-0x0115 SamplesPerPixel = 768
-0x0201 JpgFromRawStart = 1152
-0x0202 JpgFromRawLength = 6554
+---- Directory SubIFD @ 1032 ----
+0000001034 0x00fe NewSubfileType = 16777216
+0000001046 0x0100 ImageWidth = 65536
+0000001058 0x0101 ImageLength = -1442840576
+0000001070 0x0102 BitsPerSample = [2048, 2048, 2048]
+0000001082 0x0103 Compression = 1536
+0000001094 0x0106 PhotometricInterpretation = 1536
+0000001106 0x0115 SamplesPerPixel = 768
+0000001118 0x0201 JpgFromRawStart = 1152
+0000001130 0x0202 JpgFromRawLength = 6554
 
 
 ---- IPTC ----
-Keywords (25) = 'Äußerst schön'
 
 ---- XMP ----
 <?xpacket begin="﻿" id="W5M0MpCehiHzreSzNTczkc9d"?>

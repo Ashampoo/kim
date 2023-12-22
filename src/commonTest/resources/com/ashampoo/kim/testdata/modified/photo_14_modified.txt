@@ -3,23 +3,23 @@ Resolution  : 1920 x 1200
 ---- TIFF ----
 Version 42
 Big-endian (Motorola, MM)
----- Directory IFD0 ----
-0x0112 Orientation = 8
-0x0132 ModifyDate = 2023:05:10 13:37:42
-0x8769 ExifOffset = 82
-0x8825 GPSInfo = 182
+---- Directory IFD0 @ 8 ----
+0000000010 0x0112 Orientation = 8
+0000000022 0x0132 ModifyDate = 2023:05:10 13:37:42
+0000000034 0x8769 ExifOffset = 82
+0000000046 0x8825 GPSInfo = 182
 
----- Directory ExifIFD ----
-0x9003 DateTimeOriginal = 2023:05:10 13:37:42
-0x9004 DateTimeDigitized = 2023:05:10 13:37:42
-0x9286 UserComment = GoodFon.ru
+---- Directory ExifIFD @ 82 ----
+0000000084 0x9003 DateTimeOriginal = 2023:05:10 13:37:42
+0000000096 0x9004 DateTimeDigitized = 2023:05:10 13:37:42
+0000000108 0x9286 UserComment = GoodFon.ru
 
----- Directory GPS ----
-0x0000 GPSVersionID = [0x02, 0x03, 0x00, 0x00]
-0x0001 GPSLatitudeRef = N
-0x0002 GPSLatitude = [53/1 (53.0), 13/1 (13.0), 24519/2500 (9.8076)]
-0x0003 GPSLongitudeRef = E
-0x0004 GPSLongitude = [8/1 (8.0), 14/1 (14.0), 56949/2500 (22.7796)]
+---- Directory GPS @ 182 ----
+0000000184 0x0000 GPSVersionID = [0x02, 0x03, 0x00, 0x00]
+0000000196 0x0001 GPSLatitudeRef = N
+0000000208 0x0002 GPSLatitude = [53/1 (53.0), 13/1 (13.0), 24519/2500 (9.8076)]
+0000000220 0x0003 GPSLongitudeRef = E
+0000000232 0x0004 GPSLongitude = [8/1 (8.0), 14/1 (14.0), 56949/2500 (22.7796)]
 
 
 ---- IPTC ----
