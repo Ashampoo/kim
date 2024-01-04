@@ -15,7 +15,7 @@
  */
 package com.ashampoo.kim.format.heic
 
-import com.ashampoo.kim.common.toTypeString
+import com.ashampoo.kim.common.toFourCCTypeString
 
 /**
  * Type of a Box.
@@ -54,6 +54,12 @@ data class BoxType internal constructor(
         /** Media Data box, of which there can be many at the end. */
         val MDAT = of("mdat".encodeToByteArray())
 
+        /** Image properties */
+        val IPRP = of("iprp".encodeToByteArray())
+
+        /** Item properties */
+        val IPCO = of("ipco".encodeToByteArray())
+
         @Suppress("MagicNumber")
         fun of(typeBytes: ByteArray): BoxType {
 
@@ -70,7 +76,7 @@ data class BoxType internal constructor(
 
             return BoxType(
                 bytes = typeBytes,
-                name = intValue.toTypeString(),
+                name = intValue.toFourCCTypeString(),
                 intValue = intValue
             )
         }

@@ -19,6 +19,7 @@ import com.ashampoo.kim.format.ImageMetadata
 import com.ashampoo.kim.format.ImageParser
 import com.ashampoo.kim.format.heic.boxes.Box
 import com.ashampoo.kim.format.heic.boxes.FtypBox
+import com.ashampoo.kim.format.heic.boxes.MetaBox
 import com.ashampoo.kim.input.ByteReader
 import com.ashampoo.kim.input.PositionTrackingByteReader
 import com.ashampoo.kim.model.ImageFormat
@@ -46,7 +47,7 @@ object HeicImageParser : ImageParser {
             allBoxes.add(box)
         }
 
-        // TODO()
+        TODO()
 
         return ImageMetadata(
             imageFormat = ImageFormat.HEIC,
@@ -97,6 +98,7 @@ object HeicImageParser : ImageParser {
 
         return when (type) {
             BoxType.FTYP -> FtypBox(offset, actualLength, bytes)
+            BoxType.META -> MetaBox(offset, actualLength, bytes)
             else -> Box(offset, type, actualLength, bytes)
         }
     }

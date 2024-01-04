@@ -15,12 +15,10 @@
  */
 package com.ashampoo.kim.format.heic.boxes
 
-import com.ashampoo.kim.common.decodeLatin1BytesToString
-import com.ashampoo.kim.common.toTypeString
+import com.ashampoo.kim.common.toFourCCTypeString
 import com.ashampoo.kim.format.heic.BoxType
 import com.ashampoo.kim.format.heic.HeicConstants
 import com.ashampoo.kim.input.ByteArrayByteReader
-import kotlin.math.min
 
 class FtypBox(
     offset: Long,
@@ -43,11 +41,11 @@ class FtypBox(
 
         majorBrand = byteReader
             .read4BytesAsInt("majorBrand", HeicConstants.HEIC_BYTE_ORDER)
-            .toTypeString()
+            .toFourCCTypeString()
 
         minorBrand = byteReader
             .read4BytesAsInt("minorBrand", HeicConstants.HEIC_BYTE_ORDER)
-            .toTypeString()
+            .toFourCCTypeString()
 
         val brandCount: Int = (length.toInt() - 8 - 8) / 4
 
@@ -57,7 +55,7 @@ class FtypBox(
             brands.add(
                 byteReader
                     .read4BytesAsInt("brand $it", HeicConstants.HEIC_BYTE_ORDER)
-                    .toTypeString()
+                    .toFourCCTypeString()
             )
         }
 

@@ -13,20 +13,29 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.ashampoo.kim.common
+package com.ashampoo.kim.format.heic.boxes
 
-/**
- * PNG Chunks and HEIC boxes share the concept where the four
- * type bytes of a chunk/box translate to human readable strings
- * like "IHDR" & "IDAT" for PNG and "FTYP" & "META" for HEIC.
- *
- * This excension function converts an int to such an type string.
- */
-@Suppress("MagicNumber")
-fun Int.toTypeString(): String =
-    charArrayOf(
-        (0xFF and (this shr 24)).toChar(),
-        (0xFF and (this shr 16)).toChar(),
-        (0xFF and (this shr 8)).toChar(),
-        (0xFF and (this shr 0)).toChar()
-    ).concatToString()
+import com.ashampoo.kim.common.toSingleNumberHexes
+import com.ashampoo.kim.format.heic.BoxType
+import com.ashampoo.kim.input.ByteArrayByteReader
+
+class MetaBox(
+    offset: Long,
+    length: Long,
+    bytes: ByteArray
+) : Box(offset, BoxType.FTYP, length, bytes) {
+
+    val version: Int
+
+    val flags: ByteArray
+
+    init {
+
+        val byteReader = ByteArrayByteReader(bytes)
+
+        version = byteReader.readByteAsInt()
+
+        flags = byteReader.readBytes("flags", 3)
+
+    }
+}

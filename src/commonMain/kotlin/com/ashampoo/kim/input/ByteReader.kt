@@ -57,14 +57,14 @@ interface ByteReader : Closeable {
     }
 
     /** Reads one byte as unsigned number, also known as "byte" or "UInt8" */
-    private fun readAsInt(): Int =
+    fun readByteAsInt(): Int =
         readByte()?.let { it.toInt() and 0xFF } ?: -1
 
     /** Reads 2 bytes as unsigned number, also known as "short" or "UInt16" */
     fun read2BytesAsInt(fieldName: String, byteOrder: ByteOrder): Int {
 
-        val byte0 = readAsInt()
-        val byte1 = readAsInt()
+        val byte0 = readByteAsInt()
+        val byte1 = readByteAsInt()
 
         if (byte0 or byte1 < 0)
             throw ImageReadException("Couldn't read two bytes for $fieldName")
@@ -78,10 +78,10 @@ interface ByteReader : Closeable {
     /** Reads 4 bytes as unsigned number, also known as "int" or "UInt32" */
     fun read4BytesAsInt(fieldName: String, byteOrder: ByteOrder): Int {
 
-        val byte0 = readAsInt()
-        val byte1 = readAsInt()
-        val byte2 = readAsInt()
-        val byte3 = readAsInt()
+        val byte0 = readByteAsInt()
+        val byte1 = readByteAsInt()
+        val byte2 = readByteAsInt()
+        val byte3 = readByteAsInt()
 
         if (byte0 or byte1 or byte2 or byte3 < 0)
             throw ImageReadException("Couldn't read 4 bytes for $fieldName")
@@ -97,14 +97,14 @@ interface ByteReader : Closeable {
     /** Reads 8 bytes as unsigned number, also known as "long" or "UInt64" */
     fun read8BytesAsLong(fieldName: String, byteOrder: ByteOrder): Long {
 
-        val byte0 = readAsInt()
-        val byte1 = readAsInt()
-        val byte2 = readAsInt()
-        val byte3 = readAsInt()
-        val byte4 = readAsInt()
-        val byte5 = readAsInt()
-        val byte6 = readAsInt()
-        val byte7 = readAsInt()
+        val byte0 = readByteAsInt()
+        val byte1 = readByteAsInt()
+        val byte2 = readByteAsInt()
+        val byte3 = readByteAsInt()
+        val byte4 = readByteAsInt()
+        val byte5 = readByteAsInt()
+        val byte6 = readByteAsInt()
+        val byte7 = readByteAsInt()
 
         if (byte0 or byte1 or byte2 or byte3 or byte4 or byte5 or byte6 or byte7 < 0)
             throw ImageReadException("Couldn't read 8 bytes for $fieldName")
@@ -176,7 +176,7 @@ interface ByteReader : Closeable {
 
         while (true) {
 
-            val byte = readAsInt()
+            val byte = readByteAsInt()
 
             if (byte == -1)
                 break

@@ -16,7 +16,7 @@
  */
 package com.ashampoo.kim.format.png
 
-import com.ashampoo.kim.common.toTypeString
+import com.ashampoo.kim.common.toFourCCTypeString
 
 /**
  * Type of a PNG chunk.
@@ -88,7 +88,7 @@ data class PngChunkType internal constructor(
 
             return PngChunkType(
                 bytes = typeBytes,
-                name = intValue.toTypeString(),
+                name = intValue.toFourCCTypeString(),
                 intValue = intValue
             )
         }
