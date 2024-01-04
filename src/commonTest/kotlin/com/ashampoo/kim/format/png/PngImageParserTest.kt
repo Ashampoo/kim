@@ -37,7 +37,7 @@ class PngImageParserTest {
 
         val chunks = PngImageParser.readChunks(
             ByteArrayByteReader(bytes),
-            listOf(ChunkType.IHDR, ChunkType.TEXT, ChunkType.ZTXT, ChunkType.ITXT, ChunkType.EXIF)
+            listOf(PngChunkType.IHDR, PngChunkType.TEXT, PngChunkType.ZTXT, PngChunkType.ITXT, PngChunkType.EXIF)
         )
 
         assertNotNull(chunks)

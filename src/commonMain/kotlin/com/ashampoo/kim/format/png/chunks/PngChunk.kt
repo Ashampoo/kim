@@ -16,11 +16,11 @@
  */
 package com.ashampoo.kim.format.png.chunks
 
-import com.ashampoo.kim.format.png.ChunkType
+import com.ashampoo.kim.format.png.PngChunkType
 
 open class PngChunk(
     val length: Int,
-    val chunkType: ChunkType,
+    val chunkType: PngChunkType,
     val crc: Int,
     val bytes: ByteArray
 ) {

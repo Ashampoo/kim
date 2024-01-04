@@ -13,15 +13,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.ashampoo.kim.format.heic
+package com.ashampoo.kim.format.heic.boxes
 
-class Box(
-    val offset: Long,
-    val type: BoxType,
-    val length: Long,
-    val bytes: ByteArray
-) {
+import com.ashampoo.kim.format.heic.BoxType
+import com.ashampoo.kim.input.ByteArrayByteReader
 
-    override fun toString(): String =
-        "Box $type @ $offset of length $length"
+class FtypBox(
+    offset: Long,
+    length: Long,
+    bytes: ByteArray
+): Box(offset, BoxType.FTYP, length, bytes) {
+
+//    val majorBrand: String
+//
+//    val minorBrand: String
+
+    init {
+
+//        val byteReader = ByteArrayByteReader(bytes)
+
+//        majorBrand = byteReader.read4BytesAsInt("width", PngConstants.PNG_BYTE_ORDER)
+//        min() = byteReader.read4BytesAsInt("height", PngConstants.PNG_BYTE_ORDER)
+    }
+
 }

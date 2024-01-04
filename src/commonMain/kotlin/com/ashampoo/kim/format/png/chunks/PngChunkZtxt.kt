@@ -20,15 +20,14 @@ import com.ashampoo.kim.common.ImageReadException
 import com.ashampoo.kim.common.decodeLatin1BytesToString
 import com.ashampoo.kim.common.decompress
 import com.ashampoo.kim.common.indexOfNullTerminator
-import com.ashampoo.kim.format.png.ChunkType
+import com.ashampoo.kim.format.png.PngChunkType
 import com.ashampoo.kim.format.png.PngConstants
 
 class PngChunkZtxt(
     length: Int,
-    chunkType: ChunkType,
     crc: Int,
     bytes: ByteArray
-) : PngTextChunk(length, chunkType, crc, bytes) {
+) : PngTextChunk(length, PngChunkType.ZTXT, crc, bytes) {
 
     @kotlin.jvm.JvmField
     val keyword: String

@@ -1,6 +1,5 @@
 /*
  * Copyright 2023 Ashampoo GmbH & Co. KG
- * Copyright 2007-2023 The Apache Software Foundation
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,21 +13,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.ashampoo.kim.format.png.chunks
+package com.ashampoo.kim.common
 
-import com.ashampoo.kim.format.png.PngChunkType
-
-abstract class PngTextChunk(
-    length: Int,
-    chunkType: PngChunkType,
-    crc: Int,
-    bytes: ByteArray
-) : PngChunk(length, chunkType, crc, bytes) {
-
-    abstract fun getKeyword(): String
-
-    abstract fun getText(): String
-
-    override fun toString(): String =
-        super.toString() + " '" + getKeyword() + "'"
-}
+/**
+ * PNG Chunks and HEIC boxes share the concept where the four
+ * type bytes of a chunk/box translate to human readable strings
+ * like "IHDR" & "IDAT" for PNG and "FTYP" & "META" for HEIC.
+ *
+ * This excension function converts an int to such an type string.
+ */
+@Suppress("MagicNumber")
+fun Int.toTypeString(): String =
+    charArrayOf(
+        (0xFF and (this shr 24)).toChar(),
+        (0xFF and (this shr 16)).toChar(),
+        (0xFF and (this shr 8)).toChar(),
+        (0xFF and (this shr 0)).toChar()
+    ).concatToString()

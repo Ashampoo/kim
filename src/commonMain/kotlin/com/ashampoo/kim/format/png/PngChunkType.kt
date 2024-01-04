@@ -16,12 +16,14 @@
  */
 package com.ashampoo.kim.format.png
 
+import com.ashampoo.kim.common.toTypeString
+
 /**
  * Type of a PNG chunk.
  *
  * @see [Portable Network Graphics Specification - Chunk specifications](http://www.w3.org/TR/PNG/.11Chunks)
  */
-data class ChunkType internal constructor(
+data class PngChunkType internal constructor(
     val bytes: ByteArray,
     val name: String,
     val intValue: Int
@@ -32,7 +34,7 @@ data class ChunkType internal constructor(
         if (this === other)
             return true
 
-        if (other !is ChunkType)
+        if (other !is PngChunkType)
             return false
 
         return bytes.contentEquals(other.bytes)
@@ -71,7 +73,7 @@ data class ChunkType internal constructor(
         val EXIF = of("eXIf".encodeToByteArray())
 
         @Suppress("MagicNumber")
-        fun of(typeBytes: ByteArray): ChunkType {
+        fun of(typeBytes: ByteArray): PngChunkType {
 
             require(typeBytes.size == PngConstants.TPYE_LENGTH) {
                 "ChunkType must be always 4 bytes!"
@@ -84,20 +86,11 @@ data class ChunkType internal constructor(
                     (typeBytes[2].toInt() shl 8) or
                     (typeBytes[3].toInt() shl 0)
 
-            return ChunkType(
+            return PngChunkType(
                 bytes = typeBytes,
-                name = getChunkTypeName(intValue),
+                name = intValue.toTypeString(),
                 intValue = intValue
             )
         }
-
-        @Suppress("MagicNumber")
-        fun getChunkTypeName(chunkType: Int): String =
-            charArrayOf(
-                (0xFF and (chunkType shr 24)).toChar(),
-                (0xFF and (chunkType shr 16)).toChar(),
-                (0xFF and (chunkType shr 8)).toChar(),
-                (0xFF and (chunkType shr 0)).toChar()
-            ).concatToString()
     }
 }

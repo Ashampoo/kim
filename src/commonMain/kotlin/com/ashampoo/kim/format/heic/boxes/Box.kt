@@ -1,6 +1,5 @@
 /*
  * Copyright 2023 Ashampoo GmbH & Co. KG
- * Copyright 2007-2023 The Apache Software Foundation
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,21 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.ashampoo.kim.format.png.chunks
+package com.ashampoo.kim.format.heic.boxes
 
-import com.ashampoo.kim.format.png.PngChunkType
+import com.ashampoo.kim.format.heic.BoxType
 
-abstract class PngTextChunk(
-    length: Int,
-    chunkType: PngChunkType,
-    crc: Int,
-    bytes: ByteArray
-) : PngChunk(length, chunkType, crc, bytes) {
-
-    abstract fun getKeyword(): String
-
-    abstract fun getText(): String
+open class Box(
+    val offset: Long,
+    val type: BoxType,
+    val length: Long,
+    val bytes: ByteArray
+) {
 
     override fun toString(): String =
-        super.toString() + " '" + getKeyword() + "'"
+        "Box $type @ $offset of length $length"
 }

@@ -58,7 +58,7 @@ object PngWriter {
 
         if (exifBytes != null)
             modifiedChunks.removeAll {
-                it.chunkType == ChunkType.EXIF ||
+                it.chunkType == PngChunkType.EXIF ||
                     it is PngTextChunk && it.getKeyword() == PngConstants.EXIF_KEYWORD
             }
 
@@ -79,10 +79,10 @@ object PngWriter {
             writeChunk(byteWriter, chunk.chunkType, chunk.bytes)
 
             /* Write new metadata chunks right after the header. */
-            if (ChunkType.IHDR == chunk.chunkType) {
+            if (PngChunkType.IHDR == chunk.chunkType) {
 
                 if (exifBytes != null)
-                    writeChunk(byteWriter, ChunkType.EXIF, exifBytes)
+                    writeChunk(byteWriter, PngChunkType.EXIF, exifBytes)
 
                 if (iptcBytes != null)
                     writeIptcChunk(byteWriter, iptcBytes)
@@ -110,7 +110,7 @@ object PngWriter {
 
     private fun writeChunk(
         byteWriter: ByteWriter,
-        chunkType: ChunkType,
+        chunkType: PngChunkType,
         data: ByteArray?
     ) {
 
@@ -171,7 +171,7 @@ object PngWriter {
         /* XMP bytes */
         writer.write(xmpXml.encodeToByteArray())
 
-        writeChunk(byteWriter, ChunkType.ITXT, writer.toByteArray())
+        writeChunk(byteWriter, PngChunkType.ITXT, writer.toByteArray())
     }
 
     /**
@@ -205,6 +205,6 @@ object PngWriter {
 
         writer.write(textToWrite.encodeToByteArray())
 
-        writeChunk(byteWriter, ChunkType.TEXT, writer.toByteArray())
+        writeChunk(byteWriter, PngChunkType.TEXT, writer.toByteArray())
     }
 }

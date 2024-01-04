@@ -16,16 +16,15 @@
  */
 package com.ashampoo.kim.format.png.chunks
 
-import com.ashampoo.kim.format.png.ChunkType
+import com.ashampoo.kim.format.png.PngChunkType
 import com.ashampoo.kim.format.png.PngConstants.PNG_BYTE_ORDER
 import com.ashampoo.kim.input.ByteArrayByteReader
 
 class PngChunkIhdr(
     length: Int,
-    chunkType: ChunkType,
     crc: Int,
     bytes: ByteArray
-) : PngChunk(length, chunkType, crc, bytes) {
+) : PngChunk(length, PngChunkType.IHDR, crc, bytes) {
 
     val width: Int
 

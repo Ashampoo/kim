@@ -32,10 +32,10 @@ import kotlinx.io.files.SystemFileSystem
 object PngMetadataCopyUtil {
 
     private val chunkTypesToCopy = listOf(
-        ChunkType.TEXT,
-        ChunkType.ZTXT,
-        ChunkType.ITXT,
-        ChunkType.EXIF
+        PngChunkType.TEXT,
+        PngChunkType.ZTXT,
+        PngChunkType.ITXT,
+        PngChunkType.EXIF
     )
 
     fun copy(

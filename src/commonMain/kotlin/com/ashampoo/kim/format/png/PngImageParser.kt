@@ -33,7 +33,6 @@ import com.ashampoo.kim.format.png.chunks.PngChunkZtxt
 import com.ashampoo.kim.format.png.chunks.PngTextChunk
 import com.ashampoo.kim.format.tiff.TiffContents
 import com.ashampoo.kim.format.tiff.TiffReader
-import com.ashampoo.kim.input.ByteArrayByteReader
 import com.ashampoo.kim.input.ByteReader
 import com.ashampoo.kim.model.ImageFormat
 import com.ashampoo.kim.model.ImageSize
@@ -45,11 +44,11 @@ object PngImageParser : ImageParser {
     private val pngByteOrder = ByteOrder.BIG_ENDIAN
 
     private val metadataChunkTypes = listOf(
-        ChunkType.IHDR,
-        ChunkType.TEXT,
-        ChunkType.ZTXT,
-        ChunkType.ITXT,
-        ChunkType.EXIF
+        PngChunkType.IHDR,
+        PngChunkType.TEXT,
+        PngChunkType.ZTXT,
+        PngChunkType.ITXT,
+        PngChunkType.EXIF
     )
 
     @Throws(ImageReadException::class)
@@ -102,7 +101,7 @@ object PngImageParser : ImageParser {
 
     private fun getExif(chunks: List<PngChunk>): Pair<ByteArray, TiffContents>? {
 
-        val exifChunk = chunks.find { it.chunkType == ChunkType.EXIF } ?: return null
+        val exifChunk = chunks.find { it.chunkType == PngChunkType.EXIF } ?: return null
 
         return exifChunk.bytes to TiffReader.read(exifChunk.bytes)
     }
@@ -236,7 +235,7 @@ object PngImageParser : ImageParser {
 
     private fun readChunksInternal(
         byteReader: ByteReader,
-        chunkTypeFilter: List<ChunkType>?
+        chunkTypeFilter: List<PngChunkType>?
     ): List<PngChunk> {
 
         val chunks = mutableListOf<PngChunk>()
@@ -248,7 +247,7 @@ object PngImageParser : ImageParser {
             if (length < 0)
                 throw ImageReadException("Invalid PNG chunk length: $length")
 
-            val chunkType = ChunkType.of(byteReader.readBytes(PngConstants.TPYE_LENGTH))
+            val chunkType = PngChunkType.of(byteReader.readBytes(PngConstants.TPYE_LENGTH))
 
             val keep = chunkTypeFilter?.contains(chunkType) ?: true
 
@@ -266,15 +265,15 @@ object PngImageParser : ImageParser {
                 requireNotNull(bytes)
 
                 when {
-                    ChunkType.TEXT == chunkType -> chunks.add(PngChunkText(length, chunkType, crc, bytes))
-                    ChunkType.ZTXT == chunkType -> chunks.add(PngChunkZtxt(length, chunkType, crc, bytes))
-                    ChunkType.IHDR == chunkType -> chunks.add(PngChunkIhdr(length, chunkType, crc, bytes))
-                    ChunkType.ITXT == chunkType -> chunks.add(PngChunkItxt(length, chunkType, crc, bytes))
+                    PngChunkType.TEXT == chunkType -> chunks.add(PngChunkText(length, PngChunkType.TEXT, crc, bytes))
+                    PngChunkType.ZTXT == chunkType -> chunks.add(PngChunkZtxt(length, crc, bytes))
+                    PngChunkType.IHDR == chunkType -> chunks.add(PngChunkIhdr(length, crc, bytes))
+                    PngChunkType.ITXT == chunkType -> chunks.add(PngChunkItxt(length, crc, bytes))
                     else -> chunks.add(PngChunk(length, chunkType, crc, bytes))
                 }
             }
 
-            if (ChunkType.IEND == chunkType)
+            if (PngChunkType.IEND == chunkType)
                 break
         }
 
@@ -286,7 +285,7 @@ object PngImageParser : ImageParser {
 
     fun readChunks(
         byteReader: ByteReader,
-        chunkTypeFilter: List<ChunkType>?
+        chunkTypeFilter: List<PngChunkType>?
     ): List<PngChunk> {
 
         readAndVerifySignature(byteReader)
