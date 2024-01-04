@@ -24,7 +24,8 @@ import com.ashampoo.kim.input.ByteArrayByteReader
 class ItemPropertyContainerBox(
     offset: Long,
     length: Long,
-    bytes: ByteArray
+    bytes: ByteArray,
+    version: Int
 ) : Box(offset, BoxType.IPCO, length, bytes) {
 
     val boxes: List<Box>
@@ -36,8 +37,6 @@ class ItemPropertyContainerBox(
 
         val byteReader = ByteArrayByteReader(bytes)
 
-        boxes = BoxReader.readBoxes(byteReader)
-
-        println(this)
+        boxes = BoxReader.readBoxes(byteReader, version)
     }
 }

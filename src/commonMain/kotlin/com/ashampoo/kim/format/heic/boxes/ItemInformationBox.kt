@@ -15,28 +15,32 @@
  */
 package com.ashampoo.kim.format.heic.boxes
 
-import com.ashampoo.kim.common.toFourCCTypeString
-import com.ashampoo.kim.format.heic.BoxReader
 import com.ashampoo.kim.format.heic.BoxType
 import com.ashampoo.kim.format.heic.HeicConstants
+import com.ashampoo.kim.format.heic.HeicConstants.HEIC_BYTE_ORDER
 import com.ashampoo.kim.input.ByteArrayByteReader
 
-class ItemPropertiesBox(
+class ItemInformationBox(
     offset: Long,
     length: Long,
     bytes: ByteArray,
     version: Int
-) : Box(offset, BoxType.IPRP, length, bytes) {
+) : Box(offset, BoxType.IINF, length, bytes) {
 
-    val boxes: List<Box>
+    val entryCount: Int
 
     override fun toString(): String =
-        "IPRC boxes=${boxes.map { it.type }}"
+        "IINF"
 
     init {
 
         val byteReader = ByteArrayByteReader(bytes)
 
-        boxes = BoxReader.readBoxes(byteReader, version)
+        if (version == 0)
+            entryCount = byteReader.read2BytesAsInt("entryCount", HEIC_BYTE_ORDER)
+        else
+            entryCount = byteReader.read4BytesAsInt("entryCount", HEIC_BYTE_ORDER)
+
+        println("Entries: $entryCount")
     }
 }

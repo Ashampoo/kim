@@ -55,6 +55,11 @@ data class BoxType internal constructor(
         val META = of("meta".encodeToByteArray())
 
         /**
+         * Item Information Box
+         */
+        val IINF = of("iinf".encodeToByteArray())
+
+        /**
          * Item Properties Box
          *
          * Contains IPCO & COLR
