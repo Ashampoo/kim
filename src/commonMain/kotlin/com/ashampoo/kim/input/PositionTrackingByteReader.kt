@@ -25,7 +25,7 @@ package com.ashampoo.kim.input
  */
 class PositionTrackingByteReader(
     val byteReader: ByteReader
-): ByteReader {
+) : ByteReader {
 
     override val contentLength: Long =
         byteReader.contentLength

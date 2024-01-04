@@ -46,7 +46,7 @@ data class BoxType internal constructor(
     companion object {
 
         /** File Type box, the first box */
-        val FTYP = of("fytp".encodeToByteArray())
+        val FTYP = of("ftyp".encodeToByteArray())
 
         /** Meta Box for metadata, usually the second box */
         val META = of("meta".encodeToByteArray())

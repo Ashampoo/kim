@@ -95,7 +95,7 @@ object HeicImageParser : ImageParser {
 
         val bytes = byteReader.readBytes("data", remainingBytesToReadInThisBox)
 
-        return when(type) {
+        return when (type) {
             BoxType.FTYP -> FtypBox(offset, actualLength, bytes)
             else -> Box(offset, type, actualLength, bytes)
         }
