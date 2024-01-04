@@ -42,16 +42,12 @@ class ByteArrayByteReader(
         return bytes
     }
 
-    override fun reset() {
-        this.position = 0
-    }
-
     override fun moveTo(position: Int) {
         this.position = position
     }
 
-    override fun readBytes(start: Int, length: Int): ByteArray =
-        bytes.copyOfRange(start, start + length)
+    override fun readBytes(offset: Int, length: Int): ByteArray =
+        bytes.copyOfRange(offset, offset + length)
 
     override fun close() {
         /* Does nothing. */

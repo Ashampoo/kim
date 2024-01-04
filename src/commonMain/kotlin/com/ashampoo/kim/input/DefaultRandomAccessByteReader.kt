@@ -58,10 +58,6 @@ class DefaultRandomAccessByteReader(
         return bytes
     }
 
-    override fun reset() {
-        position = 0
-    }
-
     override fun moveTo(position: Int) {
 
         require(position <= contentLength - 1) {
@@ -71,14 +67,14 @@ class DefaultRandomAccessByteReader(
         this.position = position
     }
 
-    override fun readBytes(start: Int, length: Int): ByteArray {
+    override fun readBytes(offset: Int, length: Int): ByteArray {
 
-        val endIndex = start + length
+        val endIndex = offset + length
 
         if (endIndex > buffer.size)
             readToIndex(endIndex)
 
-        return buffer.subList(start, endIndex).toByteArray()
+        return buffer.subList(offset, endIndex).toByteArray()
     }
 
     override fun close() =

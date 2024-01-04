@@ -17,10 +17,10 @@ package com.ashampoo.kim.input
 
 interface RandomAccessByteReader : ByteReader {
 
-    fun reset()
+    fun reset() = moveTo(0)
 
     fun moveTo(position: Int)
 
-    fun readBytes(start: Int, length: Int): ByteArray
+    fun readBytes(offset: Int, length: Int): ByteArray
 
 }
