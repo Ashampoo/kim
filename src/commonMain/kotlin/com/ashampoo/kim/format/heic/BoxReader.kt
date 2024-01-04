@@ -16,8 +16,10 @@
  */
 package com.ashampoo.kim.format.heic
 
+import com.ashampoo.kim.format.heic.HeicConstants.HEIC_BYTE_ORDER
 import com.ashampoo.kim.format.heic.boxes.Box
 import com.ashampoo.kim.format.heic.boxes.FileTypeBox
+import com.ashampoo.kim.format.heic.boxes.ItemInfoEntryBox
 import com.ashampoo.kim.format.heic.boxes.ItemInformationBox
 import com.ashampoo.kim.format.heic.boxes.ItemPropertiesBox
 import com.ashampoo.kim.format.heic.boxes.ItemPropertyContainerBox
@@ -25,8 +27,6 @@ import com.ashampoo.kim.format.heic.boxes.MetaBox
 import com.ashampoo.kim.input.PositionTrackingByteReader
 
 object BoxReader {
-
-    private val BYTE_ORDER = HeicConstants.HEIC_BYTE_ORDER
 
     fun readBoxes(byteReader: PositionTrackingByteReader): List<Box> {
 
@@ -58,7 +58,7 @@ object BoxReader {
 
         /* Note: The length includes the 8 header bytes. */
         val length: Long =
-            byteReader.read4BytesAsInt("length", BYTE_ORDER).toLong()
+            byteReader.read4BytesAsInt("length", HEIC_BYTE_ORDER).toLong()
 
         val type = BoxType.of(
             byteReader.readBytes("type", HeicConstants.TPYE_LENGTH)
@@ -70,7 +70,7 @@ object BoxReader {
             0L -> byteReader.available
 
             /* A length of 1 indicates that we should read the next 8 bytes to get a long value. */
-            1L -> byteReader.read8BytesAsLong("length", BYTE_ORDER)
+            1L -> byteReader.read8BytesAsLong("length", HEIC_BYTE_ORDER)
 
             /* Keep the length we already read. */
             else -> length
@@ -88,6 +88,7 @@ object BoxReader {
             BoxType.IINF -> ItemInformationBox(offset, actualLength, bytes)
             BoxType.IPRP -> ItemPropertiesBox(offset, actualLength, bytes)
             BoxType.IPCO -> ItemPropertyContainerBox(offset, actualLength, bytes)
+            BoxType.INFE -> ItemInfoEntryBox(offset, actualLength, bytes)
             else -> Box(offset, type, actualLength, bytes)
         }
     }

@@ -51,14 +51,19 @@ data class BoxType internal constructor(
 
         /**
          * Meta Box for metadata, usually the second box.
-         * It's a container for several more Boxes.
+         * It's a container for several more boxes like IINF.
          */
         val META = of("meta".encodeToByteArray())
 
         /**
-         * Item Information Box
+         * Item Information Box, container for INFE boxes
          */
         val IINF = of("iinf".encodeToByteArray())
+
+        /*
+         * Item Info Entry Box
+         */
+        val INFE = of("infe".encodeToByteArray())
 
         /**
          * Item Location Box

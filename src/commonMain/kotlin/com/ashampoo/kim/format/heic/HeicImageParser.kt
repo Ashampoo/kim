@@ -31,7 +31,7 @@ object HeicImageParser : ImageParser {
 
         val allBoxes = BoxReader.readBoxes(byteReader)
 
-        // TODO()
+        TODO()
 
         return ImageMetadata(
             imageFormat = ImageFormat.HEIC,

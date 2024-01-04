@@ -16,6 +16,7 @@
  */
 package com.ashampoo.kim.format.heic.boxes
 
+import com.ashampoo.kim.format.heic.BoxReader
 import com.ashampoo.kim.format.heic.BoxType
 import com.ashampoo.kim.format.heic.HeicConstants.HEIC_BYTE_ORDER
 import com.ashampoo.kim.input.ByteArrayByteReader
@@ -32,8 +33,10 @@ class ItemInformationBox(
 
     val entryCount: Int
 
+    val boxes: List<Box>
+
     override fun toString(): String =
-        "IINF ($entryCount entries)"
+        "IINF ($entryCount entries) = ${boxes.map { it.type }}"
 
     init {
 
@@ -48,6 +51,6 @@ class ItemInformationBox(
         else
             entryCount = byteReader.read4BytesAsInt("entryCount", HEIC_BYTE_ORDER)
 
-        println("Entries: $entryCount")
+        boxes = BoxReader.readBoxes(byteReader)
     }
 }
