@@ -25,35 +25,42 @@ class DefaultRandomAccessByteReader(
 
     override val contentLength: Long = byteReader.contentLength
 
-    private var position: Int = 0
+    val position: Int
+        get() = currentPosition
+
+    val available: Long
+        get() = contentLength - position
+
+    private var currentPosition: Int = 0
+
     private val buffer: MutableList<Byte> = ArrayList(INITIAL_SIZE)
 
     override fun readByte(): Byte? {
 
-        if (position >= contentLength)
+        if (currentPosition >= contentLength)
             return null
 
-        val endIndex = position + 1
+        val endIndex = currentPosition + 1
 
         if (endIndex > buffer.size)
             readToIndex(endIndex)
 
-        return buffer[position++]
+        return buffer[currentPosition++]
     }
 
     override fun readBytes(count: Int): ByteArray {
 
-        if (position >= contentLength)
+        if (currentPosition >= contentLength)
             return byteArrayOf()
 
-        val endIndex = position + count.coerceAtMost(contentLength.toInt())
+        val endIndex = currentPosition + count.coerceAtMost(contentLength.toInt())
 
         if (endIndex > buffer.size)
             readToIndex(endIndex)
 
-        val bytes = buffer.subList(position, endIndex).toByteArray()
+        val bytes = buffer.subList(currentPosition, endIndex).toByteArray()
 
-        position += bytes.size
+        currentPosition += bytes.size
 
         return bytes
     }
@@ -64,7 +71,7 @@ class DefaultRandomAccessByteReader(
             "Can't skip after max length: $position > ${contentLength - 1}"
         }
 
-        this.position = position
+        this.currentPosition = position
     }
 
     override fun readBytes(offset: Int, length: Int): ByteArray {
