@@ -56,9 +56,11 @@ interface ByteReader : Closeable {
         return bytes
     }
 
+    /** Reads one byte as unsigned number, also known as "byte" or "UInt8" */
     private fun readAsInt(): Int =
         readByte()?.let { it.toInt() and 0xFF } ?: -1
 
+    /** Reads 2 bytes as unsigned number, also known as "short" or "UInt16" */
     fun read2BytesAsInt(fieldName: String, byteOrder: ByteOrder): Int {
 
         val byte0 = readAsInt()
@@ -73,6 +75,7 @@ interface ByteReader : Closeable {
             byte1 shl 8 or byte0
     }
 
+    /** Reads 4 bytes as unsigned number, also known as "int" or "UInt32" */
     fun read4BytesAsInt(fieldName: String, byteOrder: ByteOrder): Int {
 
         val byte0 = readAsInt()
@@ -87,6 +90,31 @@ interface ByteReader : Closeable {
             byte0 shl 24 or (byte1 shl 16) or (byte2 shl 8) or (byte3 shl 0)
         else
             byte3 shl 24 or (byte2 shl 16) or (byte1 shl 8) or (byte0 shl 0)
+
+        return result
+    }
+
+    /** Reads 8 bytes as unsigned number, also known as "long" or "UInt64" */
+    fun read8BytesAsLong(fieldName: String, byteOrder: ByteOrder): Long {
+
+        val byte0 = readAsInt()
+        val byte1 = readAsInt()
+        val byte2 = readAsInt()
+        val byte3 = readAsInt()
+        val byte4 = readAsInt()
+        val byte5 = readAsInt()
+        val byte6 = readAsInt()
+        val byte7 = readAsInt()
+
+        if (byte0 or byte1 or byte2 or byte3 or byte4 or byte5 or byte6 or byte7 < 0)
+            throw ImageReadException("Couldn't read 8 bytes for $fieldName")
+
+        val result: Long = if (byteOrder == ByteOrder.BIG_ENDIAN)
+            (byte0.toLong() shl 56) or (byte1.toLong() shl 48) or (byte2.toLong() shl 40) or (byte3.toLong() shl 32) or
+                (byte4.toLong() shl 24) or (byte5.toLong() shl 16) or (byte6.toLong() shl 8) or (byte7.toLong() shl 0)
+        else
+            (byte7.toLong() shl 56) or (byte6.toLong() shl 48) or (byte5.toLong() shl 40) or (byte4.toLong() shl 32) or
+                (byte3.toLong() shl 24) or (byte2.toLong() shl 16) or (byte1.toLong() shl 8) or (byte0.toLong() shl 0)
 
         return result
     }
