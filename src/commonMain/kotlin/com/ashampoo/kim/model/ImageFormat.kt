@@ -157,7 +157,6 @@ enum class ImageFormat(
                 /* Check other common formats. */
                 bytes.startsWith(ImageFormatMagicNumbers.png) -> ImageFormat.PNG
                 bytes.startsWithNullable(ImageFormatMagicNumbers.webP) -> ImageFormat.WEBP
-                bytes.startsWithNullable(ImageFormatMagicNumbers.heic) -> ImageFormat.HEIC
                 /* Canon CR2 et al *must* be checked before TIFF, because they are based on TIFF */
                 bytes.startsWith(ImageFormatMagicNumbers.cr2) -> ImageFormat.CR2
                 bytes.startsWith(ImageFormatMagicNumbers.rw2) -> ImageFormat.RW2
@@ -168,6 +167,13 @@ enum class ImageFormat(
                 /* Check TIFF after the RAW files. */
                 bytes.startsWith(ImageFormatMagicNumbers.tiffLittleEndian) -> ImageFormat.TIFF
                 bytes.startsWith(ImageFormatMagicNumbers.tiffBigEndian) -> ImageFormat.TIFF
+                /* Check HEIC variants */
+                bytes.startsWithNullable(ImageFormatMagicNumbers.heic) -> ImageFormat.HEIC
+                bytes.startsWithNullable(ImageFormatMagicNumbers.mif1) -> ImageFormat.HEIC
+                bytes.startsWithNullable(ImageFormatMagicNumbers.msf1) -> ImageFormat.HEIC
+                bytes.startsWithNullable(ImageFormatMagicNumbers.heix) -> ImageFormat.HEIC
+                bytes.startsWithNullable(ImageFormatMagicNumbers.hevc) -> ImageFormat.HEIC
+                bytes.startsWithNullable(ImageFormatMagicNumbers.hevx) -> ImageFormat.HEIC
                 /* Check GIF and other unlikely formats... */
                 bytes.startsWith(ImageFormatMagicNumbers.gif87a) -> ImageFormat.GIF
                 bytes.startsWith(ImageFormatMagicNumbers.gif89a) -> ImageFormat.GIF

@@ -82,8 +82,33 @@ object ImageFormatMagicNumbers {
 
     /* 4 bytes + "ftypheic" */
     val heic: List<Byte?> = byteListOf(
-        null, null, null, null, 0x66, 0x74, 0x79, 0x70, 0x68, 0x65, 0x69, 0x63
-    )
+        null, null, null, null
+    ).plus("ftypheic".encodeToByteArray().toList())
+
+    /* A HEIC brand */
+    val mif1: List<Byte?> = byteListOf(
+        null, null, null, null
+    ).plus("ftypmif1".encodeToByteArray().toList())
+
+    /* A HEIC brand */
+    val msf1: List<Byte?> = byteListOf(
+        null, null, null, null
+    ).plus("ftypmsf1".encodeToByteArray().toList())
+
+    /* A HEIC brand */
+    val heix: List<Byte?> = byteListOf(
+        null, null, null, null
+    ).plus("ftypheix".encodeToByteArray().toList())
+
+    /* A HEIC brand */
+    val hevc: List<Byte?> = byteListOf(
+        null, null, null, null
+    ).plus("ftyphevc".encodeToByteArray().toList())
+
+    /* A HEIC brand */
+    val hevx: List<Byte?> = byteListOf(
+        null, null, null, null
+    ).plus("ftyphevx".encodeToByteArray().toList())
 
     private fun byteListOf(vararg ints: Int?): List<Byte?> =
         ints.map { it?.toByte() }
