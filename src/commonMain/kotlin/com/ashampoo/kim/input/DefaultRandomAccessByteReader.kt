@@ -23,7 +23,8 @@ class DefaultRandomAccessByteReader(
     val byteReader: ByteReader
 ) : RandomAccessByteReader {
 
-    override val contentLength: Long = byteReader.contentLength
+    override val contentLength: Long =
+        byteReader.contentLength
 
     val position: Int
         get() = currentPosition

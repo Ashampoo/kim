@@ -24,9 +24,11 @@ package com.ashampoo.kim.input
  * Therefore it's better to track the position on a higher level.
  */
 class PositionTrackingByteReader(
-    val byteReader: ByteReader,
-    override val contentLength: Long
+    val byteReader: ByteReader
 ): ByteReader {
+
+    override val contentLength: Long =
+        byteReader.contentLength
 
     private var currentPosition: Int = 0
 
@@ -34,7 +36,7 @@ class PositionTrackingByteReader(
         get() = currentPosition
 
     val available: Long
-        get() = contentLength - position
+        get() = byteReader.contentLength - position
 
     override fun readByte(): Byte? {
 
