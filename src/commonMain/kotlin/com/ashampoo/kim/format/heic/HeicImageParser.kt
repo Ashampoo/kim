@@ -17,37 +17,20 @@ package com.ashampoo.kim.format.heic
 
 import com.ashampoo.kim.format.ImageMetadata
 import com.ashampoo.kim.format.ImageParser
-import com.ashampoo.kim.format.heic.boxes.Box
-import com.ashampoo.kim.format.heic.boxes.FtypBox
-import com.ashampoo.kim.format.heic.boxes.MetaBox
 import com.ashampoo.kim.input.ByteReader
-import com.ashampoo.kim.input.PositionTrackingByteReader
+import com.ashampoo.kim.input.PositionTrackingByteReaderDecorator
 import com.ashampoo.kim.model.ImageFormat
 
 object HeicImageParser : ImageParser {
 
-    private val BYTE_ORDER = HeicConstants.HEIC_BYTE_ORDER
-
     override fun parseMetadata(byteReader: ByteReader): ImageMetadata =
-        parseMetadata(PositionTrackingByteReader(byteReader))
+        parseMetadata(PositionTrackingByteReaderDecorator(byteReader))
 
-    private fun parseMetadata(byteReader: PositionTrackingByteReader): ImageMetadata {
+    private fun parseMetadata(byteReader: PositionTrackingByteReaderDecorator): ImageMetadata {
 
-        val allBoxes = mutableListOf<Box>()
+        val allBoxes = BoxReader.readBoxes(byteReader)
 
-        while (true) {
-
-            val box = readBox(byteReader)
-
-            println(box)
-
-            if (box == null)
-                break
-
-            allBoxes.add(box)
-        }
-
-        TODO()
+        // TODO()
 
         return ImageMetadata(
             imageFormat = ImageFormat.HEIC,
@@ -57,49 +40,5 @@ object HeicImageParser : ImageParser {
             iptc = null, // TODO
             xmp = null // TODO
         )
-    }
-
-    private fun readBox(byteReader: PositionTrackingByteReader): Box? {
-
-        /*
-         * Check if there are enough bytes for another box.
-         * If so, we at least need the 8 header bytes.
-         */
-        if (byteReader.available < HeicConstants.BOX_HEADER_LENGTH)
-            return null
-
-        val offset: Long = byteReader.position.toLong()
-
-        /* Note: The length includes the 8 header bytes. */
-        val length: Long =
-            byteReader.read4BytesAsInt("length", BYTE_ORDER).toLong()
-
-        val type = BoxType.of(
-            byteReader.readBytes("type", HeicConstants.TPYE_LENGTH)
-        )
-
-        val actualLength: Long = when (length) {
-
-            /* A vaule of zero indicates that it's the last box. */
-            0L -> byteReader.available
-
-            /* A length of 1 indicates that we should read the next 8 bytes to get a long value. */
-            1L -> byteReader.read8BytesAsLong("length", BYTE_ORDER)
-
-            /* Keep the length we already read. */
-            else -> length
-        }
-
-        val nextBoxOffset = offset + actualLength
-
-        val remainingBytesToReadInThisBox = (nextBoxOffset - byteReader.position).toInt()
-
-        val bytes = byteReader.readBytes("data", remainingBytesToReadInThisBox)
-
-        return when (type) {
-            BoxType.FTYP -> FtypBox(offset, actualLength, bytes)
-            BoxType.META -> MetaBox(offset, actualLength, bytes)
-            else -> Box(offset, type, actualLength, bytes)
-        }
     }
 }

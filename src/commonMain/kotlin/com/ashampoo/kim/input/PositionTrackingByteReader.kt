@@ -15,49 +15,10 @@
  */
 package com.ashampoo.kim.input
 
-/**
- * This is a Decorator to track the current position in reading the file.
- *
- * The ByteReader interface has many complex implementations, where some
- * of them aren't even aware of the current position or the position tracking
- * is an implementation detail that should not be exposed.
- * Therefore it's better to track the position on a higher level.
- */
-class PositionTrackingByteReader(
-    val byteReader: ByteReader
-) : ByteReader {
-
-    override val contentLength: Long =
-        byteReader.contentLength
-
-    private var currentPosition: Int = 0
+interface PositionTrackingByteReader: ByteReader {
 
     val position: Int
-        get() = currentPosition
 
     val available: Long
-        get() = byteReader.contentLength - position
 
-    override fun readByte(): Byte? {
-
-        val byte = byteReader.readByte()
-
-        if (byte != null)
-            currentPosition++
-
-        return byte
-    }
-
-    override fun readBytes(count: Int): ByteArray {
-
-        val bytes = byteReader.readBytes(count)
-
-        currentPosition += bytes.size
-
-        return bytes
-    }
-
-    override fun close() {
-        /* Do nothing */
-    }
 }

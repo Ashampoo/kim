@@ -15,7 +15,9 @@
  */
 package com.ashampoo.kim.format.heic.boxes
 
+import com.ashampoo.kim.common.decodeLatin1BytesToString
 import com.ashampoo.kim.common.toSingleNumberHexes
+import com.ashampoo.kim.format.heic.BoxReader
 import com.ashampoo.kim.format.heic.BoxType
 import com.ashampoo.kim.input.ByteArrayByteReader
 
@@ -36,6 +38,8 @@ class MetaBox(
         version = byteReader.readByteAsInt()
 
         flags = byteReader.readBytes("flags", 3)
+
+
 
     }
 }

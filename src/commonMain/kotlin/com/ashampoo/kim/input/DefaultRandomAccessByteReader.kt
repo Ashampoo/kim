@@ -21,15 +21,15 @@ package com.ashampoo.kim.input
  */
 class DefaultRandomAccessByteReader(
     val byteReader: ByteReader
-) : RandomAccessByteReader {
+) : RandomAccessByteReader, PositionTrackingByteReader {
 
     override val contentLength: Long =
         byteReader.contentLength
 
-    val position: Int
+    override val position: Int
         get() = currentPosition
 
-    val available: Long
+    override val available: Long
         get() = contentLength - position
 
     private var currentPosition: Int = 0
