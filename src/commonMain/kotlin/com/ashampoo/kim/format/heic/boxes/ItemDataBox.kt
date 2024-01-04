@@ -15,40 +15,24 @@
  */
 package com.ashampoo.kim.format.heic.boxes
 
-import com.ashampoo.kim.common.decodeLatin1BytesToString
+import com.ashampoo.kim.common.toFourCCTypeString
+import com.ashampoo.kim.common.toHex
 import com.ashampoo.kim.common.toSingleNumberHexes
 import com.ashampoo.kim.format.heic.BoxReader
 import com.ashampoo.kim.format.heic.BoxType
+import com.ashampoo.kim.format.heic.HeicConstants
 import com.ashampoo.kim.input.ByteArrayByteReader
 
-/**
- * The Meta Box is a container for several metadata boxes.
- */
-class MetaBox(
+class ItemDataBox(
     offset: Long,
     length: Long,
     bytes: ByteArray
-) : Box(offset, BoxType.FTYP, length, bytes) {
+) : Box(offset, BoxType.IDAT, length, bytes) {
 
-    val version: Int
-
-    val flags: ByteArray
-
-    val boxes: List<Box>
-
-    override fun toString(): String =
-        "META Box version=$version flags=$flags boxes=${boxes.map { it.type }}"
+    override fun toString(): String = "IDAT"
 
     init {
 
-        val byteReader = ByteArrayByteReader(bytes)
-
-        version = byteReader.readByteAsInt()
-
-        flags = byteReader.readBytes("flags", 3)
-
-        boxes = BoxReader.readBoxes(byteReader)
-
-        println(this)
+        println(bytes.toHex())
     }
 }

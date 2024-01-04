@@ -48,17 +48,24 @@ data class BoxType internal constructor(
         /** File Type box, the first box */
         val FTYP = of("ftyp".encodeToByteArray())
 
-        /** Meta Box for metadata, usually the second box */
+        /**
+         * Meta Box for metadata, usually the second box.
+         * It's a container for several more Boxes.
+         */
         val META = of("meta".encodeToByteArray())
+
+        /**
+         * Item Properties Box
+         */
+        val IPRP = of("iprp".encodeToByteArray())
+
+        /**
+         * Item Data Box
+         */
+        val IDAT = of("idat".encodeToByteArray())
 
         /** Media Data box, of which there can be many at the end. */
         val MDAT = of("mdat".encodeToByteArray())
-
-        /** Image properties */
-        val IPRP = of("iprp".encodeToByteArray())
-
-        /** Item properties */
-        val IPCO = of("ipco".encodeToByteArray())
 
         @Suppress("MagicNumber")
         fun of(typeBytes: ByteArray): BoxType {

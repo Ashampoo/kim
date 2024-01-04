@@ -15,40 +15,50 @@
  */
 package com.ashampoo.kim.format.heic.boxes
 
-import com.ashampoo.kim.common.decodeLatin1BytesToString
-import com.ashampoo.kim.common.toSingleNumberHexes
-import com.ashampoo.kim.format.heic.BoxReader
+import com.ashampoo.kim.common.toFourCCTypeString
 import com.ashampoo.kim.format.heic.BoxType
+import com.ashampoo.kim.format.heic.HeicConstants
 import com.ashampoo.kim.input.ByteArrayByteReader
 
-/**
- * The Meta Box is a container for several metadata boxes.
- */
-class MetaBox(
+class FileTypeBox(
     offset: Long,
     length: Long,
     bytes: ByteArray
 ) : Box(offset, BoxType.FTYP, length, bytes) {
 
-    val version: Int
+    val majorBrand: String
 
-    val flags: ByteArray
+    val minorBrand: String
 
-    val boxes: List<Box>
+    val compatibleBrands: List<String>
 
     override fun toString(): String =
-        "META Box version=$version flags=$flags boxes=${boxes.map { it.type }}"
+        "FTYP major=$majorBrand minor=$minorBrand compatible=$compatibleBrands"
 
     init {
 
         val byteReader = ByteArrayByteReader(bytes)
 
-        version = byteReader.readByteAsInt()
+        majorBrand = byteReader
+            .read4BytesAsInt("majorBrand", HeicConstants.HEIC_BYTE_ORDER)
+            .toFourCCTypeString()
 
-        flags = byteReader.readBytes("flags", 3)
+        minorBrand = byteReader
+            .read4BytesAsInt("minorBrand", HeicConstants.HEIC_BYTE_ORDER)
+            .toFourCCTypeString()
 
-        boxes = BoxReader.readBoxes(byteReader)
+        val brandCount: Int = (length.toInt() - 8 - 8) / 4
 
-        println(this)
+        val brands = mutableListOf<String>()
+
+        repeat(brandCount) {
+            brands.add(
+                byteReader
+                    .read4BytesAsInt("brand $it", HeicConstants.HEIC_BYTE_ORDER)
+                    .toFourCCTypeString()
+            )
+        }
+
+        compatibleBrands = brands
     }
 }

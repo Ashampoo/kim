@@ -16,10 +16,12 @@
 package com.ashampoo.kim.format.heic
 
 import com.ashampoo.kim.format.heic.boxes.Box
-import com.ashampoo.kim.format.heic.boxes.FtypBox
+import com.ashampoo.kim.format.heic.boxes.FileTypeBox
+import com.ashampoo.kim.format.heic.boxes.ItemDataBox
+import com.ashampoo.kim.format.heic.boxes.ItemPropertiesBox
 import com.ashampoo.kim.format.heic.boxes.MetaBox
+import com.ashampoo.kim.format.tiff.ImageDataElement
 import com.ashampoo.kim.input.PositionTrackingByteReader
-import com.ashampoo.kim.input.PositionTrackingByteReaderDecorator
 
 object BoxReader {
 
@@ -80,8 +82,10 @@ object BoxReader {
         val bytes = byteReader.readBytes("data", remainingBytesToReadInThisBox)
 
         return when (type) {
-            BoxType.FTYP -> FtypBox(offset, actualLength, bytes)
+            BoxType.FTYP -> FileTypeBox(offset, actualLength, bytes)
             BoxType.META -> MetaBox(offset, actualLength, bytes)
+            BoxType.IDAT -> ItemDataBox(offset, actualLength, bytes)
+            BoxType.IPRP -> ItemPropertiesBox(offset, actualLength, bytes)
             else -> Box(offset, type, actualLength, bytes)
         }
     }

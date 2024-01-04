@@ -16,49 +16,28 @@
 package com.ashampoo.kim.format.heic.boxes
 
 import com.ashampoo.kim.common.toFourCCTypeString
+import com.ashampoo.kim.format.heic.BoxReader
 import com.ashampoo.kim.format.heic.BoxType
 import com.ashampoo.kim.format.heic.HeicConstants
 import com.ashampoo.kim.input.ByteArrayByteReader
 
-class FtypBox(
+class ItemPropertiesBox(
     offset: Long,
     length: Long,
     bytes: ByteArray
-) : Box(offset, BoxType.FTYP, length, bytes) {
+) : Box(offset, BoxType.IPRP, length, bytes) {
 
-    val majorBrand: String
-
-    val minorBrand: String
-
-    val compatibleBrands: List<String>
+    val boxes: List<Box>
 
     override fun toString(): String =
-        "FTYP major=$majorBrand minor=$minorBrand compatible=$compatibleBrands"
+        "IPRC boxes=${boxes.map { it.type }}"
 
     init {
 
         val byteReader = ByteArrayByteReader(bytes)
 
-        majorBrand = byteReader
-            .read4BytesAsInt("majorBrand", HeicConstants.HEIC_BYTE_ORDER)
-            .toFourCCTypeString()
+        boxes = BoxReader.readBoxes(byteReader)
 
-        minorBrand = byteReader
-            .read4BytesAsInt("minorBrand", HeicConstants.HEIC_BYTE_ORDER)
-            .toFourCCTypeString()
-
-        val brandCount: Int = (length.toInt() - 8 - 8) / 4
-
-        val brands = mutableListOf<String>()
-
-        repeat(brandCount) {
-            brands.add(
-                byteReader
-                    .read4BytesAsInt("brand $it", HeicConstants.HEIC_BYTE_ORDER)
-                    .toFourCCTypeString()
-            )
-        }
-
-        compatibleBrands = brands
+        println(this)
     }
 }
