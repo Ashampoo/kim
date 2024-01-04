@@ -1,6 +1,5 @@
 /*
  * Copyright 2023 Ashampoo GmbH & Co. KG
- * Copyright 2007-2023 The Apache Software Foundation
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,14 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.ashampoo.kim.format.png
+package com.ashampoo.kim.format.heic
 
 /**
- * Type of a PNG chunk.
- *
- * @see [Portable Network Graphics Specification - Chunk specifications](http://www.w3.org/TR/PNG/.11Chunks)
+ * Type of a Box.
  */
-data class ChunkType internal constructor(
+data class BoxType internal constructor(
     val bytes: ByteArray,
     val name: String,
     val intValue: Int
@@ -32,7 +29,7 @@ data class ChunkType internal constructor(
         if (this === other)
             return true
 
-        if (other !is ChunkType)
+        if (other !is BoxType)
             return false
 
         return bytes.contentEquals(other.bytes)
@@ -46,35 +43,20 @@ data class ChunkType internal constructor(
 
     companion object {
 
-        /** Image header */
-        val IHDR = of("IHDR".encodeToByteArray())
+        /** File Type box, the first box */
+        val FTYP = of("fytp".encodeToByteArray())
 
-        /** Image data */
-        val IDAT = of("IDAT".encodeToByteArray())
+        /** Meta Box for metadata, usually the second box */
+        val META = of("meta".encodeToByteArray())
 
-        /** Image end */
-        val IEND = of("IEND".encodeToByteArray())
-
-        /** Time */
-        val TIME = of("tIME".encodeToByteArray())
-
-        /** Text */
-        val TEXT = of("tEXt".encodeToByteArray())
-
-        /** Compressed text */
-        val ZTXT = of("zTXt".encodeToByteArray())
-
-        /** UTF-8 text, for example XMP */
-        val ITXT = of("iTXt".encodeToByteArray())
-
-        /** EXIF (since 2017) */
-        val EXIF = of("eXIf".encodeToByteArray())
+        /** Media Data box, of which there can be many at the end. */
+        val MDAT = of("mdat".encodeToByteArray())
 
         @Suppress("MagicNumber")
-        fun of(typeBytes: ByteArray): ChunkType {
+        fun of(typeBytes: ByteArray): BoxType {
 
-            require(typeBytes.size == PngConstants.TPYE_LENGTH) {
-                "ChunkType must be always 4 bytes!"
+            require(typeBytes.size == HeicConstants.TPYE_LENGTH) {
+                "BoxType must be always 4 bytes!"
             }
 
             @Suppress("UnnecessaryParentheses")
@@ -84,20 +66,20 @@ data class ChunkType internal constructor(
                     (typeBytes[2].toInt() shl 8) or
                     (typeBytes[3].toInt() shl 0)
 
-            return ChunkType(
+            return BoxType(
                 bytes = typeBytes,
-                name = getChunkTypeName(intValue),
+                name = getBoxTypeName(intValue),
                 intValue = intValue
             )
         }
 
         @Suppress("MagicNumber")
-        fun getChunkTypeName(chunkType: Int): String =
+        fun getBoxTypeName(boxType: Int): String =
             charArrayOf(
-                (0xFF and (chunkType shr 24)).toChar(),
-                (0xFF and (chunkType shr 16)).toChar(),
-                (0xFF and (chunkType shr 8)).toChar(),
-                (0xFF and (chunkType shr 0)).toChar()
+                (0xFF and (boxType shr 24)).toChar(),
+                (0xFF and (boxType shr 16)).toChar(),
+                (0xFF and (boxType shr 8)).toChar(),
+                (0xFF and (boxType shr 0)).toChar()
             ).concatToString()
     }
 }

@@ -117,12 +117,12 @@ object PngWriter {
         val dataLength = data?.size ?: 0
 
         byteWriter.writeInt(dataLength)
-        byteWriter.write(chunkType.array)
+        byteWriter.write(chunkType.bytes)
 
         if (data != null)
             byteWriter.write(data)
 
-        val crc1 = startPartialCrc(chunkType.array)
+        val crc1 = startPartialCrc(chunkType.bytes)
 
         val crc2 = if (data == null)
             crc1

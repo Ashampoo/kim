@@ -17,6 +17,7 @@
 package com.ashampoo.kim.format
 
 import com.ashampoo.kim.common.ImageReadException
+import com.ashampoo.kim.format.heic.HeicImageParser
 import com.ashampoo.kim.format.jpeg.JpegImageParser
 import com.ashampoo.kim.format.png.PngImageParser
 import com.ashampoo.kim.format.raf.RafImageParser
@@ -46,6 +47,8 @@ fun interface ImageParser {
                 ImageFormat.ORF -> TiffImageParser
 
                 ImageFormat.RAF -> RafImageParser
+
+                ImageFormat.HEIC -> HeicImageParser
 
                 else -> null
             }
