@@ -23,8 +23,8 @@ import com.ashampoo.kim.input.ByteArrayByteReader
 class FileTypeBox(
     offset: Long,
     length: Long,
-    bytes: ByteArray
-) : Box(offset, BoxType.FTYP, length, bytes) {
+    payload: ByteArray
+) : Box(offset, BoxType.FTYP, length, payload) {
 
     val majorBrand: String
 
@@ -37,7 +37,7 @@ class FileTypeBox(
 
     init {
 
-        val byteReader = ByteArrayByteReader(bytes)
+        val byteReader = ByteArrayByteReader(payload)
 
         majorBrand = byteReader
             .read4BytesAsInt("majorBrand", HeicConstants.HEIC_BYTE_ORDER)

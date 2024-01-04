@@ -28,7 +28,7 @@ object HeicImageParser : ImageParser {
 
     private fun parseMetadata(byteReader: PositionTrackingByteReaderDecorator): ImageMetadata {
 
-        val allBoxes = BoxReader.readBoxes(byteReader, version = -1)
+        val allBoxes = BoxReader.readBoxes(byteReader)
 
         // TODO()
 

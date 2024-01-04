@@ -15,17 +15,20 @@
  */
 package com.ashampoo.kim.format.heic.boxes
 
+import com.ashampoo.kim.common.toHex
 import com.ashampoo.kim.format.heic.BoxType
-import com.ashampoo.kim.format.heic.HeicConstants
 import com.ashampoo.kim.format.heic.HeicConstants.HEIC_BYTE_ORDER
 import com.ashampoo.kim.input.ByteArrayByteReader
 
 class ItemInformationBox(
     offset: Long,
     length: Long,
-    bytes: ByteArray,
-    version: Int
-) : Box(offset, BoxType.IINF, length, bytes) {
+    payload: ByteArray
+) : Box(offset, BoxType.IINF, length, payload)  {
+
+    val version: Int
+
+    val flags: ByteArray
 
     val entryCount: Int
 
@@ -34,7 +37,13 @@ class ItemInformationBox(
 
     init {
 
-        val byteReader = ByteArrayByteReader(bytes)
+        val byteReader = ByteArrayByteReader(payload)
+
+        println(payload.toHex())
+
+        version = byteReader.readByteAsInt()
+
+        flags = byteReader.readBytes("flags", 3)
 
         if (version == 0)
             entryCount = byteReader.read2BytesAsInt("entryCount", HEIC_BYTE_ORDER)

@@ -15,18 +15,15 @@
  */
 package com.ashampoo.kim.format.heic.boxes
 
-import com.ashampoo.kim.common.toFourCCTypeString
 import com.ashampoo.kim.format.heic.BoxReader
 import com.ashampoo.kim.format.heic.BoxType
-import com.ashampoo.kim.format.heic.HeicConstants
 import com.ashampoo.kim.input.ByteArrayByteReader
 
 class ItemPropertyContainerBox(
     offset: Long,
     length: Long,
-    bytes: ByteArray,
-    version: Int
-) : Box(offset, BoxType.IPCO, length, bytes) {
+    payload: ByteArray
+) : Box(offset, BoxType.IPCO, length, payload) {
 
     val boxes: List<Box>
 
@@ -35,8 +32,8 @@ class ItemPropertyContainerBox(
 
     init {
 
-        val byteReader = ByteArrayByteReader(bytes)
+        val byteReader = ByteArrayByteReader(payload)
 
-        boxes = BoxReader.readBoxes(byteReader, version)
+        boxes = BoxReader.readBoxes(byteReader)
     }
 }

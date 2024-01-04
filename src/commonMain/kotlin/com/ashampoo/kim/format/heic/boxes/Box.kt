@@ -21,7 +21,8 @@ open class Box(
     val offset: Long,
     val type: BoxType,
     val length: Long,
-    val bytes: ByteArray
+    /* Payload bytes, not including type & length bytes */
+    val payload: ByteArray
 ) {
 
     override fun toString(): String =

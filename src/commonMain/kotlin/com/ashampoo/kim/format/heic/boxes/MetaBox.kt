@@ -15,8 +15,6 @@
  */
 package com.ashampoo.kim.format.heic.boxes
 
-import com.ashampoo.kim.common.decodeLatin1BytesToString
-import com.ashampoo.kim.common.toSingleNumberHexes
 import com.ashampoo.kim.format.heic.BoxReader
 import com.ashampoo.kim.format.heic.BoxType
 import com.ashampoo.kim.input.ByteArrayByteReader
@@ -27,8 +25,8 @@ import com.ashampoo.kim.input.ByteArrayByteReader
 class MetaBox(
     offset: Long,
     length: Long,
-    bytes: ByteArray
-) : Box(offset, BoxType.FTYP, length, bytes) {
+    payload: ByteArray
+) : Box(offset, BoxType.FTYP, length, payload) {
 
     val version: Int
 
@@ -41,12 +39,12 @@ class MetaBox(
 
     init {
 
-        val byteReader = ByteArrayByteReader(bytes)
+        val byteReader = ByteArrayByteReader(payload)
 
         version = byteReader.readByteAsInt()
 
         flags = byteReader.readBytes("flags", 3)
 
-        boxes = BoxReader.readBoxes(byteReader, version)
+        boxes = BoxReader.readBoxes(byteReader)
     }
 }

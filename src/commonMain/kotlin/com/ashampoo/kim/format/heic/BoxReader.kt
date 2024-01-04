@@ -27,13 +27,13 @@ object BoxReader {
 
     private val BYTE_ORDER = HeicConstants.HEIC_BYTE_ORDER
 
-    fun readBoxes(byteReader: PositionTrackingByteReader, version: Int): List<Box> {
+    fun readBoxes(byteReader: PositionTrackingByteReader): List<Box> {
 
         val boxes = mutableListOf<Box>()
 
         while (true) {
 
-            val box = readBox(byteReader, version)
+            val box = readBox(byteReader)
 
             if (box == null)
                 break
@@ -44,7 +44,7 @@ object BoxReader {
         return boxes
     }
 
-    fun readBox(byteReader: PositionTrackingByteReader, version: Int): Box? {
+    fun readBox(byteReader: PositionTrackingByteReader): Box? {
 
         /*
          * Check if there are enough bytes for another box.
@@ -84,9 +84,9 @@ object BoxReader {
         return when (type) {
             BoxType.FTYP -> FileTypeBox(offset, actualLength, bytes)
             BoxType.META -> MetaBox(offset, actualLength, bytes)
-            BoxType.IINF -> ItemInformationBox(offset, actualLength, bytes, version)
-            BoxType.IPRP -> ItemPropertiesBox(offset, actualLength, bytes, version)
-            BoxType.IPCO -> ItemPropertyContainerBox(offset, actualLength, bytes, version)
+            BoxType.IINF -> ItemInformationBox(offset, actualLength, bytes)
+            BoxType.IPRP -> ItemPropertiesBox(offset, actualLength, bytes)
+            BoxType.IPCO -> ItemPropertyContainerBox(offset, actualLength, bytes)
             else -> Box(offset, type, actualLength, bytes)
         }
     }
