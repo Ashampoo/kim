@@ -46,7 +46,7 @@ class ByteArrayByteReader(
         this.position = 0
     }
 
-    override fun skipTo(position: Int) {
+    override fun moveTo(position: Int) {
         this.position = position
     }
 

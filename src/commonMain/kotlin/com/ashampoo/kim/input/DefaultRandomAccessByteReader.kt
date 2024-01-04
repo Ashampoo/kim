@@ -62,7 +62,7 @@ class DefaultRandomAccessByteReader(
         position = 0
     }
 
-    override fun skipTo(position: Int) {
+    override fun moveTo(position: Int) {
 
         require(position <= contentLength - 1) {
             "Can't skip after max length: $position > ${contentLength - 1}"

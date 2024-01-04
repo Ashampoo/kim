@@ -19,7 +19,7 @@ interface RandomAccessByteReader : ByteReader {
 
     fun reset()
 
-    fun skipTo(position: Int)
+    fun moveTo(position: Int)
 
     fun readBytes(start: Int, length: Int): ByteArray
 

@@ -45,7 +45,7 @@ object NefPreviewExtractor : TiffPreviewExtractor {
         if (previewLength == 0)
             return null
 
-        randomAccessByteReader.skipTo(previewImageStart)
+        randomAccessByteReader.moveTo(previewImageStart)
 
         val previewBytes = randomAccessByteReader.readBytes(previewLength)
 
