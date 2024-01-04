@@ -87,13 +87,12 @@ data class ChunkType internal constructor(
         }
 
         @Suppress("MagicNumber")
-        fun getChunkTypeName(chunkType: Int): String {
-            val result = StringBuilder()
-            result.append((0xFF and (chunkType shr 24)).toChar())
-            result.append((0xFF and (chunkType shr 16)).toChar())
-            result.append((0xFF and (chunkType shr 8)).toChar())
-            result.append((0xFF and (chunkType shr 0)).toChar())
-            return result.toString()
-        }
+        fun getChunkTypeName(chunkType: Int): String =
+            charArrayOf(
+                (0xFF and (chunkType shr 24)).toChar(),
+                (0xFF and (chunkType shr 16)).toChar(),
+                (0xFF and (chunkType shr 8)).toChar(),
+                (0xFF and (chunkType shr 0)).toChar()
+            ).concatToString()
     }
 }
