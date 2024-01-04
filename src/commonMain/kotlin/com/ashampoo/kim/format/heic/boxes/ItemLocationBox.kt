@@ -21,11 +21,11 @@ import com.ashampoo.kim.format.heic.BoxType
 import com.ashampoo.kim.format.heic.HeicConstants.HEIC_BYTE_ORDER
 import com.ashampoo.kim.input.ByteArrayByteReader
 
-class ItemInformationBox(
+class ItemLocationBox(
     offset: Long,
     length: Long,
     payload: ByteArray
-) : Box(offset, BoxType.IINF, length, payload)  {
+) : Box(offset, BoxType.ILOC, length, payload)  {
 
     val version: Int
 
@@ -34,7 +34,7 @@ class ItemInformationBox(
     val entryCount: Int
 
     override fun toString(): String =
-        "IINF ($entryCount entries)"
+        "ILOC ($entryCount entries)"
 
     init {
 
