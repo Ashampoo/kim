@@ -14,6 +14,6 @@ This product includes images from Unplash provided under
 the Unsplash license (https://unsplash.com/license).
 These files are used as test data.
 
-The sample images photo_62.nef, photo_63.arw, photo_64.rw2 and photo_56.orf are
-taken from https://github.com/drewnoakes/metadata-extractor-images under the note
-"You are free to use these media files however you wish.".
+The sample images photo_62.nef, photo_63.arw, photo_64.rw2, photo_56.orf and
+photo_72.hif are taken from https://github.com/drewnoakes/metadata-extractor-images
+under the note "You are free to use these media files however you wish".
