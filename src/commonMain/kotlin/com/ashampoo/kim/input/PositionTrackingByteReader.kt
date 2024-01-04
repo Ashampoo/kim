@@ -50,7 +50,7 @@ class PositionTrackingByteReader(
 
     override fun readBytes(count: Int): ByteArray {
 
-        val bytes = byteReader.readBytes(2)
+        val bytes = byteReader.readBytes(count)
 
         currentPosition += bytes.size
 
