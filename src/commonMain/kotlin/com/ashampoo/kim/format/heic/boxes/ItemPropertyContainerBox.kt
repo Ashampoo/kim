@@ -16,23 +16,28 @@
 package com.ashampoo.kim.format.heic.boxes
 
 import com.ashampoo.kim.common.toFourCCTypeString
-import com.ashampoo.kim.common.toHex
-import com.ashampoo.kim.common.toSingleNumberHexes
 import com.ashampoo.kim.format.heic.BoxReader
 import com.ashampoo.kim.format.heic.BoxType
 import com.ashampoo.kim.format.heic.HeicConstants
 import com.ashampoo.kim.input.ByteArrayByteReader
 
-class ItemDataBox(
+class ItemPropertyContainerBox(
     offset: Long,
     length: Long,
     bytes: ByteArray
-) : Box(offset, BoxType.IDAT, length, bytes) {
+) : Box(offset, BoxType.IPCO, length, bytes) {
 
-    override fun toString(): String = "IDAT"
+    val boxes: List<Box>
+
+    override fun toString(): String =
+        "IPCO boxes=${boxes.map { it.type }}"
 
     init {
 
-        println(bytes.toHex())
+        val byteReader = ByteArrayByteReader(bytes)
+
+        boxes = BoxReader.readBoxes(byteReader)
+
+        println(this)
     }
 }

@@ -48,7 +48,5 @@ class MetaBox(
         flags = byteReader.readBytes("flags", 3)
 
         boxes = BoxReader.readBoxes(byteReader)
-
-        println(this)
     }
 }

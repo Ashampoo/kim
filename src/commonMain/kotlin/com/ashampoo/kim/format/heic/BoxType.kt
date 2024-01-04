@@ -56,13 +56,15 @@ data class BoxType internal constructor(
 
         /**
          * Item Properties Box
+         *
+         * Contains IPCO & COLR
          */
         val IPRP = of("iprp".encodeToByteArray())
 
         /**
-         * Item Data Box
+         * Item Property Container Box
          */
-        val IDAT = of("idat".encodeToByteArray())
+        val IPCO = of("ipco".encodeToByteArray())
 
         /** Media Data box, of which there can be many at the end. */
         val MDAT = of("mdat".encodeToByteArray())

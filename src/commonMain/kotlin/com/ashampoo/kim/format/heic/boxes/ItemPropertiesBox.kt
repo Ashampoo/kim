@@ -37,7 +37,5 @@ class ItemPropertiesBox(
         val byteReader = ByteArrayByteReader(bytes)
 
         boxes = BoxReader.readBoxes(byteReader)
-
-        println(this)
     }
 }
