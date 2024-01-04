@@ -157,6 +157,7 @@ enum class ImageFormat(
                 /* Check other common formats. */
                 bytes.startsWith(ImageFormatMagicNumbers.png) -> ImageFormat.PNG
                 bytes.startsWithNullable(ImageFormatMagicNumbers.webP) -> ImageFormat.WEBP
+                bytes.startsWithNullable(ImageFormatMagicNumbers.heic) -> ImageFormat.HEIC
                 /* Canon CR2 et al *must* be checked before TIFF, because they are based on TIFF */
                 bytes.startsWith(ImageFormatMagicNumbers.cr2) -> ImageFormat.CR2
                 bytes.startsWith(ImageFormatMagicNumbers.rw2) -> ImageFormat.RW2

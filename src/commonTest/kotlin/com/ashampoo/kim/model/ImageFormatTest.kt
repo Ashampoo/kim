@@ -50,6 +50,7 @@ class ImageFormatTest {
                 index == KimTestData.DNG_ARW_TEST_IMAGE_INDEX -> ImageFormat.TIFF
                 index == KimTestData.DNG_RW2_TEST_IMAGE_INDEX -> ImageFormat.TIFF
                 index == KimTestData.DNG_ORF_TEST_IMAGE_INDEX -> ImageFormat.TIFF
+                index == KimTestData.HEIC_TEST_IMAGE_INDEX -> ImageFormat.HEIC
                 else -> null
             }
 

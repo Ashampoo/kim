@@ -80,6 +80,11 @@ object ImageFormatMagicNumbers {
         0x52, 0x49, 0x46, 0x46, null, null, null, null, 0x57, 0x45, 0x42, 0x50
     )
 
+    /* 4 bytes + "ftypheic" */
+    val heic: List<Byte?> = byteListOf(
+        null, null, null, null, 0x66, 0x74, 0x79, 0x70, 0x68, 0x65, 0x69, 0x63
+    )
+
     private fun byteListOf(vararg ints: Int?): List<Byte?> =
         ints.map { it?.toByte() }
 
