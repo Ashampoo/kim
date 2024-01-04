@@ -56,6 +56,28 @@ interface ByteReader : Closeable {
         return bytes
     }
 
+    fun readNullTerminatedString(fieldName: String): String {
+
+        val bytes = mutableListOf<Byte>()
+
+        var byte: Byte?
+
+        while (true) {
+
+            byte = readByte()
+
+            if (byte == null)
+                throw ImageReadException("No bytes for $fieldName, never reached terminator byte.")
+
+            if (byte.toInt() == 0)
+                break
+
+            bytes.add(byte)
+        }
+
+        return bytes.toByteArray().decodeToString()
+    }
+
     /** Reads one byte as unsigned number, also known as "byte" or "UInt8" */
     fun readByteAsInt(): Int =
         readByte()?.let { it.toInt() and 0xFF } ?: -1

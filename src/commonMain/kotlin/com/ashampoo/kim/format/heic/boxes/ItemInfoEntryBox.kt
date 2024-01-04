@@ -16,6 +16,7 @@
  */
 package com.ashampoo.kim.format.heic.boxes
 
+import com.ashampoo.kim.common.toFourCCTypeString
 import com.ashampoo.kim.format.heic.BoxType
 import com.ashampoo.kim.format.heic.HeicConstants.HEIC_BYTE_ORDER
 import com.ashampoo.kim.input.ByteArrayByteReader
@@ -34,11 +35,17 @@ class ItemInfoEntryBox(
 
     val itemProtectionIndex: Int
 
+    val itemType: Int
+
+    val itemName: String
+
     override fun toString(): String =
         "INFE " +
             "version=$version " +
             "itemId=$itemId " +
-            "itemProtectionIndex=$itemProtectionIndex"
+            "itemProtectionIndex=$itemProtectionIndex " +
+            "itemType=${itemType.toFourCCTypeString()} " +
+            "itemName=$itemName"
 
     init {
 
@@ -46,16 +53,25 @@ class ItemInfoEntryBox(
 
         version = byteReader.readByteAsInt()
 
+        /*
+         * We need more sample files for testing.
+         * Everything I found so far was always version 2.
+         * We don't want to write parser logic that we can't actually verify.
+         */
+        check(version == 2) {
+            "Unsupported version for INFE: $version"
+        }
+
         flags = byteReader.readBytes("flags", 3)
 
-        itemId = if (version > 2)
-            byteReader.read4BytesAsInt("itemId", HEIC_BYTE_ORDER)
-        else
-            byteReader.read2BytesAsInt("itemId", HEIC_BYTE_ORDER)
+        itemId = byteReader.read2BytesAsInt("itemId", HEIC_BYTE_ORDER)
 
         itemProtectionIndex =
             byteReader.read2BytesAsInt("itemProtectionIndex", HEIC_BYTE_ORDER)
 
-        println(this)
+        itemType = byteReader.read4BytesAsInt("itemType", HEIC_BYTE_ORDER)
+
+        /* Item name was always empty in test files. */
+        itemName = byteReader.readNullTerminatedString("itemName")
     }
 }
