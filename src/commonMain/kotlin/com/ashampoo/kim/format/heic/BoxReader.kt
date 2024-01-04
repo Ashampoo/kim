@@ -18,21 +18,20 @@ package com.ashampoo.kim.format.heic
 import com.ashampoo.kim.format.heic.boxes.Box
 import com.ashampoo.kim.format.heic.boxes.FtypBox
 import com.ashampoo.kim.format.heic.boxes.MetaBox
+import com.ashampoo.kim.input.PositionTrackingByteReader
 import com.ashampoo.kim.input.PositionTrackingByteReaderDecorator
 
 object BoxReader {
 
     private val BYTE_ORDER = HeicConstants.HEIC_BYTE_ORDER
 
-    fun readBoxes(byteReader: PositionTrackingByteReaderDecorator): List<Box> {
+    fun readBoxes(byteReader: PositionTrackingByteReader): List<Box> {
 
         val boxes = mutableListOf<Box>()
 
         while (true) {
 
             val box = readBox(byteReader)
-
-            println(box)
 
             if (box == null)
                 break
@@ -43,7 +42,7 @@ object BoxReader {
         return boxes
     }
 
-    fun readBox(byteReader: PositionTrackingByteReaderDecorator): Box? {
+    fun readBox(byteReader: PositionTrackingByteReader): Box? {
 
         /*
          * Check if there are enough bytes for another box.

@@ -21,6 +21,9 @@ import com.ashampoo.kim.format.heic.BoxReader
 import com.ashampoo.kim.format.heic.BoxType
 import com.ashampoo.kim.input.ByteArrayByteReader
 
+/**
+ * The Meta Box is a container for several metadata boxes.
+ */
 class MetaBox(
     offset: Long,
     length: Long,
@@ -31,6 +34,11 @@ class MetaBox(
 
     val flags: ByteArray
 
+    val boxes: List<Box>
+
+    override fun toString(): String =
+        "META Box version=$version flags=$flags boxes=${boxes.map { it.type }}"
+
     init {
 
         val byteReader = ByteArrayByteReader(bytes)
@@ -39,7 +47,6 @@ class MetaBox(
 
         flags = byteReader.readBytes("flags", 3)
 
-
-
+        boxes = BoxReader.readBoxes(byteReader)
     }
 }
