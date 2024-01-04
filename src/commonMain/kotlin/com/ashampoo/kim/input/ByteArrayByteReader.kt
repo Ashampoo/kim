@@ -17,6 +17,14 @@ package com.ashampoo.kim.input
 
 import kotlin.math.min
 
+/**
+ * ByteArray backed ByteReader
+ *
+ * This is intended to be used for EXIF, because this is at max 64 kb in size.
+ *
+ * Note that huge files in production shouldn't be loaded into a ByteArray.
+ * For unit the purpose of unit tests this is acceptable.
+ */
 class ByteArrayByteReader(
     private val bytes: ByteArray
 ) : RandomAccessByteReader {
