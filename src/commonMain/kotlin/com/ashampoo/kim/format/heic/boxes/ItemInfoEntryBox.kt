@@ -32,8 +32,13 @@ class ItemInfoEntryBox(
 
     val itemId: Int
 
+    val itemProtectionIndex: Int
+
     override fun toString(): String =
-        "INFE version=$version itemId=$itemId"
+        "INFE " +
+            "version=$version " +
+            "itemId=$itemId " +
+            "itemProtectionIndex=$itemProtectionIndex"
 
     init {
 
@@ -43,9 +48,13 @@ class ItemInfoEntryBox(
 
         flags = byteReader.readBytes("flags", 3)
 
+        itemId = if (version > 2)
+            byteReader.read4BytesAsInt("itemId", HEIC_BYTE_ORDER)
+        else
+            byteReader.read2BytesAsInt("itemId", HEIC_BYTE_ORDER)
 
-
-        itemId = byteReader.read2BytesAsInt("itemId", HEIC_BYTE_ORDER)
+        itemProtectionIndex =
+            byteReader.read2BytesAsInt("itemProtectionIndex", HEIC_BYTE_ORDER)
 
         println(this)
     }
