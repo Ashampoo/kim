@@ -148,17 +148,9 @@ class ItemLocationBox(
             }
         }
 
-        extents.sortedWith(extentComparator)
+        /* Sort by offset to support reading fields in order. */
+        extents.sortBy { it.offset }
 
         this.extents = extents
-    }
-
-    companion object {
-
-        val extentComparator: Comparator<Extent> = object : Comparator<Extent> {
-            override fun compare(a: Extent, b: Extent): Int {
-                return if ((a.offset < b.offset)) -1 else (if ((a.offset == b.offset)) 0 else 1)
-            }
-        }
     }
 }

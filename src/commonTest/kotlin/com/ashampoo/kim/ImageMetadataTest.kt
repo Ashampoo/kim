@@ -34,6 +34,8 @@ class ImageMetadataTest {
 
             val bytes = KimTestData.getBytesOf(index)
 
+            println(KimTestData.getFileName(index))
+
             val metadata = Kim.readMetadata(bytes)
 
             val actualToString = metadata.toString().encodeToByteArray()

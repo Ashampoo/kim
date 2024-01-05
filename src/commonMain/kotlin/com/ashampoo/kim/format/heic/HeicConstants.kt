@@ -28,4 +28,7 @@ object HeicConstants {
     /* 4 length bytes + 4 type bytes */
     const val BOX_HEADER_LENGTH = 8
 
+    const val ITEM_TYPE_EXIF = 1165519206
+    const val ITEM_TYPE_MIME = 1835625829
+    const val ITEM_TYPE_JPEG = 1785750887
 }

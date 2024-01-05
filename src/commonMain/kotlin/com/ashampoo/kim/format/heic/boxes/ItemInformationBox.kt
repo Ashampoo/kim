@@ -16,6 +16,7 @@
  */
 package com.ashampoo.kim.format.heic.boxes
 
+import com.ashampoo.kim.common.toHex
 import com.ashampoo.kim.format.heic.BoxReader
 import com.ashampoo.kim.format.heic.BoxType
 import com.ashampoo.kim.format.heic.HeicConstants.HEIC_BYTE_ORDER
@@ -33,10 +34,10 @@ class ItemInformationBox(
 
     val entryCount: Int
 
-    val boxes: List<Box>
+    val map: Map<Int, ItemInfoEntryBox>
 
     override fun toString(): String =
-        "IINF ($entryCount entries) = ${boxes.map { it.type }}"
+        "IINF version=$version flags=${flags.toHex()} ($entryCount entries)"
 
     init {
 
@@ -51,6 +52,17 @@ class ItemInformationBox(
         else
             entryCount = byteReader.read4BytesAsInt("entryCount", HEIC_BYTE_ORDER)
 
-        boxes = BoxReader.readBoxes(byteReader)
+        val boxes = BoxReader.readBoxes(byteReader)
+
+        val map = mutableMapOf<Int, ItemInfoEntryBox>()
+
+        for (box in boxes) {
+
+            box as ItemInfoEntryBox
+
+            map.put(box.itemId, box)
+        }
+
+        this.map = map
     }
 }

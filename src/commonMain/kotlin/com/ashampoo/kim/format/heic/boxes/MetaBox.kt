@@ -16,6 +16,7 @@
  */
 package com.ashampoo.kim.format.heic.boxes
 
+import com.ashampoo.kim.common.toHex
 import com.ashampoo.kim.format.heic.BoxReader
 import com.ashampoo.kim.format.heic.BoxType
 import com.ashampoo.kim.input.ByteArrayByteReader
@@ -36,7 +37,7 @@ class MetaBox(
     val boxes: List<Box>
 
     override fun toString(): String =
-        "META Box version=$version flags=$flags boxes=${boxes.map { it.type }}"
+        "META Box version=$version flags=${flags.toHex()} boxes=${boxes.map { it.type }}"
 
     init {
 

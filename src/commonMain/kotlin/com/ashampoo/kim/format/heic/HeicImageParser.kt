@@ -18,6 +18,10 @@ package com.ashampoo.kim.format.heic
 
 import com.ashampoo.kim.format.ImageMetadata
 import com.ashampoo.kim.format.ImageParser
+import com.ashampoo.kim.format.heic.HeicConstants.ITEM_TYPE_EXIF
+import com.ashampoo.kim.format.heic.HeicConstants.ITEM_TYPE_JPEG
+import com.ashampoo.kim.format.heic.HeicConstants.ITEM_TYPE_MIME
+import com.ashampoo.kim.format.heic.boxes.ItemInformationBox
 import com.ashampoo.kim.format.heic.boxes.ItemLocationBox
 import com.ashampoo.kim.format.heic.boxes.MetaBox
 import com.ashampoo.kim.input.ByteReader
@@ -38,11 +42,31 @@ object HeicImageParser : ImageParser {
         val metaBox = allBoxes.find { it.type == BoxType.META } as MetaBox
 
         val itemLocation = metaBox.boxes.find { it.type == BoxType.ILOC } as ItemLocationBox
+        val itemInfo = metaBox.boxes.find { it.type == BoxType.IINF } as ItemInformationBox
 
         val extents = itemLocation.extents
 
-        for (extent in extents)
-            println(extent)
+        for (extent in extents) {
+
+            val itemId = extent.itemId
+
+            val itemInfo = itemInfo.map.get(itemId) ?: continue
+
+            if (itemInfo.itemType == ITEM_TYPE_EXIF) {
+
+                println("EXIF ${extent.offset} $itemId = $itemInfo")
+            }
+
+            if (itemInfo.itemType == ITEM_TYPE_MIME) {
+
+                println("MIME ${extent.offset} $itemId = $itemInfo")
+            }
+
+            if (itemInfo.itemType == ITEM_TYPE_JPEG) {
+
+                println("JPEG ${extent.offset} $itemId = $itemInfo")
+            }
+        }
 
         return ImageMetadata(
             imageFormat = ImageFormat.HEIC,

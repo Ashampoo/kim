@@ -17,6 +17,7 @@
 package com.ashampoo.kim.format.heic.boxes
 
 import com.ashampoo.kim.common.toFourCCTypeString
+import com.ashampoo.kim.common.toHex
 import com.ashampoo.kim.format.heic.BoxType
 import com.ashampoo.kim.format.heic.HeicConstants.HEIC_BYTE_ORDER
 import com.ashampoo.kim.input.ByteArrayByteReader
@@ -42,6 +43,7 @@ class ItemInfoEntryBox(
     override fun toString(): String =
         "INFE " +
             "version=$version " +
+            "flags=${flags.toHex()} " +
             "itemId=$itemId " +
             "itemProtectionIndex=$itemProtectionIndex " +
             "itemType=${itemType.toFourCCTypeString()} " +
