@@ -18,6 +18,8 @@ package com.ashampoo.kim.format.heic
 
 import com.ashampoo.kim.format.ImageMetadata
 import com.ashampoo.kim.format.ImageParser
+import com.ashampoo.kim.format.heic.boxes.ItemLocationBox
+import com.ashampoo.kim.format.heic.boxes.MetaBox
 import com.ashampoo.kim.input.ByteReader
 import com.ashampoo.kim.input.PositionTrackingByteReaderDecorator
 import com.ashampoo.kim.model.ImageFormat
@@ -30,6 +32,17 @@ object HeicImageParser : ImageParser {
     private fun parseMetadata(byteReader: PositionTrackingByteReaderDecorator): ImageMetadata {
 
         val allBoxes = BoxReader.readBoxes(byteReader)
+
+        println(allBoxes)
+
+        val metaBox = allBoxes.find { it.type == BoxType.META } as MetaBox
+
+        val itemLocation = metaBox.boxes.find { it.type == BoxType.ILOC } as ItemLocationBox
+
+        val extents = itemLocation.extents
+
+        for (extent in extents)
+            println(extent)
 
         TODO()
 

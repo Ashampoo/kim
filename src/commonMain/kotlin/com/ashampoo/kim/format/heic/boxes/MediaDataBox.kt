@@ -16,36 +16,23 @@
  */
 package com.ashampoo.kim.format.heic.boxes
 
-import com.ashampoo.kim.format.heic.BoxReader
 import com.ashampoo.kim.format.heic.BoxType
-import com.ashampoo.kim.input.ByteArrayByteReader
 
 /**
- * The Meta Box is a container for several metadata boxes.
+ * The Media Data Box contains all the actual data.
+ * This includes the EXIF bytes.
  */
-class MetaBox(
+class MediaDataBox(
     offset: Long,
     length: Long,
     payload: ByteArray
-) : Box(offset, BoxType.META, length, payload) {
-
-    val version: Int
-
-    val flags: ByteArray
-
-    val boxes: List<Box>
+) : Box(offset, BoxType.MDAT, length, payload) {
 
     override fun toString(): String =
-        "META Box version=$version flags=$flags boxes=${boxes.map { it.type }}"
+        "MDAT Box"
 
     init {
 
-        val byteReader = ByteArrayByteReader(payload)
 
-        version = byteReader.readByteAsInt()
-
-        flags = byteReader.readBytes("flags", 3)
-
-        boxes = BoxReader.readBoxes(byteReader)
     }
 }
