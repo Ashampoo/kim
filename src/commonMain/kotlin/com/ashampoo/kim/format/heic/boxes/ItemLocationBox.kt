@@ -145,10 +145,3 @@ class ItemLocationBox(
         }
     }
 }
-
-data class Extent(
-    val itemId: Int,
-    val index: Long?,
-    val offset: Long,
-    val length: Long
-)
