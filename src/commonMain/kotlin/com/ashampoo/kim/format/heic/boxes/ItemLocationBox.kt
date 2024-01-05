@@ -24,16 +24,50 @@ class ItemLocationBox(
     offset: Long,
     length: Long,
     payload: ByteArray
-) : Box(offset, BoxType.ILOC, length, payload)  {
+) : Box(offset, BoxType.ILOC, length, payload) {
 
+    /**
+     * The version of the box.
+     */
     val version: Int
 
+    /**
+     * Flags that provide additional information about the box.
+     */
     val flags: ByteArray
 
-    val entryCount: Int
+    /**
+     * The size (in bytes) of the offset field in each item location entry.
+     */
+    val offsetSize: Int
+
+    /**
+     * The size (in bytes) of the length field in each item location entry.
+     */
+    val lengthSize: Int
+
+    /**
+     * The size (in bytes) of the base offset field in each item location entry.
+     */
+    val baseOffsetSize: Int
+
+    /**
+     * This part contains the actual entries describing the location of items within the file.
+     */
+    val indexSize: Int
+
+    val itemCount: Int
+
+    val extents: List<Extent>
 
     override fun toString(): String =
-        "ILOC ($entryCount entries)"
+        "ILOC " +
+            "offsetSize=$offsetSize " +
+            "lengthSize=$lengthSize " +
+            "baseOffsetSize=$baseOffsetSize " +
+            "indexSize=$indexSize " +
+            "itemCount=$itemCount " +
+            "extents=$extents"
 
     init {
 
@@ -41,13 +75,80 @@ class ItemLocationBox(
 
         version = byteReader.readByteAsInt()
 
+        check(version == 1) {
+            "Unsupported ILOC version: $version"
+        }
+
         flags = byteReader.readBytes("flags", 3)
 
-        if (version == 0)
-            entryCount = byteReader.read2BytesAsInt("entryCount", HEIC_BYTE_ORDER)
-        else
-            entryCount = byteReader.read4BytesAsInt("entryCount", HEIC_BYTE_ORDER)
+        val offsetAndLengthSize = byteReader.readByteAsInt()
+        offsetSize = (offsetAndLengthSize and 0xF0) shr 4
+        lengthSize = (offsetAndLengthSize and 0x0F)
 
-        println("Entries: $entryCount")
+        val baseOffsetSizeAndIndexSize = byteReader.readByteAsInt()
+        baseOffsetSize = (baseOffsetSizeAndIndexSize and 0xF0) shr 4
+        indexSize = (baseOffsetSizeAndIndexSize and 0x0F)
+
+        itemCount = byteReader.read2BytesAsInt("itemCount", HEIC_BYTE_ORDER)
+
+        val extents = mutableListOf<Extent>()
+
+        repeat(itemCount) {
+
+            val itemId = byteReader.read2BytesAsInt("itemId", HEIC_BYTE_ORDER)
+
+            val constructionMethodHolder = byteReader.read2BytesAsInt("constructionMethod", HEIC_BYTE_ORDER)
+            val constructionMethod = (constructionMethodHolder and 0x000F)
+
+            val dataReferenceIndex = byteReader.read2BytesAsInt("dataReferenceIndex", HEIC_BYTE_ORDER)
+
+            val baseOffset: Long = when (baseOffsetSize) {
+                4 -> byteReader.read4BytesAsInt("baseOffset", HEIC_BYTE_ORDER).toLong()
+                8 -> byteReader.read8BytesAsLong("baseOffset", HEIC_BYTE_ORDER)
+                else -> 0
+            }
+
+            val extentCount = byteReader.read2BytesAsInt("extentCount", HEIC_BYTE_ORDER)
+
+            repeat(extentCount) {
+
+                val extentIndex: Long? = if (indexSize > 0)
+                    byteReader.readXBytesAtInt("extentIndex", indexSize, HEIC_BYTE_ORDER)
+                else
+                    null
+
+                val extentOffset = byteReader.readXBytesAtInt("extentOffset", offsetSize, HEIC_BYTE_ORDER)
+                val extentLength = byteReader.readXBytesAtInt("extentLength", lengthSize, HEIC_BYTE_ORDER)
+
+                extents.add(
+                    Extent(
+                        itemId = itemId,
+                        index = extentIndex,
+                        offset = extentOffset + baseOffset,
+                        length = extentLength
+                    )
+                )
+            }
+        }
+
+        extents.sortedWith(extentComparator)
+
+        this.extents = extents
+    }
+
+    companion object {
+
+        val extentComparator: Comparator<Extent> = object : Comparator<Extent> {
+            override fun compare(a: Extent, b: Extent): Int {
+                return if ((a.offset < b.offset)) -1 else (if ((a.offset == b.offset)) 0 else 1)
+            }
+        }
     }
 }
+
+data class Extent(
+    val itemId: Int,
+    val index: Long?,
+    val offset: Long,
+    val length: Long
+)

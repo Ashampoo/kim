@@ -141,6 +141,15 @@ interface ByteReader : Closeable {
         return result
     }
 
+    fun readXBytesAtInt(fieldName: String, byteCount: Int, byteOrder: ByteOrder): Long =
+        when (byteCount) {
+            1 -> readByteAsInt().toLong()
+            2 -> read2BytesAsInt(fieldName, byteOrder).toLong()
+            4 -> read4BytesAsInt(fieldName, byteOrder).toLong()
+            8 -> read8BytesAsLong(fieldName, byteOrder)
+            else -> error("Illegal byteCount specified: $byteCount")
+        }
+
     fun readAndVerifyBytes(fieldName: String, expectedBytes: ByteArray) {
 
         for (index in expectedBytes.indices) {

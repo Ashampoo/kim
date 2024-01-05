@@ -21,6 +21,7 @@ import com.ashampoo.kim.format.heic.boxes.Box
 import com.ashampoo.kim.format.heic.boxes.FileTypeBox
 import com.ashampoo.kim.format.heic.boxes.ItemInfoEntryBox
 import com.ashampoo.kim.format.heic.boxes.ItemInformationBox
+import com.ashampoo.kim.format.heic.boxes.ItemLocationBox
 import com.ashampoo.kim.format.heic.boxes.ItemPropertiesBox
 import com.ashampoo.kim.format.heic.boxes.ItemPropertyContainerBox
 import com.ashampoo.kim.format.heic.boxes.MetaBox
@@ -89,6 +90,7 @@ object BoxReader {
             BoxType.IPRP -> ItemPropertiesBox(offset, actualLength, bytes)
             BoxType.IPCO -> ItemPropertyContainerBox(offset, actualLength, bytes)
             BoxType.INFE -> ItemInfoEntryBox(offset, actualLength, bytes)
+            BoxType.ILOC -> ItemLocationBox(offset, actualLength, bytes)
             else -> Box(offset, type, actualLength, bytes)
         }
     }

@@ -138,6 +138,7 @@ val newBytes = Kim.updateThumbnail(
 ## Limitations
 
 * Inability to update EXIF, IPTC and XMP in JPG files simultaneously.
+* HEIC files are only tested for iPhone SE 3. If you encounter an unsupported file, please contribute it.
 
 ## Contributions
 

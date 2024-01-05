@@ -59,7 +59,7 @@ class ItemInfoEntryBox(
          * We don't want to write parser logic that we can't actually verify.
          */
         check(version == 2) {
-            "Unsupported version for INFE: $version"
+            "Unsupported INFE version: $version"
         }
 
         flags = byteReader.readBytes("flags", 3)
