@@ -44,8 +44,6 @@ object HeicImageParser : ImageParser {
         for (extent in extents)
             println(extent)
 
-        TODO()
-
         return ImageMetadata(
             imageFormat = ImageFormat.HEIC,
             imageSize = null, // TODO

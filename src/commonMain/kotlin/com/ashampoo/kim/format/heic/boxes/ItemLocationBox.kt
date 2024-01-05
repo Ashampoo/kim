@@ -75,7 +75,8 @@ class ItemLocationBox(
 
         version = byteReader.readByteAsInt()
 
-        check(version == 1) {
+        /* Fail fast if the code needs to be updated for a newer version. */
+        check(version in 0..2) {
             "Unsupported ILOC version: $version"
         }
 
@@ -87,18 +88,34 @@ class ItemLocationBox(
 
         val baseOffsetSizeAndIndexSize = byteReader.readByteAsInt()
         baseOffsetSize = (baseOffsetSizeAndIndexSize and 0xF0) shr 4
-        indexSize = (baseOffsetSizeAndIndexSize and 0x0F)
 
-        itemCount = byteReader.read2BytesAsInt("itemCount", HEIC_BYTE_ORDER)
+        if (version in 1..2)
+            indexSize = (baseOffsetSizeAndIndexSize and 0x0F)
+        else
+            indexSize = 0 // Unused
+
+        if (version < 2)
+            itemCount = byteReader.read2BytesAsInt("itemCount", HEIC_BYTE_ORDER)
+        else if (version == 2)
+            itemCount = byteReader.read4BytesAsInt("itemCount", HEIC_BYTE_ORDER)
+        else
+            error("Unknown version $version")
 
         val extents = mutableListOf<Extent>()
 
         repeat(itemCount) {
 
-            val itemId = byteReader.read2BytesAsInt("itemId", HEIC_BYTE_ORDER)
+            val itemId: Int = if (version < 2)
+                byteReader.read2BytesAsInt("itemId", HEIC_BYTE_ORDER)
+            else if (version == 2)
+                byteReader.read4BytesAsInt("itemId", HEIC_BYTE_ORDER)
+            else
+                error("Unknown version $version")
 
-            val constructionMethodHolder = byteReader.read2BytesAsInt("constructionMethod", HEIC_BYTE_ORDER)
-            val constructionMethod = (constructionMethodHolder and 0x000F)
+            if (version in 1..2) {
+                val constructionMethodHolder = byteReader.read2BytesAsInt("constructionMethod", HEIC_BYTE_ORDER)
+                val constructionMethod = (constructionMethodHolder and 0x000F)
+            }
 
             val dataReferenceIndex = byteReader.read2BytesAsInt("dataReferenceIndex", HEIC_BYTE_ORDER)
 
@@ -112,7 +129,7 @@ class ItemLocationBox(
 
             repeat(extentCount) {
 
-                val extentIndex: Long? = if (indexSize > 0)
+                val extentIndex: Long? = if (version in 1..2 && indexSize > 0)
                     byteReader.readXBytesAtInt("extentIndex", indexSize, HEIC_BYTE_ORDER)
                 else
                     null
