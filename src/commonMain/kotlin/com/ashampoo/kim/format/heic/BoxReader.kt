@@ -30,13 +30,16 @@ import com.ashampoo.kim.input.PositionTrackingByteReader
 
 object BoxReader {
 
-    fun readBoxes(byteReader: PositionTrackingByteReader): List<Box> {
+    fun readBoxes(
+        byteReader: PositionTrackingByteReader,
+        skipMediaBox: Boolean = true
+    ): List<Box> {
 
         val boxes = mutableListOf<Box>()
 
         while (true) {
 
-            val box = readBox(byteReader)
+            val box = readBox(byteReader, skipMediaBox)
 
             if (box == null)
                 break
@@ -47,7 +50,10 @@ object BoxReader {
         return boxes
     }
 
-    fun readBox(byteReader: PositionTrackingByteReader): Box? {
+    fun readBox(
+        byteReader: PositionTrackingByteReader,
+        skipMediaBox: Boolean = true
+    ): Box? {
 
         /*
          * Check if there are enough bytes for another box.
@@ -65,6 +71,9 @@ object BoxReader {
         val type = BoxType.of(
             byteReader.readBytes("type", HeicConstants.TPYE_LENGTH)
         )
+
+        if (skipMediaBox && type == BoxType.MDAT)
+            return null
 
         val actualLength: Long = when (length) {
 
