@@ -20,6 +20,8 @@ import com.ashampoo.kim.format.ImageMetadata
 import com.ashampoo.kim.format.ImageParser
 import com.ashampoo.kim.format.heic.HeicConstants.HEIC_BYTE_ORDER
 import com.ashampoo.kim.format.heic.HeicConstants.ITEM_TYPE_EXIF
+import com.ashampoo.kim.format.heic.HeicConstants.ITEM_TYPE_MIME
+import com.ashampoo.kim.format.heic.HeicConstants.TIFF_HEADER_OFFSET_BYTE_COUNT
 import com.ashampoo.kim.format.heic.boxes.ItemInformationBox
 import com.ashampoo.kim.format.heic.boxes.ItemLocationBox
 import com.ashampoo.kim.format.heic.boxes.MetaBox
@@ -46,6 +48,7 @@ object HeicImageParser : ImageParser {
         val itemInfoBox = metaBox.boxes.find { it.type == BoxType.IINF } as ItemInformationBox
 
         var exifBytes: ByteArray? = null
+        var xmp: String? = null
 
         for (extent in itemLocationBox.extents) {
 
@@ -66,8 +69,19 @@ object HeicImageParser : ImageParser {
                 byteReader.skipBytes("offset to TIFF header", tiffHeaderOffset)
 
                 exifBytes = byteReader.readBytes(
-                    extent.length.toInt() - tiffHeaderOffset
+                    extent.length.toInt() - TIFF_HEADER_OFFSET_BYTE_COUNT - tiffHeaderOffset
                 )
+            }
+
+            if (itemInfo.itemType == ITEM_TYPE_MIME) {
+
+                val bytesToSkip = extent.offset - byteReader.position
+
+                byteReader.skipBytes("offset to MIME extent", bytesToSkip.toInt())
+
+                val mimeBytes = byteReader.readBytes(extent.length.toInt())
+
+                xmp = mimeBytes.decodeToString()
             }
         }
 
@@ -79,7 +93,7 @@ object HeicImageParser : ImageParser {
             exif = exif,
             exifBytes = exifBytes,
             iptc = null, // TODO
-            xmp = null // TODO
+            xmp = xmp
         )
     }
 }
