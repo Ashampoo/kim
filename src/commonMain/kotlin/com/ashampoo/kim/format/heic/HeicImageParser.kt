@@ -18,12 +18,12 @@ package com.ashampoo.kim.format.heic
 
 import com.ashampoo.kim.format.ImageMetadata
 import com.ashampoo.kim.format.ImageParser
+import com.ashampoo.kim.format.heic.HeicConstants.HEIC_BYTE_ORDER
 import com.ashampoo.kim.format.heic.HeicConstants.ITEM_TYPE_EXIF
-import com.ashampoo.kim.format.heic.HeicConstants.ITEM_TYPE_JPEG
-import com.ashampoo.kim.format.heic.HeicConstants.ITEM_TYPE_MIME
 import com.ashampoo.kim.format.heic.boxes.ItemInformationBox
 import com.ashampoo.kim.format.heic.boxes.ItemLocationBox
 import com.ashampoo.kim.format.heic.boxes.MetaBox
+import com.ashampoo.kim.format.tiff.TiffReader
 import com.ashampoo.kim.input.ByteReader
 import com.ashampoo.kim.input.PositionTrackingByteReaderDecorator
 import com.ashampoo.kim.model.ImageFormat
@@ -35,44 +35,49 @@ object HeicImageParser : ImageParser {
 
     private fun parseMetadata(byteReader: PositionTrackingByteReaderDecorator): ImageMetadata {
 
-        val allBoxes = BoxReader.readBoxes(byteReader)
-
-        println(allBoxes)
+        val allBoxes = BoxReader.readBoxes(
+            byteReader = byteReader,
+            skipMediaBox = true
+        )
 
         val metaBox = allBoxes.find { it.type == BoxType.META } as MetaBox
 
-        val itemLocation = metaBox.boxes.find { it.type == BoxType.ILOC } as ItemLocationBox
-        val itemInfo = metaBox.boxes.find { it.type == BoxType.IINF } as ItemInformationBox
+        val itemLocationBox = metaBox.boxes.find { it.type == BoxType.ILOC } as ItemLocationBox
+        val itemInfoBox = metaBox.boxes.find { it.type == BoxType.IINF } as ItemInformationBox
 
-        val extents = itemLocation.extents
+        var exifBytes: ByteArray? = null
 
-        for (extent in extents) {
+        for (extent in itemLocationBox.extents) {
 
             val itemId = extent.itemId
 
-            val itemInfo = itemInfo.map.get(itemId) ?: continue
+            val itemInfo = itemInfoBox.map.get(itemId) ?: continue
 
             if (itemInfo.itemType == ITEM_TYPE_EXIF) {
 
-                println("EXIF ${extent.offset} $itemId = $itemInfo")
-            }
+                val bytesToSkip = extent.offset - byteReader.position
 
-            if (itemInfo.itemType == ITEM_TYPE_MIME) {
+                byteReader.skipBytes("offset to EXIF extent", bytesToSkip.toInt())
 
-                println("MIME ${extent.offset} $itemId = $itemInfo")
-            }
+                val tiffHeaderOffset =
+                    byteReader.read4BytesAsInt("tiffHeaderOffset", HEIC_BYTE_ORDER)
 
-            if (itemInfo.itemType == ITEM_TYPE_JPEG) {
+                /* Usualy 6 bytes are skipped which are "Exif  ". */
+                byteReader.skipBytes("offset to TIFF header", tiffHeaderOffset)
 
-                println("JPEG ${extent.offset} $itemId = $itemInfo")
+                exifBytes = byteReader.readBytes(
+                    extent.length.toInt() - tiffHeaderOffset
+                )
             }
         }
+
+        val exif = exifBytes?.let { TiffReader.read(exifBytes) }
 
         return ImageMetadata(
             imageFormat = ImageFormat.HEIC,
             imageSize = null, // TODO
-            exif = null, // TODO
-            exifBytes = null, // TODO
+            exif = exif,
+            exifBytes = exifBytes,
             iptc = null, // TODO
             xmp = null // TODO
         )
