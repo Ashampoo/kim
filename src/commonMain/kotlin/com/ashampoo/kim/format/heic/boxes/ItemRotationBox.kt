@@ -18,13 +18,12 @@ package com.ashampoo.kim.format.heic.boxes
 
 import com.ashampoo.kim.common.toHex
 import com.ashampoo.kim.format.heic.BoxType
-import com.ashampoo.kim.input.ByteArrayByteReader
 
 class ItemRotationBox(
     offset: Long,
     length: Long,
     payload: ByteArray
-) : Box(offset, BoxType.ILOC, length, payload) {
+) : Box(offset, BoxType.IROT, length, payload) {
 
     /**
      * The images rotation angle
@@ -38,13 +37,14 @@ class ItemRotationBox(
 
     init {
 
-        val byteReader = ByteArrayByteReader(payload)
+        /* Should be just one byte. */
+        check(payload.size == 1) {
+            "Invalid payload for IROT box: ${payload.toHex()}"
+        }
 
-        println(payload.toHex())
-
-        val byteAsInt = byteReader.readByteAsInt()
+        val byteAsInt = payload.first().toInt() and 0xFF
 
         /* First 6 bits are reserved */
-        angle = byteAsInt and 0x03 * 90
+        angle = (byteAsInt and 0x03) * 90
     }
 }
