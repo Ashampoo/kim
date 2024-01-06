@@ -70,6 +70,11 @@ data class BoxType internal constructor(
          */
         val ILOC = of("iloc".encodeToByteArray())
 
+        /**
+         * Image Spatial Extents Box
+         */
+        val ISPE = of("ispe".encodeToByteArray())
+
         /*
          * Image Rotation Box
          */

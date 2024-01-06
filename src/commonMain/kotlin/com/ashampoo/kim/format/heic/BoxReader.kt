@@ -19,12 +19,13 @@ package com.ashampoo.kim.format.heic
 import com.ashampoo.kim.format.heic.HeicConstants.HEIC_BYTE_ORDER
 import com.ashampoo.kim.format.heic.boxes.Box
 import com.ashampoo.kim.format.heic.boxes.FileTypeBox
+import com.ashampoo.kim.format.heic.boxes.ImageRotationBox
+import com.ashampoo.kim.format.heic.boxes.ImageSizeBox
 import com.ashampoo.kim.format.heic.boxes.ItemInfoEntryBox
 import com.ashampoo.kim.format.heic.boxes.ItemInformationBox
 import com.ashampoo.kim.format.heic.boxes.ItemLocationBox
 import com.ashampoo.kim.format.heic.boxes.ItemPropertiesBox
 import com.ashampoo.kim.format.heic.boxes.ItemPropertyContainerBox
-import com.ashampoo.kim.format.heic.boxes.ItemRotationBox
 import com.ashampoo.kim.format.heic.boxes.MediaDataBox
 import com.ashampoo.kim.format.heic.boxes.MetaBox
 import com.ashampoo.kim.input.PositionTrackingByteReader
@@ -102,7 +103,8 @@ object BoxReader {
             BoxType.IPCO -> ItemPropertyContainerBox(offset, actualLength, bytes)
             BoxType.INFE -> ItemInfoEntryBox(offset, actualLength, bytes)
             BoxType.ILOC -> ItemLocationBox(offset, actualLength, bytes)
-            BoxType.IROT -> ItemRotationBox(offset, actualLength, bytes)
+            BoxType.ISPE -> ImageSizeBox(offset, actualLength, bytes)
+            BoxType.IROT -> ImageRotationBox(offset, actualLength, bytes)
             BoxType.MDAT -> MediaDataBox(offset, actualLength, bytes)
             else -> Box(offset, type, actualLength, bytes)
         }

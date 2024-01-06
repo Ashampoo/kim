@@ -18,33 +18,43 @@ package com.ashampoo.kim.format.heic.boxes
 
 import com.ashampoo.kim.common.toHex
 import com.ashampoo.kim.format.heic.BoxType
+import com.ashampoo.kim.format.heic.HeicConstants.HEIC_BYTE_ORDER
+import com.ashampoo.kim.input.ByteArrayByteReader
 
-class ItemRotationBox(
+/**
+ * The Meta Box is a container for several metadata boxes.
+ */
+class ImageSizeBox(
     offset: Long,
     length: Long,
     payload: ByteArray
-) : Box(offset, BoxType.IROT, length, payload) {
+) : Box(offset, BoxType.ISPE, length, payload) {
 
-    /**
-     * The images rotation angle
-     *
-     * Rotation is anti-clockwise and valid values are 0, 90, 180, and 270
-     */
-    val angle: Int
+    val version: Int
+
+    val flags: ByteArray
+
+    val width: Int
+
+    val height: Int
 
     override fun toString(): String =
-        "IROT angle=$angle"
+        "ISPE " +
+            "version=$version " +
+            "flags=${flags.toHex()} " +
+            "width=$width " +
+            "height=$height"
 
     init {
 
-        /* Should be just one byte. */
-        check(payload.size == 1) {
-            "Invalid payload for IROT box: ${payload.toHex()}"
-        }
+        val byteReader = ByteArrayByteReader(payload)
 
-        val byteAsInt = payload.first().toInt() and 0xFF
+        version = byteReader.readByteAsInt()
+        flags = byteReader.readBytes("flags", 3)
 
-        /* First 6 bits are reserved */
-        angle = (byteAsInt and 0x03) * 90
+        width = byteReader.read4BytesAsInt("width", HEIC_BYTE_ORDER)
+        height = byteReader.read4BytesAsInt("height", HEIC_BYTE_ORDER)
+
+        println(this)
     }
 }
