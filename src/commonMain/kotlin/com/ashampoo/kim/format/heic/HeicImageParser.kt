@@ -62,7 +62,7 @@ object HeicImageParser : ImageParser {
                 val tiffHeaderOffset =
                     byteReader.read4BytesAsInt("tiffHeaderOffset", HEIC_BYTE_ORDER)
 
-                /* Usualy 6 bytes are skipped which are "Exif  ". */
+                /* Usualy there are 6 bytes skipped, which are the EXIF header. ("Exif.."). */
                 byteReader.skipBytes("offset to TIFF header", tiffHeaderOffset)
 
                 exifBytes = byteReader.readBytes(
