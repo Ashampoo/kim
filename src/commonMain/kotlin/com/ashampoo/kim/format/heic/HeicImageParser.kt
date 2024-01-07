@@ -22,10 +22,12 @@ import com.ashampoo.kim.format.heic.HeicConstants.HEIC_BYTE_ORDER
 import com.ashampoo.kim.format.heic.HeicConstants.ITEM_TYPE_EXIF
 import com.ashampoo.kim.format.heic.HeicConstants.ITEM_TYPE_MIME
 import com.ashampoo.kim.format.heic.HeicConstants.TIFF_HEADER_OFFSET_BYTE_COUNT
+import com.ashampoo.kim.format.heic.boxes.Extent
 import com.ashampoo.kim.format.heic.boxes.ImageSizeBox
 import com.ashampoo.kim.format.heic.boxes.MetaBox
 import com.ashampoo.kim.format.tiff.TiffReader
 import com.ashampoo.kim.input.ByteReader
+import com.ashampoo.kim.input.PositionTrackingByteReader
 import com.ashampoo.kim.input.PositionTrackingByteReaderDecorator
 import com.ashampoo.kim.model.ImageFormat
 import com.ashampoo.kim.model.ImageSize
@@ -51,37 +53,13 @@ object HeicImageParser : ImageParser {
 
         for (extent in metaBox.itemLocationBox.extents) {
 
-            val itemId = extent.itemId
+            val itemInfo = metaBox.itemInfoBox.map.get(extent.itemId) ?: continue
 
-            val itemInfo = metaBox.itemInfoBox.map.get(itemId) ?: continue
+            if (itemInfo.itemType == ITEM_TYPE_EXIF)
+                exifBytes = readExifBytes(byteReader, extent)
 
-            if (itemInfo.itemType == ITEM_TYPE_EXIF) {
-
-                val bytesToSkip = extent.offset - byteReader.position
-
-                byteReader.skipBytes("offset to EXIF extent", bytesToSkip.toInt())
-
-                val tiffHeaderOffset =
-                    byteReader.read4BytesAsInt("tiffHeaderOffset", HEIC_BYTE_ORDER)
-
-                /* Usualy there are 6 bytes skipped, which are the EXIF header. ("Exif.."). */
-                byteReader.skipBytes("offset to TIFF header", tiffHeaderOffset)
-
-                exifBytes = byteReader.readBytes(
-                    extent.length.toInt() - TIFF_HEADER_OFFSET_BYTE_COUNT - tiffHeaderOffset
-                )
-            }
-
-            if (itemInfo.itemType == ITEM_TYPE_MIME) {
-
-                val bytesToSkip = extent.offset - byteReader.position
-
-                byteReader.skipBytes("offset to MIME extent", bytesToSkip.toInt())
-
-                val mimeBytes = byteReader.readBytes(extent.length.toInt())
-
-                xmp = mimeBytes.decodeToString()
-            }
+            if (itemInfo.itemType == ITEM_TYPE_MIME)
+                xmp = readXmpString(byteReader, extent)
         }
 
         val exif = exifBytes?.let { TiffReader.read(exifBytes) }
@@ -94,6 +72,34 @@ object HeicImageParser : ImageParser {
             iptc = null, // TODO
             xmp = xmp
         )
+    }
+
+    private fun readExifBytes(byteReader: PositionTrackingByteReader, extent: Extent): ByteArray {
+
+        val bytesToSkip = extent.offset - byteReader.position
+
+        byteReader.skipBytes("offset to EXIF extent", bytesToSkip.toInt())
+
+        val tiffHeaderOffset =
+            byteReader.read4BytesAsInt("tiffHeaderOffset", HEIC_BYTE_ORDER)
+
+        /* Usualy there are 6 bytes skipped, which are the EXIF header. ("Exif.."). */
+        byteReader.skipBytes("offset to TIFF header", tiffHeaderOffset)
+
+        return byteReader.readBytes(
+            extent.length.toInt() - TIFF_HEADER_OFFSET_BYTE_COUNT - tiffHeaderOffset
+        )
+    }
+
+    private fun readXmpString(byteReader: PositionTrackingByteReader, extent: Extent): String {
+
+        val bytesToSkip = extent.offset - byteReader.position
+
+        byteReader.skipBytes("offset to MIME extent", bytesToSkip.toInt())
+
+        val mimeBytes = byteReader.readBytes(extent.length.toInt())
+
+        return mimeBytes.decodeToString()
     }
 
     /*

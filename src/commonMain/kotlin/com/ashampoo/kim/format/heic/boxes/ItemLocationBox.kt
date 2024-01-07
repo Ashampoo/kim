@@ -117,7 +117,7 @@ class ItemLocationBox(
                 val constructionMethod = (constructionMethodHolder and 0x000F)
             }
 
-            val dataReferenceIndex = byteReader.read2BytesAsInt("dataReferenceIndex", HEIC_BYTE_ORDER)
+            byteReader.skipBytes("dataReferenceIndex", 2)
 
             val baseOffset: Long = when (baseOffsetSize) {
                 4 -> byteReader.read4BytesAsInt("baseOffset", HEIC_BYTE_ORDER).toLong()
@@ -148,7 +148,10 @@ class ItemLocationBox(
             }
         }
 
-        /* Sort by offset to support reading fields in order. */
+        /*
+         * Sort by offset to support reading fields in order.
+         * Warning: This is important for other logic to function properly.
+         */
         extents.sortBy { it.offset }
 
         this.extents = extents
