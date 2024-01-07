@@ -36,6 +36,10 @@ class ItemPropertyAssociationBox(
 
     val propertyIndexWidth: Int
 
+    /**
+     * Key = ItemId
+     * Value = List of associated indexes in IPCO
+     */
     val entries: Map<Int, List<AssociatedProperty>>
 
     override fun toString(): String =
