@@ -1,0 +1,67 @@
+File format : HEIC
+Resolution  : null
+---- TIFF ----
+Version 42
+Big-endian (Motorola, MM)
+---- Directory IFD0 @ 8 ----
+0000000010 0x010e ImageDescription = honeybee perching on yellow flower
+0000000022 0x010f Make = Canon
+0000000034 0x0110 Model = Canon EOS 70D
+0000000046 0x0112 Orientation = 1
+0000000058 0x011a XResolution = 300/1 (300.0)
+0000000070 0x011b YResolution = 300/1 (300.0)
+0000000082 0x0128 ResolutionUnit = 2
+0000000094 0x0131 Software = darktable 2.6.2
+0000000106 0x0132 ModifyDate = 2019:07:15 20:09:19
+0000000118 0x013b Artist = dxfoto.ru
+0000000130 0x8298 Copyright = CC-BY 3.0
+0000000142 0x8769 ExifOffset = 298
+0000000154 0x8825 GPSInfo = 922
+
+---- Directory ExifIFD @ 298 ----
+0000000300 0x829a ExposureTime = 1/400 (0.0025)
+0000000312 0x829d FNumber = 71/10 (7.1)
+0000000324 0x8822 ExposureProgram = 1
+0000000336 0x8827 PhotographicSensitivity = 250
+0000000348 0x8830 SensitivityType = 2
+0000000360 0x8832 RecommendedExposureIndex = 250
+0000000372 0x9000 ExifVersion = [0x30, 0x32, 0x33, 0x30]
+0000000384 0x9003 DateTimeOriginal = 2019:07:14 09:21:11
+0000000396 0x9004 DateTimeDigitized = 2019:07:14 09:21:11
+0000000408 0x9101 ComponentsConfiguration = [0x01, 0x02, 0x03, 0x00]
+0000000420 0x9201 ShutterSpeedValue = 69/8 (8.625)
+0000000432 0x9202 ApertureValue = 45/8 (5.625)
+0000000444 0x9204 ExposureCompensation = 0/1 (0.0)
+0000000456 0x9205 MaxApertureValue = 189284/33461 (5.656854)
+0000000468 0x9207 MeteringMode = 5
+0000000480 0x9209 Flash = 16
+0000000492 0x920a FocalLength = 250/1 (250.0)
+0000000504 0x9290 SubSecTime = 47
+0000000516 0x9291 SubSecTimeOriginal = 47
+0000000528 0x9292 SubSecTimeDigitized = 47
+0000000540 0xa000 FlashpixVersion = [0x30, 0x31, 0x30, 0x30]
+0000000552 0xa001 ColorSpace = 1
+0000000564 0xa002 ExifImageWidth = 4000
+0000000576 0xa003 ExifImageLength = 2670
+0000000588 0xa20e FocalPlaneXResolution = 1746901/287 (6086.763066)
+0000000600 0xa20f FocalPlaneYResolution = 2472601/406 (6090.150246)
+0000000612 0xa210 FocalPlaneResolutionUnit = 2
+0000000624 0xa401 CustomRendered = 0
+0000000636 0xa402 ExposureMode = 1
+0000000648 0xa403 WhiteBalance = 0
+0000000660 0xa406 SceneCaptureType = 0
+0000000672 0xa431 BodySerialNumber = 103025021031
+0000000684 0xa432 LensSpecification = [55/1 (55.0), 250/1 (250.0), 0/1 (0.0), 0/1 (0.0)]
+0000000696 0xa434 LensModel = EF-S55-250mm f/4-5.6 IS STM
+0000000708 0xa435 LensSerialNumber = 0000800dcf
+
+---- Directory GPS @ 922 ----
+0000000924 0x0000 GPSVersionID = [0x02, 0x02, 0x00, 0x00]
+0000000936 0x0001 GPSLatitudeRef = N
+0000000948 0x0002 GPSLatitude = [55/1 (55.0), 54/1 (54.0), 4074/100 (40.74)]
+0000000960 0x0003 GPSLongitudeRef = E
+0000000972 0x0004 GPSLongitude = [36/1 (36.0), 57/1 (57.0), 4853/100 (48.53)]
+
+
+---- XMP ----
+<?xpacket begin="﻿" id="W5M0MpCehiHzreSzNTczkc9d"?> <x:xmpmeta xmlns:x="adobe:ns:meta/" x:xmptk="XMP Core 6.0.0"> <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> <rdf:Description rdf:about="" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:xmp="http://ns.adobe.com/xap/1.0/" xmlns:darktable="http://darktable.sf.net/" xmlns:aux="http://ns.adobe.com/exif/1.0/aux/" xmlns:photoshop="http://ns.adobe.com/photoshop/1.0/" xmlns:lr="http://ns.adobe.com/lightroom/1.0/" xmlns:xmpMM="http://ns.adobe.com/xap/1.0/mm/" xmp:Rating="0" xmp:CreatorTool="darktable 2.6.2" xmp:CreateDate="2019-07-14T09:21:11.47" xmp:ModifyDate="2019-07-15T20:09:19.47" darktable:raw_params="0" darktable:history_end="12" darktable:xmp_version="2" darktable:auto_presets_applied="1" aux:FlashCompensation="0/1" aux:LensInfo="55/1 250/1 0/0 0/0" aux:Lens="Canon EF-S 55-250mm f/4-5.6 IS STM" aux:LensID="4148" aux:Firmware="Firmware Version 1.1.2" photoshop:DateCreated="2019-07-14T09:21:11.47" xmpMM:DerivedFrom="_MG_9604.CR2"> <dc:creator> <rdf:Seq> <rdf:li>dxfoto.ru</rdf:li> </rdf:Seq> </dc:creator> <dc:description> <rdf:Alt> <rdf:li xml:lang="x-default">honeybee perching on yellow flower</rdf:li> </rdf:Alt> </dc:description> <dc:rights> <rdf:Alt> <rdf:li xml:lang="x-default">CC-BY 3.0</rdf:li> </rdf:Alt> </dc:rights> <dc:subject> <rdf:Bag> <rdf:li>dxfoto</rdf:li> <rdf:li>published</rdf:li> </rdf:Bag> </dc:subject> <darktable:history> <rdf:Seq> <rdf:li darktable:params="000000400000003f0000003f" darktable:operation="sharpen" darktable:enabled="1" darktable:modversion="1" darktable:blendop_version="8" darktable:multi_priority="0" darktable:blendop_params="gz11eJxjYGBgkGAAgRNODGiAEV0AJ2iwh+CRxQcA5qIZBA==" darktable:multi_name=""/> <rdf:li darktable:params="ffffffff" darktable:operation="flip" darktable:enabled="1" darktable:modversion="2" darktable:blendop_version="8" darktable:multi_priority="0" darktable:blendop_params="gz11eJxjYGBgkGAAgRNODGiAEV0AJ2iwh+CRxQcA5qIZBA==" darktable:multi_name=""/> <rdf:li darktable:params="gz09eJxjYIAAM6vnNnqyn22E9n235b6aa3cy6rVdRaK9/Y970fYf95bbMzA0QPEoGEqADYnNhCELiVMAudcSGA==" darktable:operation="basecurve" darktable:enabled="1" darktable:modversion="5" darktable:blendop_version="8" darktable:multi_priority="0" darktable:blendop_params="gz11eJxjYGBgkGAAgRNODGiAEV0AJ2iwh+CRxQcA5qIZBA==" darktable:multi_name=""/> <rdf:li darktable:params="00000000e040f23c4ee4053efce6413f80c75b3f0000000000000000cdcc4c3ecdcc4c3ecdcc4c3fcdcc4c3ecdcc4c3fcdcc4c3fcdcc4c3ecdcc4c3f000000000000000000000000010000000000000001000000" darktable:operation="clipping" darktable:enabled="1" darktable:modversion="5" darktable:blendop_version="8" darktable:multi_priority="0" darktable:blendop_params="gz11eJxjYGBgkGAAgRNODGiAEV0AJ2iwh+CRxQcA5qIZBA==" darktable:multi_name=""/> <rdf:li darktable:params="00000000501a1c3d0c5cb53d9a16443feef9503f0000000000000000cdcc4c3ecdcc4c3ecdcc4c3fcdcc4c3ecdcc4c3fcdcc4c3fcdcc4c3ecdcc4c3f000000000000000000000000010000000000000001000000" darktable:operation="clipping" darktable:enabled="1" darktable:modversion="5" darktable:blendop_version="8" darktable:multi_priority="0" darktable:blendop_params="gz11eJxjYGBgkGAAgRNODGiAEV0AJ2iwh+CRxQcA5qIZBA==" darktable:multi_name=""/> <rdf:li darktable:params="d0ccccbdd0cccc3dd0cc4cbd" darktable:operation="colisa" darktable:enabled="1" darktable:modversion="1" darktable:blendop_version="8" darktable:multi_priority="0" darktable:blendop_params="gz11eJxjYGBgkGAAgRNODGiAEV0AJ2iwh+CRxQcA5qIZBA==" darktable:multi_name=""/> <rdf:li darktable:params="01000000cdcccc3ecdcc8c3f0000803ecdcc4c3e" darktable:operation="bilat" darktable:enabled="1" darktable:modversion="3" darktable:blendop_version="8" darktable:multi_priority="0" darktable:blendop_params="gz11eJxjYGBgkGAAgRNODGiAEV0AJ2iwh+CRxQcA5qIZBA==" darktable:multi_name=""/> <rdf:li darktable:params="000000400000803f0000003f" darktable:operation="sharpen" darktable:enabled="1" darktable:modversion="1" darktable:blendop_version="8" darktable:multi_priority="0" darktable:blendop_params="gz11eJxjYGBgkGAAgRNODGiAEV0AJ2iwh+CRxQcA5qIZBA==" darktable:multi_name=""/> <rdf:li darktable:params="01000000cdcccc3ecdcc8c3f9a99993ecdcc4c3e" darktable:operation="bilat" darktable:enabled="1" darktable:modversion="3" darktable:blendop_version="8" darktable:multi_priority="0" darktable:blendop_params="gz11eJxjYGBgkGAAgRNODGiAEV0AJ2iwh+CRxQcA5qIZBA==" darktable:multi_name=""/> <rdf:li darktable:params="0000000000000000000048420000c842d9899d3dc332d53e8bac483f" darktable:operation="levels" darktable:enabled="1" darktable:modversion="2" darktable:blendop_version="8" darktable:multi_priority="0" darktable:blendop_params="gz11eJxjYGBgkGAAgRNODGiAEV0AJ2iwh+CRxQcA5qIZBA==" darktable:multi_name=""/> <rdf:li darktable:params="0000000000000000000000000100000000000000" darktable:operation="demosaic" darktable:enabled="1" darktable:modversion="3" darktable:blendop_version="8" darktable:multi_priority="0" darktable:blendop_params="gz11eJxjYGBgkGAAgRNODGiAEV0AJ2iwh+CRxQcA5qIZBA==" darktable:multi_name=""/> <rdf:li darktable:params="32000000" darktable:operation="cacorrect" darktable:enabled="1" darktable:modversion="1" darktable:blendop_version="8" darktable:multi_priority="0" darktable:blendop_params="gz11eJxjYGBgkGAAgRNODGiAEV0AJ2iwh+CRxQcA5qIZBA==" darktable:multi_name=""/> </rdf:Seq> </darktable:history> <lr:hierarchicalSubject> <rdf:Seq> <rdf:li>dxfoto|published</rdf:li> </rdf:Seq> </lr:hierarchicalSubject> </rdf:Description> </rdf:RDF> </x:xmpmeta>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 <?xpacket end="w"?> 

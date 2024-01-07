@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 Ashampoo GmbH & Co. KG
+ * Copyright 2024 Ashampoo GmbH & Co. KG
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -79,6 +79,36 @@ object ImageFormatMagicNumbers {
     val webP: List<Byte?> = byteListOf(
         0x52, 0x49, 0x46, 0x46, null, null, null, null, 0x57, 0x45, 0x42, 0x50
     )
+
+    /* 4 bytes + "ftypheic" */
+    val heic: List<Byte?> = byteListOf(
+        null, null, null, null
+    ).plus("ftypheic".encodeToByteArray().toList())
+
+    /* A HEIC brand */
+    val mif1: List<Byte?> = byteListOf(
+        null, null, null, null
+    ).plus("ftypmif1".encodeToByteArray().toList())
+
+    /* A HEIC brand */
+    val msf1: List<Byte?> = byteListOf(
+        null, null, null, null
+    ).plus("ftypmsf1".encodeToByteArray().toList())
+
+    /* A HEIC brand */
+    val heix: List<Byte?> = byteListOf(
+        null, null, null, null
+    ).plus("ftypheix".encodeToByteArray().toList())
+
+    /* A HEIC brand */
+    val hevc: List<Byte?> = byteListOf(
+        null, null, null, null
+    ).plus("ftyphevc".encodeToByteArray().toList())
+
+    /* A HEIC brand */
+    val hevx: List<Byte?> = byteListOf(
+        null, null, null, null
+    ).plus("ftyphevx".encodeToByteArray().toList())
 
     private fun byteListOf(vararg ints: Int?): List<Byte?> =
         ints.map { it?.toByte() }

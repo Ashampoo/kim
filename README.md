@@ -18,6 +18,8 @@ It's part of [Ashampoo Photos](https://ashampoo.com/photos).
 * JPG: Read & Write EXIF, IPTC & XMP
 * PNG: Read & Write `eXIf` chunk & XMP
     + Also read non-standard EXIF & IPTC from `tEXt`/`zTXt` chunk
+* ISOBMFF (like HEIC & JXL): Read EXIF & XMP
+    + Somewhat experimental as only tested for iPhone HEIC files so far
 * TIFF / DNG / RAW: Read EXIF & XMP
     + Good support for Canon CR2, Fujifilm RAF & Adobe DNG
     + Experimental support for NEF, ARW, RW2 & ORF with known issues
@@ -33,7 +35,7 @@ of Ashampoo Photos, which, in turn, is driven by user community feedback.
 ## Installation
 
 ```
-implementation("com.ashampoo:kim:0.8.3")
+implementation("com.ashampoo:kim:0.9")
 ```
 
 ## Sample usages
@@ -138,6 +140,21 @@ val newBytes = Kim.updateThumbnail(
 ## Limitations
 
 * Inability to update EXIF, IPTC and XMP in JPG files simultaneously.
+* HEIC files are only tested for iPhone SE 3.
+
+## Regarding HEIC patents
+
+When handling ISO base media file format (ISOBMFF) files like HEIC,
+our adherence to the EIC/ISO 14496-12 specification ensures freedom
+from patent issues, as the relevant patents for ISOBMFF have expired
+(older than 20 years), making the format public domain.
+
+For example we intentionally omit certain features specified in the HEIC
+standard, such as image size ("ispe") and rotation ("irot"), to steer clear
+of potential legal complications.
+
+In future updates, we plan to integrate special values from other
+patent-free ISOBMFF-based formats as we broaden support for additional file types.
 
 ## Contributions
 

@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 Ashampoo GmbH & Co. KG
+ * Copyright 2024 Ashampoo GmbH & Co. KG
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,12 +16,10 @@
 package com.ashampoo.kim.format.jpeg
 
 import com.ashampoo.kim.common.ImageReadException
-import com.ashampoo.kim.common.toSingleNumberHexes
 import com.ashampoo.kim.common.toUInt16
 import com.ashampoo.kim.common.tryWithImageReadException
 import com.ashampoo.kim.format.ImageFormatMagicNumbers
 import com.ashampoo.kim.format.jpeg.JpegConstants.EOI_MARKER
-import com.ashampoo.kim.format.jpeg.JpegConstants.JPEG_APP1_MARKER
 import com.ashampoo.kim.format.jpeg.JpegConstants.JPEG_BYTE_ORDER
 import com.ashampoo.kim.format.jpeg.JpegConstants.SOI_MARKER
 import com.ashampoo.kim.format.jpeg.JpegConstants.markerDescription

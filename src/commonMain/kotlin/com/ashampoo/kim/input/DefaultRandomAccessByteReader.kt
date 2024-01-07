@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 Ashampoo GmbH & Co. KG
+ * Copyright 2024 Ashampoo GmbH & Co. KG
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,64 +21,68 @@ package com.ashampoo.kim.input
  */
 class DefaultRandomAccessByteReader(
     val byteReader: ByteReader
-) : RandomAccessByteReader {
+) : RandomAccessByteReader, PositionTrackingByteReader {
 
-    override val contentLength: Long = byteReader.contentLength
+    override val contentLength: Long =
+        byteReader.contentLength
 
-    private var position: Int = 0
+    override val position: Int
+        get() = currentPosition
+
+    override val available: Long
+        get() = contentLength - position
+
+    private var currentPosition: Int = 0
+
     private val buffer: MutableList<Byte> = ArrayList(INITIAL_SIZE)
 
     override fun readByte(): Byte? {
 
-        if (position >= contentLength)
+        if (currentPosition >= contentLength)
             return null
 
-        val endIndex = position + 1
+        val endIndex = currentPosition + 1
 
         if (endIndex > buffer.size)
             readToIndex(endIndex)
 
-        return buffer[position++]
+        return buffer[currentPosition++]
     }
 
     override fun readBytes(count: Int): ByteArray {
 
-        if (position >= contentLength)
+        if (currentPosition >= contentLength)
             return byteArrayOf()
 
-        val endIndex = position + count.coerceAtMost(contentLength.toInt())
+        val endIndex = currentPosition + count.coerceAtMost(contentLength.toInt())
 
         if (endIndex > buffer.size)
             readToIndex(endIndex)
 
-        val bytes = buffer.subList(position, endIndex).toByteArray()
+        val bytes = buffer.subList(currentPosition, endIndex).toByteArray()
 
-        position += bytes.size
+        currentPosition += bytes.size
 
         return bytes
     }
 
-    override fun reset() {
-        position = 0
-    }
-
-    override fun skipTo(position: Int) {
+    override fun moveTo(position: Int) {
 
         require(position <= contentLength - 1) {
             "Can't skip after max length: $position > ${contentLength - 1}"
         }
 
-        this.position = position
+        this.currentPosition = position
     }
 
-    override fun readBytes(start: Int, length: Int): ByteArray {
+    override fun readBytes(offset: Int, length: Int): ByteArray {
 
-        val endIndex = start + length
+        val endIndex = offset + length
 
         if (endIndex > buffer.size)
             readToIndex(endIndex)
 
-        return buffer.subList(start, endIndex).toByteArray()
+        return buffer.subList(offset, endIndex).toByteArray()
     }
 
     override fun close() =

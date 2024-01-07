@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 Ashampoo GmbH & Co. KG
+ * Copyright 2024 Ashampoo GmbH & Co. KG
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,41 +17,52 @@ package com.ashampoo.kim.input
 
 import kotlin.math.min
 
+/**
+ * ByteArray backed ByteReader
+ *
+ * This is intended to be used for EXIF, because this is at max 64 kb in size.
+ *
+ * Note that huge files in production shouldn't be loaded into a ByteArray.
+ * For unit the purpose of unit tests this is acceptable.
+ */
 class ByteArrayByteReader(
     private val bytes: ByteArray
-) : RandomAccessByteReader {
+) : RandomAccessByteReader, PositionTrackingByteReader {
 
-    override val contentLength: Long = bytes.size.toLong()
+    override val contentLength: Long =
+        bytes.size.toLong()
 
-    private var position = 0
+    override val position: Int
+        get() = currentPosition
+
+    override val available: Long
+        get() = contentLength - position
+
+    private var currentPosition = 0
 
     override fun readByte(): Byte? {
 
-        if (position == bytes.size)
+        if (currentPosition == bytes.size)
             return null
 
-        return bytes[position++]
+        return bytes[currentPosition++]
     }
 
     override fun readBytes(count: Int): ByteArray {
 
-        val bytes = bytes.copyOfRange(position, min(position + count, bytes.size))
+        val bytes = bytes.copyOfRange(currentPosition, min(currentPosition + count, bytes.size))
 
-        position += bytes.size
+        currentPosition += bytes.size
 
         return bytes
     }
 
-    override fun reset() {
-        this.position = 0
+    override fun moveTo(position: Int) {
+        this.currentPosition = position
     }
 
-    override fun skipTo(position: Int) {
-        this.position = position
-    }
-
-    override fun readBytes(start: Int, length: Int): ByteArray =
-        bytes.copyOfRange(start, start + length)
+    override fun readBytes(offset: Int, length: Int): ByteArray =
+        bytes.copyOfRange(offset, offset + length)
 
     override fun close() {
         /* Does nothing. */

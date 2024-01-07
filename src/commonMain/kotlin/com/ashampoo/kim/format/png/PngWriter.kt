@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 Ashampoo GmbH & Co. KG
+ * Copyright 2024 Ashampoo GmbH & Co. KG
  * Copyright 2007-2023 The Apache Software Foundation
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -58,7 +58,7 @@ object PngWriter {
 
         if (exifBytes != null)
             modifiedChunks.removeAll {
-                it.chunkType == ChunkType.EXIF ||
+                it.chunkType == PngChunkType.EXIF ||
                     it is PngTextChunk && it.getKeyword() == PngConstants.EXIF_KEYWORD
             }
 
@@ -79,10 +79,10 @@ object PngWriter {
             writeChunk(byteWriter, chunk.chunkType, chunk.bytes)
 
             /* Write new metadata chunks right after the header. */
-            if (ChunkType.IHDR == chunk.chunkType) {
+            if (PngChunkType.IHDR == chunk.chunkType) {
 
                 if (exifBytes != null)
-                    writeChunk(byteWriter, ChunkType.EXIF, exifBytes)
+                    writeChunk(byteWriter, PngChunkType.EXIF, exifBytes)
 
                 if (iptcBytes != null)
                     writeIptcChunk(byteWriter, iptcBytes)
@@ -110,19 +110,19 @@ object PngWriter {
 
     private fun writeChunk(
         byteWriter: ByteWriter,
-        chunkType: ChunkType,
+        chunkType: PngChunkType,
         data: ByteArray?
     ) {
 
         val dataLength = data?.size ?: 0
 
         byteWriter.writeInt(dataLength)
-        byteWriter.write(chunkType.array)
+        byteWriter.write(chunkType.bytes)
 
         if (data != null)
             byteWriter.write(data)
 
-        val crc1 = startPartialCrc(chunkType.array)
+        val crc1 = startPartialCrc(chunkType.bytes)
 
         val crc2 = if (data == null)
             crc1
@@ -171,7 +171,7 @@ object PngWriter {
         /* XMP bytes */
         writer.write(xmpXml.encodeToByteArray())
 
-        writeChunk(byteWriter, ChunkType.ITXT, writer.toByteArray())
+        writeChunk(byteWriter, PngChunkType.ITXT, writer.toByteArray())
     }
 
     /**
@@ -205,6 +205,6 @@ object PngWriter {
 
         writer.write(textToWrite.encodeToByteArray())
 
-        writeChunk(byteWriter, ChunkType.TEXT, writer.toByteArray())
+        writeChunk(byteWriter, PngChunkType.TEXT, writer.toByteArray())
     }
 }
