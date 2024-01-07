@@ -1,0 +1,94 @@
+File format : HEIC
+Resolution  : 4032 x 3024
+---- TIFF ----
+Version 42
+Big-endian (Motorola, MM)
+---- Directory IFD0 @ 8 ----
+0000000010 0x010f Make = Apple
+0000000022 0x0110 Model = iPhone SE (3rd generation)
+0000000034 0x0112 Orientation = 1
+0000000046 0x011a XResolution = 72/1 (72.0)
+0000000058 0x011b YResolution = 72/1 (72.0)
+0000000070 0x0128 ResolutionUnit = 2
+0000000082 0x0131 Software = 15.6.1
+0000000094 0x0132 ModifyDate = 2022:09:26 14:38:48
+0000000106 0x013c HostComputer = iPhone SE (3rd generation)
+0000000118 0x8769 ExifOffset = 252
+0000000130 0x8825 GPSInfo = 2394
+
+---- Directory ExifIFD @ 252 ----
+0000000254 0x829a ExposureTime = 1/160 (0.00625)
+0000000266 0x829d FNumber = 9/5 (1.8)
+0000000278 0x8822 ExposureProgram = 2
+0000000290 0x8827 PhotographicSensitivity = 40
+0000000302 0x9000 ExifVersion = [0x30, 0x32, 0x33, 0x32]
+0000000314 0x9003 DateTimeOriginal = 2022:09:26 14:38:48
+0000000326 0x9004 DateTimeDigitized = 2022:09:26 14:38:48
+0000000338 0x9010 OffsetTime = +02:00
+0000000350 0x9011 OffsetTimeOriginal = +02:00
+0000000362 0x9012 Unknown = +02:00
+0000000374 0x9201 ShutterSpeedValue = 182597/24925 (7.325858)
+0000000386 0x9202 ApertureValue = 54823/32325 (1.695994)
+0000000398 0x9203 BrightnessValue = 16068/2725 (5.896514)
+0000000410 0x9204 ExposureCompensation = 0/1 (0.0)
+0000000422 0x9207 MeteringMode = 5
+0000000434 0x9209 Flash = 16
+0000000446 0x920a FocalLength = 399/100 (3.99)
+0000000458 0x9214 SubjectArea = [2013, 1511, 2217, 1330]
+0000000470 0x927c MakerNote = [1522 bytes]
+0000000482 0x9291 SubSecTimeOriginal = 773
+0000000494 0x9292 SubSecTimeDigitized = 773
+0000000506 0xa001 ColorSpace = -1
+0000000518 0xa002 ExifImageWidth = 4032
+0000000530 0xa003 ExifImageLength = 3024
+0000000542 0xa217 SensingMethod = 2
+0000000554 0xa301 SceneType = 1
+0000000566 0xa402 ExposureMode = 0
+0000000578 0xa403 WhiteBalance = 0
+0000000590 0xa405 FocalLengthIn35mmFormat = 28
+0000000602 0xa432 LensSpecification = [399/100 (3.99), 399/100 (3.99), 9/5 (1.8), 9/5 (1.8)]
+0000000614 0xa433 LensMake = Apple
+0000000626 0xa434 LensModel = iPhone SE (3rd generation) back camera 3.99mm f/1.8
+0000000638 0xa460 Unknown = 2
+
+---- Directory GPS @ 2394 ----
+0000002396 0x0001 GPSLatitudeRef = N
+0000002408 0x0002 GPSLatitude = [53/1 (53.0), 13/1 (13.0), 1001/100 (10.01)]
+0000002420 0x0003 GPSLongitudeRef = E
+0000002432 0x0004 GPSLongitude = [8/1 (8.0), 14/1 (14.0), 2206/100 (22.06)]
+0000002444 0x0005 GPSAltitudeRef = 0
+0000002456 0x0006 GPSAltitude = 217258/13011 (16.698025)
+0000002468 0x000c GPSSpeedRef = K
+0000002480 0x000d GPSSpeed = 0/1 (0.0)
+0000002492 0x0010 GPSImgDirectionRef = T
+0000002504 0x0011 GPSImgDirection = 149173/1020 (146.248039)
+0000002516 0x0017 GPSDestBearingRef = T
+0000002528 0x0018 GPSDestBearing = 149173/1020 (146.248039)
+0000002540 0x001d GPSDateStamp = 2022:09:26
+0000002552 0x001f Unknown = 61943/4503 (13.75594)
+
+
+---- XMP ----
+<?xpacket begin="﻿" id="W5M0MpCehiHzreSzNTczkc9d"?>
+<x:xmpmeta xmlns:x="adobe:ns:meta/" x:xmptk="Adobe XMP Core 5.1.3">
+  <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+    <rdf:Description rdf:about=""
+        xmlns:dc="http://purl.org/dc/elements/1.1/"
+        xmlns:exif="http://ns.adobe.com/exif/1.0/"
+        xmlns:xmp="http://ns.adobe.com/xap/1.0/"
+      exif:DateTimeOriginal="2023-07-07T13:37:42"
+      exif:GPSLatitude="53,13.1635N"
+      exif:GPSLongitude="8,14.3797E"
+      exif:GPSVersionID="2.3.0.0"
+      xmp:Rating="3">
+      <dc:subject>
+        <rdf:Bag>
+          <rdf:li>bird</rdf:li>
+          <rdf:li>cat</rdf:li>
+          <rdf:li>dog</rdf:li>
+        </rdf:Bag>
+      </dc:subject>
+    </rdf:Description>
+  </rdf:RDF>
+</x:xmpmeta>
+<?xpacket end="w"?>

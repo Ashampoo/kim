@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 Ashampoo GmbH & Co. KG
+ * Copyright 2024 Ashampoo GmbH & Co. KG
  * Copyright 2007-2023 The Apache Software Foundation
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -21,15 +21,14 @@ import com.ashampoo.kim.common.decodeLatin1BytesToString
 import com.ashampoo.kim.common.decompress
 import com.ashampoo.kim.common.indexOfNullTerminator
 import com.ashampoo.kim.common.slice
-import com.ashampoo.kim.format.png.ChunkType
+import com.ashampoo.kim.format.png.PngChunkType
 import com.ashampoo.kim.format.png.PngConstants
 
 class PngChunkItxt(
     length: Int,
-    chunkType: ChunkType,
     crc: Int,
     bytes: ByteArray
-) : PngTextChunk(length, chunkType, crc, bytes) {
+) : PngTextChunk(length, PngChunkType.ITXT, crc, bytes) {
 
     @kotlin.jvm.JvmField
     val keyword: String

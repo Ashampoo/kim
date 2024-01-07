@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 Ashampoo GmbH & Co. KG
+ * Copyright 2024 Ashampoo GmbH & Co. KG
  * Copyright 2007-2023 The Apache Software Foundation
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,11 +16,11 @@
  */
 package com.ashampoo.kim.format.png.chunks
 
-import com.ashampoo.kim.format.png.ChunkType
+import com.ashampoo.kim.format.png.PngChunkType
 
 open class PngChunk(
     val length: Int,
-    val chunkType: ChunkType,
+    val chunkType: PngChunkType,
     val crc: Int,
     val bytes: ByteArray
 ) {
