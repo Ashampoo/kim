@@ -69,7 +69,7 @@ object HeicImageParser : ImageParser {
             imageSize = imageSize,
             exif = exif,
             exifBytes = exifBytes,
-            iptc = null, // TODO
+            iptc = null, // seems not to be supported by HEIC
             xmp = xmp
         )
     }
