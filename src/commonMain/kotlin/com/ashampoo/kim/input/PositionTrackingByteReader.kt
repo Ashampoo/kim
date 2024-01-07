@@ -15,7 +15,7 @@
  */
 package com.ashampoo.kim.input
 
-interface PositionTrackingByteReader: ByteReader {
+interface PositionTrackingByteReader : ByteReader {
 
     val position: Int
 
