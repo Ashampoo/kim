@@ -34,6 +34,10 @@ class MetaBox(
 
     val flags: ByteArray
 
+    val primaryItemBox: PrimaryItemBox
+    val itemLocationBox: ItemLocationBox
+    val itemInfoBox: ItemInformationBox
+
     val boxes: List<Box>
 
     override fun toString(): String =
@@ -48,5 +52,12 @@ class MetaBox(
         flags = byteReader.readBytes("flags", 3)
 
         boxes = BoxReader.readBoxes(byteReader)
+
+        println(boxes.map { it.type })
+
+        /* Associate mandatory boxes. */
+        primaryItemBox = boxes.find { it.type == BoxType.PITM } as PrimaryItemBox
+        itemLocationBox = boxes.find { it.type == BoxType.ILOC } as ItemLocationBox
+        itemInfoBox = boxes.find { it.type == BoxType.IINF } as ItemInformationBox
     }
 }

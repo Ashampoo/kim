@@ -22,8 +22,6 @@ import com.ashampoo.kim.format.heic.HeicConstants.HEIC_BYTE_ORDER
 import com.ashampoo.kim.format.heic.HeicConstants.ITEM_TYPE_EXIF
 import com.ashampoo.kim.format.heic.HeicConstants.ITEM_TYPE_MIME
 import com.ashampoo.kim.format.heic.HeicConstants.TIFF_HEADER_OFFSET_BYTE_COUNT
-import com.ashampoo.kim.format.heic.boxes.ItemInformationBox
-import com.ashampoo.kim.format.heic.boxes.ItemLocationBox
 import com.ashampoo.kim.format.heic.boxes.MetaBox
 import com.ashampoo.kim.format.tiff.TiffReader
 import com.ashampoo.kim.input.ByteReader
@@ -44,17 +42,14 @@ object HeicImageParser : ImageParser {
 
         val metaBox = allBoxes.find { it.type == BoxType.META } as MetaBox
 
-        val itemLocationBox = metaBox.boxes.find { it.type == BoxType.ILOC } as ItemLocationBox
-        val itemInfoBox = metaBox.boxes.find { it.type == BoxType.IINF } as ItemInformationBox
-
         var exifBytes: ByteArray? = null
         var xmp: String? = null
 
-        for (extent in itemLocationBox.extents) {
+        for (extent in metaBox.itemLocationBox.extents) {
 
             val itemId = extent.itemId
 
-            val itemInfo = itemInfoBox.map.get(itemId) ?: continue
+            val itemInfo = metaBox.itemInfoBox.map.get(itemId) ?: continue
 
             if (itemInfo.itemType == ITEM_TYPE_EXIF) {
 
