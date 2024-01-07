@@ -1,6 +1,5 @@
 /*
  * Copyright 2024 Ashampoo GmbH & Co. KG
- * Copyright 2002-2023 Drew Noakes and contributors
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -55,11 +54,14 @@ object HeicImageParser : ImageParser {
 
             val itemInfo = metaBox.itemInfoBox.map.get(extent.itemId) ?: continue
 
-            if (itemInfo.itemType == ITEM_TYPE_EXIF)
-                exifBytes = readExifBytes(byteReader, extent)
+            when (itemInfo.itemType) {
 
-            if (itemInfo.itemType == ITEM_TYPE_MIME)
-                xmp = readXmpString(byteReader, extent)
+                ITEM_TYPE_EXIF ->
+                    exifBytes = readExifBytes(byteReader, extent)
+
+                ITEM_TYPE_MIME ->
+                    xmp = readXmpString(byteReader, extent)
+            }
         }
 
         val exif = exifBytes?.let { TiffReader.read(exifBytes) }
@@ -114,6 +116,7 @@ object HeicImageParser : ImageParser {
         if (metaBox.itemPropertiesBox == null)
             return null
 
+        /* ID of the main picture */
         val primaryItemId = metaBox.primaryItemBox.itemId
 
         val associatedEntries =
