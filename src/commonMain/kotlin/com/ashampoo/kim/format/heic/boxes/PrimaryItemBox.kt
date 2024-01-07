@@ -16,18 +16,40 @@
  */
 package com.ashampoo.kim.format.heic.boxes
 
+import com.ashampoo.kim.common.toHex
 import com.ashampoo.kim.format.heic.BoxType
+import com.ashampoo.kim.format.heic.HeicConstants.HEIC_BYTE_ORDER
+import com.ashampoo.kim.input.ByteArrayByteReader
 
-/**
- * The Media Data Box contains all the actual data.
- * This includes the EXIF bytes.
- */
-class MediaDataBox(
+class PrimaryItemBox(
     offset: Long,
     length: Long,
     payload: ByteArray
-) : Box(offset, BoxType.MDAT, length, payload) {
+) : Box(offset, BoxType.PITM, length, payload) {
+
+    val version: Int
+
+    val flags: ByteArray
+
+    val itemId: Int
 
     override fun toString(): String =
-        "MDAT Box"
+        "PITM " +
+            "version=$version " +
+            "flags=${flags.toHex()} " +
+            "itemId=$itemId"
+
+    init {
+
+        val byteReader = ByteArrayByteReader(payload)
+
+        version = byteReader.readByteAsInt()
+
+        flags = byteReader.readBytes("flags", 3)
+
+        if (version == 0)
+            itemId = byteReader.read2BytesAsInt("itemId", HEIC_BYTE_ORDER)
+        else
+            itemId = byteReader.read4BytesAsInt("itemId", HEIC_BYTE_ORDER)
+    }
 }

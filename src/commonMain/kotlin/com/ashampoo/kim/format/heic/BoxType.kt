@@ -56,6 +56,11 @@ data class BoxType internal constructor(
         val META = of("meta".encodeToByteArray())
 
         /**
+         * Primary Item Box
+         */
+        val PITM = of("pitm".encodeToByteArray())
+
+        /**
          * Item Information Box, container for INFE boxes
          */
         val IINF = of("iinf".encodeToByteArray())
