@@ -18,6 +18,7 @@ It's part of [Ashampoo Photos](https://ashampoo.com/photos).
 * JPG: Read & Write EXIF, IPTC & XMP
 * PNG: Read & Write `eXIf` chunk & XMP
     + Also read non-standard EXIF & IPTC from `tEXt`/`zTXt` chunk
+* HEIC: Read EXIF & XMP
 * TIFF / DNG / RAW: Read EXIF & XMP
     + Good support for Canon CR2, Fujifilm RAF & Adobe DNG
     + Experimental support for NEF, ARW, RW2 & ORF with known issues
@@ -33,7 +34,7 @@ of Ashampoo Photos, which, in turn, is driven by user community feedback.
 ## Installation
 
 ```
-implementation("com.ashampoo:kim:0.8.3")
+implementation("com.ashampoo:kim:0.9")
 ```
 
 ## Sample usages
