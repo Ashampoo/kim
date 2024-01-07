@@ -1,5 +1,5 @@
 File format : HEIC
-Resolution  : null
+Resolution  : 4032 x 3024
 ---- TIFF ----
 Version 42
 Big-endian (Motorola, MM)

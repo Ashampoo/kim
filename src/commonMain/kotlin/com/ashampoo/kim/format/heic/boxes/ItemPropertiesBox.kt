@@ -26,15 +26,23 @@ class ItemPropertiesBox(
     payload: ByteArray
 ) : Box(offset, BoxType.IPRP, length, payload) {
 
+    /* Mandatory boxes in IPRP */
+    val itemPropertyContainerBox: ItemPropertyContainerBox
+    val itemPropertyAssociationBox: ItemPropertyAssociationBox
+
     val boxes: List<Box>
 
     override fun toString(): String =
-        "IPRC boxes=${boxes.map { it.type }}"
+        "$type boxes=${boxes.map { it.type }}"
 
     init {
 
         val byteReader = ByteArrayByteReader(payload)
 
         boxes = BoxReader.readBoxes(byteReader)
+
+        /* Find & set mandatory boxes. */
+        itemPropertyContainerBox = boxes.find { it.type == BoxType.IPCO } as ItemPropertyContainerBox
+        itemPropertyAssociationBox = boxes.find { it.type == BoxType.IPMA } as ItemPropertyAssociationBox
     }
 }

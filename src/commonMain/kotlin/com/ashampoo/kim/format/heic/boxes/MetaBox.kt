@@ -40,6 +40,8 @@ class MetaBox(
     val itemInfoBox: ItemInformationBox
     val itemLocationBox: ItemLocationBox
 
+    val itemPropertiesBox: ItemPropertiesBox?
+
     val boxes: List<Box>
 
     override fun toString(): String =
@@ -55,12 +57,13 @@ class MetaBox(
 
         boxes = BoxReader.readBoxes(byteReader)
 
-        println(boxes.map { it.type })
-
-        /* Associate mandatory boxes. */
+        /* Find & set mandatory boxes. */
         handlerReferenceBox = boxes.find { it.type == BoxType.HDLR } as HandlerReferenceBox
         primaryItemBox = boxes.find { it.type == BoxType.PITM } as PrimaryItemBox
         itemInfoBox = boxes.find { it.type == BoxType.IINF } as ItemInformationBox
         itemLocationBox = boxes.find { it.type == BoxType.ILOC } as ItemLocationBox
+
+        /* Find an set optional boxes. */
+        itemPropertiesBox = boxes.find { it.type == BoxType.IPRP } as? ItemPropertiesBox
     }
 }

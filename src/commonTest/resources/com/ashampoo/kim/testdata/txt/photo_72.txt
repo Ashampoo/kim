@@ -1,5 +1,5 @@
 File format : HEIC
-Resolution  : null
+Resolution  : 7008 x 4672
 ---- TIFF ----
 Version 42
 Little-endian (Intel, II)

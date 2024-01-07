@@ -22,11 +22,13 @@ import com.ashampoo.kim.format.heic.HeicConstants.HEIC_BYTE_ORDER
 import com.ashampoo.kim.format.heic.HeicConstants.ITEM_TYPE_EXIF
 import com.ashampoo.kim.format.heic.HeicConstants.ITEM_TYPE_MIME
 import com.ashampoo.kim.format.heic.HeicConstants.TIFF_HEADER_OFFSET_BYTE_COUNT
+import com.ashampoo.kim.format.heic.boxes.ImageSizeBox
 import com.ashampoo.kim.format.heic.boxes.MetaBox
 import com.ashampoo.kim.format.tiff.TiffReader
 import com.ashampoo.kim.input.ByteReader
 import com.ashampoo.kim.input.PositionTrackingByteReaderDecorator
 import com.ashampoo.kim.model.ImageFormat
+import com.ashampoo.kim.model.ImageSize
 
 object HeicImageParser : ImageParser {
 
@@ -41,6 +43,8 @@ object HeicImageParser : ImageParser {
         )
 
         val metaBox = allBoxes.find { it.type == BoxType.META } as MetaBox
+
+        val imageSize = extractImageSize(metaBox)
 
         var exifBytes: ByteArray? = null
         var xmp: String? = null
@@ -84,11 +88,52 @@ object HeicImageParser : ImageParser {
 
         return ImageMetadata(
             imageFormat = ImageFormat.HEIC,
-            imageSize = null, // TODO
+            imageSize = imageSize,
             exif = exif,
             exifBytes = exifBytes,
             iptc = null, // TODO
             xmp = xmp
         )
+    }
+
+    /*
+     * The image size is stored in an ISPE (ImageSpatialExtents) box inside the
+     * IPRP (ImagePropertiesBox) boxes. There are multiple boxes of this kind if
+     * the image contains thumbnails and previews. That's why we need to look up
+     * which IPSE box is associated with the primary item. This relation is stored
+     * in an IPMA (ItemPropertyAssociationBox) box.
+     */
+    private fun extractImageSize(metaBox: MetaBox): ImageSize? {
+
+        if (metaBox.itemPropertiesBox == null)
+            return null
+
+        val primaryItemId = metaBox.primaryItemBox.itemId
+
+        val associatedEntries =
+            metaBox.itemPropertiesBox.itemPropertyAssociationBox.entries.get(primaryItemId)
+
+        if (associatedEntries == null)
+            return null
+
+        val associatedIndexes = associatedEntries.map { it.index }
+
+        val ipcoBoxes = metaBox.itemPropertiesBox.itemPropertyContainerBox.boxes
+
+        /*
+         * Find the first ImageSize/ISPE box that is associated with the primary item.
+         * There should always be only one (or none).
+         */
+        val relevantImageSizeBox = ipcoBoxes.filterIndexed { index, box ->
+            associatedIndexes.contains(index + 1) && box.type == BoxType.ISPE
+        }.firstOrNull() as? ImageSizeBox
+
+        if (relevantImageSizeBox != null)
+            return ImageSize(
+                width = relevantImageSizeBox.width,
+                height = relevantImageSizeBox.height
+            )
+
+        return null
     }
 }
