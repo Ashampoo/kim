@@ -56,6 +56,11 @@ data class BoxType internal constructor(
         val META = of("meta".encodeToByteArray())
 
         /**
+         * Handler Reference Box
+         */
+        val HDLR = of("hdlr".encodeToByteArray())
+
+        /**
          * Primary Item Box
          */
         val PITM = of("pitm".encodeToByteArray())

@@ -17,33 +17,29 @@
 package com.ashampoo.kim.format.heic.boxes
 
 import com.ashampoo.kim.common.toHex
-import com.ashampoo.kim.format.heic.BoxReader
 import com.ashampoo.kim.format.heic.BoxType
 import com.ashampoo.kim.input.ByteArrayByteReader
 
-/**
- * The Meta Box is a container for several metadata boxes.
- */
-class MetaBox(
+class HandlerReferenceBox(
     offset: Long,
     length: Long,
     payload: ByteArray
-) : Box(offset, BoxType.META, length, payload) {
+) : Box(offset, BoxType.HDLR, length, payload) {
 
     val version: Int
 
     val flags: ByteArray
 
-    /* Mandatory boxes in META */
-    val handlerReferenceBox: HandlerReferenceBox
-    val primaryItemBox: PrimaryItemBox
-    val itemInfoBox: ItemInformationBox
-    val itemLocationBox: ItemLocationBox
+    val handlerType: String
 
-    val boxes: List<Box>
+    val name: String
 
     override fun toString(): String =
-        "$type Box version=$version flags=${flags.toHex()} boxes=${boxes.map { it.type }}"
+        "$type " +
+            "version=$version " +
+            "flags=${flags.toHex()} " +
+            "handlerType=$handlerType " +
+            "name=$name"
 
     init {
 
@@ -53,14 +49,12 @@ class MetaBox(
 
         flags = byteReader.readBytes("flags", 3)
 
-        boxes = BoxReader.readBoxes(byteReader)
+        byteReader.skipBytes("pre-defined", 4)
 
-        println(boxes.map { it.type })
+        handlerType = byteReader.readBytes("handlerType", 4).decodeToString()
 
-        /* Associate mandatory boxes. */
-        handlerReferenceBox = boxes.find { it.type == BoxType.HDLR } as HandlerReferenceBox
-        primaryItemBox = boxes.find { it.type == BoxType.PITM } as PrimaryItemBox
-        itemInfoBox = boxes.find { it.type == BoxType.IINF } as ItemInformationBox
-        itemLocationBox = boxes.find { it.type == BoxType.ILOC } as ItemLocationBox
+        byteReader.skipBytes("reserved", 12)
+
+        name = byteReader.readNullTerminatedString("name")
     }
 }

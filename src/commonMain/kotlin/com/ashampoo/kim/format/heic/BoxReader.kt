@@ -19,6 +19,7 @@ package com.ashampoo.kim.format.heic
 import com.ashampoo.kim.format.heic.HeicConstants.HEIC_BYTE_ORDER
 import com.ashampoo.kim.format.heic.boxes.Box
 import com.ashampoo.kim.format.heic.boxes.FileTypeBox
+import com.ashampoo.kim.format.heic.boxes.HandlerReferenceBox
 import com.ashampoo.kim.format.heic.boxes.ImageRotationBox
 import com.ashampoo.kim.format.heic.boxes.ImageSizeBox
 import com.ashampoo.kim.format.heic.boxes.ItemInfoEntryBox
@@ -100,6 +101,7 @@ object BoxReader {
         return when (type) {
             BoxType.FTYP -> FileTypeBox(offset, actualLength, bytes)
             BoxType.META -> MetaBox(offset, actualLength, bytes)
+            BoxType.HDLR -> HandlerReferenceBox(offset, actualLength, bytes)
             BoxType.IINF -> ItemInformationBox(offset, actualLength, bytes)
             BoxType.IPRP -> ItemPropertiesBox(offset, actualLength, bytes)
             BoxType.IPCO -> ItemPropertyContainerBox(offset, actualLength, bytes)
