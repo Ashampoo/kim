@@ -21,6 +21,7 @@ import com.ashampoo.kim.format.heic.BoxType
 import com.ashampoo.kim.format.heic.HeicConstants.HEIC_BYTE_ORDER
 import com.ashampoo.kim.input.ByteArrayByteReader
 
+@OptIn(ExperimentalStdlibApi::class)
 class ItemPropertyAssociationBox(
     offset: Long,
     length: Long,
@@ -33,11 +34,17 @@ class ItemPropertyAssociationBox(
 
     val entryCount: Int
 
+    val propertyIndexWidth: Int
+
+    val entries: Map<Int, List<AssociatedProperty>>
+
     override fun toString(): String =
         "$type " +
             "version=$version " +
             "flags=${flags.toHex()} " +
-            "entryCount=$entryCount"
+            "propertyIndexWidth=$propertyIndexWidth " +
+            "entryCount=$entryCount " +
+            "entries=$entries"
 
     init {
 
@@ -47,12 +54,48 @@ class ItemPropertyAssociationBox(
 
         flags = byteReader.readBytes("flags", 3)
 
+        propertyIndexWidth = if (flags[2].toInt() == 1) 15 else 7
+
         entryCount = byteReader.read4BytesAsInt("itemId", HEIC_BYTE_ORDER)
 
-        /*
-         * TODO
-         */
+        val entries = mutableMapOf<Int, List<AssociatedProperty>>()
 
-        println(this)
+        repeat(entryCount) {
+
+            val itemId = if (version < 1)
+                byteReader.read2BytesAsInt("itemId", HEIC_BYTE_ORDER)
+            else
+                byteReader.read4BytesAsInt("itemId", HEIC_BYTE_ORDER)
+
+            val associationCount = if (propertyIndexWidth == 15)
+                byteReader.read2BytesAsInt("associationCount", HEIC_BYTE_ORDER)
+            else
+                byteReader.readByteAsInt()
+
+            val associatedProperties = mutableListOf<AssociatedProperty>()
+
+            repeat(associationCount) {
+
+                val fullAssociation = if (propertyIndexWidth == 15)
+                    byteReader.read2BytesAsInt("associationCount", HEIC_BYTE_ORDER)
+                else
+                    byteReader.readByteAsInt()
+
+                // FIXME Is this correct? Untested.
+
+                associatedProperties.add(
+                    AssociatedProperty(
+                        essential = (fullAssociation shr propertyIndexWidth) and 0x01 == 1,
+                        index = fullAssociation and ((1 shl propertyIndexWidth) - 1)
+                    )
+                )
+            }
+
+            associatedProperties.sortBy { it.index }
+
+            entries.put(itemId, associatedProperties)
+        }
+
+        this.entries = entries
     }
 }
