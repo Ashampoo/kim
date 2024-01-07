@@ -1,5 +1,5 @@
 /*
- * Copyright 2024 Ashampoo GmbH & Co. KG
+ * Copyright 2023 Ashampoo GmbH & Co. KG
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -46,10 +46,7 @@ enum class ImageFormat(
 
     companion object {
 
-        /**
-         * RAF is the longest format that requires us to read 15 bytes to detect it.
-         * Right after that we need 12 bytes to check for HEIC.
-         */
+        /** RAF is the longest format that requires us to read 15 bytes to detect it. **/
         const val REQUIRED_HEADER_BYTE_COUNT_FOR_DETECTION: Int = 15
 
         private val allImageFormats = ImageFormat.values()
@@ -170,13 +167,6 @@ enum class ImageFormat(
                 /* Check TIFF after the RAW files. */
                 bytes.startsWith(ImageFormatMagicNumbers.tiffLittleEndian) -> ImageFormat.TIFF
                 bytes.startsWith(ImageFormatMagicNumbers.tiffBigEndian) -> ImageFormat.TIFF
-                /* Check HEIC variants */
-                bytes.startsWithNullable(ImageFormatMagicNumbers.heic) -> ImageFormat.HEIC
-                bytes.startsWithNullable(ImageFormatMagicNumbers.mif1) -> ImageFormat.HEIC
-                bytes.startsWithNullable(ImageFormatMagicNumbers.msf1) -> ImageFormat.HEIC
-                bytes.startsWithNullable(ImageFormatMagicNumbers.heix) -> ImageFormat.HEIC
-                bytes.startsWithNullable(ImageFormatMagicNumbers.hevc) -> ImageFormat.HEIC
-                bytes.startsWithNullable(ImageFormatMagicNumbers.hevx) -> ImageFormat.HEIC
                 /* Check GIF and other unlikely formats... */
                 bytes.startsWith(ImageFormatMagicNumbers.gif87a) -> ImageFormat.GIF
                 bytes.startsWith(ImageFormatMagicNumbers.gif89a) -> ImageFormat.GIF

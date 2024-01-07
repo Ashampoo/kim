@@ -1,5 +1,5 @@
 /*
- * Copyright 2024 Ashampoo GmbH & Co. KG
+ * Copyright 2023 Ashampoo GmbH & Co. KG
  * Copyright 2007-2023 The Apache Software Foundation
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -23,6 +23,7 @@ import com.ashampoo.kim.common.RationalNumber
 import com.ashampoo.kim.common.head
 import com.ashampoo.kim.common.toSingleNumberHexes
 import com.ashampoo.kim.format.tiff.TiffTags.getTag
+import com.ashampoo.kim.format.tiff.constants.TiffConstants
 import com.ashampoo.kim.format.tiff.fieldtypes.FieldType
 import com.ashampoo.kim.format.tiff.taginfos.TagInfo
 

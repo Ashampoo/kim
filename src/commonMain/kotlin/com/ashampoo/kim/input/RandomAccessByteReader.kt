@@ -1,5 +1,5 @@
 /*
- * Copyright 2024 Ashampoo GmbH & Co. KG
+ * Copyright 2023 Ashampoo GmbH & Co. KG
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,16 +15,12 @@
  */
 package com.ashampoo.kim.input
 
-/**
- * Random access to the bytes are required to read TIFF files
- * where an offset can even be lower than the current position.
- */
 interface RandomAccessByteReader : ByteReader {
 
-    fun reset() = moveTo(0)
+    fun reset()
 
-    fun moveTo(position: Int)
+    fun skipTo(position: Int)
 
-    fun readBytes(offset: Int, length: Int): ByteArray
+    fun readBytes(start: Int, length: Int): ByteArray
 
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2024 Ashampoo GmbH & Co. KG
+ * Copyright 2023 Ashampoo GmbH & Co. KG
  * Copyright 2007-2023 The Apache Software Foundation
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,15 +16,16 @@
  */
 package com.ashampoo.kim.format.png.chunks
 
-import com.ashampoo.kim.format.png.PngChunkType
+import com.ashampoo.kim.format.png.ChunkType
 import com.ashampoo.kim.format.png.PngConstants.PNG_BYTE_ORDER
 import com.ashampoo.kim.input.ByteArrayByteReader
 
 class PngChunkIhdr(
     length: Int,
+    chunkType: ChunkType,
     crc: Int,
     bytes: ByteArray
-) : PngChunk(length, PngChunkType.IHDR, crc, bytes) {
+) : PngChunk(length, chunkType, crc, bytes) {
 
     val width: Int
 

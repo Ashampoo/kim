@@ -1,5 +1,6 @@
 /*
- * Copyright 2024 Ashampoo GmbH & Co. KG
+ * Copyright 2023 Ashampoo GmbH & Co. KG
+ * Copyright 2007-2023 The Apache Software Foundation
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,7 +17,6 @@
 package com.ashampoo.kim.format
 
 import com.ashampoo.kim.common.ImageReadException
-import com.ashampoo.kim.format.heic.HeicImageParser
 import com.ashampoo.kim.format.jpeg.JpegImageParser
 import com.ashampoo.kim.format.png.PngImageParser
 import com.ashampoo.kim.format.raf.RafImageParser
@@ -46,8 +46,6 @@ fun interface ImageParser {
                 ImageFormat.ORF -> TiffImageParser
 
                 ImageFormat.RAF -> RafImageParser
-
-                ImageFormat.HEIC -> HeicImageParser
 
                 else -> null
             }

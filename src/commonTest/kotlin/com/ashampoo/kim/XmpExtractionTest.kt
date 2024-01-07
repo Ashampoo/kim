@@ -1,5 +1,5 @@
 /*
- * Copyright 2024 Ashampoo GmbH & Co. KG
+ * Copyright 2023 Ashampoo GmbH & Co. KG
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -36,7 +36,7 @@ class XmpExtractionTest {
 
     // TODO Support these files as they have XMP
     val indicesUnsupported = setOf(
-        59, 72, 73, 74, 75, 76
+        59
     )
 
     /**

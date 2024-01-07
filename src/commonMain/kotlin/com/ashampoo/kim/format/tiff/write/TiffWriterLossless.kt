@@ -1,5 +1,5 @@
 /*
- * Copyright 2024 Ashampoo GmbH & Co. KG
+ * Copyright 2023 Ashampoo GmbH & Co. KG
  * Copyright 2007-2023 The Apache Software Foundation
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -25,6 +25,7 @@ import com.ashampoo.kim.format.tiff.TiffReader
 import com.ashampoo.kim.format.tiff.constants.ExifTag
 import com.ashampoo.kim.format.tiff.constants.TiffConstants
 import com.ashampoo.kim.format.tiff.constants.TiffConstants.TIFF_HEADER_SIZE
+import com.ashampoo.kim.input.ByteArrayByteReader
 import com.ashampoo.kim.output.BinaryByteWriter.Companion.createBinaryByteWriter
 import com.ashampoo.kim.output.BufferByteWriter
 import com.ashampoo.kim.output.ByteWriter

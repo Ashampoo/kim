@@ -1,5 +1,5 @@
 /*
- * Copyright 2024 Ashampoo GmbH & Co. KG
+ * Copyright 2023 Ashampoo GmbH & Co. KG
  * Copyright 2007-2023 The Apache Software Foundation
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -19,11 +19,11 @@ package com.ashampoo.kim.format.png.chunks
 import com.ashampoo.kim.common.ImageReadException
 import com.ashampoo.kim.common.decodeLatin1BytesToString
 import com.ashampoo.kim.common.indexOfNullTerminator
-import com.ashampoo.kim.format.png.PngChunkType
+import com.ashampoo.kim.format.png.ChunkType
 
 class PngChunkText(
     length: Int,
-    chunkType: PngChunkType,
+    chunkType: ChunkType,
     crc: Int,
     bytes: ByteArray
 ) : PngTextChunk(length, chunkType, crc, bytes) {

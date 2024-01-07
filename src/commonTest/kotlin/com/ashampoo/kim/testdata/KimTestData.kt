@@ -1,5 +1,5 @@
 /*
- * Copyright 2024 Ashampoo GmbH & Co. KG
+ * Copyright 2023 Ashampoo GmbH & Co. KG
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,7 +30,7 @@ object KimTestData {
 
     private const val RESOURCE_PATH: String = "src/commonTest/resources/com/ashampoo/kim/testdata"
 
-    const val TEST_PHOTO_COUNT: Int = 76
+    const val TEST_PHOTO_COUNT: Int = 71
     const val HIGHEST_JPEG_INDEX: Int = 50
 
     const val PNG_TEST_IMAGE_INDEX: Int = 51
@@ -54,11 +54,6 @@ object KimTestData {
     const val DNG_ARW_TEST_IMAGE_INDEX: Int = 69
     const val DNG_RW2_TEST_IMAGE_INDEX: Int = 70
     const val DNG_ORF_TEST_IMAGE_INDEX: Int = 71
-    const val HIF_TEST_IMAGE_INDEX: Int = 72
-    const val HEIC_TEST_IMAGE_WITH_XMP_INDEX: Int = 73
-    const val HEIC_TEST_IMAGE_RESAVED_WITH_GIMP_INDEX: Int = 74
-    const val HEIC_TEST_IMAGE_FROM_JPG_USING_GIMP_INDEX: Int = 75
-    const val HEIC_TEST_IMAGE_FROM_JPG_USING_APPLE_INDEX: Int = 76
 
     @Suppress("MagicNumber")
     val photoIdsWithExifThumbnail: Set<Int> = setOf(
@@ -91,10 +86,6 @@ object KimTestData {
         GIF_TEST_IMAGE_INDEX -> "gif"
         WEBP_TEST_IMAGE_INDEX -> "webp"
         HEIC_TEST_IMAGE_INDEX -> "heic"
-        HEIC_TEST_IMAGE_WITH_XMP_INDEX -> "heic"
-        HEIC_TEST_IMAGE_RESAVED_WITH_GIMP_INDEX -> "heic"
-        HEIC_TEST_IMAGE_FROM_JPG_USING_GIMP_INDEX -> "heic"
-        HEIC_TEST_IMAGE_FROM_JPG_USING_APPLE_INDEX -> "heic"
         CR2_TEST_IMAGE_INDEX -> "cr2"
         RAF_TEST_IMAGE_INDEX -> "raf"
         TIFF_NONE_TEST_IMAGE_INDEX -> "tif"
@@ -113,7 +104,6 @@ object KimTestData {
         DNG_ARW_TEST_IMAGE_INDEX -> "dng"
         DNG_RW2_TEST_IMAGE_INDEX -> "dng"
         DNG_ORF_TEST_IMAGE_INDEX -> "dng"
-        HIF_TEST_IMAGE_INDEX -> "hif"
         else -> "jpg"
     }
 

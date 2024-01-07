@@ -1,5 +1,5 @@
 /*
- * Copyright 2024 Ashampoo GmbH & Co. KG
+ * Copyright 2023 Ashampoo GmbH & Co. KG
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -37,7 +37,7 @@ class PngImageParserTest {
 
         val chunks = PngImageParser.readChunks(
             ByteArrayByteReader(bytes),
-            listOf(PngChunkType.IHDR, PngChunkType.TEXT, PngChunkType.ZTXT, PngChunkType.ITXT, PngChunkType.EXIF)
+            listOf(ChunkType.IHDR, ChunkType.TEXT, ChunkType.ZTXT, ChunkType.ITXT, ChunkType.EXIF)
         )
 
         assertNotNull(chunks)

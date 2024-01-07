@@ -1,5 +1,6 @@
 /*
- * Copyright 2024 Ashampoo GmbH & Co. KG
+ * Copyright 2023 Ashampoo GmbH & Co. KG
+ * Copyright 2007-2023 The Apache Software Foundation
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -41,7 +42,7 @@ object Cr2PreviewExtractor : TiffPreviewExtractor {
         if (previewLength == 0)
             return null
 
-        randomAccessByteReader.moveTo(previewImageStart)
+        randomAccessByteReader.skipTo(previewImageStart)
 
         val previewBytes = randomAccessByteReader.readBytes(previewLength)
 

@@ -1,5 +1,5 @@
 /*
- * Copyright 2024 Ashampoo GmbH & Co. KG
+ * Copyright 2023 Ashampoo GmbH & Co. KG
  * Copyright 2007-2023 The Apache Software Foundation
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -33,6 +33,7 @@ import com.ashampoo.kim.format.png.chunks.PngChunkZtxt
 import com.ashampoo.kim.format.png.chunks.PngTextChunk
 import com.ashampoo.kim.format.tiff.TiffContents
 import com.ashampoo.kim.format.tiff.TiffReader
+import com.ashampoo.kim.input.ByteArrayByteReader
 import com.ashampoo.kim.input.ByteReader
 import com.ashampoo.kim.model.ImageFormat
 import com.ashampoo.kim.model.ImageSize
@@ -44,11 +45,11 @@ object PngImageParser : ImageParser {
     private val pngByteOrder = ByteOrder.BIG_ENDIAN
 
     private val metadataChunkTypes = listOf(
-        PngChunkType.IHDR,
-        PngChunkType.TEXT,
-        PngChunkType.ZTXT,
-        PngChunkType.ITXT,
-        PngChunkType.EXIF
+        ChunkType.IHDR,
+        ChunkType.TEXT,
+        ChunkType.ZTXT,
+        ChunkType.ITXT,
+        ChunkType.EXIF
     )
 
     @Throws(ImageReadException::class)
@@ -101,7 +102,7 @@ object PngImageParser : ImageParser {
 
     private fun getExif(chunks: List<PngChunk>): Pair<ByteArray, TiffContents>? {
 
-        val exifChunk = chunks.find { it.chunkType == PngChunkType.EXIF } ?: return null
+        val exifChunk = chunks.find { it.chunkType == ChunkType.EXIF } ?: return null
 
         return exifChunk.bytes to TiffReader.read(exifChunk.bytes)
     }
@@ -235,7 +236,7 @@ object PngImageParser : ImageParser {
 
     private fun readChunksInternal(
         byteReader: ByteReader,
-        chunkTypeFilter: List<PngChunkType>?
+        chunkTypeFilter: List<ChunkType>?
     ): List<PngChunk> {
 
         val chunks = mutableListOf<PngChunk>()
@@ -247,7 +248,7 @@ object PngImageParser : ImageParser {
             if (length < 0)
                 throw ImageReadException("Invalid PNG chunk length: $length")
 
-            val chunkType = PngChunkType.of(byteReader.readBytes(PngConstants.TPYE_LENGTH))
+            val chunkType = ChunkType.of(byteReader.readBytes(PngConstants.TPYE_LENGTH))
 
             val keep = chunkTypeFilter?.contains(chunkType) ?: true
 
@@ -265,15 +266,15 @@ object PngImageParser : ImageParser {
                 requireNotNull(bytes)
 
                 when {
-                    PngChunkType.TEXT == chunkType -> chunks.add(PngChunkText(length, PngChunkType.TEXT, crc, bytes))
-                    PngChunkType.ZTXT == chunkType -> chunks.add(PngChunkZtxt(length, crc, bytes))
-                    PngChunkType.IHDR == chunkType -> chunks.add(PngChunkIhdr(length, crc, bytes))
-                    PngChunkType.ITXT == chunkType -> chunks.add(PngChunkItxt(length, crc, bytes))
+                    ChunkType.TEXT == chunkType -> chunks.add(PngChunkText(length, chunkType, crc, bytes))
+                    ChunkType.ZTXT == chunkType -> chunks.add(PngChunkZtxt(length, chunkType, crc, bytes))
+                    ChunkType.IHDR == chunkType -> chunks.add(PngChunkIhdr(length, chunkType, crc, bytes))
+                    ChunkType.ITXT == chunkType -> chunks.add(PngChunkItxt(length, chunkType, crc, bytes))
                     else -> chunks.add(PngChunk(length, chunkType, crc, bytes))
                 }
             }
 
-            if (PngChunkType.IEND == chunkType)
+            if (ChunkType.IEND == chunkType)
                 break
         }
 
@@ -285,7 +286,7 @@ object PngImageParser : ImageParser {
 
     fun readChunks(
         byteReader: ByteReader,
-        chunkTypeFilter: List<PngChunkType>?
+        chunkTypeFilter: List<ChunkType>?
     ): List<PngChunk> {
 
         readAndVerifySignature(byteReader)

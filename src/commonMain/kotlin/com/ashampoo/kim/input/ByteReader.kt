@@ -1,5 +1,5 @@
 /*
- * Copyright 2024 Ashampoo GmbH & Co. KG
+ * Copyright 2023 Ashampoo GmbH & Co. KG
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -56,37 +56,13 @@ interface ByteReader : Closeable {
         return bytes
     }
 
-    fun readNullTerminatedString(fieldName: String): String {
-
-        val bytes = mutableListOf<Byte>()
-
-        var byte: Byte?
-
-        while (true) {
-
-            byte = readByte()
-
-            if (byte == null)
-                throw ImageReadException("No bytes for $fieldName, never reached terminator byte.")
-
-            if (byte.toInt() == 0)
-                break
-
-            bytes.add(byte)
-        }
-
-        return bytes.toByteArray().decodeToString()
-    }
-
-    /** Reads one byte as unsigned number, also known as "byte" or "UInt8" */
-    fun readByteAsInt(): Int =
+    private fun readAsInt(): Int =
         readByte()?.let { it.toInt() and 0xFF } ?: -1
 
-    /** Reads 2 bytes as unsigned number, also known as "short" or "UInt16" */
     fun read2BytesAsInt(fieldName: String, byteOrder: ByteOrder): Int {
 
-        val byte0 = readByteAsInt()
-        val byte1 = readByteAsInt()
+        val byte0 = readAsInt()
+        val byte1 = readAsInt()
 
         if (byte0 or byte1 < 0)
             throw ImageReadException("Couldn't read two bytes for $fieldName")
@@ -97,13 +73,12 @@ interface ByteReader : Closeable {
             byte1 shl 8 or byte0
     }
 
-    /** Reads 4 bytes as unsigned number, also known as "int" or "UInt32" */
     fun read4BytesAsInt(fieldName: String, byteOrder: ByteOrder): Int {
 
-        val byte0 = readByteAsInt()
-        val byte1 = readByteAsInt()
-        val byte2 = readByteAsInt()
-        val byte3 = readByteAsInt()
+        val byte0 = readAsInt()
+        val byte1 = readAsInt()
+        val byte2 = readAsInt()
+        val byte3 = readAsInt()
 
         if (byte0 or byte1 or byte2 or byte3 < 0)
             throw ImageReadException("Couldn't read 4 bytes for $fieldName")
@@ -115,40 +90,6 @@ interface ByteReader : Closeable {
 
         return result
     }
-
-    /** Reads 8 bytes as unsigned number, also known as "long" or "UInt64" */
-    fun read8BytesAsLong(fieldName: String, byteOrder: ByteOrder): Long {
-
-        val byte0 = readByteAsInt()
-        val byte1 = readByteAsInt()
-        val byte2 = readByteAsInt()
-        val byte3 = readByteAsInt()
-        val byte4 = readByteAsInt()
-        val byte5 = readByteAsInt()
-        val byte6 = readByteAsInt()
-        val byte7 = readByteAsInt()
-
-        if (byte0 or byte1 or byte2 or byte3 or byte4 or byte5 or byte6 or byte7 < 0)
-            throw ImageReadException("Couldn't read 8 bytes for $fieldName")
-
-        val result: Long = if (byteOrder == ByteOrder.BIG_ENDIAN)
-            (byte0.toLong() shl 56) or (byte1.toLong() shl 48) or (byte2.toLong() shl 40) or (byte3.toLong() shl 32) or
-                (byte4.toLong() shl 24) or (byte5.toLong() shl 16) or (byte6.toLong() shl 8) or (byte7.toLong() shl 0)
-        else
-            (byte7.toLong() shl 56) or (byte6.toLong() shl 48) or (byte5.toLong() shl 40) or (byte4.toLong() shl 32) or
-                (byte3.toLong() shl 24) or (byte2.toLong() shl 16) or (byte1.toLong() shl 8) or (byte0.toLong() shl 0)
-
-        return result
-    }
-
-    fun readXBytesAtInt(fieldName: String, byteCount: Int, byteOrder: ByteOrder): Long =
-        when (byteCount) {
-            1 -> readByteAsInt().toLong()
-            2 -> read2BytesAsInt(fieldName, byteOrder).toLong()
-            4 -> read4BytesAsInt(fieldName, byteOrder).toLong()
-            8 -> read8BytesAsLong(fieldName, byteOrder)
-            else -> error("Illegal byteCount specified: $byteCount")
-        }
 
     fun readAndVerifyBytes(fieldName: String, expectedBytes: ByteArray) {
 
@@ -181,14 +122,10 @@ interface ByteReader : Closeable {
         return os.toByteArray()
     }
 
-    fun skipBytes(fieldName: String, length: Int) {
+    fun skipBytes(name: String, length: Int) {
 
-        /* Nothing to do. */
         if (length == 0)
             return
-
-        if (length < 0)
-            throw ImageReadException("Couldn't read $fieldName, invalid length: $length")
 
         var total: Int = 0
 
@@ -197,7 +134,7 @@ interface ByteReader : Closeable {
             val skipped = readBytes(length.toInt()).size
 
             if (skipped < 1)
-                throw ImageReadException("$fieldName (skipped $skipped of $length bytes)")
+                throw ImageReadException("$name (skipped $skipped of $length bytes)")
 
             total += skipped
         }
@@ -211,7 +148,7 @@ interface ByteReader : Closeable {
 
         while (true) {
 
-            val byte = readByteAsInt()
+            val byte = readAsInt()
 
             if (byte == -1)
                 break

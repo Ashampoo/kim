@@ -1,2 +1,0 @@
-File format : HEIC
-Resolution  : 2000 x 1500
