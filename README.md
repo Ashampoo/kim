@@ -19,6 +19,7 @@ It's part of [Ashampoo Photos](https://ashampoo.com/photos).
 * PNG: Read & Write `eXIf` chunk & XMP
     + Also read non-standard EXIF & IPTC from `tEXt`/`zTXt` chunk
 * HEIC: Read EXIF & XMP
+    + Somewhat experimental as only tested for iPhone HEIC files so far
 * TIFF / DNG / RAW: Read EXIF & XMP
     + Good support for Canon CR2, Fujifilm RAF & Adobe DNG
     + Experimental support for NEF, ARW, RW2 & ORF with known issues
