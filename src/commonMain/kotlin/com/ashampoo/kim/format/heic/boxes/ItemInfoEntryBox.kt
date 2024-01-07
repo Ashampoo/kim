@@ -41,7 +41,7 @@ class ItemInfoEntryBox(
     val itemName: String
 
     override fun toString(): String =
-        "INFE " +
+        "$type " +
             "version=$version " +
             "flags=${flags.toHex()} " +
             "itemId=$itemId " +

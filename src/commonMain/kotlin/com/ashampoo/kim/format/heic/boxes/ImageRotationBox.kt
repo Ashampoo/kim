@@ -33,7 +33,7 @@ class ImageRotationBox(
     val angle: Int
 
     override fun toString(): String =
-        "IROT angle=$angle"
+        "$type angle=$angle"
 
     init {
 

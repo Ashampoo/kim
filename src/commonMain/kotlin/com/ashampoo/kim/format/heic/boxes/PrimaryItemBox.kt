@@ -34,7 +34,7 @@ class PrimaryItemBox(
     val itemId: Int
 
     override fun toString(): String =
-        "PITM " +
+        "$type " +
             "version=$version " +
             "flags=${flags.toHex()} " +
             "itemId=$itemId"

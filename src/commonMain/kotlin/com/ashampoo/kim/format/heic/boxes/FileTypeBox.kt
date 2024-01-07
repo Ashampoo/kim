@@ -35,7 +35,7 @@ class FileTypeBox(
     val compatibleBrands: List<String>
 
     override fun toString(): String =
-        "FTYP major=$majorBrand minor=$minorBrand compatible=$compatibleBrands"
+        "$type major=$majorBrand minor=$minorBrand compatible=$compatibleBrands"
 
     init {
 

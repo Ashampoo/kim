@@ -39,7 +39,7 @@ class ImageSizeBox(
     val height: Int
 
     override fun toString(): String =
-        "ISPE " +
+        "$type " +
             "version=$version " +
             "flags=${flags.toHex()} " +
             "width=$width " +
@@ -54,7 +54,5 @@ class ImageSizeBox(
 
         width = byteReader.read4BytesAsInt("width", HEIC_BYTE_ORDER)
         height = byteReader.read4BytesAsInt("height", HEIC_BYTE_ORDER)
-
-        println(this)
     }
 }

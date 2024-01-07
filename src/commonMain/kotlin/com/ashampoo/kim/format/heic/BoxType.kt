@@ -97,7 +97,14 @@ data class BoxType internal constructor(
          */
         val IPCO = of("ipco".encodeToByteArray())
 
-        /** Media Data box, of which there can be many at the end. */
+        /**
+         * Item Property Association Box
+         */
+        val IPMA = of("ipma".encodeToByteArray())
+
+        /**
+         * Media Data box, of which there can be many at the end.
+         */
         val MDAT = of("mdat".encodeToByteArray())
 
         @Suppress("MagicNumber")

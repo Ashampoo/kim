@@ -29,7 +29,7 @@ class ItemPropertyContainerBox(
     val boxes: List<Box>
 
     override fun toString(): String =
-        "IPCO boxes=${boxes.map { it.type }}"
+        "$type boxes=${boxes.map { it.type }}"
 
     init {
 

@@ -25,6 +25,7 @@ import com.ashampoo.kim.format.heic.boxes.ItemInfoEntryBox
 import com.ashampoo.kim.format.heic.boxes.ItemInformationBox
 import com.ashampoo.kim.format.heic.boxes.ItemLocationBox
 import com.ashampoo.kim.format.heic.boxes.ItemPropertiesBox
+import com.ashampoo.kim.format.heic.boxes.ItemPropertyAssociationBox
 import com.ashampoo.kim.format.heic.boxes.ItemPropertyContainerBox
 import com.ashampoo.kim.format.heic.boxes.MediaDataBox
 import com.ashampoo.kim.format.heic.boxes.MetaBox
@@ -107,6 +108,7 @@ object BoxReader {
             BoxType.ISPE -> ImageSizeBox(offset, actualLength, bytes)
             BoxType.IROT -> ImageRotationBox(offset, actualLength, bytes)
             BoxType.PITM -> PrimaryItemBox(offset, actualLength, bytes)
+            BoxType.IPMA -> ItemPropertyAssociationBox(offset, actualLength, bytes)
             BoxType.MDAT -> MediaDataBox(offset, actualLength, bytes)
             else -> Box(offset, type, actualLength, bytes)
         }

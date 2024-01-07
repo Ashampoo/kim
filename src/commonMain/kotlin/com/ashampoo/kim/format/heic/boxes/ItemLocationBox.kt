@@ -61,7 +61,7 @@ class ItemLocationBox(
     val extents: List<Extent>
 
     override fun toString(): String =
-        "ILOC " +
+        "$type " +
             "offsetSize=$offsetSize " +
             "lengthSize=$lengthSize " +
             "baseOffsetSize=$baseOffsetSize " +

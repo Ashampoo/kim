@@ -37,7 +37,7 @@ class ItemInformationBox(
     val map: Map<Int, ItemInfoEntryBox>
 
     override fun toString(): String =
-        "IINF version=$version flags=${flags.toHex()} ($entryCount entries)"
+        "$type version=$version flags=${flags.toHex()} ($entryCount entries)"
 
     init {
 

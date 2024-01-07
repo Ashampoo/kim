@@ -29,5 +29,5 @@ class MediaDataBox(
 ) : Box(offset, BoxType.MDAT, length, payload) {
 
     override fun toString(): String =
-        "MDAT Box"
+        "$type Box"
 }

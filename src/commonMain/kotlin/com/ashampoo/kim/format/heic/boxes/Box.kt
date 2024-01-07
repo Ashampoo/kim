@@ -27,5 +27,5 @@ open class Box(
 ) {
 
     override fun toString(): String =
-        "Box $type @ $offset of length $length"
+        "Box $type @ $offset ($length bytes)"
 }

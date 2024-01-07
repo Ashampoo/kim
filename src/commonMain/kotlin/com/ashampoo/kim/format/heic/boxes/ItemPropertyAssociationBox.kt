@@ -17,27 +17,27 @@
 package com.ashampoo.kim.format.heic.boxes
 
 import com.ashampoo.kim.common.toHex
-import com.ashampoo.kim.format.heic.BoxReader
 import com.ashampoo.kim.format.heic.BoxType
+import com.ashampoo.kim.format.heic.HeicConstants.HEIC_BYTE_ORDER
 import com.ashampoo.kim.input.ByteArrayByteReader
 
-/**
- * The Meta Box is a container for several metadata boxes.
- */
-class MetaBox(
+class ItemPropertyAssociationBox(
     offset: Long,
     length: Long,
     payload: ByteArray
-) : Box(offset, BoxType.META, length, payload) {
+) : Box(offset, BoxType.IPMA, length, payload) {
 
     val version: Int
 
     val flags: ByteArray
 
-    val boxes: List<Box>
+    val entryCount: Int
 
     override fun toString(): String =
-        "$type Box version=$version flags=${flags.toHex()} boxes=${boxes.map { it.type }}"
+        "$type " +
+            "version=$version " +
+            "flags=${flags.toHex()} " +
+            "entryCount=$entryCount"
 
     init {
 
@@ -47,6 +47,12 @@ class MetaBox(
 
         flags = byteReader.readBytes("flags", 3)
 
-        boxes = BoxReader.readBoxes(byteReader)
+        entryCount = byteReader.read4BytesAsInt("itemId", HEIC_BYTE_ORDER)
+
+        /*
+         * TODO
+         */
+
+        println(this)
     }
 }
