@@ -6,7 +6,7 @@ developed by the Apache Software Foundation (https://www.apache.org/).
 The metadata handling logic, originally implemented in Java, has been rewritten in Kotlin.
 Copyright 2007-2023 The Apache Software Foundation
 
-Logic for reading HEIC files was derived from 'metadata-extractor'
+Logic for reading HEIC images was derived from 'metadata-extractor'
 developed by Drew Noakes (https://github.com/drewnoakes/metadata-extractor).
 Copyright 2002-2023 Drew Noakes and contributors
 
