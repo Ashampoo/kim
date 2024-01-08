@@ -33,79 +33,74 @@ import com.ashampoo.kim.input.PositionTrackingByteReader
  */
 object BoxReader {
 
+    /**
+     * @param byteReader The reader as source for the bytes
+     * @param stopAfterMetaBox If reading the file for metadata on the highest level we
+     * want to stop reading after the meta box to prevent reading the whole mdat block in.
+     * For iPhone HEIC this is possible, but Samsung HEIC has "meta" coming after "mdat"
+     */
     fun readBoxes(
         byteReader: PositionTrackingByteReader,
-        skipMediaBox: Boolean = true
+        stopAfterMetaBox: Boolean = false
     ): List<Box> {
 
         val boxes = mutableListOf<Box>()
 
         while (true) {
 
-            val box = readBox(byteReader, skipMediaBox)
-
-            if (box == null)
+            /*
+             * Check if there are enough bytes for another box.
+             * If so, we at least need the 8 header bytes.
+             */
+            if (byteReader.available < ISOBMFFConstants.BOX_HEADER_LENGTH)
                 break
 
+            val offset: Long = byteReader.position.toLong()
+
+            /* Note: The length includes the 8 header bytes. */
+            val length: Long =
+                byteReader.read4BytesAsInt("length", BMFF_BYTE_ORDER).toLong()
+
+            val type = BoxType.of(
+                byteReader.readBytes("type", ISOBMFFConstants.TPYE_LENGTH)
+            )
+
+            val actualLength: Long = when (length) {
+
+                /* A vaule of zero indicates that it's the last box. */
+                0L -> byteReader.available
+
+                /* A length of 1 indicates that we should read the next 8 bytes to get a long value. */
+                1L -> byteReader.read8BytesAsLong("length", BMFF_BYTE_ORDER)
+
+                /* Keep the length we already read. */
+                else -> length
+            }
+
+            val nextBoxOffset = offset + actualLength
+
+            val remainingBytesToReadInThisBox = (nextBoxOffset - byteReader.position).toInt()
+
+            val bytes = byteReader.readBytes("data", remainingBytesToReadInThisBox)
+
+            val box = when (type) {
+                BoxType.FTYP -> FileTypeBox(offset, actualLength, bytes)
+                BoxType.META -> MetaBox(offset, actualLength, bytes)
+                BoxType.HDLR -> HandlerReferenceBox(offset, actualLength, bytes)
+                BoxType.IINF -> ItemInformationBox(offset, actualLength, bytes)
+                BoxType.INFE -> ItemInfoEntryBox(offset, actualLength, bytes)
+                BoxType.ILOC -> ItemLocationBox(offset, actualLength, bytes)
+                BoxType.PITM -> PrimaryItemBox(offset, actualLength, bytes)
+                BoxType.MDAT -> MediaDataBox(offset, actualLength, bytes)
+                else -> Box(offset, type, actualLength, bytes)
+            }
+
             boxes.add(box)
+
+            if (stopAfterMetaBox && type == BoxType.META)
+                break
         }
 
         return boxes
-    }
-
-    fun readBox(
-        byteReader: PositionTrackingByteReader,
-        skipMediaBox: Boolean = true
-    ): Box? {
-
-        /*
-         * Check if there are enough bytes for another box.
-         * If so, we at least need the 8 header bytes.
-         */
-        if (byteReader.available < ISOBMFFConstants.BOX_HEADER_LENGTH)
-            return null
-
-        val offset: Long = byteReader.position.toLong()
-
-        /* Note: The length includes the 8 header bytes. */
-        val length: Long =
-            byteReader.read4BytesAsInt("length", BMFF_BYTE_ORDER).toLong()
-
-        val type = BoxType.of(
-            byteReader.readBytes("type", ISOBMFFConstants.TPYE_LENGTH)
-        )
-
-        if (skipMediaBox && type == BoxType.MDAT)
-            return null
-
-        val actualLength: Long = when (length) {
-
-            /* A vaule of zero indicates that it's the last box. */
-            0L -> byteReader.available
-
-            /* A length of 1 indicates that we should read the next 8 bytes to get a long value. */
-            1L -> byteReader.read8BytesAsLong("length", BMFF_BYTE_ORDER)
-
-            /* Keep the length we already read. */
-            else -> length
-        }
-
-        val nextBoxOffset = offset + actualLength
-
-        val remainingBytesToReadInThisBox = (nextBoxOffset - byteReader.position).toInt()
-
-        val bytes = byteReader.readBytes("data", remainingBytesToReadInThisBox)
-
-        return when (type) {
-            BoxType.FTYP -> FileTypeBox(offset, actualLength, bytes)
-            BoxType.META -> MetaBox(offset, actualLength, bytes)
-            BoxType.HDLR -> HandlerReferenceBox(offset, actualLength, bytes)
-            BoxType.IINF -> ItemInformationBox(offset, actualLength, bytes)
-            BoxType.INFE -> ItemInfoEntryBox(offset, actualLength, bytes)
-            BoxType.ILOC -> ItemLocationBox(offset, actualLength, bytes)
-            BoxType.PITM -> PrimaryItemBox(offset, actualLength, bytes)
-            BoxType.MDAT -> MediaDataBox(offset, actualLength, bytes)
-            else -> Box(offset, type, actualLength, bytes)
-        }
     }
 }

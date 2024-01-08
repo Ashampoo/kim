@@ -1,6 +1,5 @@
 /*
  * Copyright 2024 Ashampoo GmbH & Co. KG
- * Copyright 2002-2023 Drew Noakes and contributors
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,11 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.ashampoo.kim.format.isobmff.boxes
+package com.ashampoo.kim.common
 
-data class Extent(
-    val itemId: Int,
-    val index: Long?,
-    val offset: Long,
-    val length: Long
-)
+enum class MetadataType {
+
+    EXIF,
+    IPTC,
+    XMP
+}

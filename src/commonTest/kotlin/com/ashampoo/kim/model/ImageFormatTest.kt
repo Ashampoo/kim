@@ -56,6 +56,7 @@ class ImageFormatTest {
                 index == KimTestData.HEIC_TEST_IMAGE_RESAVED_WITH_GIMP_INDEX -> ImageFormat.HEIC
                 index == KimTestData.HEIC_TEST_IMAGE_FROM_JPG_USING_GIMP_INDEX -> ImageFormat.HEIC
                 index == KimTestData.HEIC_TEST_IMAGE_FROM_JPG_USING_APPLE_INDEX -> ImageFormat.HEIC
+                index == KimTestData.HEIC_TEST_IMAGE_FROM_SAMSUNG_INDEX -> ImageFormat.HEIC
                 else -> null
             }
 

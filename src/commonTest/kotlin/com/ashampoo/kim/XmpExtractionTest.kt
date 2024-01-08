@@ -31,7 +31,8 @@ class XmpExtractionTest {
         KimTestData.NEF_TEST_IMAGE_INDEX,
         KimTestData.ARW_TEST_IMAGE_INDEX,
         KimTestData.RW2_TEST_IMAGE_INDEX,
-        KimTestData.ORF_TEST_IMAGE_INDEX
+        KimTestData.ORF_TEST_IMAGE_INDEX,
+        KimTestData.HEIC_TEST_IMAGE_FROM_SAMSUNG_INDEX
     )
 
     // TODO Support these files as they have XMP

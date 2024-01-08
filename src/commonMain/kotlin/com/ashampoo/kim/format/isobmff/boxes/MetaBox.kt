@@ -16,9 +16,12 @@
  */
 package com.ashampoo.kim.format.isobmff.boxes
 
+import com.ashampoo.kim.common.MetadataOffset
+import com.ashampoo.kim.common.MetadataType
 import com.ashampoo.kim.common.toHex
 import com.ashampoo.kim.format.isobmff.BoxReader
 import com.ashampoo.kim.format.isobmff.BoxType
+import com.ashampoo.kim.format.isobmff.ISOBMFFConstants
 import com.ashampoo.kim.input.ByteArrayByteReader
 
 /**
@@ -41,6 +44,42 @@ class MetaBox(
     val itemLocationBox: ItemLocationBox
 
     val boxes: List<Box>
+
+    fun findMetadataOffsets(): List<MetadataOffset> {
+
+        val offsets = mutableListOf<MetadataOffset>()
+
+        for (extent in itemLocationBox.extents) {
+
+            val itemInfo = itemInfoBox.map.get(extent.itemId) ?: continue
+
+            when (itemInfo.itemType) {
+
+                ISOBMFFConstants.ITEM_TYPE_EXIF ->
+                    offsets.add(
+                        MetadataOffset(
+                            type = MetadataType.EXIF,
+                            offset = extent.offset,
+                            length = extent.length
+                        )
+                    )
+
+                ISOBMFFConstants.ITEM_TYPE_MIME ->
+                    offsets.add(
+                        MetadataOffset(
+                            type = MetadataType.XMP,
+                            offset = extent.offset,
+                            length = extent.length
+                        )
+                    )
+            }
+        }
+
+        /* Sorted for safety. */
+        offsets.sortBy { it.offset }
+
+        return offsets
+    }
 
     override fun toString(): String =
         "$type Box version=$version flags=${flags.toHex()} boxes=${boxes.map { it.type }}"

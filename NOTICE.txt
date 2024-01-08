@@ -17,3 +17,5 @@ These files are used as test data.
 The sample images photo_62.nef, photo_63.arw, photo_64.rw2, photo_56.orf and
 photo_72.hif are taken from https://github.com/drewnoakes/metadata-extractor-images
 under the note "You are free to use these media files however you wish".
+
+The sample image photo_77.heic was contributed by Miroslav Sobotka.

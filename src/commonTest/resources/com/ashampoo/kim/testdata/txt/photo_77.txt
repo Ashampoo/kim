@@ -1,0 +1,51 @@
+File format : HEIC
+Resolution  : null
+---- TIFF ----
+Version 42
+Little-endian (Intel, II)
+---- Directory IFD0 @ 8 ----
+0000000010 0x0100 ImageWidth = 4000
+0000000022 0x0101 ImageLength = 3000
+0000000034 0x010f Make = samsung
+0000000046 0x0110 Model = SM-G998B
+0000000058 0x0112 Orientation = 6
+0000000070 0x011a XResolution = 72/1 (72.0)
+0000000082 0x011b YResolution = 72/1 (72.0)
+0000000094 0x0128 ResolutionUnit = 2
+0000000106 0x0131 Software = G998BXXS9EWI1
+0000000118 0x0132 ModifyDate = 2023:10:07 16:46:05
+0000000130 0x0213 YCbCrPositioning = 1
+0000000142 0x8769 ExifOffset = 226
+
+---- Directory ExifIFD @ 226 ----
+0000000228 0x829a ExposureTime = 1/60 (0.016667)
+0000000240 0x829d FNumber = 180/100 (1.8)
+0000000252 0x8822 ExposureProgram = 2
+0000000264 0x8827 PhotographicSensitivity = 640
+0000000276 0x9000 ExifVersion = [0x30, 0x32, 0x32, 0x30]
+0000000288 0x9003 DateTimeOriginal = 2023:10:07 16:46:05
+0000000300 0x9004 DateTimeDigitized = 2023:10:07 16:46:05
+0000000312 0x9010 OffsetTime = +02:00
+0000000324 0x9011 OffsetTimeOriginal = +02:00
+0000000336 0x9201 ShutterSpeedValue = 1/60 (0.016667)
+0000000348 0x9202 ApertureValue = 169/100 (1.69)
+0000000360 0x9203 BrightnessValue = 7/100 (0.07)
+0000000372 0x9204 ExposureCompensation = 0/100 (0.0)
+0000000384 0x9205 MaxApertureValue = 169/100 (1.69)
+0000000396 0x9207 MeteringMode = 2
+0000000408 0x9209 Flash = 0
+0000000420 0x920a FocalLength = 670/100 (6.7)
+0000000432 0x9290 SubSecTime = 871
+0000000444 0x9291 SubSecTimeOriginal = 871
+0000000456 0x9292 SubSecTimeDigitized = 871
+0000000468 0xa001 ColorSpace = 1
+0000000480 0xa002 ExifImageWidth = 4000
+0000000492 0xa003 ExifImageLength = 3000
+0000000504 0xa402 ExposureMode = 0
+0000000516 0xa403 WhiteBalance = 0
+0000000528 0xa404 DigitalZoomRatio = 300/100 (3.0)
+0000000540 0xa405 FocalLengthIn35mmFormat = 24
+0000000552 0xa406 SceneCaptureType = 0
+0000000564 0xa420 ImageUniqueID = XA8XLNF00SM
+
+
