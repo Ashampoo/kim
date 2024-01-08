@@ -15,18 +15,20 @@
  */
 package com.ashampoo.kim.format.isobmff
 
+import com.ashampoo.kim.common.ImageReadException
+import com.ashampoo.kim.common.MetadataOffset
+import com.ashampoo.kim.common.MetadataType
 import com.ashampoo.kim.format.ImageMetadata
 import com.ashampoo.kim.format.ImageParser
 import com.ashampoo.kim.format.isobmff.ISOBMFFConstants.BMFF_BYTE_ORDER
-import com.ashampoo.kim.format.isobmff.ISOBMFFConstants.ITEM_TYPE_EXIF
-import com.ashampoo.kim.format.isobmff.ISOBMFFConstants.ITEM_TYPE_MIME
 import com.ashampoo.kim.format.isobmff.ISOBMFFConstants.TIFF_HEADER_OFFSET_BYTE_COUNT
-import com.ashampoo.kim.format.isobmff.boxes.Extent
 import com.ashampoo.kim.format.isobmff.boxes.MetaBox
 import com.ashampoo.kim.format.tiff.TiffReader
+import com.ashampoo.kim.input.ByteArrayByteReader
 import com.ashampoo.kim.input.ByteReader
 import com.ashampoo.kim.input.PositionTrackingByteReader
 import com.ashampoo.kim.input.PositionTrackingByteReaderDecorator
+
 
 /**
  * Reads containers that follow the ISO base media file format
@@ -39,29 +41,65 @@ object ISOBMFFImageParser : ImageParser {
     override fun parseMetadata(byteReader: ByteReader): ImageMetadata =
         parseMetadata(PositionTrackingByteReaderDecorator(byteReader))
 
-    private fun parseMetadata(byteReader: PositionTrackingByteReaderDecorator): ImageMetadata {
+    private fun parseMetadata(byteReader: PositionTrackingByteReader): ImageMetadata {
+
+        val copyByteReader = CopyByteReader(byteReader)
 
         val allBoxes = BoxReader.readBoxes(
-            byteReader = byteReader,
-            skipMediaBox = true
+            byteReader = copyByteReader,
+            stopAfterMetaBox = true
         )
 
-        val metaBox = allBoxes.find { it.type == BoxType.META } as MetaBox
+        val metaBox = allBoxes.find { it.type == BoxType.META } as? MetaBox
+
+        if (metaBox == null)
+            throw ImageReadException("Illegal ISOBMFF: Has no 'meta' Box.")
+
+        val metadataOffsets = metaBox.findMetadataOffsets()
+
+        /* Return empty object if no metadata is found. */
+        if (metadataOffsets.isEmpty())
+            return ImageMetadata(
+                imageFormat = null,
+                imageSize = null,
+                exif = null,
+                exifBytes = null,
+                iptc = null,
+                xmp = null
+            )
+
+        val minOffset = metadataOffsets.first().offset
+
+        /*
+         * In case of Samsung Galaxy HEIC files the mdat Box comes
+         * before the meta Box. We need to reset the reader here,
+         * but as we may read from a cloud stream we really don't
+         * have a "reset" function.
+         *
+         * We currently do this by having a copy of all bytes
+         * in buffer and input everything we read so far in again.
+         * FIXME There must be a better solution. Find it.
+         */
+        val byteReaderToUse = if (byteReader.position <= minOffset)
+            byteReader
+        else
+            ByteArrayByteReader(copyByteReader.getBytes())
 
         var exifBytes: ByteArray? = null
         var xmp: String? = null
 
-        for (extent in metaBox.itemLocationBox.extents) {
+        for (offset in metadataOffsets) {
 
-            val itemInfo = metaBox.itemInfoBox.map.get(extent.itemId) ?: continue
+            when (offset.type) {
 
-            when (itemInfo.itemType) {
+                MetadataType.EXIF ->
+                    exifBytes = readExifBytes(byteReaderToUse, offset)
 
-                ITEM_TYPE_EXIF ->
-                    exifBytes = readExifBytes(byteReader, extent)
+                MetadataType.IPTC ->
+                    continue // Unsupported
 
-                ITEM_TYPE_MIME ->
-                    xmp = readXmpString(byteReader, extent)
+                MetadataType.XMP ->
+                    xmp = readXmpString(byteReaderToUse, offset)
             }
         }
 
@@ -77,9 +115,12 @@ object ISOBMFFImageParser : ImageParser {
         )
     }
 
-    private fun readExifBytes(byteReader: PositionTrackingByteReader, extent: Extent): ByteArray {
+    private fun readExifBytes(
+        byteReader: PositionTrackingByteReader,
+        offset: MetadataOffset
+    ): ByteArray {
 
-        val bytesToSkip = extent.offset - byteReader.position
+        val bytesToSkip = offset.offset - byteReader.position
 
         byteReader.skipBytes("offset to EXIF extent", bytesToSkip.toInt())
 
@@ -90,17 +131,20 @@ object ISOBMFFImageParser : ImageParser {
         byteReader.skipBytes("offset to TIFF header", tiffHeaderOffset)
 
         return byteReader.readBytes(
-            extent.length.toInt() - TIFF_HEADER_OFFSET_BYTE_COUNT - tiffHeaderOffset
+            offset.length.toInt() - TIFF_HEADER_OFFSET_BYTE_COUNT - tiffHeaderOffset
         )
     }
 
-    private fun readXmpString(byteReader: PositionTrackingByteReader, extent: Extent): String {
+    private fun readXmpString(
+        byteReader: PositionTrackingByteReader,
+        offset: MetadataOffset
+    ): String {
 
-        val bytesToSkip = extent.offset - byteReader.position
+        val bytesToSkip = offset.offset - byteReader.position
 
         byteReader.skipBytes("offset to MIME extent", bytesToSkip.toInt())
 
-        val mimeBytes = byteReader.readBytes(extent.length.toInt())
+        val mimeBytes = byteReader.readBytes(offset.length.toInt())
 
         return mimeBytes.decodeToString()
     }

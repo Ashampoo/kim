@@ -17,6 +17,7 @@
 package com.ashampoo.kim.format.isobmff.boxes
 
 import com.ashampoo.kim.format.isobmff.BoxType
+import com.ashampoo.kim.format.isobmff.Extent
 import com.ashampoo.kim.format.isobmff.ISOBMFFConstants.BMFF_BYTE_ORDER
 import com.ashampoo.kim.input.ByteArrayByteReader
 
