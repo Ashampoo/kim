@@ -142,12 +142,10 @@ val newBytes = Kim.updateThumbnail(
 * Inability to update EXIF, IPTC and XMP in JPG files simultaneously.
 * HEIC files are only tested for iPhone SE 3 & Samsung Galaxy S21.
 
-## Regarding HEIC patents
+## Regarding HEIC
 
 When handling ISO base media file format (ISOBMFF) files like HEIC,
-our adherence to the EIC/ISO 14496-12 specification ensures freedom
-from patent issues, as the relevant patents for ISOBMFF have expired
-(older than 20 years), making the format public domain.
+our adherence to the EIC/ISO 14496-12 specification.
 
 For example we intentionally omit certain features specified in the HEIC
 standard, such as image size ("ispe") and rotation ("irot"), to steer clear
