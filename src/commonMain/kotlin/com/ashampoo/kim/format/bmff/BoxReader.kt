@@ -41,7 +41,8 @@ object BoxReader {
      */
     fun readBoxes(
         byteReader: PositionTrackingByteReader,
-        stopAfterMetaBox: Boolean = false
+        stopAfterMetaBox: Boolean = false,
+        offsetShift: Long = 0
     ): List<Box> {
 
         val boxes = mutableListOf<Box>()
@@ -83,16 +84,18 @@ object BoxReader {
 
             val bytes = byteReader.readBytes("data", remainingBytesToReadInThisBox)
 
+            val globalOffset = offset + offsetShift
+
             val box = when (type) {
-                BoxType.FTYP -> FileTypeBox(offset, actualLength, bytes)
-                BoxType.META -> MetaBox(offset, actualLength, bytes)
-                BoxType.HDLR -> HandlerReferenceBox(offset, actualLength, bytes)
-                BoxType.IINF -> ItemInformationBox(offset, actualLength, bytes)
-                BoxType.INFE -> ItemInfoEntryBox(offset, actualLength, bytes)
-                BoxType.ILOC -> ItemLocationBox(offset, actualLength, bytes)
-                BoxType.PITM -> PrimaryItemBox(offset, actualLength, bytes)
-                BoxType.MDAT -> MediaDataBox(offset, actualLength, bytes)
-                else -> Box(offset, type, actualLength, bytes)
+                BoxType.FTYP -> FileTypeBox(globalOffset, actualLength, bytes)
+                BoxType.META -> MetaBox(globalOffset, actualLength, bytes)
+                BoxType.HDLR -> HandlerReferenceBox(globalOffset, actualLength, bytes)
+                BoxType.IINF -> ItemInformationBox(globalOffset, actualLength, bytes)
+                BoxType.INFE -> ItemInfoEntryBox(globalOffset, actualLength, bytes)
+                BoxType.ILOC -> ItemLocationBox(globalOffset, actualLength, bytes)
+                BoxType.PITM -> PrimaryItemBox(globalOffset, actualLength, bytes)
+                BoxType.MDAT -> MediaDataBox(globalOffset, actualLength, bytes)
+                else -> Box(globalOffset, type, actualLength, bytes)
             }
 
             boxes.add(box)

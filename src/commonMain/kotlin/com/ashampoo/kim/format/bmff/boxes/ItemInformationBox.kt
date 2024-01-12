@@ -26,7 +26,7 @@ class ItemInformationBox(
     offset: Long,
     length: Long,
     payload: ByteArray
-) : Box(offset, BoxType.IINF, length, payload) {
+) : Box(offset, BoxType.IINF, length, payload), BoxContainer {
 
     val version: Int
 
@@ -35,6 +35,8 @@ class ItemInformationBox(
     val entryCount: Int
 
     val map: Map<Int, ItemInfoEntryBox>
+
+    override val boxes: List<Box>
 
     init {
 
@@ -49,7 +51,11 @@ class ItemInformationBox(
         else
             entryCount = byteReader.read4BytesAsInt("entryCount", BMFF_BYTE_ORDER)
 
-        val boxes = BoxReader.readBoxes(byteReader)
+        boxes = BoxReader.readBoxes(
+            byteReader = byteReader,
+            stopAfterMetaBox = false,
+            offsetShift = offset + 4 + 2 + if (version == 0) 2 else 4
+        )
 
         val map = mutableMapOf<Int, ItemInfoEntryBox>()
 

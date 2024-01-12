@@ -20,4 +20,21 @@ interface BoxContainer {
 
     val boxes: List<Box>
 
+    companion object {
+
+        fun findAllBoxesRecursive(boxes: List<Box>): List<Box> {
+
+            val allBoxes = mutableListOf<Box>()
+
+            for (box in boxes) {
+
+                allBoxes.add(box)
+
+                if (box is BoxContainer)
+                    allBoxes.addAll(findAllBoxesRecursive(box.boxes))
+            }
+
+            return allBoxes
+        }
+    }
 }

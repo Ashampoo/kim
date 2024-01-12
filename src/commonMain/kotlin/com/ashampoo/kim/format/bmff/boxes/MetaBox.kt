@@ -53,7 +53,11 @@ class MetaBox(
 
         flags = byteReader.readBytes("flags", 3)
 
-        boxes = BoxReader.readBoxes(byteReader)
+        boxes = BoxReader.readBoxes(
+            byteReader = byteReader,
+            stopAfterMetaBox = false,
+            offsetShift = offset + 8
+        )
 
         /* Find & set mandatory boxes. */
         handlerReferenceBox = boxes.find { it.type == BoxType.HDLR } as HandlerReferenceBox

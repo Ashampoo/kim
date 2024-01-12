@@ -46,7 +46,8 @@ object BaseMediaFileFormatImageParser : ImageParser {
 
         val allBoxes = BoxReader.readBoxes(
             byteReader = copyByteReader,
-            stopAfterMetaBox = true
+            stopAfterMetaBox = true,
+            offsetShift = 0
         )
 
         val metaBox = allBoxes.find { it.type == BoxType.META } as? MetaBox
