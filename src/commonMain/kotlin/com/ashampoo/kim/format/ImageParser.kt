@@ -16,7 +16,7 @@
 package com.ashampoo.kim.format
 
 import com.ashampoo.kim.common.ImageReadException
-import com.ashampoo.kim.format.isobmff.ISOBMFFImageParser
+import com.ashampoo.kim.format.bmff.BaseMediaFileFormatImageParser
 import com.ashampoo.kim.format.jpeg.JpegImageParser
 import com.ashampoo.kim.format.png.PngImageParser
 import com.ashampoo.kim.format.raf.RafImageParser
@@ -47,7 +47,8 @@ fun interface ImageParser {
 
                 ImageFormat.RAF -> RafImageParser
 
-                ImageFormat.HEIC -> ISOBMFFImageParser
+                ImageFormat.HEIC -> BaseMediaFileFormatImageParser
+                // ImageFormat.JXL -> BaseMediaFileFormatImageParser
 
                 else -> null
             }

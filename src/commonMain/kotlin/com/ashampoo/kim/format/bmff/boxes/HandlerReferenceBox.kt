@@ -14,30 +14,32 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.ashampoo.kim.format.isobmff.boxes
+package com.ashampoo.kim.format.bmff.boxes
 
 import com.ashampoo.kim.common.toHex
-import com.ashampoo.kim.format.isobmff.BoxType
-import com.ashampoo.kim.format.isobmff.ISOBMFFConstants.BMFF_BYTE_ORDER
+import com.ashampoo.kim.format.bmff.BoxType
 import com.ashampoo.kim.input.ByteArrayByteReader
 
-class PrimaryItemBox(
+class HandlerReferenceBox(
     offset: Long,
     length: Long,
     payload: ByteArray
-) : Box(offset, BoxType.PITM, length, payload) {
+) : Box(offset, BoxType.HDLR, length, payload) {
 
     val version: Int
 
     val flags: ByteArray
 
-    val itemId: Int
+    val handlerType: String
+
+    val name: String
 
     override fun toString(): String =
         "$type " +
             "version=$version " +
             "flags=${flags.toHex()} " +
-            "itemId=$itemId"
+            "handlerType=$handlerType " +
+            "name=$name"
 
     init {
 
@@ -47,9 +49,12 @@ class PrimaryItemBox(
 
         flags = byteReader.readBytes("flags", 3)
 
-        if (version == 0)
-            itemId = byteReader.read2BytesAsInt("itemId", BMFF_BYTE_ORDER)
-        else
-            itemId = byteReader.read4BytesAsInt("itemId", BMFF_BYTE_ORDER)
+        byteReader.skipBytes("pre-defined", 4)
+
+        handlerType = byteReader.readBytes("handlerType", 4).decodeToString()
+
+        byteReader.skipBytes("reserved", 12)
+
+        name = byteReader.readNullTerminatedString("name")
     }
 }

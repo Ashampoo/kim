@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.ashampoo.kim.format.isobmff
+package com.ashampoo.kim.format.bmff
 
 import com.ashampoo.kim.input.PositionTrackingByteReader
 import com.ashampoo.kim.output.ByteArrayByteWriter

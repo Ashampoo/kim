@@ -1,6 +1,5 @@
 /*
  * Copyright 2024 Ashampoo GmbH & Co. KG
- * Copyright 2002-2023 Drew Noakes and contributors
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,18 +13,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.ashampoo.kim.format.isobmff.boxes
+package com.ashampoo.kim.format.bmff
 
-import com.ashampoo.kim.format.isobmff.BoxType
+import com.ashampoo.kim.common.ByteOrder
 
-open class Box(
-    val offset: Long,
-    val type: BoxType,
-    val length: Long,
-    /* Payload bytes, not including type & length bytes */
-    val payload: ByteArray
-) {
+object BMFFConstants {
 
-    override fun toString(): String =
-        "Box $type @ $offset ($length bytes)"
+    val BMFF_BYTE_ORDER = ByteOrder.BIG_ENDIAN
+
+    /* BoxType must be always 4 bytes */
+    const val TPYE_LENGTH = 4
+
+    /* 4 length bytes + 4 type bytes */
+    const val BOX_HEADER_LENGTH = 8
+
+    const val TIFF_HEADER_OFFSET_BYTE_COUNT = 4
+
+    const val ITEM_TYPE_EXIF = 1165519206
+    const val ITEM_TYPE_MIME = 1835625829
+    const val ITEM_TYPE_JPEG = 1785750887
 }

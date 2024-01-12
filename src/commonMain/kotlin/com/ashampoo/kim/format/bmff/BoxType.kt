@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.ashampoo.kim.format.isobmff
+package com.ashampoo.kim.format.bmff
 
 import com.ashampoo.kim.common.toFourCCTypeString
 
@@ -96,7 +96,7 @@ data class BoxType internal constructor(
         @Suppress("MagicNumber")
         fun of(typeBytes: ByteArray): BoxType {
 
-            require(typeBytes.size == ISOBMFFConstants.TPYE_LENGTH) {
+            require(typeBytes.size == BMFFConstants.TPYE_LENGTH) {
                 "BoxType must be always 4 bytes!"
             }
 

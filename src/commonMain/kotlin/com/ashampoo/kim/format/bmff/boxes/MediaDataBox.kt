@@ -14,11 +14,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.ashampoo.kim.format.isobmff
+package com.ashampoo.kim.format.bmff.boxes
 
-data class Extent(
-    val itemId: Int,
-    val index: Long?,
-    val offset: Long,
-    val length: Long
-)
+import com.ashampoo.kim.format.bmff.BoxType
+
+/**
+ * The Media Data Box contains all the actual data.
+ * This includes the EXIF bytes.
+ */
+class MediaDataBox(
+    offset: Long,
+    length: Long,
+    payload: ByteArray
+) : Box(offset, BoxType.MDAT, length, payload) {
+
+    override fun toString(): String =
+        "$type Box"
+}

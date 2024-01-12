@@ -14,14 +14,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.ashampoo.kim.format.isobmff.boxes
+package com.ashampoo.kim.format.bmff.boxes
 
 import com.ashampoo.kim.common.MetadataOffset
 import com.ashampoo.kim.common.MetadataType
 import com.ashampoo.kim.common.toHex
-import com.ashampoo.kim.format.isobmff.BoxReader
-import com.ashampoo.kim.format.isobmff.BoxType
-import com.ashampoo.kim.format.isobmff.ISOBMFFConstants
+import com.ashampoo.kim.format.bmff.BMFFConstants
+import com.ashampoo.kim.format.bmff.BoxReader
+import com.ashampoo.kim.format.bmff.BoxType
 import com.ashampoo.kim.input.ByteArrayByteReader
 
 /**
@@ -55,7 +55,7 @@ class MetaBox(
 
             when (itemInfo.itemType) {
 
-                ISOBMFFConstants.ITEM_TYPE_EXIF ->
+                BMFFConstants.ITEM_TYPE_EXIF ->
                     offsets.add(
                         MetadataOffset(
                             type = MetadataType.EXIF,
@@ -64,7 +64,7 @@ class MetaBox(
                         )
                     )
 
-                ISOBMFFConstants.ITEM_TYPE_MIME ->
+                BMFFConstants.ITEM_TYPE_MIME ->
                     offsets.add(
                         MetadataOffset(
                             type = MetadataType.XMP,

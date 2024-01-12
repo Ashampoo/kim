@@ -13,22 +13,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.ashampoo.kim.format.isobmff
+package com.ashampoo.kim.format.bmff
 
 import com.ashampoo.kim.common.ImageReadException
 import com.ashampoo.kim.common.MetadataOffset
 import com.ashampoo.kim.common.MetadataType
 import com.ashampoo.kim.format.ImageMetadata
 import com.ashampoo.kim.format.ImageParser
-import com.ashampoo.kim.format.isobmff.ISOBMFFConstants.BMFF_BYTE_ORDER
-import com.ashampoo.kim.format.isobmff.ISOBMFFConstants.TIFF_HEADER_OFFSET_BYTE_COUNT
-import com.ashampoo.kim.format.isobmff.boxes.MetaBox
+import com.ashampoo.kim.format.bmff.BMFFConstants.BMFF_BYTE_ORDER
+import com.ashampoo.kim.format.bmff.BMFFConstants.TIFF_HEADER_OFFSET_BYTE_COUNT
+import com.ashampoo.kim.format.bmff.boxes.MetaBox
 import com.ashampoo.kim.format.tiff.TiffReader
 import com.ashampoo.kim.input.ByteArrayByteReader
 import com.ashampoo.kim.input.ByteReader
 import com.ashampoo.kim.input.PositionTrackingByteReader
 import com.ashampoo.kim.input.PositionTrackingByteReaderDecorator
-
 
 /**
  * Reads containers that follow the ISO base media file format
@@ -36,7 +35,7 @@ import com.ashampoo.kim.input.PositionTrackingByteReaderDecorator
  *
  * https://en.wikipedia.org/wiki/ISO_base_media_file_format
  */
-object ISOBMFFImageParser : ImageParser {
+object BaseMediaFileFormatImageParser : ImageParser {
 
     override fun parseMetadata(byteReader: ByteReader): ImageMetadata =
         parseMetadata(PositionTrackingByteReaderDecorator(byteReader))
