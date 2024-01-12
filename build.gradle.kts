@@ -25,7 +25,7 @@ repositories {
 val productName = "Ashampoo Kim"
 
 val ktorVersion: String = "2.3.7"
-val xmpCoreVersion: String = "0.3"
+val xmpCoreVersion: String = "1.0.0"
 val dateTimeVersion: String = "0.5.0"
 val testRessourcesVersion: String = "0.4.0"
 val ioCoreVersion: String = "0.3.0"
