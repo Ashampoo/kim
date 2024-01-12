@@ -30,7 +30,7 @@ object KimTestData {
 
     private const val RESOURCE_PATH: String = "src/commonTest/resources/com/ashampoo/kim/testdata"
 
-    const val TEST_PHOTO_COUNT: Int = 77
+    const val TEST_PHOTO_COUNT: Int = 80
     const val HIGHEST_JPEG_INDEX: Int = 50
 
     const val PNG_TEST_IMAGE_INDEX: Int = 51
@@ -60,6 +60,9 @@ object KimTestData {
     const val HEIC_TEST_IMAGE_FROM_JPG_USING_GIMP_INDEX: Int = 75
     const val HEIC_TEST_IMAGE_FROM_JPG_USING_APPLE_INDEX: Int = 76
     const val HEIC_TEST_IMAGE_FROM_SAMSUNG_INDEX: Int = 77
+    const val JXL_NAKED_BYTESTREAM_UNCOMPRESSED_INDEX: Int = 78
+    const val JXL_CONTAINER_UNCOMPRESSED_INDEX: Int = 79
+    const val JXL_CONTAINER_COMPRESSED_INDEX: Int = 80
 
     @Suppress("MagicNumber")
     val photoIdsWithExifThumbnail: Set<Int> = setOf(
@@ -116,6 +119,9 @@ object KimTestData {
         DNG_RW2_TEST_IMAGE_INDEX -> "dng"
         DNG_ORF_TEST_IMAGE_INDEX -> "dng"
         HIF_TEST_IMAGE_INDEX -> "hif"
+        JXL_NAKED_BYTESTREAM_UNCOMPRESSED_INDEX -> "jxl"
+        JXL_CONTAINER_UNCOMPRESSED_INDEX -> "jxl"
+        JXL_CONTAINER_COMPRESSED_INDEX -> "jxl"
         else -> "jpg"
     }
 

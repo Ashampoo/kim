@@ -14,30 +14,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.ashampoo.kim.format.isobmff.boxes
+package com.ashampoo.kim.format.bmff.boxes
 
 import com.ashampoo.kim.common.toHex
-import com.ashampoo.kim.format.isobmff.BoxReader
-import com.ashampoo.kim.format.isobmff.BoxType
-import com.ashampoo.kim.format.isobmff.ISOBMFFConstants.BMFF_BYTE_ORDER
+import com.ashampoo.kim.format.bmff.BoxType
 import com.ashampoo.kim.input.ByteArrayByteReader
 
-class ItemInformationBox(
+class HandlerReferenceBox(
     offset: Long,
     length: Long,
     payload: ByteArray
-) : Box(offset, BoxType.IINF, length, payload) {
+) : Box(offset, BoxType.HDLR, length, payload) {
 
     val version: Int
 
     val flags: ByteArray
 
-    val entryCount: Int
+    val handlerType: String
 
-    val map: Map<Int, ItemInfoEntryBox>
-
-    override fun toString(): String =
-        "$type version=$version flags=${flags.toHex()} ($entryCount entries)"
+    val name: String
 
     init {
 
@@ -47,22 +42,19 @@ class ItemInformationBox(
 
         flags = byteReader.readBytes("flags", 3)
 
-        if (version == 0)
-            entryCount = byteReader.read2BytesAsInt("entryCount", BMFF_BYTE_ORDER)
-        else
-            entryCount = byteReader.read4BytesAsInt("entryCount", BMFF_BYTE_ORDER)
+        byteReader.skipBytes("pre-defined", 4)
 
-        val boxes = BoxReader.readBoxes(byteReader)
+        handlerType = byteReader.readBytes("handlerType", 4).decodeToString()
 
-        val map = mutableMapOf<Int, ItemInfoEntryBox>()
+        byteReader.skipBytes("reserved", 12)
 
-        for (box in boxes) {
-
-            box as ItemInfoEntryBox
-
-            map.put(box.itemId, box)
-        }
-
-        this.map = map
+        name = byteReader.readNullTerminatedString("name")
     }
+
+    override fun toString(): String =
+        "$type " +
+            "version=$version " +
+            "flags=${flags.toHex()} " +
+            "handlerType=$handlerType " +
+            "name=$name"
 }

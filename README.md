@@ -35,7 +35,7 @@ of Ashampoo Photos, which, in turn, is driven by user community feedback.
 ## Installation
 
 ```
-implementation("com.ashampoo:kim:0.9.1")
+implementation("com.ashampoo:kim:0.9.2")
 ```
 
 ## Sample usages
@@ -142,17 +142,14 @@ val newBytes = Kim.updateThumbnail(
 * Inability to update EXIF, IPTC and XMP in JPG files simultaneously.
 * HEIC files are only tested for iPhone SE 3 & Samsung Galaxy S21.
 
-## Regarding HEIC
+### Regarding missing HEIC metadata
 
-When handling ISO base media file format (ISOBMFF) files like HEIC,
-our adherence to the EIC/ISO 14496-12 specification.
-
-For example we intentionally omit certain features specified in the HEIC
-standard, such as image size ("ispe") and rotation ("irot"), to steer clear
-of potential legal complications.
-
-In future updates, we plan to integrate special values from other
-patent-free ISOBMFF-based formats as we broaden support for additional file types.
+In the processing of HEIC files, we handle them as standard ISO base
+media file format (ISOBMFF) files, adhering rigorously to the
+EIC/ISO 14496-12 specification. To preempt potential legal issues,
+we intentionally omit certain features outlined in the HEIC specification,
+notably the image size ("ispe") and image rotation ("irot") boxes.
+This precautionary approach extends to AVIF images, as they repurpose these same boxes.
 
 ## Contributions
 

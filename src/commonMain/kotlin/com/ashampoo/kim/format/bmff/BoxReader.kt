@@ -14,18 +14,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.ashampoo.kim.format.isobmff
+package com.ashampoo.kim.format.bmff
 
-import com.ashampoo.kim.format.isobmff.ISOBMFFConstants.BMFF_BYTE_ORDER
-import com.ashampoo.kim.format.isobmff.boxes.Box
-import com.ashampoo.kim.format.isobmff.boxes.FileTypeBox
-import com.ashampoo.kim.format.isobmff.boxes.HandlerReferenceBox
-import com.ashampoo.kim.format.isobmff.boxes.ItemInfoEntryBox
-import com.ashampoo.kim.format.isobmff.boxes.ItemInformationBox
-import com.ashampoo.kim.format.isobmff.boxes.ItemLocationBox
-import com.ashampoo.kim.format.isobmff.boxes.MediaDataBox
-import com.ashampoo.kim.format.isobmff.boxes.MetaBox
-import com.ashampoo.kim.format.isobmff.boxes.PrimaryItemBox
+import com.ashampoo.kim.format.bmff.BMFFConstants.BMFF_BYTE_ORDER
+import com.ashampoo.kim.format.bmff.boxes.Box
+import com.ashampoo.kim.format.bmff.boxes.FileTypeBox
+import com.ashampoo.kim.format.bmff.boxes.HandlerReferenceBox
+import com.ashampoo.kim.format.bmff.boxes.ItemInfoEntryBox
+import com.ashampoo.kim.format.bmff.boxes.ItemInformationBox
+import com.ashampoo.kim.format.bmff.boxes.ItemLocationBox
+import com.ashampoo.kim.format.bmff.boxes.MediaDataBox
+import com.ashampoo.kim.format.bmff.boxes.MetaBox
+import com.ashampoo.kim.format.bmff.boxes.PrimaryItemBox
 import com.ashampoo.kim.input.PositionTrackingByteReader
 
 /**
@@ -41,7 +41,8 @@ object BoxReader {
      */
     fun readBoxes(
         byteReader: PositionTrackingByteReader,
-        stopAfterMetaBox: Boolean = false
+        stopAfterMetaBox: Boolean = false,
+        offsetShift: Long = 0
     ): List<Box> {
 
         val boxes = mutableListOf<Box>()
@@ -52,7 +53,7 @@ object BoxReader {
              * Check if there are enough bytes for another box.
              * If so, we at least need the 8 header bytes.
              */
-            if (byteReader.available < ISOBMFFConstants.BOX_HEADER_LENGTH)
+            if (byteReader.available < BMFFConstants.BOX_HEADER_LENGTH)
                 break
 
             val offset: Long = byteReader.position.toLong()
@@ -62,7 +63,7 @@ object BoxReader {
                 byteReader.read4BytesAsInt("length", BMFF_BYTE_ORDER).toLong()
 
             val type = BoxType.of(
-                byteReader.readBytes("type", ISOBMFFConstants.TPYE_LENGTH)
+                byteReader.readBytes("type", BMFFConstants.TPYE_LENGTH)
             )
 
             val actualLength: Long = when (length) {
@@ -83,16 +84,18 @@ object BoxReader {
 
             val bytes = byteReader.readBytes("data", remainingBytesToReadInThisBox)
 
+            val globalOffset = offset + offsetShift
+
             val box = when (type) {
-                BoxType.FTYP -> FileTypeBox(offset, actualLength, bytes)
-                BoxType.META -> MetaBox(offset, actualLength, bytes)
-                BoxType.HDLR -> HandlerReferenceBox(offset, actualLength, bytes)
-                BoxType.IINF -> ItemInformationBox(offset, actualLength, bytes)
-                BoxType.INFE -> ItemInfoEntryBox(offset, actualLength, bytes)
-                BoxType.ILOC -> ItemLocationBox(offset, actualLength, bytes)
-                BoxType.PITM -> PrimaryItemBox(offset, actualLength, bytes)
-                BoxType.MDAT -> MediaDataBox(offset, actualLength, bytes)
-                else -> Box(offset, type, actualLength, bytes)
+                BoxType.FTYP -> FileTypeBox(globalOffset, actualLength, bytes)
+                BoxType.META -> MetaBox(globalOffset, actualLength, bytes)
+                BoxType.HDLR -> HandlerReferenceBox(globalOffset, actualLength, bytes)
+                BoxType.IINF -> ItemInformationBox(globalOffset, actualLength, bytes)
+                BoxType.INFE -> ItemInfoEntryBox(globalOffset, actualLength, bytes)
+                BoxType.ILOC -> ItemLocationBox(globalOffset, actualLength, bytes)
+                BoxType.PITM -> PrimaryItemBox(globalOffset, actualLength, bytes)
+                BoxType.MDAT -> MediaDataBox(globalOffset, actualLength, bytes)
+                else -> Box(globalOffset, type, actualLength, bytes)
             }
 
             boxes.add(box)

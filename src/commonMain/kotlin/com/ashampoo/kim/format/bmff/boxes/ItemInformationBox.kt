@@ -14,30 +14,29 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.ashampoo.kim.format.isobmff.boxes
+package com.ashampoo.kim.format.bmff.boxes
 
 import com.ashampoo.kim.common.toHex
-import com.ashampoo.kim.format.isobmff.BoxType
-import com.ashampoo.kim.format.isobmff.ISOBMFFConstants.BMFF_BYTE_ORDER
+import com.ashampoo.kim.format.bmff.BMFFConstants.BMFF_BYTE_ORDER
+import com.ashampoo.kim.format.bmff.BoxReader
+import com.ashampoo.kim.format.bmff.BoxType
 import com.ashampoo.kim.input.ByteArrayByteReader
 
-class PrimaryItemBox(
+class ItemInformationBox(
     offset: Long,
     length: Long,
     payload: ByteArray
-) : Box(offset, BoxType.PITM, length, payload) {
+) : Box(offset, BoxType.IINF, length, payload), BoxContainer {
 
     val version: Int
 
     val flags: ByteArray
 
-    val itemId: Int
+    val entryCount: Int
 
-    override fun toString(): String =
-        "$type " +
-            "version=$version " +
-            "flags=${flags.toHex()} " +
-            "itemId=$itemId"
+    val map: Map<Int, ItemInfoEntryBox>
+
+    override val boxes: List<Box>
 
     init {
 
@@ -48,8 +47,28 @@ class PrimaryItemBox(
         flags = byteReader.readBytes("flags", 3)
 
         if (version == 0)
-            itemId = byteReader.read2BytesAsInt("itemId", BMFF_BYTE_ORDER)
+            entryCount = byteReader.read2BytesAsInt("entryCount", BMFF_BYTE_ORDER)
         else
-            itemId = byteReader.read4BytesAsInt("itemId", BMFF_BYTE_ORDER)
+            entryCount = byteReader.read4BytesAsInt("entryCount", BMFF_BYTE_ORDER)
+
+        boxes = BoxReader.readBoxes(
+            byteReader = byteReader,
+            stopAfterMetaBox = false,
+            offsetShift = offset + 4 + 2 + if (version == 0) 2 else 4
+        )
+
+        val map = mutableMapOf<Int, ItemInfoEntryBox>()
+
+        for (box in boxes) {
+
+            box as ItemInfoEntryBox
+
+            map.put(box.itemId, box)
+        }
+
+        this.map = map
     }
+
+    override fun toString(): String =
+        "$type version=$version flags=${flags.toHex()} ($entryCount entries)"
 }

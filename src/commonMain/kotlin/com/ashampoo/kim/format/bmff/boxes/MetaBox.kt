@@ -14,14 +14,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.ashampoo.kim.format.isobmff.boxes
+package com.ashampoo.kim.format.bmff.boxes
 
 import com.ashampoo.kim.common.MetadataOffset
 import com.ashampoo.kim.common.MetadataType
 import com.ashampoo.kim.common.toHex
-import com.ashampoo.kim.format.isobmff.BoxReader
-import com.ashampoo.kim.format.isobmff.BoxType
-import com.ashampoo.kim.format.isobmff.ISOBMFFConstants
+import com.ashampoo.kim.format.bmff.BMFFConstants
+import com.ashampoo.kim.format.bmff.BoxReader
+import com.ashampoo.kim.format.bmff.BoxType
 import com.ashampoo.kim.input.ByteArrayByteReader
 
 /**
@@ -31,7 +31,7 @@ class MetaBox(
     offset: Long,
     length: Long,
     payload: ByteArray
-) : Box(offset, BoxType.META, length, payload) {
+) : Box(offset, BoxType.META, length, payload), BoxContainer {
 
     val version: Int
 
@@ -43,7 +43,28 @@ class MetaBox(
     val itemInfoBox: ItemInformationBox
     val itemLocationBox: ItemLocationBox
 
-    val boxes: List<Box>
+    override val boxes: List<Box>
+
+    init {
+
+        val byteReader = ByteArrayByteReader(payload)
+
+        version = byteReader.readByteAsInt()
+
+        flags = byteReader.readBytes("flags", 3)
+
+        boxes = BoxReader.readBoxes(
+            byteReader = byteReader,
+            stopAfterMetaBox = false,
+            offsetShift = offset + 8
+        )
+
+        /* Find & set mandatory boxes. */
+        handlerReferenceBox = boxes.find { it.type == BoxType.HDLR } as HandlerReferenceBox
+        primaryItemBox = boxes.find { it.type == BoxType.PITM } as PrimaryItemBox
+        itemInfoBox = boxes.find { it.type == BoxType.IINF } as ItemInformationBox
+        itemLocationBox = boxes.find { it.type == BoxType.ILOC } as ItemLocationBox
+    }
 
     fun findMetadataOffsets(): List<MetadataOffset> {
 
@@ -55,7 +76,7 @@ class MetaBox(
 
             when (itemInfo.itemType) {
 
-                ISOBMFFConstants.ITEM_TYPE_EXIF ->
+                BMFFConstants.ITEM_TYPE_EXIF ->
                     offsets.add(
                         MetadataOffset(
                             type = MetadataType.EXIF,
@@ -64,7 +85,7 @@ class MetaBox(
                         )
                     )
 
-                ISOBMFFConstants.ITEM_TYPE_MIME ->
+                BMFFConstants.ITEM_TYPE_MIME ->
                     offsets.add(
                         MetadataOffset(
                             type = MetadataType.XMP,
@@ -83,21 +104,4 @@ class MetaBox(
 
     override fun toString(): String =
         "$type Box version=$version flags=${flags.toHex()} boxes=${boxes.map { it.type }}"
-
-    init {
-
-        val byteReader = ByteArrayByteReader(payload)
-
-        version = byteReader.readByteAsInt()
-
-        flags = byteReader.readBytes("flags", 3)
-
-        boxes = BoxReader.readBoxes(byteReader)
-
-        /* Find & set mandatory boxes. */
-        handlerReferenceBox = boxes.find { it.type == BoxType.HDLR } as HandlerReferenceBox
-        primaryItemBox = boxes.find { it.type == BoxType.PITM } as PrimaryItemBox
-        itemInfoBox = boxes.find { it.type == BoxType.IINF } as ItemInformationBox
-        itemLocationBox = boxes.find { it.type == BoxType.ILOC } as ItemLocationBox
-    }
 }

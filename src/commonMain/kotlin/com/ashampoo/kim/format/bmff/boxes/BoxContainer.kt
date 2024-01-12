@@ -14,18 +14,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.ashampoo.kim.format.isobmff.boxes
+package com.ashampoo.kim.format.bmff.boxes
 
-import com.ashampoo.kim.format.isobmff.BoxType
+interface BoxContainer {
 
-open class Box(
-    val offset: Long,
-    val type: BoxType,
-    val length: Long,
-    /* Payload bytes, not including type & length bytes */
-    val payload: ByteArray
-) {
+    val boxes: List<Box>
 
-    override fun toString(): String =
-        "Box $type @ $offset ($length bytes)"
+    companion object {
+
+        fun findAllBoxesRecursive(boxes: List<Box>): List<Box> {
+
+            val allBoxes = mutableListOf<Box>()
+
+            for (box in boxes) {
+
+                allBoxes.add(box)
+
+                if (box is BoxContainer)
+                    allBoxes.addAll(findAllBoxesRecursive(box.boxes))
+            }
+
+            return allBoxes
+        }
+    }
 }

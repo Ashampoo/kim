@@ -137,8 +137,6 @@ enum class ImageFormat(
          *
          * If the byte array is less than REQUIRED_HEADER_BYTE_COUNT_FOR_DETECTION
          * (for example empty) than the detection returns null.
-         *
-         * Note: Can NOT detect HEIC!
          */
         @JvmStatic
         fun detect(bytes: ByteArray): ImageFormat? {
@@ -171,6 +169,9 @@ enum class ImageFormat(
                 /* Check TIFF after the RAW files. */
                 bytes.startsWith(ImageFormatMagicNumbers.tiffLittleEndian) -> ImageFormat.TIFF
                 bytes.startsWith(ImageFormatMagicNumbers.tiffBigEndian) -> ImageFormat.TIFF
+                /* Check JXL */
+                bytes.startsWith(ImageFormatMagicNumbers.jxlCodeStream) -> ImageFormat.JXL
+                bytes.startsWith(ImageFormatMagicNumbers.jxlContainer) -> ImageFormat.JXL
                 /* Check HEIC variants */
                 bytes.startsWithNullable(ImageFormatMagicNumbers.heic) -> ImageFormat.HEIC
                 bytes.startsWithNullable(ImageFormatMagicNumbers.mif1) -> ImageFormat.HEIC

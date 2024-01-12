@@ -81,9 +81,8 @@ object XmpWriter {
             is MetadataUpdate.Keywords ->
                 setKeywords(update.keywords)
 
-//              is MetadataUpdate.Faces -> {
-//                  TODO How do write the fields?
-//              }
+            is MetadataUpdate.Faces ->
+                setFaces(update.faces, update.widthPx, update.heightPx)
 
             is MetadataUpdate.Persons ->
                 setPersonsInImage(update.personsInImage)

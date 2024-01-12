@@ -14,11 +14,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.ashampoo.kim.format.isobmff.boxes
+package com.ashampoo.kim.format.bmff.boxes
 
-import com.ashampoo.kim.format.isobmff.BoxType
-import com.ashampoo.kim.format.isobmff.Extent
-import com.ashampoo.kim.format.isobmff.ISOBMFFConstants.BMFF_BYTE_ORDER
+import com.ashampoo.kim.format.bmff.BMFFConstants.BMFF_BYTE_ORDER
+import com.ashampoo.kim.format.bmff.BoxType
+import com.ashampoo.kim.format.bmff.Extent
 import com.ashampoo.kim.input.ByteArrayByteReader
 
 class ItemLocationBox(
@@ -60,15 +60,6 @@ class ItemLocationBox(
     val itemCount: Int
 
     val extents: List<Extent>
-
-    override fun toString(): String =
-        "$type " +
-            "offsetSize=$offsetSize " +
-            "lengthSize=$lengthSize " +
-            "baseOffsetSize=$baseOffsetSize " +
-            "indexSize=$indexSize " +
-            "itemCount=$itemCount " +
-            "extents=$extents"
 
     init {
 
@@ -155,4 +146,13 @@ class ItemLocationBox(
 
         this.extents = extents
     }
+
+    override fun toString(): String =
+        "$type " +
+            "offsetSize=$offsetSize " +
+            "lengthSize=$lengthSize " +
+            "baseOffsetSize=$baseOffsetSize " +
+            "indexSize=$indexSize " +
+            "itemCount=$itemCount " +
+            "extents=$extents"
 }

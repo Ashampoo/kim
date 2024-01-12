@@ -14,12 +14,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.ashampoo.kim.format.isobmff.boxes
+package com.ashampoo.kim.format.bmff.boxes
 
 import com.ashampoo.kim.common.toFourCCTypeString
-import com.ashampoo.kim.format.isobmff.BoxType
-import com.ashampoo.kim.format.isobmff.ISOBMFFConstants
-import com.ashampoo.kim.format.isobmff.ISOBMFFConstants.BMFF_BYTE_ORDER
+import com.ashampoo.kim.format.bmff.BMFFConstants
+import com.ashampoo.kim.format.bmff.BMFFConstants.BMFF_BYTE_ORDER
+import com.ashampoo.kim.format.bmff.BoxType
 import com.ashampoo.kim.input.ByteArrayByteReader
 
 class FileTypeBox(
@@ -33,9 +33,6 @@ class FileTypeBox(
     val minorBrand: String
 
     val compatibleBrands: List<String>
-
-    override fun toString(): String =
-        "$type major=$majorBrand minor=$minorBrand compatible=$compatibleBrands"
 
     init {
 
@@ -56,11 +53,14 @@ class FileTypeBox(
         repeat(brandCount) {
             brands.add(
                 byteReader
-                    .read4BytesAsInt("brand $it", ISOBMFFConstants.BMFF_BYTE_ORDER)
+                    .read4BytesAsInt("brand $it", BMFFConstants.BMFF_BYTE_ORDER)
                     .toFourCCTypeString()
             )
         }
 
         compatibleBrands = brands
     }
+
+    override fun toString(): String =
+        "$type major=$majorBrand minor=$minorBrand compatible=$compatibleBrands"
 }

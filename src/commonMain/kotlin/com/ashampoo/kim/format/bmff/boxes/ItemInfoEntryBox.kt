@@ -14,12 +14,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.ashampoo.kim.format.isobmff.boxes
+package com.ashampoo.kim.format.bmff.boxes
 
 import com.ashampoo.kim.common.toFourCCTypeString
 import com.ashampoo.kim.common.toHex
-import com.ashampoo.kim.format.isobmff.BoxType
-import com.ashampoo.kim.format.isobmff.ISOBMFFConstants.BMFF_BYTE_ORDER
+import com.ashampoo.kim.format.bmff.BMFFConstants.BMFF_BYTE_ORDER
+import com.ashampoo.kim.format.bmff.BoxType
 import com.ashampoo.kim.input.ByteArrayByteReader
 
 class ItemInfoEntryBox(
@@ -39,15 +39,6 @@ class ItemInfoEntryBox(
     val itemType: Int
 
     val itemName: String
-
-    override fun toString(): String =
-        "$type " +
-            "version=$version " +
-            "flags=${flags.toHex()} " +
-            "itemId=$itemId " +
-            "itemProtectionIndex=$itemProtectionIndex " +
-            "itemType=${itemType.toFourCCTypeString()} " +
-            "itemName=$itemName"
 
     init {
 
@@ -76,4 +67,13 @@ class ItemInfoEntryBox(
         /* Item name was always empty in test files. */
         itemName = byteReader.readNullTerminatedString("itemName")
     }
+
+    override fun toString(): String =
+        "$type " +
+            "version=$version " +
+            "flags=${flags.toHex()} " +
+            "itemId=$itemId " +
+            "itemProtectionIndex=$itemProtectionIndex " +
+            "itemType=${itemType.toFourCCTypeString()} " +
+            "itemName=$itemName"
 }

@@ -37,7 +37,7 @@ class XmpExtractionTest {
 
     // TODO Support these files as they have XMP
     val indicesUnsupported = setOf(
-        59, 72, 73, 74, 75, 76
+        59, 72, 74, 75, 78, 79, 80
     )
 
     /**
