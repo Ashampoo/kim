@@ -45,6 +45,24 @@ class MetaBox(
 
     val boxes: List<Box>
 
+    init {
+
+        val byteReader = ByteArrayByteReader(payload)
+
+        version = byteReader.readByteAsInt()
+
+        flags = byteReader.readBytes("flags", 3)
+
+        boxes = BoxReader.readBoxes(byteReader)
+
+        /* Find & set mandatory boxes. */
+        handlerReferenceBox = boxes.find { it.type == BoxType.HDLR } as HandlerReferenceBox
+        primaryItemBox = boxes.find { it.type == BoxType.PITM } as PrimaryItemBox
+        itemInfoBox = boxes.find { it.type == BoxType.IINF } as ItemInformationBox
+        itemLocationBox = boxes.find { it.type == BoxType.ILOC } as ItemLocationBox
+    }
+
+
     fun findMetadataOffsets(): List<MetadataOffset> {
 
         val offsets = mutableListOf<MetadataOffset>()
@@ -83,21 +101,4 @@ class MetaBox(
 
     override fun toString(): String =
         "$type Box version=$version flags=${flags.toHex()} boxes=${boxes.map { it.type }}"
-
-    init {
-
-        val byteReader = ByteArrayByteReader(payload)
-
-        version = byteReader.readByteAsInt()
-
-        flags = byteReader.readBytes("flags", 3)
-
-        boxes = BoxReader.readBoxes(byteReader)
-
-        /* Find & set mandatory boxes. */
-        handlerReferenceBox = boxes.find { it.type == BoxType.HDLR } as HandlerReferenceBox
-        primaryItemBox = boxes.find { it.type == BoxType.PITM } as PrimaryItemBox
-        itemInfoBox = boxes.find { it.type == BoxType.IINF } as ItemInformationBox
-        itemLocationBox = boxes.find { it.type == BoxType.ILOC } as ItemLocationBox
-    }
 }

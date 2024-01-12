@@ -36,9 +36,6 @@ class ItemInformationBox(
 
     val map: Map<Int, ItemInfoEntryBox>
 
-    override fun toString(): String =
-        "$type version=$version flags=${flags.toHex()} ($entryCount entries)"
-
     init {
 
         val byteReader = ByteArrayByteReader(payload)
@@ -65,4 +62,7 @@ class ItemInformationBox(
 
         this.map = map
     }
+
+    override fun toString(): String =
+        "$type version=$version flags=${flags.toHex()} ($entryCount entries)"
 }

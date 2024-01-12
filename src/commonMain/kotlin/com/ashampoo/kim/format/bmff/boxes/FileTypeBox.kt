@@ -34,9 +34,6 @@ class FileTypeBox(
 
     val compatibleBrands: List<String>
 
-    override fun toString(): String =
-        "$type major=$majorBrand minor=$minorBrand compatible=$compatibleBrands"
-
     init {
 
         val byteReader = ByteArrayByteReader(payload)
@@ -63,4 +60,7 @@ class FileTypeBox(
 
         compatibleBrands = brands
     }
+
+    override fun toString(): String =
+        "$type major=$majorBrand minor=$minorBrand compatible=$compatibleBrands"
 }

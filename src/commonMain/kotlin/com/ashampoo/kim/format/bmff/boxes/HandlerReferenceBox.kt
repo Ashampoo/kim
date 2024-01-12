@@ -34,13 +34,6 @@ class HandlerReferenceBox(
 
     val name: String
 
-    override fun toString(): String =
-        "$type " +
-            "version=$version " +
-            "flags=${flags.toHex()} " +
-            "handlerType=$handlerType " +
-            "name=$name"
-
     init {
 
         val byteReader = ByteArrayByteReader(payload)
@@ -57,4 +50,11 @@ class HandlerReferenceBox(
 
         name = byteReader.readNullTerminatedString("name")
     }
+
+    override fun toString(): String =
+        "$type " +
+            "version=$version " +
+            "flags=${flags.toHex()} " +
+            "handlerType=$handlerType " +
+            "name=$name"
 }

@@ -61,15 +61,6 @@ class ItemLocationBox(
 
     val extents: List<Extent>
 
-    override fun toString(): String =
-        "$type " +
-            "offsetSize=$offsetSize " +
-            "lengthSize=$lengthSize " +
-            "baseOffsetSize=$baseOffsetSize " +
-            "indexSize=$indexSize " +
-            "itemCount=$itemCount " +
-            "extents=$extents"
-
     init {
 
         val byteReader = ByteArrayByteReader(payload)
@@ -155,4 +146,13 @@ class ItemLocationBox(
 
         this.extents = extents
     }
+
+    override fun toString(): String =
+        "$type " +
+            "offsetSize=$offsetSize " +
+            "lengthSize=$lengthSize " +
+            "baseOffsetSize=$baseOffsetSize " +
+            "indexSize=$indexSize " +
+            "itemCount=$itemCount " +
+            "extents=$extents"
 }

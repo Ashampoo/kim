@@ -33,12 +33,6 @@ class PrimaryItemBox(
 
     val itemId: Int
 
-    override fun toString(): String =
-        "$type " +
-            "version=$version " +
-            "flags=${flags.toHex()} " +
-            "itemId=$itemId"
-
     init {
 
         val byteReader = ByteArrayByteReader(payload)
@@ -52,4 +46,10 @@ class PrimaryItemBox(
         else
             itemId = byteReader.read4BytesAsInt("itemId", BMFF_BYTE_ORDER)
     }
+
+    override fun toString(): String =
+        "$type " +
+            "version=$version " +
+            "flags=${flags.toHex()} " +
+            "itemId=$itemId"
 }

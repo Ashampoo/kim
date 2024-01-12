@@ -40,15 +40,6 @@ class ItemInfoEntryBox(
 
     val itemName: String
 
-    override fun toString(): String =
-        "$type " +
-            "version=$version " +
-            "flags=${flags.toHex()} " +
-            "itemId=$itemId " +
-            "itemProtectionIndex=$itemProtectionIndex " +
-            "itemType=${itemType.toFourCCTypeString()} " +
-            "itemName=$itemName"
-
     init {
 
         val byteReader = ByteArrayByteReader(payload)
@@ -76,4 +67,13 @@ class ItemInfoEntryBox(
         /* Item name was always empty in test files. */
         itemName = byteReader.readNullTerminatedString("itemName")
     }
+
+    override fun toString(): String =
+        "$type " +
+            "version=$version " +
+            "flags=${flags.toHex()} " +
+            "itemId=$itemId " +
+            "itemProtectionIndex=$itemProtectionIndex " +
+            "itemType=${itemType.toFourCCTypeString()} " +
+            "itemName=$itemName"
 }
