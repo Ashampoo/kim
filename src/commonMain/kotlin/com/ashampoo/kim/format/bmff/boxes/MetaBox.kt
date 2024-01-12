@@ -31,7 +31,7 @@ class MetaBox(
     offset: Long,
     length: Long,
     payload: ByteArray
-) : Box(offset, BoxType.META, length, payload) {
+) : Box(offset, BoxType.META, length, payload), BoxContainer {
 
     val version: Int
 
@@ -43,7 +43,7 @@ class MetaBox(
     val itemInfoBox: ItemInformationBox
     val itemLocationBox: ItemLocationBox
 
-    val boxes: List<Box>
+    override val boxes: List<Box>
 
     init {
 
@@ -61,7 +61,6 @@ class MetaBox(
         itemInfoBox = boxes.find { it.type == BoxType.IINF } as ItemInformationBox
         itemLocationBox = boxes.find { it.type == BoxType.ILOC } as ItemLocationBox
     }
-
 
     fun findMetadataOffsets(): List<MetadataOffset> {
 
