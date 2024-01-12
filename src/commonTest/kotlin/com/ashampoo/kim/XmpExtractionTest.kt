@@ -62,9 +62,6 @@ class XmpExtractionTest {
 
             val actualXmpBytes = actualXmp.encodeToByteArray()
 
-            Path("build/photo_$index.xmp")
-                .writeBytes(actualXmpBytes)
-
             val expectedXmp = KimTestData.getOriginalXmp(index)
 
             val equals = expectedXmp.contentEquals(actualXmpBytes)
