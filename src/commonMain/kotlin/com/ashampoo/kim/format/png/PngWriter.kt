@@ -20,8 +20,8 @@ import com.ashampoo.kim.common.toHex
 import com.ashampoo.kim.format.png.PngCrc.continuePartialCrc
 import com.ashampoo.kim.format.png.PngCrc.finishPartialCrc
 import com.ashampoo.kim.format.png.PngCrc.startPartialCrc
-import com.ashampoo.kim.format.png.chunks.PngChunk
-import com.ashampoo.kim.format.png.chunks.PngTextChunk
+import com.ashampoo.kim.format.png.chunk.PngChunk
+import com.ashampoo.kim.format.png.chunk.PngTextChunk
 import com.ashampoo.kim.input.ByteReader
 import com.ashampoo.kim.output.ByteArrayByteWriter
 import com.ashampoo.kim.output.ByteWriter
