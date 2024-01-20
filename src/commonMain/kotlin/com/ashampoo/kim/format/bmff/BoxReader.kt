@@ -39,7 +39,7 @@ object BoxReader {
     /**
      * @param byteReader The reader as source for the bytes
      * @param stopAfterMetadataRead If reading the file for metadata on the highest level we
-     * want to stop reading after the meta box to prevent reading the whole mdat block in.
+     * want to stop reading after the meta boxes to prevent reading the whole image data block in.
      * For iPhone HEIC this is possible, but Samsung HEIC has "meta" coming after "mdat"
      */
     fun readBoxes(
@@ -47,6 +47,8 @@ object BoxReader {
         stopAfterMetadataRead: Boolean = false,
         offsetShift: Long = 0
     ): List<Box> {
+
+        var haveSeenJxlHeaderBox: Boolean = false
 
         val boxes = mutableListOf<Box>()
 
@@ -68,6 +70,13 @@ object BoxReader {
             val type = BoxType.of(
                 byteReader.readBytes("type", BMFFConstants.TPYE_LENGTH)
             )
+
+            /*
+             * If we read an JXL file and we already have seen the header,
+             * all reamining JXLP boxes are image data that we can skip.
+             */
+            if (stopAfterMetadataRead && type == BoxType.JXLP && haveSeenJxlHeaderBox)
+                break
 
             val actualLength: Long = when (length) {
 
@@ -106,8 +115,24 @@ object BoxReader {
 
             boxes.add(box)
 
-            if (stopAfterMetadataRead && type == BoxType.META)
-                break
+            if (stopAfterMetadataRead) {
+
+                /* This is the case for HEIC & AVIF */
+                if (type == BoxType.META)
+                    break
+
+                /*
+                 * When parsing JXL we need to take a note that we saw the header.
+                 * This is usually the first JXLP box.
+                 */
+                if (type == BoxType.JXLP) {
+
+                    box as JxlParticalCodestreamBox
+
+                    if (box.isHeader)
+                        haveSeenJxlHeaderBox = true
+                }
+            }
         }
 
         return boxes
