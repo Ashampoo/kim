@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.ashampoo.kim.format.bmff.boxes
+package com.ashampoo.kim.format.bmff.box
 
 interface BoxContainer {
 

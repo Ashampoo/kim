@@ -22,8 +22,8 @@ import com.ashampoo.kim.format.ImageMetadata
 import com.ashampoo.kim.format.ImageParser
 import com.ashampoo.kim.format.bmff.BMFFConstants.BMFF_BYTE_ORDER
 import com.ashampoo.kim.format.bmff.BMFFConstants.TIFF_HEADER_OFFSET_BYTE_COUNT
-import com.ashampoo.kim.format.bmff.boxes.FileTypeBox
-import com.ashampoo.kim.format.bmff.boxes.MetaBox
+import com.ashampoo.kim.format.bmff.box.FileTypeBox
+import com.ashampoo.kim.format.bmff.box.MetaBox
 import com.ashampoo.kim.format.tiff.TiffReader
 import com.ashampoo.kim.input.ByteArrayByteReader
 import com.ashampoo.kim.input.ByteReader

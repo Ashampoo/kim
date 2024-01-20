@@ -16,7 +16,7 @@
 
 package com.ashampoo.kim.format.bmff
 
-import com.ashampoo.kim.format.bmff.boxes.BoxContainer
+import com.ashampoo.kim.format.bmff.box.BoxContainer
 import com.ashampoo.kim.input.ByteArrayByteReader
 import com.ashampoo.kim.input.PositionTrackingByteReaderDecorator
 import com.ashampoo.kim.testdata.KimTestData

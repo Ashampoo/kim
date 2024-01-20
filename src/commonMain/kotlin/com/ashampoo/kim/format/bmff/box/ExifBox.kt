@@ -1,6 +1,5 @@
 /*
  * Copyright 2024 Ashampoo GmbH & Co. KG
- * Copyright 2002-2023 Drew Noakes and contributors
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,28 +13,29 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.ashampoo.kim.format.bmff.boxes
+package com.ashampoo.kim.format.bmff.box
 
-import com.ashampoo.kim.common.toHex
 import com.ashampoo.kim.format.bmff.BoxType
+import com.ashampoo.kim.format.tiff.TiffContents
+import com.ashampoo.kim.format.tiff.TiffReader
 import com.ashampoo.kim.input.ByteArrayByteReader
 
 /**
- * EIC/ISO 14496-12 hdlr box
+ * JPEG XL Exif box
  */
-class HandlerReferenceBox(
+class ExifBox(
     offset: Long,
     length: Long,
     payload: ByteArray
-) : Box(offset, BoxType.HDLR, length, payload) {
+) : Box(offset, BoxType.EXIF, length, payload) {
 
     val version: Int
 
     val flags: ByteArray
 
-    val handlerType: String
+    val exifBytes: ByteArray
 
-    val name: String
+    val tiffContents: TiffContents
 
     init {
 
@@ -45,19 +45,9 @@ class HandlerReferenceBox(
 
         flags = byteReader.readBytes("flags", 3)
 
-        byteReader.skipBytes("pre-defined", 4)
+        exifBytes = byteReader.readRemainingBytes()
 
-        handlerType = byteReader.readBytes("handlerType", 4).decodeToString()
-
-        byteReader.skipBytes("reserved", 12)
-
-        name = byteReader.readNullTerminatedString("name")
+        /* Directly parse here to ensure it's valid. */
+        tiffContents = TiffReader.read(exifBytes)
     }
-
-    override fun toString(): String =
-        "$type " +
-            "version=$version " +
-            "flags=${flags.toHex()} " +
-            "handlerType=$handlerType " +
-            "name=$name"
 }

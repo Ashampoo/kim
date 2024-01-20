@@ -17,18 +17,18 @@
 package com.ashampoo.kim.format.bmff
 
 import com.ashampoo.kim.format.bmff.BMFFConstants.BMFF_BYTE_ORDER
-import com.ashampoo.kim.format.bmff.boxes.Box
-import com.ashampoo.kim.format.bmff.boxes.ExifBox
-import com.ashampoo.kim.format.bmff.boxes.FileTypeBox
-import com.ashampoo.kim.format.bmff.boxes.HandlerReferenceBox
-import com.ashampoo.kim.format.bmff.boxes.ItemInfoEntryBox
-import com.ashampoo.kim.format.bmff.boxes.ItemInformationBox
-import com.ashampoo.kim.format.bmff.boxes.ItemLocationBox
-import com.ashampoo.kim.format.bmff.boxes.JxlParticalCodestreamBox
-import com.ashampoo.kim.format.bmff.boxes.MediaDataBox
-import com.ashampoo.kim.format.bmff.boxes.MetaBox
-import com.ashampoo.kim.format.bmff.boxes.PrimaryItemBox
-import com.ashampoo.kim.format.bmff.boxes.XmlBox
+import com.ashampoo.kim.format.bmff.box.Box
+import com.ashampoo.kim.format.bmff.box.ExifBox
+import com.ashampoo.kim.format.bmff.box.FileTypeBox
+import com.ashampoo.kim.format.bmff.box.HandlerReferenceBox
+import com.ashampoo.kim.format.bmff.box.ItemInfoEntryBox
+import com.ashampoo.kim.format.bmff.box.ItemInformationBox
+import com.ashampoo.kim.format.bmff.box.ItemLocationBox
+import com.ashampoo.kim.format.bmff.box.JxlParticalCodestreamBox
+import com.ashampoo.kim.format.bmff.box.MediaDataBox
+import com.ashampoo.kim.format.bmff.box.MetaBox
+import com.ashampoo.kim.format.bmff.box.PrimaryItemBox
+import com.ashampoo.kim.format.bmff.box.XmlBox
 import com.ashampoo.kim.input.PositionTrackingByteReader
 
 /**

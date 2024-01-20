@@ -16,9 +16,9 @@
 package com.ashampoo.kim.format.bmff
 
 import com.ashampoo.kim.format.ImageMetadata
-import com.ashampoo.kim.format.bmff.boxes.Box
-import com.ashampoo.kim.format.bmff.boxes.ExifBox
-import com.ashampoo.kim.format.bmff.boxes.XmlBox
+import com.ashampoo.kim.format.bmff.box.Box
+import com.ashampoo.kim.format.bmff.box.ExifBox
+import com.ashampoo.kim.format.bmff.box.XmlBox
 import com.ashampoo.kim.model.ImageFormat
 
 internal object JxlHandler {

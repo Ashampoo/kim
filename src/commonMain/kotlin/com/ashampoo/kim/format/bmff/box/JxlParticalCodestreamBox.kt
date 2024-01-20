@@ -1,6 +1,5 @@
 /*
  * Copyright 2024 Ashampoo GmbH & Co. KG
- * Copyright 2007-2023 The Apache Software Foundation
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,10 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.ashampoo.kim.format.jpeg.segments
+package com.ashampoo.kim.format.bmff.box
 
-class UnknownSegment(marker: Int, bytes: ByteArray) : GenericSegment(marker, bytes) {
+import com.ashampoo.kim.format.bmff.BoxType
 
-    override fun getDescription(): String =
-        "Unknown ($marker)"
-}
+/**
+ * JPEG XL jxlp box
+ */
+class JxlParticalCodestreamBox(
+    offset: Long,
+    length: Long,
+    payload: ByteArray
+) : Box(offset, BoxType.JXLP, length, payload)

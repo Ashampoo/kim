@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.ashampoo.kim.format.jpeg.segments
+package com.ashampoo.kim.format.jpeg.segment
 
 import com.ashampoo.kim.common.ImageReadException
 import com.ashampoo.kim.format.jpeg.JpegConstants
