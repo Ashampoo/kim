@@ -140,6 +140,7 @@ val newBytes = Kim.updateThumbnail(
 ## Limitations
 
 * Inability to update EXIF, IPTC and XMP in JPG files simultaneously.
+* Does not read the image size and orientation for HEIC, AVIF & JPEG XL
 
 ### Regarding HEIC & AVIF metadata
 
