@@ -23,8 +23,8 @@ import com.ashampoo.kim.common.RationalNumber
 import com.ashampoo.kim.common.head
 import com.ashampoo.kim.common.toSingleNumberHexes
 import com.ashampoo.kim.format.tiff.TiffTags.getTag
-import com.ashampoo.kim.format.tiff.fieldtypes.FieldType
-import com.ashampoo.kim.format.tiff.taginfos.TagInfo
+import com.ashampoo.kim.format.tiff.fieldtype.FieldType
+import com.ashampoo.kim.format.tiff.taginfo.TagInfo
 
 /**
  * A TIFF field in a TIFF directory.

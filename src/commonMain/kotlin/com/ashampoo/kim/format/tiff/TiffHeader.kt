@@ -17,7 +17,7 @@
 package com.ashampoo.kim.format.tiff
 
 import com.ashampoo.kim.common.ByteOrder
-import com.ashampoo.kim.format.tiff.constants.TiffConstants
+import com.ashampoo.kim.format.tiff.constant.TiffConstants
 
 data class TiffHeader(
     val byteOrder: ByteOrder,

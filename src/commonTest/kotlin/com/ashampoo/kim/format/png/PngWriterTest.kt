@@ -23,7 +23,7 @@ import com.ashampoo.kim.format.jpeg.iptc.IptcParser
 import com.ashampoo.kim.format.jpeg.iptc.IptcRecord
 import com.ashampoo.kim.format.jpeg.iptc.IptcTypes
 import com.ashampoo.kim.format.jpeg.iptc.IptcWriter
-import com.ashampoo.kim.format.tiff.constants.ExifTag
+import com.ashampoo.kim.format.tiff.constant.ExifTag
 import com.ashampoo.kim.format.tiff.write.TiffOutputSet
 import com.ashampoo.kim.format.tiff.write.TiffWriterLossless
 import com.ashampoo.kim.format.tiff.write.TiffWriterLossy

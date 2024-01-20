@@ -18,9 +18,9 @@ package com.ashampoo.kim.format.tiff.write
 
 import com.ashampoo.kim.common.ByteOrder
 import com.ashampoo.kim.common.ImageWriteException
-import com.ashampoo.kim.format.tiff.constants.TiffConstants.TIFF_ENTRY_MAX_VALUE_LENGTH
-import com.ashampoo.kim.format.tiff.fieldtypes.FieldType
-import com.ashampoo.kim.format.tiff.taginfos.TagInfo
+import com.ashampoo.kim.format.tiff.constant.TiffConstants.TIFF_ENTRY_MAX_VALUE_LENGTH
+import com.ashampoo.kim.format.tiff.fieldtype.FieldType
+import com.ashampoo.kim.format.tiff.taginfo.TagInfo
 import com.ashampoo.kim.output.BinaryByteWriter
 
 class TiffOutputField(

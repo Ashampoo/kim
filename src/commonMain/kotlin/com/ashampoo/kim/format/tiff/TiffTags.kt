@@ -16,12 +16,12 @@
  */
 package com.ashampoo.kim.format.tiff
 
-import com.ashampoo.kim.format.tiff.constants.ExifTag
-import com.ashampoo.kim.format.tiff.constants.ExifTag.EXIF_DIRECTORY_UNKNOWN
-import com.ashampoo.kim.format.tiff.constants.GpsTag
-import com.ashampoo.kim.format.tiff.constants.TiffTag
-import com.ashampoo.kim.format.tiff.taginfos.TagInfo
-import com.ashampoo.kim.format.tiff.taginfos.TagInfoUnknowns
+import com.ashampoo.kim.format.tiff.constant.ExifTag
+import com.ashampoo.kim.format.tiff.constant.ExifTag.EXIF_DIRECTORY_UNKNOWN
+import com.ashampoo.kim.format.tiff.constant.GpsTag
+import com.ashampoo.kim.format.tiff.constant.TiffTag
+import com.ashampoo.kim.format.tiff.taginfo.TagInfo
+import com.ashampoo.kim.format.tiff.taginfo.TagInfoUnknowns
 
 internal object TiffTags {
 

@@ -19,9 +19,9 @@ import com.ashampoo.kim.Kim.underUnitTesting
 import com.ashampoo.kim.format.ImageMetadata
 import com.ashampoo.kim.format.jpeg.iptc.IptcTypes
 import com.ashampoo.kim.format.tiff.GPSInfo
-import com.ashampoo.kim.format.tiff.constants.ExifTag
-import com.ashampoo.kim.format.tiff.constants.TiffConstants
-import com.ashampoo.kim.format.tiff.constants.TiffTag
+import com.ashampoo.kim.format.tiff.constant.ExifTag
+import com.ashampoo.kim.format.tiff.constant.TiffConstants
+import com.ashampoo.kim.format.tiff.constant.TiffTag
 import com.ashampoo.kim.format.xmp.XmpReader
 import com.ashampoo.kim.model.GpsCoordinates
 import com.ashampoo.kim.model.PhotoMetadata
