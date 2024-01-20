@@ -21,6 +21,9 @@ import com.ashampoo.kim.format.bmff.BMFFConstants.BMFF_BYTE_ORDER
 import com.ashampoo.kim.format.bmff.BoxType
 import com.ashampoo.kim.input.ByteArrayByteReader
 
+/**
+ * EIC/ISO 14496-12 pitm box
+ */
 class PrimaryItemBox(
     offset: Long,
     length: Long,

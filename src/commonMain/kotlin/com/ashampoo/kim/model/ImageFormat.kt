@@ -170,9 +170,8 @@ enum class ImageFormat(
                 /* Check TIFF after the RAW files. */
                 bytes.startsWith(ImageFormatMagicNumbers.tiffLittleEndian) -> ImageFormat.TIFF
                 bytes.startsWith(ImageFormatMagicNumbers.tiffBigEndian) -> ImageFormat.TIFF
-                /* Check JXL */
-                bytes.startsWith(ImageFormatMagicNumbers.jxlCodeStream) -> ImageFormat.JXL
-                bytes.startsWith(ImageFormatMagicNumbers.jxlContainer) -> ImageFormat.JXL
+                /* Check JXL ISOBMFF */
+                bytes.startsWith(ImageFormatMagicNumbers.jxl) -> ImageFormat.JXL
                 /* Check HEIC variants */
                 bytes.startsWithNullable(ImageFormatMagicNumbers.heic) -> ImageFormat.HEIC
                 bytes.startsWithNullable(ImageFormatMagicNumbers.mif1) -> ImageFormat.HEIC

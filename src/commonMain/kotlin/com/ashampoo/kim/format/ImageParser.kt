@@ -49,7 +49,7 @@ fun interface ImageParser {
 
                 ImageFormat.HEIC -> BaseMediaFileFormatImageParser
                 ImageFormat.AVIF -> BaseMediaFileFormatImageParser
-                // ImageFormat.JXL -> BaseMediaFileFormatImageParser
+                ImageFormat.JXL -> BaseMediaFileFormatImageParser
 
                 else -> null
             }

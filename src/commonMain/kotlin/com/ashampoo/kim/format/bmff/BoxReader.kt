@@ -18,14 +18,17 @@ package com.ashampoo.kim.format.bmff
 
 import com.ashampoo.kim.format.bmff.BMFFConstants.BMFF_BYTE_ORDER
 import com.ashampoo.kim.format.bmff.boxes.Box
+import com.ashampoo.kim.format.bmff.boxes.ExifBox
 import com.ashampoo.kim.format.bmff.boxes.FileTypeBox
 import com.ashampoo.kim.format.bmff.boxes.HandlerReferenceBox
 import com.ashampoo.kim.format.bmff.boxes.ItemInfoEntryBox
 import com.ashampoo.kim.format.bmff.boxes.ItemInformationBox
 import com.ashampoo.kim.format.bmff.boxes.ItemLocationBox
+import com.ashampoo.kim.format.bmff.boxes.JxlParticalCodestreamBox
 import com.ashampoo.kim.format.bmff.boxes.MediaDataBox
 import com.ashampoo.kim.format.bmff.boxes.MetaBox
 import com.ashampoo.kim.format.bmff.boxes.PrimaryItemBox
+import com.ashampoo.kim.format.bmff.boxes.XmlBox
 import com.ashampoo.kim.input.PositionTrackingByteReader
 
 /**
@@ -35,13 +38,13 @@ object BoxReader {
 
     /**
      * @param byteReader The reader as source for the bytes
-     * @param stopAfterMetaBox If reading the file for metadata on the highest level we
+     * @param stopAfterMetadataRead If reading the file for metadata on the highest level we
      * want to stop reading after the meta box to prevent reading the whole mdat block in.
      * For iPhone HEIC this is possible, but Samsung HEIC has "meta" coming after "mdat"
      */
     fun readBoxes(
         byteReader: PositionTrackingByteReader,
-        stopAfterMetaBox: Boolean = false,
+        stopAfterMetadataRead: Boolean = false,
         offsetShift: Long = 0
     ): List<Box> {
 
@@ -95,12 +98,15 @@ object BoxReader {
                 BoxType.ILOC -> ItemLocationBox(globalOffset, actualLength, bytes)
                 BoxType.PITM -> PrimaryItemBox(globalOffset, actualLength, bytes)
                 BoxType.MDAT -> MediaDataBox(globalOffset, actualLength, bytes)
+                BoxType.EXIF -> ExifBox(globalOffset, actualLength, bytes)
+                BoxType.XML -> XmlBox(globalOffset, actualLength, bytes)
+                BoxType.JXLP -> JxlParticalCodestreamBox(globalOffset, actualLength, bytes)
                 else -> Box(globalOffset, type, actualLength, bytes)
             }
 
             boxes.add(box)
 
-            if (stopAfterMetaBox && type == BoxType.META)
+            if (stopAfterMetadataRead && type == BoxType.META)
                 break
         }
 

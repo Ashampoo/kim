@@ -34,7 +34,7 @@ class BoxReaderTest {
 
         val boxes = BoxReader.readBoxes(
             byteReader = byteReader,
-            stopAfterMetaBox = false
+            stopAfterMetadataRead = false
         )
 
         val allBoxes = BoxContainer.findAllBoxesRecursive(boxes)

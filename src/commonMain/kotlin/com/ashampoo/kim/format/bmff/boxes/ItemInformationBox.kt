@@ -22,6 +22,9 @@ import com.ashampoo.kim.format.bmff.BoxReader
 import com.ashampoo.kim.format.bmff.BoxType
 import com.ashampoo.kim.input.ByteArrayByteReader
 
+/**
+ * EIC/ISO 14496-12 iinf box
+ */
 class ItemInformationBox(
     offset: Long,
     length: Long,
@@ -53,7 +56,7 @@ class ItemInformationBox(
 
         boxes = BoxReader.readBoxes(
             byteReader = byteReader,
-            stopAfterMetaBox = false,
+            stopAfterMetadataRead = false,
             offsetShift = offset + 4 + 2 + if (version == 0) 2 else 4
         )
 

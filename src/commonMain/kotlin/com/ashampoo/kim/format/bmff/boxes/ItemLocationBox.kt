@@ -21,6 +21,9 @@ import com.ashampoo.kim.format.bmff.BoxType
 import com.ashampoo.kim.format.bmff.Extent
 import com.ashampoo.kim.input.ByteArrayByteReader
 
+/**
+ * EIC/ISO 14496-12 iloc box
+ */
 class ItemLocationBox(
     offset: Long,
     length: Long,

@@ -18,8 +18,8 @@ It's part of [Ashampoo Photos](https://ashampoo.com/photos).
 * JPG: Read & Write EXIF, IPTC & XMP
 * PNG: Read & Write `eXIf` chunk & XMP
     + Also read non-standard EXIF & IPTC from `tEXt`/`zTXt` chunk
-* ISOBMFF (HEIC, AVIF): Read EXIF & XMP
-    + Somewhat experimental as only tested for iPhone & Samsung HEIC files so far
+* HEIC / AVIF: Read EXIF & XMP
+* JPEG XL (JXL): Read EXIF & XMP
 * TIFF / DNG / RAW: Read EXIF & XMP
     + Good support for Canon CR2, Fujifilm RAF & Adobe DNG
     + Experimental support for NEF, ARW, RW2 & ORF with known issues
@@ -35,7 +35,7 @@ of Ashampoo Photos, which, in turn, is driven by user community feedback.
 ## Installation
 
 ```
-implementation("com.ashampoo:kim:0.9.4")
+implementation("com.ashampoo:kim:0.10")
 ```
 
 ## Sample usages
@@ -140,15 +140,13 @@ val newBytes = Kim.updateThumbnail(
 ## Limitations
 
 * Inability to update EXIF, IPTC and XMP in JPG files simultaneously.
-* HEIC files are only tested for iPhone SE 3 & Samsung Galaxy S21.
 
 ### Regarding HEIC & AVIF metadata
 
-In the processing of HEIC and AVIF files, we handle them as standard ISO base
-media file format (ISOBMFF) files, adhering rigorously to the
-EIC/ISO 14496-12 specification. To preempt potential legal issues,
-we intentionally omit certain features outlined in the HEIC specification,
-notably the image size ("ispe") and image rotation ("irot") boxes.
+In the processing of HEIC and AVIF files, we handle them as standard
+ISOBMFF-based files, adhering rigorously to the EIC/ISO 14496-12 specification.
+To preempt potential legal issues, we intentionally omit certain boxes outlined
+in the HEIC specification, notably the image size ("ispe") and image rotation ("irot") boxes.
 This approach extends to AVIF images, as they repurpose the same boxes.
 
 ## Contributions

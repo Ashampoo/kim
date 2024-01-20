@@ -22,6 +22,9 @@ import com.ashampoo.kim.format.bmff.BMFFConstants.BMFF_BYTE_ORDER
 import com.ashampoo.kim.format.bmff.BoxType
 import com.ashampoo.kim.input.ByteArrayByteReader
 
+/**
+ * EIC/ISO 14496-12 ftyp box
+ */
 class FileTypeBox(
     offset: Long,
     length: Long,
@@ -63,4 +66,8 @@ class FileTypeBox(
 
     override fun toString(): String =
         "$type major=$majorBrand minor=$minorBrand compatible=$compatibleBrands"
+
+    companion object {
+        const val JXL_BRAND = "jxl "
+    }
 }

@@ -25,6 +25,8 @@ import com.ashampoo.kim.format.bmff.BoxType
 import com.ashampoo.kim.input.ByteArrayByteReader
 
 /**
+ * EIC/ISO 14496-12 meta box
+ *
  * The Meta Box is a container for several metadata boxes.
  */
 class MetaBox(
@@ -55,7 +57,7 @@ class MetaBox(
 
         boxes = BoxReader.readBoxes(
             byteReader = byteReader,
-            stopAfterMetaBox = false,
+            stopAfterMetadataRead = false,
             offsetShift = offset + 8
         )
 

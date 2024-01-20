@@ -1,6 +1,5 @@
 /*
  * Copyright 2024 Ashampoo GmbH & Co. KG
- * Copyright 2002-2023 Drew Noakes and contributors
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,17 +18,18 @@ package com.ashampoo.kim.format.bmff.boxes
 import com.ashampoo.kim.format.bmff.BoxType
 
 /**
- * EIC/ISO 14496-12 mdat box
- *
- * The Media Data Box contains all the actual data.
- * This includes the EXIF bytes.
+ * JPEG XL XML box
  */
-class MediaDataBox(
+class XmlBox(
     offset: Long,
     length: Long,
     payload: ByteArray
-) : Box(offset, BoxType.MDAT, length, payload) {
+) : Box(offset, BoxType.XML, length, payload) {
 
-    override fun toString(): String =
-        "$type Box"
+    val xmp: String
+
+    init {
+
+        xmp = payload.decodeToString()
+    }
 }

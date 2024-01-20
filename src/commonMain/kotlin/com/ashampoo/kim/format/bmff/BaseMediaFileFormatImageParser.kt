@@ -22,12 +22,16 @@ import com.ashampoo.kim.format.ImageMetadata
 import com.ashampoo.kim.format.ImageParser
 import com.ashampoo.kim.format.bmff.BMFFConstants.BMFF_BYTE_ORDER
 import com.ashampoo.kim.format.bmff.BMFFConstants.TIFF_HEADER_OFFSET_BYTE_COUNT
+import com.ashampoo.kim.format.bmff.boxes.ExifBox
+import com.ashampoo.kim.format.bmff.boxes.FileTypeBox
 import com.ashampoo.kim.format.bmff.boxes.MetaBox
+import com.ashampoo.kim.format.bmff.boxes.XmlBox
 import com.ashampoo.kim.format.tiff.TiffReader
 import com.ashampoo.kim.input.ByteArrayByteReader
 import com.ashampoo.kim.input.ByteReader
 import com.ashampoo.kim.input.PositionTrackingByteReader
 import com.ashampoo.kim.input.PositionTrackingByteReaderDecorator
+import com.ashampoo.kim.model.ImageFormat
 
 /**
  * Reads containers that follow the ISO base media file format
@@ -47,9 +51,38 @@ object BaseMediaFileFormatImageParser : ImageParser {
 
         val allBoxes = BoxReader.readBoxes(
             byteReader = copyByteReader,
-            stopAfterMetaBox = true,
+            stopAfterMetadataRead = true,
             offsetShift = 0
         )
+
+        if (allBoxes.isEmpty())
+            throw ImageReadException("Illegal ISOBMFF: Has no boxes.")
+
+        val fileTypeBox = allBoxes.find { it.type == BoxType.FTYP } as? FileTypeBox
+
+        if (fileTypeBox == null)
+            throw ImageReadException("Illegal ISOBMFF: Has no 'ftyp' Box.")
+
+        /**
+         * Handle JPEG XL
+         *
+         * This format has EXIF & XMP neatly in dedicated boxes, so we can just extract these.
+         */
+        if (fileTypeBox.majorBrand == FileTypeBox.JXL_BRAND) {
+
+            val exifBox = allBoxes.find { it.type == BoxType.EXIF } as? ExifBox
+
+            val xmlBox = allBoxes.find { it.type == BoxType.XML } as? XmlBox
+
+            return ImageMetadata(
+                imageFormat = ImageFormat.JXL, // could be any ISO BMFF
+                imageSize = null, // not covered by ISO BMFF
+                exif = exifBox?.tiffContents,
+                exifBytes = exifBox?.exifBytes,
+                iptc = null, // not covered by ISO BMFF
+                xmp = xmlBox?.xmp
+            )
+        }
 
         val metaBox = allBoxes.find { it.type == BoxType.META } as? MetaBox
 
