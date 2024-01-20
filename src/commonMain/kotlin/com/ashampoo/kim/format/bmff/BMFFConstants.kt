@@ -29,7 +29,7 @@ object BMFFConstants {
 
     const val TIFF_HEADER_OFFSET_BYTE_COUNT = 4
 
-    const val ITEM_TYPE_EXIF = 1165519206
-    const val ITEM_TYPE_MIME = 1835625829
-    const val ITEM_TYPE_JPEG = 1785750887
+    const val ITEM_TYPE_EXIF = 1_165_519_206
+    const val ITEM_TYPE_MIME = 1_835_625_829
+    const val ITEM_TYPE_JPEG = 1_785_750_887
 }
