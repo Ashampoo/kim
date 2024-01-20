@@ -18,6 +18,10 @@ package com.ashampoo.kim.input
 import com.ashampoo.kim.common.slice
 import java.io.InputStream
 
+/**
+ * Provides way to read from Android ContentReolver that
+ * should work on all versions.
+ */
 open class AndroidInputStreamByteReader(
     private val inputStream: InputStream,
     override val contentLength: Long
@@ -37,9 +41,9 @@ open class AndroidInputStreamByteReader(
 
         /*
          * InputStream.readNBytes(count) is not available
-         * on older Android versions.
+         * on older Android versions. So we need to read
+         * into a buffer.
          */
-
         val buffer = ByteArray(count)
 
         val bytes = inputStream.read(buffer)
