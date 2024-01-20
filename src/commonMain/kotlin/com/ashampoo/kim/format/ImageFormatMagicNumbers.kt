@@ -110,12 +110,19 @@ object ImageFormatMagicNumbers {
         null, null, null, null
     ).plus("ftyphevx".encodeToByteArray().toList())
 
-    val jxlCodeStream: List<Byte> = byteListOf(
-        0xFF, 0x0A
+    /* 4 bytes + "ftypavif" */
+    val avif: List<Byte?> = byteListOf(
+        null, null, null, null
+    ).plus("ftypavif".encodeToByteArray().toList())
+
+    /* The regular ISOBMFF-based JPEG XL */
+    val jxl: List<Byte> = byteListOf(
+        0x00, 0x00, 0x00, 0x0C, 0x4A, 0x58, 0x4C, 0x20, 0x0D, 0x0A, 0x87, 0x0A
     )
 
-    val jxlContainer: List<Byte> = byteListOf(
-        0x00, 0x00, 0x00, 0x0C, 0x4A, 0x58, 0x4C, 0x20, 0x0D, 0x0A, 0x87, 0x0A
+    /* The 'naked' code stream without metadata. */
+    val jxlCodeStream: List<Byte> = byteListOf(
+        0xFF, 0x0A
     )
 
     private fun byteListOf(vararg ints: Int?): List<Byte?> =

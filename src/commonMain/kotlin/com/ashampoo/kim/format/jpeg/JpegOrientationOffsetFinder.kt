@@ -25,9 +25,9 @@ import com.ashampoo.kim.format.jpeg.JpegMetadataExtractor.MARKER_END_OF_IMAGE
 import com.ashampoo.kim.format.jpeg.JpegMetadataExtractor.SEGMENT_IDENTIFIER
 import com.ashampoo.kim.format.jpeg.JpegMetadataExtractor.SEGMENT_START_OF_SCAN
 import com.ashampoo.kim.format.tiff.TiffReader
-import com.ashampoo.kim.format.tiff.constants.TiffConstants.TIFF_ENTRY_LENGTH
-import com.ashampoo.kim.format.tiff.constants.TiffConstants.TIFF_HEADER_SIZE
-import com.ashampoo.kim.format.tiff.constants.TiffTag
+import com.ashampoo.kim.format.tiff.constant.TiffConstants.TIFF_ENTRY_LENGTH
+import com.ashampoo.kim.format.tiff.constant.TiffConstants.TIFF_HEADER_SIZE
+import com.ashampoo.kim.format.tiff.constant.TiffTag
 import com.ashampoo.kim.input.ByteReader
 
 /**

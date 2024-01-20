@@ -15,7 +15,7 @@
  */
 package com.ashampoo.kim.format.png
 
-import com.ashampoo.kim.format.png.chunks.PngChunk
+import com.ashampoo.kim.format.png.chunk.PngChunk
 import com.ashampoo.kim.input.ByteArrayByteReader
 import com.ashampoo.kim.input.KotlinIoSourceByteReader
 import com.ashampoo.kim.output.ByteArrayByteWriter

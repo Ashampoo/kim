@@ -15,8 +15,8 @@
  */
 package com.ashampoo.kim.format.png
 
-import com.ashampoo.kim.format.png.chunks.PngChunkItxt
-import com.ashampoo.kim.format.png.chunks.PngChunkZtxt
+import com.ashampoo.kim.format.png.chunk.PngChunkItxt
+import com.ashampoo.kim.format.png.chunk.PngChunkZtxt
 import com.ashampoo.kim.input.ByteArrayByteReader
 import com.ashampoo.kim.testdata.KimTestData
 import kotlin.test.Test

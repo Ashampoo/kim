@@ -19,9 +19,9 @@ import com.ashampoo.kim.common.ImageReadException
 import com.ashampoo.kim.common.tryWithImageReadException
 import com.ashampoo.kim.format.TiffPreviewExtractor
 import com.ashampoo.kim.format.tiff.TiffContents
-import com.ashampoo.kim.format.tiff.constants.ExifTag
-import com.ashampoo.kim.format.tiff.constants.TiffConstants
-import com.ashampoo.kim.format.tiff.constants.TiffTag
+import com.ashampoo.kim.format.tiff.constant.ExifTag
+import com.ashampoo.kim.format.tiff.constant.TiffConstants
+import com.ashampoo.kim.format.tiff.constant.TiffTag
 import com.ashampoo.kim.input.RandomAccessByteReader
 
 object DngPreviewExtractor : TiffPreviewExtractor {

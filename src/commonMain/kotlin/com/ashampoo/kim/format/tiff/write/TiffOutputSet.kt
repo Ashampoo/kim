@@ -23,11 +23,11 @@ import com.ashampoo.kim.common.ImageWriteException
 import com.ashampoo.kim.common.RationalNumber.Companion.valueOf
 import com.ashampoo.kim.common.toExifDateString
 import com.ashampoo.kim.format.tiff.JpegImageDataElement
-import com.ashampoo.kim.format.tiff.constants.ExifTag
-import com.ashampoo.kim.format.tiff.constants.GpsTag
-import com.ashampoo.kim.format.tiff.constants.TiffConstants
-import com.ashampoo.kim.format.tiff.constants.TiffConstants.DEFAULT_TIFF_BYTE_ORDER
-import com.ashampoo.kim.format.tiff.constants.TiffTag
+import com.ashampoo.kim.format.tiff.constant.ExifTag
+import com.ashampoo.kim.format.tiff.constant.GpsTag
+import com.ashampoo.kim.format.tiff.constant.TiffConstants
+import com.ashampoo.kim.format.tiff.constant.TiffConstants.DEFAULT_TIFF_BYTE_ORDER
+import com.ashampoo.kim.format.tiff.constant.TiffTag
 import com.ashampoo.kim.model.GpsCoordinates
 import com.ashampoo.kim.model.MetadataUpdate
 import kotlinx.datetime.Instant

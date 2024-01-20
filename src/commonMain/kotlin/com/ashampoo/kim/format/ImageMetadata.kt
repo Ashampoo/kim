@@ -19,7 +19,7 @@ import com.ashampoo.kim.format.jpeg.iptc.IptcMetadata
 import com.ashampoo.kim.format.tiff.TiffContents
 import com.ashampoo.kim.format.tiff.TiffDirectory
 import com.ashampoo.kim.format.tiff.TiffField
-import com.ashampoo.kim.format.tiff.taginfos.TagInfo
+import com.ashampoo.kim.format.tiff.taginfo.TagInfo
 import com.ashampoo.kim.model.ImageFormat
 import com.ashampoo.kim.model.ImageSize
 

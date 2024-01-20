@@ -18,10 +18,10 @@ package com.ashampoo.kim.format.tiff.write
 
 import com.ashampoo.kim.common.ByteOrder
 import com.ashampoo.kim.common.ImageWriteException
-import com.ashampoo.kim.format.tiff.constants.ExifTag
-import com.ashampoo.kim.format.tiff.constants.TiffConstants
-import com.ashampoo.kim.format.tiff.constants.TiffConstants.TIFF_HEADER_SIZE
-import com.ashampoo.kim.format.tiff.constants.TiffConstants.TIFF_VERSION
+import com.ashampoo.kim.format.tiff.constant.ExifTag
+import com.ashampoo.kim.format.tiff.constant.TiffConstants
+import com.ashampoo.kim.format.tiff.constant.TiffConstants.TIFF_HEADER_SIZE
+import com.ashampoo.kim.format.tiff.constant.TiffConstants.TIFF_VERSION
 import com.ashampoo.kim.output.BinaryByteWriter
 import com.ashampoo.kim.output.ByteWriter
 

@@ -17,7 +17,7 @@
 package com.ashampoo.kim.format.tiff.write
 
 import com.ashampoo.kim.common.ByteOrder
-import com.ashampoo.kim.format.tiff.fieldtypes.FieldType
+import com.ashampoo.kim.format.tiff.fieldtype.FieldType
 
 class TiffOffsetItems(val byteOrder: ByteOrder) {
 

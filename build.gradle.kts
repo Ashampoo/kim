@@ -224,6 +224,7 @@ kotlin {
         dependsOn(ktorMain)
     }
 
+    @Suppress("UnusedPrivateMember", "UNUSED_VARIABLE") // False positive
     val jvmMain by sourceSets.getting {
 
         dependsOn(commonMain)
@@ -232,7 +233,9 @@ kotlin {
 
     @Suppress("UnusedPrivateMember", "UNUSED_VARIABLE") // False positive
     val androidMain by sourceSets.getting {
-        dependsOn(jvmMain)
+
+        dependsOn(commonMain)
+        dependsOn(ktorMain)
     }
 
     @Suppress("UnusedPrivateMember", "UNUSED_VARIABLE") // False positive

@@ -93,6 +93,21 @@ data class BoxType internal constructor(
          */
         val MDAT = of("mdat".encodeToByteArray())
 
+        /**
+         * Extra box for EXIF data as part of the JPEG XL spec.
+         */
+        val EXIF = of("Exif".encodeToByteArray())
+
+        /**
+         * Extra box for XMP data as part of the JPEG XL spec.
+         */
+        val XML = of("xml ".encodeToByteArray())
+
+        /**
+         * JPEG XL partical codestream box
+         */
+        val JXLP = of("jxlp".encodeToByteArray())
+
         @Suppress("MagicNumber")
         fun of(typeBytes: ByteArray): BoxType {
 

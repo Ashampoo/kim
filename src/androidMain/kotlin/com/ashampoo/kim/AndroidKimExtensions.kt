@@ -18,11 +18,21 @@ package com.ashampoo.kim
 import com.ashampoo.kim.common.ImageReadException
 import com.ashampoo.kim.format.ImageMetadata
 import com.ashampoo.kim.input.AndroidInputStreamByteReader
+import java.io.File
 import java.io.InputStream
 
-/**
- * Provides way to read from Android ContentReolver that should work on all versions.
- */
 @Throws(ImageReadException::class)
-fun Kim.readMetadataAndroid(inputStream: InputStream, length: Long): ImageMetadata? =
+fun Kim.readMetadata(inputStream: InputStream, length: Long): ImageMetadata? =
     Kim.readMetadata(AndroidInputStreamByteReader(inputStream, length))
+
+@Throws(ImageReadException::class)
+fun Kim.readMetadata(path: String): ImageMetadata? =
+    Kim.readMetadata(File(path))
+
+@Throws(ImageReadException::class)
+fun Kim.readMetadata(file: File): ImageMetadata? {
+
+    check(file.exists()) { "File does not exist: $file" }
+
+    return Kim.readMetadata(file.inputStream(), file.length())
+}

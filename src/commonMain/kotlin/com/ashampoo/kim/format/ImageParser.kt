@@ -48,7 +48,8 @@ fun interface ImageParser {
                 ImageFormat.RAF -> RafImageParser
 
                 ImageFormat.HEIC -> BaseMediaFileFormatImageParser
-                // ImageFormat.JXL -> BaseMediaFileFormatImageParser
+                ImageFormat.AVIF -> BaseMediaFileFormatImageParser
+                ImageFormat.JXL -> BaseMediaFileFormatImageParser
 
                 else -> null
             }

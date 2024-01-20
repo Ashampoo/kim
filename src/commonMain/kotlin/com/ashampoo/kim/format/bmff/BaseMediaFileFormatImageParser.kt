@@ -22,7 +22,8 @@ import com.ashampoo.kim.format.ImageMetadata
 import com.ashampoo.kim.format.ImageParser
 import com.ashampoo.kim.format.bmff.BMFFConstants.BMFF_BYTE_ORDER
 import com.ashampoo.kim.format.bmff.BMFFConstants.TIFF_HEADER_OFFSET_BYTE_COUNT
-import com.ashampoo.kim.format.bmff.boxes.MetaBox
+import com.ashampoo.kim.format.bmff.box.FileTypeBox
+import com.ashampoo.kim.format.bmff.box.MetaBox
 import com.ashampoo.kim.format.tiff.TiffReader
 import com.ashampoo.kim.input.ByteArrayByteReader
 import com.ashampoo.kim.input.ByteReader
@@ -31,7 +32,8 @@ import com.ashampoo.kim.input.PositionTrackingByteReaderDecorator
 
 /**
  * Reads containers that follow the ISO base media file format
- * as defined in ISO/IEC 14496-12. Examples for these are MP4, HEIC & JPEG XL.
+ * as defined in ISO/IEC 14496-12.
+ * Examples for these are HEIC, AVIF & JPEG XL.
  *
  * https://en.wikipedia.org/wiki/ISO_base_media_file_format
  */
@@ -46,9 +48,25 @@ object BaseMediaFileFormatImageParser : ImageParser {
 
         val allBoxes = BoxReader.readBoxes(
             byteReader = copyByteReader,
-            stopAfterMetaBox = true,
+            stopAfterMetadataRead = true,
             offsetShift = 0
         )
+
+        if (allBoxes.isEmpty())
+            throw ImageReadException("Illegal ISOBMFF: Has no boxes.")
+
+        val fileTypeBox = allBoxes.find { it.type == BoxType.FTYP } as? FileTypeBox
+
+        if (fileTypeBox == null)
+            throw ImageReadException("Illegal ISOBMFF: Has no 'ftyp' Box.")
+
+        /**
+         * Handle JPEG XL
+         *
+         * This format has EXIF & XMP neatly in dedicated boxes, so we can just extract these.
+         */
+        if (fileTypeBox.majorBrand == FileTypeBox.JXL_BRAND)
+            return JxlHandler.createMetadata(allBoxes)
 
         val metaBox = allBoxes.find { it.type == BoxType.META } as? MetaBox
 

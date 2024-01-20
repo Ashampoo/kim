@@ -20,7 +20,7 @@ import com.ashampoo.kim.common.ImageReadException
 import com.ashampoo.kim.common.tryWithImageReadException
 import com.ashampoo.kim.format.ImageMetadata
 import com.ashampoo.kim.format.ImageParser
-import com.ashampoo.kim.format.tiff.constants.TiffTag
+import com.ashampoo.kim.format.tiff.constant.TiffTag
 import com.ashampoo.kim.input.ByteReader
 import com.ashampoo.kim.input.DefaultRandomAccessByteReader
 import com.ashampoo.kim.model.ImageFormat
