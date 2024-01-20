@@ -33,6 +33,7 @@ enum class ImageFormat(
     WEBP("image/webp", "public.webp", setOf("webp")),
     TIFF("image/tiff", "public.tiff", setOf("tif", "tiff")),
     HEIC("image/heic", "public.heic", setOf("heic")),
+    AVIF("image/avif", "public.avif", setOf("avif")),
     CR2("image/x-canon-cr2", "com.canon.cr2-raw-image", setOf("cr2")),
     RAF("image/x-fuji-raf", "com.fuji.raw-image", setOf("raf")),
     NEF("image/x-nikon-nef", "com.nikon.raw-image", setOf("nef")),
@@ -179,6 +180,8 @@ enum class ImageFormat(
                 bytes.startsWithNullable(ImageFormatMagicNumbers.heix) -> ImageFormat.HEIC
                 bytes.startsWithNullable(ImageFormatMagicNumbers.hevc) -> ImageFormat.HEIC
                 bytes.startsWithNullable(ImageFormatMagicNumbers.hevx) -> ImageFormat.HEIC
+                /* Check AVIF */
+                bytes.startsWithNullable(ImageFormatMagicNumbers.avif) -> ImageFormat.AVIF
                 /* Check GIF and other unlikely formats... */
                 bytes.startsWith(ImageFormatMagicNumbers.gif87a) -> ImageFormat.GIF
                 bytes.startsWith(ImageFormatMagicNumbers.gif89a) -> ImageFormat.GIF

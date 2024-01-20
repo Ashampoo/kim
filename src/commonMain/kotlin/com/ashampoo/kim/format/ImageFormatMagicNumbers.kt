@@ -110,6 +110,11 @@ object ImageFormatMagicNumbers {
         null, null, null, null
     ).plus("ftyphevx".encodeToByteArray().toList())
 
+    /* 4 bytes + "ftypavif" */
+    val avif: List<Byte?> = byteListOf(
+        null, null, null, null
+    ).plus("ftypavif".encodeToByteArray().toList())
+
     val jxlCodeStream: List<Byte> = byteListOf(
         0xFF, 0x0A
     )

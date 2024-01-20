@@ -31,7 +31,8 @@ import com.ashampoo.kim.input.PositionTrackingByteReaderDecorator
 
 /**
  * Reads containers that follow the ISO base media file format
- * as defined in ISO/IEC 14496-12. Examples for these are MP4, HEIC & JPEG XL.
+ * as defined in ISO/IEC 14496-12.
+ * Examples for these are HEIC, AVIF & JPEG XL.
  *
  * https://en.wikipedia.org/wiki/ISO_base_media_file_format
  */
