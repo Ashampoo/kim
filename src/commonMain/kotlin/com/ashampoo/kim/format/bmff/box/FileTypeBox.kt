@@ -29,7 +29,7 @@ class FileTypeBox(
     offset: Long,
     length: Long,
     payload: ByteArray
-) : Box(offset, BoxType.FTYP, length, payload) {
+) : Box(BoxType.FTYP, offset, length, payload) {
 
     val majorBrand: String
 

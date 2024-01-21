@@ -28,7 +28,7 @@ class MediaDataBox(
     offset: Long,
     length: Long,
     payload: ByteArray
-) : Box(offset, BoxType.MDAT, length, payload) {
+) : Box(BoxType.MDAT, offset, length, payload) {
 
     override fun toString(): String =
         "$type Box"

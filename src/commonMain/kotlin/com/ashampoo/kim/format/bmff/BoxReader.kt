@@ -110,7 +110,7 @@ object BoxReader {
                 BoxType.EXIF -> ExifBox(globalOffset, actualLength, bytes)
                 BoxType.XML -> XmlBox(globalOffset, actualLength, bytes)
                 BoxType.JXLP -> JxlParticalCodestreamBox(globalOffset, actualLength, bytes)
-                else -> Box(globalOffset, type, actualLength, bytes)
+                else -> Box(type, globalOffset, actualLength, bytes)
             }
 
             boxes.add(box)

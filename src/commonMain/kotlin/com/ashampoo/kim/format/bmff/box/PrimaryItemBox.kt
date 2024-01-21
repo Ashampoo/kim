@@ -28,7 +28,7 @@ class PrimaryItemBox(
     offset: Long,
     length: Long,
     payload: ByteArray
-) : Box(offset, BoxType.PITM, length, payload) {
+) : Box(BoxType.PITM, offset, length, payload) {
 
     val version: Int
 

@@ -24,7 +24,7 @@ class JxlParticalCodestreamBox(
     offset: Long,
     length: Long,
     payload: ByteArray
-) : Box(offset, BoxType.JXLP, length, payload) {
+) : Box(BoxType.JXLP, offset, length, payload) {
 
     val isHeader: Boolean
 

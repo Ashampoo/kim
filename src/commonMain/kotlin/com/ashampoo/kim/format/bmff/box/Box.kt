@@ -19,8 +19,8 @@ package com.ashampoo.kim.format.bmff.box
 import com.ashampoo.kim.format.bmff.BoxType
 
 open class Box(
-    val offset: Long,
     val type: BoxType,
+    val offset: Long,
     val length: Long,
     /* Payload bytes, not including type & length bytes */
     val payload: ByteArray

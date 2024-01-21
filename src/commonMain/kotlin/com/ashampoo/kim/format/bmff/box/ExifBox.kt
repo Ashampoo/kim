@@ -27,7 +27,7 @@ class ExifBox(
     offset: Long,
     length: Long,
     payload: ByteArray
-) : Box(offset, BoxType.EXIF, length, payload) {
+) : Box(BoxType.EXIF, offset, length, payload) {
 
     val version: Int
 

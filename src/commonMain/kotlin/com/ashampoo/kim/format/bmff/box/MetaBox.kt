@@ -33,7 +33,7 @@ class MetaBox(
     offset: Long,
     length: Long,
     payload: ByteArray
-) : Box(offset, BoxType.META, length, payload), BoxContainer {
+) : Box(BoxType.META, offset, length, payload), BoxContainer {
 
     val version: Int
 
