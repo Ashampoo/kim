@@ -19,7 +19,7 @@ It's part of [Ashampoo Photos](https://ashampoo.com/photos).
 * PNG: Read & Write `eXIf` chunk & XMP
     + Also read non-standard EXIF & IPTC from `tEXt`/`zTXt` chunk
 * HEIC / AVIF: Read EXIF & XMP
-* JPEG XL: Read EXIF & XMP
+* JPEG XL: Read EXIF & XMP of uncompressed files
 * TIFF / DNG / RAW: Read EXIF & XMP
     + Good support for Canon CR2, Fujifilm RAF & Adobe DNG
     + Experimental support for NEF, ARW, RW2 & ORF with known issues
@@ -141,6 +141,7 @@ val newBytes = Kim.updateThumbnail(
 
 * Inability to update EXIF, IPTC and XMP in JPG files simultaneously.
 * Does not read the image size and orientation for HEIC, AVIF & JPEG XL
+* Does not read brotli compressed metadata of JPEG XL due to missing brotli KMP libs
 
 ### Regarding HEIC & AVIF metadata
 
