@@ -45,7 +45,13 @@ data class WebPChunkType internal constructor(
 
     companion object {
 
-        /** Contains image size. */
+        /** Standard lossy VP8 */
+        val VP8 = of("VP8 ".encodeToByteArray())
+
+        /** Lossless VP8 */
+        val VP8L = of("VP8L".encodeToByteArray())
+
+        /** Extended VP8 */
         val VP8X = of("VP8X".encodeToByteArray())
 
         /** EXIF metadata */

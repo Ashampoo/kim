@@ -26,6 +26,8 @@ import com.ashampoo.kim.format.webp.WebPConstants.WEBP_BYTE_ORDER
 import com.ashampoo.kim.format.webp.WebPConstants.WEBP_SIGNATURE
 import com.ashampoo.kim.format.webp.chunk.WebPChunk
 import com.ashampoo.kim.format.webp.chunk.WebPChunkExif
+import com.ashampoo.kim.format.webp.chunk.WebPChunkVP8
+import com.ashampoo.kim.format.webp.chunk.WebPChunkVP8L
 import com.ashampoo.kim.format.webp.chunk.WebPChunkVP8X
 import com.ashampoo.kim.format.webp.chunk.WebPChunkXmp
 import com.ashampoo.kim.input.ByteReader
@@ -52,7 +54,7 @@ object WebPImageParser : ImageParser {
 
             return@tryWithImageReadException ImageMetadata(
                 imageFormat = ImageFormat.WEBP,
-                imageSize = null,
+                imageSize = null, // TODO Implement image size
                 exif = exifChunk?.tiffContents,
                 exifBytes = exifChunk?.bytes,
                 iptc = null, // not supported by WebP
@@ -97,6 +99,8 @@ object WebPImageParser : ImageParser {
             bytesReadCount += TPYE_LENGTH + CHUNK_SIZE_LENGTH + chunkSize + if (hasPadding) 1 else 0
 
             val chunk = when (chunkType) {
+                WebPChunkType.VP8 -> WebPChunkVP8(bytes)
+                WebPChunkType.VP8L -> WebPChunkVP8L(bytes)
                 WebPChunkType.VP8X -> WebPChunkVP8X(bytes)
                 WebPChunkType.EXIF -> WebPChunkExif(bytes)
                 WebPChunkType.XMP -> WebPChunkXmp(bytes)
