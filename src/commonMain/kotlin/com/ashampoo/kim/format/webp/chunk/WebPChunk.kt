@@ -23,5 +23,5 @@ open class WebPChunk(
 ) {
 
     override fun toString(): String =
-        "WebPChunk ${chunkType.name} (${bytes.size} bytes)"
+        "WebPChunk '${chunkType.name}' (${bytes.size} bytes)"
 }
