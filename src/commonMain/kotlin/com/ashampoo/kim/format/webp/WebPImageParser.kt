@@ -46,8 +46,8 @@ object WebPImageParser : ImageParser {
 
             val imageSize = chunks.filterIsInstance<ImageSizeAware>().first().imageSize
 
-            val exifChunk = chunks.find { it.type == WebPChunkType.EXIF } as? WebPChunkExif
-            val xmpChunk = chunks.find { it.type == WebPChunkType.XMP } as? WebPChunkXmp
+            val exifChunk = chunks.filterIsInstance<WebPChunkExif>().firstOrNull()
+            val xmpChunk = chunks.filterIsInstance<WebPChunkXmp>().firstOrNull()
 
             return@tryWithImageReadException ImageMetadata(
                 imageFormat = ImageFormat.WEBP,

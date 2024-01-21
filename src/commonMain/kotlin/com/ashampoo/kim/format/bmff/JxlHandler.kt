@@ -25,9 +25,8 @@ internal object JxlHandler {
 
     fun createMetadata(allBoxes: List<Box>): ImageMetadata {
 
-        val exifBox = allBoxes.find { it.type == BoxType.EXIF } as? ExifBox
-
-        val xmlBox = allBoxes.find { it.type == BoxType.XML } as? XmlBox
+        val exifBox = allBoxes.filterIsInstance<ExifBox>().firstOrNull()
+        val xmlBox = allBoxes.filterIsInstance<XmlBox>().firstOrNull()
 
         return ImageMetadata(
             imageFormat = ImageFormat.JXL, // could be any ISO BMFF
