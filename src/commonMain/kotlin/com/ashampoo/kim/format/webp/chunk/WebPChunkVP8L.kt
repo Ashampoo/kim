@@ -18,14 +18,15 @@ package com.ashampoo.kim.format.webp.chunk
 
 import com.ashampoo.kim.common.ImageReadException
 import com.ashampoo.kim.format.webp.WebPChunkType
+import com.ashampoo.kim.model.ImageSize
 
 @Suppress("MagicNumber")
 class WebPChunkVP8L(
     bytes: ByteArray
-) : WebPChunk(WebPChunkType.VP8L, bytes) {
+) : WebPChunk(WebPChunkType.VP8L, bytes), ImageSizeAware {
 
-    val imageWidth: Int
-    val imageHeight: Int
+    override val imageSize: ImageSize
+
     val hasAlpha: Boolean
 
     val versionNumber: Int
@@ -37,8 +38,10 @@ class WebPChunkVP8L(
         val b3: Int = bytes[3].toInt() and 0xFF
         val b4: Int = bytes[4].toInt() and 0xFF
 
-        imageWidth = b1 + (b2 and 63 shl 8) + 1
-        imageHeight = (b4 and 0x0F shl 10 or (b3 shl 2) or (b2 and 0xC0 shr 6)) + 1
+        imageSize = ImageSize(
+            width = b1 + (b2 and 63 shl 8) + 1,
+            height = (b4 and 0x0F shl 10 or (b3 shl 2) or (b2 and 0xC0 shr 6)) + 1
+        )
 
         hasAlpha = b4 and 16 != 0
 
@@ -50,6 +53,6 @@ class WebPChunkVP8L(
 
     override fun toString(): String =
         super.toString() +
-            " imageWidth=$imageWidth imageHeight=$imageHeight" +
+            " imageSize=$imageSize" +
             " hasAlpha=$hasAlpha versionNumber=$versionNumber"
 }

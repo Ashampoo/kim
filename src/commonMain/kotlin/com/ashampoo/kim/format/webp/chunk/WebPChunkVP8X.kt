@@ -18,20 +18,20 @@ package com.ashampoo.kim.format.webp.chunk
 
 import com.ashampoo.kim.common.ImageReadException
 import com.ashampoo.kim.format.webp.WebPChunkType
+import com.ashampoo.kim.model.ImageSize
 
 @Suppress("MagicNumber")
 class WebPChunkVP8X(
     bytes: ByteArray
-) : WebPChunk(WebPChunkType.VP8X, bytes) {
+) : WebPChunk(WebPChunkType.VP8X, bytes), ImageSizeAware {
 
-    private val hasIcc: Boolean
-    private val hasAlpha: Boolean
-    private val hasExif: Boolean
-    private val hasXmp: Boolean
-    private val hasAnimation: Boolean
+    val hasIcc: Boolean
+    val hasAlpha: Boolean
+    val hasExif: Boolean
+    val hasXmp: Boolean
+    val hasAnimation: Boolean
 
-    private val canvasWidth: Int
-    private val canvasHeight: Int
+    override val imageSize: ImageSize
 
     init {
 
@@ -46,23 +46,28 @@ class WebPChunkVP8X(
         hasXmp = mark and 4 != 0
         hasAnimation = mark and 2 != 0
 
-        canvasWidth = (bytes[4].toInt() and 0xFF) +
+        val canvasWidth = (bytes[4].toInt() and 0xFF) +
             (bytes[5].toInt() and 0xFF shl 8) +
             (bytes[6].toInt() and 0xFF shl 16) + 1
 
-        canvasHeight = (bytes[7].toInt() and 0xFF) +
+        val canvasHeight = (bytes[7].toInt() and 0xFF) +
             (bytes[8].toInt() and 0xFF shl 8) +
             (bytes[9].toInt() and 0xFF shl 16) + 1
 
         if (canvasWidth * canvasHeight < 0)
             throw ImageReadException("Illegal canvas size: $canvasWidth x $canvasHeight")
+
+        imageSize = ImageSize(
+            width = canvasWidth,
+            height = canvasHeight
+        )
     }
 
     override fun toString(): String =
         super.toString() +
             " hasIcc=$hasIcc hasAlpha=$hasAlpha hasExif=$hasExif" +
             " hasXmp=$hasXmp hasAnimation=$hasAnimation" +
-            " canvasWidth=$canvasWidth canvasHeight=$canvasHeight"
+            " imageSize=$imageSize"
 
     companion object {
 

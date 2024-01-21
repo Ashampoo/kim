@@ -18,16 +18,16 @@ package com.ashampoo.kim.format.webp.chunk
 
 import com.ashampoo.kim.common.ImageReadException
 import com.ashampoo.kim.format.webp.WebPChunkType
+import com.ashampoo.kim.model.ImageSize
 
 @Suppress("MagicNumber")
 class WebPChunkVP8(
     bytes: ByteArray
-) : WebPChunk(WebPChunkType.VP8, bytes) {
+) : WebPChunk(WebPChunkType.VP8, bytes), ImageSizeAware {
 
     val versionNumber: Int
 
-    val width: Int
-    val height: Int
+    override val imageSize: ImageSize
 
     val horizontalScale: Int
     val verticalScale: Int
@@ -80,8 +80,10 @@ class WebPChunkVP8(
         if (b3 != 0x9D || b4 != 0x01 || b5 != 0x2A)
             throw ImageReadException("Invalid VP8 chunk: invalid signature")
 
-        width = b6 + (b7 and 63 shl 8)
-        height = b8 + (b9 and 63 shl 8)
+        imageSize = ImageSize(
+            width = b6 + (b7 and 63 shl 8),
+            height = b8 + (b9 and 63 shl 8)
+        )
 
         horizontalScale = b7 shr 6
         verticalScale = b9 shr 6
@@ -89,7 +91,7 @@ class WebPChunkVP8(
 
     override fun toString(): String =
         super.toString() +
-            " versionNumber=$versionNumber width=$width height=$height" +
+            " versionNumber=$versionNumber imageSize=$imageSize" +
             " horizontalScale=$horizontalScale verticalScale=$verticalScale"
 
     companion object {

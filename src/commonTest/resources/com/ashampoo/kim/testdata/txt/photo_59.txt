@@ -1,5 +1,5 @@
 File format : WEBP
-Resolution  : null
+Resolution  : 5184 x 3456
 ---- TIFF ----
 Version 42
 Little-endian (Intel, II)
