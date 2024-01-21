@@ -18,6 +18,7 @@ package com.ashampoo.kim.format.png.chunk
 
 import com.ashampoo.kim.format.png.PngChunkType
 
+@Suppress("MagicNumber")
 open class PngChunk(
     val type: PngChunkType,
     val bytes: ByteArray,
