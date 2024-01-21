@@ -27,7 +27,7 @@ class HandlerReferenceBox(
     offset: Long,
     length: Long,
     payload: ByteArray
-) : Box(offset, BoxType.HDLR, length, payload) {
+) : Box(BoxType.HDLR, offset, length, payload) {
 
     val version: Int
 

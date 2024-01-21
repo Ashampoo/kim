@@ -1,6 +1,5 @@
 /*
  * Copyright 2024 Ashampoo GmbH & Co. KG
- * Copyright 2007-2023 The Apache Software Foundation
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,17 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.ashampoo.kim.format.png
+package com.ashampoo.kim.format.webp
 
 import com.ashampoo.kim.common.toFourCCTypeString
-import com.ashampoo.kim.format.png.PngConstants.TPYE_LENGTH
 
 /**
- * Type of a PNG chunk.
- *
- * @see [Portable Network Graphics Specification - Chunk specifications](http://www.w3.org/TR/PNG/.11Chunks)
+ * Type of a WebP chunk.
  */
-data class PngChunkType internal constructor(
+data class WebPChunkType internal constructor(
     val bytes: ByteArray,
     val name: String,
     val intValue: Int
@@ -35,7 +31,7 @@ data class PngChunkType internal constructor(
         if (this === other)
             return true
 
-        if (other !is PngChunkType)
+        if (other !is WebPChunkType)
             return false
 
         return bytes.contentEquals(other.bytes)
@@ -49,34 +45,25 @@ data class PngChunkType internal constructor(
 
     companion object {
 
-        /** Image header */
-        val IHDR = of("IHDR".encodeToByteArray())
+        /** Standard lossy VP8 */
+        val VP8 = of("VP8 ".encodeToByteArray())
 
-        /** Image data */
-        val IDAT = of("IDAT".encodeToByteArray())
+        /** Lossless VP8 */
+        val VP8L = of("VP8L".encodeToByteArray())
 
-        /** Image end */
-        val IEND = of("IEND".encodeToByteArray())
+        /** Extended VP8 */
+        val VP8X = of("VP8X".encodeToByteArray())
 
-        /** Time */
-        val TIME = of("tIME".encodeToByteArray())
+        /** EXIF metadata */
+        val EXIF = of("EXIF".encodeToByteArray())
 
-        /** Text */
-        val TEXT = of("tEXt".encodeToByteArray())
-
-        /** Compressed text */
-        val ZTXT = of("zTXt".encodeToByteArray())
-
-        /** UTF-8 text, for example XMP */
-        val ITXT = of("iTXt".encodeToByteArray())
-
-        /** EXIF (since 2017) */
-        val EXIF = of("eXIf".encodeToByteArray())
+        /** XMP metadata */
+        val XMP = of("XMP ".encodeToByteArray())
 
         @Suppress("MagicNumber")
-        fun of(typeBytes: ByteArray): PngChunkType {
+        fun of(typeBytes: ByteArray): WebPChunkType {
 
-            require(typeBytes.size == TPYE_LENGTH) {
+            require(typeBytes.size == WebPConstants.TPYE_LENGTH) {
                 "ChunkType must be always 4 bytes, but got ${typeBytes.size} bytes!"
             }
 
@@ -87,7 +74,7 @@ data class PngChunkType internal constructor(
                     (typeBytes[2].toInt() shl 8) or
                     (typeBytes[3].toInt() shl 0)
 
-            return PngChunkType(
+            return WebPChunkType(
                 bytes = typeBytes,
                 name = intValue.toFourCCTypeString(),
                 intValue = intValue

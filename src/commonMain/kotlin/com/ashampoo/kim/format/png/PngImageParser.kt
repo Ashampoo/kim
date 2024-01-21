@@ -16,7 +16,6 @@
  */
 package com.ashampoo.kim.format.png
 
-import com.ashampoo.kim.common.ByteOrder
 import com.ashampoo.kim.common.ImageReadException
 import com.ashampoo.kim.common.convertHexStringToByteArray
 import com.ashampoo.kim.common.tryWithImageReadException
@@ -25,7 +24,9 @@ import com.ashampoo.kim.format.ImageParser
 import com.ashampoo.kim.format.jpeg.JpegConstants
 import com.ashampoo.kim.format.jpeg.iptc.IptcMetadata
 import com.ashampoo.kim.format.jpeg.iptc.IptcParser
+import com.ashampoo.kim.format.png.PngConstants.PNG_BYTE_ORDER
 import com.ashampoo.kim.format.png.chunk.PngChunk
+import com.ashampoo.kim.format.png.chunk.PngChunkExif
 import com.ashampoo.kim.format.png.chunk.PngChunkIhdr
 import com.ashampoo.kim.format.png.chunk.PngChunkItxt
 import com.ashampoo.kim.format.png.chunk.PngChunkText
@@ -35,13 +36,10 @@ import com.ashampoo.kim.format.tiff.TiffContents
 import com.ashampoo.kim.format.tiff.TiffReader
 import com.ashampoo.kim.input.ByteReader
 import com.ashampoo.kim.model.ImageFormat
-import com.ashampoo.kim.model.ImageSize
 
 object PngImageParser : ImageParser {
 
     private val controlCharRegex = Regex("[\\p{Cntrl}]")
-
-    private val pngByteOrder = ByteOrder.BIG_ENDIAN
 
     private val metadataChunkTypes = listOf(
         PngChunkType.IHDR,
@@ -64,14 +62,17 @@ object PngImageParser : ImageParser {
     fun parseMetadataFromChunks(chunks: List<PngChunk>): ImageMetadata =
         tryWithImageReadException {
 
-            val imageSize = getImageSize(chunks)
+            val imageSize = chunks.filterIsInstance<PngChunkIhdr>().first().imageSize
 
             /*
              * We attempt to read EXIF data from the EXIF chunk, which has been the standard
              * location since 2017. If the EXIF chunk is not present, we fallback to reading
              * it from TXT. Some older apps may still store the data there.
              */
-            val exifPair = getExif(chunks) ?: getExifFromTextChunk(chunks)
+            val exifChunk = chunks.filterIsInstance<PngChunkExif>().firstOrNull()
+
+            val exifPair = exifChunk?.let { it.bytes to it.tiffContents }
+                ?: getExifFromTextChunk(chunks)
 
             val iptc = getIptcFromTextChunk(chunks)
 
@@ -86,25 +87,6 @@ object PngImageParser : ImageParser {
                 xmp = xmp
             )
         }
-
-    private fun getImageSize(chunks: List<PngChunk>): ImageSize {
-
-        val headerChunks = chunks.filterIsInstance<PngChunkIhdr>()
-
-        if (headerChunks.size > 1)
-            throw ImageReadException("PNG contains more than one Header")
-
-        val pngChunkIHDR = headerChunks.first()
-
-        return ImageSize(pngChunkIHDR.width, pngChunkIHDR.height)
-    }
-
-    private fun getExif(chunks: List<PngChunk>): Pair<ByteArray, TiffContents>? {
-
-        val exifChunk = chunks.find { it.chunkType == PngChunkType.EXIF } ?: return null
-
-        return exifChunk.bytes to TiffReader.read(exifChunk.bytes)
-    }
 
     /*
      * According to https://dev.exiv2.org/projects/exiv2/wiki/The_Metadata_in_PNG_files
@@ -233,6 +215,19 @@ object PngImageParser : ImageParser {
         return text
     }
 
+    private fun readAndVerifySignature(byteReader: ByteReader) =
+        byteReader.readAndVerifyBytes("PNG signature", PngConstants.PNG_SIGNATURE)
+
+    fun readChunks(
+        byteReader: ByteReader,
+        chunkTypeFilter: List<PngChunkType>?
+    ): List<PngChunk> = tryWithImageReadException {
+
+        readAndVerifySignature(byteReader)
+
+        return readChunksInternal(byteReader, chunkTypeFilter)
+    }
+
     private fun readChunksInternal(
         byteReader: ByteReader,
         chunkTypeFilter: List<PngChunkType>?
@@ -242,12 +237,14 @@ object PngImageParser : ImageParser {
 
         while (true) {
 
-            val length = byteReader.read4BytesAsInt("length", pngByteOrder)
+            val length = byteReader.read4BytesAsInt("chunk length", PNG_BYTE_ORDER)
 
             if (length < 0)
                 throw ImageReadException("Invalid PNG chunk length: $length")
 
-            val chunkType = PngChunkType.of(byteReader.readBytes(PngConstants.TPYE_LENGTH))
+            val chunkType = PngChunkType.of(
+                byteReader.readBytes("chunk type", PngConstants.TPYE_LENGTH)
+            )
 
             val keep = chunkTypeFilter?.contains(chunkType) ?: true
 
@@ -258,19 +255,22 @@ object PngImageParser : ImageParser {
             else
                 byteReader.skipBytes("chunk data", length)
 
-            val crc = byteReader.read4BytesAsInt("crc", pngByteOrder)
+            val crc = byteReader.read4BytesAsInt("crc", PNG_BYTE_ORDER)
 
             if (keep) {
 
                 requireNotNull(bytes)
 
-                when {
-                    PngChunkType.TEXT == chunkType -> chunks.add(PngChunkText(length, PngChunkType.TEXT, crc, bytes))
-                    PngChunkType.ZTXT == chunkType -> chunks.add(PngChunkZtxt(length, crc, bytes))
-                    PngChunkType.IHDR == chunkType -> chunks.add(PngChunkIhdr(length, crc, bytes))
-                    PngChunkType.ITXT == chunkType -> chunks.add(PngChunkItxt(length, crc, bytes))
-                    else -> chunks.add(PngChunk(length, chunkType, crc, bytes))
+                val chunk = when (chunkType) {
+                    PngChunkType.TEXT -> PngChunkText(PngChunkType.TEXT, bytes, crc)
+                    PngChunkType.ZTXT -> PngChunkZtxt(bytes, crc)
+                    PngChunkType.IHDR -> PngChunkIhdr(bytes, crc)
+                    PngChunkType.ITXT -> PngChunkItxt(bytes, crc)
+                    PngChunkType.EXIF -> PngChunkExif(bytes, crc)
+                    else -> PngChunk(chunkType, bytes, crc)
                 }
+
+                chunks.add(chunk)
             }
 
             if (PngChunkType.IEND == chunkType)
@@ -278,18 +278,5 @@ object PngImageParser : ImageParser {
         }
 
         return chunks
-    }
-
-    private fun readAndVerifySignature(byteReader: ByteReader) =
-        byteReader.readAndVerifyBytes("PNG signature", PngConstants.PNG_SIGNATURE)
-
-    fun readChunks(
-        byteReader: ByteReader,
-        chunkTypeFilter: List<PngChunkType>?
-    ): List<PngChunk> {
-
-        readAndVerifySignature(byteReader)
-
-        return readChunksInternal(byteReader, chunkTypeFilter)
     }
 }

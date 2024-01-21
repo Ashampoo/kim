@@ -18,11 +18,11 @@ package com.ashampoo.kim.format.png.chunk
 
 import com.ashampoo.kim.format.png.PngChunkType
 
+@Suppress("MagicNumber")
 open class PngChunk(
-    val length: Int,
-    val chunkType: PngChunkType,
-    val crc: Int,
-    val bytes: ByteArray
+    val type: PngChunkType,
+    val bytes: ByteArray,
+    val crc: Int
 ) {
 
     val ancillary: Boolean
@@ -38,7 +38,7 @@ open class PngChunk(
 
         for (i in 0..3) {
 
-            val theByte = 0xFF and (chunkType.intValue shr shift)
+            val theByte = 0xFF and (type.intValue shr shift)
 
             shift -= 8
 
@@ -53,8 +53,8 @@ open class PngChunk(
     }
 
     override fun toString() =
-        "PngChunk ${chunkType.name} " +
-            "($length bytes, " +
+        "PngChunk ${type.name} " +
+            "(${bytes.size} bytes, " +
             (if (ancillary) "ancillary" else "critical") + ", " +
             (if (isPrivate) "private" else "public") + ", " +
             (if (reserved) "reserved" else "not reserved") + ", " +

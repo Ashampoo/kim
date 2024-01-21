@@ -32,7 +32,7 @@ import com.ashampoo.kim.format.bmff.box.XmlBox
 import com.ashampoo.kim.input.PositionTrackingByteReader
 
 /**
- * Reads ISOBMFF Boxes
+ * Reads ISOBMFF boxes
  */
 object BoxReader {
 
@@ -110,7 +110,7 @@ object BoxReader {
                 BoxType.EXIF -> ExifBox(globalOffset, actualLength, bytes)
                 BoxType.XML -> XmlBox(globalOffset, actualLength, bytes)
                 BoxType.JXLP -> JxlParticalCodestreamBox(globalOffset, actualLength, bytes)
-                else -> Box(globalOffset, type, actualLength, bytes)
+                else -> Box(type, globalOffset, actualLength, bytes)
             }
 
             boxes.add(box)

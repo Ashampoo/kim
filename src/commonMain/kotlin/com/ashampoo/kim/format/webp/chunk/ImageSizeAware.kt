@@ -1,6 +1,5 @@
 /*
  * Copyright 2024 Ashampoo GmbH & Co. KG
- * Copyright 2007-2023 The Apache Software Foundation
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,27 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.ashampoo.kim.format.png.chunk
+package com.ashampoo.kim.format.webp.chunk
 
-import com.ashampoo.kim.format.png.PngChunkType
-import com.ashampoo.kim.format.png.PngConstants.PNG_BYTE_ORDER
-import com.ashampoo.kim.input.ByteArrayByteReader
 import com.ashampoo.kim.model.ImageSize
 
-class PngChunkIhdr(
-    bytes: ByteArray,
-    crc: Int
-) : PngChunk(PngChunkType.IHDR, bytes, crc) {
+/**
+ * Effectively a marker interface for VP8, VP8L & VP8X.
+ * One of these must always be present and contains the image size.
+ */
+interface ImageSizeAware {
 
     val imageSize: ImageSize
 
-    init {
-
-        val byteReader = ByteArrayByteReader(bytes)
-
-        imageSize = ImageSize(
-            width = byteReader.read4BytesAsInt("width", PNG_BYTE_ORDER),
-            height = byteReader.read4BytesAsInt("height", PNG_BYTE_ORDER)
-        )
-    }
 }

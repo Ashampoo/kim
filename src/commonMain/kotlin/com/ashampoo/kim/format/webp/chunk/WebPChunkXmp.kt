@@ -13,31 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.ashampoo.kim.format.bmff.box
+package com.ashampoo.kim.format.webp.chunk
 
-import com.ashampoo.kim.format.bmff.BoxType
+import com.ashampoo.kim.format.webp.WebPChunkType
 
-/**
- * JPEG XL jxlp box
- */
-class JxlParticalCodestreamBox(
-    offset: Long,
-    length: Long,
-    payload: ByteArray
-) : Box(BoxType.JXLP, offset, length, payload) {
+class WebPChunkXmp(
+    bytes: ByteArray
+) : WebPChunk(WebPChunkType.XMP, bytes) {
 
-    val isHeader: Boolean
+    val xmp = bytes.decodeToString()
 
-    init {
-
-        /* Check if it's the header */
-        isHeader = jxlCodeStreamSignaure == payload.take(jxlCodeStreamSignaure.size)
-    }
-
-    companion object {
-
-        val jxlCodeStreamSignaure = listOf<Byte>(
-            0x00, 0x00, 0x00, 0x00, 0xFF.toByte(), 0x0A
-        )
-    }
 }

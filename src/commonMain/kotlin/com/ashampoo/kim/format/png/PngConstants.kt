@@ -22,11 +22,12 @@ object PngConstants {
 
     val PNG_BYTE_ORDER = ByteOrder.BIG_ENDIAN
 
-    /* ChunkType must be always 4 bytes */
+    /* ChunkType is a FourCC, so it's 4 bytes. */
     const val TPYE_LENGTH = 4
 
     const val COMPRESSION_DEFLATE_INFLATE = 0
 
+    @Suppress("MagicNumber")
     val PNG_SIGNATURE = byteArrayOf(
         0x89.toByte(),
         'P'.code.toByte(),

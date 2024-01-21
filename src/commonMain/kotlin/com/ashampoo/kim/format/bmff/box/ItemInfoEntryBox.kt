@@ -29,7 +29,7 @@ class ItemInfoEntryBox(
     offset: Long,
     length: Long,
     payload: ByteArray
-) : Box(offset, BoxType.INFE, length, payload) {
+) : Box(BoxType.INFE, offset, length, payload) {
 
     val version: Int
 

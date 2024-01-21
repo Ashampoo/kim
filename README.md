@@ -18,6 +18,7 @@ It's part of [Ashampoo Photos](https://ashampoo.com/photos).
 * JPG: Read & Write EXIF, IPTC & XMP
 * PNG: Read & Write `eXIf` chunk & XMP
     + Also read non-standard EXIF & IPTC from `tEXt`/`zTXt` chunk
+* WebP: Read EXIF & XMP
 * HEIC / AVIF: Read EXIF & XMP
 * JPEG XL: Read EXIF & XMP of uncompressed files
 * TIFF / DNG / RAW: Read EXIF & XMP
@@ -35,7 +36,7 @@ of Ashampoo Photos, which, in turn, is driven by user community feedback.
 ## Installation
 
 ```
-implementation("com.ashampoo:kim:0.10")
+implementation("com.ashampoo:kim:0.11")
 ```
 
 ## Sample usages

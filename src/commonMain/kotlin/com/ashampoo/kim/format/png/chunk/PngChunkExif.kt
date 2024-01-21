@@ -1,6 +1,5 @@
 /*
  * Copyright 2024 Ashampoo GmbH & Co. KG
- * Copyright 2007-2023 The Apache Software Foundation
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,24 +16,13 @@
 package com.ashampoo.kim.format.png.chunk
 
 import com.ashampoo.kim.format.png.PngChunkType
-import com.ashampoo.kim.format.png.PngConstants.PNG_BYTE_ORDER
-import com.ashampoo.kim.input.ByteArrayByteReader
-import com.ashampoo.kim.model.ImageSize
+import com.ashampoo.kim.format.tiff.TiffReader
 
-class PngChunkIhdr(
+class PngChunkExif(
     bytes: ByteArray,
     crc: Int
-) : PngChunk(PngChunkType.IHDR, bytes, crc) {
+) : PngChunk(PngChunkType.EXIF, bytes, crc) {
 
-    val imageSize: ImageSize
+    val tiffContents = TiffReader.read(bytes)
 
-    init {
-
-        val byteReader = ByteArrayByteReader(bytes)
-
-        imageSize = ImageSize(
-            width = byteReader.read4BytesAsInt("width", PNG_BYTE_ORDER),
-            height = byteReader.read4BytesAsInt("height", PNG_BYTE_ORDER)
-        )
-    }
 }

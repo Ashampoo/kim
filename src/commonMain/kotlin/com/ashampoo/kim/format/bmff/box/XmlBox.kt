@@ -24,7 +24,7 @@ class XmlBox(
     offset: Long,
     length: Long,
     payload: ByteArray
-) : Box(offset, BoxType.XML, length, payload) {
+) : Box(BoxType.XML, offset, length, payload) {
 
     val xmp: String
 

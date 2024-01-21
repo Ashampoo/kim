@@ -29,7 +29,7 @@ class ItemInformationBox(
     offset: Long,
     length: Long,
     payload: ByteArray
-) : Box(offset, BoxType.IINF, length, payload), BoxContainer {
+) : Box(BoxType.IINF, offset, length, payload), BoxContainer {
 
     val version: Int
 

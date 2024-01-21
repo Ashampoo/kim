@@ -13,31 +13,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.ashampoo.kim.format.bmff.box
+package com.ashampoo.kim.format.webp
 
-import com.ashampoo.kim.format.bmff.BoxType
+import com.ashampoo.kim.common.ByteOrder
 
-/**
- * JPEG XL jxlp box
- */
-class JxlParticalCodestreamBox(
-    offset: Long,
-    length: Long,
-    payload: ByteArray
-) : Box(BoxType.JXLP, offset, length, payload) {
+object WebPConstants {
 
-    val isHeader: Boolean
+    val WEBP_BYTE_ORDER = ByteOrder.LITTLE_ENDIAN
 
-    init {
+    val RIFF_SIGNATURE = "RIFF".encodeToByteArray()
+    val WEBP_SIGNATURE = "WEBP".encodeToByteArray()
 
-        /* Check if it's the header */
-        isHeader = jxlCodeStreamSignaure == payload.take(jxlCodeStreamSignaure.size)
-    }
+    /* ChunkType is a FourCC, so it's 4 bytes. */
+    const val TPYE_LENGTH = 4
 
-    companion object {
+    const val CHUNK_SIZE_LENGTH = 4
 
-        val jxlCodeStreamSignaure = listOf<Byte>(
-            0x00, 0x00, 0x00, 0x00, 0xFF.toByte(), 0x0A
-        )
-    }
 }

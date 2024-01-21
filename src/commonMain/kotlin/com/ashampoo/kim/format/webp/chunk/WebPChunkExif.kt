@@ -13,31 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.ashampoo.kim.format.bmff.box
+package com.ashampoo.kim.format.webp.chunk
 
-import com.ashampoo.kim.format.bmff.BoxType
+import com.ashampoo.kim.format.tiff.TiffReader
+import com.ashampoo.kim.format.webp.WebPChunkType
 
-/**
- * JPEG XL jxlp box
- */
-class JxlParticalCodestreamBox(
-    offset: Long,
-    length: Long,
-    payload: ByteArray
-) : Box(BoxType.JXLP, offset, length, payload) {
+class WebPChunkExif(
+    bytes: ByteArray
+) : WebPChunk(WebPChunkType.EXIF, bytes) {
 
-    val isHeader: Boolean
+    /* Directly parse EXIF to ensure that it's valid. */
+    val tiffContents = TiffReader.read(bytes)
 
-    init {
-
-        /* Check if it's the header */
-        isHeader = jxlCodeStreamSignaure == payload.take(jxlCodeStreamSignaure.size)
-    }
-
-    companion object {
-
-        val jxlCodeStreamSignaure = listOf<Byte>(
-            0x00, 0x00, 0x00, 0x00, 0xFF.toByte(), 0x0A
-        )
-    }
 }

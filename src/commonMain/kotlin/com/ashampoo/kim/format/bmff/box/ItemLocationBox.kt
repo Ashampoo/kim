@@ -28,7 +28,7 @@ class ItemLocationBox(
     offset: Long,
     length: Long,
     payload: ByteArray
-) : Box(offset, BoxType.ILOC, length, payload) {
+) : Box(BoxType.ILOC, offset, length, payload) {
 
     /**
      * The version of the box.

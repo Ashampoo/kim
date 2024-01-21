@@ -22,11 +22,10 @@ import com.ashampoo.kim.common.indexOfNullTerminator
 import com.ashampoo.kim.format.png.PngChunkType
 
 class PngChunkText(
-    length: Int,
     chunkType: PngChunkType,
-    crc: Int,
-    bytes: ByteArray
-) : PngTextChunk(length, chunkType, crc, bytes) {
+    bytes: ByteArray,
+    crc: Int
+) : PngTextChunk(chunkType, bytes, crc) {
 
     @kotlin.jvm.JvmField
     val keyword: String

@@ -58,7 +58,7 @@ object PngWriter {
 
         if (exifBytes != null)
             modifiedChunks.removeAll {
-                it.chunkType == PngChunkType.EXIF ||
+                it.type == PngChunkType.EXIF ||
                     it is PngTextChunk && it.getKeyword() == PngConstants.EXIF_KEYWORD
             }
 
@@ -76,10 +76,10 @@ object PngWriter {
 
         for (chunk in modifiedChunks) {
 
-            writeChunk(byteWriter, chunk.chunkType, chunk.bytes)
+            writeChunk(byteWriter, chunk.type, chunk.bytes)
 
             /* Write new metadata chunks right after the header. */
-            if (PngChunkType.IHDR == chunk.chunkType) {
+            if (PngChunkType.IHDR == chunk.type) {
 
                 if (exifBytes != null)
                     writeChunk(byteWriter, PngChunkType.EXIF, exifBytes)
@@ -103,7 +103,7 @@ object PngWriter {
         byteWriter.write(PngConstants.PNG_SIGNATURE)
 
         for (chunk in chunks)
-            writeChunk(byteWriter, chunk.chunkType, chunk.bytes)
+            writeChunk(byteWriter, chunk.type, chunk.bytes)
 
         byteWriter.close()
     }
