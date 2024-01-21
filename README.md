@@ -36,7 +36,7 @@ of Ashampoo Photos, which, in turn, is driven by user community feedback.
 ## Installation
 
 ```
-implementation("com.ashampoo:kim:0.10")
+implementation("com.ashampoo:kim:0.11")
 ```
 
 ## Sample usages
