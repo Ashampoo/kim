@@ -38,8 +38,13 @@ class PhotoMetadataConverterTest {
 
         val metadataMap = mutableMapOf<String, PhotoMetadata>()
 
-        for (index in 1..KimTestData.TEST_PHOTO_COUNT)
+        for (index in 1..KimTestData.TEST_PHOTO_COUNT) {
+
+            if (index == KimTestData.JXL_NAKED_CODESTREAM_INDEX)
+                continue
+
             calculateAndAppendMetadata(index, metadataMap)
+        }
 
         assertEquals(
             expected = KimTestData.getMetadataCsvString(),
