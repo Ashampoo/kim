@@ -68,7 +68,7 @@ object PngMetadataCopyUtil {
         checkNotNull(destinationChunks) { "Failed to read destination chunks: $destination" }
 
         val filteredDestinationChunks = destinationChunks.filterNot {
-            chunkTypesToCopy.contains(it.chunkType)
+            chunkTypesToCopy.contains(it.type)
         }
 
         val newChunks = filteredDestinationChunks.toMutableList().apply {
@@ -116,7 +116,7 @@ object PngMetadataCopyUtil {
         checkNotNull(destinationChunks) { "Failed to read destination chunks: $destination" }
 
         val filteredDestinationChunks = destinationChunks.filterNot {
-            chunkTypesToCopy.contains(it.chunkType)
+            chunkTypesToCopy.contains(it.type)
         }
 
         val newChunks = filteredDestinationChunks.toMutableList().apply {

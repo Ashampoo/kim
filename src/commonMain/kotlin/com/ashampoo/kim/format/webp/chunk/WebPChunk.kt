@@ -18,10 +18,10 @@ package com.ashampoo.kim.format.webp.chunk
 import com.ashampoo.kim.format.webp.WebPChunkType
 
 open class WebPChunk(
-    val chunkType: WebPChunkType,
+    val type: WebPChunkType,
     val bytes: ByteArray
 ) {
 
     override fun toString(): String =
-        "WebPChunk '${chunkType.name}' (${bytes.size} bytes)"
+        "WebPChunk '${type.name}' (${bytes.size} bytes)"
 }

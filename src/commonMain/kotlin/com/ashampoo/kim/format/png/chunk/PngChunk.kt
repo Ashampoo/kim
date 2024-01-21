@@ -19,7 +19,7 @@ package com.ashampoo.kim.format.png.chunk
 import com.ashampoo.kim.format.png.PngChunkType
 
 open class PngChunk(
-    val chunkType: PngChunkType,
+    val type: PngChunkType,
     val bytes: ByteArray,
     val crc: Int
 ) {
@@ -37,7 +37,7 @@ open class PngChunk(
 
         for (i in 0..3) {
 
-            val theByte = 0xFF and (chunkType.intValue shr shift)
+            val theByte = 0xFF and (type.intValue shr shift)
 
             shift -= 8
 
@@ -52,7 +52,7 @@ open class PngChunk(
     }
 
     override fun toString() =
-        "PngChunk ${chunkType.name} " +
+        "PngChunk ${type.name} " +
             "(${bytes.size} bytes, " +
             (if (ancillary) "ancillary" else "critical") + ", " +
             (if (isPrivate) "private" else "public") + ", " +
