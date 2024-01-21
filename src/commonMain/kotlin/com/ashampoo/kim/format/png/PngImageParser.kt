@@ -16,7 +16,6 @@
  */
 package com.ashampoo.kim.format.png
 
-import com.ashampoo.kim.common.ByteOrder
 import com.ashampoo.kim.common.ImageReadException
 import com.ashampoo.kim.common.convertHexStringToByteArray
 import com.ashampoo.kim.common.tryWithImageReadException
@@ -25,6 +24,7 @@ import com.ashampoo.kim.format.ImageParser
 import com.ashampoo.kim.format.jpeg.JpegConstants
 import com.ashampoo.kim.format.jpeg.iptc.IptcMetadata
 import com.ashampoo.kim.format.jpeg.iptc.IptcParser
+import com.ashampoo.kim.format.png.PngConstants.PNG_BYTE_ORDER
 import com.ashampoo.kim.format.png.chunk.PngChunk
 import com.ashampoo.kim.format.png.chunk.PngChunkIhdr
 import com.ashampoo.kim.format.png.chunk.PngChunkItxt
@@ -40,8 +40,6 @@ import com.ashampoo.kim.model.ImageSize
 object PngImageParser : ImageParser {
 
     private val controlCharRegex = Regex("[\\p{Cntrl}]")
-
-    private val pngByteOrder = ByteOrder.BIG_ENDIAN
 
     private val metadataChunkTypes = listOf(
         PngChunkType.IHDR,
@@ -242,7 +240,7 @@ object PngImageParser : ImageParser {
 
         while (true) {
 
-            val length = byteReader.read4BytesAsInt("length", pngByteOrder)
+            val length = byteReader.read4BytesAsInt("length", PNG_BYTE_ORDER)
 
             if (length < 0)
                 throw ImageReadException("Invalid PNG chunk length: $length")
@@ -258,7 +256,7 @@ object PngImageParser : ImageParser {
             else
                 byteReader.skipBytes("chunk data", length)
 
-            val crc = byteReader.read4BytesAsInt("crc", pngByteOrder)
+            val crc = byteReader.read4BytesAsInt("crc", PNG_BYTE_ORDER)
 
             if (keep) {
 

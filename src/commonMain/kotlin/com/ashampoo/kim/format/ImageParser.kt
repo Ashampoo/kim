@@ -21,6 +21,7 @@ import com.ashampoo.kim.format.jpeg.JpegImageParser
 import com.ashampoo.kim.format.png.PngImageParser
 import com.ashampoo.kim.format.raf.RafImageParser
 import com.ashampoo.kim.format.tiff.TiffImageParser
+import com.ashampoo.kim.format.webp.WebPImageParser
 import com.ashampoo.kim.input.ByteReader
 import com.ashampoo.kim.model.ImageFormat
 
@@ -38,6 +39,8 @@ fun interface ImageParser {
 
                 ImageFormat.PNG -> PngImageParser
 
+                ImageFormat.WEBP -> WebPImageParser
+
                 ImageFormat.TIFF,
                 ImageFormat.CR2,
                 ImageFormat.NEF,
@@ -47,8 +50,8 @@ fun interface ImageParser {
 
                 ImageFormat.RAF -> RafImageParser
 
-                ImageFormat.HEIC -> BaseMediaFileFormatImageParser
-                ImageFormat.AVIF -> BaseMediaFileFormatImageParser
+                ImageFormat.HEIC,
+                ImageFormat.AVIF,
                 ImageFormat.JXL -> BaseMediaFileFormatImageParser
 
                 else -> null
