@@ -237,7 +237,7 @@ object PngImageParser : ImageParser {
     fun readChunks(
         byteReader: ByteReader,
         chunkTypeFilter: List<PngChunkType>?
-    ): List<PngChunk> {
+    ): List<PngChunk> = tryWithImageReadException {
 
         readAndVerifySignature(byteReader)
 

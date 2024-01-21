@@ -42,13 +42,7 @@ object WebPImageParser : ImageParser {
     override fun parseMetadata(byteReader: ByteReader): ImageMetadata =
         tryWithImageReadException {
 
-            byteReader.readAndVerifyBytes("RIFF signature", RIFF_SIGNATURE)
-
-            val length = byteReader.read4BytesAsInt("length", WEBP_BYTE_ORDER)
-
-            byteReader.readAndVerifyBytes("WEBP signature", WEBP_SIGNATURE)
-
-            val chunks = readChunksInternal(byteReader, length - WEBP_SIGNATURE.size)
+            val chunks = readChunks(byteReader)
 
             val imageSize = chunks.filterIsInstance<ImageSizeAware>().first().imageSize
 
@@ -64,6 +58,19 @@ object WebPImageParser : ImageParser {
                 xmp = xmpChunk?.xmp
             )
         }
+
+    fun readChunks(
+        byteReader: ByteReader
+    ): List<WebPChunk> = tryWithImageReadException {
+
+        byteReader.readAndVerifyBytes("RIFF signature", RIFF_SIGNATURE)
+
+        val length = byteReader.read4BytesAsInt("length", WEBP_BYTE_ORDER)
+
+        byteReader.readAndVerifyBytes("WEBP signature", WEBP_SIGNATURE)
+
+        return readChunksInternal(byteReader, length - WEBP_SIGNATURE.size)
+    }
 
     private fun readChunksInternal(
         byteReader: ByteReader,
