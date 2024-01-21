@@ -21,10 +21,9 @@ import com.ashampoo.kim.format.png.PngConstants.PNG_BYTE_ORDER
 import com.ashampoo.kim.input.ByteArrayByteReader
 
 class PngChunkIhdr(
-    length: Int,
     crc: Int,
     bytes: ByteArray
-) : PngChunk(length, PngChunkType.IHDR, crc, bytes) {
+) : PngChunk(PngChunkType.IHDR, crc, bytes) {
 
     val width: Int
 

@@ -24,10 +24,9 @@ import com.ashampoo.kim.format.png.PngChunkType
 import com.ashampoo.kim.format.png.PngConstants
 
 class PngChunkZtxt(
-    length: Int,
     crc: Int,
     bytes: ByteArray
-) : PngTextChunk(length, PngChunkType.ZTXT, crc, bytes) {
+) : PngTextChunk(PngChunkType.ZTXT, crc, bytes) {
 
     @kotlin.jvm.JvmField
     val keyword: String

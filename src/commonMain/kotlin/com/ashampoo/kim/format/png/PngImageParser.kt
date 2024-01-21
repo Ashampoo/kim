@@ -278,11 +278,11 @@ object PngImageParser : ImageParser {
                 requireNotNull(bytes)
 
                 val chunk = when (chunkType) {
-                    PngChunkType.TEXT -> PngChunkText(length, PngChunkType.TEXT, crc, bytes)
-                    PngChunkType.ZTXT -> PngChunkZtxt(length, crc, bytes)
-                    PngChunkType.IHDR -> PngChunkIhdr(length, crc, bytes)
-                    PngChunkType.ITXT -> PngChunkItxt(length, crc, bytes)
-                    else -> PngChunk(length, chunkType, crc, bytes)
+                    PngChunkType.TEXT -> PngChunkText(PngChunkType.TEXT, crc, bytes)
+                    PngChunkType.ZTXT -> PngChunkZtxt(crc, bytes)
+                    PngChunkType.IHDR -> PngChunkIhdr(crc, bytes)
+                    PngChunkType.ITXT -> PngChunkItxt(crc, bytes)
+                    else -> PngChunk(chunkType, crc, bytes)
                 }
 
                 chunks.add(chunk)
