@@ -20,8 +20,8 @@ import com.ashampoo.kim.format.png.PngChunkType
 
 abstract class PngTextChunk(
     chunkType: PngChunkType,
-    crc: Int,
-    bytes: ByteArray
+    bytes: ByteArray,
+    crc: Int
 ) : PngChunk(chunkType, bytes, crc) {
 
     abstract fun getKeyword(): String

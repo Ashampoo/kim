@@ -26,6 +26,7 @@ import com.ashampoo.kim.format.jpeg.iptc.IptcMetadata
 import com.ashampoo.kim.format.jpeg.iptc.IptcParser
 import com.ashampoo.kim.format.png.PngConstants.PNG_BYTE_ORDER
 import com.ashampoo.kim.format.png.chunk.PngChunk
+import com.ashampoo.kim.format.png.chunk.PngChunkExif
 import com.ashampoo.kim.format.png.chunk.PngChunkIhdr
 import com.ashampoo.kim.format.png.chunk.PngChunkItxt
 import com.ashampoo.kim.format.png.chunk.PngChunkText
@@ -35,7 +36,6 @@ import com.ashampoo.kim.format.tiff.TiffContents
 import com.ashampoo.kim.format.tiff.TiffReader
 import com.ashampoo.kim.input.ByteReader
 import com.ashampoo.kim.model.ImageFormat
-import com.ashampoo.kim.model.ImageSize
 
 object PngImageParser : ImageParser {
 
@@ -62,14 +62,17 @@ object PngImageParser : ImageParser {
     fun parseMetadataFromChunks(chunks: List<PngChunk>): ImageMetadata =
         tryWithImageReadException {
 
-            val imageSize = getImageSize(chunks)
+            val imageSize = chunks.filterIsInstance<PngChunkIhdr>().first().imageSize
 
             /*
              * We attempt to read EXIF data from the EXIF chunk, which has been the standard
              * location since 2017. If the EXIF chunk is not present, we fallback to reading
              * it from TXT. Some older apps may still store the data there.
              */
-            val exifPair = getExif(chunks) ?: getExifFromTextChunk(chunks)
+            val exifChunk = chunks.filterIsInstance<PngChunkExif>().firstOrNull()
+
+            val exifPair = exifChunk?.let { it.bytes to it.tiffContents }
+                ?: getExifFromTextChunk(chunks)
 
             val iptc = getIptcFromTextChunk(chunks)
 
@@ -84,25 +87,6 @@ object PngImageParser : ImageParser {
                 xmp = xmp
             )
         }
-
-    private fun getImageSize(chunks: List<PngChunk>): ImageSize {
-
-        val headerChunks = chunks.filterIsInstance<PngChunkIhdr>()
-
-        if (headerChunks.size > 1)
-            throw ImageReadException("PNG contains more than one Header")
-
-        val pngChunkIHDR = headerChunks.first()
-
-        return ImageSize(pngChunkIHDR.width, pngChunkIHDR.height)
-    }
-
-    private fun getExif(chunks: List<PngChunk>): Pair<ByteArray, TiffContents>? {
-
-        val exifChunk = chunks.find { it.chunkType == PngChunkType.EXIF } ?: return null
-
-        return exifChunk.bytes to TiffReader.read(exifChunk.bytes)
-    }
 
     /*
      * According to https://dev.exiv2.org/projects/exiv2/wiki/The_Metadata_in_PNG_files
@@ -278,10 +262,11 @@ object PngImageParser : ImageParser {
                 requireNotNull(bytes)
 
                 val chunk = when (chunkType) {
-                    PngChunkType.TEXT -> PngChunkText(PngChunkType.TEXT, crc, bytes)
-                    PngChunkType.ZTXT -> PngChunkZtxt(crc, bytes)
-                    PngChunkType.IHDR -> PngChunkIhdr(crc, bytes)
-                    PngChunkType.ITXT -> PngChunkItxt(crc, bytes)
+                    PngChunkType.TEXT -> PngChunkText(PngChunkType.TEXT, bytes, crc)
+                    PngChunkType.ZTXT -> PngChunkZtxt(bytes, crc)
+                    PngChunkType.IHDR -> PngChunkIhdr(bytes, crc)
+                    PngChunkType.ITXT -> PngChunkItxt(bytes, crc)
+                    PngChunkType.EXIF -> PngChunkExif(bytes, crc)
                     else -> PngChunk(chunkType, bytes, crc)
                 }
 
