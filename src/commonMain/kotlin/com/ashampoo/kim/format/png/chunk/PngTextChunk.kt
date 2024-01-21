@@ -22,7 +22,7 @@ abstract class PngTextChunk(
     chunkType: PngChunkType,
     crc: Int,
     bytes: ByteArray
-) : PngChunk(chunkType, crc, bytes) {
+) : PngChunk(chunkType, bytes, crc) {
 
     abstract fun getKeyword(): String
 

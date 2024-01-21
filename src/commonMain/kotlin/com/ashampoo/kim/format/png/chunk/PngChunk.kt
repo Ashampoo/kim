@@ -20,8 +20,8 @@ import com.ashampoo.kim.format.png.PngChunkType
 
 open class PngChunk(
     val chunkType: PngChunkType,
-    val crc: Int,
-    val bytes: ByteArray
+    val bytes: ByteArray,
+    val crc: Int
 ) {
 
     val ancillary: Boolean

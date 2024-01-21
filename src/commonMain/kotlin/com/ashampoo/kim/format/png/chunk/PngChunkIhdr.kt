@@ -23,7 +23,7 @@ import com.ashampoo.kim.input.ByteArrayByteReader
 class PngChunkIhdr(
     crc: Int,
     bytes: ByteArray
-) : PngChunk(PngChunkType.IHDR, crc, bytes) {
+) : PngChunk(PngChunkType.IHDR, bytes, crc) {
 
     val width: Int
 

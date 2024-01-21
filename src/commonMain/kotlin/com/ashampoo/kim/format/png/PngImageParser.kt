@@ -282,7 +282,7 @@ object PngImageParser : ImageParser {
                     PngChunkType.ZTXT -> PngChunkZtxt(crc, bytes)
                     PngChunkType.IHDR -> PngChunkIhdr(crc, bytes)
                     PngChunkType.ITXT -> PngChunkItxt(crc, bytes)
-                    else -> PngChunk(chunkType, crc, bytes)
+                    else -> PngChunk(chunkType, bytes, crc)
                 }
 
                 chunks.add(chunk)
