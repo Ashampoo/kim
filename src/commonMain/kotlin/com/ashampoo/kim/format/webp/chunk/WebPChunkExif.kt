@@ -13,20 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.ashampoo.kim.format.webp
+package com.ashampoo.kim.format.webp.chunk
 
-import com.ashampoo.kim.common.ByteOrder
+import com.ashampoo.kim.format.tiff.TiffReader
+import com.ashampoo.kim.format.webp.WebPChunkType
 
-object WebPConstants {
+class WebPChunkExif(
+    bytes: ByteArray
+) : WebPChunk(WebPChunkType.EXIF, bytes) {
 
-    val WEBP_BYTE_ORDER = ByteOrder.LITTLE_ENDIAN
-
-    val RIFF_SIGNATURE = "RIFF".encodeToByteArray()
-    val WEBP_SIGNATURE = "WEBP".encodeToByteArray()
-
-    /* ChunkType is a FourCC, so it's 4 bytes. */
-    const val TPYE_LENGTH = 4
-
-    const val CHUNK_SIZE_LENGTH = 4
+    /* Directly parse EXIF to ensure that it's valid. */
+    val tiffContents = TiffReader.read(bytes)
 
 }

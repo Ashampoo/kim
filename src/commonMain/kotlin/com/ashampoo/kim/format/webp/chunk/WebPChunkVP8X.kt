@@ -13,20 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.ashampoo.kim.format.webp
+package com.ashampoo.kim.format.webp.chunk
 
-import com.ashampoo.kim.common.ByteOrder
+import com.ashampoo.kim.format.webp.WebPChunkType
 
-object WebPConstants {
-
-    val WEBP_BYTE_ORDER = ByteOrder.LITTLE_ENDIAN
-
-    val RIFF_SIGNATURE = "RIFF".encodeToByteArray()
-    val WEBP_SIGNATURE = "WEBP".encodeToByteArray()
-
-    /* ChunkType is a FourCC, so it's 4 bytes. */
-    const val TPYE_LENGTH = 4
-
-    const val CHUNK_SIZE_LENGTH = 4
-
-}
+class WebPChunkVP8X(
+    bytes: ByteArray
+) : WebPChunk(WebPChunkType.VP8X, bytes)

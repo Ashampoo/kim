@@ -128,7 +128,7 @@ object BaseMediaFileFormatImageParser : ImageParser {
             imageSize = null, // not covered by ISO BMFF
             exif = exif,
             exifBytes = exifBytes,
-            iptc = null, // not covered by ISO BMFF
+            iptc = null, // not supported by ISO BMFF
             xmp = xmp
         )
     }

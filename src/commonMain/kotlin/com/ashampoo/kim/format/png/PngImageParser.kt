@@ -231,6 +231,19 @@ object PngImageParser : ImageParser {
         return text
     }
 
+    private fun readAndVerifySignature(byteReader: ByteReader) =
+        byteReader.readAndVerifyBytes("PNG signature", PngConstants.PNG_SIGNATURE)
+
+    fun readChunks(
+        byteReader: ByteReader,
+        chunkTypeFilter: List<PngChunkType>?
+    ): List<PngChunk> {
+
+        readAndVerifySignature(byteReader)
+
+        return readChunksInternal(byteReader, chunkTypeFilter)
+    }
+
     private fun readChunksInternal(
         byteReader: ByteReader,
         chunkTypeFilter: List<PngChunkType>?
@@ -240,12 +253,14 @@ object PngImageParser : ImageParser {
 
         while (true) {
 
-            val length = byteReader.read4BytesAsInt("length", PNG_BYTE_ORDER)
+            val length = byteReader.read4BytesAsInt("chunk length", PNG_BYTE_ORDER)
 
             if (length < 0)
                 throw ImageReadException("Invalid PNG chunk length: $length")
 
-            val chunkType = PngChunkType.of(byteReader.readBytes(PngConstants.TPYE_LENGTH))
+            val chunkType = PngChunkType.of(
+                byteReader.readBytes("chunk type", PngConstants.TPYE_LENGTH)
+            )
 
             val keep = chunkTypeFilter?.contains(chunkType) ?: true
 
@@ -262,13 +277,15 @@ object PngImageParser : ImageParser {
 
                 requireNotNull(bytes)
 
-                when {
-                    PngChunkType.TEXT == chunkType -> chunks.add(PngChunkText(length, PngChunkType.TEXT, crc, bytes))
-                    PngChunkType.ZTXT == chunkType -> chunks.add(PngChunkZtxt(length, crc, bytes))
-                    PngChunkType.IHDR == chunkType -> chunks.add(PngChunkIhdr(length, crc, bytes))
-                    PngChunkType.ITXT == chunkType -> chunks.add(PngChunkItxt(length, crc, bytes))
-                    else -> chunks.add(PngChunk(length, chunkType, crc, bytes))
+                val chunk = when (chunkType) {
+                    PngChunkType.TEXT -> PngChunkText(length, PngChunkType.TEXT, crc, bytes)
+                    PngChunkType.ZTXT -> PngChunkZtxt(length, crc, bytes)
+                    PngChunkType.IHDR -> PngChunkIhdr(length, crc, bytes)
+                    PngChunkType.ITXT -> PngChunkItxt(length, crc, bytes)
+                    else -> PngChunk(length, chunkType, crc, bytes)
                 }
+
+                chunks.add(chunk)
             }
 
             if (PngChunkType.IEND == chunkType)
@@ -276,18 +293,5 @@ object PngImageParser : ImageParser {
         }
 
         return chunks
-    }
-
-    private fun readAndVerifySignature(byteReader: ByteReader) =
-        byteReader.readAndVerifyBytes("PNG signature", PngConstants.PNG_SIGNATURE)
-
-    fun readChunks(
-        byteReader: ByteReader,
-        chunkTypeFilter: List<PngChunkType>?
-    ): List<PngChunk> {
-
-        readAndVerifySignature(byteReader)
-
-        return readChunksInternal(byteReader, chunkTypeFilter)
     }
 }

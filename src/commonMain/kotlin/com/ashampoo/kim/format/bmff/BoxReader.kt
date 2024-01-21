@@ -32,7 +32,7 @@ import com.ashampoo.kim.format.bmff.box.XmlBox
 import com.ashampoo.kim.input.PositionTrackingByteReader
 
 /**
- * Reads ISOBMFF Boxes
+ * Reads ISOBMFF boxes
  */
 object BoxReader {
 
