@@ -25,8 +25,6 @@ import com.ashampoo.kim.format.tiff.constant.TiffConstants.FIELD_TYPE_LONG_INDEX
 
 /**
  * 32-bit (4-byte) unsigned integer.
- *
- * FIXME Should be LongArray
  */
 data object FieldTypeLong : FieldType<IntArray> {
 

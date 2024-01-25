@@ -25,8 +25,6 @@ import com.ashampoo.kim.format.tiff.constant.TiffConstants
 
 /**
  * 16-bit (2-byte) unsigned integer.
- *
- * FIXME Should be an IntArray
  */
 data object FieldTypeShort : FieldType<ShortArray> {
 
