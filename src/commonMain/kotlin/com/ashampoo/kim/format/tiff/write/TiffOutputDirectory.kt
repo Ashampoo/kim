@@ -19,6 +19,7 @@ package com.ashampoo.kim.format.tiff.write
 import com.ashampoo.kim.common.ByteOrder
 import com.ashampoo.kim.common.ImageWriteException
 import com.ashampoo.kim.common.RationalNumber
+import com.ashampoo.kim.common.RationalNumbers
 import com.ashampoo.kim.format.tiff.JpegImageDataElement
 import com.ashampoo.kim.format.tiff.TiffDirectory.Companion.description
 import com.ashampoo.kim.format.tiff.constant.TiffConstants.TIFF_DIRECTORY_FOOTER_LENGTH
@@ -155,13 +156,13 @@ class TiffOutputDirectory(
         add(tiffOutputField)
     }
 
-    fun add(tagInfo: TagInfoRationals, values: Array<RationalNumber>) {
+    fun add(tagInfo: TagInfoRationals, values: RationalNumbers) {
 
-        checkMatchingLength(tagInfo, values.size)
+        checkMatchingLength(tagInfo, values.values.size)
 
         val bytes = tagInfo.encodeValue(byteOrder, values)
 
-        val tiffOutputField = TiffOutputField(tagInfo.tag, tagInfo, FieldType.RATIONAL, values.size, bytes)
+        val tiffOutputField = TiffOutputField(tagInfo.tag, tagInfo, FieldType.RATIONAL, values.values.size, bytes)
 
         add(tiffOutputField)
     }
@@ -253,16 +254,17 @@ class TiffOutputDirectory(
         add(tiffOutputField)
     }
 
-    fun add(tagInfo: TagInfoSRationals, values: Array<RationalNumber>) {
+    fun add(tagInfo: TagInfoSRationals, value: RationalNumbers) {
 
-        checkMatchingLength(tagInfo, values.size)
+        checkMatchingLength(tagInfo, value.values.size)
 
-        val bytes = tagInfo.encodeValue(byteOrder, values)
+        val bytes = tagInfo.encodeValue(byteOrder, value)
 
         val tiffOutputField = TiffOutputField(
             tagInfo.tag,
             tagInfo, FieldType.SRATIONAL,
-            values.size, bytes
+            value.values.size,
+            bytes
         )
 
         add(tiffOutputField)
@@ -412,16 +414,17 @@ class TiffOutputDirectory(
         add(tiffOutputField)
     }
 
-    fun add(tagInfo: TagInfoShortOrLongOrRational, values: Array<RationalNumber>) {
+    fun add(tagInfo: TagInfoShortOrLongOrRational, value: RationalNumbers) {
 
-        checkMatchingLength(tagInfo, values.size)
+        checkMatchingLength(tagInfo, value.values.size)
 
-        val bytes: ByteArray = tagInfo.encodeValue(byteOrder, values)
+        val bytes: ByteArray = tagInfo.encodeValue(byteOrder, value)
 
         val tiffOutputField = TiffOutputField(
             tagInfo.tag,
             tagInfo, FieldType.RATIONAL,
-            values.size, bytes
+            value.values.size,
+            bytes
         )
 
         add(tiffOutputField)
@@ -442,16 +445,17 @@ class TiffOutputDirectory(
         add(tiffOutputField)
     }
 
-    fun add(tagInfo: TagInfoShortOrRational, values: Array<RationalNumber>) {
+    fun add(tagInfo: TagInfoShortOrRational, value: RationalNumbers) {
 
-        checkMatchingLength(tagInfo, values.size)
+        checkMatchingLength(tagInfo, value.values.size)
 
-        val bytes: ByteArray = tagInfo.encodeValue(byteOrder, values)
+        val bytes: ByteArray = tagInfo.encodeValue(byteOrder, value)
 
         val tiffOutputField = TiffOutputField(
             tagInfo.tag,
             tagInfo, FieldType.RATIONAL,
-            values.size, bytes
+            value.values.size,
+            bytes
         )
 
         add(tiffOutputField)

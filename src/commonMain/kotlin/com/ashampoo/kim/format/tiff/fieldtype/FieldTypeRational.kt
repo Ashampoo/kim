@@ -17,7 +17,7 @@
 package com.ashampoo.kim.format.tiff.fieldtype
 
 import com.ashampoo.kim.common.ByteOrder
-import com.ashampoo.kim.common.RationalNumber
+import com.ashampoo.kim.common.RationalNumbers
 import com.ashampoo.kim.common.toBytes
 import com.ashampoo.kim.common.toRationals
 import com.ashampoo.kim.format.tiff.TiffField
@@ -27,10 +27,8 @@ import com.ashampoo.kim.format.tiff.fieldtype.FieldType.Companion.SRATIONAL
 /**
  * Two LONGs: the first represents the numerator of a
  * fraction; the second, the denominator.
- *
- * FIXME Should return an List instead of Array
  */
-object FieldTypeRational : FieldType<Array<RationalNumber>> {
+object FieldTypeRational : FieldType<RationalNumbers> {
 
     override val type: Int = TiffConstants.FIELD_TYPE_RATIONAL_INDEX
 
@@ -38,7 +36,7 @@ object FieldTypeRational : FieldType<Array<RationalNumber>> {
 
     override val size: Int = 8
 
-    override fun getValue(entry: TiffField): Array<RationalNumber> {
+    override fun getValue(entry: TiffField): RationalNumbers {
 
         val unsignedType = entry.fieldType !== SRATIONAL
 
@@ -46,7 +44,7 @@ object FieldTypeRational : FieldType<Array<RationalNumber>> {
     }
 
     override fun writeData(data: Any, byteOrder: ByteOrder): ByteArray =
-        (data as Array<RationalNumber>).toBytes(byteOrder)
+        (data as RationalNumbers).toBytes(byteOrder)
 
 //        val rationalNumbers = arrayOfNulls<RationalNumber>(data.size)
 //

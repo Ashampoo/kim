@@ -20,6 +20,7 @@ import com.ashampoo.kim.common.ByteOrder
 import com.ashampoo.kim.common.HEX_RADIX
 import com.ashampoo.kim.common.ImageReadException
 import com.ashampoo.kim.common.RationalNumber
+import com.ashampoo.kim.common.RationalNumbers
 import com.ashampoo.kim.common.head
 import com.ashampoo.kim.common.toSingleNumberHexes
 import com.ashampoo.kim.format.tiff.TiffTags.getTag
@@ -110,12 +111,12 @@ class TiffField(
                 return@lazy value.contentToString()
             }
 
-            if (value is Array<*>) {
+            if (value is RationalNumbers) {
 
-                if (value.size == 1)
-                    return@lazy value.first().toString()
+                if (value.values.size == 1)
+                    return@lazy value.values.first().toString()
 
-                return@lazy value.contentToString()
+                return@lazy value.values.contentToString()
             }
 
             value.toString()
@@ -151,16 +152,11 @@ class TiffField(
         if (value is IntArray)
             return value.copyOf()
 
-        if (value is Array<*>) {
-
-            val result = IntArray(value.size)
-
-            repeat(result.size) { i ->
-                result[i] = (value[i] as Number).toInt()
-            }
-
-            return result
-        }
+//        if (value is RationalNumberArray) {
+//            return value.rationalNumbers.map {
+//                it.doubleValue().toInt()
+//            }.toIntArray()
+//        }
 
         if (value is ShortArray) {
 
@@ -191,8 +187,8 @@ class TiffField(
             (value as Number).toShort()
 
     fun toDouble(): Double =
-        if (value is Array<*>)
-            (value.first() as RationalNumber).doubleValue()
+        if (value is RationalNumbers)
+            value.values.first().doubleValue()
         else if (value is RationalNumber)
             value.doubleValue()
         else

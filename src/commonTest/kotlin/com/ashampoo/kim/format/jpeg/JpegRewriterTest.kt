@@ -16,6 +16,7 @@
 package com.ashampoo.kim.format.jpeg
 
 import com.ashampoo.kim.Kim
+import com.ashampoo.kim.common.RationalNumbers
 import com.ashampoo.kim.common.writeBytes
 import com.ashampoo.kim.format.ImageMetadata
 import com.ashampoo.kim.format.jpeg.iptc.IptcMetadata
@@ -320,15 +321,15 @@ class JpegRewriterTest {
                         expectedValue.contentEquals(actualValue)
                     else if (expectedValue is ShortArray && actualValue is ShortArray)
                         expectedValue.contentEquals(actualValue)
-                    else if (expectedValue is Array<*> && actualValue is Array<*>)
-                        expectedValue.contentEquals(actualValue)
+                    else if (expectedValue is RationalNumbers && actualValue is RationalNumbers)
+                        expectedValue.values.contentEquals(actualValue.values)
                     else
                         expectedValue == actualValue
 
                     if (!equals) {
 
-                        val expectedValueString = if (expectedValue is Array<*>)
-                            expectedValue.contentToString()
+                        val expectedValueString = if (expectedValue is RationalNumbers)
+                            expectedValue.values.contentToString()
                         else if (expectedValue is ByteArray)
                             expectedValue.contentToString()
                         else if (expectedValue is ShortArray)
@@ -338,8 +339,8 @@ class JpegRewriterTest {
                         else
                             expectedValue?.toString()
 
-                        val actualValueString = if (actualValue is Array<*>)
-                            actualValue.contentToString()
+                        val actualValueString = if (actualValue is RationalNumbers)
+                            actualValue.values.contentToString()
                         else if (actualValue is ByteArray)
                             actualValue.contentToString()
                         else if (actualValue is ShortArray)
@@ -393,8 +394,8 @@ class JpegRewriterTest {
     }
 
     private fun isEquals(first: Any?, second: Any?): Boolean =
-        if (first is Array<*> && second is Array<*>)
-            first.contentEquals(second)
+        if (first is RationalNumbers && second is RationalNumbers)
+            first.values.contentEquals(second.values)
         else if (first is ByteArray && second is ByteArray)
             first.contentEquals(second)
         else if (first is ShortArray && second is ShortArray)

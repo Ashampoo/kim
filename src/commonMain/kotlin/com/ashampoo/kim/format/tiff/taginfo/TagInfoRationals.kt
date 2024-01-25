@@ -17,7 +17,7 @@
 package com.ashampoo.kim.format.tiff.taginfo
 
 import com.ashampoo.kim.common.ByteOrder
-import com.ashampoo.kim.common.RationalNumber
+import com.ashampoo.kim.common.RationalNumbers
 import com.ashampoo.kim.common.toBytes
 import com.ashampoo.kim.common.toRationals
 import com.ashampoo.kim.format.tiff.constant.TiffDirectoryType
@@ -26,9 +26,9 @@ import com.ashampoo.kim.format.tiff.fieldtype.FieldType
 class TagInfoRationals(name: String, tag: Int, length: Int, directoryType: TiffDirectoryType?) :
     TagInfo(name, tag, FieldType.RATIONAL, length, directoryType) {
 
-    fun getValue(byteOrder: ByteOrder, bytes: ByteArray): Array<RationalNumber> =
+    fun getValue(byteOrder: ByteOrder, bytes: ByteArray): RationalNumbers =
         bytes.toRationals(byteOrder, true)
 
-    fun encodeValue(byteOrder: ByteOrder, value: Array<RationalNumber>): ByteArray =
+    fun encodeValue(byteOrder: ByteOrder, value: RationalNumbers): ByteArray =
         value.toBytes(byteOrder)
 }
