@@ -37,8 +37,17 @@ import com.ashampoo.kim.format.tiff.taginfo.TagInfoShorts
 import com.ashampoo.kim.format.tiff.taginfo.TagInfoUndefined
 import com.ashampoo.kim.format.tiff.taginfo.TagInfoUndefineds
 
+/**
+ * Standard Exif Tags as defined in EXIF 2.3 standard
+ *
+ * See https://exiv2.org/tags.html
+ */
 @Suppress("MagicNumber", "LargeClass", "StringLiteralDuplication")
 object ExifTag {
+
+    /*
+     * TODO This list is incomplete
+     */
 
     val EXIF_DIRECTORY_UNKNOWN: TiffDirectoryType? = null
 

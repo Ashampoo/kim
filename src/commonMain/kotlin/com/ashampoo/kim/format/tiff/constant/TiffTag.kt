@@ -29,12 +29,16 @@ import com.ashampoo.kim.format.tiff.taginfo.TagInfoShort
 import com.ashampoo.kim.format.tiff.taginfo.TagInfoShorts
 
 /**
+ * Standard Tiff Tags
+ *
  * http://partners.adobe.com/public/developer/en/tiff/TIFF6.pdf
- * https://exiftool.org/TagNames/EXIF.html
- * https://exiv2.org/tags.html
  */
 @Suppress("MagicNumber", "VariableMaxLength", "UnderscoresInNumericLiterals")
 object TiffTag {
+
+    /*
+     * TODO This list is incomplete
+     */
 
     val TIFF_TAG_NEW_SUBFILE_TYPE = TagInfoLong(
         "NewSubfileType", 0xFE,
