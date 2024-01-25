@@ -244,6 +244,7 @@ class TiffDirectory(
                 TiffConstants.TIFF_GPS -> "GPS"
                 TiffConstants.TIFF_INTEROP_IFD -> "InteropIFD"
                 TiffConstants.TIFF_MAKER_NOTE_CANON -> "MakerNoteCanon"
+                TiffConstants.TIFF_MAKER_NOTE_NIKON -> "MakerNoteNikon"
                 else -> "Bad Type"
             }
         }

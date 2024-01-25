@@ -16,6 +16,8 @@
 package com.ashampoo.kim.format.tiff.constant
 
 import com.ashampoo.kim.format.tiff.taginfo.TagInfo
+import com.ashampoo.kim.format.tiff.taginfo.TagInfoAscii
+import com.ashampoo.kim.format.tiff.taginfo.TagInfoLong
 import com.ashampoo.kim.format.tiff.taginfo.TagInfoUndefineds
 
 /**
@@ -35,7 +37,25 @@ object CanonTag {
         TiffDirectoryType.EXIF_DIRECTORY_MAKER_NOTE_CANON
     )
 
+    val FILE_NUMBER = TagInfoLong(
+        "FileNumber", 0x0008,
+        TiffDirectoryType.EXIF_DIRECTORY_MAKER_NOTE_CANON
+    )
+
+    val OWNER_NAME = TagInfoAscii(
+        "OwnerName", 0x0009, TagInfo.LENGTH_UNKNOWN,
+        TiffDirectoryType.EXIF_DIRECTORY_MAKER_NOTE_CANON
+    )
+
+    val SERIAL_NUMBER = TagInfoLong(
+        "SerialNumber", 0x000c,
+        TiffDirectoryType.EXIF_DIRECTORY_MAKER_NOTE_CANON
+    )
+
     val ALL = listOf(
-        CANON_CAMERA_SETTINGS
+        CANON_CAMERA_SETTINGS,
+        FILE_NUMBER,
+        OWNER_NAME,
+        SERIAL_NUMBER
     )
 }

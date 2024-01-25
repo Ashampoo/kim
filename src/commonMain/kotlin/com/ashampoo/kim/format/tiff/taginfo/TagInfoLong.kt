@@ -17,7 +17,6 @@
 package com.ashampoo.kim.format.tiff.taginfo
 
 import com.ashampoo.kim.format.tiff.constant.TiffDirectoryType
-import com.ashampoo.kim.format.tiff.fieldtype.FieldType
 import com.ashampoo.kim.format.tiff.fieldtype.FieldTypeLong
 
 class TagInfoLong : TagInfo {
@@ -34,13 +33,4 @@ class TagInfoLong : TagInfo {
         directoryType: TiffDirectoryType?,
         isOffset: Boolean
     ) : super(name, tag, FieldTypeLong, 1, directoryType, isOffset)
-
-    constructor(
-        name: String,
-        tag: Int,
-        dataTypes: FieldType<out Any>,
-        length: Int,
-        exifDirectory: TiffDirectoryType?,
-        isOffset: Boolean
-    ) : super(name, tag, dataTypes, length, exifDirectory, isOffset)
 }

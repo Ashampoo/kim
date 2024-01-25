@@ -118,6 +118,9 @@ object TiffReader {
         return TiffContents(tiffHeader, directories)
     }
 
+    /**
+     * See https://exiftool.org/makernote_types.html
+     */
     private fun createMakerNoteDirectory(
         byteReader: RandomAccessByteReader,
         makerNoteValueOffset: Int,
@@ -138,27 +141,36 @@ object TiffReader {
             )
         }
 
-//                if (make.startsWith("nikon")) {
-//
-//                    /* Should start with "Nikon" */
-//                    byteReader.readAndVerifyBytes(
-//                        "Nikon signaure",
-//                        "Nikon".encodeToByteArray()
-//                    )
-//
-//                    byteReader.skipBytes("Terminator", 1)
-//
-//                    readDirectory(
-//                        byteReader = byteReader,
-//                        byteOrder = byteOrder,
-//                        directoryOffset = makerNoteField.valueOffset,
-//                        directoryType = TiffConstants.TIFF_MAKER_NOTE_NIKON,
-//                        visitedOffsets = mutableListOf<Int>(),
-//                        addDirectory = {
-//                            directories.add(it)
-//                        }
-//                    )
-//                }
+        if (make != null && make.trim().lowercase().startsWith("nikon")) {
+
+            byteReader.reset()
+            byteReader.skipBytes("offset", makerNoteValueOffset)
+
+            /*
+             * Expect to start with "Nikon<NUL>"
+             */
+            val nikonSignature = byteReader.readBytes(6).decodeToString()
+
+            val nikonSignatureMatched = nikonSignature == "Nikon\u0000"
+
+            if (!nikonSignatureMatched)
+                return
+
+            val type = byteReader.readByteAsInt()
+
+            /* We only have test files for type 2 right now. */
+            if (type != 2)
+                return
+
+            readDirectory(
+                byteReader = byteReader,
+                byteOrder = ByteOrder.LITTLE_ENDIAN,
+                directoryOffset = makerNoteValueOffset + 18,
+                directoryType = TiffConstants.TIFF_MAKER_NOTE_NIKON,
+                visitedOffsets = mutableListOf<Int>(),
+                addDirectory = addDirectory
+            )
+        }
     }
 
     fun readTiffHeader(byteReader: ByteReader): TiffHeader {
@@ -210,9 +222,9 @@ object TiffReader {
         if (directoryOffset >= byteReader.contentLength)
             return true
 
-        val fields = try {
+        byteReader.skipBytes("Directory offset", directoryOffset)
 
-            byteReader.skipBytes("Directory offset", directoryOffset)
+        val fields = try {
 
             val entryCount = byteReader.read2BytesAsInt("entrycount", byteOrder)
 

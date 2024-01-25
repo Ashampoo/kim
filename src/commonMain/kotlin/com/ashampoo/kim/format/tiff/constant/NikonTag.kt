@@ -15,6 +15,7 @@
  */
 package com.ashampoo.kim.format.tiff.constant
 
+import com.ashampoo.kim.format.tiff.taginfo.TagInfoLong
 import com.ashampoo.kim.format.tiff.taginfo.TagInfoUndefineds
 
 /**
@@ -34,7 +35,13 @@ object NikonTag {
         TiffDirectoryType.EXIF_DIRECTORY_MAKER_NOTE_NIKON
     )
 
+    val SHUTTER_COUNT = TagInfoLong(
+        "ShutterCount", 0x00a7,
+        TiffDirectoryType.EXIF_DIRECTORY_MAKER_NOTE_NIKON
+    )
+
     val ALL = listOf(
-        MAKER_NOTE_VERSION
+        MAKER_NOTE_VERSION,
+        SHUTTER_COUNT
     )
 }
