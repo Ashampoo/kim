@@ -41,7 +41,6 @@ import com.ashampoo.kim.format.tiff.fieldtype.FieldTypeShort
 import com.ashampoo.kim.format.tiff.fieldtype.FieldTypeUndefined
 import com.ashampoo.kim.format.tiff.taginfo.TagInfo
 import com.ashampoo.kim.format.tiff.taginfo.TagInfoAscii
-import com.ashampoo.kim.format.tiff.taginfo.TagInfoAsciiOrByte
 import com.ashampoo.kim.format.tiff.taginfo.TagInfoAsciiOrRational
 import com.ashampoo.kim.format.tiff.taginfo.TagInfoByte
 import com.ashampoo.kim.format.tiff.taginfo.TagInfoByteOrShort
@@ -369,21 +368,6 @@ class TiffOutputDirectory(
         val tiffOutputField = TiffOutputField(
             tagInfo.tag,
             tagInfo, tagInfo.fieldTypes[0], bytes.size, bytes
-        )
-
-        add(tiffOutputField)
-    }
-
-    fun add(tagInfo: TagInfoAsciiOrByte, values: Array<String>) {
-
-        val bytes = tagInfo.encodeValue(FieldTypeAscii, values, byteOrder)
-
-        checkMatchingLength(tagInfo, bytes.size)
-
-        val tiffOutputField = TiffOutputField(
-            tagInfo.tag,
-            tagInfo, FieldTypeAscii, bytes.size,
-            bytes
         )
 
         add(tiffOutputField)
