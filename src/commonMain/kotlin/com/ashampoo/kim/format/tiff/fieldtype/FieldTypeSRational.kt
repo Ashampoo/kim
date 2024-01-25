@@ -24,14 +24,14 @@ import com.ashampoo.kim.common.toBytes
 import com.ashampoo.kim.common.toRational
 import com.ashampoo.kim.common.toRationals
 import com.ashampoo.kim.format.tiff.TiffField
-import com.ashampoo.kim.format.tiff.constant.TiffConstants.FIELD_TYPE_RATIONAL_INDEX
+import com.ashampoo.kim.format.tiff.constant.TiffConstants.FIELD_TYPE_SRATIONAL_INDEX
 
 /**
- * Two LONGs: the first represents the numerator of a
- * fraction; the second, the denominator.
+ * Two SLONG’s: the first represents the numerator of a
+ * fraction, the second the denominator.
  */
-object FieldTypeRational :
-    FieldType(FIELD_TYPE_RATIONAL_INDEX, "RATIONAL", 8) {
+object FieldTypeSRational :
+    FieldType(FIELD_TYPE_SRATIONAL_INDEX, "SRational", 8) {
 
     override fun getValue(entry: TiffField): Any {
 

@@ -22,8 +22,13 @@ import com.ashampoo.kim.common.toBytes
 import com.ashampoo.kim.common.toShort
 import com.ashampoo.kim.common.toShorts
 import com.ashampoo.kim.format.tiff.TiffField
+import com.ashampoo.kim.format.tiff.constant.TiffConstants.FIELD_TYPE_SHORT_INDEX
 
-class FieldTypeShort(type: Int, name: String) : FieldType(type, name, 2) {
+/**
+ * 16-bit (2-byte) unsigned integer.
+ */
+object FieldTypeShort :
+    FieldType(FIELD_TYPE_SHORT_INDEX, "Short", 2) {
 
     override fun getValue(entry: TiffField): Any {
 

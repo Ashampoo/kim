@@ -19,8 +19,13 @@ package com.ashampoo.kim.format.tiff.fieldtype
 import com.ashampoo.kim.common.ByteOrder
 import com.ashampoo.kim.common.ImageWriteException
 import com.ashampoo.kim.format.tiff.TiffField
+import com.ashampoo.kim.format.tiff.constant.TiffConstants.FIELD_TYPE_BYTE_INDEX
 
-class FieldTypeByte(type: Int, name: String) : FieldType(type, name, 1) {
+/**
+ * 8-bit unsigned integer.
+ */
+object FieldTypeByte :
+    FieldType(FIELD_TYPE_BYTE_INDEX, "Byte", 1) {
 
     override fun getValue(entry: TiffField): Any {
 

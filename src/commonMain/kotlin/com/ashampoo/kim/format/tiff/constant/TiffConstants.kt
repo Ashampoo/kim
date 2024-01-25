@@ -93,4 +93,18 @@ object TiffConstants {
     const val TIFF_IFD3 = 3
 
     const val DIRECTORY_TYPE_DIR_4 = 4
+
+    const val FIELD_TYPE_BYTE_INDEX = 1
+    const val FIELD_TYPE_ASCII_INDEX = 2
+    const val FIELD_TYPE_SHORT_INDEX = 3
+    const val FIELD_TYPE_LONG_INDEX = 4
+    const val FIELD_TYPE_RATIONAL_INDEX = 5
+    const val FIELD_TYPE_SBYTE_INDEX = 6
+    const val FIELD_TYPE_UNDEFINED_INDEX = 7
+    const val FIELD_TYPE_SSHORT_INDEX = 8
+    const val FIELD_TYPE_SLONG_INDEX = 9
+    const val FIELD_TYPE_SRATIONAL_INDEX = 10
+    const val FIELD_TYPE_FLOAT_INDEX = 11
+    const val FIELD_TYPE_DOUBLE_INDEX = 12
+    const val FIELD_TYPE_IFD_INDEX = 13
 }

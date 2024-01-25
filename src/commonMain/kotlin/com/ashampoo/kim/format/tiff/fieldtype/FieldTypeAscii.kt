@@ -21,8 +21,14 @@ import com.ashampoo.kim.common.ImageWriteException
 import com.ashampoo.kim.common.indexOfNullTerminator
 import com.ashampoo.kim.common.slice
 import com.ashampoo.kim.format.tiff.TiffField
+import com.ashampoo.kim.format.tiff.constant.TiffConstants.FIELD_TYPE_ASCII_INDEX
 
-class FieldTypeAscii(type: Int, name: String) : FieldType(type, name, 1) {
+/**
+ * 8-bit byte that contains a 7-bit ASCII code;
+ * the last byte must be NUL (binary zero).
+ */
+object FieldTypeAscii :
+    FieldType(FIELD_TYPE_ASCII_INDEX, "ASCII", 1) {
 
     override fun getValue(entry: TiffField): String {
 

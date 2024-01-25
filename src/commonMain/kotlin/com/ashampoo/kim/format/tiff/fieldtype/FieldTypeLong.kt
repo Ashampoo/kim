@@ -22,8 +22,13 @@ import com.ashampoo.kim.common.toBytes
 import com.ashampoo.kim.common.toInt
 import com.ashampoo.kim.common.toInts
 import com.ashampoo.kim.format.tiff.TiffField
+import com.ashampoo.kim.format.tiff.constant.TiffConstants.FIELD_TYPE_LONG_INDEX
 
-class FieldTypeLong(type: Int, name: String) : FieldType(type, name, 4) {
+/**
+ * 32-bit (4-byte) unsigned integer.
+ */
+object FieldTypeLong :
+    FieldType(FIELD_TYPE_LONG_INDEX, "Long", 4) {
 
     override fun getValue(entry: TiffField): Any {
 

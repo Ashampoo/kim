@@ -21,8 +21,13 @@ import com.ashampoo.kim.common.toBytes
 import com.ashampoo.kim.common.toDouble
 import com.ashampoo.kim.common.toDoubles
 import com.ashampoo.kim.format.tiff.TiffField
+import com.ashampoo.kim.format.tiff.constant.TiffConstants.FIELD_TYPE_DOUBLE_INDEX
 
-class FieldTypeDouble(type: Int, name: String) : FieldType(type, name, 8) {
+/**
+ * Double precision (8-byte) IEEE format.
+ */
+object FieldTypeDouble :
+    FieldType(FIELD_TYPE_DOUBLE_INDEX, "Double", 8) {
 
     override fun getValue(entry: TiffField): Any {
 

@@ -35,19 +35,19 @@ abstract class FieldType protected constructor(
 
     companion object {
 
-        val BYTE = FieldTypeByte(1, "Byte")
-        val ASCII = FieldTypeAscii(2, "ASCII")
-        val SHORT = FieldTypeShort(3, "Short")
-        val LONG = FieldTypeLong(4, "Long")
-        val RATIONAL = FieldTypeRational(5, "Rational")
-        val SBYTE = FieldTypeByte(6, "SByte")
-        val UNDEFINED = FieldTypeByte(7, "Undefined")
-        val SSHORT = FieldTypeShort(8, "SShort")
-        val SLONG = FieldTypeLong(9, "SLong")
-        val SRATIONAL = FieldTypeRational(10, "SRational")
-        val FLOAT = FieldTypeFloat(11, "Float")
-        val DOUBLE = FieldTypeDouble(12, "Double")
-        val IFD = FieldTypeLong(13, "IFD")
+        val BYTE = FieldTypeByte
+        val ASCII = FieldTypeAscii
+        val SHORT = FieldTypeShort
+        val LONG = FieldTypeLong
+        val RATIONAL = FieldTypeRational
+        val SBYTE = FieldTypeSByte
+        val UNDEFINED = FieldTypeUndefined
+        val SSHORT = FieldTypeSShort
+        val SLONG = FieldTypeSLong
+        val SRATIONAL = FieldTypeSRational
+        val FLOAT = FieldTypeFloat
+        val DOUBLE = FieldTypeDouble
+        val IFD = FieldTypeIfd
 
         val ANY = listOf(
             BYTE, ASCII, SHORT, LONG, RATIONAL, SBYTE, UNDEFINED,
