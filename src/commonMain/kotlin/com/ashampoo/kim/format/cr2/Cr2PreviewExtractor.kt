@@ -19,7 +19,7 @@ import com.ashampoo.kim.common.ImageReadException
 import com.ashampoo.kim.common.tryWithImageReadException
 import com.ashampoo.kim.format.TiffPreviewExtractor
 import com.ashampoo.kim.format.tiff.TiffContents
-import com.ashampoo.kim.format.tiff.constant.TiffTag
+import com.ashampoo.kim.format.tiff.constant.ExifTag
 import com.ashampoo.kim.input.RandomAccessByteReader
 
 object Cr2PreviewExtractor : TiffPreviewExtractor {
@@ -33,10 +33,10 @@ object Cr2PreviewExtractor : TiffPreviewExtractor {
         val ifd0 = tiffContents.directories.first()
 
         val previewImageStart =
-            ifd0.getFieldValue(TiffTag.TIFF_TAG_STRIP_OFFSETS) ?: return null
+            ifd0.getFieldValue(ExifTag.EXIF_TAG_PREVIEW_IMAGE_START_IFD0) ?: return null
 
         val previewLength =
-            ifd0.getFieldValue(TiffTag.TIFF_TAG_STRIP_BYTE_COUNTS) ?: return null
+            ifd0.getFieldValue(ExifTag.EXIF_TAG_PREVIEW_IMAGE_LENGTH_IFD0) ?: return null
 
         if (previewLength == 0)
             return null

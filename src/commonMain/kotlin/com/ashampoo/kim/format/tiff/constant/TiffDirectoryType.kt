@@ -45,6 +45,9 @@ enum class TiffDirectoryType(
     ),
     EXIF_DIRECTORY_GPS(
         false, TiffConstants.TIFF_GPS, "GPS"
+    ),
+    EXIF_DIRECTORY_CANON_MAKER_NOTES(
+        false, TiffConstants.TIFF_MAKER_NOTES_CANON, "MakerNoteCanon"
     );
 
     override fun toString(): String =

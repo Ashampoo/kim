@@ -75,7 +75,29 @@ object TiffReader {
             }
         )
 
-
+//        val makerNoteField = TiffDirectory.findTiffField(
+//            directories,
+//            ExifTag.EXIF_TAG_MAKER_NOTE
+//        )
+//
+//        if (makerNoteField != null && makerNoteField.valueOffset != null) {
+//
+//            val makeField = TiffDirectory.findTiffField(directories, TiffTag.TIFF_TAG_MAKE)
+//
+//            if (makeField?.valueDescription == "Canon") {
+//
+//                readDirectory(
+//                    byteReader = byteReader,
+//                    byteOrder = tiffHeader.byteOrder,
+//                    directoryOffset = makerNoteField.valueOffset,
+//                    directoryType = TiffConstants.TIFF_MAKER_NOTES_CANON,
+//                    visitedOffsets = mutableListOf<Int>(),
+//                    addDirectory = {
+//                        directories.add(it)
+//                    }
+//                )
+//            }
+//        }
 
         if (directories.isEmpty())
             throw ImageReadException("Image did not contain any directories.")

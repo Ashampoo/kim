@@ -23,6 +23,7 @@ import com.ashampoo.kim.common.RationalNumbers
 import com.ashampoo.kim.common.toBytes
 import com.ashampoo.kim.format.tiff.JpegImageDataElement
 import com.ashampoo.kim.format.tiff.TiffDirectory.Companion.description
+import com.ashampoo.kim.format.tiff.constant.ExifTag
 import com.ashampoo.kim.format.tiff.constant.TiffConstants.TIFF_DIRECTORY_FOOTER_LENGTH
 import com.ashampoo.kim.format.tiff.constant.TiffConstants.TIFF_DIRECTORY_HEADER_LENGTH
 import com.ashampoo.kim.format.tiff.constant.TiffConstants.TIFF_ENTRY_LENGTH
@@ -486,8 +487,8 @@ class TiffOutputDirectory(
             add(jpegLengthField)
         }
 
-        removeFieldIfPresent(TiffTag.TIFF_TAG_STRIP_OFFSETS)
-        removeFieldIfPresent(TiffTag.TIFF_TAG_STRIP_BYTE_COUNTS)
+        removeFieldIfPresent(ExifTag.EXIF_TAG_PREVIEW_IMAGE_START_IFD0)
+        removeFieldIfPresent(ExifTag.EXIF_TAG_PREVIEW_IMAGE_LENGTH_IFD0)
         removeFieldIfPresent(TiffTag.TIFF_TAG_TILE_OFFSETS)
         removeFieldIfPresent(TiffTag.TIFF_TAG_TILE_BYTE_COUNTS)
 

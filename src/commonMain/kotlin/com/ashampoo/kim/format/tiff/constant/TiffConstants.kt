@@ -82,6 +82,8 @@ object TiffConstants {
     const val TIFF_INTEROP_IFD = -4
     const val TIFF_MAKER_NOTES = -5
 
+    const val TIFF_MAKER_NOTES_CANON = -6
+
     /** Root directory */
     const val TIFF_IFD0 = 0
 
