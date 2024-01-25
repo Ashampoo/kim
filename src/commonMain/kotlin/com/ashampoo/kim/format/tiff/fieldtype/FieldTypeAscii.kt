@@ -17,6 +17,7 @@
 package com.ashampoo.kim.format.tiff.fieldtype
 
 import com.ashampoo.kim.common.ByteOrder
+import com.ashampoo.kim.common.ImageWriteException
 import com.ashampoo.kim.common.indexOfNullTerminator
 import com.ashampoo.kim.common.slice
 import com.ashampoo.kim.format.tiff.TiffField
@@ -72,7 +73,8 @@ data object FieldTypeAscii : FieldType<String> {
 
     override fun writeData(data: Any, byteOrder: ByteOrder): ByteArray {
 
-        data as String
+        if (data !is String)
+            throw ImageWriteException("ASCII Data must be String")
 
         val bytes = data.encodeToByteArray()
 

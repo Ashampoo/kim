@@ -17,6 +17,7 @@
 package com.ashampoo.kim.format.tiff.fieldtype
 
 import com.ashampoo.kim.common.ByteOrder
+import com.ashampoo.kim.common.ImageWriteException
 import com.ashampoo.kim.common.toBytes
 import com.ashampoo.kim.common.toInts
 import com.ashampoo.kim.format.tiff.TiffField
@@ -39,5 +40,9 @@ data object FieldTypeSLong : FieldType<IntArray> {
         entry.byteArrayValue.toInts(entry.byteOrder)
 
     override fun writeData(data: Any, byteOrder: ByteOrder): ByteArray =
-        (data as IntArray).toBytes(byteOrder)
+        when (data) {
+            is Int -> data.toBytes(byteOrder)
+            is IntArray -> data.toBytes(byteOrder)
+            else -> throw ImageWriteException("Unsupported type: $data")
+        }
 }
