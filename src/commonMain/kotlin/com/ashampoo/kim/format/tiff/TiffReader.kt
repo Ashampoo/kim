@@ -76,6 +76,24 @@ object TiffReader {
             }
         )
 
+        /**
+         * Inspect if MakerNotes are present and could be added as
+         * TiffDirectory. This is true for almost all manufacturers.
+         */
+        addMakerNoteDirectory(directories, byteReader, tiffHeader.byteOrder)
+
+        if (directories.isEmpty())
+            throw ImageReadException("Image did not contain any directories.")
+
+        return TiffContents(tiffHeader, directories)
+    }
+
+    private fun addMakerNoteDirectory(
+        directories: MutableList<TiffDirectory>,
+        byteReader: RandomAccessByteReader,
+        byteOrder: ByteOrder
+    ) {
+
         val makerNoteField = TiffDirectory.findTiffField(
             directories,
             ExifTag.EXIF_TAG_MAKER_NOTE
@@ -83,29 +101,49 @@ object TiffReader {
 
         if (makerNoteField != null && makerNoteField.valueOffset != null) {
 
-            val makeField = TiffDirectory.findTiffField(directories, TiffTag.TIFF_TAG_MAKE)
+            val make = TiffDirectory.findTiffField(
+                directories, TiffTag.TIFF_TAG_MAKE
+            )?.valueDescription?.trim()?.lowercase()
 
-            if (makeField?.valueDescription == "Canon") {
+            if (make != null) {
 
-                // FIXME Somehow not added to toString()
+                if (make.startsWith("canon")) {
 
-                readDirectory(
-                    byteReader = byteReader,
-                    byteOrder = tiffHeader.byteOrder,
-                    directoryOffset = makerNoteField.valueOffset,
-                    directoryType = TiffConstants.TIFF_MAKER_NOTES_CANON,
-                    visitedOffsets = mutableListOf<Int>(),
-                    addDirectory = {
-                        directories.add(it)
-                    }
-                )
+                    readDirectory(
+                        byteReader = byteReader,
+                        byteOrder = byteOrder,
+                        directoryOffset = makerNoteField.valueOffset,
+                        directoryType = TiffConstants.TIFF_MAKER_NOTE_CANON,
+                        visitedOffsets = mutableListOf<Int>(),
+                        addDirectory = {
+                            directories.add(it)
+                        }
+                    )
+                }
+
+//                if (make.startsWith("nikon")) {
+//
+//                    /* Should start with "Nikon" */
+//                    byteReader.readAndVerifyBytes(
+//                        "Nikon signaure",
+//                        "Nikon".encodeToByteArray()
+//                    )
+//
+//                    byteReader.skipBytes("Terminator", 1)
+//
+//                    readDirectory(
+//                        byteReader = byteReader,
+//                        byteOrder = byteOrder,
+//                        directoryOffset = makerNoteField.valueOffset,
+//                        directoryType = TiffConstants.TIFF_MAKER_NOTE_NIKON,
+//                        visitedOffsets = mutableListOf<Int>(),
+//                        addDirectory = {
+//                            directories.add(it)
+//                        }
+//                    )
+//                }
             }
         }
-
-        if (directories.isEmpty())
-            throw ImageReadException("Image did not contain any directories.")
-
-        return TiffContents(tiffHeader, directories)
     }
 
     fun readTiffHeader(byteReader: ByteReader): TiffHeader {

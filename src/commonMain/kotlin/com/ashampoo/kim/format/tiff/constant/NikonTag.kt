@@ -15,27 +15,26 @@
  */
 package com.ashampoo.kim.format.tiff.constant
 
-import com.ashampoo.kim.format.tiff.taginfo.TagInfo
 import com.ashampoo.kim.format.tiff.taginfo.TagInfoUndefineds
 
 /**
- * Canon MakerNote Tags
+ * Nikon MakerNote Tags
  *
- * See https://exiftool.org/TagNames/Canon.html
+ * https://exiftool.org/TagNames/Nikon.html
  */
 @Suppress("MagicNumber", "LargeClass", "StringLiteralDuplication")
-object CanonTag {
+object NikonTag {
 
     /*
      * TODO This list is incomplete
      */
 
-    val CANON_CAMERA_SETTINGS = TagInfoUndefineds(
-        "CanonCameraSettings", 0x0001, TagInfo.LENGTH_UNKNOWN,
-        TiffDirectoryType.EXIF_DIRECTORY_MAKER_NOTE_CANON
+    val MAKER_NOTE_VERSION = TagInfoUndefineds(
+        "MakerNoteVersion", 0x0001, 4,
+        TiffDirectoryType.EXIF_DIRECTORY_MAKER_NOTE_NIKON
     )
 
     val ALL = listOf(
-        CANON_CAMERA_SETTINGS
+        MAKER_NOTE_VERSION
     )
 }

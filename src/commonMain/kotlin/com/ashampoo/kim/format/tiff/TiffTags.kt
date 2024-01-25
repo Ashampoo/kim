@@ -20,6 +20,7 @@ import com.ashampoo.kim.format.tiff.constant.CanonTag
 import com.ashampoo.kim.format.tiff.constant.ExifTag
 import com.ashampoo.kim.format.tiff.constant.ExifTag.EXIF_DIRECTORY_UNKNOWN
 import com.ashampoo.kim.format.tiff.constant.GpsTag
+import com.ashampoo.kim.format.tiff.constant.NikonTag
 import com.ashampoo.kim.format.tiff.constant.TiffConstants
 import com.ashampoo.kim.format.tiff.constant.TiffTag
 import com.ashampoo.kim.format.tiff.taginfo.TagInfo
@@ -30,14 +31,19 @@ internal object TiffTags {
 
     private val TIFF_AND_EXIF_TAGS_MAP = TIFF_AND_EXIF_TAGS.groupByTo(mutableMapOf()) { it.tag }
     private val GPS_TAGS_MAP = GpsTag.ALL_GPS_TAGS.groupByTo(mutableMapOf()) { it.tag }
-    private val CANON_TAGS_MAP = CanonTag.ALL_CANON_TAGS.groupByTo(mutableMapOf()) { it.tag }
+    private val CANON_TAGS_MAP = CanonTag.ALL.groupByTo(mutableMapOf()) { it.tag }
+    private val NIKON_TAGS_MAP = NikonTag.ALL.groupByTo(mutableMapOf()) { it.tag }
 
     fun getTag(directoryType: Int, tag: Int): TagInfo? {
 
+        /*
+         * GPS and Maker Notes should be exact matches.
+         */
         @Suppress("UseIfInsteadOfWhen")
         val possibleMatches = when (directoryType) {
             TiffConstants.TIFF_GPS -> GPS_TAGS_MAP[tag]
-            TiffConstants.TIFF_MAKER_NOTES_CANON -> CANON_TAGS_MAP[tag]
+            TiffConstants.TIFF_MAKER_NOTE_CANON -> CANON_TAGS_MAP[tag]
+            TiffConstants.TIFF_MAKER_NOTE_NIKON -> NIKON_TAGS_MAP[tag]
             else -> TIFF_AND_EXIF_TAGS_MAP[tag]
         } ?: return null
 
