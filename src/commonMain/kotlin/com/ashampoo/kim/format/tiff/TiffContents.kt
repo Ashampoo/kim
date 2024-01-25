@@ -26,7 +26,7 @@ data class TiffContents(
 ) {
 
     fun findMakerNoteData(): ByteArray? =
-        findTiffField(ExifTag.EXIF_TAG_MAKER_NOTE)?.byteArrayValue
+        findTiffField(ExifTag.EXIF_TAG_MAKER_NOTE)?.valueBytes
 
     /*
      * Note: Keep in sync with TiffTags.getTag()

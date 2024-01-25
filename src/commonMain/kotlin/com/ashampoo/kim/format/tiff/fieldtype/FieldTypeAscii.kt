@@ -46,7 +46,7 @@ data object FieldTypeAscii : FieldType<String> {
          * We read it all as one String for simplicity.
          */
 
-        val bytes = entry.byteArrayValue
+        val bytes = entry.valueBytes
 
         val nullTerminatorIndex = bytes.indexOfNullTerminator()
 

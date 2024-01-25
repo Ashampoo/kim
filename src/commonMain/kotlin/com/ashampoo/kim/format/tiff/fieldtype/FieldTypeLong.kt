@@ -35,7 +35,7 @@ data object FieldTypeLong : FieldType<IntArray> {
     override val size: Int = 4
 
     override fun getValue(entry: TiffField): IntArray =
-        entry.byteArrayValue.toInts(entry.byteOrder)
+        entry.valueBytes.toInts(entry.byteOrder)
 
     override fun writeData(data: Any, byteOrder: ByteOrder): ByteArray =
         when (data) {

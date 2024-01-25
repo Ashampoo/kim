@@ -91,7 +91,7 @@ class TiffDirectory(
             return null
         }
 
-        return field.byteArrayValue
+        return field.valueBytes
     }
 
     @Suppress("ThrowsCount")
@@ -105,7 +105,7 @@ class TiffDirectory(
         if (field.count != 1)
             throw ImageReadException("Field ${tag.name} has wrong count ${field.count}")
 
-        return field.byteArrayValue.toInt(field.byteOrder)
+        return field.valueBytes.toInt(field.byteOrder)
     }
 
     @Suppress("ThrowsCount")
@@ -117,7 +117,7 @@ class TiffDirectory(
         if (tag.fieldType != field.fieldType)
             throw ImageReadException("Required field ${tag.name} has incorrect type ${field.fieldType.name}")
 
-        return field.byteArrayValue.toInts(field.byteOrder)
+        return field.valueBytes.toInts(field.byteOrder)
     }
 
     fun getJpegRawImageDataElement(): ImageDataElement {

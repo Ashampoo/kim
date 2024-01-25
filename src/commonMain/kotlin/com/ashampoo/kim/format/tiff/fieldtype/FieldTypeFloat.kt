@@ -35,7 +35,7 @@ object FieldTypeFloat : FieldType<FloatArray> {
     override val size: Int = 4
 
     override fun getValue(entry: TiffField): FloatArray =
-        entry.byteArrayValue.toFloats(entry.byteOrder)
+        entry.valueBytes.toFloats(entry.byteOrder)
 
     override fun writeData(data: Any, byteOrder: ByteOrder): ByteArray =
         when (data) {

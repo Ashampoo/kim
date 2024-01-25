@@ -35,7 +35,7 @@ object FieldTypeDouble : FieldType<DoubleArray> {
     override val size: Int = 8
 
     override fun getValue(entry: TiffField): DoubleArray =
-        entry.byteArrayValue.toDoubles(entry.byteOrder)
+        entry.valueBytes.toDoubles(entry.byteOrder)
 
     override fun writeData(data: Any, byteOrder: ByteOrder): ByteArray =
         when (data) {

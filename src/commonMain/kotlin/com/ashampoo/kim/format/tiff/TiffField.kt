@@ -21,7 +21,6 @@ import com.ashampoo.kim.common.HEX_RADIX
 import com.ashampoo.kim.common.ImageReadException
 import com.ashampoo.kim.common.RationalNumber
 import com.ashampoo.kim.common.RationalNumbers
-import com.ashampoo.kim.common.head
 import com.ashampoo.kim.common.toSingleNumberHexes
 import com.ashampoo.kim.format.tiff.TiffTags.getTag
 import com.ashampoo.kim.format.tiff.fieldtype.FieldType
@@ -60,10 +59,6 @@ class TiffField(
 
     /** TagInfo, if the tag is found in our registry. */
     val tagInfo: TagInfo? = getTag(directoryType, tag)
-
-    val bytesLength: Int = count.toInt() * fieldType.size
-
-    val byteArrayValue: ByteArray = valueBytes.head(bytesLength)
 
     val value: Any = if (tagInfo is TagInfoGpsText)
         tagInfo.getValue(this)

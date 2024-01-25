@@ -18,6 +18,7 @@ package com.ashampoo.kim.format.tiff
 
 import com.ashampoo.kim.common.ByteOrder
 import com.ashampoo.kim.common.ImageReadException
+import com.ashampoo.kim.common.head
 import com.ashampoo.kim.common.toInt
 import com.ashampoo.kim.format.tiff.constant.ExifTag
 import com.ashampoo.kim.format.tiff.constant.TiffConstants
@@ -301,7 +302,7 @@ object TiffReader {
 
             } else {
 
-                valueOrOffsetBytes
+                valueOrOffsetBytes.head(valueLength)
             }
 
             fields.add(

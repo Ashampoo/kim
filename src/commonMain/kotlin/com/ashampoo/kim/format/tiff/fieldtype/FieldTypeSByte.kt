@@ -33,7 +33,7 @@ data object FieldTypeSByte : FieldType<ByteArray> {
     override val size: Int = 1
 
     override fun getValue(entry: TiffField): ByteArray =
-        entry.byteArrayValue
+        entry.valueBytes
 
     override fun writeData(data: Any, byteOrder: ByteOrder): ByteArray =
         when (data) {

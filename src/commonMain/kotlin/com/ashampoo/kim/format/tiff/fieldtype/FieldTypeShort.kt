@@ -35,7 +35,7 @@ data object FieldTypeShort : FieldType<ShortArray> {
     override val size: Int = 2
 
     override fun getValue(entry: TiffField): ShortArray =
-        entry.byteArrayValue.toShorts(entry.byteOrder)
+        entry.valueBytes.toShorts(entry.byteOrder)
 
     override fun writeData(data: Any, byteOrder: ByteOrder): ByteArray =
         when (data) {
