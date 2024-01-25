@@ -36,12 +36,12 @@ open class TagInfoLong : TagInfo {
         tag: Int,
         directoryType: TiffDirectoryType?,
         isOffset: Boolean
-    ) : super(name, tag, listOf(FieldTypeLong), 1, directoryType, isOffset)
+    ) : super(name, tag, FieldTypeLong, 1, directoryType, isOffset)
 
     constructor(
         name: String,
         tag: Int,
-        dataTypes: List<FieldType<out Any>>,
+        dataTypes: FieldType<out Any>,
         length: Int,
         exifDirectory: TiffDirectoryType?,
         isOffset: Boolean

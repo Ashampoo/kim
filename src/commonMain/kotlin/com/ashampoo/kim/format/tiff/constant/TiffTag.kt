@@ -18,7 +18,6 @@ package com.ashampoo.kim.format.tiff.constant
 
 import com.ashampoo.kim.format.tiff.constant.TiffDirectoryType.TIFF_DIRECTORY_IFD0
 import com.ashampoo.kim.format.tiff.taginfo.TagInfo
-import com.ashampoo.kim.format.tiff.taginfo.TagInfoAny
 import com.ashampoo.kim.format.tiff.taginfo.TagInfoAscii
 import com.ashampoo.kim.format.tiff.taginfo.TagInfoByte
 import com.ashampoo.kim.format.tiff.taginfo.TagInfoBytes
@@ -438,13 +437,19 @@ object TiffTag {
     const val SAMPLE_FORMAT_VALUE_COMPLEX_INTEGER = 5
     const val SAMPLE_FORMAT_VALUE_IEEE_COMPLEX_FLOAT = 6
 
-    val TIFF_TAG_SMIN_SAMPLE_VALUE = TagInfoAny(
-        "SMinSampleValue", 0x154, -1,
+    /**
+     * This field specifies the minimum sample value.
+     */
+    val TIFF_TAG_SMIN_SAMPLE_VALUE = TagInfoShort(
+        "SMinSampleValue", 0x154,
         TIFF_DIRECTORY_IFD0
     )
 
-    val TIFF_TAG_SMAX_SAMPLE_VALUE = TagInfoAny(
-        "SMaxSampleValue", 0x155, -1,
+    /**
+     * This field specifies the maximum sample value.
+     */
+    val TIFF_TAG_SMAX_SAMPLE_VALUE = TagInfoShort(
+        "SMaxSampleValue", 0x155,
         TIFF_DIRECTORY_IFD0
     )
 

@@ -37,7 +37,7 @@ open class TagInfoLongs : TagInfo {
         length: Int,
         directoryType: TiffDirectoryType?,
         isOffset: Boolean
-    ) : super(name, tag, listOf(FieldTypeLong), length, directoryType, isOffset)
+    ) : super(name, tag, FieldTypeLong, length, directoryType, isOffset)
 
     fun getValue(byteOrder: ByteOrder, bytes: ByteArray): IntArray =
         bytes.toInts(byteOrder)

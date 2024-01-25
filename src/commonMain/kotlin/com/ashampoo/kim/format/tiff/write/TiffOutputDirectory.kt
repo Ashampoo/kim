@@ -335,7 +335,7 @@ class TiffOutputDirectory(
 
         val tiffOutputField = TiffOutputField(
             tagInfo.tag,
-            tagInfo, tagInfo.fieldTypes[0], bytes.size, bytes
+            tagInfo, tagInfo.fieldType, bytes.size, bytes
         )
 
         add(tiffOutputField)

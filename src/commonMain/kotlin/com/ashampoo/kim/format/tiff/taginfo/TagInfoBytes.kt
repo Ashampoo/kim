@@ -32,14 +32,6 @@ open class TagInfoBytes : TagInfo {
     constructor(
         name: String,
         tag: Int,
-        fieldTypes: List<FieldType<out Any>>,
-        length: Int,
-        directoryType: TiffDirectoryType?
-    ) : super(name, tag, fieldTypes, length, directoryType)
-
-    constructor(
-        name: String,
-        tag: Int,
         fieldType: FieldType<out Any>,
         length: Int,
         directoryType: TiffDirectoryType?

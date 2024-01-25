@@ -96,7 +96,7 @@ class TiffDirectory(
 
         val field = findField(tag) ?: return null
 
-        if (!tag.fieldTypes.contains(field.fieldType))
+        if (tag.fieldType != field.fieldType)
             throw ImageReadException("Required field ${tag.name} has incorrect type ${field.fieldType.name}")
 
         if (field.count != 1)
@@ -111,7 +111,7 @@ class TiffDirectory(
         val field = findField(tag)
             ?: throw ImageReadException("Required field ${tag.name} is missing")
 
-        if (!tag.fieldTypes.contains(field.fieldType))
+        if (tag.fieldType != field.fieldType)
             throw ImageReadException("Required field ${tag.name} has incorrect type ${field.fieldType.name}")
 
         return tag.getValue(field.byteOrder, field.byteArrayValue)
