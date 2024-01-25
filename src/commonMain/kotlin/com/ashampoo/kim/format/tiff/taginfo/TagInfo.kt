@@ -16,7 +16,6 @@
  */
 package com.ashampoo.kim.format.tiff.taginfo
 
-import com.ashampoo.kim.common.ByteOrder
 import com.ashampoo.kim.common.HEX_RADIX
 import com.ashampoo.kim.format.tiff.TiffField
 import com.ashampoo.kim.format.tiff.constant.ExifTag.EXIF_DIRECTORY_UNKNOWN
@@ -48,9 +47,6 @@ open class TagInfo(
      */
     open fun getValue(entry: TiffField): Any =
         entry.fieldType.getValue(entry)
-
-    open fun encodeValue(fieldType: FieldType<out Any>, value: Any, byteOrder: ByteOrder): ByteArray =
-        fieldType.writeData(value, byteOrder)
 
     override fun toString(): String =
         description

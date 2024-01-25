@@ -25,6 +25,7 @@ import com.ashampoo.kim.format.tiff.constant.TiffDirectoryType
 import com.ashampoo.kim.format.tiff.constant.TiffTag
 import com.ashampoo.kim.format.tiff.taginfo.TagInfo
 import com.ashampoo.kim.format.tiff.taginfo.TagInfoBytes
+import com.ashampoo.kim.format.tiff.taginfo.TagInfoGpsText
 import com.ashampoo.kim.format.tiff.taginfo.TagInfoLong
 import com.ashampoo.kim.format.tiff.taginfo.TagInfoLongs
 import com.ashampoo.kim.format.tiff.write.TiffOutputDirectory
@@ -166,7 +167,10 @@ class TiffDirectory(
                         continue
                 }
 
-                val bytes = tagInfo.encodeValue(fieldType, value, byteOrder)
+                val bytes = if (tagInfo is TagInfoGpsText)
+                    tagInfo.encodeValue(value)
+                else
+                    fieldType.writeData(value, byteOrder)
 
                 val count = bytes.size / fieldType.size
 

@@ -38,7 +38,6 @@ import com.ashampoo.kim.format.tiff.fieldtype.FieldTypeSLong
 import com.ashampoo.kim.format.tiff.fieldtype.FieldTypeSRational
 import com.ashampoo.kim.format.tiff.fieldtype.FieldTypeSShort
 import com.ashampoo.kim.format.tiff.fieldtype.FieldTypeShort
-import com.ashampoo.kim.format.tiff.fieldtype.FieldTypeUndefined
 import com.ashampoo.kim.format.tiff.taginfo.TagInfo
 import com.ashampoo.kim.format.tiff.taginfo.TagInfoAscii
 import com.ashampoo.kim.format.tiff.taginfo.TagInfoByte
@@ -331,7 +330,7 @@ class TiffOutputDirectory(
 
     fun add(tagInfo: TagInfoGpsText, value: String) {
 
-        val bytes = tagInfo.encodeValue(FieldTypeUndefined, value, byteOrder)
+        val bytes = tagInfo.encodeValue(value)
 
         val tiffOutputField = TiffOutputField(
             tagInfo.tag,

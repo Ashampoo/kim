@@ -16,7 +16,6 @@
  */
 package com.ashampoo.kim.format.tiff.taginfo
 
-import com.ashampoo.kim.common.ByteOrder
 import com.ashampoo.kim.common.ImageReadException
 import com.ashampoo.kim.common.ImageWriteException
 import com.ashampoo.kim.common.decodeLatin1BytesToString
@@ -25,7 +24,6 @@ import com.ashampoo.kim.common.isEquals
 import com.ashampoo.kim.common.slice
 import com.ashampoo.kim.format.tiff.TiffField
 import com.ashampoo.kim.format.tiff.constant.TiffDirectoryType
-import com.ashampoo.kim.format.tiff.fieldtype.FieldType
 import com.ashampoo.kim.format.tiff.fieldtype.FieldTypeAscii
 import com.ashampoo.kim.format.tiff.fieldtype.FieldTypeByte
 import com.ashampoo.kim.format.tiff.fieldtype.FieldTypeUndefined
@@ -45,7 +43,7 @@ class TagInfoGpsText(
     override fun isText(): Boolean =
         true
 
-    override fun encodeValue(fieldType: FieldType<out Any>, value: Any, byteOrder: ByteOrder): ByteArray {
+    fun encodeValue(value: Any): ByteArray {
 
         if (value !is String)
             throw ImageWriteException("GPS text value not String: $value")
