@@ -16,7 +16,6 @@
  */
 package com.ashampoo.kim.format.tiff
 
-import com.ashampoo.kim.format.tiff.constant.ExifTag
 import com.ashampoo.kim.format.tiff.taginfo.TagInfo
 import com.ashampoo.kim.format.tiff.write.TiffOutputSet
 
@@ -25,19 +24,8 @@ data class TiffContents(
     val directories: List<TiffDirectory>
 ) {
 
-    fun findMakerNoteData(): ByteArray? =
-        findTiffField(ExifTag.EXIF_TAG_MAKER_NOTE)?.valueBytes
-
-    /*
-     * Note: Keep in sync with TiffTags.getTag()
-     */
-    @Suppress("UnnecessaryParentheses")
     fun findTiffField(tagInfo: TagInfo): TiffField? =
-        directories.firstOrNull { directory ->
-            directory.type == tagInfo.directoryType?.directoryType ||
-                (tagInfo.directoryType?.isImageDirectory == true && directory.type >= 0) ||
-                (tagInfo.directoryType?.isImageDirectory == false && directory.type < 0)
-        }?.findField(tagInfo)
+        TiffDirectory.findTiffField(directories, tagInfo)
 
     fun findTiffDirectory(directoryType: Int): TiffDirectory? =
         directories.find { it.type == directoryType }

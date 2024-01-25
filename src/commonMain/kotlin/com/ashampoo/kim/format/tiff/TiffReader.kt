@@ -75,6 +75,8 @@ object TiffReader {
             }
         )
 
+
+
         if (directories.isEmpty())
             throw ImageReadException("Image did not contain any directories.")
 

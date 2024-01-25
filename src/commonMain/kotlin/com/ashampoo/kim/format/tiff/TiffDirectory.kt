@@ -246,5 +246,16 @@ class TiffDirectory(
                 else -> "Bad Type"
             }
         }
+
+        /*
+         * Note: Keep in sync with TiffTags.getTag()
+         */
+        @Suppress("UnnecessaryParentheses")
+        fun findTiffField(directories: List<TiffDirectory>, tagInfo: TagInfo): TiffField? =
+            directories.firstOrNull { directory ->
+                directory.type == tagInfo.directoryType?.directoryType ||
+                    (tagInfo.directoryType?.isImageDirectory == true && directory.type >= 0) ||
+                    (tagInfo.directoryType?.isImageDirectory == false && directory.type < 0)
+            }?.findField(tagInfo)
     }
 }
