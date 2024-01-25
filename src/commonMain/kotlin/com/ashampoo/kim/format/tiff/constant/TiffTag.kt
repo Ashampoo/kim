@@ -17,6 +17,7 @@
 package com.ashampoo.kim.format.tiff.constant
 
 import com.ashampoo.kim.format.tiff.constant.TiffDirectoryType.TIFF_DIRECTORY_IFD0
+import com.ashampoo.kim.format.tiff.taginfo.TagInfo
 import com.ashampoo.kim.format.tiff.taginfo.TagInfoAscii
 import com.ashampoo.kim.format.tiff.taginfo.TagInfoByte
 import com.ashampoo.kim.format.tiff.taginfo.TagInfoBytes
@@ -67,7 +68,7 @@ object TiffTag {
     )
 
     val TIFF_TAG_BITS_PER_SAMPLE = TagInfoShorts(
-        "BitsPerSample", 0x0102, -1,
+        "BitsPerSample", 0x0102, TagInfo.LENGTH_UNKNOWN,
         TIFF_DIRECTORY_IFD0
     )
 
@@ -155,22 +156,22 @@ object TiffTag {
     const val FILL_ORDER_VALUE_REVERSED = 2
 
     val TIFF_TAG_DOCUMENT_NAME = TagInfoAscii(
-        "DocumentName", 0x10D, -1,
+        "DocumentName", 0x10D, TagInfo.LENGTH_UNKNOWN,
         TIFF_DIRECTORY_IFD0
     )
 
     val TIFF_TAG_IMAGE_DESCRIPTION = TagInfoAscii(
-        "ImageDescription", 0x10E, -1,
+        "ImageDescription", 0x10E, TagInfo.LENGTH_UNKNOWN,
         TIFF_DIRECTORY_IFD0
     )
 
     val TIFF_TAG_MAKE = TagInfoAscii(
-        "Make", 0x10F, -1,
+        "Make", 0x10F, TagInfo.LENGTH_UNKNOWN,
         TIFF_DIRECTORY_IFD0
     )
 
     val TIFF_TAG_MODEL = TagInfoAscii(
-        "Model", 0x0110, -1,
+        "Model", 0x0110, TagInfo.LENGTH_UNKNOWN,
         TIFF_DIRECTORY_IFD0
     )
 
@@ -214,12 +215,12 @@ object TiffTag {
     )
 
     val TIFF_TAG_MIN_SAMPLE_VALUE = TagInfoShorts(
-        "MinSampleValue", 0x0118, -1,
+        "MinSampleValue", 0x0118, TagInfo.LENGTH_UNKNOWN,
         TIFF_DIRECTORY_IFD0
     )
 
     val TIFF_TAG_MAX_SAMPLE_VALUE = TagInfoShorts(
-        "MaxSampleValue", 0x0119, -1,
+        "MaxSampleValue", 0x0119, TagInfo.LENGTH_UNKNOWN,
         TIFF_DIRECTORY_IFD0
     )
 
@@ -242,27 +243,27 @@ object TiffTag {
     const val PLANAR_CONFIGURATION_VALUE_PLANAR = 2
 
     val TIFF_TAG_PAGE_NAME = TagInfoAscii(
-        "PageName", 0x11D, -1,
+        "PageName", 0x11D, TagInfo.LENGTH_UNKNOWN,
         TIFF_DIRECTORY_IFD0
     )
 
     val TIFF_TAG_XPOSITION = TagInfoRationals(
-        "XPosition", 0x11E, -1,
+        "XPosition", 0x11E, TagInfo.LENGTH_UNKNOWN,
         TIFF_DIRECTORY_IFD0
     )
 
     val TIFF_TAG_YPOSITION = TagInfoRationals(
-        "YPosition", 0x11F, -1,
+        "YPosition", 0x11F, TagInfo.LENGTH_UNKNOWN,
         TIFF_DIRECTORY_IFD0
     )
 
     val TIFF_TAG_FREE_OFFSETS = TagInfoLongs(
-        "FreeOffsets", 0x120, -1,
+        "FreeOffsets", 0x120, TagInfo.LENGTH_UNKNOWN,
         TIFF_DIRECTORY_IFD0
     )
 
     val TIFF_TAG_FREE_BYTE_COUNTS = TagInfoLongs(
-        "FreeByteCounts", 0x121, -1,
+        "FreeByteCounts", 0x121, TagInfo.LENGTH_UNKNOWN,
         TIFF_DIRECTORY_IFD0
     )
 
@@ -278,7 +279,7 @@ object TiffTag {
     const val GRAY_RESPONSE_UNIT_VALUE_0_00001 = 5
 
     val TIFF_TAG_GRAY_RESPONSE_CURVE = TagInfoShorts(
-        "GrayResponseCurve", 0x123, -1,
+        "GrayResponseCurve", 0x123, TagInfo.LENGTH_UNKNOWN,
         TIFF_DIRECTORY_IFD0
     )
 
@@ -307,12 +308,12 @@ object TiffTag {
     )
 
     val TIFF_TAG_TRANSFER_FUNCTION = TagInfoShorts(
-        "TransferFunction", 0x12D, -1,
+        "TransferFunction", 0x12D, TagInfo.LENGTH_UNKNOWN,
         TIFF_DIRECTORY_IFD0
     )
 
     val TIFF_TAG_SOFTWARE = TagInfoAscii(
-        "Software", 0x131, -1,
+        "Software", 0x131, TagInfo.LENGTH_UNKNOWN,
         TIFF_DIRECTORY_IFD0
     )
 
@@ -322,12 +323,12 @@ object TiffTag {
     )
 
     val TIFF_TAG_ARTIST = TagInfoAscii(
-        "Artist", 0x13B, -1,
+        "Artist", 0x13B, TagInfo.LENGTH_UNKNOWN,
         TIFF_DIRECTORY_IFD0
     )
 
     val TIFF_TAG_HOST_COMPUTER = TagInfoAscii(
-        "HostComputer", 0x13C, -1,
+        "HostComputer", 0x13C, TagInfo.LENGTH_UNKNOWN,
         TIFF_DIRECTORY_IFD0
     )
 
@@ -351,7 +352,7 @@ object TiffTag {
     )
 
     val TIFF_TAG_COLOR_MAP = TagInfoShorts(
-        "ColorMap", 0x140, -1,
+        "ColorMap", 0x140, TagInfo.LENGTH_UNKNOWN,
         TIFF_DIRECTORY_IFD0
     )
 
@@ -377,7 +378,7 @@ object TiffTag {
     )
 
     val TIFF_TAG_TILE_OFFSETS = TagInfoLongs(
-        "TileOffsets", 0x144, -1,
+        "TileOffsets", 0x144, TagInfo.LENGTH_UNKNOWN,
         TIFF_DIRECTORY_IFD0, true
     )
 
@@ -394,7 +395,7 @@ object TiffTag {
     const val INK_SET_VALUE_NOT_CMYK = 2
 
     val TIFF_TAG_INK_NAMES = TagInfoAscii(
-        "InkNames", 0x14D, -1,
+        "InkNames", 0x14D, TagInfo.LENGTH_UNKNOWN,
         TIFF_DIRECTORY_IFD0
     )
 
@@ -411,12 +412,12 @@ object TiffTag {
     )
 
     val TIFF_TAG_TARGET_PRINTER = TagInfoAscii(
-        "TargetPrinter", 0x151, -1,
+        "TargetPrinter", 0x151, TagInfo.LENGTH_UNKNOWN,
         TIFF_DIRECTORY_IFD0
     )
 
     val TIFF_TAG_EXTRA_SAMPLES = TagInfoShorts(
-        "ExtraSamples", 0x152, -1,
+        "ExtraSamples", 0x152, TagInfo.LENGTH_UNKNOWN,
         TIFF_DIRECTORY_IFD0
     )
 
@@ -424,7 +425,7 @@ object TiffTag {
     const val EXTRA_SAMPLE_UNASSOCIATED_ALPHA = 2
 
     val TIFF_TAG_SAMPLE_FORMAT = TagInfoShorts(
-        "SampleFormat", 0x153, -1,
+        "SampleFormat", 0x153, TagInfo.LENGTH_UNKNOWN,
         TIFF_DIRECTORY_IFD0
     )
 
@@ -487,27 +488,27 @@ object TiffTag {
     )
 
     val TIFF_TAG_JPEG_LOSSLESS_PREDICTORS = TagInfoShorts(
-        "JPEGLosslessPredictors", 0x205, -1,
+        "JPEGLosslessPredictors", 0x205, TagInfo.LENGTH_UNKNOWN,
         TIFF_DIRECTORY_IFD0
     )
 
     val TIFF_TAG_JPEG_POINT_TRANSFORMS = TagInfoShorts(
-        "JPEGPointTransforms", 0x206, -1,
+        "JPEGPointTransforms", 0x206, TagInfo.LENGTH_UNKNOWN,
         TIFF_DIRECTORY_IFD0
     )
 
     val TIFF_TAG_JPEG_QTABLES = TagInfoLongs(
-        "JPEGQTables", 0x207, -1,
+        "JPEGQTables", 0x207, TagInfo.LENGTH_UNKNOWN,
         TIFF_DIRECTORY_IFD0
     )
 
     val TIFF_TAG_JPEG_DCTABLES = TagInfoLongs(
-        "JPEGDCTables", 0x208, -1,
+        "JPEGDCTables", 0x208, TagInfo.LENGTH_UNKNOWN,
         TIFF_DIRECTORY_IFD0
     )
 
     val TIFF_TAG_JPEG_ACTABLES = TagInfoLongs(
-        "JPEGACTables", 0x209, -1,
+        "JPEGACTables", 0x209, TagInfo.LENGTH_UNKNOWN,
         TIFF_DIRECTORY_IFD0
     )
 
@@ -530,20 +531,20 @@ object TiffTag {
     const val YCB_CR_POSITIONING_VALUE_CO_SITED = 2
 
     val TIFF_TAG_REFERENCE_BLACK_WHITE = TagInfoLongs(
-        "ReferenceBlackWhite", 0x214, -1, TIFF_DIRECTORY_IFD0
+        "ReferenceBlackWhite", 0x214, TagInfo.LENGTH_UNKNOWN, TIFF_DIRECTORY_IFD0
     )
 
     val TIFF_TAG_COPYRIGHT = TagInfoAscii(
-        "Copyright", 0x8298, -1, TIFF_DIRECTORY_IFD0
+        "Copyright", 0x8298, TagInfo.LENGTH_UNKNOWN, TIFF_DIRECTORY_IFD0
     )
 
     val TIFF_TAG_XMP = TagInfoBytes(
-        "XMP", 0x2BC, -1, TIFF_DIRECTORY_IFD0
+        "XMP", 0x2BC, TagInfo.LENGTH_UNKNOWN, TIFF_DIRECTORY_IFD0
     )
 
     /** Panasonic RW2 special tag. */
     val TIFF_TAG_JPG_FROM_RAW = TagInfoBytes(
-        "JpgFromRaw", 0x002E, -1, TIFF_DIRECTORY_IFD0
+        "JpgFromRaw", 0x002E, TagInfo.LENGTH_UNKNOWN, TIFF_DIRECTORY_IFD0
     )
 
     /** Required field for all DNGs. Can be used to detect if TIFF is a DNG. */
