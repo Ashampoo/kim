@@ -26,18 +26,19 @@ import com.ashampoo.kim.format.tiff.taginfo.TagInfo
 
 internal object TiffTags {
 
-    private val ALL_TAGS = TiffTag.ALL_TIFF_TAGS + ExifTag.ALL_EXIF_TAGS + GpsTag.ALL_GPS_TAGS
+    private val TIFF_AND_EXIF_TAGS = TiffTag.ALL_TIFF_TAGS + ExifTag.ALL_EXIF_TAGS
 
-    private val ALL_TAG_MAP = ALL_TAGS.groupByTo(mutableMapOf()) { it.tag }
-
-    private val ALL_CANON_TAG_MAP = CanonTag.ALL_CANON_TAGS.groupByTo(mutableMapOf()) { it.tag }
+    private val TIFF_AND_EXIF_TAGS_MAP = TIFF_AND_EXIF_TAGS.groupByTo(mutableMapOf()) { it.tag }
+    private val GPS_TAGS_MAP = GpsTag.ALL_GPS_TAGS.groupByTo(mutableMapOf()) { it.tag }
+    private val CANON_TAGS_MAP = CanonTag.ALL_CANON_TAGS.groupByTo(mutableMapOf()) { it.tag }
 
     fun getTag(directoryType: Int, tag: Int): TagInfo? {
 
         @Suppress("UseIfInsteadOfWhen")
         val possibleMatches = when (directoryType) {
-            TiffConstants.TIFF_MAKER_NOTES_CANON -> ALL_CANON_TAG_MAP[tag]
-            else -> ALL_TAG_MAP[tag]
+            TiffConstants.TIFF_GPS -> GPS_TAGS_MAP[tag]
+            TiffConstants.TIFF_MAKER_NOTES_CANON -> CANON_TAGS_MAP[tag]
+            else -> TIFF_AND_EXIF_TAGS_MAP[tag]
         } ?: return null
 
         return getTag(directoryType, possibleMatches)
