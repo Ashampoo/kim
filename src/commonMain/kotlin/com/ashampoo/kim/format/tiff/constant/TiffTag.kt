@@ -20,7 +20,7 @@ import com.ashampoo.kim.format.tiff.constant.TiffDirectoryType.TIFF_DIRECTORY_IF
 import com.ashampoo.kim.format.tiff.taginfo.TagInfo
 import com.ashampoo.kim.format.tiff.taginfo.TagInfoAny
 import com.ashampoo.kim.format.tiff.taginfo.TagInfoAscii
-import com.ashampoo.kim.format.tiff.taginfo.TagInfoByteOrShort
+import com.ashampoo.kim.format.tiff.taginfo.TagInfoByte
 import com.ashampoo.kim.format.tiff.taginfo.TagInfoBytes
 import com.ashampoo.kim.format.tiff.taginfo.TagInfoLong
 import com.ashampoo.kim.format.tiff.taginfo.TagInfoLongs
@@ -406,9 +406,11 @@ object TiffTag {
         TIFF_DIRECTORY_IFD0
     )
 
-    val TIFF_TAG_DOT_RANGE = TagInfoByteOrShort(
-        "DotRange", 0x150, -1,
-        TIFF_DIRECTORY_IFD0
+    /**
+     * The component values that correspond to a 0% dot and 100% dot.
+     */
+    val TIFF_TAG_DOT_RANGE = TagInfoByte(
+        "DotRange", 0x150, TIFF_DIRECTORY_IFD0
     )
 
     val TIFF_TAG_TARGET_PRINTER = TagInfoAscii(

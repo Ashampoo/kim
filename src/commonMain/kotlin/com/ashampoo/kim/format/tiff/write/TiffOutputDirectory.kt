@@ -42,7 +42,6 @@ import com.ashampoo.kim.format.tiff.fieldtype.FieldTypeUndefined
 import com.ashampoo.kim.format.tiff.taginfo.TagInfo
 import com.ashampoo.kim.format.tiff.taginfo.TagInfoAscii
 import com.ashampoo.kim.format.tiff.taginfo.TagInfoByte
-import com.ashampoo.kim.format.tiff.taginfo.TagInfoByteOrShort
 import com.ashampoo.kim.format.tiff.taginfo.TagInfoBytes
 import com.ashampoo.kim.format.tiff.taginfo.TagInfoDouble
 import com.ashampoo.kim.format.tiff.taginfo.TagInfoDoubles
@@ -324,36 +323,6 @@ class TiffOutputDirectory(
         val tiffOutputField = TiffOutputField(
             tagInfo.tag,
             tagInfo, FieldTypeDouble,
-            values.size, bytes
-        )
-
-        add(tiffOutputField)
-    }
-
-    fun add(tagInfo: TagInfoByteOrShort, values: ByteArray) {
-
-        checkMatchingLength(tagInfo, values.size)
-
-        val bytes = tagInfo.encodeValue(values)
-
-        val tiffOutputField = TiffOutputField(
-            tagInfo.tag,
-            tagInfo, FieldTypeByte, values.size,
-            bytes
-        )
-
-        add(tiffOutputField)
-    }
-
-    fun add(tagInfo: TagInfoByteOrShort, values: ShortArray) {
-
-        checkMatchingLength(tagInfo, values.size)
-
-        val bytes = tagInfo.encodeValue(byteOrder, values)
-
-        val tiffOutputField = TiffOutputField(
-            tagInfo.tag,
-            tagInfo, FieldTypeShort,
             values.size, bytes
         )
 
