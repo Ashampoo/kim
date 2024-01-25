@@ -67,7 +67,7 @@ class TagInfoGpsText(
         return result
     }
 
-    override fun getValue(entry: TiffField): String {
+    fun getValue(entry: TiffField): String {
 
         val fieldType = entry.fieldType
 

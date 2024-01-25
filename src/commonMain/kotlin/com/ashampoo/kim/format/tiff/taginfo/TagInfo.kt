@@ -17,7 +17,6 @@
 package com.ashampoo.kim.format.tiff.taginfo
 
 import com.ashampoo.kim.common.HEX_RADIX
-import com.ashampoo.kim.format.tiff.TiffField
 import com.ashampoo.kim.format.tiff.constant.ExifTag.EXIF_DIRECTORY_UNKNOWN
 import com.ashampoo.kim.format.tiff.constant.TiffDirectoryType
 import com.ashampoo.kim.format.tiff.fieldtype.FieldType
@@ -37,16 +36,6 @@ open class TagInfo(
 
     val description: String =
         "$tagFormatted $name"
-
-    /**
-     * @param entry the TIFF field whose value to return
-     * @return the value of the TIFF field
-     *
-     * Implementation detail: This indirection exists because
-     * [TagInfoGpsText] has some special logic to interpret the value.
-     */
-    open fun getValue(entry: TiffField): Any =
-        entry.fieldType.getValue(entry)
 
     override fun toString(): String =
         description

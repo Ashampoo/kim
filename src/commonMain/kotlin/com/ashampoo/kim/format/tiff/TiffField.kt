@@ -26,6 +26,7 @@ import com.ashampoo.kim.common.toSingleNumberHexes
 import com.ashampoo.kim.format.tiff.TiffTags.getTag
 import com.ashampoo.kim.format.tiff.fieldtype.FieldType
 import com.ashampoo.kim.format.tiff.taginfo.TagInfo
+import com.ashampoo.kim.format.tiff.taginfo.TagInfoGpsText
 
 /**
  * A TIFF field in a TIFF directory.
@@ -63,7 +64,10 @@ class TiffField(
 
     val byteArrayValue: ByteArray = valueBytes.head(bytesLength)
 
-    val value: Any = tagInfo.getValue(this)
+    val value: Any = if (tagInfo is TagInfoGpsText)
+        tagInfo.getValue(this)
+    else
+        fieldType.getValue(this)
 
     val valueDescription: String by lazy {
         try {
@@ -151,12 +155,6 @@ class TiffField(
 
         if (value is IntArray)
             return value.copyOf()
-
-//        if (value is RationalNumberArray) {
-//            return value.rationalNumbers.map {
-//                it.doubleValue().toInt()
-//            }.toIntArray()
-//        }
 
         if (value is ShortArray) {
 
