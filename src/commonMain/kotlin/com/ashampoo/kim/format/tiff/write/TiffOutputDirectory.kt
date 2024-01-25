@@ -64,7 +64,6 @@ import com.ashampoo.kim.format.tiff.taginfo.TagInfoSRationals
 import com.ashampoo.kim.format.tiff.taginfo.TagInfoSShort
 import com.ashampoo.kim.format.tiff.taginfo.TagInfoSShorts
 import com.ashampoo.kim.format.tiff.taginfo.TagInfoShort
-import com.ashampoo.kim.format.tiff.taginfo.TagInfoShortOrRational
 import com.ashampoo.kim.format.tiff.taginfo.TagInfoShorts
 import com.ashampoo.kim.format.tiff.write.TiffOutputItem.Companion.UNDEFINED_VALUE
 import com.ashampoo.kim.output.BinaryByteWriter
@@ -358,37 +357,6 @@ class TiffOutputDirectory(
             tagInfo.tag,
             tagInfo, FieldTypeShort,
             values.size, bytes
-        )
-
-        add(tiffOutputField)
-    }
-
-    fun add(tagInfo: TagInfoShortOrRational, values: ShortArray) {
-
-        checkMatchingLength(tagInfo, values.size)
-
-        val bytes = tagInfo.encodeValue(byteOrder, values)
-
-        val tiffOutputField = TiffOutputField(
-            tagInfo.tag,
-            tagInfo, FieldTypeShort,
-            values.size, bytes
-        )
-
-        add(tiffOutputField)
-    }
-
-    fun add(tagInfo: TagInfoShortOrRational, value: RationalNumbers) {
-
-        checkMatchingLength(tagInfo, value.values.size)
-
-        val bytes: ByteArray = tagInfo.encodeValue(byteOrder, value)
-
-        val tiffOutputField = TiffOutputField(
-            tagInfo.tag,
-            tagInfo, FieldTypeRational,
-            value.values.size,
-            bytes
         )
 
         add(tiffOutputField)
