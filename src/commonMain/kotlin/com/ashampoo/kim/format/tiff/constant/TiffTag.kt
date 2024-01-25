@@ -27,12 +27,13 @@ import com.ashampoo.kim.format.tiff.taginfo.TagInfoLongs
 import com.ashampoo.kim.format.tiff.taginfo.TagInfoRational
 import com.ashampoo.kim.format.tiff.taginfo.TagInfoRationals
 import com.ashampoo.kim.format.tiff.taginfo.TagInfoShort
-import com.ashampoo.kim.format.tiff.taginfo.TagInfoShortOrLong
 import com.ashampoo.kim.format.tiff.taginfo.TagInfoShorts
 import com.ashampoo.kim.format.tiff.taginfo.TagInfoUnknowns
 
 /**
  * http://partners.adobe.com/public/developer/en/tiff/TIFF6.pdf
+ * https://exiftool.org/TagNames/EXIF.html
+ * https://exiv2.org/tags.html
  */
 @Suppress("MagicNumber", "VariableMaxLength", "UnderscoresInNumericLiterals")
 object TiffTag {
@@ -60,14 +61,12 @@ object TiffTag {
     const val OLD_SUBFILE_TYPE_VALUE_REDUCED_RESOLUTION_IMAGE = 2
     const val OLD_SUBFILE_TYPE_VALUE_SINGLE_PAGE_OF_MULTI_PAGE_IMAGE = 3
 
-    val TIFF_TAG_IMAGE_WIDTH = TagInfoShortOrLong(
-        "ImageWidth", 0x100, 1,
-        TIFF_DIRECTORY_IFD0
+    val TIFF_TAG_IMAGE_WIDTH = TagInfoLong(
+        "ImageWidth", 0x100, TIFF_DIRECTORY_IFD0
     )
 
-    val TIFF_TAG_IMAGE_LENGTH = TagInfoShortOrLong(
-        "ImageLength", 0x0101, 1,
-        TIFF_DIRECTORY_IFD0
+    val TIFF_TAG_IMAGE_LENGTH = TagInfoLong(
+        "ImageLength", 0x0101, TIFF_DIRECTORY_IFD0
     )
 
     val TIFF_TAG_BITS_PER_SAMPLE = TagInfoShorts(
@@ -202,9 +201,14 @@ object TiffTag {
         TIFF_DIRECTORY_IFD0
     )
 
-    val TIFF_TAG_ROWS_PER_STRIP = TagInfoShortOrLong(
-        "RowsPerStrip", 0x0116, 1,
-        TIFF_DIRECTORY_IFD0
+    /**
+     * The number of rows per strip. This is the number of rows in
+     * the image of one strip when an image is divided into strips.
+     * With JPEG compressed data this designation is not needed and is omitted.
+     * See also <StripOffsets> and <StripByteCounts>.
+     */
+    val TIFF_TAG_ROWS_PER_STRIP = TagInfoLong(
+        "RowsPerStrip", 0x0116, TIFF_DIRECTORY_IFD0
     )
 
     val TIFF_TAG_STRIP_BYTE_COUNTS = TagInfoLong(
@@ -359,14 +363,20 @@ object TiffTag {
         TIFF_DIRECTORY_IFD0
     )
 
-    val TIFF_TAG_TILE_WIDTH = TagInfoShortOrLong(
-        "TileWidth", 0x142, 1,
-        TIFF_DIRECTORY_IFD0
+    /**
+     * The tile width in pixels.
+     * This is the number of columns in each tile.
+     */
+    val TIFF_TAG_TILE_WIDTH = TagInfoLong(
+        "TileWidth", 0x142, TIFF_DIRECTORY_IFD0
     )
 
-    val TIFF_TAG_TILE_LENGTH = TagInfoShortOrLong(
-        "TileLength", 0x143, 1,
-        TIFF_DIRECTORY_IFD0
+    /**
+     * The tile length (height) in pixels.
+     * This is the number of rows in each tile.
+     */
+    val TIFF_TAG_TILE_LENGTH = TagInfoLong(
+        "TileLength", 0x143, TIFF_DIRECTORY_IFD0
     )
 
     val TIFF_TAG_TILE_OFFSETS = TagInfoLongs(
@@ -374,9 +384,8 @@ object TiffTag {
         TIFF_DIRECTORY_IFD0, true
     )
 
-    val TIFF_TAG_TILE_BYTE_COUNTS = TagInfoShortOrLong(
-        "TileByteCounts", 0x145, -1,
-        TIFF_DIRECTORY_IFD0
+    val TIFF_TAG_TILE_BYTE_COUNTS = TagInfoLong(
+        "TileByteCounts", 0x145, TIFF_DIRECTORY_IFD0
     )
 
     val TIFF_TAG_INK_SET = TagInfoShort(

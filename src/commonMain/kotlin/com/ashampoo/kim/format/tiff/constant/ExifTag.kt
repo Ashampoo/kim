@@ -34,7 +34,6 @@ import com.ashampoo.kim.format.tiff.taginfo.TagInfoRationals
 import com.ashampoo.kim.format.tiff.taginfo.TagInfoSLong
 import com.ashampoo.kim.format.tiff.taginfo.TagInfoSRational
 import com.ashampoo.kim.format.tiff.taginfo.TagInfoShort
-import com.ashampoo.kim.format.tiff.taginfo.TagInfoShortOrLong
 import com.ashampoo.kim.format.tiff.taginfo.TagInfoShorts
 import com.ashampoo.kim.format.tiff.taginfo.TagInfoUndefined
 import com.ashampoo.kim.format.tiff.taginfo.TagInfoUndefineds
@@ -272,11 +271,6 @@ object ExifTag {
 
     val EXIF_TAG_COLOR_CHARACTERIZATION = TagInfoAscii(
         "ColorCharacterization", 0x84ed, -1,
-        EXIF_DIRECTORY_UNKNOWN
-    )
-
-    val EXIF_TAG_HCUSAGE = TagInfoShortOrLong(
-        "HCUsage", 0x84ee, 1,
         EXIF_DIRECTORY_UNKNOWN
     )
 
@@ -958,7 +952,7 @@ object ExifTag {
         EXIF_TAG_BACKGROUND_COLOR_INDICATOR, EXIF_TAG_IMAGE_COLOR_VALUE,
         EXIF_TAG_BACKGROUND_COLOR_VALUE, EXIF_TAG_PIXEL_INTENSITY_RANGE,
         EXIF_TAG_TRANSPARENCY_INDICATOR, EXIF_TAG_COLOR_CHARACTERIZATION,
-        EXIF_TAG_HCUSAGE, EXIF_TAG_SEMINFO, EXIF_TAG_AFCP_IPTC,
+        EXIF_TAG_SEMINFO, EXIF_TAG_AFCP_IPTC,
         EXIF_TAG_LEAF_DATA,
         EXIF_TAG_PHOTOSHOP_SETTINGS, EXIF_TAG_EXIF_OFFSET,
         EXIF_TAG_EXPOSURE_PROGRAM,
