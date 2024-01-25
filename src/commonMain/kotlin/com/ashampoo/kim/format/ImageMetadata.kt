@@ -49,7 +49,7 @@ data class ImageMetadata(
     }
 
     fun findShortValue(tagInfo: TagInfo): Short? =
-        findTiffField(tagInfo)?.value as? Short
+        findTiffField(tagInfo)?.toShort()
 
     fun findDoubleValue(tagInfo: TagInfo): Double? =
         findTiffField(tagInfo)?.toDouble()

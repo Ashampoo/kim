@@ -18,41 +18,24 @@ package com.ashampoo.kim.format.tiff.fieldtype
 
 import com.ashampoo.kim.common.ByteOrder
 import com.ashampoo.kim.common.toBytes
-import com.ashampoo.kim.common.toDouble
 import com.ashampoo.kim.common.toDoubles
 import com.ashampoo.kim.format.tiff.TiffField
-import com.ashampoo.kim.format.tiff.constant.TiffConstants.FIELD_TYPE_DOUBLE_INDEX
+import com.ashampoo.kim.format.tiff.constant.TiffConstants
 
 /**
  * Double precision (8-byte) IEEE format.
  */
-object FieldTypeDouble :
-    FieldType(FIELD_TYPE_DOUBLE_INDEX, "Double", 8) {
+object FieldTypeDouble : FieldType<DoubleArray> {
 
-    override fun getValue(entry: TiffField): Any {
+    override val type: Int = TiffConstants.FIELD_TYPE_DOUBLE_INDEX
 
-        val bytes = entry.byteArrayValue
+    override val name: String = "Double"
 
-        return if (entry.count == 1)
-            bytes.toDouble(entry.byteOrder)
-        else
-            bytes.toDoubles(entry.byteOrder)
-    }
+    override val size: Int = 8
 
-    override fun writeData(data: Any, byteOrder: ByteOrder): ByteArray {
+    override fun getValue(entry: TiffField): DoubleArray =
+        entry.byteArrayValue.toDoubles(entry.byteOrder)
 
-        if (data is Double)
-            return data.toBytes(byteOrder)
-
-        if (data is DoubleArray)
-            return data.toBytes(byteOrder)
-
-        val values = DoubleArray((data as Array<Double>).size)
-
-        repeat(values.size) { i ->
-            values[i] = data[i]
-        }
-
-        return values.toBytes(byteOrder)
-    }
+    override fun writeData(data: Any, byteOrder: ByteOrder): ByteArray =
+        (data as DoubleArray).toBytes(byteOrder)
 }

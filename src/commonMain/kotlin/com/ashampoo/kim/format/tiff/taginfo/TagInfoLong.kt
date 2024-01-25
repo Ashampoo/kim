@@ -40,7 +40,7 @@ open class TagInfoLong : TagInfo {
     constructor(
         name: String,
         tag: Int,
-        dataTypes: List<FieldType>,
+        dataTypes: List<FieldType<out Any>>,
         length: Int,
         exifDirectory: TiffDirectoryType?,
         isOffset: Boolean

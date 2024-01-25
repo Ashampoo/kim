@@ -17,35 +17,24 @@
 package com.ashampoo.kim.format.tiff.fieldtype
 
 import com.ashampoo.kim.common.ByteOrder
-import com.ashampoo.kim.common.ImageWriteException
 import com.ashampoo.kim.format.tiff.TiffField
-import com.ashampoo.kim.format.tiff.constant.TiffConstants.FIELD_TYPE_UNDEFINED_INDEX
+import com.ashampoo.kim.format.tiff.constant.TiffConstants
 
 /**
  * An 8-bit byte that may contain anything,
  * depending on the definition of the field.
  */
-object FieldTypeUndefined :
-    FieldType(FIELD_TYPE_UNDEFINED_INDEX, "Undefined", 1) {
+data object FieldTypeUndefined : FieldType<ByteArray> {
 
-    override fun getValue(entry: TiffField): Any {
+    override val type: Int = TiffConstants.FIELD_TYPE_UNDEFINED_INDEX
 
-        val bytes = entry.byteArrayValue
+    override val name: String = "Undefined"
 
-        return if (entry.count == 1)
-            bytes[0]
-        else
-            bytes
-    }
+    override val size: Int = 1
 
-    override fun writeData(data: Any, byteOrder: ByteOrder): ByteArray {
+    override fun getValue(entry: TiffField): ByteArray =
+        entry.byteArrayValue
 
-        if (data is Byte)
-            return byteArrayOf(data)
-
-        if (data is ByteArray)
-            return data
-
-        throw ImageWriteException("Invalid data: $data")
-    }
+    override fun writeData(data: Any, byteOrder: ByteOrder): ByteArray =
+        data as ByteArray
 }

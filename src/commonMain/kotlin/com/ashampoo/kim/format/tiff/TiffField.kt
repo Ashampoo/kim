@@ -34,7 +34,7 @@ class TiffField(
     val offset: Int,
     val tag: Int,
     val directoryType: Int,
-    val fieldType: FieldType,
+    val fieldType: FieldType<out Any>,
     val count: Int,
     /** Set if field has a local value. */
     val localValue: Int?,
@@ -69,26 +69,54 @@ class TiffField(
 
             if (value is ByteArray) {
 
+                if (value.size == 1)
+                    return@lazy value.first().toString()
+
                 if (value.size <= MAX_BYTE_ARRAY_DISPLAY_SIZE)
                     return@lazy "[${value.toSingleNumberHexes()}]"
 
                 return@lazy "[${value.size} bytes]"
             }
 
-            if (value is IntArray)
-                return@lazy value.contentToString()
+            if (value is IntArray) {
 
-            if (value is ShortArray)
-                return@lazy value.contentToString()
+                if (value.size == 1)
+                    return@lazy value.first().toString()
 
-            if (value is DoubleArray)
                 return@lazy value.contentToString()
+            }
 
-            if (value is FloatArray)
-                return@lazy value.contentToString()
+            if (value is ShortArray) {
 
-            if (value is Array<*>)
+                if (value.size == 1)
+                    return@lazy value.first().toString()
+
                 return@lazy value.contentToString()
+            }
+
+            if (value is DoubleArray) {
+
+                if (value.size == 1)
+                    return@lazy value.first().toString()
+
+                return@lazy value.contentToString()
+            }
+
+            if (value is FloatArray) {
+
+                if (value.size == 1)
+                    return@lazy value.first().toString()
+
+                return@lazy value.contentToString()
+            }
+
+            if (value is Array<*>) {
+
+                if (value.size == 1)
+                    return@lazy value.first().toString()
+
+                return@lazy value.contentToString()
+            }
 
             value.toString()
 
@@ -148,10 +176,24 @@ class TiffField(
         throw ImageReadException("Unknown value: $value for ${tagInfo.tagFormatted}")
     }
 
-    fun toInt(): Int = (value as Number).toInt()
+    fun toInt(): Int =
+        if (value is IntArray)
+            value.first()
+        else if (value is ShortArray)
+            (value.first() as Number).toInt()
+        else
+            (value as Number).toInt()
+
+    fun toShort(): Short =
+        if (value is ShortArray)
+            value.first()
+        else
+            (value as Number).toShort()
 
     fun toDouble(): Double =
-        if (value is RationalNumber)
+        if (value is Array<*>)
+            (value.first() as RationalNumber).doubleValue()
+        else if (value is RationalNumber)
             value.doubleValue()
         else
             (value as Number).toDouble()

@@ -25,7 +25,6 @@ import com.ashampoo.kim.format.tiff.constant.TiffConstants.DIRECTORY_TYPE_SUB
 import com.ashampoo.kim.format.tiff.constant.TiffConstants.EXIF_SUB_IFD1
 import com.ashampoo.kim.format.tiff.constant.TiffConstants.EXIF_SUB_IFD2
 import com.ashampoo.kim.format.tiff.constant.TiffConstants.EXIF_SUB_IFD3
-import com.ashampoo.kim.format.tiff.fieldtype.FieldType
 import com.ashampoo.kim.format.tiff.fieldtype.FieldType.Companion.getFieldType
 import com.ashampoo.kim.format.tiff.taginfo.TagInfoLong
 import com.ashampoo.kim.format.tiff.taginfo.TagInfoLongs
@@ -277,7 +276,7 @@ object TiffReader {
             if (tag == 0 && directoryType != TiffConstants.TIFF_GPS)
                 continue
 
-            val fieldType: FieldType = try {
+            val fieldType = try {
                 getFieldType(type)
             } catch (ignore: ImageReadException) {
                 /*

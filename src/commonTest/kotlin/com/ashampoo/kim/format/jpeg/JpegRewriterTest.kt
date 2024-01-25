@@ -309,18 +309,42 @@ class JpegRewriterTest {
                     if (
                         expectedField.tag == TiffTag.TIFF_TAG_ORIENTATION.tag &&
                         expectedValue == null &&
-                        actualValue == TiffOrientation.STANDARD.value.toShort()
+                        actualValue is ShortArray &&
+                        actualValue.contentEquals(shortArrayOf(TiffOrientation.STANDARD.value.toShort()))
                     )
                         continue
 
-                    if (!isEquals(expectedValue, actualValue)) {
+                    val equals = if (expectedValue is ByteArray && actualValue is ByteArray)
+                        expectedValue.contentEquals(actualValue)
+                    else if (expectedValue is IntArray && actualValue is IntArray)
+                        expectedValue.contentEquals(actualValue)
+                    else if (expectedValue is ShortArray && actualValue is ShortArray)
+                        expectedValue.contentEquals(actualValue)
+                    else if (expectedValue is Array<*> && actualValue is Array<*>)
+                        expectedValue.contentEquals(actualValue)
+                    else
+                        expectedValue == actualValue
+
+                    if (!equals) {
 
                         val expectedValueString = if (expectedValue is Array<*>)
+                            expectedValue.contentToString()
+                        else if (expectedValue is ByteArray)
+                            expectedValue.contentToString()
+                        else if (expectedValue is ShortArray)
+                            expectedValue.contentToString()
+                        else if (expectedValue is IntArray)
                             expectedValue.contentToString()
                         else
                             expectedValue?.toString()
 
                         val actualValueString = if (actualValue is Array<*>)
+                            actualValue.contentToString()
+                        else if (actualValue is ByteArray)
+                            actualValue.contentToString()
+                        else if (actualValue is ShortArray)
+                            actualValue.contentToString()
+                        else if (actualValue is IntArray)
                             actualValue.contentToString()
                         else
                             actualValue?.toString()

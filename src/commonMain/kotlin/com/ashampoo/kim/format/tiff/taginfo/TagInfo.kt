@@ -26,7 +26,7 @@ import com.ashampoo.kim.format.tiff.fieldtype.FieldType
 open class TagInfo(
     val name: String,
     val tag: Int,
-    val dataTypes: List<FieldType>,
+    val dataTypes: List<FieldType<out Any>>,
     val length: Int,
     val directoryType: TiffDirectoryType?,
     val isOffset: Boolean = false
@@ -42,7 +42,7 @@ open class TagInfo(
     constructor(
         name: String,
         tag: Int,
-        dataType: FieldType,
+        dataType: FieldType<out Any>,
         length: Int = LENGTH_UNKNOWN,
         exifDirectory: TiffDirectoryType? = EXIF_DIRECTORY_UNKNOWN
     ) : this(name, tag, listOf(dataType), length, exifDirectory)
@@ -57,8 +57,8 @@ open class TagInfo(
     open fun getValue(entry: TiffField): Any =
         entry.fieldType.getValue(entry)
 
-    open fun encodeValue(fieldType: FieldType, value: Any, byteOrder: ByteOrder): ByteArray =
-        fieldType.writeData(value, byteOrder)
+    open fun encodeValue(fieldType: FieldType<out Any>, value: Any, byteOrder: ByteOrder): ByteArray =
+        fieldType.writeData(value as Any, byteOrder)
 
     override fun toString(): String =
         description

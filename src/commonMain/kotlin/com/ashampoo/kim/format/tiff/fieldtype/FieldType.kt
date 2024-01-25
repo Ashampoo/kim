@@ -20,18 +20,18 @@ import com.ashampoo.kim.common.ByteOrder
 import com.ashampoo.kim.common.ImageReadException
 import com.ashampoo.kim.format.tiff.TiffField
 
-abstract class FieldType protected constructor(
-    val type: Int,
-    val name: String,
+interface FieldType<T> {
+
+    val type: Int
+
+    val name: String
+
     val size: Int
-) {
 
-    abstract fun getValue(entry: TiffField): Any
+    fun getValue(entry: TiffField): T
 
-    abstract fun writeData(data: Any, byteOrder: ByteOrder): ByteArray
-
-    override fun toString(): String =
-        name
+    // FIXME Try to replace "Any" with "T"
+    fun writeData(data: Any, byteOrder: ByteOrder): ByteArray
 
     companion object {
 
@@ -64,7 +64,7 @@ abstract class FieldType protected constructor(
         val ASCII_OR_BYTE = listOf(ASCII, BYTE)
 
         @kotlin.jvm.JvmStatic
-        fun getFieldType(type: Int): FieldType {
+        fun getFieldType(type: Int): FieldType<out Any> {
 
             for (fieldType in ANY)
                 if (fieldType.type == type)

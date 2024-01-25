@@ -17,45 +17,32 @@
 package com.ashampoo.kim.format.tiff.fieldtype
 
 import com.ashampoo.kim.common.ByteOrder
-import com.ashampoo.kim.common.ImageWriteException
 import com.ashampoo.kim.common.toBytes
-import com.ashampoo.kim.common.toInt
 import com.ashampoo.kim.common.toInts
 import com.ashampoo.kim.format.tiff.TiffField
 import com.ashampoo.kim.format.tiff.constant.TiffConstants.FIELD_TYPE_LONG_INDEX
 
 /**
  * 32-bit (4-byte) unsigned integer.
+ *
+ * FIXME Should be LongArray
  */
-object FieldTypeLong :
-    FieldType(FIELD_TYPE_LONG_INDEX, "Long", 4) {
+data object FieldTypeLong : FieldType<IntArray> {
 
-    override fun getValue(entry: TiffField): Any {
+    override val type: Int = FIELD_TYPE_LONG_INDEX
 
-        val bytes = entry.byteArrayValue
+    override val name: String = "Long"
 
-        return if (entry.count == 1)
-            bytes.toInt(entry.byteOrder)
-        else
-            bytes.toInts(entry.byteOrder)
-    }
+    override val size: Int = 4
+
+    override fun getValue(entry: TiffField): IntArray =
+        entry.byteArrayValue.toInts(entry.byteOrder)
 
     override fun writeData(data: Any, byteOrder: ByteOrder): ByteArray {
-
-        if (data is Int)
-            return data.toBytes(byteOrder)
 
         if (data is IntArray)
             return data.toBytes(byteOrder)
 
-        if (data !is Array<*>)
-            throw ImageWriteException("Invalid data: $data")
-
-        val values = IntArray(data.size)
-
-        for (index in values.indices)
-            values[index] = data[index] as Int
-
-        return values.toBytes(byteOrder)
+        return (data as Int).toBytes(byteOrder)
     }
 }

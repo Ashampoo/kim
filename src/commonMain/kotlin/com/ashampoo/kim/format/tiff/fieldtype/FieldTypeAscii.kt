@@ -17,18 +17,22 @@
 package com.ashampoo.kim.format.tiff.fieldtype
 
 import com.ashampoo.kim.common.ByteOrder
-import com.ashampoo.kim.common.ImageWriteException
 import com.ashampoo.kim.common.indexOfNullTerminator
 import com.ashampoo.kim.common.slice
 import com.ashampoo.kim.format.tiff.TiffField
-import com.ashampoo.kim.format.tiff.constant.TiffConstants.FIELD_TYPE_ASCII_INDEX
+import com.ashampoo.kim.format.tiff.constant.TiffConstants
 
 /**
  * 8-bit byte that contains a 7-bit ASCII code;
  * the last byte must be NUL (binary zero).
  */
-object FieldTypeAscii :
-    FieldType(FIELD_TYPE_ASCII_INDEX, "ASCII", 1) {
+data object FieldTypeAscii : FieldType<String> {
+
+    override val type: Int = TiffConstants.FIELD_TYPE_ASCII_INDEX
+
+    override val name: String = "ASCII"
+
+    override val size: Int = 1
 
     override fun getValue(entry: TiffField): String {
 
@@ -68,19 +72,14 @@ object FieldTypeAscii :
 
     override fun writeData(data: Any, byteOrder: ByteOrder): ByteArray {
 
-        if (data is ByteArray) {
-            val result = data.copyOf(data.size + 1)
-            result[result.lastIndex] = 0
-            return result
-        }
+        data as String
 
-        if (data is String) {
-            val bytes = data.encodeToByteArray()
-            val result = bytes.copyOf(bytes.size + 1)
-            result[result.lastIndex] = 0
-            return result
-        }
+        val bytes = data.encodeToByteArray()
 
-        throw ImageWriteException("Data must be ByteArray or String")
+        val result = bytes.copyOf(bytes.size + 1)
+
+        result[result.lastIndex] = 0
+
+        return result
     }
 }

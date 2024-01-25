@@ -26,7 +26,7 @@ import com.ashampoo.kim.output.BinaryByteWriter
 class TiffOutputField(
     val tag: Int,
     val tagInfo: TagInfo,
-    val fieldType: FieldType,
+    val fieldType: FieldType<out Any>,
     val count: Int,
     private var bytes: ByteArray
 ) {
@@ -40,7 +40,7 @@ class TiffOutputField(
 
     constructor(
         tagInfo: TagInfo,
-        fieldType: FieldType,
+        fieldType: FieldType<out Any>,
         count: Int,
         bytes: ByteArray
     ) : this(tagInfo.tag, tagInfo, fieldType, count, bytes)

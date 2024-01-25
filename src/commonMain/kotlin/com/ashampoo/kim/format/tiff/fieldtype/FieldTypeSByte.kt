@@ -17,34 +17,23 @@
 package com.ashampoo.kim.format.tiff.fieldtype
 
 import com.ashampoo.kim.common.ByteOrder
-import com.ashampoo.kim.common.ImageWriteException
 import com.ashampoo.kim.format.tiff.TiffField
-import com.ashampoo.kim.format.tiff.constant.TiffConstants.FIELD_TYPE_SBYTE_INDEX
+import com.ashampoo.kim.format.tiff.constant.TiffConstants
 
 /**
  * An 8-bit signed (twos-complement) integer.
  */
-object FieldTypeSByte :
-    FieldType(FIELD_TYPE_SBYTE_INDEX, "SByte", 1) {
+data object FieldTypeSByte : FieldType<ByteArray> {
 
-    override fun getValue(entry: TiffField): Any {
+    override val type: Int = TiffConstants.FIELD_TYPE_SBYTE_INDEX
 
-        val bytes = entry.byteArrayValue
+    override val name: String = "SByte"
 
-        return if (entry.count == 1)
-            bytes[0]
-        else
-            bytes
-    }
+    override val size: Int = 1
 
-    override fun writeData(data: Any, byteOrder: ByteOrder): ByteArray {
+    override fun getValue(entry: TiffField): ByteArray =
+        entry.byteArrayValue
 
-        if (data is Byte)
-            return byteArrayOf(data)
-
-        if (data is ByteArray)
-            return data
-
-        throw ImageWriteException("Invalid data: $data")
-    }
+    override fun writeData(data: Any, byteOrder: ByteOrder): ByteArray =
+        data as ByteArray
 }

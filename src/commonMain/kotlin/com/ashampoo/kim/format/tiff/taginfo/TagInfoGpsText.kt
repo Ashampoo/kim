@@ -44,7 +44,7 @@ class TagInfoGpsText(
 
     private data class TextEncoding(val prefix: ByteArray, val encodingName: String)
 
-    override fun encodeValue(fieldType: FieldType, value: Any, byteOrder: ByteOrder): ByteArray {
+    override fun encodeValue(fieldType: FieldType<out Any>, value: Any, byteOrder: ByteOrder): ByteArray {
 
         if (value !is String)
             throw ImageWriteException("GPS text value not String: $value")

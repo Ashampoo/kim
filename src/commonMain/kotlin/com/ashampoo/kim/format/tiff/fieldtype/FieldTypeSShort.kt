@@ -17,45 +17,25 @@
 package com.ashampoo.kim.format.tiff.fieldtype
 
 import com.ashampoo.kim.common.ByteOrder
-import com.ashampoo.kim.common.ImageWriteException
 import com.ashampoo.kim.common.toBytes
-import com.ashampoo.kim.common.toShort
 import com.ashampoo.kim.common.toShorts
 import com.ashampoo.kim.format.tiff.TiffField
-import com.ashampoo.kim.format.tiff.constant.TiffConstants.FIELD_TYPE_SSHORT_INDEX
+import com.ashampoo.kim.format.tiff.constant.TiffConstants
 
 /**
  * A 16-bit (2-byte) signed (twos-complement) integer.
  */
-object FieldTypeSShort :
-    FieldType(FIELD_TYPE_SSHORT_INDEX, "SShort", 2) {
+object FieldTypeSShort : FieldType<ShortArray> {
 
-    override fun getValue(entry: TiffField): Any {
+    override val type: Int = TiffConstants.FIELD_TYPE_SSHORT_INDEX
 
-        val bytes = entry.byteArrayValue
+    override val name: String = "SShort"
 
-        return if (entry.count == 1)
-            bytes.toShort(entry.byteOrder)
-        else
-            bytes.toShorts(entry.byteOrder)
-    }
+    override val size: Int = 2
 
-    override fun writeData(data: Any, byteOrder: ByteOrder): ByteArray {
+    override fun getValue(entry: TiffField): ShortArray =
+        entry.byteArrayValue.toShorts(entry.byteOrder)
 
-        if (data is Short)
-            return data.toBytes(byteOrder)
-
-        if (data is ShortArray)
-            return data.toBytes(byteOrder)
-
-        if (data !is Array<*>)
-            throw ImageWriteException("Invalid data: $data")
-
-        val values = ShortArray(data.size)
-
-        for (index in values.indices)
-            values[index] = data[index] as Short
-
-        return values.toBytes(byteOrder)
-    }
+    override fun writeData(data: Any, byteOrder: ByteOrder): ByteArray =
+        (data as ShortArray).toBytes(byteOrder)
 }

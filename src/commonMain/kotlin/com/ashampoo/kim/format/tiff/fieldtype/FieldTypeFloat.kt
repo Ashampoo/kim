@@ -17,45 +17,25 @@
 package com.ashampoo.kim.format.tiff.fieldtype
 
 import com.ashampoo.kim.common.ByteOrder
-import com.ashampoo.kim.common.ImageWriteException
 import com.ashampoo.kim.common.toBytes
-import com.ashampoo.kim.common.toFloat
 import com.ashampoo.kim.common.toFloats
 import com.ashampoo.kim.format.tiff.TiffField
-import com.ashampoo.kim.format.tiff.constant.TiffConstants.FIELD_TYPE_FLOAT_INDEX
+import com.ashampoo.kim.format.tiff.constant.TiffConstants
 
 /**
  * Single precision (4-byte) IEEE format.
  */
-object FieldTypeFloat :
-    FieldType(FIELD_TYPE_FLOAT_INDEX, "Float", 4) {
+object FieldTypeFloat : FieldType<FloatArray> {
 
-    override fun getValue(entry: TiffField): Any {
+    override val type: Int = TiffConstants.FIELD_TYPE_FLOAT_INDEX
 
-        val bytes = entry.byteArrayValue
+    override val name: String = "Float"
 
-        return if (entry.count == 1)
-            bytes.toFloat(entry.byteOrder)
-        else
-            bytes.toFloats(entry.byteOrder)
-    }
+    override val size: Int = 4
 
-    override fun writeData(data: Any, byteOrder: ByteOrder): ByteArray {
+    override fun getValue(entry: TiffField): FloatArray =
+        entry.byteArrayValue.toFloats(entry.byteOrder)
 
-        if (data is Float)
-            return data.toBytes(byteOrder)
-
-        if (data is FloatArray)
-            return data.toBytes(byteOrder)
-
-        if (data !is Array<*>)
-            throw ImageWriteException("Invalid data: $data")
-
-        val values = FloatArray(data.size)
-
-        for (index in values.indices)
-            values[index] = data[index] as Float
-
-        return values.toBytes(byteOrder)
-    }
+    override fun writeData(data: Any, byteOrder: ByteOrder): ByteArray =
+        (data as FloatArray).toBytes(byteOrder)
 }
