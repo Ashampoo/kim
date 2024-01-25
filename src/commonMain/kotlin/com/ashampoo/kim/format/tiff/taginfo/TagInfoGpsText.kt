@@ -45,8 +45,6 @@ class TagInfoGpsText(
     override fun isText(): Boolean =
         true
 
-    private data class TextEncoding(val prefix: ByteArray, val encodingName: String)
-
     override fun encodeValue(fieldType: FieldType<out Any>, value: Any, byteOrder: ByteOrder): ByteArray {
 
         if (value !is String)
