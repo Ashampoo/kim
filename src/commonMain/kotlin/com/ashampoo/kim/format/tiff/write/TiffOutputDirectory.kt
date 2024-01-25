@@ -41,7 +41,6 @@ import com.ashampoo.kim.format.tiff.fieldtype.FieldTypeShort
 import com.ashampoo.kim.format.tiff.fieldtype.FieldTypeUndefined
 import com.ashampoo.kim.format.tiff.taginfo.TagInfo
 import com.ashampoo.kim.format.tiff.taginfo.TagInfoAscii
-import com.ashampoo.kim.format.tiff.taginfo.TagInfoAsciiOrRational
 import com.ashampoo.kim.format.tiff.taginfo.TagInfoByte
 import com.ashampoo.kim.format.tiff.taginfo.TagInfoByteOrShort
 import com.ashampoo.kim.format.tiff.taginfo.TagInfoBytes
@@ -373,41 +372,11 @@ class TiffOutputDirectory(
         add(tiffOutputField)
     }
 
-    fun add(tagInfo: TagInfoAsciiOrRational, values: Array<String>) {
-
-        val bytes = tagInfo.encodeValue(FieldTypeAscii, values, byteOrder)
-
-        checkMatchingLength(tagInfo, bytes.size)
-
-        val tiffOutputField = TiffOutputField(
-            tagInfo.tag,
-            tagInfo, FieldTypeAscii, bytes.size,
-            bytes
-        )
-
-        add(tiffOutputField)
-    }
-
-    fun add(tagInfo: TagInfoAsciiOrRational, values: Array<RationalNumber>) {
-
-        checkMatchingLength(tagInfo, values.size)
-
-        val bytes = tagInfo.encodeValue(FieldTypeRational, values, byteOrder)
-
-        val tiffOutputField = TiffOutputField(
-            tagInfo.tag,
-            tagInfo, FieldTypeRational,
-            bytes.size, bytes
-        )
-
-        add(tiffOutputField)
-    }
-
-    fun add(field: TiffOutputField) {
+    fun add(field: TiffOutputField) =
         fields.add(field)
-    }
 
-    fun getFields(): List<TiffOutputField> = fields
+    fun getFields(): List<TiffOutputField> =
+        fields
 
     fun removeField(tagInfo: TagInfo) =
         removeField(tagInfo.tag)
