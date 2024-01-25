@@ -65,6 +65,7 @@ import com.ashampoo.kim.format.tiff.taginfo.TagInfoShorts
 import com.ashampoo.kim.format.tiff.write.TiffOutputItem.Companion.UNDEFINED_VALUE
 import com.ashampoo.kim.output.BinaryByteWriter
 
+@Suppress("TooManyFunctions", "MethodOverloading")
 class TiffOutputDirectory(
     val type: Int,
     private val byteOrder: ByteOrder
@@ -91,16 +92,28 @@ class TiffOutputDirectory(
 
     fun add(tagInfo: TagInfoByte, value: Byte) {
 
-        val bytes = byteArrayOf(value)
-
-        add(TiffOutputField(tagInfo.tag, FieldTypeByte, bytes.size, bytes))
+        add(
+            TiffOutputField(
+                tag = tagInfo.tag,
+                fieldType = FieldTypeByte,
+                count = 1,
+                bytes = byteArrayOf(value)
+            )
+        )
     }
 
     fun add(tagInfo: TagInfoBytes, bytes: ByteArray) {
 
         checkMatchingLength(tagInfo, bytes.size)
 
-        add(TiffOutputField(tagInfo.tag, FieldTypeByte, bytes.size, bytes))
+        add(
+            TiffOutputField(
+                tag = tagInfo.tag,
+                fieldType = FieldTypeByte,
+                count = bytes.size,
+                bytes = bytes
+            )
+        )
     }
 
     fun add(tagInfo: TagInfoAscii, value: String) {
@@ -109,271 +122,264 @@ class TiffOutputDirectory(
 
         checkMatchingLength(tagInfo, bytes.size)
 
-        add(TiffOutputField(tagInfo.tag, FieldTypeAscii, bytes.size, bytes))
+        add(
+            TiffOutputField(
+                tag = tagInfo.tag,
+                fieldType = FieldTypeAscii,
+                count = bytes.size,
+                bytes = bytes
+            )
+        )
     }
 
     fun add(tagInfo: TagInfoShort, value: Short) {
 
-        val bytes = value.toBytes(byteOrder)
-
-        val tiffOutputField = TiffOutputField(
-            tagInfo.tag,
-            FieldTypeShort,
-            1,
-            bytes
+        add(
+            TiffOutputField(
+                tag = tagInfo.tag,
+                fieldType = FieldTypeShort,
+                count = 1,
+                bytes = value.toBytes(byteOrder)
+            )
         )
-
-        add(tiffOutputField)
     }
 
     fun add(tagInfo: TagInfoShorts, values: ShortArray) {
 
         checkMatchingLength(tagInfo, values.size)
 
-        val bytes = values.toBytes(byteOrder)
-
-        val tiffOutputField = TiffOutputField(tagInfo.tag, FieldTypeShort, values.size, bytes)
-
-        add(tiffOutputField)
+        add(
+            TiffOutputField(
+                tag = tagInfo.tag,
+                fieldType = FieldTypeShort,
+                count = values.size,
+                bytes = values.toBytes(byteOrder)
+            )
+        )
     }
 
     fun add(tagInfo: TagInfoLong, value: Int) {
 
-        val bytes = value.toBytes(byteOrder)
-
-        val tiffOutputField = TiffOutputField(tagInfo.tag, FieldTypeLong, 1, bytes)
-
-        add(tiffOutputField)
+        add(
+            TiffOutputField(
+                tag = tagInfo.tag,
+                fieldType = FieldTypeLong,
+                count = 1,
+                bytes = value.toBytes(byteOrder)
+            )
+        )
     }
 
     fun add(tagInfo: TagInfoLongs, values: IntArray) {
 
         checkMatchingLength(tagInfo, values.size)
 
-        val bytes = values.toBytes(byteOrder)
-
-        val tiffOutputField = TiffOutputField(
-            tagInfo.tag,
-            FieldTypeLong,
-            values.size,
-            bytes
+        add(
+            TiffOutputField(
+                tag = tagInfo.tag,
+                fieldType = FieldTypeLong,
+                count = values.size,
+                bytes = values.toBytes(byteOrder)
+            )
         )
-
-        add(tiffOutputField)
     }
 
     fun add(tagInfo: TagInfoRational, value: RationalNumber) {
 
-        val bytes = value.toBytes(byteOrder)
-
-        val tiffOutputField = TiffOutputField(
-            tagInfo.tag,
-            FieldTypeRational,
-            1,
-            bytes
+        add(
+            TiffOutputField(
+                tag = tagInfo.tag,
+                fieldType = FieldTypeRational,
+                count = 1,
+                bytes = value.toBytes(byteOrder)
+            )
         )
-
-        add(tiffOutputField)
     }
 
     fun add(tagInfo: TagInfoRationals, values: RationalNumbers) {
 
         checkMatchingLength(tagInfo, values.values.size)
 
-        val bytes = values.toBytes(byteOrder)
-
-        val tiffOutputField = TiffOutputField(
-            tagInfo.tag,
-            FieldTypeRational,
-            values.values.size,
-            bytes
+        add(
+            TiffOutputField(
+                tag = tagInfo.tag,
+                fieldType = FieldTypeRational,
+                count = values.values.size,
+                bytes = values.toBytes(byteOrder)
+            )
         )
-
-        add(tiffOutputField)
     }
 
     fun add(tagInfo: TagInfoSByte, value: Byte) {
 
-        val bytes = byteArrayOf(value)
-
-        val tiffOutputField = TiffOutputField(tagInfo.tag, FieldTypeSByte, 1, bytes)
-
-        add(tiffOutputField)
+        add(
+            TiffOutputField(
+                tag = tagInfo.tag,
+                fieldType = FieldTypeSByte,
+                count = 1,
+                bytes = byteArrayOf(value)
+            )
+        )
     }
 
-    fun add(tagInfo: TagInfoSBytes, values: ByteArray) {
+    fun add(tagInfo: TagInfoSBytes, value: ByteArray) {
 
-        checkMatchingLength(tagInfo, values.size)
+        checkMatchingLength(tagInfo, value.size)
 
-        val tiffOutputField = TiffOutputField(
-            tagInfo.tag,
-            FieldTypeSByte,
-            values.size,
-            values
+        add(
+            TiffOutputField(
+                tag = tagInfo.tag,
+                fieldType = FieldTypeSByte,
+                count = value.size,
+                bytes = value
+            )
         )
-
-        add(tiffOutputField)
     }
 
     fun add(tagInfo: TagInfoSShort, value: Short) {
 
-        val bytes = value.toBytes(byteOrder)
-
-        val tiffOutputField = TiffOutputField(
-            tagInfo.tag,
-            FieldTypeShort,
-            1,
-            bytes
+        add(
+            TiffOutputField(
+                tag = tagInfo.tag,
+                fieldType = FieldTypeShort,
+                count = 1,
+                bytes = value.toBytes(byteOrder)
+            )
         )
-
-        add(tiffOutputField)
     }
 
     fun add(tagInfo: TagInfoSShorts, values: ShortArray) {
 
         checkMatchingLength(tagInfo, values.size)
 
-        val bytes = values.toBytes(byteOrder)
-
-        val tiffOutputField = TiffOutputField(
-            tagInfo.tag,
-            FieldTypeSShort,
-            values.size,
-            bytes
+        add(
+            TiffOutputField(
+                tag = tagInfo.tag,
+                fieldType = FieldTypeSShort,
+                count = values.size,
+                bytes = values.toBytes(byteOrder)
+            )
         )
-
-        add(tiffOutputField)
     }
 
     fun add(tagInfo: TagInfoSLong, value: Int) {
 
-        val bytes = value.toBytes(byteOrder)
-
-        val tiffOutputField = TiffOutputField(
-            tagInfo.tag,
-            FieldTypeSLong,
-            1,
-            bytes
+        add(
+            TiffOutputField(
+                tag = tagInfo.tag,
+                fieldType = FieldTypeSLong,
+                count = 1,
+                bytes = value.toBytes(byteOrder)
+            )
         )
-
-        add(tiffOutputField)
     }
 
     fun add(tagInfo: TagInfoSLongs, values: IntArray) {
 
         checkMatchingLength(tagInfo, values.size)
 
-        val bytes = values.toBytes(byteOrder)
-
-        val tiffOutputField = TiffOutputField(
-            tagInfo.tag,
-            FieldTypeSLong,
-            values.size,
-            bytes
+        add(
+            TiffOutputField(
+                tag = tagInfo.tag,
+                fieldType = FieldTypeSLong,
+                count = values.size,
+                bytes = values.toBytes(byteOrder)
+            )
         )
-
-        add(tiffOutputField)
     }
 
     fun add(tagInfo: TagInfoSRational, value: RationalNumber) {
 
-        val bytes = value.toBytes(byteOrder)
-
-        val tiffOutputField = TiffOutputField(
-            tagInfo.tag,
-            FieldTypeSRational,
-            1,
-            bytes
+        add(
+            TiffOutputField(
+                tag = tagInfo.tag,
+                fieldType = FieldTypeSRational,
+                count = 1,
+                bytes = value.toBytes(byteOrder)
+            )
         )
-
-        add(tiffOutputField)
     }
 
     fun add(tagInfo: TagInfoSRationals, value: RationalNumbers) {
 
         checkMatchingLength(tagInfo, value.values.size)
 
-        val bytes = value.toBytes(byteOrder)
-
-        val tiffOutputField = TiffOutputField(
-            tagInfo.tag,
-            FieldTypeSRational,
-            value.values.size,
-            bytes
+        add(
+            TiffOutputField(
+                tag = tagInfo.tag,
+                fieldType = FieldTypeSRational,
+                count = value.values.size,
+                bytes = value.toBytes(byteOrder)
+            )
         )
-
-        add(tiffOutputField)
     }
 
     fun add(tagInfo: TagInfoFloat, value: Float) {
 
         val bytes = value.toBytes(byteOrder)
 
-        val tiffOutputField = TiffOutputField(
-            tagInfo.tag,
-            FieldTypeFloat,
-            1,
-            bytes
+        add(
+            TiffOutputField(
+                tag = tagInfo.tag,
+                fieldType = FieldTypeFloat,
+                count = 1,
+                bytes = bytes
+            )
         )
-
-        add(tiffOutputField)
     }
 
     fun add(tagInfo: TagInfoFloats, values: FloatArray) {
 
         checkMatchingLength(tagInfo, values.size)
 
-        val bytes = values.toBytes(byteOrder)
-
-        val tiffOutputField = TiffOutputField(
-            tagInfo.tag,
-            FieldTypeFloat,
-            values.size,
-            bytes
+        add(
+            TiffOutputField(
+                tag = tagInfo.tag,
+                fieldType = FieldTypeFloat,
+                count = values.size,
+                bytes = values.toBytes(byteOrder)
+            )
         )
-
-        add(tiffOutputField)
     }
 
     fun add(tagInfo: TagInfoDouble, value: Double) {
 
-        val bytes = value.toBytes(byteOrder)
-
-        val tiffOutputField = TiffOutputField(
-            tagInfo.tag,
-            FieldTypeDouble,
-            1,
-            bytes
+        add(
+            TiffOutputField(
+                tag = tagInfo.tag,
+                fieldType = FieldTypeDouble,
+                count = 1,
+                bytes = value.toBytes(byteOrder)
+            )
         )
-
-        add(tiffOutputField)
     }
 
     fun add(tagInfo: TagInfoDoubles, values: DoubleArray) {
 
         checkMatchingLength(tagInfo, values.size)
 
-        val bytes = values.toBytes(byteOrder)
-
-        val tiffOutputField = TiffOutputField(
-            tagInfo.tag,
-            FieldTypeDouble,
-            values.size, bytes
+        add(
+            TiffOutputField(
+                tag = tagInfo.tag,
+                fieldType = FieldTypeDouble,
+                count = values.size,
+                bytes = values.toBytes(byteOrder)
+            )
         )
-
-        add(tiffOutputField)
     }
 
     fun add(tagInfo: TagInfoGpsText, value: String) {
 
         val bytes = tagInfo.encodeValue(value)
 
-        val tiffOutputField = TiffOutputField(
-            tagInfo.tag,
-            tagInfo.fieldType, bytes.size, bytes
+        add(
+            TiffOutputField(
+                tag = tagInfo.tag,
+                fieldType = tagInfo.fieldType,
+                count = bytes.size,
+                bytes = bytes
+            )
         )
-
-        add(tiffOutputField)
     }
 
     fun add(field: TiffOutputField) =

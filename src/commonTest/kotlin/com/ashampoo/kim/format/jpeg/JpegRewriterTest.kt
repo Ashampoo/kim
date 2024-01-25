@@ -299,20 +299,6 @@ class JpegRewriterTest {
 
                     val bytesEqual = expectedBytesAsHex == actualBytesAsHex
 
-                    // TODO Double check on orientation
-
-//                    if (expectedField.tag == TiffTag.TIFF_TAG_ORIENTATION.tag)
-//                        println("$expectedBytesAsHex == $actualBytesAsHex")
-
-//                    /* Ignore the auto-correction of setting the orientation flag to default. */
-//                    if (
-//                        expectedField.tag == TiffTag.TIFF_TAG_ORIENTATION.tag &&
-//                        expectedValue == null &&
-//                        actualValue is ShortArray &&
-//                        actualValue.contentEquals(shortArrayOf(TiffOrientation.STANDARD.value.toShort()))
-//                    )
-//                        continue
-
                     if (!bytesEqual) {
 
                         fail(
