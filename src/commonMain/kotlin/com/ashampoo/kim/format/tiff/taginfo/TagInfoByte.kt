@@ -31,7 +31,4 @@ open class TagInfoByte : TagInfo {
         fieldType: FieldType<out Any>,
         directoryType: TiffDirectoryType?
     ) : super(name, tag, fieldType, 1, directoryType)
-
-    fun encodeValue(value: Byte): ByteArray =
-        byteArrayOf(value)
 }

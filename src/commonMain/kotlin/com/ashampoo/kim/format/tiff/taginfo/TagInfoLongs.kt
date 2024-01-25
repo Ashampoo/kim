@@ -16,9 +16,6 @@
  */
 package com.ashampoo.kim.format.tiff.taginfo
 
-import com.ashampoo.kim.common.ByteOrder
-import com.ashampoo.kim.common.toBytes
-import com.ashampoo.kim.common.toInts
 import com.ashampoo.kim.format.tiff.constant.TiffDirectoryType
 import com.ashampoo.kim.format.tiff.fieldtype.FieldTypeLong
 
@@ -38,10 +35,4 @@ class TagInfoLongs : TagInfo {
         directoryType: TiffDirectoryType?,
         isOffset: Boolean
     ) : super(name, tag, FieldTypeLong, length, directoryType, isOffset)
-
-    fun getValue(byteOrder: ByteOrder, bytes: ByteArray): IntArray =
-        bytes.toInts(byteOrder)
-
-    fun encodeValue(byteOrder: ByteOrder, value: IntArray): ByteArray =
-        value.toBytes(byteOrder)
 }

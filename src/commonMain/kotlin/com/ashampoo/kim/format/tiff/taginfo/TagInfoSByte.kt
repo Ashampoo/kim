@@ -20,8 +20,4 @@ import com.ashampoo.kim.format.tiff.constant.TiffDirectoryType
 import com.ashampoo.kim.format.tiff.fieldtype.FieldTypeSByte
 
 class TagInfoSByte(name: String, tag: Int, directoryType: TiffDirectoryType?) :
-    TagInfo(name, tag, FieldTypeSByte, 1, directoryType) {
-
-    fun encodeValue(value: Byte): ByteArray =
-        byteArrayOf(value)
-}
+    TagInfo(name, tag, FieldTypeSByte, 1, directoryType)

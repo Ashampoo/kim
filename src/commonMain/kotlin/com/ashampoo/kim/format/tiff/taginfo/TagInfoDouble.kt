@@ -16,9 +16,6 @@
  */
 package com.ashampoo.kim.format.tiff.taginfo
 
-import com.ashampoo.kim.common.ByteOrder
-import com.ashampoo.kim.common.toBytes
-import com.ashampoo.kim.common.toDouble
 import com.ashampoo.kim.format.tiff.constant.TiffDirectoryType
 import com.ashampoo.kim.format.tiff.fieldtype.FieldTypeDouble
 
@@ -26,11 +23,4 @@ class TagInfoDouble(
     name: String,
     tag: Int,
     directoryType: TiffDirectoryType?
-) : TagInfo(name, tag, FieldTypeDouble, 1, directoryType) {
-
-    fun getValue(byteOrder: ByteOrder, bytes: ByteArray): Double =
-        bytes.toDouble(byteOrder)
-
-    fun encodeValue(byteOrder: ByteOrder, value: Double): ByteArray =
-        value.toBytes(byteOrder)
-}
+) : TagInfo(name, tag, FieldTypeDouble, 1, directoryType)

@@ -19,6 +19,8 @@ package com.ashampoo.kim.format.tiff
 import com.ashampoo.kim.common.ByteOrder
 import com.ashampoo.kim.common.ImageReadException
 import com.ashampoo.kim.common.ImageWriteException
+import com.ashampoo.kim.common.toInt
+import com.ashampoo.kim.common.toInts
 import com.ashampoo.kim.format.tiff.constant.ExifTag
 import com.ashampoo.kim.format.tiff.constant.TiffConstants
 import com.ashampoo.kim.format.tiff.constant.TiffDirectoryType
@@ -103,7 +105,7 @@ class TiffDirectory(
         if (field.count != 1)
             throw ImageReadException("Field ${tag.name} has wrong count ${field.count}")
 
-        return tag.getValue(field.byteOrder, field.byteArrayValue)
+        return field.byteArrayValue.toInt(field.byteOrder)
     }
 
     @Suppress("ThrowsCount")
@@ -115,7 +117,7 @@ class TiffDirectory(
         if (tag.fieldType != field.fieldType)
             throw ImageReadException("Required field ${tag.name} has incorrect type ${field.fieldType.name}")
 
-        return tag.getValue(field.byteOrder, field.byteArrayValue)
+        return field.byteArrayValue.toInts(field.byteOrder)
     }
 
     fun getJpegRawImageDataElement(): ImageDataElement {

@@ -16,9 +16,6 @@
  */
 package com.ashampoo.kim.format.tiff.taginfo
 
-import com.ashampoo.kim.common.ByteOrder
-import com.ashampoo.kim.common.toBytes
-import com.ashampoo.kim.common.toFloats
 import com.ashampoo.kim.format.tiff.constant.TiffDirectoryType
 import com.ashampoo.kim.format.tiff.fieldtype.FieldTypeFloat
 
@@ -27,11 +24,4 @@ class TagInfoFloats(
     tag: Int,
     length: Int,
     directoryType: TiffDirectoryType?
-) : TagInfo(name, tag, FieldTypeFloat, length, directoryType) {
-
-    fun getValue(byteOrder: ByteOrder, bytes: ByteArray): FloatArray =
-        bytes.toFloats(byteOrder)
-
-    fun encodeValue(byteOrder: ByteOrder, value: FloatArray): ByteArray =
-        value.toBytes(byteOrder)
-}
+) : TagInfo(name, tag, FieldTypeFloat, length, directoryType)
