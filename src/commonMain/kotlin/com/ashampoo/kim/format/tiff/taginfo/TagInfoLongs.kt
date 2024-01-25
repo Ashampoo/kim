@@ -22,7 +22,7 @@ import com.ashampoo.kim.common.toInts
 import com.ashampoo.kim.format.tiff.constant.TiffDirectoryType
 import com.ashampoo.kim.format.tiff.fieldtype.FieldTypeLong
 
-open class TagInfoLongs : TagInfo {
+class TagInfoLongs : TagInfo {
 
     constructor(
         name: String,
