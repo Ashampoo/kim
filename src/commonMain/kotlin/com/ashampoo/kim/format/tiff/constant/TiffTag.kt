@@ -17,7 +17,6 @@
 package com.ashampoo.kim.format.tiff.constant
 
 import com.ashampoo.kim.format.tiff.constant.TiffDirectoryType.TIFF_DIRECTORY_IFD0
-import com.ashampoo.kim.format.tiff.taginfo.TagInfo
 import com.ashampoo.kim.format.tiff.taginfo.TagInfoAscii
 import com.ashampoo.kim.format.tiff.taginfo.TagInfoByte
 import com.ashampoo.kim.format.tiff.taginfo.TagInfoBytes
@@ -27,7 +26,6 @@ import com.ashampoo.kim.format.tiff.taginfo.TagInfoRational
 import com.ashampoo.kim.format.tiff.taginfo.TagInfoRationals
 import com.ashampoo.kim.format.tiff.taginfo.TagInfoShort
 import com.ashampoo.kim.format.tiff.taginfo.TagInfoShorts
-import com.ashampoo.kim.format.tiff.taginfo.TagInfoUnknowns
 
 /**
  * http://partners.adobe.com/public/developer/en/tiff/TIFF6.pdf
@@ -551,10 +549,6 @@ object TiffTag {
     /** Required field for all DNGs. Can be used to detect if TIFF is a DNG. */
     val TIFF_TAG_DNG_VERSION = TagInfoBytes(
         "DNGVersion", 0xC612, 4, TIFF_DIRECTORY_IFD0
-    )
-
-    val TIFF_TAG_UNKNOWN = TagInfoUnknowns(
-        "Unknown", -1, TagInfo.LENGTH_UNKNOWN, null
     )
 
     val ALL_TIFF_TAGS = listOf(

@@ -16,7 +16,6 @@
 package com.ashampoo.kim.format.jpeg
 
 import com.ashampoo.kim.Kim
-import com.ashampoo.kim.common.RationalNumbers
 import com.ashampoo.kim.common.writeBytes
 import com.ashampoo.kim.format.ImageMetadata
 import com.ashampoo.kim.format.jpeg.iptc.IptcMetadata
@@ -28,7 +27,6 @@ import com.ashampoo.kim.format.tiff.constant.TiffTag
 import com.ashampoo.kim.format.tiff.write.TiffOutputSet
 import com.ashampoo.kim.input.ByteArrayByteReader
 import com.ashampoo.kim.model.GpsCoordinates
-import com.ashampoo.kim.model.TiffOrientation
 import com.ashampoo.kim.output.ByteArrayByteWriter
 import com.ashampoo.kim.testdata.KimTestData
 import kotlinx.io.files.Path
@@ -37,6 +35,7 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNotEquals
 import kotlin.test.assertNotNull
+import kotlin.test.assertNotSame
 import kotlin.test.fail
 
 class JpegRewriterTest {
@@ -193,7 +192,11 @@ class JpegRewriterTest {
 
             assertNotNull(actualMetadata)
 
+            assertNotSame(expectedMetadata, actualMetadata)
+
             val actualOutputSet = actualMetadata.exif?.createOutputSet() ?: continue
+
+            assertNotSame(expectedOutputSet, actualOutputSet)
 
             assertEquals(
                 expectedOutputSet.getDirectories().size,
@@ -210,8 +213,8 @@ class JpegRewriterTest {
 
                 if (!fieldCountMatches) {
 
-                    val expectedTagInfos = expectedDirectory.getFields().map { it.tagInfo.tag }.sorted()
-                    val actualTagInfos = actualDirectory.getFields().map { it.tagInfo.tag }.sorted()
+                    val expectedTagInfos = expectedDirectory.getFields().map { it.tag }.sorted()
+                    val actualTagInfos = actualDirectory.getFields().map { it.tag }.sorted()
 
                     /* For some reason these offsets disappear, even if they are written. */
                     val missingTagInfos = expectedTagInfos - actualTagInfos.toSet() -
@@ -233,28 +236,28 @@ class JpegRewriterTest {
                 @Suppress("LoopWithTooManyJumpStatements")
                 for (expectedField in expectedFields) {
 
-                    val actualField = actualDirectory.findField(expectedField.tagInfo)
+                    val actualField = actualDirectory.findField(expectedField.tag)
 
                     /* Ignore missing offset fields that may not be needed after rewrite. */
                     @Suppress("ComplexCondition")
-                    if (expectedField.tagInfo == ExifTag.EXIF_TAG_EXIF_OFFSET ||
-                        expectedField.tagInfo == ExifTag.EXIF_TAG_GPSINFO ||
-                        expectedField.tagInfo == ExifTag.EXIF_TAG_INTEROP_OFFSET ||
-                        expectedField.tagInfo == TiffTag.TIFF_TAG_JPEG_INTERCHANGE_FORMAT
+                    if (expectedField.tag == ExifTag.EXIF_TAG_EXIF_OFFSET.tag ||
+                        expectedField.tag == ExifTag.EXIF_TAG_GPSINFO.tag ||
+                        expectedField.tag == ExifTag.EXIF_TAG_INTEROP_OFFSET.tag ||
+                        expectedField.tag == TiffTag.TIFF_TAG_JPEG_INTERCHANGE_FORMAT.tag
                     )
                         continue
 
                     /* Why is there this tag? */
-                    if (expectedField.tagInfo.tag == -1)
+                    if (expectedField.tag == -1)
                         continue
 
                     /* JPEGInterchangeFormatLength != JpgFromRawLength */
-                    if (expectedField.tagInfo.tag == 514)
+                    if (expectedField.tag == 514)
                         continue
 
                     assertNotNull(
                         actualField,
-                        "Image $index, value for ${expectedField.tagInfo} not found."
+                        "Image $index, value for ${expectedField.tagFormatted} not found."
                     )
 
                     assertEquals(
@@ -267,18 +270,6 @@ class JpegRewriterTest {
                         expectedField.fieldType,
                         actualField.fieldType,
                         "Field type mismatch for image #$index."
-                    )
-
-                    assertEquals(
-                        expectedField.tagInfo,
-                        actualField.tagInfo,
-                        "Tag info mismatch for image #$index."
-                    )
-
-                    assertEquals(
-                        expectedField.count,
-                        actualField.count,
-                        "Count mismatch for image #$index."
                     )
 
                     assertEquals(
@@ -303,56 +294,30 @@ class JpegRewriterTest {
                     )
                         continue
 
-                    val expectedValue = expectedMetadata.findTiffField(expectedField.tagInfo)?.value
-                    val actualValue = actualMetadata.findTiffField(actualField.tagInfo)?.value
+                    val expectedBytesAsHex = expectedField.bytesAsHex()
+                    val actualBytesAsHex = actualField.bytesAsHex()
 
-                    /* Ignore the auto-correction of setting the orientation flag to default. */
-                    if (
-                        expectedField.tag == TiffTag.TIFF_TAG_ORIENTATION.tag &&
-                        expectedValue == null &&
-                        actualValue is ShortArray &&
-                        actualValue.contentEquals(shortArrayOf(TiffOrientation.STANDARD.value.toShort()))
-                    )
-                        continue
+                    val bytesEqual = expectedBytesAsHex == actualBytesAsHex
 
-                    val equals = if (expectedValue is ByteArray && actualValue is ByteArray)
-                        expectedValue.contentEquals(actualValue)
-                    else if (expectedValue is IntArray && actualValue is IntArray)
-                        expectedValue.contentEquals(actualValue)
-                    else if (expectedValue is ShortArray && actualValue is ShortArray)
-                        expectedValue.contentEquals(actualValue)
-                    else if (expectedValue is RationalNumbers && actualValue is RationalNumbers)
-                        expectedValue.values.contentEquals(actualValue.values)
-                    else
-                        expectedValue == actualValue
+                    // TODO Double check on orientation
 
-                    if (!equals) {
+//                    if (expectedField.tag == TiffTag.TIFF_TAG_ORIENTATION.tag)
+//                        println("$expectedBytesAsHex == $actualBytesAsHex")
 
-                        val expectedValueString = if (expectedValue is RationalNumbers)
-                            expectedValue.values.contentToString()
-                        else if (expectedValue is ByteArray)
-                            expectedValue.contentToString()
-                        else if (expectedValue is ShortArray)
-                            expectedValue.contentToString()
-                        else if (expectedValue is IntArray)
-                            expectedValue.contentToString()
-                        else
-                            expectedValue?.toString()
+//                    /* Ignore the auto-correction of setting the orientation flag to default. */
+//                    if (
+//                        expectedField.tag == TiffTag.TIFF_TAG_ORIENTATION.tag &&
+//                        expectedValue == null &&
+//                        actualValue is ShortArray &&
+//                        actualValue.contentEquals(shortArrayOf(TiffOrientation.STANDARD.value.toShort()))
+//                    )
+//                        continue
 
-                        val actualValueString = if (actualValue is RationalNumbers)
-                            actualValue.values.contentToString()
-                        else if (actualValue is ByteArray)
-                            actualValue.contentToString()
-                        else if (actualValue is ShortArray)
-                            actualValue.contentToString()
-                        else if (actualValue is IntArray)
-                            actualValue.contentToString()
-                        else
-                            actualValue?.toString()
+                    if (!bytesEqual) {
 
                         fail(
-                            "Value mismatch for image #$index and field ${expectedField.tagInfo}: " +
-                                "$expectedValueString != $actualValueString"
+                            "Value mismatch for image #$index and field ${expectedField.tagFormatted}: " +
+                                "$expectedBytesAsHex != $actualBytesAsHex"
                         )
                     }
                 }
@@ -392,16 +357,6 @@ class JpegRewriterTest {
             assertEquals(newXmp, newBytesXmp)
         }
     }
-
-    private fun isEquals(first: Any?, second: Any?): Boolean =
-        if (first is RationalNumbers && second is RationalNumbers)
-            first.values.contentEquals(second.values)
-        else if (first is ByteArray && second is ByteArray)
-            first.contentEquals(second)
-        else if (first is ShortArray && second is ShortArray)
-            first.contentEquals(second)
-        else
-            first == second
 
     companion object {
 

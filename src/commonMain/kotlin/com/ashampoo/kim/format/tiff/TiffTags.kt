@@ -21,17 +21,16 @@ import com.ashampoo.kim.format.tiff.constant.ExifTag.EXIF_DIRECTORY_UNKNOWN
 import com.ashampoo.kim.format.tiff.constant.GpsTag
 import com.ashampoo.kim.format.tiff.constant.TiffTag
 import com.ashampoo.kim.format.tiff.taginfo.TagInfo
-import com.ashampoo.kim.format.tiff.taginfo.TagInfoUnknowns
 
 internal object TiffTags {
 
     private val ALL_TAGS = ExifTag.ALL_EXIF_TAGS + GpsTag.ALL_GPS_TAGS + TiffTag.ALL_TIFF_TAGS
     private val ALL_TAG_MAP = ALL_TAGS.groupByTo(mutableMapOf()) { it.tag }
 
-    fun getTag(directoryType: Int, tag: Int): TagInfo {
+    fun getTag(directoryType: Int, tag: Int): TagInfo? {
 
         val possibleMatches = ALL_TAG_MAP[tag]
-            ?: return TagInfoUnknowns("Unknown", tag, TagInfo.LENGTH_UNKNOWN, null)
+            ?: return null
 
         return getTag(directoryType, possibleMatches)
     }
@@ -40,7 +39,7 @@ internal object TiffTags {
      * Note: Keep in sync with ImageMetadata.findTiffField()
      */
     @Suppress("UnnecessaryParentheses")
-    private fun getTag(directoryType: Int, possibleMatches: List<TagInfo>): TagInfo {
+    private fun getTag(directoryType: Int, possibleMatches: List<TagInfo>): TagInfo? {
 
         val exactMatch = possibleMatches.firstOrNull { tagInfo ->
             tagInfo.directoryType?.directoryType == directoryType &&
@@ -65,6 +64,6 @@ internal object TiffTags {
         if (wildcardMatch != null)
             return wildcardMatch
 
-        return TiffTag.TIFF_TAG_UNKNOWN
+        return null
     }
 }

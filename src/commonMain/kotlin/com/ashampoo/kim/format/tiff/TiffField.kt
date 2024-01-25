@@ -58,7 +58,8 @@ class TiffField(
     val tagFormatted: String =
         "0x" + tag.toString(HEX_RADIX).padStart(4, '0')
 
-    val tagInfo: TagInfo = getTag(directoryType, tag)
+    /** TagInfo, if the tag is found in our registry. */
+    val tagInfo: TagInfo? = getTag(directoryType, tag)
 
     val bytesLength: Int = count.toInt() * fieldType.size
 
@@ -143,7 +144,7 @@ class TiffField(
         }
 
         if (value !is String)
-            throw ImageReadException("Expected String value(" + tagInfo.tagFormatted + "): " + value)
+            throw ImageReadException("Expected String for $tagFormatted, but got: " + value)
 
         return value
     }
@@ -167,7 +168,7 @@ class TiffField(
             return result
         }
 
-        throw ImageReadException("Unknown value: $value for ${tagInfo.tagFormatted}")
+        throw ImageReadException("Can't format value of tag $tagFormatted as int: $value")
     }
 
     fun toInt(): Int =
@@ -197,7 +198,7 @@ class TiffField(
      * 'tagInfo' might be an Unknown tag and show a placeholder.
      */
     override fun toString(): String =
-        "$offsetFormatted $tagFormatted ${tagInfo.name} = $valueDescription"
+        "$offsetFormatted $tagFormatted ${tagInfo?.name ?: "Unknown"} = $valueDescription"
 
     fun createOversizeValueElement(): TiffElement? =
         valueOffset?.let { OversizeValueElement(it.toInt(), valueBytes.size) }

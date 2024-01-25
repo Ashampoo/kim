@@ -149,7 +149,8 @@ class TiffDirectory(
                 if (outputDirectory.findField(entry.tag) != null)
                     continue
 
-                if (entry.tagInfo.isOffset)
+                /* Skip known offsets. */
+                if (entry.tagInfo?.isOffset == true)
                     continue
 
                 val tagInfo = entry.tagInfo
@@ -176,7 +177,7 @@ class TiffDirectory(
 
                 val count = bytes.size / fieldType.size
 
-                val outputField = TiffOutputField(entry.tag, tagInfo, fieldType, count, bytes)
+                val outputField = TiffOutputField(entry.tag, fieldType, count, bytes)
 
                 outputField.sortHint = entry.sortHint
 

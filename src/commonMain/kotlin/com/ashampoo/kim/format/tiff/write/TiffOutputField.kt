@@ -17,7 +17,9 @@
 package com.ashampoo.kim.format.tiff.write
 
 import com.ashampoo.kim.common.ByteOrder
+import com.ashampoo.kim.common.HEX_RADIX
 import com.ashampoo.kim.common.ImageWriteException
+import com.ashampoo.kim.common.toHex
 import com.ashampoo.kim.format.tiff.constant.TiffConstants.TIFF_ENTRY_MAX_VALUE_LENGTH
 import com.ashampoo.kim.format.tiff.fieldtype.FieldType
 import com.ashampoo.kim.format.tiff.fieldtype.FieldTypeLong
@@ -26,11 +28,13 @@ import com.ashampoo.kim.output.BinaryByteWriter
 
 class TiffOutputField(
     val tag: Int,
-    val tagInfo: TagInfo,
     val fieldType: FieldType<out Any>,
     val count: Int,
     private var bytes: ByteArray
 ) {
+
+    val tagFormatted: String =
+        "0x" + tag.toString(HEX_RADIX).padStart(4, '0')
 
     val isLocalValue: Boolean = bytes.size <= TIFF_ENTRY_MAX_VALUE_LENGTH
 
@@ -38,13 +42,6 @@ class TiffOutputField(
         if (isLocalValue) null else TiffOutputValue("Value of $this", bytes)
 
     var sortHint = -1
-
-    constructor(
-        tagInfo: TagInfo,
-        fieldType: FieldType<out Any>,
-        count: Int,
-        bytes: ByteArray
-    ) : this(tagInfo.tag, tagInfo, fieldType, count, bytes)
 
     fun writeField(byteWriter: BinaryByteWriter) {
 
@@ -76,6 +73,9 @@ class TiffOutputField(
         }
     }
 
+    fun bytesAsHex(): String =
+        bytes.toHex()
+
     fun bytesEqual(data: ByteArray): Boolean =
         bytes.contentEquals(data)
 
@@ -90,11 +90,11 @@ class TiffOutputField(
     }
 
     override fun toString(): String =
-        "TiffOutputField ${tagInfo.name}"
+        "TiffOutputField $tagFormatted"
 
     companion object {
 
         fun createOffsetField(tagInfo: TagInfo, byteOrder: ByteOrder): TiffOutputField =
-            TiffOutputField(tagInfo, FieldTypeLong, 1, FieldTypeLong.writeData(0, byteOrder))
+            TiffOutputField(tagInfo.tag, FieldTypeLong, 1, FieldTypeLong.writeData(0, byteOrder))
     }
 }
