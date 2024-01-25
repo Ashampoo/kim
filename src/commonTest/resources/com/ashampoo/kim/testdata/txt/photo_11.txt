@@ -51,7 +51,6 @@ Little-endian (Intel, II)
 0000000626 0xa432 LensSpecification = [1500/10 (150.0), 1500/10 (150.0), 28/10 (2.8), 28/10 (2.8)]
 0000000638 0xa434 LensModel = 150.0 mm f/2.8
 
-
 ---- IPTC ----
 Date Created (55) = '20130501'
 Time Created (60) = '145550'

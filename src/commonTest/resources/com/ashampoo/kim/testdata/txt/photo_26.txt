@@ -51,7 +51,6 @@ Big-endian (Motorola, MM)
 0000000626 0xa432 LensSpecification = [55/1 (55.0), 200/1 (200.0), 4/1 (4.0), 28/5 (5.6)]
 0000000638 0xa434 LensModel = 55.0-200.0 mm f/4.0-5.6
 
-
 ---- IPTC ----
 Digital Creation Time (63) = '024527'
 Digital Creation Date (62) = '20170408'
@@ -324,4 +323,3 @@ Keywords (25) = 'plant'
  </rdf:Description>
 </rdf:RDF>
 </x:xmpmeta>
-

@@ -69,7 +69,6 @@ Little-endian (Intel, II)
 0000000984 0x0201 JpgFromRawStart = 1018
 0000000996 0x0202 JpgFromRawLength = 9800
 
-
 ---- IPTC ----
 By-line (80) = 'Alexander Andrews'
 Caption/Abstract (120) = 'orange and silver fox'

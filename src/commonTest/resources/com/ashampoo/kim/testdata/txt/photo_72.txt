@@ -77,7 +77,6 @@ Little-endian (Intel, II)
 0000039454 0x001d GPSDateStamp = 2022:06:10
 0000039466 0x001e GPSDifferential = 0
 
-
 ---- XMP ----
 <?xpacket begin='﻿' id='W5M0MpCehiHzreSzNTczkc9d'?>
 <x:xmpmeta xmlns:x='adobe:ns:meta/' x:xmptk=''>

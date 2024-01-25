@@ -20,7 +20,6 @@ Little-endian (Intel, II)
 0000000188 0xa001 ColorSpace = -1
 0000000200 0xa434 LensModel = 85.0 mm f/1.4
 
-
 ---- IPTC ----
 Keywords (25) = 'animal'
 Keywords (25) = 'cat'

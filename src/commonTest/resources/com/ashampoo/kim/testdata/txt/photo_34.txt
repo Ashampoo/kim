@@ -64,7 +64,6 @@ Little-endian (Intel, II)
 0000012806 0x0003 GPSLongitudeRef = E
 0000012818 0x0004 GPSLongitude = [19/1 (19.0), 24/1 (24.0), 12697/4301 (2.952104)]
 
-
 ---- IPTC ----
 Caption/Abstract (120) = 'selective focus photography of hedgehog on ground'
 Keywords (25) = 'mammal'

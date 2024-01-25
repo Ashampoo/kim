@@ -77,7 +77,6 @@ Little-endian (Intel, II)
 0000009872 0x0201 JpgFromRawStart = 9906
 0000009884 0x0202 JpgFromRawLength = 7278
 
-
 ---- IPTC ----
 Caption/Abstract (120) = 'honeybee perching on yellow flower'
 Date Created (55) = '2023-05-08'

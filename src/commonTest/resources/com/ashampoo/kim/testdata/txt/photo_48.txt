@@ -62,4 +62,3 @@ Big-endian (Motorola, MM)
 0000002338 0x0201 JpgFromRawStart = 2382
 0000002350 0x0202 JpgFromRawLength = 11130
 
-

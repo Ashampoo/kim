@@ -59,4 +59,3 @@ Little-endian (Intel, II)
 0000000616 0xa409 Saturation = 0
 0000000628 0xa40a Sharpness = 0
 
-

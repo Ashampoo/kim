@@ -51,7 +51,6 @@ Little-endian (Intel, II)
 0000000820 0x0201 JpgFromRawStart = 864
 0000000832 0x0202 JpgFromRawLength = 14914
 
-
 ---- IPTC ----
 Keywords (25) = 'animal'
 Keywords (25) = 'snake'

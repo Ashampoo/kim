@@ -72,7 +72,6 @@ Little-endian (Intel, II)
 0000010756 0x0201 JpgFromRawStart = 10800
 0000010768 0x0202 JpgFromRawLength = 7437
 
-
 ---- IPTC ----
 Caption/Abstract (120) = 'American eagle during daytime'
 Keywords (25) = 'animal'

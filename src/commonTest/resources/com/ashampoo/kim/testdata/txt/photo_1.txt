@@ -70,7 +70,6 @@ Little-endian (Intel, II)
 0000006564 0x0003 GPSLongitudeRef = E
 0000006576 0x0004 GPSLongitude = [36/1 (36.0), 57808914/1000000 (57.808914), 0/1 (0.0)]
 
-
 ---- IPTC ----
 Caption/Abstract (120) = 'honeybee perching on yellow flower'
 Keywords (25) = 'honey bee'

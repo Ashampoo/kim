@@ -59,7 +59,6 @@ Little-endian (Intel, II)
 0000000900 0x0201 JpgFromRawStart = 944
 0000000912 0x0202 JpgFromRawLength = 12539
 
-
 ---- IPTC ----
 Keywords (25) = 'london'
 Date Created (55) = '20190121'

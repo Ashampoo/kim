@@ -65,7 +65,6 @@ Big-endian (Motorola, MM)
 ---- Directory GPS @ 20853 ----
 0000020855 0x0000 GPSVersionID = [0x02, 0x03, 0x00, 0x00]
 
-
 ---- IPTC ----
 Caption/Abstract (120) = 'guinea pig sitting in front of toy arcade machine'
 Keywords (25) = 'mammal'

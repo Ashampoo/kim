@@ -68,7 +68,6 @@ Little-endian (Intel, II)
 0000001042 0x0201 JpgFromRawStart = 1086
 0000001054 0x0202 JpgFromRawLength = 4532
 
-
 ---- IPTC ----
 Caption/Abstract (120) = 'OLYMPUS DIGITAL CAMERA'
 Date Created (55) = '20170716'

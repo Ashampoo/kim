@@ -79,7 +79,6 @@ Little-endian (Intel, II)
 0000018944 0x0201 JpgFromRawStart = 18988
 0000018956 0x0202 JpgFromRawLength = 3209
 
-
 ---- IPTC ----
 Caption/Abstract (120) = 'time lapse photography of fire'
 Keywords (25) = 'human'

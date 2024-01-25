@@ -67,7 +67,6 @@ Big-endian (Motorola, MM)
 0000002540 0x001d GPSDateStamp = 2022:09:26
 0000002552 0x001f Unknown = 61943/4503 (13.75594)
 
-
 ---- XMP ----
 <?xpacket begin="﻿" id="W5M0MpCehiHzreSzNTczkc9d"?>
 <x:xmpmeta xmlns:x="adobe:ns:meta/" x:xmptk="Adobe XMP Core 5.1.3">

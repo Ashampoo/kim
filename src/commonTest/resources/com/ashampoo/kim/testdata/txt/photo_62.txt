@@ -97,4 +97,3 @@ Big-endian (Motorola, MM)
 0000182046 0x828e Unknown = [0x00, 0x01, 0x01, 0x02]
 0000182058 0x9217 Unknown = 2
 
-

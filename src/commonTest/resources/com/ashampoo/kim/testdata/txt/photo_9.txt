@@ -63,7 +63,6 @@ Little-endian (Intel, II)
 0000000952 0x0003 GPSLongitudeRef = W
 0000000964 0x0004 GPSLongitude = [121/1 (121.0), 56/1 (56.0), 62759/1390 (45.15036)]
 
-
 ---- IPTC ----
 Date Created (55) = '20191103'
 Time Created (60) = '145539'

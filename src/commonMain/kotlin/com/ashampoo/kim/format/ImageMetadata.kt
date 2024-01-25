@@ -65,7 +65,7 @@ data class ImageMetadata(
         sb.appendLine("Resolution  : $imageSize")
 
         if (exif != null)
-            sb.appendLine(exif)
+            sb.append(exif)
 
         if (iptc != null)
             sb.appendLine(iptc)
@@ -73,7 +73,7 @@ data class ImageMetadata(
         if (xmp != null) {
 
             sb.appendLine("---- XMP ----")
-            sb.appendLine(xmp)
+            sb.append(xmp)
         }
 
         return sb.toString()

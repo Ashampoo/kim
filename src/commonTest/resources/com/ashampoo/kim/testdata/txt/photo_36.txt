@@ -54,7 +54,6 @@ Big-endian (Motorola, MM)
 0000001134 0xa434 LensModel = XF90mmF2 R LM WR
 0000001146 0xa435 LensSerialNumber = 65B00914
 
-
 ---- IPTC ----
 Date Created (55) = '20170626'
 Time Created (60) = '231845'

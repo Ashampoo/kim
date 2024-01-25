@@ -99,4 +99,3 @@ Little-endian (Intel, II)
 0000044300 0x0202 JpgFromRawLength = 3884
 0000044312 0x0213 YCbCrPositioning = 2
 
-

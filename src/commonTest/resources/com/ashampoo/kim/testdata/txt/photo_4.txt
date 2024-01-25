@@ -54,7 +54,6 @@ Little-endian (Intel, II)
 0000000858 0x0201 JpgFromRawStart = 902
 0000000870 0x0202 JpgFromRawLength = 7757
 
-
 ---- IPTC ----
 Date Created (55) = '20191223'
 Time Created (60) = '012828'

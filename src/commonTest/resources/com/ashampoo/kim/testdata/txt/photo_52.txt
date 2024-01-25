@@ -61,7 +61,6 @@ Big-endian (Motorola, MM)
 0000000948 0x0003 GPSLongitudeRef = E
 0000000960 0x0004 GPSLongitude = [36/1 (36.0), 57/1 (57.0), 4853/100 (48.53)]
 
-
 ---- XMP ----
 <x:xmpmeta xmlns:x="adobe:ns:meta/" x:xmptk="XMP Core 6.0.0">
    <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
@@ -313,4 +312,3 @@ Big-endian (Motorola, MM)
       </rdf:Description>
    </rdf:RDF>
 </x:xmpmeta>
-

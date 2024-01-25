@@ -17,7 +17,6 @@ Big-endian (Motorola, MM)
 0000000128 0x0003 GPSLongitudeRef = W
 0000000140 0x0004 GPSLongitude = [118/1 (118.0), 14/1 (14.0), 38719/1039 (37.26564)]
 
-
 ---- IPTC ----
 Caption/Abstract (120) = 'brown and black tiger lying on green grass during daytime'
 Keywords (25) = 'plant'

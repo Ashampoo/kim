@@ -90,7 +90,6 @@ Big-endian (Motorola, MM)
 0000022602 0x0201 JpgFromRawStart = 22646
 0000022614 0x0202 JpgFromRawLength = 13995
 
-
 ---- IPTC ----
 Caption/Abstract (120) = 'chameleon perching on tree branch'
 

@@ -72,7 +72,6 @@ Little-endian (Intel, II)
 0000009418 0x0201 JpgFromRawStart = 9462
 0000009430 0x0202 JpgFromRawLength = 8567
 
-
 ---- XMP ----
 <?xpacket begin='﻿' id='W5M0MpCehiHzreSzNTczkc9d'?>
 <x:xmpmeta xmlns:x='adobe:ns:meta/' x:xmptk='Image::ExifTool 12.27'>

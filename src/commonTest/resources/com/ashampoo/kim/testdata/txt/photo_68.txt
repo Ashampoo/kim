@@ -210,7 +210,6 @@ Little-endian (Intel, II)
 0000197910 0xc741 Unknown = [256 bytes]
 0000197922 0xc7aa Unknown = 256
 
-
 ---- XMP ----
 <?xpacket begin="﻿" id="W5M0MpCehiHzreSzNTczkc9d"?>
 <x:xmpmeta xmlns:x="adobe:ns:meta/" x:xmptk="Adobe XMP Core 7.0-c000 1.000000, 0000/00/00-00:00:00        ">

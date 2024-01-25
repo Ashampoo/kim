@@ -59,4 +59,3 @@ Little-endian (Intel, II)
 0000000830 0x920a FocalLength = 47/10 (4.7)
 0000000842 0xa300 FileSource = 3
 
-

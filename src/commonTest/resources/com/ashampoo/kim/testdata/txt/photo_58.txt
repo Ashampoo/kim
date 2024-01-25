@@ -79,7 +79,6 @@ Little-endian (Intel, II)
 0000003484 0x0202 JpgFromRawLength = 9457
 0000003496 0x0213 YCbCrPositioning = 2
 
-
 ---- XMP ----
 <?xpacket begin='﻿' id='W5M0MpCehiHzreSzNTczkc9d'?>
 <x:xmpmeta xmlns:x="adobe:ns:meta/"><rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"><rdf:Description rdf:about="" xmlns:xmp="http://ns.adobe.com/xap/1.0/"><xmp:Rating>0</xmp:Rating></rdf:Description></rdf:RDF></x:xmpmeta>

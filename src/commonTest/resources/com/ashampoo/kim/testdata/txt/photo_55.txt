@@ -66,7 +66,6 @@ Little-endian (Intel, II)
 0002027470 0xa434 LensModel = EF-S15-85mm f/3.5-5.6 IS USM
 0002027482 0xa435 LensSerialNumber = 0000118484
 
-
 ---- XMP ----
 <?xpacket begin="﻿" id="W5M0MpCehiHzreSzNTczkc9d"?>
 <x:xmpmeta xmlns:x="adobe:ns:meta/" x:xmptk="XMP Core 5.5.0">

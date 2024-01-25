@@ -48,4 +48,3 @@ Little-endian (Intel, II)
 0000000552 0xa406 SceneCaptureType = 0
 0000000564 0xa420 ImageUniqueID = XA8XLNF00SM
 
-

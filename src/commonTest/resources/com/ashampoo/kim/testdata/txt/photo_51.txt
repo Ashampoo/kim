@@ -73,7 +73,6 @@ Little-endian (Intel, II)
 0000001118 0x0201 JpgFromRawStart = 1152
 0000001130 0x0202 JpgFromRawLength = 6554
 
-
 ---- IPTC ----
 By-line (80) = 'SippakorN'
 Caption/Abstract (120) = 'brown snake on green grass'
