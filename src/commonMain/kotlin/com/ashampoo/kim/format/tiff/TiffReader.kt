@@ -76,101 +76,12 @@ object TiffReader {
             }
         )
 
-        /**
-         * Inspect if MakerNotes are present and could be added as
-         * TiffDirectory. This is true for almost all manufacturers.
-         */
-
-        val makerNoteField = TiffDirectory.findTiffField(
-            directories,
-            ExifTag.EXIF_TAG_MAKER_NOTE
-        )
-
-        if (makerNoteField != null && makerNoteField.valueOffset != null) {
-
-            val make = TiffDirectory.findTiffField(
-                directories, TiffTag.TIFF_TAG_MAKE
-            )?.valueDescription
-
-            try {
-
-                createMakerNoteDirectory(
-                    byteReader,
-                    makerNoteField.valueOffset,
-                    make,
-                    byteOrder = tiffHeader.byteOrder,
-                    addDirectory = {
-                        directories.add(it)
-                    }
-                )
-
-            } catch (ignore: Exception) {
-
-                /* Interpreting the Maker Note is optional. */
-                @Suppress("PrintStackTrace")
-                ignore.printStackTrace()
-            }
-        }
+        tryToAddMakerNote(directories, byteReader, tiffHeader.byteOrder)
 
         if (directories.isEmpty())
             throw ImageReadException("Image did not contain any directories.")
 
         return TiffContents(tiffHeader, directories)
-    }
-
-    /**
-     * See https://exiftool.org/makernote_types.html
-     */
-    private fun createMakerNoteDirectory(
-        byteReader: RandomAccessByteReader,
-        makerNoteValueOffset: Int,
-        make: String?,
-        byteOrder: ByteOrder,
-        addDirectory: (TiffDirectory) -> Unit
-    ) {
-
-        if (make != null && make == "Canon") {
-
-            readDirectory(
-                byteReader = byteReader,
-                byteOrder = byteOrder,
-                directoryOffset = makerNoteValueOffset,
-                directoryType = TiffConstants.TIFF_MAKER_NOTE_CANON,
-                visitedOffsets = mutableListOf<Int>(),
-                addDirectory = addDirectory
-            )
-        }
-
-        if (make != null && make.trim().lowercase().startsWith("nikon")) {
-
-            byteReader.reset()
-            byteReader.skipBytes("offset", makerNoteValueOffset)
-
-            /*
-             * Expect to start with "Nikon<NUL>"
-             */
-            val nikonSignature = byteReader.readBytes(6).decodeToString()
-
-            val nikonSignatureMatched = nikonSignature == "Nikon\u0000"
-
-            if (!nikonSignatureMatched)
-                return
-
-            val type = byteReader.readByteAsInt()
-
-            /* We only have test files for type 2 right now. */
-            if (type != 2)
-                return
-
-            readDirectory(
-                byteReader = byteReader,
-                byteOrder = ByteOrder.LITTLE_ENDIAN,
-                directoryOffset = makerNoteValueOffset + 18,
-                directoryType = TiffConstants.TIFF_MAKER_NOTE_NIKON,
-                visitedOffsets = mutableListOf<Int>(),
-                addDirectory = addDirectory
-            )
-        }
     }
 
     fun readTiffHeader(byteReader: ByteReader): TiffHeader {
@@ -449,5 +360,106 @@ object TiffReader {
          */
 
         return JpegImageDataElement(offset, length, data)
+    }
+
+    /**
+     * Inspect if MakerNotes are present and could be added as
+     * TiffDirectory. This is true for almost all manufacturers.
+     */
+    private fun tryToAddMakerNote(
+        directories: MutableList<TiffDirectory>,
+        byteReader: RandomAccessByteReader,
+        byteOrder: ByteOrder
+    ) {
+
+        val makerNoteField = TiffDirectory.findTiffField(
+            directories,
+            ExifTag.EXIF_TAG_MAKER_NOTE
+        )
+
+        if (makerNoteField != null && makerNoteField.valueOffset != null) {
+
+            val make = TiffDirectory.findTiffField(
+                directories, TiffTag.TIFF_TAG_MAKE
+            )?.valueDescription
+
+            try {
+
+                createMakerNoteDirectory(
+                    byteReader,
+                    makerNoteField.valueOffset,
+                    make,
+                    byteOrder = byteOrder,
+                    addDirectory = {
+                        directories.add(it)
+                    }
+                )
+
+            } catch (ignore: Exception) {
+
+                /* Interpreting the Maker Note is optional. */
+                @Suppress("PrintStackTrace")
+                ignore.printStackTrace()
+            }
+        }
+    }
+
+    /**
+     * Try to read MakerNote and add it as a directory.
+     *
+     * Note that this is experimental!
+     *
+     * See https://exiftool.org/makernote_types.html
+     */
+    private fun createMakerNoteDirectory(
+        byteReader: RandomAccessByteReader,
+        makerNoteValueOffset: Int,
+        make: String?,
+        byteOrder: ByteOrder,
+        addDirectory: (TiffDirectory) -> Unit
+    ) {
+
+        if (make != null && make == "Canon") {
+
+            readDirectory(
+                byteReader = byteReader,
+                byteOrder = byteOrder,
+                directoryOffset = makerNoteValueOffset,
+                directoryType = TiffConstants.TIFF_MAKER_NOTE_CANON,
+                visitedOffsets = mutableListOf<Int>(),
+                addDirectory = addDirectory
+            )
+        }
+
+        if (make != null && make.trim().lowercase().startsWith("nikon")) {
+
+            byteReader.reset()
+            byteReader.skipBytes("offset", makerNoteValueOffset)
+
+            /*
+             * Expect to start with "Nikon<NUL>"
+             */
+            val nikonSignature = byteReader.readBytes(6).decodeToString()
+
+            val nikonSignatureMatched = nikonSignature == "Nikon\u0000"
+
+            if (!nikonSignatureMatched)
+                return
+
+            val type = byteReader.readByteAsInt()
+
+            /* We only have test files for type 2 right now. */
+            if (type != 2)
+                return
+
+            readDirectory(
+                byteReader = byteReader,
+                byteOrder = ByteOrder.LITTLE_ENDIAN,
+                directoryOffset = makerNoteValueOffset + 18,
+                directoryType = TiffConstants.TIFF_MAKER_NOTE_NIKON,
+                visitedOffsets = mutableListOf<Int>(),
+                addDirectory = addDirectory
+            )
+        }
     }
 }
