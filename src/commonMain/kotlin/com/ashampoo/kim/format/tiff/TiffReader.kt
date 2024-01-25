@@ -62,25 +62,23 @@ object TiffReader {
 
         byteReader.reset()
 
-        val collector = TiffReaderCollector()
-
-        collector.tiffHeader = tiffHeader
+        val directories = mutableListOf<TiffDirectory>()
 
         readDirectory(
             byteReader = byteReader,
             byteOrder = tiffHeader.byteOrder,
             directoryOffset = tiffHeader.offsetToFirstIFD,
             directoryType = TiffConstants.DIRECTORY_TYPE_ROOT,
-            collector = collector,
-            visitedOffsets = mutableListOf<Int>()
+            visitedOffsets = mutableListOf<Int>(),
+            addDirectory = {
+                directories.add(it)
+            }
         )
 
-        val contents = collector.getContents()
-
-        if (contents.directories.isEmpty())
+        if (directories.isEmpty())
             throw ImageReadException("Image did not contain any directories.")
 
-        return contents
+        return TiffContents(tiffHeader, directories)
     }
 
     fun readTiffHeader(byteReader: ByteReader): TiffHeader {
@@ -113,8 +111,8 @@ object TiffReader {
         byteOrder: ByteOrder,
         directoryOffset: Int,
         directoryType: Int,
-        collector: TiffReaderCollector,
-        visitedOffsets: MutableList<Int>
+        visitedOffsets: MutableList<Int>,
+        addDirectory: (TiffDirectory) -> Unit
     ): Boolean {
 
         /* We don't want to visit a directory twice. */
@@ -169,7 +167,7 @@ object TiffReader {
         if (directory.hasJpegImageData())
             directory.jpegImageDataElement = getJpegRawImageData(byteReader, directory)
 
-        collector.directories.add(directory)
+        addDirectory(directory)
 
         /* Read offset directories */
         for (offsetField in offsetFields) {
@@ -207,8 +205,8 @@ object TiffReader {
                             byteOrder = byteOrder,
                             directoryOffset = subDirOffset,
                             directoryType = subDirectoryType,
-                            collector = collector,
-                            visitedOffsets = visitedOffsets
+                            visitedOffsets = visitedOffsets,
+                            addDirectory = addDirectory
                         )
 
                     } catch (ignore: ImageReadException) {
@@ -229,8 +227,8 @@ object TiffReader {
                 byteOrder = byteOrder,
                 directoryOffset = directory.nextDirectoryOffset,
                 directoryType = directoryType + 1,
-                collector = collector,
-                visitedOffsets = visitedOffsets
+                visitedOffsets = visitedOffsets,
+                addDirectory = addDirectory
             )
 
         return true
@@ -353,14 +351,5 @@ object TiffReader {
          */
 
         return JpegImageDataElement(offset, length, data)
-    }
-
-    private class TiffReaderCollector {
-
-        var tiffHeader: TiffHeader? = null
-        val directories = mutableListOf<TiffDirectory>()
-
-        fun getContents(): TiffContents =
-            TiffContents(requireNotNull(tiffHeader), directories)
     }
 }
