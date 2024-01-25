@@ -80,19 +80,6 @@ object TiffReader {
          * Inspect if MakerNotes are present and could be added as
          * TiffDirectory. This is true for almost all manufacturers.
          */
-        addMakerNoteDirectory(directories, byteReader, tiffHeader.byteOrder)
-
-        if (directories.isEmpty())
-            throw ImageReadException("Image did not contain any directories.")
-
-        return TiffContents(tiffHeader, directories)
-    }
-
-    private fun addMakerNoteDirectory(
-        directories: MutableList<TiffDirectory>,
-        byteReader: RandomAccessByteReader,
-        byteOrder: ByteOrder
-    ) {
 
         val makerNoteField = TiffDirectory.findTiffField(
             directories,
@@ -103,23 +90,53 @@ object TiffReader {
 
             val make = TiffDirectory.findTiffField(
                 directories, TiffTag.TIFF_TAG_MAKE
-            )?.valueDescription?.trim()?.lowercase()
+            )?.valueDescription
 
-            if (make != null) {
+            try {
 
-                if (make.startsWith("canon")) {
+                createMakerNoteDirectory(
+                    byteReader,
+                    makerNoteField.valueOffset,
+                    make,
+                    byteOrder = tiffHeader.byteOrder,
+                    addDirectory = {
+                        directories.add(it)
+                    }
+                )
 
-                    readDirectory(
-                        byteReader = byteReader,
-                        byteOrder = byteOrder,
-                        directoryOffset = makerNoteField.valueOffset,
-                        directoryType = TiffConstants.TIFF_MAKER_NOTE_CANON,
-                        visitedOffsets = mutableListOf<Int>(),
-                        addDirectory = {
-                            directories.add(it)
-                        }
-                    )
-                }
+            } catch (ignore: Exception) {
+
+                /* Interpreting the Maker Note is optional. */
+                @Suppress("PrintStackTrace")
+                ignore.printStackTrace()
+            }
+        }
+
+        if (directories.isEmpty())
+            throw ImageReadException("Image did not contain any directories.")
+
+        return TiffContents(tiffHeader, directories)
+    }
+
+    private fun createMakerNoteDirectory(
+        byteReader: RandomAccessByteReader,
+        makerNoteValueOffset: Int,
+        make: String?,
+        byteOrder: ByteOrder,
+        addDirectory: (TiffDirectory) -> Unit
+    ) {
+
+        if (make != null && make == "Canon") {
+
+            readDirectory(
+                byteReader = byteReader,
+                byteOrder = byteOrder,
+                directoryOffset = makerNoteValueOffset,
+                directoryType = TiffConstants.TIFF_MAKER_NOTE_CANON,
+                visitedOffsets = mutableListOf<Int>(),
+                addDirectory = addDirectory
+            )
+        }
 
 //                if (make.startsWith("nikon")) {
 //
@@ -142,8 +159,6 @@ object TiffReader {
 //                        }
 //                    )
 //                }
-            }
-        }
     }
 
     fun readTiffHeader(byteReader: ByteReader): TiffHeader {
@@ -227,7 +242,13 @@ object TiffReader {
         val nextDirectoryOffset =
             byteReader.read4BytesAsInt("Next directory offset", byteOrder)
 
-        val directory = TiffDirectory(directoryType, fields, directoryOffset, nextDirectoryOffset, byteOrder)
+        val directory = TiffDirectory(
+            type = directoryType,
+            entries = fields,
+            offset = directoryOffset,
+            nextDirectoryOffset = nextDirectoryOffset,
+            byteOrder = byteOrder
+        )
 
         if (directory.hasJpegImageData())
             directory.jpegImageDataElement = getJpegRawImageData(byteReader, directory)
@@ -286,7 +307,7 @@ object TiffReader {
             }
         }
 
-        if (directory.nextDirectoryOffset > 0)
+        if (nextDirectoryOffset > 0)
             readDirectory(
                 byteReader = byteReader,
                 byteOrder = byteOrder,
