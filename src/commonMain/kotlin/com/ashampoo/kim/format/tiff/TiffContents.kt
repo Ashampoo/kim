@@ -16,6 +16,7 @@
  */
 package com.ashampoo.kim.format.tiff
 
+import com.ashampoo.kim.format.tiff.constant.ExifTag
 import com.ashampoo.kim.format.tiff.taginfo.TagInfo
 import com.ashampoo.kim.format.tiff.write.TiffOutputSet
 
@@ -23,6 +24,9 @@ data class TiffContents(
     val header: TiffHeader,
     val directories: List<TiffDirectory>
 ) {
+
+    fun findMakerNoteData(): ByteArray? =
+        findTiffField(ExifTag.EXIF_TAG_MAKER_NOTE)?.byteArrayValue
 
     /*
      * Note: Keep in sync with TiffTags.getTag()
