@@ -21,10 +21,10 @@ import com.ashampoo.kim.common.RationalNumber
 import com.ashampoo.kim.common.toBytes
 import com.ashampoo.kim.common.toRational
 import com.ashampoo.kim.format.tiff.constant.TiffDirectoryType
-import com.ashampoo.kim.format.tiff.fieldtype.FieldType
+import com.ashampoo.kim.format.tiff.fieldtype.FieldTypeSRational
 
 class TagInfoSRational(name: String, tag: Int, directoryType: TiffDirectoryType?) :
-    TagInfo(name, tag, FieldType.SRATIONAL, 1, directoryType) {
+    TagInfo(name, tag, FieldTypeSRational, 1, directoryType) {
 
     fun getValue(byteOrder: ByteOrder, bytes: ByteArray): RationalNumber =
         bytes.toRational(byteOrder, false)

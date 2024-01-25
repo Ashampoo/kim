@@ -17,11 +17,17 @@
 package com.ashampoo.kim.format.tiff.taginfo
 
 import com.ashampoo.kim.format.tiff.constant.TiffDirectoryType
-import com.ashampoo.kim.format.tiff.fieldtype.FieldType
+import com.ashampoo.kim.format.tiff.fieldtype.FieldTypeAscii
+import com.ashampoo.kim.format.tiff.fieldtype.FieldTypeRational
 
 class TagInfoAsciiOrRational(
     name: String,
     tag: Int,
     length: Int,
     directoryType: TiffDirectoryType?
-) : TagInfo(name, tag, FieldType.ASCII_OR_RATIONAL, length, directoryType, false)
+) : TagInfo(
+    name, tag, listOf(
+        FieldTypeAscii,
+        FieldTypeRational
+    ), length, directoryType, false
+)

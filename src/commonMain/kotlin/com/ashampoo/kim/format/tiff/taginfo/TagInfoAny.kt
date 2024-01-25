@@ -24,4 +24,4 @@ class TagInfoAny(
     tag: Int,
     length: Int,
     directoryType: TiffDirectoryType?
-) : TagInfo(name, tag, FieldType.ANY, length, directoryType)
+) : TagInfo(name, tag, FieldType.ALL_FIELD_TYPES, length, directoryType)

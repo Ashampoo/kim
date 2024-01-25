@@ -20,6 +20,7 @@ import com.ashampoo.kim.common.ByteOrder
 import com.ashampoo.kim.common.ImageWriteException
 import com.ashampoo.kim.format.tiff.constant.TiffConstants.TIFF_ENTRY_MAX_VALUE_LENGTH
 import com.ashampoo.kim.format.tiff.fieldtype.FieldType
+import com.ashampoo.kim.format.tiff.fieldtype.FieldTypeLong
 import com.ashampoo.kim.format.tiff.taginfo.TagInfo
 import com.ashampoo.kim.output.BinaryByteWriter
 
@@ -94,6 +95,6 @@ class TiffOutputField(
     companion object {
 
         fun createOffsetField(tagInfo: TagInfo, byteOrder: ByteOrder): TiffOutputField =
-            TiffOutputField(tagInfo, FieldType.LONG, 1, FieldType.LONG.writeData(0, byteOrder))
+            TiffOutputField(tagInfo, FieldTypeLong, 1, FieldTypeLong.writeData(0, byteOrder))
     }
 }

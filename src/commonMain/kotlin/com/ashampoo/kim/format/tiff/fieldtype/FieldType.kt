@@ -19,6 +19,19 @@ package com.ashampoo.kim.format.tiff.fieldtype
 import com.ashampoo.kim.common.ByteOrder
 import com.ashampoo.kim.common.ImageReadException
 import com.ashampoo.kim.format.tiff.TiffField
+import com.ashampoo.kim.format.tiff.constant.TiffConstants.FIELD_TYPE_ASCII_INDEX
+import com.ashampoo.kim.format.tiff.constant.TiffConstants.FIELD_TYPE_BYTE_INDEX
+import com.ashampoo.kim.format.tiff.constant.TiffConstants.FIELD_TYPE_DOUBLE_INDEX
+import com.ashampoo.kim.format.tiff.constant.TiffConstants.FIELD_TYPE_FLOAT_INDEX
+import com.ashampoo.kim.format.tiff.constant.TiffConstants.FIELD_TYPE_IFD_INDEX
+import com.ashampoo.kim.format.tiff.constant.TiffConstants.FIELD_TYPE_LONG_INDEX
+import com.ashampoo.kim.format.tiff.constant.TiffConstants.FIELD_TYPE_RATIONAL_INDEX
+import com.ashampoo.kim.format.tiff.constant.TiffConstants.FIELD_TYPE_SBYTE_INDEX
+import com.ashampoo.kim.format.tiff.constant.TiffConstants.FIELD_TYPE_SHORT_INDEX
+import com.ashampoo.kim.format.tiff.constant.TiffConstants.FIELD_TYPE_SLONG_INDEX
+import com.ashampoo.kim.format.tiff.constant.TiffConstants.FIELD_TYPE_SRATIONAL_INDEX
+import com.ashampoo.kim.format.tiff.constant.TiffConstants.FIELD_TYPE_SSHORT_INDEX
+import com.ashampoo.kim.format.tiff.constant.TiffConstants.FIELD_TYPE_UNDEFINED_INDEX
 
 interface FieldType<T> {
 
@@ -30,47 +43,34 @@ interface FieldType<T> {
 
     fun getValue(entry: TiffField): T
 
-    // FIXME Try to replace "Any" with "T"
     fun writeData(data: Any, byteOrder: ByteOrder): ByteArray
 
     companion object {
 
-        val BYTE = FieldTypeByte
-        val ASCII = FieldTypeAscii
-        val SHORT = FieldTypeShort
-        val LONG = FieldTypeLong
-        val RATIONAL = FieldTypeRational
-        val SBYTE = FieldTypeSByte
-        val UNDEFINED = FieldTypeUndefined
-        val SSHORT = FieldTypeSShort
-        val SLONG = FieldTypeSLong
-        val SRATIONAL = FieldTypeSRational
-        val FLOAT = FieldTypeFloat
-        val DOUBLE = FieldTypeDouble
-        val IFD = FieldTypeIfd
-
-        val ANY = listOf(
-            BYTE, ASCII, SHORT, LONG, RATIONAL, SBYTE, UNDEFINED,
-            SSHORT, SLONG, SRATIONAL, FLOAT, DOUBLE, IFD
+        val ALL_FIELD_TYPES = listOf(
+            FieldTypeByte, FieldTypeAscii, FieldTypeShort, FieldTypeLong,
+            FieldTypeRational, FieldTypeSByte, FieldTypeUndefined,
+            FieldTypeSShort, FieldTypeSLong, FieldTypeSRational,
+            FieldTypeFloat, FieldTypeDouble, FieldTypeIfd
         )
 
-        val SHORT_OR_LONG = listOf(SHORT, LONG)
-        val SHORT_OR_RATIONAL = listOf(SHORT, RATIONAL)
-        val SHORT_OR_LONG_OR_RATIONAL = listOf(SHORT, LONG, RATIONAL)
-        val LONG_OR_SHORT = listOf(SHORT, LONG)
-        val BYTE_OR_SHORT = listOf(SHORT, BYTE)
-        val LONG_OR_IFD = listOf(LONG, IFD)
-        val ASCII_OR_RATIONAL = listOf(ASCII, RATIONAL)
-        val ASCII_OR_BYTE = listOf(ASCII, BYTE)
-
         @kotlin.jvm.JvmStatic
-        fun getFieldType(type: Int): FieldType<out Any> {
-
-            for (fieldType in ANY)
-                if (fieldType.type == type)
-                    return fieldType
-
-            throw ImageReadException("Field type $type is unsupported")
-        }
+        fun getFieldType(type: Int): FieldType<out Any> =
+            when (type) {
+                FIELD_TYPE_BYTE_INDEX -> FieldTypeByte
+                FIELD_TYPE_ASCII_INDEX -> FieldTypeAscii
+                FIELD_TYPE_SHORT_INDEX -> FieldTypeShort
+                FIELD_TYPE_LONG_INDEX -> FieldTypeLong
+                FIELD_TYPE_RATIONAL_INDEX -> FieldTypeRational
+                FIELD_TYPE_SBYTE_INDEX -> FieldTypeSByte
+                FIELD_TYPE_UNDEFINED_INDEX -> FieldTypeUndefined
+                FIELD_TYPE_SSHORT_INDEX -> FieldTypeSShort
+                FIELD_TYPE_SLONG_INDEX -> FieldTypeSLong
+                FIELD_TYPE_SRATIONAL_INDEX -> FieldTypeSRational
+                FIELD_TYPE_FLOAT_INDEX -> FieldTypeFloat
+                FIELD_TYPE_DOUBLE_INDEX -> FieldTypeDouble
+                FIELD_TYPE_IFD_INDEX -> FieldTypeIfd
+                else -> throw ImageReadException("Unknown field type $type")
+            }
     }
 }

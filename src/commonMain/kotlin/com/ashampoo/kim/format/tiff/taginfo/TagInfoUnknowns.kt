@@ -20,4 +20,4 @@ import com.ashampoo.kim.format.tiff.constant.TiffDirectoryType
 import com.ashampoo.kim.format.tiff.fieldtype.FieldType
 
 class TagInfoUnknowns(name: String, tag: Int, length: Int, exifDirectory: TiffDirectoryType?) :
-    TagInfoBytes(name, tag, FieldType.ANY, length, exifDirectory)
+    TagInfoBytes(name, tag, FieldType.ALL_FIELD_TYPES, length, exifDirectory)

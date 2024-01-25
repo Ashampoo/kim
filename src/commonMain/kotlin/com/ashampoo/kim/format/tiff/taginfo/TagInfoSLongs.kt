@@ -20,10 +20,10 @@ import com.ashampoo.kim.common.ByteOrder
 import com.ashampoo.kim.common.toBytes
 import com.ashampoo.kim.common.toInts
 import com.ashampoo.kim.format.tiff.constant.TiffDirectoryType
-import com.ashampoo.kim.format.tiff.fieldtype.FieldType
+import com.ashampoo.kim.format.tiff.fieldtype.FieldTypeSLong
 
 class TagInfoSLongs(name: String, tag: Int, length: Int, directoryType: TiffDirectoryType?) :
-    TagInfo(name, tag, FieldType.SLONG, length, directoryType) {
+    TagInfo(name, tag, FieldTypeSLong, length, directoryType) {
 
     fun getValue(byteOrder: ByteOrder, bytes: ByteArray): IntArray =
         bytes.toInts(byteOrder)

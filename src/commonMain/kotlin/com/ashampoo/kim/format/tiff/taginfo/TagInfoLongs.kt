@@ -20,7 +20,7 @@ import com.ashampoo.kim.common.ByteOrder
 import com.ashampoo.kim.common.toBytes
 import com.ashampoo.kim.common.toInts
 import com.ashampoo.kim.format.tiff.constant.TiffDirectoryType
-import com.ashampoo.kim.format.tiff.fieldtype.FieldType
+import com.ashampoo.kim.format.tiff.fieldtype.FieldTypeLong
 
 open class TagInfoLongs : TagInfo {
 
@@ -29,7 +29,7 @@ open class TagInfoLongs : TagInfo {
         tag: Int,
         length: Int,
         directoryType: TiffDirectoryType?
-    ) : super(name, tag, FieldType.LONG, length, directoryType)
+    ) : super(name, tag, FieldTypeLong, length, directoryType)
 
     constructor(
         name: String,
@@ -37,7 +37,7 @@ open class TagInfoLongs : TagInfo {
         length: Int,
         directoryType: TiffDirectoryType?,
         isOffset: Boolean
-    ) : super(name, tag, listOf(FieldType.LONG), length, directoryType, isOffset)
+    ) : super(name, tag, listOf(FieldTypeLong), length, directoryType, isOffset)
 
     fun getValue(byteOrder: ByteOrder, bytes: ByteArray): IntArray =
         bytes.toInts(byteOrder)

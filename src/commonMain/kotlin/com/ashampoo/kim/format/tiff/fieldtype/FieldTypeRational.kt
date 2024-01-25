@@ -22,7 +22,6 @@ import com.ashampoo.kim.common.toBytes
 import com.ashampoo.kim.common.toRationals
 import com.ashampoo.kim.format.tiff.TiffField
 import com.ashampoo.kim.format.tiff.constant.TiffConstants
-import com.ashampoo.kim.format.tiff.fieldtype.FieldType.Companion.SRATIONAL
 
 /**
  * Two LONGs: the first represents the numerator of a
@@ -36,12 +35,8 @@ object FieldTypeRational : FieldType<RationalNumbers> {
 
     override val size: Int = 8
 
-    override fun getValue(entry: TiffField): RationalNumbers {
-
-        val unsignedType = entry.fieldType !== SRATIONAL
-
-        return entry.byteArrayValue.toRationals(entry.byteOrder, unsignedType)
-    }
+    override fun getValue(entry: TiffField): RationalNumbers =
+        entry.byteArrayValue.toRationals(entry.byteOrder, unsignedType = true)
 
     override fun writeData(data: Any, byteOrder: ByteOrder): ByteArray =
         (data as RationalNumbers).toBytes(byteOrder)

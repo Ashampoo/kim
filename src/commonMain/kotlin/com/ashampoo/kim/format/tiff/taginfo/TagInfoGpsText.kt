@@ -26,6 +26,9 @@ import com.ashampoo.kim.common.slice
 import com.ashampoo.kim.format.tiff.TiffField
 import com.ashampoo.kim.format.tiff.constant.TiffDirectoryType
 import com.ashampoo.kim.format.tiff.fieldtype.FieldType
+import com.ashampoo.kim.format.tiff.fieldtype.FieldTypeAscii
+import com.ashampoo.kim.format.tiff.fieldtype.FieldTypeByte
+import com.ashampoo.kim.format.tiff.fieldtype.FieldTypeUndefined
 
 /**
  * Used by some GPS tags and the EXIF user comment tag,
@@ -37,7 +40,7 @@ class TagInfoGpsText(
     name: String,
     tag: Int,
     exifDirectory: TiffDirectoryType?
-) : TagInfo(name, tag, FieldType.UNDEFINED, TagInfo.LENGTH_UNKNOWN, exifDirectory) {
+) : TagInfo(name, tag, FieldTypeUndefined, TagInfo.LENGTH_UNKNOWN, exifDirectory) {
 
     override fun isText(): Boolean =
         true
@@ -72,10 +75,10 @@ class TagInfoGpsText(
 
         val fieldType = entry.fieldType
 
-        if (fieldType === FieldType.ASCII)
-            return FieldType.ASCII.getValue(entry)
+        if (fieldType === FieldTypeAscii)
+            return FieldTypeAscii.getValue(entry)
 
-        if (fieldType !== FieldType.UNDEFINED && fieldType !== FieldType.BYTE)
+        if (fieldType !== FieldTypeUndefined && fieldType !== FieldTypeByte)
             throw ImageReadException("GPS text field not encoded as bytes.")
 
         val bytes = entry.byteArrayValue

@@ -17,7 +17,7 @@
 package com.ashampoo.kim.format.tiff.write
 
 import com.ashampoo.kim.common.ByteOrder
-import com.ashampoo.kim.format.tiff.fieldtype.FieldType
+import com.ashampoo.kim.format.tiff.fieldtype.FieldTypeLong
 
 class TiffOffsetItems(val byteOrder: ByteOrder) {
 
@@ -29,7 +29,7 @@ class TiffOffsetItems(val byteOrder: ByteOrder) {
     fun writeOffsetsToOutputFields() =
         offsetItems.forEach {
             it.outputField.setBytes(
-                FieldType.LONG.writeData(
+                FieldTypeLong.writeData(
                     data = it.outputItem.offset.toInt(),
                     byteOrder = byteOrder
                 )

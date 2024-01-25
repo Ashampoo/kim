@@ -35,12 +35,8 @@ object FieldTypeSRational : FieldType<RationalNumbers> {
 
     override val size: Int = 8
 
-    override fun getValue(entry: TiffField): RationalNumbers {
-
-        val unsignedType = entry.fieldType !== FieldType.SRATIONAL
-
-        return entry.byteArrayValue.toRationals(entry.byteOrder, unsignedType)
-    }
+    override fun getValue(entry: TiffField): RationalNumbers =
+        entry.byteArrayValue.toRationals(entry.byteOrder, unsignedType = false)
 
     override fun writeData(data: Any, byteOrder: ByteOrder): ByteArray =
         (data as RationalNumbers).toBytes(byteOrder)

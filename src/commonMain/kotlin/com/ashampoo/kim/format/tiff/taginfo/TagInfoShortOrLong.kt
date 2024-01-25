@@ -20,13 +20,18 @@ import com.ashampoo.kim.common.ByteOrder
 import com.ashampoo.kim.common.toBytes
 import com.ashampoo.kim.format.tiff.constant.TiffDirectoryType
 import com.ashampoo.kim.format.tiff.fieldtype.FieldType
+import com.ashampoo.kim.format.tiff.fieldtype.FieldTypeLong
+import com.ashampoo.kim.format.tiff.fieldtype.FieldTypeShort
 
 class TagInfoShortOrLong : TagInfo {
 
     constructor(name: String, tag: Int, length: Int, directoryType: TiffDirectoryType?) : super(
         name,
         tag,
-        FieldType.SHORT_OR_LONG,
+        listOf<FieldType<out Any>>(
+            FieldTypeShort,
+            FieldTypeLong
+        ),
         length,
         directoryType,
         false
@@ -38,7 +43,12 @@ class TagInfoShortOrLong : TagInfo {
         length: Int,
         directoryType: TiffDirectoryType?,
         isOffset: Boolean
-    ) : super(name, tag, FieldType.SHORT_OR_LONG, length, directoryType, isOffset)
+    ) : super(
+        name, tag, listOf<FieldType<out Any>>(
+            FieldTypeShort,
+            FieldTypeLong
+        ), length, directoryType, isOffset
+    )
 
     fun encodeValue(byteOrder: ByteOrder, value: ShortArray): ByteArray =
         value.toBytes(byteOrder)

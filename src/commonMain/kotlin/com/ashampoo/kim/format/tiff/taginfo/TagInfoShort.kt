@@ -20,10 +20,10 @@ import com.ashampoo.kim.common.ByteOrder
 import com.ashampoo.kim.common.toBytes
 import com.ashampoo.kim.common.toShort
 import com.ashampoo.kim.format.tiff.constant.TiffDirectoryType
-import com.ashampoo.kim.format.tiff.fieldtype.FieldType
+import com.ashampoo.kim.format.tiff.fieldtype.FieldTypeShort
 
 class TagInfoShort(name: String, tag: Int, directoryType: TiffDirectoryType?) :
-    TagInfo(name, tag, FieldType.SHORT, 1, directoryType) {
+    TagInfo(name, tag, FieldTypeShort, 1, directoryType) {
 
     fun getValue(byteOrder: ByteOrder, bytes: ByteArray): Short =
         bytes.toShort(byteOrder)

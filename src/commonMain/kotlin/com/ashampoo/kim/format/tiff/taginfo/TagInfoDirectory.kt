@@ -17,7 +17,8 @@
 package com.ashampoo.kim.format.tiff.taginfo
 
 import com.ashampoo.kim.format.tiff.constant.TiffDirectoryType
-import com.ashampoo.kim.format.tiff.fieldtype.FieldType
+import com.ashampoo.kim.format.tiff.fieldtype.FieldTypeIfd
+import com.ashampoo.kim.format.tiff.fieldtype.FieldTypeLong
 
 /**
  * A LONG representing an offset to a TIFF directory.
@@ -26,4 +27,4 @@ class TagInfoDirectory(
     name: String,
     tag: Int,
     directoryType: TiffDirectoryType?
-) : TagInfoLong(name, tag, listOf(FieldType.LONG, FieldType.IFD), 1, directoryType, true)
+) : TagInfoLong(name, tag, listOf(FieldTypeLong, FieldTypeIfd), 1, directoryType, true)

@@ -20,10 +20,18 @@ import com.ashampoo.kim.common.ByteOrder
 import com.ashampoo.kim.common.RationalNumbers
 import com.ashampoo.kim.common.toBytes
 import com.ashampoo.kim.format.tiff.constant.TiffDirectoryType
-import com.ashampoo.kim.format.tiff.fieldtype.FieldType
+import com.ashampoo.kim.format.tiff.fieldtype.FieldTypeLong
+import com.ashampoo.kim.format.tiff.fieldtype.FieldTypeRational
+import com.ashampoo.kim.format.tiff.fieldtype.FieldTypeShort
 
 class TagInfoShortOrLongOrRational(name: String, tag: Int, length: Int, directoryType: TiffDirectoryType?) :
-    TagInfo(name, tag, FieldType.SHORT_OR_LONG_OR_RATIONAL, length, directoryType) {
+    TagInfo(
+        name, tag, listOf(
+            FieldTypeShort,
+            FieldTypeLong,
+            FieldTypeRational
+        ), length, directoryType
+    ) {
 
     fun encodeValue(byteOrder: ByteOrder, value: ShortArray): ByteArray =
         value.toBytes(byteOrder)

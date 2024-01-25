@@ -19,11 +19,17 @@ package com.ashampoo.kim.format.tiff.taginfo
 import com.ashampoo.kim.common.ByteOrder
 import com.ashampoo.kim.common.toBytes
 import com.ashampoo.kim.format.tiff.constant.TiffDirectoryType
-import com.ashampoo.kim.format.tiff.fieldtype.FieldType
+import com.ashampoo.kim.format.tiff.fieldtype.FieldTypeByte
+import com.ashampoo.kim.format.tiff.fieldtype.FieldTypeShort
 
 class TagInfoByteOrShort(name: String, tag: Int, length: Int, directoryType: TiffDirectoryType?) :
 
-    TagInfo(name, tag, FieldType.BYTE_OR_SHORT, length, directoryType) {
+    TagInfo(
+        name, tag, listOf(
+            FieldTypeByte,
+            FieldTypeShort
+        ), length, directoryType
+    ) {
 
     fun encodeValue(values: ByteArray): ByteArray =
         values

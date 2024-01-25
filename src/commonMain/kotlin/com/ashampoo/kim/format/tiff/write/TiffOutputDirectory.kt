@@ -27,7 +27,18 @@ import com.ashampoo.kim.format.tiff.constant.TiffConstants.TIFF_DIRECTORY_HEADER
 import com.ashampoo.kim.format.tiff.constant.TiffConstants.TIFF_ENTRY_LENGTH
 import com.ashampoo.kim.format.tiff.constant.TiffConstants.TIFF_ENTRY_MAX_VALUE_LENGTH
 import com.ashampoo.kim.format.tiff.constant.TiffTag
-import com.ashampoo.kim.format.tiff.fieldtype.FieldType
+import com.ashampoo.kim.format.tiff.fieldtype.FieldTypeAscii
+import com.ashampoo.kim.format.tiff.fieldtype.FieldTypeByte
+import com.ashampoo.kim.format.tiff.fieldtype.FieldTypeDouble
+import com.ashampoo.kim.format.tiff.fieldtype.FieldTypeFloat
+import com.ashampoo.kim.format.tiff.fieldtype.FieldTypeLong
+import com.ashampoo.kim.format.tiff.fieldtype.FieldTypeRational
+import com.ashampoo.kim.format.tiff.fieldtype.FieldTypeSByte
+import com.ashampoo.kim.format.tiff.fieldtype.FieldTypeSLong
+import com.ashampoo.kim.format.tiff.fieldtype.FieldTypeSRational
+import com.ashampoo.kim.format.tiff.fieldtype.FieldTypeSShort
+import com.ashampoo.kim.format.tiff.fieldtype.FieldTypeShort
+import com.ashampoo.kim.format.tiff.fieldtype.FieldTypeUndefined
 import com.ashampoo.kim.format.tiff.taginfo.TagInfo
 import com.ashampoo.kim.format.tiff.taginfo.TagInfoAscii
 import com.ashampoo.kim.format.tiff.taginfo.TagInfoAsciiOrByte
@@ -88,14 +99,14 @@ class TiffOutputDirectory(
 
         val bytes = tagInfo.encodeValue(value)
 
-        add(TiffOutputField(tagInfo.tag, tagInfo, FieldType.BYTE, bytes.size, bytes))
+        add(TiffOutputField(tagInfo.tag, tagInfo, FieldTypeByte, bytes.size, bytes))
     }
 
     fun add(tagInfo: TagInfoBytes, bytes: ByteArray) {
 
         checkMatchingLength(tagInfo, bytes.size)
 
-        add(TiffOutputField(tagInfo.tag, tagInfo, FieldType.BYTE, bytes.size, bytes))
+        add(TiffOutputField(tagInfo.tag, tagInfo, FieldTypeByte, bytes.size, bytes))
     }
 
     fun add(tagInfo: TagInfoAscii, value: String) {
@@ -104,14 +115,14 @@ class TiffOutputDirectory(
 
         checkMatchingLength(tagInfo, bytes.size)
 
-        add(TiffOutputField(tagInfo.tag, tagInfo, FieldType.ASCII, bytes.size, bytes))
+        add(TiffOutputField(tagInfo.tag, tagInfo, FieldTypeAscii, bytes.size, bytes))
     }
 
     fun add(tagInfo: TagInfoShort, value: Short) {
 
         val bytes = tagInfo.encodeValue(byteOrder, value)
 
-        val tiffOutputField = TiffOutputField(tagInfo.tag, tagInfo, FieldType.SHORT, 1, bytes)
+        val tiffOutputField = TiffOutputField(tagInfo.tag, tagInfo, FieldTypeShort, 1, bytes)
 
         add(tiffOutputField)
     }
@@ -122,7 +133,7 @@ class TiffOutputDirectory(
 
         val bytes = tagInfo.encodeValue(byteOrder, values)
 
-        val tiffOutputField = TiffOutputField(tagInfo.tag, tagInfo, FieldType.SHORT, values.size, bytes)
+        val tiffOutputField = TiffOutputField(tagInfo.tag, tagInfo, FieldTypeShort, values.size, bytes)
 
         add(tiffOutputField)
     }
@@ -131,7 +142,7 @@ class TiffOutputDirectory(
 
         val bytes = tagInfo.encodeValue(byteOrder, value)
 
-        val tiffOutputField = TiffOutputField(tagInfo.tag, tagInfo, FieldType.LONG, 1, bytes)
+        val tiffOutputField = TiffOutputField(tagInfo.tag, tagInfo, FieldTypeLong, 1, bytes)
 
         add(tiffOutputField)
     }
@@ -142,7 +153,7 @@ class TiffOutputDirectory(
 
         val bytes = tagInfo.encodeValue(byteOrder, values)
 
-        val tiffOutputField = TiffOutputField(tagInfo.tag, tagInfo, FieldType.LONG, values.size, bytes)
+        val tiffOutputField = TiffOutputField(tagInfo.tag, tagInfo, FieldTypeLong, values.size, bytes)
 
         add(tiffOutputField)
     }
@@ -151,7 +162,7 @@ class TiffOutputDirectory(
 
         val bytes = tagInfo.encodeValue(byteOrder, value)
 
-        val tiffOutputField = TiffOutputField(tagInfo.tag, tagInfo, FieldType.RATIONAL, 1, bytes)
+        val tiffOutputField = TiffOutputField(tagInfo.tag, tagInfo, FieldTypeRational, 1, bytes)
 
         add(tiffOutputField)
     }
@@ -162,7 +173,7 @@ class TiffOutputDirectory(
 
         val bytes = tagInfo.encodeValue(byteOrder, values)
 
-        val tiffOutputField = TiffOutputField(tagInfo.tag, tagInfo, FieldType.RATIONAL, values.values.size, bytes)
+        val tiffOutputField = TiffOutputField(tagInfo.tag, tagInfo, FieldTypeRational, values.values.size, bytes)
 
         add(tiffOutputField)
     }
@@ -171,7 +182,7 @@ class TiffOutputDirectory(
 
         val bytes = tagInfo.encodeValue(value)
 
-        val tiffOutputField = TiffOutputField(tagInfo.tag, tagInfo, FieldType.SBYTE, 1, bytes)
+        val tiffOutputField = TiffOutputField(tagInfo.tag, tagInfo, FieldTypeSByte, 1, bytes)
 
         add(tiffOutputField)
     }
@@ -184,7 +195,7 @@ class TiffOutputDirectory(
 
         val tiffOutputField = TiffOutputField(
             tagInfo.tag,
-            tagInfo, FieldType.SBYTE,
+            tagInfo, FieldTypeSByte,
             values.size, bytes
         )
 
@@ -195,7 +206,7 @@ class TiffOutputDirectory(
 
         val bytes = tagInfo.encodeValue(byteOrder, value)
 
-        val tiffOutputField = TiffOutputField(tagInfo.tag, tagInfo, FieldType.SSHORT, 1, bytes)
+        val tiffOutputField = TiffOutputField(tagInfo.tag, tagInfo, FieldTypeShort, 1, bytes)
 
         add(tiffOutputField)
     }
@@ -208,7 +219,7 @@ class TiffOutputDirectory(
 
         val tiffOutputField = TiffOutputField(
             tagInfo.tag,
-            tagInfo, FieldType.SSHORT,
+            tagInfo, FieldTypeSShort,
             values.size, bytes
         )
 
@@ -221,7 +232,7 @@ class TiffOutputDirectory(
 
         val tiffOutputField = TiffOutputField(
             tagInfo.tag,
-            tagInfo, FieldType.SLONG, 1, bytes
+            tagInfo, FieldTypeSLong, 1, bytes
         )
 
         add(tiffOutputField)
@@ -235,7 +246,7 @@ class TiffOutputDirectory(
 
         val tiffOutputField = TiffOutputField(
             tagInfo.tag,
-            tagInfo, FieldType.SLONG,
+            tagInfo, FieldTypeSLong,
             values.size, bytes
         )
 
@@ -248,7 +259,7 @@ class TiffOutputDirectory(
 
         val tiffOutputField = TiffOutputField(
             tagInfo.tag,
-            tagInfo, FieldType.SRATIONAL, 1, bytes
+            tagInfo, FieldTypeSRational, 1, bytes
         )
 
         add(tiffOutputField)
@@ -262,7 +273,7 @@ class TiffOutputDirectory(
 
         val tiffOutputField = TiffOutputField(
             tagInfo.tag,
-            tagInfo, FieldType.SRATIONAL,
+            tagInfo, FieldTypeSRational,
             value.values.size,
             bytes
         )
@@ -276,7 +287,7 @@ class TiffOutputDirectory(
 
         val tiffOutputField = TiffOutputField(
             tagInfo.tag,
-            tagInfo, FieldType.FLOAT, 1, bytes
+            tagInfo, FieldTypeFloat, 1, bytes
         )
 
         add(tiffOutputField)
@@ -290,7 +301,7 @@ class TiffOutputDirectory(
 
         val tiffOutputField = TiffOutputField(
             tagInfo.tag,
-            tagInfo, FieldType.FLOAT,
+            tagInfo, FieldTypeFloat,
             values.size, bytes
         )
 
@@ -303,7 +314,7 @@ class TiffOutputDirectory(
 
         val tiffOutputField = TiffOutputField(
             tagInfo.tag,
-            tagInfo, FieldType.DOUBLE, 1, bytes
+            tagInfo, FieldTypeDouble, 1, bytes
         )
 
         add(tiffOutputField)
@@ -317,7 +328,7 @@ class TiffOutputDirectory(
 
         val tiffOutputField = TiffOutputField(
             tagInfo.tag,
-            tagInfo, FieldType.DOUBLE,
+            tagInfo, FieldTypeDouble,
             values.size, bytes
         )
 
@@ -332,7 +343,7 @@ class TiffOutputDirectory(
 
         val tiffOutputField = TiffOutputField(
             tagInfo.tag,
-            tagInfo, FieldType.BYTE, values.size,
+            tagInfo, FieldTypeByte, values.size,
             bytes
         )
 
@@ -347,7 +358,7 @@ class TiffOutputDirectory(
 
         val tiffOutputField = TiffOutputField(
             tagInfo.tag,
-            tagInfo, FieldType.SHORT,
+            tagInfo, FieldTypeShort,
             values.size, bytes
         )
 
@@ -362,7 +373,7 @@ class TiffOutputDirectory(
 
         val tiffOutputField = TiffOutputField(
             tagInfo.tag,
-            tagInfo, FieldType.SHORT,
+            tagInfo, FieldTypeShort,
             values.size, bytes
         )
 
@@ -377,7 +388,7 @@ class TiffOutputDirectory(
 
         val tiffOutputField = TiffOutputField(
             tagInfo.tag,
-            tagInfo, FieldType.LONG, values.size,
+            tagInfo, FieldTypeLong, values.size,
             bytes
         )
 
@@ -392,7 +403,7 @@ class TiffOutputDirectory(
 
         val tiffOutputField = TiffOutputField(
             tagInfo.tag,
-            tagInfo, FieldType.SHORT,
+            tagInfo, FieldTypeShort,
             values.size, bytes
         )
 
@@ -407,7 +418,7 @@ class TiffOutputDirectory(
 
         val tiffOutputField = TiffOutputField(
             tagInfo.tag,
-            tagInfo, FieldType.LONG, values.size,
+            tagInfo, FieldTypeLong, values.size,
             bytes
         )
 
@@ -422,7 +433,7 @@ class TiffOutputDirectory(
 
         val tiffOutputField = TiffOutputField(
             tagInfo.tag,
-            tagInfo, FieldType.RATIONAL,
+            tagInfo, FieldTypeRational,
             value.values.size,
             bytes
         )
@@ -438,7 +449,7 @@ class TiffOutputDirectory(
 
         val tiffOutputField = TiffOutputField(
             tagInfo.tag,
-            tagInfo, FieldType.SHORT,
+            tagInfo, FieldTypeShort,
             values.size, bytes
         )
 
@@ -453,7 +464,7 @@ class TiffOutputDirectory(
 
         val tiffOutputField = TiffOutputField(
             tagInfo.tag,
-            tagInfo, FieldType.RATIONAL,
+            tagInfo, FieldTypeRational,
             value.values.size,
             bytes
         )
@@ -463,11 +474,11 @@ class TiffOutputDirectory(
 
     fun add(tagInfo: TagInfoGpsText, value: String) {
 
-        val bytes = tagInfo.encodeValue(FieldType.UNDEFINED, value, byteOrder)
+        val bytes = tagInfo.encodeValue(FieldTypeUndefined, value, byteOrder)
 
         val tiffOutputField = TiffOutputField(
             tagInfo.tag,
-            tagInfo, tagInfo.dataTypes[0], bytes.size, bytes
+            tagInfo, tagInfo.fieldTypes[0], bytes.size, bytes
         )
 
         add(tiffOutputField)
@@ -475,13 +486,13 @@ class TiffOutputDirectory(
 
     fun add(tagInfo: TagInfoAsciiOrByte, values: Array<String>) {
 
-        val bytes = tagInfo.encodeValue(FieldType.ASCII, values, byteOrder)
+        val bytes = tagInfo.encodeValue(FieldTypeAscii, values, byteOrder)
 
         checkMatchingLength(tagInfo, bytes.size)
 
         val tiffOutputField = TiffOutputField(
             tagInfo.tag,
-            tagInfo, FieldType.ASCII, bytes.size,
+            tagInfo, FieldTypeAscii, bytes.size,
             bytes
         )
 
@@ -490,13 +501,13 @@ class TiffOutputDirectory(
 
     fun add(tagInfo: TagInfoAsciiOrRational, values: Array<String>) {
 
-        val bytes = tagInfo.encodeValue(FieldType.ASCII, values, byteOrder)
+        val bytes = tagInfo.encodeValue(FieldTypeAscii, values, byteOrder)
 
         checkMatchingLength(tagInfo, bytes.size)
 
         val tiffOutputField = TiffOutputField(
             tagInfo.tag,
-            tagInfo, FieldType.ASCII, bytes.size,
+            tagInfo, FieldTypeAscii, bytes.size,
             bytes
         )
 
@@ -507,11 +518,11 @@ class TiffOutputDirectory(
 
         checkMatchingLength(tagInfo, values.size)
 
-        val bytes = tagInfo.encodeValue(FieldType.RATIONAL, values, byteOrder)
+        val bytes = tagInfo.encodeValue(FieldTypeRational, values, byteOrder)
 
         val tiffOutputField = TiffOutputField(
             tagInfo.tag,
-            tagInfo, FieldType.RATIONAL,
+            tagInfo, FieldTypeRational,
             bytes.size, bytes
         )
 
@@ -607,16 +618,16 @@ class TiffOutputDirectory(
 
             jpegOffsetField = TiffOutputField(
                 TiffTag.TIFF_TAG_JPEG_INTERCHANGE_FORMAT,
-                FieldType.LONG, 1, ByteArray(TIFF_ENTRY_MAX_VALUE_LENGTH)
+                FieldTypeLong, 1, ByteArray(TIFF_ENTRY_MAX_VALUE_LENGTH)
             )
 
             add(jpegOffsetField)
 
-            val lengthValue = FieldType.LONG.writeData(rawJpegImageDataElement!!.length, outputSummary.byteOrder)
+            val lengthValue = FieldTypeLong.writeData(rawJpegImageDataElement!!.length, outputSummary.byteOrder)
 
             val jpegLengthField = TiffOutputField(
                 TiffTag.TIFF_TAG_JPEG_INTERCHANGE_FORMAT_LENGTH,
-                FieldType.LONG, 1, lengthValue
+                FieldTypeLong, 1, lengthValue
             )
 
             add(jpegLengthField)

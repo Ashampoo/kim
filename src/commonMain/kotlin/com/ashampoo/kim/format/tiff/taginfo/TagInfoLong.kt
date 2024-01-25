@@ -21,6 +21,7 @@ import com.ashampoo.kim.common.toBytes
 import com.ashampoo.kim.common.toInt
 import com.ashampoo.kim.format.tiff.constant.TiffDirectoryType
 import com.ashampoo.kim.format.tiff.fieldtype.FieldType
+import com.ashampoo.kim.format.tiff.fieldtype.FieldTypeLong
 
 open class TagInfoLong : TagInfo {
 
@@ -28,14 +29,14 @@ open class TagInfoLong : TagInfo {
         name: String,
         tag: Int,
         directoryType: TiffDirectoryType?
-    ) : super(name, tag, FieldType.LONG, 1, directoryType)
+    ) : super(name, tag, FieldTypeLong, 1, directoryType)
 
     constructor(
         name: String,
         tag: Int,
         directoryType: TiffDirectoryType?,
         isOffset: Boolean
-    ) : super(name, tag, listOf(FieldType.LONG), 1, directoryType, isOffset)
+    ) : super(name, tag, listOf(FieldTypeLong), 1, directoryType, isOffset)
 
     constructor(
         name: String,

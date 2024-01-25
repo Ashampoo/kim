@@ -18,14 +18,14 @@ package com.ashampoo.kim.format.tiff.taginfo
 
 import com.ashampoo.kim.common.ByteOrder
 import com.ashampoo.kim.format.tiff.constant.TiffDirectoryType
-import com.ashampoo.kim.format.tiff.fieldtype.FieldType
+import com.ashampoo.kim.format.tiff.fieldtype.FieldTypeAscii
 
 class TagInfoAscii(
     name: String,
     tag: Int,
     length: Int,
     directoryType: TiffDirectoryType?
-) : TagInfo(name, tag, FieldType.ASCII, length, directoryType) {
+) : TagInfo(name, tag, FieldTypeAscii, length, directoryType) {
 
     fun getValue(bytes: ByteArray): List<String> {
 
@@ -76,5 +76,5 @@ class TagInfoAscii(
     }
 
     fun encodeValue(byteOrder: ByteOrder, value: String): ByteArray =
-        FieldType.ASCII.writeData(value, byteOrder)
+        FieldTypeAscii.writeData(value, byteOrder)
 }
