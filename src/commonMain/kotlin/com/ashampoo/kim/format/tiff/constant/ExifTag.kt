@@ -809,13 +809,13 @@ object ExifTag {
     /** Rating tag used by Windows */
     val EXIF_TAG_RATING = TagInfoShort(
         "Rating", 0x4746,
-        TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD
+        TiffDirectoryType.TIFF_DIRECTORY_IFD0
     )
 
     /** Rating tag used by Windows, value in percent */
     val EXIF_TAG_RATING_PERCENT = TagInfoShort(
         "RatingPercent", 0x4749,
-        TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD
+        TiffDirectoryType.TIFF_DIRECTORY_IFD0
     )
 
     val EXIF_TAG_MODIFY_DATE = TagInfoAscii(
