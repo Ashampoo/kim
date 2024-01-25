@@ -252,7 +252,6 @@ object TiffReader {
 
             val tag = byteReader.read2BytesAsInt("Entry $entryIndex: 'tag'", byteOrder)
             val type = byteReader.read2BytesAsInt("Entry $entryIndex: 'type'", byteOrder)
-
             val count = byteReader.read4BytesAsInt("Entry $entryIndex: 'count'", byteOrder)
 
             /*
