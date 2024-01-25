@@ -21,7 +21,7 @@ import com.ashampoo.kim.format.tiff.constant.ExifTag.EXIF_DIRECTORY_UNKNOWN
 import com.ashampoo.kim.format.tiff.constant.TiffDirectoryType
 import com.ashampoo.kim.format.tiff.fieldtype.FieldType
 
-open class TagInfo(
+abstract class TagInfo(
     val name: String,
     val tag: Int,
     val fieldType: FieldType<out Any>,
