@@ -237,6 +237,9 @@ class TiffOutputSet(
         }
     }
 
+    fun findMakerNoteField(): TiffOutputField? =
+        findField(ExifTag.EXIF_TAG_MAKER_NOTE.tag)
+
     fun findField(tag: Int): TiffOutputField? =
         directories
             .mapNotNull { directory -> directory.findField(tag) }

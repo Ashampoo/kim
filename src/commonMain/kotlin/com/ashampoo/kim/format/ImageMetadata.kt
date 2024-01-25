@@ -32,11 +32,6 @@ data class ImageMetadata(
     val xmp: String?
 ) {
 
-    fun getExifThumbnailBytes(): ByteArray? =
-        exif?.directories?.asSequence()
-            ?.mapNotNull { it.jpegImageDataElement?.bytes }
-            ?.firstOrNull()
-
     fun findStringValue(tagInfo: TagInfo): String? {
 
         val strings = findTiffField(tagInfo)?.value as? List<String>
@@ -54,20 +49,14 @@ data class ImageMetadata(
     fun findDoubleValue(tagInfo: TagInfo): Double? =
         findTiffField(tagInfo)?.toDouble()
 
-    /*
-     * Note: Keep in sync with TiffTags.getTag()
-     */
-    @Suppress("UnnecessaryParentheses")
-    fun findTiffField(tagInfo: TagInfo): TiffField? {
-        return exif?.directories?.firstOrNull { directory ->
-            directory.type == tagInfo.directoryType?.directoryType ||
-                (tagInfo.directoryType?.isImageDirectory == true && directory.type >= 0) ||
-                (tagInfo.directoryType?.isImageDirectory == false && directory.type < 0)
-        }?.findField(tagInfo)
-    }
+    fun findTiffField(tagInfo: TagInfo): TiffField? =
+        exif?.findTiffField(tagInfo)
 
     fun findTiffDirectory(directoryType: Int): TiffDirectory? =
-        exif?.directories?.find { it.type == directoryType }
+        exif?.findTiffDirectory(directoryType)
+
+    fun getExifThumbnailBytes(): ByteArray? =
+        exif?.getExifThumbnailBytes()
 
     override fun toString(): String {
 
