@@ -51,7 +51,10 @@ fun ImageMetadata.convertToPhotoMetadata(
     val lensMake = findStringValue(ExifTag.EXIF_TAG_LENS_MAKE)
     val lensModel = findStringValue(ExifTag.EXIF_TAG_LENS_MODEL)
 
+    /* Look for ISO at the standard place and fall back to test RW2 logic. */
     val iso = findShortValue(ExifTag.EXIF_TAG_ISO)
+        ?: findShortValue(ExifTag.EXIF_TAG_ISO_PANASONIC)
+
     val exposureTime = findDoubleValue(ExifTag.EXIF_TAG_EXPOSURE_TIME)
     val fNumber = findDoubleValue(ExifTag.EXIF_TAG_FNUMBER)
     val focalLength = findDoubleValue(ExifTag.EXIF_TAG_FOCAL_LENGTH)

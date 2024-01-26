@@ -309,6 +309,17 @@ object ExifTag {
         TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD
     )
 
+    /**
+     * Panasonic RW2 writes the ISO value to IFD0
+     * instead of writing to the standard ExifIFD field.
+     *
+     * See https://exiftool.org/TagNames/PanasonicRaw.html
+     */
+    val EXIF_TAG_ISO_PANASONIC = TagInfoShort(
+        "ISO", 0x0017,
+        TIFF_DIRECTORY_IFD0
+    )
+
     val EXIF_TAG_OPTO_ELECTRIC_CONV_FACTOR = TagInfoUndefineds(
         "Opto - Electric Conv Factor", 0x8828, TagInfo.LENGTH_UNKNOWN,
         EXIF_DIRECTORY_UNKNOWN
@@ -908,7 +919,8 @@ object ExifTag {
         EXIF_TAG_LEAF_DATA,
         EXIF_TAG_PHOTOSHOP_SETTINGS, EXIF_TAG_EXIF_OFFSET,
         EXIF_TAG_EXPOSURE_PROGRAM,
-        EXIF_TAG_SPECTRAL_SENSITIVITY, EXIF_TAG_GPSINFO, EXIF_TAG_ISO,
+        EXIF_TAG_SPECTRAL_SENSITIVITY, EXIF_TAG_GPSINFO,
+        EXIF_TAG_ISO, EXIF_TAG_ISO_PANASONIC,
         EXIF_TAG_OPTO_ELECTRIC_CONV_FACTOR,
         EXIF_TAG_LEAF_SUB_IFD,
         EXIF_TAG_EXIF_VERSION, EXIF_TAG_DATE_TIME_ORIGINAL,
