@@ -141,13 +141,13 @@ interface ByteReader : Closeable {
         return result
     }
 
-    fun readXBytesAtInt(fieldName: String, byteCount: Int, byteOrder: ByteOrder): Long =
-        when (byteCount) {
+    fun readXBytesAtInt(fieldName: String, count: Int, byteOrder: ByteOrder): Long =
+        when (count) {
             1 -> readByteAsInt().toLong()
             2 -> read2BytesAsInt(fieldName, byteOrder).toLong()
             4 -> read4BytesAsInt(fieldName, byteOrder).toLong()
             8 -> read8BytesAsLong(fieldName, byteOrder)
-            else -> error("Illegal byteCount specified: $byteCount")
+            else -> error("Illegal byteCount specified: $count")
         }
 
     fun readAndVerifyBytes(fieldName: String, expectedBytes: ByteArray) {
@@ -181,23 +181,23 @@ interface ByteReader : Closeable {
         return os.toByteArray()
     }
 
-    fun skipBytes(fieldName: String, length: Int) {
+    fun skipBytes(fieldName: String, count: Int) {
 
         /* Nothing to do. */
-        if (length == 0)
+        if (count == 0)
             return
 
-        if (length < 0)
-            throw ImageReadException("Couldn't read $fieldName, invalid length: $length")
+        if (count < 0)
+            throw ImageReadException("Couldn't read $fieldName, invalid length: $count")
 
         var total: Int = 0
 
-        while (length != total) {
+        while (count != total) {
 
-            val skipped = readBytes(length.toInt()).size
+            val skipped = readBytes(count.toInt()).size
 
             if (skipped < 1)
-                throw ImageReadException("$fieldName (skipped $skipped of $length bytes)")
+                throw ImageReadException("$fieldName (skipped $skipped of $count bytes)")
 
             total += skipped
         }
