@@ -36,7 +36,7 @@ Big-endian (Motorola, MM)
 0000000918 0x920a FocalLength = 90/1 (90.0)
 0000000930 0xa001 ColorSpace = 1
 0000000942 0xa002 ExifImageWidth = 4240
-0000000954 0xa003 ExifImageLength = 2384
+0000000954 0xa003 ExifImageHeight = 2384
 0000000966 0xa20e FocalPlaneXResolution = 1812/1 (1812.0)
 0000000978 0xa20f FocalPlaneYResolution = 1812/1 (1812.0)
 0000000990 0xa210 FocalPlaneResolutionUnit = 3

@@ -40,7 +40,7 @@ Little-endian (Intel, II)
 0000000456 0x9292 SubSecTimeDigitized = 871
 0000000468 0xa001 ColorSpace = 1
 0000000480 0xa002 ExifImageWidth = 4000
-0000000492 0xa003 ExifImageLength = 3000
+0000000492 0xa003 ExifImageHeight = 3000
 0000000504 0xa402 ExposureMode = 0
 0000000516 0xa403 WhiteBalance = 0
 0000000528 0xa404 DigitalZoomRatio = 300/100 (3.0)

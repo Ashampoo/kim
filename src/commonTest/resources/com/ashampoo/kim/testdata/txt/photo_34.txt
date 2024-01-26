@@ -40,7 +40,7 @@ Little-endian (Intel, II)
 0000000518 0xa000 FlashpixVersion = [0x30, 0x31, 0x30, 0x30]
 0000000530 0xa001 ColorSpace = -1
 0000000542 0xa002 ExifImageWidth = 4928
-0000000554 0xa003 ExifImageLength = 3264
+0000000554 0xa003 ExifImageHeight = 3264
 0000000566 0xa217 SensingMethod = 2
 0000000578 0xa300 FileSource = 3
 0000000590 0xa301 SceneType = 1

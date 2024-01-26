@@ -42,7 +42,7 @@ Big-endian (Motorola, MM)
 0000000540 0xa000 FlashpixVersion = [0x30, 0x31, 0x30, 0x30]
 0000000552 0xa001 ColorSpace = 1
 0000000564 0xa002 ExifImageWidth = 4000
-0000000576 0xa003 ExifImageLength = 2670
+0000000576 0xa003 ExifImageHeight = 2670
 0000000588 0xa20e FocalPlaneXResolution = 1746901/287 (6086.763066)
 0000000600 0xa20f FocalPlaneYResolution = 2472601/406 (6090.150246)
 0000000612 0xa210 FocalPlaneResolutionUnit = 2

@@ -42,7 +42,7 @@ Little-endian (Intel, II)
 0000000468 0xa000 FlashpixVersion = [0x30, 0x31, 0x30, 0x30]
 0000000480 0xa001 ColorSpace = 1
 0000000492 0xa002 ExifImageWidth = 5472
-0000000504 0xa003 ExifImageLength = 3648
+0000000504 0xa003 ExifImageHeight = 3648
 0000000516 0xa005 InteropOffset = 9320
 0000000528 0xa20e FocalPlaneXResolution = 5472000/899 (6086.76307)
 0000000540 0xa20f FocalPlaneYResolution = 3648000/599 (6090.15025)

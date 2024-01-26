@@ -39,7 +39,7 @@ Little-endian (Intel, II)
 0000000476 0x9292 SubSecTimeDigitized = 56
 0000000488 0xa001 ColorSpace = -1
 0000000500 0xa002 ExifImageWidth = 3948
-0000000512 0xa003 ExifImageLength = 2632
+0000000512 0xa003 ExifImageHeight = 2632
 0000000524 0xa20e FocalPlaneXResolution = 75409805/32768 (2301.324615)
 0000000536 0xa20f FocalPlaneYResolution = 75409805/32768 (2301.324615)
 0000000548 0xa210 FocalPlaneResolutionUnit = 3

@@ -40,7 +40,7 @@ Big-endian (Motorola, MM)
 0000000448 0xa000 FlashpixVersion = [0x30, 0x31, 0x30, 0x30]
 0000000460 0xa001 ColorSpace = -1
 0000000472 0xa002 ExifImageWidth = 4032
-0000000484 0xa003 ExifImageLength = 3024
+0000000484 0xa003 ExifImageHeight = 3024
 0000000496 0xa217 SensingMethod = 2
 0000000508 0xa301 SceneType = 1
 0000000520 0xa401 CustomRendered = 8

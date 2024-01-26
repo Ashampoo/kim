@@ -34,7 +34,7 @@ Big-endian (Motorola, MM)
 0000000422 0x9292 SubSecTimeDigitized = 5
 0000000434 0xa001 ColorSpace = 1
 0000000446 0xa002 ExifImageWidth = 2304
-0000000458 0xa003 ExifImageLength = 1536
+0000000458 0xa003 ExifImageHeight = 1536
 0000000470 0xa217 SensingMethod = 2
 0000000482 0xa401 CustomRendered = 0
 0000000494 0xa402 ExposureMode = 1

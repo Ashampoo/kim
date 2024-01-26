@@ -46,7 +46,7 @@ Little-endian (Intel, II)
 0000000576 0x9292 SubSecTimeDigitized = 47
 0000000588 0xa000 FlashpixVersion = [0x30, 0x31, 0x30, 0x30]
 0000000600 0xa002 ExifImageWidth = 4000
-0000000612 0xa003 ExifImageLength = 2670
+0000000612 0xa003 ExifImageHeight = 2670
 0000000624 0xa20e FocalPlaneXResolution = 5472000/899 (6086.76307)
 0000000636 0xa20f FocalPlaneYResolution = 3648000/599 (6090.15025)
 0000000648 0xa210 FocalPlaneResolutionUnit = 2

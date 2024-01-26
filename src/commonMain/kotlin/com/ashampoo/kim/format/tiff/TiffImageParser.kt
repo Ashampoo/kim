@@ -20,6 +20,7 @@ import com.ashampoo.kim.common.ImageReadException
 import com.ashampoo.kim.common.tryWithImageReadException
 import com.ashampoo.kim.format.ImageMetadata
 import com.ashampoo.kim.format.ImageParser
+import com.ashampoo.kim.format.tiff.constant.ExifTag
 import com.ashampoo.kim.format.tiff.constant.TiffTag
 import com.ashampoo.kim.input.ByteReader
 import com.ashampoo.kim.input.DefaultRandomAccessByteReader
@@ -66,6 +67,9 @@ object TiffImageParser : ImageParser {
          */
 
         val imageSizes = mutableListOf<ImageSize>()
+
+        tiffContents.findTiffField(ExifTag.EXIF_TAG_EXIF_IMAGE_WIDTH)
+
 
         for (directory in tiffContents.directories)
             getImageSize(directory)?.let { imageSizes.add(it) }
