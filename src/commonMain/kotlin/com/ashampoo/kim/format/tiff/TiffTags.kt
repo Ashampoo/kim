@@ -58,7 +58,7 @@ internal object TiffTags {
     private fun getTag(directoryType: Int, possibleMatches: List<TagInfo>): TagInfo? {
 
         val exactMatch = possibleMatches.firstOrNull { tagInfo ->
-            tagInfo.directoryType?.directoryType == directoryType &&
+            tagInfo.directoryType?.typeId == directoryType &&
                 tagInfo.directoryType != EXIF_DIRECTORY_UNKNOWN
         }
 

@@ -17,39 +17,39 @@
 package com.ashampoo.kim.format.tiff.constant
 
 enum class TiffDirectoryType(
-    val isImageDirectory: Boolean,
-    val directoryType: Int,
-    val directoryName: String
+    val typeId: Int,
+    val displayName: String,
+    val isImageDirectory: Boolean
 ) {
 
     TIFF_DIRECTORY_IFD0(
-        true, TiffConstants.TIFF_IFD0, "IFD0"
+        TiffConstants.TIFF_IFD0, "IFD0", true
     ),
     TIFF_DIRECTORY_IFD1(
-        true, TiffConstants.TIFF_IFD1, "IFD1"
+        TiffConstants.TIFF_IFD1, "IFD1", true
     ),
     TIFF_DIRECTORY_IFD2(
-        true, TiffConstants.TIFF_IFD2, "IFD2"
+        TiffConstants.TIFF_IFD2, "IFD2", true
     ),
     TIFF_DIRECTORY_IFD3(
-        true, TiffConstants.TIFF_IFD3, "IFD3"
+        TiffConstants.TIFF_IFD3, "IFD3", true
     ),
     EXIF_DIRECTORY_INTEROP_IFD(
-        false, TiffConstants.TIFF_INTEROP_IFD, "InteropIFD"
+        TiffConstants.TIFF_INTEROP_IFD, "InteropIFD", false
     ),
     EXIF_DIRECTORY_EXIF_IFD(
-        false, TiffConstants.TIFF_EXIF_IFD, "ExifIFD"
+        TiffConstants.TIFF_EXIF_IFD, "ExifIFD", false
     ),
     EXIF_DIRECTORY_GPS(
-        false, TiffConstants.TIFF_GPS, "GPS"
+        TiffConstants.TIFF_GPS, "GPS", false
     ),
     EXIF_DIRECTORY_MAKER_NOTE_CANON(
-        false, TiffConstants.TIFF_MAKER_NOTE_CANON, "MakerNoteCanon"
+        TiffConstants.TIFF_MAKER_NOTE_CANON, "MakerNoteCanon", false
     ),
     EXIF_DIRECTORY_MAKER_NOTE_NIKON(
-        false, TiffConstants.TIFF_MAKER_NOTE_NIKON, "MakerNoteNikon"
+        TiffConstants.TIFF_MAKER_NOTE_NIKON, "MakerNoteNikon", false
     );
 
     override fun toString(): String =
-        directoryName
+        displayName
 }

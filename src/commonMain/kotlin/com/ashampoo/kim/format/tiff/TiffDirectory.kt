@@ -190,7 +190,7 @@ class TiffDirectory(
              * can update the orientation easily the next time we need
              * to touch the file.
              */
-            if (type == TiffDirectoryType.TIFF_DIRECTORY_IFD0.directoryType) {
+            if (type == TiffDirectoryType.TIFF_DIRECTORY_IFD0.typeId) {
 
                 val orientationField = outputDirectory.findField(TiffTag.TIFF_TAG_ORIENTATION)
 
@@ -255,7 +255,7 @@ class TiffDirectory(
         @Suppress("UnnecessaryParentheses")
         fun findTiffField(directories: List<TiffDirectory>, tagInfo: TagInfo): TiffField? =
             directories.firstOrNull { directory ->
-                directory.type == tagInfo.directoryType?.directoryType ||
+                directory.type == tagInfo.directoryType?.typeId ||
                     (tagInfo.directoryType?.isImageDirectory == true && directory.type >= 0) ||
                     (tagInfo.directoryType?.isImageDirectory == false && directory.type < 0)
             }?.findField(tagInfo)

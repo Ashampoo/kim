@@ -62,7 +62,7 @@ object TiffImageParser : ImageParser {
          * This is the case with Sony ARW files and the only correct information.
          */
 
-        val exifIfdDir = tiffContents.findTiffDirectory(TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD.directoryType)
+        val exifIfdDir = tiffContents.findTiffDirectory(TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD.typeId)
 
         if (exifIfdDir != null) {
 
