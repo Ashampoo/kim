@@ -47,13 +47,6 @@ interface FieldType<T> {
 
     companion object {
 
-        val ALL_FIELD_TYPES = listOf(
-            FieldTypeByte, FieldTypeAscii, FieldTypeShort, FieldTypeLong,
-            FieldTypeRational, FieldTypeSByte, FieldTypeUndefined,
-            FieldTypeSShort, FieldTypeSLong, FieldTypeSRational,
-            FieldTypeFloat, FieldTypeDouble, FieldTypeIfd
-        )
-
         @kotlin.jvm.JvmStatic
         fun getFieldType(type: Int): FieldType<out Any> =
             when (type) {
