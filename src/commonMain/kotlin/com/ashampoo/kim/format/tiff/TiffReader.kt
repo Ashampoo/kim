@@ -36,6 +36,8 @@ import com.ashampoo.kim.input.RandomAccessByteReader
 
 object TiffReader {
 
+    const val NIKON_MAKER_NOTE_SIGNATURE = "Nikon\u0000"
+
     private val offsetFields = listOf(
         ExifTag.EXIF_TAG_EXIF_OFFSET,
         ExifTag.EXIF_TAG_GPSINFO,
@@ -436,12 +438,12 @@ object TiffReader {
             byteReader.reset()
             byteReader.skipBytes("offset", makerNoteValueOffset)
 
-            /*
-             * Expect to start with "Nikon<NUL>"
-             */
-            val nikonSignature = byteReader.readBytes(6).decodeToString()
+            val nikonSignature = byteReader.readBytes(
+                fieldName = "Nikon MakerNote signature",
+                count = NIKON_MAKER_NOTE_SIGNATURE.length
+            ).decodeToString()
 
-            val nikonSignatureMatched = nikonSignature == "Nikon\u0000"
+            val nikonSignatureMatched = nikonSignature == NIKON_MAKER_NOTE_SIGNATURE
 
             if (!nikonSignatureMatched)
                 return

@@ -43,15 +43,15 @@ interface ByteReader : Closeable {
         return byte
     }
 
-    fun readBytes(fieldName: String, length: Int): ByteArray {
+    fun readBytes(fieldName: String, count: Int): ByteArray {
 
-        if (length < 0)
-            throw ImageReadException("Couldn't read $fieldName, invalid length: $length")
+        if (count < 0)
+            throw ImageReadException("Couldn't read $fieldName, invalid length: $count")
 
-        val bytes = readBytes(length)
+        val bytes = readBytes(count)
 
-        if (bytes.size != length)
-            throw ImageReadException("Couldn't read $length bytes for $fieldName. Got only ${bytes.size}.")
+        if (bytes.size != count)
+            throw ImageReadException("Couldn't read $count bytes for $fieldName. Got only ${bytes.size}.")
 
         return bytes
     }
