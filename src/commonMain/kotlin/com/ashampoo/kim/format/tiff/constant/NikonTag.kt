@@ -15,7 +15,11 @@
  */
 package com.ashampoo.kim.format.tiff.constant
 
+import com.ashampoo.kim.format.tiff.taginfo.TagInfo
+import com.ashampoo.kim.format.tiff.taginfo.TagInfoAscii
+import com.ashampoo.kim.format.tiff.taginfo.TagInfoByte
 import com.ashampoo.kim.format.tiff.taginfo.TagInfoLong
+import com.ashampoo.kim.format.tiff.taginfo.TagInfoRationals
 import com.ashampoo.kim.format.tiff.taginfo.TagInfoUndefineds
 
 /**
@@ -40,8 +44,28 @@ object NikonTag {
         TiffDirectoryType.EXIF_DIRECTORY_MAKER_NOTE_NIKON
     )
 
+    val AUXILIARY_LENS = TagInfoAscii(
+        "AuxiliaryLens", 0x0082, TagInfo.LENGTH_UNKNOWN,
+        TiffDirectoryType.EXIF_DIRECTORY_MAKER_NOTE_NIKON
+    )
+
+    val LENS_TYPE = TagInfoByte(
+        "LensType", 0x0083,
+        TiffDirectoryType.EXIF_DIRECTORY_MAKER_NOTE_NIKON
+    )
+
+    val LENS = TagInfoRationals(
+        "Lens", 0x0084, 4,
+        TiffDirectoryType.EXIF_DIRECTORY_MAKER_NOTE_NIKON
+    )
+
+    val LENS_F_STOPS = TagInfoUndefineds(
+        "LensFStops", 0x008b, 4,
+        TiffDirectoryType.EXIF_DIRECTORY_MAKER_NOTE_NIKON
+    )
+
     val ALL = listOf(
-        MAKER_NOTE_VERSION,
-        SHUTTER_COUNT
+        MAKER_NOTE_VERSION, SHUTTER_COUNT,
+        AUXILIARY_LENS, LENS_TYPE, LENS, LENS_F_STOPS
     )
 }

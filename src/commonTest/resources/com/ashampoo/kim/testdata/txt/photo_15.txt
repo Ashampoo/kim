@@ -126,12 +126,12 @@ Big-endian (Motorola, MM)
 0000003516 0x003f Unknown = [Invalid rational (0/0), Invalid rational (0/0)]
 0000003528 0x0040 Unknown = [12 bytes]
 0000003540 0x0042 Unknown = [0x00, 0x00, 0x00, 0x00, 0x00, 0x00]
-0000003552 0x0083 Unknown = 14
-0000003564 0x0084 Unknown = [Invalid rational (0/0), Invalid rational (0/0), Invalid rational (0/0), Invalid rational (0/0)]
+0000003552 0x0083 LensType = 14
+0000003564 0x0084 Lens = [Invalid rational (0/0), Invalid rational (0/0), Invalid rational (0/0), Invalid rational (0/0)]
 0000003576 0x0087 Unknown = 0
 0000003588 0x0089 Unknown = 0
 0000003600 0x008a Unknown = 1
-0000003612 0x008b Unknown = [0x40, 0x01, 0x0c, 0x00]
+0000003612 0x008b LensFStops = [0x40, 0x01, 0x0c, 0x00]
 0000003624 0x0091 Unknown = [13791 bytes]
 0000003636 0x0095 Unknown = ��q
 0000003648 0x0097 Unknown = [1224 bytes]
