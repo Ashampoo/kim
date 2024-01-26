@@ -19,5 +19,8 @@ package com.ashampoo.kim.format.tiff.taginfo
 import com.ashampoo.kim.format.tiff.constant.TiffDirectoryType
 import com.ashampoo.kim.format.tiff.fieldtype.FieldTypeUndefined
 
-class TagInfoUndefined(name: String, tag: Int, directoryType: TiffDirectoryType?) :
-    TagInfoByte(name, tag, FieldTypeUndefined, directoryType)
+class TagInfoUndefined(
+    tag: Int,
+    name: String,
+    directoryType: TiffDirectoryType?
+) : TagInfoByte(tag, name, FieldTypeUndefined, directoryType)

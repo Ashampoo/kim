@@ -22,8 +22,8 @@ import com.ashampoo.kim.format.tiff.constant.TiffDirectoryType
 import com.ashampoo.kim.format.tiff.fieldtype.FieldType
 
 abstract class TagInfo(
-    val name: String,
     val tag: Int,
+    val name: String,
     val fieldType: FieldType<out Any>,
     val length: Int = LENGTH_UNKNOWN,
     val directoryType: TiffDirectoryType? = EXIF_DIRECTORY_UNKNOWN,

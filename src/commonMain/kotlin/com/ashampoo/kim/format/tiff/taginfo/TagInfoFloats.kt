@@ -20,8 +20,8 @@ import com.ashampoo.kim.format.tiff.constant.TiffDirectoryType
 import com.ashampoo.kim.format.tiff.fieldtype.FieldTypeFloat
 
 class TagInfoFloats(
-    name: String,
     tag: Int,
+    name: String,
     length: Int,
     directoryType: TiffDirectoryType?
-) : TagInfo(name, tag, FieldTypeFloat, length, directoryType)
+) : TagInfo(tag, name, FieldTypeFloat, length, directoryType)

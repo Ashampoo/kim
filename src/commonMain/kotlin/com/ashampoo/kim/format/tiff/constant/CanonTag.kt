@@ -33,22 +33,22 @@ object CanonTag {
      */
 
     val CANON_CAMERA_SETTINGS = TagInfoUndefineds(
-        "CanonCameraSettings", 0x0001, TagInfo.LENGTH_UNKNOWN,
+        0x0001, "CanonCameraSettings", TagInfo.LENGTH_UNKNOWN,
         TiffDirectoryType.EXIF_DIRECTORY_MAKER_NOTE_CANON
     )
 
     val FILE_NUMBER = TagInfoLong(
-        "FileNumber", 0x0008,
+        0x0008, "FileNumber",
         TiffDirectoryType.EXIF_DIRECTORY_MAKER_NOTE_CANON
     )
 
     val OWNER_NAME = TagInfoAscii(
-        "OwnerName", 0x0009, TagInfo.LENGTH_UNKNOWN,
+        0x0009, "OwnerName", TagInfo.LENGTH_UNKNOWN,
         TiffDirectoryType.EXIF_DIRECTORY_MAKER_NOTE_CANON
     )
 
     val SERIAL_NUMBER = TagInfoLong(
-        "SerialNumber", 0x000c,
+        0x000c, "SerialNumber",
         TiffDirectoryType.EXIF_DIRECTORY_MAKER_NOTE_CANON
     )
 

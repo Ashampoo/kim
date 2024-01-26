@@ -19,5 +19,8 @@ package com.ashampoo.kim.format.tiff.taginfo
 import com.ashampoo.kim.format.tiff.constant.TiffDirectoryType
 import com.ashampoo.kim.format.tiff.fieldtype.FieldTypeSLong
 
-class TagInfoSLong(name: String, tag: Int, directoryType: TiffDirectoryType?) :
-    TagInfo(name, tag, FieldTypeSLong, 1, directoryType)
+class TagInfoSLong(
+    tag: Int,
+    name: String,
+    directoryType: TiffDirectoryType?
+) : TagInfo(tag, name, FieldTypeSLong, 1, directoryType)

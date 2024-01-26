@@ -20,8 +20,8 @@ import com.ashampoo.kim.format.tiff.constant.TiffDirectoryType
 import com.ashampoo.kim.format.tiff.fieldtype.FieldTypeAscii
 
 class TagInfoAscii(
-    name: String,
     tag: Int,
+    name: String,
     length: Int,
     directoryType: TiffDirectoryType?
-) : TagInfo(name, tag, FieldTypeAscii, length, directoryType)
+) : TagInfo(tag, name, FieldTypeAscii, length, directoryType)

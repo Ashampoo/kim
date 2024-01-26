@@ -22,17 +22,17 @@ import com.ashampoo.kim.format.tiff.fieldtype.FieldTypeLong
 class TagInfoLongs : TagInfo {
 
     constructor(
-        name: String,
         tag: Int,
+        name: String,
         length: Int,
         directoryType: TiffDirectoryType?
-    ) : super(name, tag, FieldTypeLong, length, directoryType)
+    ) : super(tag, name, FieldTypeLong, length, directoryType)
 
     constructor(
-        name: String,
         tag: Int,
+        name: String,
         length: Int,
         directoryType: TiffDirectoryType?,
         isOffset: Boolean
-    ) : super(name, tag, FieldTypeLong, length, directoryType, isOffset)
+    ) : super(tag, name, FieldTypeLong, length, directoryType, isOffset)
 }

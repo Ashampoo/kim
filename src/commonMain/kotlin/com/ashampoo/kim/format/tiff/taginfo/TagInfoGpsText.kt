@@ -35,10 +35,10 @@ import com.ashampoo.kim.format.tiff.fieldtype.FieldTypeUndefined
  * the non-null-terminated text in an unknown byte order.
  */
 class TagInfoGpsText(
-    name: String,
     tag: Int,
+    name: String,
     exifDirectory: TiffDirectoryType?
-) : TagInfo(name, tag, FieldTypeUndefined, TagInfo.LENGTH_UNKNOWN, exifDirectory) {
+) : TagInfo(tag, name, FieldTypeUndefined, TagInfo.LENGTH_UNKNOWN, exifDirectory) {
 
     override fun isText(): Boolean =
         true

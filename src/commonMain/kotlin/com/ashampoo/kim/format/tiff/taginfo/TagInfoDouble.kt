@@ -20,7 +20,7 @@ import com.ashampoo.kim.format.tiff.constant.TiffDirectoryType
 import com.ashampoo.kim.format.tiff.fieldtype.FieldTypeDouble
 
 class TagInfoDouble(
-    name: String,
     tag: Int,
+    name: String,
     directoryType: TiffDirectoryType?
-) : TagInfo(name, tag, FieldTypeDouble, 1, directoryType)
+) : TagInfo(tag, name, FieldTypeDouble, 1, directoryType)

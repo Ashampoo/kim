@@ -35,32 +35,32 @@ object NikonTag {
      */
 
     val MAKER_NOTE_VERSION = TagInfoUndefineds(
-        "MakerNoteVersion", 0x0001, 4,
+        0x0001, "MakerNoteVersion", 4,
         TiffDirectoryType.EXIF_DIRECTORY_MAKER_NOTE_NIKON
     )
 
     val SHUTTER_COUNT = TagInfoLong(
-        "ShutterCount", 0x00a7,
+        0x00a7, "ShutterCount",
         TiffDirectoryType.EXIF_DIRECTORY_MAKER_NOTE_NIKON
     )
 
     val AUXILIARY_LENS = TagInfoAscii(
-        "AuxiliaryLens", 0x0082, TagInfo.LENGTH_UNKNOWN,
+        0x0082, "AuxiliaryLens", TagInfo.LENGTH_UNKNOWN,
         TiffDirectoryType.EXIF_DIRECTORY_MAKER_NOTE_NIKON
     )
 
     val LENS_TYPE = TagInfoByte(
-        "LensType", 0x0083,
+        0x0083, "LensType",
         TiffDirectoryType.EXIF_DIRECTORY_MAKER_NOTE_NIKON
     )
 
     val LENS = TagInfoRationals(
-        "Lens", 0x0084, 4,
+        0x0084, "Lens", 4,
         TiffDirectoryType.EXIF_DIRECTORY_MAKER_NOTE_NIKON
     )
 
     val LENS_F_STOPS = TagInfoUndefineds(
-        "LensFStops", 0x008b, 4,
+        0x008b, "LensFStops", 4,
         TiffDirectoryType.EXIF_DIRECTORY_MAKER_NOTE_NIKON
     )
 

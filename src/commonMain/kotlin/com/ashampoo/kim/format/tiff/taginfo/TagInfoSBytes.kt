@@ -19,5 +19,9 @@ package com.ashampoo.kim.format.tiff.taginfo
 import com.ashampoo.kim.format.tiff.constant.TiffDirectoryType
 import com.ashampoo.kim.format.tiff.fieldtype.FieldTypeSByte
 
-class TagInfoSBytes(name: String, tag: Int, length: Int, directoryType: TiffDirectoryType?) :
-    TagInfo(name, tag, FieldTypeSByte, length, directoryType)
+class TagInfoSBytes(
+    tag: Int,
+    name: String,
+    length: Int,
+    directoryType: TiffDirectoryType?
+) : TagInfo(tag, name, FieldTypeSByte, length, directoryType)
