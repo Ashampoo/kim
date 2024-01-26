@@ -18,7 +18,7 @@ Little-endian (Intel, II)
 0000000240 0x829a ExposureTime = 1/2000 (5.0E-4)
 0000000252 0x829d FNumber = 8/1 (8.0)
 0000000264 0x8822 ExposureProgram = 4
-0000000276 0x8827 PhotographicSensitivity = 640
+0000000276 0x8827 ISO = 640
 0000000288 0x8830 SensitivityType = 2
 0000000300 0x9000 ExifVersion = [0x30, 0x32, 0x33, 0x30]
 0000000312 0x9003 DateTimeOriginal = 2019:11:03 14:55:39
@@ -62,7 +62,6 @@ Little-endian (Intel, II)
 0000000940 0x0002 GPSLatitude = [49/1 (49.0), 14/1 (14.0), 18744/625 (29.9904)]
 0000000952 0x0003 GPSLongitudeRef = W
 0000000964 0x0004 GPSLongitude = [121/1 (121.0), 56/1 (56.0), 62759/1390 (45.15036)]
-
 
 ---- IPTC ----
 Date Created (55) = '20191103'

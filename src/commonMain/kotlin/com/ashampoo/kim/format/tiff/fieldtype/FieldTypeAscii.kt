@@ -20,11 +20,21 @@ import com.ashampoo.kim.common.ByteOrder
 import com.ashampoo.kim.common.ImageWriteException
 import com.ashampoo.kim.common.indexOfNullTerminator
 import com.ashampoo.kim.common.slice
-import com.ashampoo.kim.format.tiff.TiffField
+import com.ashampoo.kim.format.tiff.constant.TiffConstants
 
-class FieldTypeAscii(type: Int, name: String) : FieldType(type, name, 1) {
+/**
+ * 8-bit byte that contains a 7-bit ASCII code;
+ * the last byte must be NUL (binary zero).
+ */
+data object FieldTypeAscii : FieldType<String> {
 
-    override fun getValue(entry: TiffField): String {
+    override val type: Int = TiffConstants.FIELD_TYPE_ASCII_INDEX
+
+    override val name: String = "ASCII"
+
+    override val size: Int = 1
+
+    override fun getValue(bytes: ByteArray, byteOrder: ByteOrder): String {
 
         /*
          * According to EXIF specification:
@@ -34,8 +44,6 @@ class FieldTypeAscii(type: Int, name: String) : FieldType(type, name, 1) {
          * User Comment (0x9286) are sometimes having multiple strings.
          * We read it all as one String for simplicity.
          */
-
-        val bytes = entry.byteArrayValue
 
         val nullTerminatorIndex = bytes.indexOfNullTerminator()
 
@@ -62,19 +70,15 @@ class FieldTypeAscii(type: Int, name: String) : FieldType(type, name, 1) {
 
     override fun writeData(data: Any, byteOrder: ByteOrder): ByteArray {
 
-        if (data is ByteArray) {
-            val result = data.copyOf(data.size + 1)
-            result[result.lastIndex] = 0
-            return result
-        }
+        if (data !is String)
+            throw ImageWriteException("ASCII Data must be String")
 
-        if (data is String) {
-            val bytes = data.encodeToByteArray()
-            val result = bytes.copyOf(bytes.size + 1)
-            result[result.lastIndex] = 0
-            return result
-        }
+        val bytes = data.encodeToByteArray()
 
-        throw ImageWriteException("Data must be ByteArray or String")
+        val result = bytes.copyOf(bytes.size + 1)
+
+        result[result.lastIndex] = 0
+
+        return result
     }
 }

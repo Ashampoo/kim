@@ -21,7 +21,7 @@ Big-endian (Motorola, MM)
 0000000220 0x829a ExposureTime = 1/122 (0.008197)
 0000000232 0x829d FNumber = 12/5 (2.4)
 0000000244 0x8822 ExposureProgram = 2
-0000000256 0x8827 PhotographicSensitivity = 50
+0000000256 0x8827 ISO = 50
 0000000268 0x9000 ExifVersion = [0x30, 0x32, 0x32, 0x31]
 0000000280 0x9003 DateTimeOriginal = 2019:03:22 18:50:02
 0000000292 0x9004 DateTimeDigitized = 2019:03:22 18:50:02
@@ -40,7 +40,7 @@ Big-endian (Motorola, MM)
 0000000448 0xa000 FlashpixVersion = [0x30, 0x31, 0x30, 0x30]
 0000000460 0xa001 ColorSpace = -1
 0000000472 0xa002 ExifImageWidth = 4032
-0000000484 0xa003 ExifImageLength = 3024
+0000000484 0xa003 ExifImageHeight = 3024
 0000000496 0xa217 SensingMethod = 2
 0000000508 0xa301 SceneType = 1
 0000000520 0xa401 CustomRendered = 8
@@ -68,7 +68,6 @@ Big-endian (Motorola, MM)
 0000001942 0x0018 GPSDestBearing = 100129/713 (140.43338)
 0000001954 0x001d GPSDateStamp = 2019:03:23
 0000001966 0x001f Unknown = 79605/8807 (9.038833)
-
 
 ---- IPTC ----
 Keywords (25) = 'nature'

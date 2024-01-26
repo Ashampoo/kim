@@ -20,7 +20,7 @@ Little-endian (Intel, II)
 0000000276 0x829a ExposureTime = 1/320 (0.003125)
 0000000288 0x829d FNumber = 8/1 (8.0)
 0000000300 0x8822 ExposureProgram = 1
-0000000312 0x8827 PhotographicSensitivity = 320
+0000000312 0x8827 ISO = 320
 0000000324 0x8830 SensitivityType = 2
 0000000336 0x9000 ExifVersion = [0x30, 0x32, 0x33, 0x31]
 0000000348 0x9003 DateTimeOriginal = 2019:06:27 09:25:17
@@ -38,7 +38,7 @@ Little-endian (Intel, II)
 0000000492 0x9292 SubSecTimeDigitized = 20
 0000000504 0xa001 ColorSpace = 1
 0000000516 0xa002 ExifImageWidth = 4272
-0000000528 0xa003 ExifImageLength = 2848
+0000000528 0xa003 ExifImageHeight = 2848
 0000000540 0xa20e FocalPlaneXResolution = 77360658/32768 (2360.859924)
 0000000552 0xa20f FocalPlaneYResolution = 77360658/32768 (2360.859924)
 0000000564 0xa210 FocalPlaneResolutionUnit = 3
@@ -67,7 +67,6 @@ Little-endian (Intel, II)
 0000001002 0x0128 ResolutionUnit = 2
 0000001014 0x0201 JpgFromRawStart = 1058
 0000001026 0x0202 JpgFromRawLength = 3320
-
 
 ---- IPTC ----
 By-line (80) = 'Peter Neumann'

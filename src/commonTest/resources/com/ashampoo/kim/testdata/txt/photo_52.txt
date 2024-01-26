@@ -22,7 +22,7 @@ Big-endian (Motorola, MM)
 0000000300 0x829a ExposureTime = 1/400 (0.0025)
 0000000312 0x829d FNumber = 71/10 (7.1)
 0000000324 0x8822 ExposureProgram = 1
-0000000336 0x8827 PhotographicSensitivity = 250
+0000000336 0x8827 ISO = 250
 0000000348 0x8830 SensitivityType = 2
 0000000360 0x8832 RecommendedExposureIndex = 250
 0000000372 0x9000 ExifVersion = [0x30, 0x32, 0x33, 0x30]
@@ -41,7 +41,7 @@ Big-endian (Motorola, MM)
 0000000528 0x9292 SubSecTimeDigitized = 47
 0000000540 0xa000 FlashpixVersion = [0x30, 0x31, 0x30, 0x30]
 0000000552 0xa002 ExifImageWidth = 1000
-0000000564 0xa003 ExifImageLength = 668
+0000000564 0xa003 ExifImageHeight = 668
 0000000576 0xa20e FocalPlaneXResolution = 1746901/287 (6086.763066)
 0000000588 0xa20f FocalPlaneYResolution = 2472601/406 (6090.150246)
 0000000600 0xa210 FocalPlaneResolutionUnit = 2
@@ -60,7 +60,6 @@ Big-endian (Motorola, MM)
 0000000936 0x0002 GPSLatitude = [55/1 (55.0), 54/1 (54.0), 4074/100 (40.74)]
 0000000948 0x0003 GPSLongitudeRef = E
 0000000960 0x0004 GPSLongitude = [36/1 (36.0), 57/1 (57.0), 4853/100 (48.53)]
-
 
 ---- XMP ----
 <x:xmpmeta xmlns:x="adobe:ns:meta/" x:xmptk="XMP Core 6.0.0">
@@ -313,4 +312,3 @@ Big-endian (Motorola, MM)
       </rdf:Description>
    </rdf:RDF>
 </x:xmpmeta>
-

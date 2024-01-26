@@ -16,22 +16,37 @@
  */
 package com.ashampoo.kim.format.tiff
 
+import com.ashampoo.kim.format.tiff.constant.CanonTag
 import com.ashampoo.kim.format.tiff.constant.ExifTag
 import com.ashampoo.kim.format.tiff.constant.ExifTag.EXIF_DIRECTORY_UNKNOWN
 import com.ashampoo.kim.format.tiff.constant.GpsTag
+import com.ashampoo.kim.format.tiff.constant.NikonTag
+import com.ashampoo.kim.format.tiff.constant.TiffConstants
 import com.ashampoo.kim.format.tiff.constant.TiffTag
 import com.ashampoo.kim.format.tiff.taginfo.TagInfo
-import com.ashampoo.kim.format.tiff.taginfo.TagInfoUnknowns
 
 internal object TiffTags {
 
-    private val ALL_TAGS = ExifTag.ALL_EXIF_TAGS + GpsTag.ALL_GPS_TAGS + TiffTag.ALL_TIFF_TAGS
-    private val ALL_TAG_MAP = ALL_TAGS.groupByTo(mutableMapOf()) { it.tag }
+    /* Ordered to give EXIF tag names priority. */
+    private val TIFF_AND_EXIF_TAGS = ExifTag.ALL_EXIF_TAGS + TiffTag.ALL_TIFF_TAGS
 
-    fun getTag(directoryType: Int, tag: Int): TagInfo {
+    private val TIFF_AND_EXIF_TAGS_MAP = TIFF_AND_EXIF_TAGS.groupByTo(mutableMapOf()) { it.tag }
+    private val GPS_TAGS_MAP = GpsTag.ALL_GPS_TAGS.groupByTo(mutableMapOf()) { it.tag }
+    private val CANON_TAGS_MAP = CanonTag.ALL.groupByTo(mutableMapOf()) { it.tag }
+    private val NIKON_TAGS_MAP = NikonTag.ALL.groupByTo(mutableMapOf()) { it.tag }
 
-        val possibleMatches = ALL_TAG_MAP[tag]
-            ?: return TagInfoUnknowns("Unknown", tag, TagInfo.LENGTH_UNKNOWN, null)
+    fun getTag(directoryType: Int, tag: Int): TagInfo? {
+
+        /*
+         * GPS and Maker Notes should be exact matches.
+         */
+        @Suppress("UseIfInsteadOfWhen")
+        val possibleMatches = when (directoryType) {
+            TiffConstants.TIFF_GPS -> GPS_TAGS_MAP[tag]
+            TiffConstants.TIFF_MAKER_NOTE_CANON -> CANON_TAGS_MAP[tag]
+            TiffConstants.TIFF_MAKER_NOTE_NIKON -> NIKON_TAGS_MAP[tag]
+            else -> TIFF_AND_EXIF_TAGS_MAP[tag]
+        } ?: return null
 
         return getTag(directoryType, possibleMatches)
     }
@@ -40,10 +55,10 @@ internal object TiffTags {
      * Note: Keep in sync with ImageMetadata.findTiffField()
      */
     @Suppress("UnnecessaryParentheses")
-    private fun getTag(directoryType: Int, possibleMatches: List<TagInfo>): TagInfo {
+    private fun getTag(directoryType: Int, possibleMatches: List<TagInfo>): TagInfo? {
 
         val exactMatch = possibleMatches.firstOrNull { tagInfo ->
-            tagInfo.directoryType?.directoryType == directoryType &&
+            tagInfo.directoryType?.typeId == directoryType &&
                 tagInfo.directoryType != EXIF_DIRECTORY_UNKNOWN
         }
 
@@ -65,6 +80,6 @@ internal object TiffTags {
         if (wildcardMatch != null)
             return wildcardMatch
 
-        return TiffTag.TIFF_TAG_UNKNOWN
+        return null
     }
 }

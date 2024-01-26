@@ -24,7 +24,7 @@ Big-endian (Motorola, MM)
 0000002492 0x829a ExposureTime = 10/1250 (0.008)
 0000002504 0x829d FNumber = 63/10 (6.3)
 0000002516 0x8822 ExposureProgram = 0
-0000002528 0x8827 PhotographicSensitivity = 2800
+0000002528 0x8827 ISO = 2800
 0000002540 0x8830 SensitivityType = 2
 0000002552 0x8832 RecommendedExposureIndex = 2800
 0000002564 0x9000 ExifVersion = [0x30, 0x32, 0x33, 0x30]
@@ -46,7 +46,7 @@ Big-endian (Motorola, MM)
 0000002756 0xa000 FlashpixVersion = [0x30, 0x31, 0x30, 0x30]
 0000002768 0xa001 ColorSpace = 1
 0000002780 0xa002 ExifImageWidth = 6000
-0000002792 0xa003 ExifImageLength = 4000
+0000002792 0xa003 ExifImageHeight = 4000
 0000002804 0xa005 InteropOffset = 22286
 0000002816 0xa217 SensingMethod = 2
 0000002828 0xa300 FileSource = 3
@@ -90,6 +90,68 @@ Big-endian (Motorola, MM)
 0000022602 0x0201 JpgFromRawStart = 22646
 0000022614 0x0202 JpgFromRawLength = 13995
 
+---- Directory MakerNoteNikon @ 3130 ----
+0000003132 0x0001 MakerNoteVersion = [0x30, 0x32, 0x31, 0x31]
+0000003144 0x0004 Unknown = 
+0000003156 0x0005 Unknown = 
+0000003168 0x0007 Unknown = 
+0000003180 0x0008 Unknown = 
+0000003192 0x0009 Unknown = 
+0000003204 0x000b Unknown = [0, 0]
+0000003216 0x000c Unknown = [Invalid rational (0/0), Invalid rational (0/0), Invalid rational (0/0), Invalid rational (0/0)]
+0000003228 0x000d Unknown = [0x00, 0x01, 0x06, 0x00]
+0000003240 0x000e Unknown = [0x00, 0x01, 0x0c, 0x00]
+0000003252 0x0012 Unknown = [0x00, 0x01, 0x06, 0x00]
+0000003264 0x0016 Unknown = [0, 0, 0, 0]
+0000003276 0x0017 Unknown = [0x00, 0x01, 0x06, 0x00]
+0000003288 0x0018 Unknown = [0x00, 0x01, 0x06, 0x00]
+0000003300 0x0019 Unknown = Invalid rational (0/0)
+0000003312 0x001b Unknown = [0, 0, 0, 0, 0, 0, 0]
+0000003324 0x001c Unknown = [0x00, 0x01, 0x06]
+0000003336 0x001d Unknown = 
+0000003348 0x001e Unknown = 1
+0000003360 0x001f Unknown = [0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]
+0000003372 0x0022 Unknown = -1
+0000003384 0x0023 Unknown = [68 bytes]
+0000003396 0x0024 Unknown = [0x3c, 0x00, 0x01, 0x02]
+0000003408 0x0025 Unknown = [14 bytes]
+0000003420 0x002a Unknown = 3
+0000003432 0x002b Unknown = [16 bytes]
+0000003444 0x002c Unknown = [574 bytes]
+0000003456 0x002d Unknown = [0, 0, 0]
+0000003468 0x0035 Unknown = [0x00, 0x00, 0x00, 0x00, 0x00, 0x00]
+0000003480 0x003b Unknown = [Invalid rational (0/0), Invalid rational (0/0), Invalid rational (0/0), Invalid rational (0/0)]
+0000003492 0x003c Unknown = 1
+0000003504 0x003e Unknown = 1
+0000003516 0x003f Unknown = [Invalid rational (0/0), Invalid rational (0/0)]
+0000003528 0x0040 Unknown = [12 bytes]
+0000003540 0x0042 Unknown = [0x00, 0x00, 0x00, 0x00, 0x00, 0x00]
+0000003552 0x0083 LensType = 14
+0000003564 0x0084 Lens = [Invalid rational (0/0), Invalid rational (0/0), Invalid rational (0/0), Invalid rational (0/0)]
+0000003576 0x0087 Unknown = 0
+0000003588 0x0089 Unknown = 0
+0000003600 0x008a Unknown = 1
+0000003612 0x008b LensFStops = [0x40, 0x01, 0x0c, 0x00]
+0000003624 0x0091 Unknown = [13791 bytes]
+0000003636 0x0095 Unknown = ��q
+0000003648 0x0097 Unknown = [1224 bytes]
+0000003660 0x0098 Unknown = [33 bytes]
+0000003672 0x009d Unknown = 0
+0000003684 0x009e Unknown = [-5465, 31622, 28873, -13968, -31109, -22550, 11453, 5620, 25231, 5006]
+0000003696 0x00a2 Unknown = 12459750
+0000003708 0x00a3 Unknown = 0
+0000003720 0x00a7 ShutterCount = 14611
+0000003732 0x00a8 Unknown = [51 bytes]
+0000003744 0x00ab Unknown = f
+]u/B�s��
+0000003756 0x00b0 Unknown = [16 bytes]
+0000003768 0x00b1 Unknown = 4
+0000003780 0x00b6 Unknown = [0xeb, 0x56, 0x1a, 0x37, 0xad, 0x7c, 0xa4, 0x25]
+0000003792 0x00b7 Unknown = [30 bytes]
+0000003804 0x00b8 Unknown = [172 bytes]
+0000003816 0x00bb Unknown = [0x02, 0x6f, 0x35, 0x54, 0xcc, 0x9d, 0xc7, 0x4a]
+0000003828 0x00bf Unknown = 0
+0000003840 0x00c0 Unknown = [0x26, 0x5b, 0xe9, 0xd0, 0x10, 0xa9, 0x9b, 0xe6]
 
 ---- IPTC ----
 Caption/Abstract (120) = 'chameleon perching on tree branch'

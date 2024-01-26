@@ -20,7 +20,7 @@ Big-endian (Motorola, MM)
 0000000181 0x9010 OffsetTime = +01:00
 0000000193 0x920a FocalLength = 559/100 (5.59)
 0000000205 0x9209 Flash = 0
-0000000217 0x8827 PhotographicSensitivity = 1939
+0000000217 0x8827 ISO = 1939
 0000000229 0x9004 DateTimeDigitized = 2023:12:05 08:50:44
 0000000241 0x9003 DateTimeOriginal = 2023:12:05 08:50:44
 0000000253 0xa403 WhiteBalance = 0
@@ -31,5 +31,4 @@ Big-endian (Motorola, MM)
 0000000437 0x0002 GPSLatitude = [Invalid rational (0/0), Invalid rational (0/0), Invalid rational (0/0)]
 0000000449 0x0003 GPSLongitudeRef = 
 0000000461 0x0004 GPSLongitude = [Invalid rational (0/0), Invalid rational (0/0), Invalid rational (0/0)]
-
 

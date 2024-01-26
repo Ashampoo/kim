@@ -19,7 +19,7 @@ Big-endian (Motorola, MM)
 0000000714 0x829a ExposureTime = 1/4000 (2.5E-4)
 0000000726 0x829d FNumber = 2/1 (2.0)
 0000000738 0x8822 ExposureProgram = 1
-0000000750 0x8827 PhotographicSensitivity = 200
+0000000750 0x8827 ISO = 200
 0000000762 0x8830 SensitivityType = 1
 0000000774 0x9000 ExifVersion = [0x30, 0x32, 0x33, 0x30]
 0000000786 0x9003 DateTimeOriginal = 2017:06:26 23:18:45
@@ -36,7 +36,7 @@ Big-endian (Motorola, MM)
 0000000918 0x920a FocalLength = 90/1 (90.0)
 0000000930 0xa001 ColorSpace = 1
 0000000942 0xa002 ExifImageWidth = 4240
-0000000954 0xa003 ExifImageLength = 2384
+0000000954 0xa003 ExifImageHeight = 2384
 0000000966 0xa20e FocalPlaneXResolution = 1812/1 (1812.0)
 0000000978 0xa20f FocalPlaneYResolution = 1812/1 (1812.0)
 0000000990 0xa210 FocalPlaneResolutionUnit = 3
@@ -53,7 +53,6 @@ Big-endian (Motorola, MM)
 0000001122 0xa433 LensMake = FUJIFILM
 0000001134 0xa434 LensModel = XF90mmF2 R LM WR
 0000001146 0xa435 LensSerialNumber = 65B00914
-
 
 ---- IPTC ----
 Date Created (55) = '20170626'

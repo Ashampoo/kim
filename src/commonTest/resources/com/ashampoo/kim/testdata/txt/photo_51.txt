@@ -24,7 +24,7 @@ Little-endian (Intel, II)
 0000000296 0x829a ExposureTime = 1/125 (0.008)
 0000000308 0x829d FNumber = 63/10 (6.3)
 0000000320 0x8822 ExposureProgram = 1
-0000000332 0x8827 PhotographicSensitivity = 125
+0000000332 0x8827 ISO = 125
 0000000344 0x8830 SensitivityType = 2
 0000000356 0x8832 RecommendedExposureIndex = 125
 0000000368 0x9000 ExifVersion = [0x30, 0x32, 0x33, 0x31]
@@ -72,7 +72,6 @@ Little-endian (Intel, II)
 0000001106 0x0115 SamplesPerPixel = 3
 0000001118 0x0201 JpgFromRawStart = 1152
 0000001130 0x0202 JpgFromRawLength = 6554
-
 
 ---- IPTC ----
 By-line (80) = 'SippakorN'

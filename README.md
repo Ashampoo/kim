@@ -21,10 +21,11 @@ It's part of [Ashampoo Photos](https://ashampoo.com/photos).
 * WebP: Read EXIF & XMP
 * HEIC / AVIF: Read EXIF & XMP
 * JPEG XL: Read EXIF & XMP of uncompressed files
-* TIFF / DNG / RAW: Read EXIF & XMP
-    + Good support for Canon CR2, Fujifilm RAF & Adobe DNG
-    + Experimental support for NEF, ARW, RW2 & ORF with known issues
-    + API for preview image extraction of DNG, CR2, RAF, NEF, ARW & RW2 (but not ORF)
+* TIFF / RAW: Read EXIF & XMP
+    + Full support for Adobe DNG, Canon CR2 & Fujifilm RAF
+    + Support for Nikon NEF, Sony ARW & Olympus ORF without lens info
+    + Support for Panasonic RW2 without lens info and image size
+    + API for preview image extraction of DNG, CR2, RAF, NEF, ARW & RW2
 * Handling of XMP content through
   [XMP Core for Kotlin Multiplatform](https://github.com/Ashampoo/xmpcore)
 * Convenient `Kim.update()` API to perform updates to the relevant places
@@ -36,7 +37,7 @@ of Ashampoo Photos, which, in turn, is driven by user community feedback.
 ## Installation
 
 ```
-implementation("com.ashampoo:kim:0.11")
+implementation("com.ashampoo:kim:0.12")
 ```
 
 ## Sample usages
@@ -141,8 +142,12 @@ val newBytes = Kim.updateThumbnail(
 ## Limitations
 
 * Inability to update EXIF, IPTC and XMP in JPG files simultaneously.
-* Does not read the image size and orientation for HEIC, AVIF & JPEG XL
-* Does not read brotli compressed metadata of JPEG XL due to missing brotli KMP libs
+* Does not read the image size and orientation for HEIC, AVIF & JPEG XL.
+* Does not read brotli compressed metadata of JPEG XL due to missing brotli KMP libs.
+* MakerNote support is experimental and limited.
+    + Can't extract preview image of ORF as offsets are burried into MakerNote.
+    + Can't identify lens info of NEF, ARW, RW2 & ORF because this is constructed from MakerNote fields.
+    + Missing image size for RW2 as this is also burried in MakerNotes.
 
 ### Regarding HEIC & AVIF metadata
 

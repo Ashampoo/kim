@@ -65,7 +65,7 @@ Little-endian (Intel, II)
 0001538238 0x829a ExposureTime = 1/640 (0.001563)
 0001538250 0x829d FNumber = 4/1 (4.0)
 0001538262 0x8822 ExposureProgram = 2
-0001538274 0x8827 PhotographicSensitivity = 100
+0001538274 0x8827 ISO = 100
 0001538286 0x9000 ExifVersion = [0x30, 0x32, 0x33, 0x31]
 0001538298 0x9003 DateTimeOriginal = 2014:12:28 15:50:57
 0001538310 0x9004 DateTimeDigitized = 2014:12:28 15:50:57
@@ -200,7 +200,6 @@ Little-endian (Intel, II)
 0001542276 0xc717 Unknown = 15.4
 0001542288 0xc741 Unknown = [256 bytes]
 0001542300 0xc7aa Unknown = 256
-
 
 ---- XMP ----
 <?xpacket begin="﻿" id="W5M0MpCehiHzreSzNTczkc9d"?>

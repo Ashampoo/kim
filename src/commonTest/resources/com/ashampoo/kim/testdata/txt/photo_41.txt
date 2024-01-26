@@ -23,7 +23,7 @@ Big-endian (Motorola, MM)
 0000000634 0x829a ExposureTime = 1/400 (0.0025)
 0000000646 0x829d FNumber = 35/10 (3.5)
 0000000658 0x8822 ExposureProgram = 3
-0000000670 0x8827 PhotographicSensitivity = 1600
+0000000670 0x8827 ISO = 1600
 0000000682 0x9000 ExifVersion = [0x30, 0x32, 0x33, 0x30]
 0000000694 0x9003 DateTimeOriginal = 2017:08:24 14:54:00
 0000000706 0x9004 DateTimeDigitized = 2017:08:24 14:54:00
@@ -36,7 +36,7 @@ Big-endian (Motorola, MM)
 0000000790 0xa000 FlashpixVersion = [0x30, 0x31, 0x30, 0x30]
 0000000802 0xa001 ColorSpace = 1
 0000000814 0xa002 ExifImageWidth = 4928
-0000000826 0xa003 ExifImageLength = 3264
+0000000826 0xa003 ExifImageHeight = 3264
 0000000838 0xa005 InteropOffset = 5452
 0000000850 0xa217 SensingMethod = 2
 0000000862 0xa300 FileSource = 3
@@ -65,7 +65,6 @@ Big-endian (Motorola, MM)
 0000005538 0x0128 ResolutionUnit = 2
 0000005550 0x0201 JpgFromRawStart = 5594
 0000005562 0x0202 JpgFromRawLength = 6551
-
 
 ---- IPTC ----
 Caption/Abstract (120) = 'Antelope Cave, Arizona'

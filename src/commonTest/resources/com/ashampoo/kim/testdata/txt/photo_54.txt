@@ -34,7 +34,7 @@ Little-endian (Intel, II)
 0002887294 0x829a ExposureTime = 1/30 (0.033333)
 0002887306 0x829d FNumber = 5/1 (5.0)
 0002887318 0x8822 ExposureProgram = 3
-0002887330 0x8827 PhotographicSensitivity = 400
+0002887330 0x8827 ISO = 400
 0002887342 0x8830 SensitivityType = 2
 0002887354 0x8832 RecommendedExposureIndex = 400
 0002887366 0x9000 ExifVersion = [0x30, 0x32, 0x33, 0x30]
@@ -50,7 +50,7 @@ Little-endian (Intel, II)
 0002887486 0x9291 SubSecTimeOriginal = 45
 0002887498 0xa001 ColorSpace = 1
 0002887510 0xa002 ExifImageWidth = 1200
-0002887522 0xa003 ExifImageLength = 800
+0002887522 0xa003 ExifImageHeight = 800
 0002887534 0xa20e FocalPlaneXResolution = 2592000/905 (2864.088398)
 0002887546 0xa20f FocalPlaneYResolution = 1728000/595 (2904.201681)
 0002887558 0xa210 FocalPlaneResolutionUnit = 2
@@ -64,7 +64,6 @@ Little-endian (Intel, II)
 0002887654 0xa431 BodySerialNumber = 1581036387
 0002887666 0xa434 LensModel = EF-S15-85mm f/3.5-5.6 IS USM
 0002887678 0xa435 LensSerialNumber = 0000118484
-
 
 ---- XMP ----
 <?xpacket begin="﻿" id="W5M0MpCehiHzreSzNTczkc9d"?>

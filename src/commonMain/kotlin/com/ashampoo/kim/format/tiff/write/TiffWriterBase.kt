@@ -103,7 +103,7 @@ abstract class TiffWriterBase(
             for (field in fields) {
 
                 if (fieldTags.contains(field.tag))
-                    throw ImageWriteException("Tag ${field.tagInfo} appears twice in directory.")
+                    throw ImageWriteException("Tag ${field.tagFormatted} appears twice in directory.")
 
                 fieldTags.add(field.tag)
 

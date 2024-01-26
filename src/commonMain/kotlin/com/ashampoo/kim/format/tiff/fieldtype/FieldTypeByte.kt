@@ -18,28 +18,26 @@ package com.ashampoo.kim.format.tiff.fieldtype
 
 import com.ashampoo.kim.common.ByteOrder
 import com.ashampoo.kim.common.ImageWriteException
-import com.ashampoo.kim.format.tiff.TiffField
+import com.ashampoo.kim.format.tiff.constant.TiffConstants
 
-class FieldTypeByte(type: Int, name: String) : FieldType(type, name, 1) {
+/**
+ * 8-bit unsigned integer.
+ */
+data object FieldTypeByte : FieldType<ByteArray> {
 
-    override fun getValue(entry: TiffField): Any {
+    override val type: Int = TiffConstants.FIELD_TYPE_BYTE_INDEX
 
-        val bytes = entry.byteArrayValue
+    override val name: String = "Byte"
 
-        return if (entry.count == 1)
-            bytes[0]
-        else
-            bytes
-    }
+    override val size: Int = 1
 
-    override fun writeData(data: Any, byteOrder: ByteOrder): ByteArray {
+    override fun getValue(bytes: ByteArray, byteOrder: ByteOrder): ByteArray =
+        bytes
 
-        if (data is Byte)
-            return byteArrayOf(data)
-
-        if (data is ByteArray)
-            return data
-
-        throw ImageWriteException("Invalid data: $data")
-    }
+    override fun writeData(data: Any, byteOrder: ByteOrder): ByteArray =
+        when (data) {
+            is Byte -> byteArrayOf(data)
+            is ByteArray -> data
+            else -> throw ImageWriteException("Unsupported type: $data")
+        }
 }

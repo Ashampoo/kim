@@ -22,7 +22,6 @@ import com.ashampoo.kim.common.ImageWriteException
 import com.ashampoo.kim.format.tiff.TiffContents
 import com.ashampoo.kim.format.tiff.TiffElement
 import com.ashampoo.kim.format.tiff.TiffReader
-import com.ashampoo.kim.format.tiff.constant.ExifTag
 import com.ashampoo.kim.format.tiff.constant.TiffConstants
 import com.ashampoo.kim.format.tiff.constant.TiffConstants.TIFF_HEADER_SIZE
 import com.ashampoo.kim.output.BinaryByteWriter.Companion.createBinaryByteWriter
@@ -74,7 +73,7 @@ class TiffWriterLossless(
                     /* MakerNote offsets must stay the same. */
                     if (makerNoteField != null &&
                         makerNoteField.separateValue != null &&
-                        makerNoteField.bytesEqual(field.byteArrayValue)
+                        makerNoteField.bytesEqual(field.valueBytes)
                     )
                         makerNoteField.separateValue.offset = field.valueOffset!!
                     else
@@ -163,7 +162,7 @@ class TiffWriterLossless(
          * The MakerNote field offset must not be changed or
          * else the data will be corrupted.
          */
-        val makerNoteField = outputSet.findField(ExifTag.EXIF_TAG_MAKER_NOTE.tag)
+        val makerNoteField = outputSet.findMakerNoteField()
 
         val rewritableSpaceRanges = findRewritableSpaceRanges(makerNoteField)
 

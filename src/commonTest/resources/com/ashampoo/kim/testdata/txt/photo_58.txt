@@ -22,7 +22,7 @@ Little-endian (Intel, II)
 0000001126 0x829a ExposureTime = 10/400 (0.025)
 0000001138 0x829d FNumber = 400/100 (4.0)
 0000001150 0x8822 ExposureProgram = 3
-0000001162 0x8827 PhotographicSensitivity = 400
+0000001162 0x8827 ISO = 400
 0000001174 0x8830 SensitivityType = 1
 0000001186 0x9000 ExifVersion = [0x30, 0x32, 0x33, 0x30]
 0000001198 0x9003 DateTimeOriginal = 2023:05:19 18:41:50
@@ -43,7 +43,7 @@ Little-endian (Intel, II)
 0000001378 0xa000 FlashpixVersion = [0x30, 0x31, 0x30, 0x30]
 0000001390 0xa001 ColorSpace = 1
 0000001402 0xa002 ExifImageWidth = 4416
-0000001414 0xa003 ExifImageLength = 2944
+0000001414 0xa003 ExifImageHeight = 2944
 0000001426 0xa005 InteropOffset = 3368
 0000001438 0xa20e FocalPlaneXResolution = 1882/1 (1882.0)
 0000001450 0xa20f FocalPlaneYResolution = 1882/1 (1882.0)
@@ -78,7 +78,6 @@ Little-endian (Intel, II)
 0000003472 0x0201 JpgFromRawStart = 3792
 0000003484 0x0202 JpgFromRawLength = 9457
 0000003496 0x0213 YCbCrPositioning = 2
-
 
 ---- XMP ----
 <?xpacket begin='﻿' id='W5M0MpCehiHzreSzNTczkc9d'?>

@@ -17,7 +17,7 @@ Little-endian (Intel, II)
 0000000212 0x829a ExposureTime = 1/4000 (2.5E-4)
 0000000224 0x829d FNumber = 14/10 (1.4)
 0000000236 0x8822 ExposureProgram = 1
-0000000248 0x8827 PhotographicSensitivity = 250
+0000000248 0x8827 ISO = 250
 0000000260 0x8830 SensitivityType = 2
 0000000272 0x8832 RecommendedExposureIndex = 250
 0000000284 0x9000 ExifVersion = [0x30, 0x32, 0x33, 0x30]
@@ -52,7 +52,6 @@ Little-endian (Intel, II)
 0000000790 0x0128 ResolutionUnit = 2
 0000000802 0x0201 JpgFromRawStart = 846
 0000000814 0x0202 JpgFromRawLength = 13642
-
 
 ---- IPTC ----
 Date Created (55) = '20190216'

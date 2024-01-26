@@ -21,6 +21,7 @@ import com.ashampoo.kim.common.ByteOrder
 import com.ashampoo.kim.common.GpsUtil.MINUTES_PER_HOUR
 import com.ashampoo.kim.common.ImageWriteException
 import com.ashampoo.kim.common.RationalNumber.Companion.valueOf
+import com.ashampoo.kim.common.RationalNumbers
 import com.ashampoo.kim.common.toExifDateString
 import com.ashampoo.kim.format.tiff.JpegImageDataElement
 import com.ashampoo.kim.format.tiff.constant.ExifTag
@@ -197,10 +198,12 @@ class TiffOutputSet(
 
             gpsDirectory.add(
                 GpsTag.GPS_TAG_GPS_LONGITUDE,
-                arrayOf(
-                    valueOf(longitudeDegrees),
-                    valueOf(longitudeMinutes),
-                    valueOf(longitudeSeconds)
+                RationalNumbers(
+                    arrayOf(
+                        valueOf(longitudeDegrees),
+                        valueOf(longitudeMinutes),
+                        valueOf(longitudeSeconds)
+                    )
                 )
             )
         }
@@ -223,14 +226,19 @@ class TiffOutputSet(
 
             gpsDirectory.add(
                 GpsTag.GPS_TAG_GPS_LATITUDE,
-                arrayOf(
-                    valueOf(latitudeDegrees),
-                    valueOf(latitudeMinutes),
-                    valueOf(latitudeSeconds)
+                RationalNumbers(
+                    arrayOf(
+                        valueOf(latitudeDegrees),
+                        valueOf(latitudeMinutes),
+                        valueOf(latitudeSeconds)
+                    )
                 )
             )
         }
     }
+
+    fun findMakerNoteField(): TiffOutputField? =
+        findField(ExifTag.EXIF_TAG_MAKER_NOTE.tag)
 
     fun findField(tag: Int): TiffOutputField? =
         directories

@@ -17,11 +17,10 @@
 package com.ashampoo.kim.format.tiff.taginfo
 
 import com.ashampoo.kim.format.tiff.constant.TiffDirectoryType
-import com.ashampoo.kim.format.tiff.fieldtype.FieldType
+import com.ashampoo.kim.format.tiff.fieldtype.FieldTypeSByte
 
-class TagInfoSByte(name: String, tag: Int, directoryType: TiffDirectoryType?) :
-    TagInfo(name, tag, FieldType.SBYTE, 1, directoryType) {
-
-    fun encodeValue(value: Byte): ByteArray =
-        byteArrayOf(value)
-}
+class TagInfoSByte(
+    tag: Int,
+    name: String,
+    directoryType: TiffDirectoryType?
+) : TagInfo(tag, name, FieldTypeSByte, 1, directoryType)

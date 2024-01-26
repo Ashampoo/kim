@@ -22,7 +22,6 @@ Little-endian (Intel, II)
 0000000184 0x0201 JpgFromRawStart = 228
 0000000196 0x0202 JpgFromRawLength = 9559
 
-
 ---- IPTC ----
 Copyright Notice (116) = 'CEDRIC LETSCH'
 

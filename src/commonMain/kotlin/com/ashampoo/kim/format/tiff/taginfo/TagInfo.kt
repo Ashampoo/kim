@@ -16,19 +16,17 @@
  */
 package com.ashampoo.kim.format.tiff.taginfo
 
-import com.ashampoo.kim.common.ByteOrder
 import com.ashampoo.kim.common.HEX_RADIX
-import com.ashampoo.kim.format.tiff.TiffField
 import com.ashampoo.kim.format.tiff.constant.ExifTag.EXIF_DIRECTORY_UNKNOWN
 import com.ashampoo.kim.format.tiff.constant.TiffDirectoryType
 import com.ashampoo.kim.format.tiff.fieldtype.FieldType
 
-open class TagInfo(
-    val name: String,
+abstract class TagInfo(
     val tag: Int,
-    val dataTypes: List<FieldType>,
-    val length: Int,
-    val directoryType: TiffDirectoryType?,
+    val name: String,
+    val fieldType: FieldType<out Any>,
+    val length: Int = LENGTH_UNKNOWN,
+    val directoryType: TiffDirectoryType? = EXIF_DIRECTORY_UNKNOWN,
     val isOffset: Boolean = false
 ) {
 
@@ -38,27 +36,6 @@ open class TagInfo(
 
     val description: String =
         "$tagFormatted $name"
-
-    constructor(
-        name: String,
-        tag: Int,
-        dataType: FieldType,
-        length: Int = LENGTH_UNKNOWN,
-        exifDirectory: TiffDirectoryType? = EXIF_DIRECTORY_UNKNOWN
-    ) : this(name, tag, listOf(dataType), length, exifDirectory)
-
-    /**
-     * @param entry the TIFF field whose value to return
-     * @return the value of the TIFF field
-     *
-     * Implementation detail: This indirection exists because
-     * [TagInfoGpsText] has some special logic to interpret the value.
-     */
-    open fun getValue(entry: TiffField): Any =
-        entry.fieldType.getValue(entry)
-
-    open fun encodeValue(fieldType: FieldType, value: Any, byteOrder: ByteOrder): ByteArray =
-        fieldType.writeData(value, byteOrder)
 
     override fun toString(): String =
         description
@@ -73,7 +50,7 @@ open class TagInfo(
 
         if (name != other.name) return false
         if (tag != other.tag) return false
-        if (dataTypes != other.dataTypes) return false
+        if (fieldType != other.fieldType) return false
         if (length != other.length) return false
         if (directoryType != other.directoryType) return false
         if (isOffset != other.isOffset) return false
@@ -86,7 +63,7 @@ open class TagInfo(
     override fun hashCode(): Int {
         var result = name.hashCode()
         result = 31 * result + tag
-        result = 31 * result + dataTypes.hashCode()
+        result = 31 * result + fieldType.hashCode()
         result = 31 * result + length
         result = 31 * result + (directoryType?.hashCode() ?: 0)
         result = 31 * result + isOffset.hashCode()

@@ -16,32 +16,23 @@
  */
 package com.ashampoo.kim.format.tiff.taginfo
 
-import com.ashampoo.kim.common.ByteOrder
-import com.ashampoo.kim.common.toBytes
-import com.ashampoo.kim.common.toInts
 import com.ashampoo.kim.format.tiff.constant.TiffDirectoryType
-import com.ashampoo.kim.format.tiff.fieldtype.FieldType
+import com.ashampoo.kim.format.tiff.fieldtype.FieldTypeLong
 
-open class TagInfoLongs : TagInfo {
+class TagInfoLongs : TagInfo {
 
     constructor(
-        name: String,
         tag: Int,
+        name: String,
         length: Int,
         directoryType: TiffDirectoryType?
-    ) : super(name, tag, FieldType.LONG, length, directoryType)
+    ) : super(tag, name, FieldTypeLong, length, directoryType)
 
     constructor(
-        name: String,
         tag: Int,
+        name: String,
         length: Int,
         directoryType: TiffDirectoryType?,
         isOffset: Boolean
-    ) : super(name, tag, listOf(FieldType.LONG), length, directoryType, isOffset)
-
-    fun getValue(byteOrder: ByteOrder, bytes: ByteArray): IntArray =
-        bytes.toInts(byteOrder)
-
-    fun encodeValue(byteOrder: ByteOrder, value: IntArray): ByteArray =
-        value.toBytes(byteOrder)
+    ) : super(tag, name, FieldTypeLong, length, directoryType, isOffset)
 }

@@ -18,29 +18,22 @@ package com.ashampoo.kim.format.tiff.taginfo
 
 import com.ashampoo.kim.format.tiff.constant.TiffDirectoryType
 import com.ashampoo.kim.format.tiff.fieldtype.FieldType
+import com.ashampoo.kim.format.tiff.fieldtype.FieldTypeByte
 
 open class TagInfoBytes : TagInfo {
 
     constructor(
-        name: String,
         tag: Int,
+        name: String,
         length: Int,
         directoryType: TiffDirectoryType?
-    ) : super(name, tag, FieldType.BYTE, length, directoryType)
+    ) : super(tag, name, FieldTypeByte, length, directoryType)
 
     constructor(
-        name: String,
         tag: Int,
-        fieldTypes: List<FieldType>,
+        name: String,
+        fieldType: FieldType<out Any>,
         length: Int,
         directoryType: TiffDirectoryType?
-    ) : super(name, tag, fieldTypes, length, directoryType)
-
-    constructor(
-        name: String,
-        tag: Int,
-        fieldType: FieldType,
-        length: Int,
-        directoryType: TiffDirectoryType?
-    ) : super(name, tag, fieldType, length, directoryType)
+    ) : super(tag, name, fieldType, length, directoryType)
 }

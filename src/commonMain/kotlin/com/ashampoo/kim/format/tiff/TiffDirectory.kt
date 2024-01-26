@@ -19,12 +19,15 @@ package com.ashampoo.kim.format.tiff
 import com.ashampoo.kim.common.ByteOrder
 import com.ashampoo.kim.common.ImageReadException
 import com.ashampoo.kim.common.ImageWriteException
+import com.ashampoo.kim.common.toInt
+import com.ashampoo.kim.common.toInts
 import com.ashampoo.kim.format.tiff.constant.ExifTag
 import com.ashampoo.kim.format.tiff.constant.TiffConstants
 import com.ashampoo.kim.format.tiff.constant.TiffDirectoryType
 import com.ashampoo.kim.format.tiff.constant.TiffTag
 import com.ashampoo.kim.format.tiff.taginfo.TagInfo
 import com.ashampoo.kim.format.tiff.taginfo.TagInfoBytes
+import com.ashampoo.kim.format.tiff.taginfo.TagInfoGpsText
 import com.ashampoo.kim.format.tiff.taginfo.TagInfoLong
 import com.ashampoo.kim.format.tiff.taginfo.TagInfoLongs
 import com.ashampoo.kim.format.tiff.write.TiffOutputDirectory
@@ -88,7 +91,7 @@ class TiffDirectory(
             return null
         }
 
-        return field.byteArrayValue
+        return field.valueBytes
     }
 
     @Suppress("ThrowsCount")
@@ -96,13 +99,13 @@ class TiffDirectory(
 
         val field = findField(tag) ?: return null
 
-        if (!tag.dataTypes.contains(field.fieldType))
+        if (tag.fieldType != field.fieldType)
             throw ImageReadException("Required field ${tag.name} has incorrect type ${field.fieldType.name}")
 
         if (field.count != 1)
             throw ImageReadException("Field ${tag.name} has wrong count ${field.count}")
 
-        return tag.getValue(field.byteOrder, field.byteArrayValue)
+        return field.valueBytes.toInt(field.byteOrder)
     }
 
     @Suppress("ThrowsCount")
@@ -111,10 +114,10 @@ class TiffDirectory(
         val field = findField(tag)
             ?: throw ImageReadException("Required field ${tag.name} is missing")
 
-        if (!tag.dataTypes.contains(field.fieldType))
+        if (tag.fieldType != field.fieldType)
             throw ImageReadException("Required field ${tag.name} has incorrect type ${field.fieldType.name}")
 
-        return tag.getValue(field.byteOrder, field.byteArrayValue)
+        return field.valueBytes.toInts(field.byteOrder)
     }
 
     fun getJpegRawImageDataElement(): ImageDataElement {
@@ -135,6 +138,14 @@ class TiffDirectory(
 
     fun createOutputDirectory(byteOrder: ByteOrder): TiffOutputDirectory {
 
+        /*
+         * Prevent attempts to add MakerNote directories.
+         */
+        @Suppress("MagicNumber")
+        check(type > -100) {
+            "Can't create OutputDirectory for artifical MakerNote directory."
+        }
+
         try {
 
             val outputDirectory = TiffOutputDirectory(type, byteOrder)
@@ -146,7 +157,8 @@ class TiffDirectory(
                 if (outputDirectory.findField(entry.tag) != null)
                     continue
 
-                if (entry.tagInfo.isOffset)
+                /* Skip known offsets. */
+                if (entry.tagInfo?.isOffset == true)
                     continue
 
                 val tagInfo = entry.tagInfo
@@ -166,11 +178,14 @@ class TiffDirectory(
                         continue
                 }
 
-                val bytes = tagInfo.encodeValue(fieldType, value, byteOrder)
+                val bytes = if (tagInfo is TagInfoGpsText)
+                    tagInfo.encodeValue(value)
+                else
+                    fieldType.writeData(value, byteOrder)
 
                 val count = bytes.size / fieldType.size
 
-                val outputField = TiffOutputField(entry.tag, tagInfo, fieldType, count, bytes)
+                val outputField = TiffOutputField(entry.tag, fieldType, count, bytes)
 
                 outputField.sortHint = entry.sortHint
 
@@ -183,7 +198,7 @@ class TiffDirectory(
              * can update the orientation easily the next time we need
              * to touch the file.
              */
-            if (type == TiffDirectoryType.TIFF_DIRECTORY_IFD0.directoryType) {
+            if (type == TiffDirectoryType.TIFF_DIRECTORY_IFD0.typeId) {
 
                 val orientationField = outputDirectory.findField(TiffTag.TIFF_TAG_ORIENTATION)
 
@@ -236,8 +251,21 @@ class TiffDirectory(
                 TiffConstants.TIFF_EXIF_IFD -> "ExifIFD"
                 TiffConstants.TIFF_GPS -> "GPS"
                 TiffConstants.TIFF_INTEROP_IFD -> "InteropIFD"
+                TiffConstants.TIFF_MAKER_NOTE_CANON -> "MakerNoteCanon"
+                TiffConstants.TIFF_MAKER_NOTE_NIKON -> "MakerNoteNikon"
                 else -> "Bad Type"
             }
         }
+
+        /*
+         * Note: Keep in sync with TiffTags.getTag()
+         */
+        @Suppress("UnnecessaryParentheses")
+        fun findTiffField(directories: List<TiffDirectory>, tagInfo: TagInfo): TiffField? =
+            directories.firstOrNull { directory ->
+                directory.type == tagInfo.directoryType?.typeId ||
+                    (tagInfo.directoryType?.isImageDirectory == true && directory.type >= 0) ||
+                    (tagInfo.directoryType?.isImageDirectory == false && directory.type < 0)
+            }?.findField(tagInfo)
     }
 }

@@ -43,15 +43,15 @@ interface ByteReader : Closeable {
         return byte
     }
 
-    fun readBytes(fieldName: String, length: Int): ByteArray {
+    fun readBytes(fieldName: String, count: Int): ByteArray {
 
-        if (length < 0)
-            throw ImageReadException("Couldn't read $fieldName, invalid length: $length")
+        if (count < 0)
+            throw ImageReadException("Couldn't read $fieldName, invalid length: $count")
 
-        val bytes = readBytes(length)
+        val bytes = readBytes(count)
 
-        if (bytes.size != length)
-            throw ImageReadException("Couldn't read $length bytes for $fieldName. Got only ${bytes.size}.")
+        if (bytes.size != count)
+            throw ImageReadException("Couldn't read $count bytes for $fieldName. Got only ${bytes.size}.")
 
         return bytes
     }
@@ -132,22 +132,22 @@ interface ByteReader : Closeable {
             throw ImageReadException("Couldn't read 8 bytes for $fieldName")
 
         val result: Long = if (byteOrder == ByteOrder.BIG_ENDIAN)
-            (byte0.toLong() shl 56) or (byte1.toLong() shl 48) or (byte2.toLong() shl 40) or (byte3.toLong() shl 32) or
+            byte0.toLong() shl 56 or (byte1.toLong() shl 48) or (byte2.toLong() shl 40) or (byte3.toLong() shl 32) or
                 (byte4.toLong() shl 24) or (byte5.toLong() shl 16) or (byte6.toLong() shl 8) or (byte7.toLong() shl 0)
         else
-            (byte7.toLong() shl 56) or (byte6.toLong() shl 48) or (byte5.toLong() shl 40) or (byte4.toLong() shl 32) or
+            byte7.toLong() shl 56 or (byte6.toLong() shl 48) or (byte5.toLong() shl 40) or (byte4.toLong() shl 32) or
                 (byte3.toLong() shl 24) or (byte2.toLong() shl 16) or (byte1.toLong() shl 8) or (byte0.toLong() shl 0)
 
         return result
     }
 
-    fun readXBytesAtInt(fieldName: String, byteCount: Int, byteOrder: ByteOrder): Long =
-        when (byteCount) {
+    fun readXBytesAtInt(fieldName: String, count: Int, byteOrder: ByteOrder): Long =
+        when (count) {
             1 -> readByteAsInt().toLong()
             2 -> read2BytesAsInt(fieldName, byteOrder).toLong()
             4 -> read4BytesAsInt(fieldName, byteOrder).toLong()
             8 -> read8BytesAsLong(fieldName, byteOrder)
-            else -> error("Illegal byteCount specified: $byteCount")
+            else -> error("Illegal byteCount specified: $count")
         }
 
     fun readAndVerifyBytes(fieldName: String, expectedBytes: ByteArray) {
@@ -181,23 +181,23 @@ interface ByteReader : Closeable {
         return os.toByteArray()
     }
 
-    fun skipBytes(fieldName: String, length: Int) {
+    fun skipBytes(fieldName: String, count: Int) {
 
         /* Nothing to do. */
-        if (length == 0)
+        if (count == 0)
             return
 
-        if (length < 0)
-            throw ImageReadException("Couldn't read $fieldName, invalid length: $length")
+        if (count < 0)
+            throw ImageReadException("Couldn't read $fieldName, invalid length: $count")
 
         var total: Int = 0
 
-        while (length != total) {
+        while (count != total) {
 
-            val skipped = readBytes(length.toInt()).size
+            val skipped = readBytes(count.toInt()).size
 
             if (skipped < 1)
-                throw ImageReadException("$fieldName (skipped $skipped of $length bytes)")
+                throw ImageReadException("$fieldName (skipped $skipped of $count bytes)")
 
             total += skipped
         }

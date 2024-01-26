@@ -18,6 +18,7 @@ package com.ashampoo.kim.format.tiff
 
 import com.ashampoo.kim.common.ByteOrder
 import com.ashampoo.kim.common.ImageReadException
+import com.ashampoo.kim.common.head
 import com.ashampoo.kim.common.toInt
 import com.ashampoo.kim.format.tiff.constant.ExifTag
 import com.ashampoo.kim.format.tiff.constant.TiffConstants
@@ -25,7 +26,7 @@ import com.ashampoo.kim.format.tiff.constant.TiffConstants.DIRECTORY_TYPE_SUB
 import com.ashampoo.kim.format.tiff.constant.TiffConstants.EXIF_SUB_IFD1
 import com.ashampoo.kim.format.tiff.constant.TiffConstants.EXIF_SUB_IFD2
 import com.ashampoo.kim.format.tiff.constant.TiffConstants.EXIF_SUB_IFD3
-import com.ashampoo.kim.format.tiff.fieldtype.FieldType
+import com.ashampoo.kim.format.tiff.constant.TiffTag
 import com.ashampoo.kim.format.tiff.fieldtype.FieldType.Companion.getFieldType
 import com.ashampoo.kim.format.tiff.taginfo.TagInfoLong
 import com.ashampoo.kim.format.tiff.taginfo.TagInfoLongs
@@ -34,6 +35,8 @@ import com.ashampoo.kim.input.ByteReader
 import com.ashampoo.kim.input.RandomAccessByteReader
 
 object TiffReader {
+
+    const val NIKON_MAKER_NOTE_SIGNATURE = "Nikon\u0000"
 
     private val offsetFields = listOf(
         ExifTag.EXIF_TAG_EXIF_OFFSET,
@@ -62,25 +65,26 @@ object TiffReader {
 
         byteReader.reset()
 
-        val collector = TiffReaderCollector()
-
-        collector.tiffHeader = tiffHeader
+        val directories = mutableListOf<TiffDirectory>()
 
         readDirectory(
             byteReader = byteReader,
             byteOrder = tiffHeader.byteOrder,
             directoryOffset = tiffHeader.offsetToFirstIFD,
             directoryType = TiffConstants.DIRECTORY_TYPE_ROOT,
-            collector = collector,
-            visitedOffsets = mutableListOf<Int>()
+            visitedOffsets = mutableListOf<Int>(),
+            addDirectory = {
+                directories.add(it)
+            }
         )
 
-        val contents = collector.getContents()
+        val makerNoteDirectory =
+            tryToParseMakerNote(directories, byteReader, tiffHeader.byteOrder)
 
-        if (contents.directories.isEmpty())
+        if (directories.isEmpty())
             throw ImageReadException("Image did not contain any directories.")
 
-        return contents
+        return TiffContents(tiffHeader, directories, makerNoteDirectory)
     }
 
     fun readTiffHeader(byteReader: ByteReader): TiffHeader {
@@ -113,8 +117,8 @@ object TiffReader {
         byteOrder: ByteOrder,
         directoryOffset: Int,
         directoryType: Int,
-        collector: TiffReaderCollector,
-        visitedOffsets: MutableList<Int>
+        visitedOffsets: MutableList<Int>,
+        addDirectory: (TiffDirectory) -> Unit
     ): Boolean {
 
         /* We don't want to visit a directory twice. */
@@ -132,9 +136,9 @@ object TiffReader {
         if (directoryOffset >= byteReader.contentLength)
             return true
 
-        val fields = try {
+        byteReader.skipBytes("Directory offset", directoryOffset)
 
-            byteReader.skipBytes("Directory offset", directoryOffset)
+        val fields = try {
 
             val entryCount = byteReader.read2BytesAsInt("entrycount", byteOrder)
 
@@ -164,12 +168,18 @@ object TiffReader {
         val nextDirectoryOffset =
             byteReader.read4BytesAsInt("Next directory offset", byteOrder)
 
-        val directory = TiffDirectory(directoryType, fields, directoryOffset, nextDirectoryOffset, byteOrder)
+        val directory = TiffDirectory(
+            type = directoryType,
+            entries = fields,
+            offset = directoryOffset,
+            nextDirectoryOffset = nextDirectoryOffset,
+            byteOrder = byteOrder
+        )
 
         if (directory.hasJpegImageData())
             directory.jpegImageDataElement = getJpegRawImageData(byteReader, directory)
 
-        collector.directories.add(directory)
+        addDirectory(directory)
 
         /* Read offset directories */
         for (offsetField in offsetFields) {
@@ -207,8 +217,8 @@ object TiffReader {
                             byteOrder = byteOrder,
                             directoryOffset = subDirOffset,
                             directoryType = subDirectoryType,
-                            collector = collector,
-                            visitedOffsets = visitedOffsets
+                            visitedOffsets = visitedOffsets,
+                            addDirectory = addDirectory
                         )
 
                     } catch (ignore: ImageReadException) {
@@ -223,14 +233,14 @@ object TiffReader {
             }
         }
 
-        if (directory.nextDirectoryOffset > 0)
+        if (nextDirectoryOffset > 0)
             readDirectory(
                 byteReader = byteReader,
                 byteOrder = byteOrder,
                 directoryOffset = directory.nextDirectoryOffset,
                 directoryType = directoryType + 1,
-                collector = collector,
-                visitedOffsets = visitedOffsets
+                visitedOffsets = visitedOffsets,
+                addDirectory = addDirectory
             )
 
         return true
@@ -252,7 +262,6 @@ object TiffReader {
 
             val tag = byteReader.read2BytesAsInt("Entry $entryIndex: 'tag'", byteOrder)
             val type = byteReader.read2BytesAsInt("Entry $entryIndex: 'type'", byteOrder)
-
             val count = byteReader.read4BytesAsInt("Entry $entryIndex: 'count'", byteOrder)
 
             /*
@@ -277,7 +286,7 @@ object TiffReader {
             if (tag == 0 && directoryType != TiffConstants.TIFF_GPS)
                 continue
 
-            val fieldType: FieldType = try {
+            val fieldType = try {
                 getFieldType(type)
             } catch (ignore: ImageReadException) {
                 /*
@@ -302,7 +311,7 @@ object TiffReader {
 
             } else {
 
-                valueOrOffsetBytes
+                valueOrOffsetBytes.head(valueLength)
             }
 
             fields.add(
@@ -356,12 +365,110 @@ object TiffReader {
         return JpegImageDataElement(offset, length, data)
     }
 
-    private class TiffReaderCollector {
+    /**
+     * Inspect if MakerNotes are present and could be added as
+     * TiffDirectory. This is true for almost all manufacturers.
+     */
+    private fun tryToParseMakerNote(
+        directories: MutableList<TiffDirectory>,
+        byteReader: RandomAccessByteReader,
+        byteOrder: ByteOrder
+    ): TiffDirectory? {
 
-        var tiffHeader: TiffHeader? = null
-        val directories = mutableListOf<TiffDirectory>()
+        val makerNoteField = TiffDirectory.findTiffField(
+            directories,
+            ExifTag.EXIF_TAG_MAKER_NOTE
+        )
 
-        fun getContents(): TiffContents =
-            TiffContents(requireNotNull(tiffHeader), directories)
+        if (makerNoteField != null && makerNoteField.valueOffset != null) {
+
+            val make = TiffDirectory.findTiffField(
+                directories, TiffTag.TIFF_TAG_MAKE
+            )?.valueDescription
+
+            try {
+
+                var makerNoteDirectory: TiffDirectory? = null
+
+                createMakerNoteDirectory(
+                    byteReader,
+                    makerNoteField.valueOffset,
+                    make,
+                    byteOrder = byteOrder,
+                    addDirectory = {
+                        makerNoteDirectory = it
+                    }
+                )
+
+                return makerNoteDirectory
+
+            } catch (ignore: Exception) {
+
+                /* Interpreting the Maker Note is optional. */
+                @Suppress("PrintStackTrace")
+                ignore.printStackTrace()
+            }
+        }
+
+        return null
+    }
+
+    /**
+     * Try to read MakerNote and add it as a directory.
+     *
+     * Note that this is experimental!
+     *
+     * See https://exiftool.org/makernote_types.html
+     */
+    private fun createMakerNoteDirectory(
+        byteReader: RandomAccessByteReader,
+        makerNoteValueOffset: Int,
+        make: String?,
+        byteOrder: ByteOrder,
+        addDirectory: (TiffDirectory) -> Unit
+    ) {
+
+        if (make != null && make == "Canon") {
+
+            readDirectory(
+                byteReader = byteReader,
+                byteOrder = byteOrder,
+                directoryOffset = makerNoteValueOffset,
+                directoryType = TiffConstants.TIFF_MAKER_NOTE_CANON,
+                visitedOffsets = mutableListOf<Int>(),
+                addDirectory = addDirectory
+            )
+        }
+
+        if (make != null && make.trim().lowercase().startsWith("nikon")) {
+
+            byteReader.reset()
+            byteReader.skipBytes("offset", makerNoteValueOffset)
+
+            val nikonSignature = byteReader.readBytes(
+                fieldName = "Nikon MakerNote signature",
+                count = NIKON_MAKER_NOTE_SIGNATURE.length
+            ).decodeToString()
+
+            val nikonSignatureMatched = nikonSignature == NIKON_MAKER_NOTE_SIGNATURE
+
+            if (!nikonSignatureMatched)
+                return
+
+            val type = byteReader.readByteAsInt()
+
+            /* We only have test files for type 2 right now. */
+            if (type != 2)
+                return
+
+            readDirectory(
+                byteReader = byteReader,
+                byteOrder = ByteOrder.LITTLE_ENDIAN,
+                directoryOffset = makerNoteValueOffset + 18,
+                directoryType = TiffConstants.TIFF_MAKER_NOTE_NIKON,
+                visitedOffsets = mutableListOf<Int>(),
+                addDirectory = addDirectory
+            )
+        }
     }
 }

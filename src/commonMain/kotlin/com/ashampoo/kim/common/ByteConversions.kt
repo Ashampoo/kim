@@ -187,10 +187,10 @@ fun RationalNumber.toBytes(byteOrder: ByteOrder): ByteArray {
     return result
 }
 
-fun Array<out RationalNumber>.toBytes(byteOrder: ByteOrder): ByteArray =
-    this.toBytes(0, size, byteOrder)
+fun RationalNumbers.toBytes(byteOrder: ByteOrder): ByteArray =
+    this.toBytes(0, values.size, byteOrder)
 
-private fun Array<out RationalNumber>.toBytes(
+private fun RationalNumbers.toBytes(
     offset: Int,
     length: Int,
     byteOrder: ByteOrder
@@ -198,8 +198,8 @@ private fun Array<out RationalNumber>.toBytes(
 
     val result = ByteArray(length * 8)
 
-    for (i in 0 until length)
-        this[offset + i].toBytes(byteOrder, result, i * 8)
+    for (index in 0 until length)
+        values[offset + index].toBytes(byteOrder, result, index * 8)
 
     return result
 }
@@ -402,7 +402,7 @@ private fun ByteArray.toRational(
 fun ByteArray.toRationals(
     byteOrder: ByteOrder,
     unsignedType: Boolean
-): Array<RationalNumber> =
+): RationalNumbers =
     toRationals(this, 0, size, byteOrder, unsignedType)
 
 private fun toRationals(
@@ -411,7 +411,7 @@ private fun toRationals(
     length: Int,
     byteOrder: ByteOrder,
     unsignedType: Boolean
-): Array<RationalNumber> {
+): RationalNumbers {
 
     val result = arrayOfNulls<RationalNumber>(length / 8)
 
@@ -419,7 +419,7 @@ private fun toRationals(
         result[i] = bytes.toRational(offset + 8 * i, byteOrder, unsignedType)
     }
 
-    return result as Array<RationalNumber>
+    return RationalNumbers(result as Array<RationalNumber>)
 }
 
 fun Int.quadsToByteArray(): ByteArray {

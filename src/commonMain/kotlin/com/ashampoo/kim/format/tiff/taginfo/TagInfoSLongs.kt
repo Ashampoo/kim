@@ -16,18 +16,12 @@
  */
 package com.ashampoo.kim.format.tiff.taginfo
 
-import com.ashampoo.kim.common.ByteOrder
-import com.ashampoo.kim.common.toBytes
-import com.ashampoo.kim.common.toInts
 import com.ashampoo.kim.format.tiff.constant.TiffDirectoryType
-import com.ashampoo.kim.format.tiff.fieldtype.FieldType
+import com.ashampoo.kim.format.tiff.fieldtype.FieldTypeSLong
 
-class TagInfoSLongs(name: String, tag: Int, length: Int, directoryType: TiffDirectoryType?) :
-    TagInfo(name, tag, FieldType.SLONG, length, directoryType) {
-
-    fun getValue(byteOrder: ByteOrder, bytes: ByteArray): IntArray =
-        bytes.toInts(byteOrder)
-
-    fun encodeValue(byteOrder: ByteOrder, value: IntArray): ByteArray =
-        value.toBytes(byteOrder)
-}
+class TagInfoSLongs(
+    tag: Int,
+    name: String,
+    length: Int,
+    directoryType: TiffDirectoryType?
+) : TagInfo(tag, name, FieldTypeSLong, length, directoryType)

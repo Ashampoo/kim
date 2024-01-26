@@ -20,7 +20,7 @@ Big-endian (Motorola, MM)
 0000000254 0x829a ExposureTime = 1/100 (0.01)
 0000000266 0x829d FNumber = 9/5 (1.8)
 0000000278 0x8822 ExposureProgram = 2
-0000000290 0x8827 PhotographicSensitivity = 50
+0000000290 0x8827 ISO = 50
 0000000302 0x9000 ExifVersion = [0x30, 0x32, 0x33, 0x32]
 0000000314 0x9003 DateTimeOriginal = 2022:11:30 14:57:00
 0000000326 0x9004 DateTimeDigitized = 2022:11:30 14:57:00
@@ -42,7 +42,7 @@ Big-endian (Motorola, MM)
 0000000518 0xa000 FlashpixVersion = [0x30, 0x31, 0x30, 0x30]
 0000000530 0xa001 ColorSpace = -1
 0000000542 0xa002 ExifImageWidth = 4032
-0000000554 0xa003 ExifImageLength = 3024
+0000000554 0xa003 ExifImageHeight = 3024
 0000000566 0xa217 SensingMethod = 2
 0000000578 0xa301 SceneType = 1
 0000000590 0xa402 ExposureMode = 0
@@ -61,5 +61,4 @@ Big-endian (Motorola, MM)
 0000002326 0x0128 ResolutionUnit = 2
 0000002338 0x0201 JpgFromRawStart = 2382
 0000002350 0x0202 JpgFromRawLength = 11130
-
 

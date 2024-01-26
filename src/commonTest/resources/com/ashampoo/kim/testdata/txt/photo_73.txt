@@ -20,7 +20,7 @@ Big-endian (Motorola, MM)
 0000000254 0x829a ExposureTime = 1/160 (0.00625)
 0000000266 0x829d FNumber = 9/5 (1.8)
 0000000278 0x8822 ExposureProgram = 2
-0000000290 0x8827 PhotographicSensitivity = 40
+0000000290 0x8827 ISO = 40
 0000000302 0x9000 ExifVersion = [0x30, 0x32, 0x33, 0x32]
 0000000314 0x9003 DateTimeOriginal = 2022:09:26 14:38:48
 0000000326 0x9004 DateTimeDigitized = 2022:09:26 14:38:48
@@ -40,7 +40,7 @@ Big-endian (Motorola, MM)
 0000000494 0x9292 SubSecTimeDigitized = 773
 0000000506 0xa001 ColorSpace = -1
 0000000518 0xa002 ExifImageWidth = 4032
-0000000530 0xa003 ExifImageLength = 3024
+0000000530 0xa003 ExifImageHeight = 3024
 0000000542 0xa217 SensingMethod = 2
 0000000554 0xa301 SceneType = 1
 0000000566 0xa402 ExposureMode = 0
@@ -66,7 +66,6 @@ Big-endian (Motorola, MM)
 0000002528 0x0018 GPSDestBearing = 149173/1020 (146.248039)
 0000002540 0x001d GPSDateStamp = 2022:09:26
 0000002552 0x001f Unknown = 61943/4503 (13.75594)
-
 
 ---- XMP ----
 <?xpacket begin="﻿" id="W5M0MpCehiHzreSzNTczkc9d"?>

@@ -17,7 +17,7 @@ Little-endian (Intel, II)
 0000000218 0x829a ExposureTime = 1/1000 (0.001)
 0000000230 0x829d FNumber = 63/10 (6.3)
 0000000242 0x8822 ExposureProgram = 1
-0000000254 0x8827 PhotographicSensitivity = 280
+0000000254 0x8827 ISO = 280
 0000000266 0x8830 SensitivityType = 2
 0000000278 0x9000 ExifVersion = [0x30, 0x32, 0x33, 0x30]
 0000000290 0x9003 DateTimeOriginal = 2013:05:01 14:55:50
@@ -50,7 +50,6 @@ Little-endian (Intel, II)
 0000000614 0xa431 BodySerialNumber = 6301277
 0000000626 0xa432 LensSpecification = [1500/10 (150.0), 1500/10 (150.0), 28/10 (2.8), 28/10 (2.8)]
 0000000638 0xa434 LensModel = 150.0 mm f/2.8
-
 
 ---- IPTC ----
 Date Created (55) = '20130501'

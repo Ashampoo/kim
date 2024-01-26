@@ -16,19 +16,12 @@
  */
 package com.ashampoo.kim.format.tiff.taginfo
 
-import com.ashampoo.kim.common.ByteOrder
-import com.ashampoo.kim.common.RationalNumber
-import com.ashampoo.kim.common.toBytes
-import com.ashampoo.kim.common.toRationals
 import com.ashampoo.kim.format.tiff.constant.TiffDirectoryType
-import com.ashampoo.kim.format.tiff.fieldtype.FieldType
+import com.ashampoo.kim.format.tiff.fieldtype.FieldTypeSRational
 
-class TagInfoSRationals(name: String, tag: Int, length: Int, directoryType: TiffDirectoryType?) :
-    TagInfo(name, tag, FieldType.SRATIONAL, length, directoryType) {
-
-    fun getValue(byteOrder: ByteOrder, bytes: ByteArray): Array<RationalNumber> =
-        bytes.toRationals(byteOrder, false)
-
-    fun encodeValue(byteOrder: ByteOrder, value: Array<RationalNumber>): ByteArray =
-        value.toBytes(byteOrder)
-}
+class TagInfoSRationals(
+    tag: Int,
+    name: String,
+    length: Int,
+    directoryType: TiffDirectoryType?
+) : TagInfo(tag, name, FieldTypeSRational, length, directoryType)

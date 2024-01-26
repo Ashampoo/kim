@@ -16,12 +16,26 @@
  */
 package com.ashampoo.kim.format.tiff
 
+import com.ashampoo.kim.format.tiff.taginfo.TagInfo
 import com.ashampoo.kim.format.tiff.write.TiffOutputSet
 
 data class TiffContents(
     val header: TiffHeader,
-    val directories: List<TiffDirectory>
+    val directories: List<TiffDirectory>,
+    /** Artifical MakerNote directory */
+    val makerNoteDirectory: TiffDirectory?
 ) {
+
+    fun findTiffField(tagInfo: TagInfo): TiffField? =
+        TiffDirectory.findTiffField(directories, tagInfo)
+
+    fun findTiffDirectory(directoryType: Int): TiffDirectory? =
+        directories.find { it.type == directoryType }
+
+    fun getExifThumbnailBytes(): ByteArray? =
+        directories.asSequence()
+            .mapNotNull { it.jpegImageDataElement?.bytes }
+            .firstOrNull()
 
     fun createOutputSet(): TiffOutputSet {
 
@@ -53,6 +67,10 @@ data class TiffContents(
 
         for (directory in directories)
             sb.appendLine(directory)
+
+        makerNoteDirectory?.let {
+            sb.appendLine(makerNoteDirectory)
+        }
 
         return sb.toString()
     }

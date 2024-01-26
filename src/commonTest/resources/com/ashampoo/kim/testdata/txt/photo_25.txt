@@ -18,7 +18,7 @@ Little-endian (Intel, II)
 0000000216 0x829a ExposureTime = 1/160 (0.00625)
 0000000228 0x829d FNumber = 32/10 (3.2)
 0000000240 0x8822 ExposureProgram = 1
-0000000252 0x8827 PhotographicSensitivity = 100
+0000000252 0x8827 ISO = 100
 0000000264 0x9000 ExifVersion = [0x30, 0x32, 0x32, 0x31]
 0000000276 0x9003 DateTimeOriginal = 2018:05:17 19:44:17
 0000000288 0x9004 DateTimeDigitized = 2018:05:17 19:44:17
@@ -34,7 +34,7 @@ Little-endian (Intel, II)
 0000000408 0x9292 SubSecTimeDigitized = 20
 0000000420 0xa001 ColorSpace = -1
 0000000432 0xa002 ExifImageWidth = 4660
-0000000444 0xa003 ExifImageLength = 3106
+0000000444 0xa003 ExifImageHeight = 3106
 0000000456 0xa20e FocalPlaneXResolution = 4752000/894 (5315.436242)
 0000000468 0xa20f FocalPlaneYResolution = 3168000/593 (5342.32715)
 0000000480 0xa210 FocalPlaneResolutionUnit = 2
@@ -53,7 +53,6 @@ Little-endian (Intel, II)
 0000000790 0x0128 ResolutionUnit = 2
 0000000802 0x0201 JpgFromRawStart = 846
 0000000814 0x0202 JpgFromRawLength = 6164
-
 
 ---- IPTC ----
 Date Created (55) = '20180517'

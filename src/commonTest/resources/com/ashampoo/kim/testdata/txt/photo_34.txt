@@ -21,7 +21,7 @@ Little-endian (Intel, II)
 0000000290 0x829a ExposureTime = 1/40 (0.025)
 0000000302 0x829d FNumber = 53/10 (5.3)
 0000000314 0x8822 ExposureProgram = 2
-0000000326 0x8827 PhotographicSensitivity = 800
+0000000326 0x8827 ISO = 800
 0000000338 0x9000 ExifVersion = [0x30, 0x32, 0x33, 0x30]
 0000000350 0x9003 DateTimeOriginal = 2012:11:08 09:41:24
 0000000362 0x9004 DateTimeDigitized = 2012:11:08 09:41:24
@@ -40,7 +40,7 @@ Little-endian (Intel, II)
 0000000518 0xa000 FlashpixVersion = [0x30, 0x31, 0x30, 0x30]
 0000000530 0xa001 ColorSpace = -1
 0000000542 0xa002 ExifImageWidth = 4928
-0000000554 0xa003 ExifImageLength = 3264
+0000000554 0xa003 ExifImageHeight = 3264
 0000000566 0xa217 SensingMethod = 2
 0000000578 0xa300 FileSource = 3
 0000000590 0xa301 SceneType = 1
@@ -64,6 +64,60 @@ Little-endian (Intel, II)
 0000012806 0x0003 GPSLongitudeRef = E
 0000012818 0x0004 GPSLongitude = [19/1 (19.0), 24/1 (24.0), 12697/4301 (2.952104)]
 
+---- Directory MakerNoteNikon @ 848 ----
+0000000850 0x0001 MakerNoteVersion = [0x30, 0x32, 0x31, 0x30]
+0000000862 0x0002 Unknown = [0, 800]
+0000000874 0x0004 Unknown = �
+0000000886 0x0005 Unknown = �1
+0000000898 0x0007 Unknown = 
+0000000910 0x000b Unknown = [0, 0]
+0000000922 0x000c Unknown = [65536/2751922176 (2.4E-5), 65539/65536 (1.000046), 2751987712/65539 (41990.077847), 0/2752053248 (0.0)]
+0000000934 0x000d Unknown = [0x00, 0x01, 0x06, 0x00]
+0000000946 0x000e Unknown = [0x00, 0x01, 0x0c, 0x00]
+0000000958 0x0013 Unknown = [0, 800]
+0000000970 0x0019 Unknown = Invalid rational (65539/0)
+0000000982 0x001b Unknown = [0, -23542, 3, 1, 0, 0, 0]
+0000000994 0x001c Unknown = [0x00, 0x01, 0x06, 0x00]
+0000001006 0x001d Unknown = �
+0000001018 0x001e Unknown = 1
+0000001030 0x001f Unknown = [0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]
+0000001042 0x0022 Unknown = -1
+0000001054 0x0023 Unknown = [58 bytes]
+0000001066 0x0024 Unknown = [0x3c, 0x00, 0x01, 0x02]
+0000001078 0x0025 Unknown = [14 bytes]
+0000001090 0x002b Unknown = [16 bytes]
+0000001102 0x002c Unknown = [574 bytes]
+0000001114 0x002d Unknown = [0, 3589, 4]
+0000001126 0x0032 Unknown = [0x01, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00]
+0000001138 0x0083 LensType = 14
+0000001150 0x0084 Lens = [134665/13 (10358.846154), 11840/265744 (0.044554), 1/11862 (8.4E-5), 200217/2 (100108.5)]
+0000001162 0x0087 Unknown = 0
+0000001174 0x0089 Unknown = 0
+0000001186 0x008a Unknown = 1
+0000001198 0x008b LensFStops = [0x40, 0x01, 0x0c, 0x00]
+0000001210 0x008c Unknown = [578 bytes]
+0000001222 0x0091 Unknown = [8902 bytes]
+0000001234 0x0095 Unknown = o���9
+0000001246 0x0097 Unknown = [608 bytes]
+0000001258 0x0098 Unknown = [33 bytes]
+0000001270 0x0099 Unknown = [2496, 1640]
+0000001282 0x009d Unknown = 0
+0000001294 0x009e Unknown = [6675, 20270, -18307, 21760, 9911, 11170, 25793, -12012, 29339, 18262]
+0000001306 0x00a3 Unknown = 0
+0000001318 0x00a7 ShutterCount = 4954
+0000001330 0x00ab Unknown =  
+0000001342 0x00b0 Unknown = [16 bytes]
+0000001354 0x00b1 Unknown = 4
+0000001366 0x00b6 Unknown = [0x0d, 0xe8, 0xd0, 0xc5, 0xc7, 0xd6, 0xf2, 0x1b]
+0000001378 0x00b7 Unknown = [30 bytes]
+0000001390 0x00b8 Unknown = [172 bytes]
+0000001402 0x00bb Unknown = [0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]
+0000001414 0x0e05 Unknown = 2
+0000001426 0x0e09 Unknown = 
+0000001438 0x0e10 Unknown = 11862
+0000001450 0x0e19 Unknown = [256, 100]
+0000001462 0x0e22 Unknown = [0, 0, 0, 0]
+0000001474 0x0e23 Unknown = 0
 
 ---- IPTC ----
 Caption/Abstract (120) = 'selective focus photography of hedgehog on ground'

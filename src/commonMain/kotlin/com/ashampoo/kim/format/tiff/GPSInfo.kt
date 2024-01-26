@@ -19,7 +19,7 @@ package com.ashampoo.kim.format.tiff
 import com.ashampoo.kim.common.GpsUtil.MINUTES_PER_HOUR
 import com.ashampoo.kim.common.GpsUtil.SECONDS_PER_HOUR
 import com.ashampoo.kim.common.ImageReadException
-import com.ashampoo.kim.common.RationalNumber
+import com.ashampoo.kim.common.RationalNumbers
 import com.ashampoo.kim.format.tiff.constant.GpsTag
 
 data class GPSInfo private constructor(
@@ -84,21 +84,21 @@ data class GPSInfo private constructor(
                 ?: return null
 
             // all of these values are strings.
-            val latitude = latitudeField.value as Array<RationalNumber>
-            val longitude = longitudeField.value as Array<RationalNumber>
+            val latitude = latitudeField.value as RationalNumbers
+            val longitude = longitudeField.value as RationalNumbers
 
-            if (latitude.size != 3 || longitude.size != 3)
+            if (latitude.values.size != 3 || longitude.values.size != 3)
                 throw ImageReadException("Expected three values for latitude and longitude.")
 
             return GPSInfo(
                 latitudeRef = latitudeRef,
                 longitudeRef = longitudeRef,
-                latitudeDegrees = latitude[0].doubleValue(),
-                latitudeMinutes = latitude[1].doubleValue(),
-                latitudeSeconds = latitude[2].doubleValue(),
-                longitudeDegrees = longitude[0].doubleValue(),
-                longitudeMinutes = longitude[1].doubleValue(),
-                longitudeSeconds = longitude[2].doubleValue()
+                latitudeDegrees = latitude.values[0].doubleValue(),
+                latitudeMinutes = latitude.values[1].doubleValue(),
+                latitudeSeconds = latitude.values[2].doubleValue(),
+                longitudeDegrees = longitude.values[0].doubleValue(),
+                longitudeMinutes = longitude.values[1].doubleValue(),
+                longitudeSeconds = longitude.values[2].doubleValue()
             )
         }
     }

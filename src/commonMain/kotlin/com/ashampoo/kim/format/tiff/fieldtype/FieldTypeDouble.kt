@@ -17,37 +17,29 @@
 package com.ashampoo.kim.format.tiff.fieldtype
 
 import com.ashampoo.kim.common.ByteOrder
+import com.ashampoo.kim.common.ImageWriteException
 import com.ashampoo.kim.common.toBytes
-import com.ashampoo.kim.common.toDouble
 import com.ashampoo.kim.common.toDoubles
-import com.ashampoo.kim.format.tiff.TiffField
+import com.ashampoo.kim.format.tiff.constant.TiffConstants
 
-class FieldTypeDouble(type: Int, name: String) : FieldType(type, name, 8) {
+/**
+ * Double precision (8-byte) IEEE format.
+ */
+object FieldTypeDouble : FieldType<DoubleArray> {
 
-    override fun getValue(entry: TiffField): Any {
+    override val type: Int = TiffConstants.FIELD_TYPE_DOUBLE_INDEX
 
-        val bytes = entry.byteArrayValue
+    override val name: String = "Double"
 
-        return if (entry.count == 1)
-            bytes.toDouble(entry.byteOrder)
-        else
-            bytes.toDoubles(entry.byteOrder)
-    }
+    override val size: Int = 8
 
-    override fun writeData(data: Any, byteOrder: ByteOrder): ByteArray {
+    override fun getValue(bytes: ByteArray, byteOrder: ByteOrder): DoubleArray =
+        bytes.toDoubles(byteOrder)
 
-        if (data is Double)
-            return data.toBytes(byteOrder)
-
-        if (data is DoubleArray)
-            return data.toBytes(byteOrder)
-
-        val values = DoubleArray((data as Array<Double>).size)
-
-        repeat(values.size) { i ->
-            values[i] = data[i]
+    override fun writeData(data: Any, byteOrder: ByteOrder): ByteArray =
+        when (data) {
+            is Double -> data.toBytes(byteOrder)
+            is DoubleArray -> data.toBytes(byteOrder)
+            else -> throw ImageWriteException("Unsupported type: $data")
         }
-
-        return values.toBytes(byteOrder)
-    }
 }

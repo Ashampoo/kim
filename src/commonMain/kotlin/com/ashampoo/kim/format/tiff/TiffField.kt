@@ -20,11 +20,12 @@ import com.ashampoo.kim.common.ByteOrder
 import com.ashampoo.kim.common.HEX_RADIX
 import com.ashampoo.kim.common.ImageReadException
 import com.ashampoo.kim.common.RationalNumber
-import com.ashampoo.kim.common.head
+import com.ashampoo.kim.common.RationalNumbers
 import com.ashampoo.kim.common.toSingleNumberHexes
 import com.ashampoo.kim.format.tiff.TiffTags.getTag
 import com.ashampoo.kim.format.tiff.fieldtype.FieldType
 import com.ashampoo.kim.format.tiff.taginfo.TagInfo
+import com.ashampoo.kim.format.tiff.taginfo.TagInfoGpsText
 
 /**
  * A TIFF field in a TIFF directory.
@@ -34,7 +35,7 @@ class TiffField(
     val offset: Int,
     val tag: Int,
     val directoryType: Int,
-    val fieldType: FieldType,
+    val fieldType: FieldType<out Any>,
     val count: Int,
     /** Set if field has a local value. */
     val localValue: Int?,
@@ -56,18 +57,21 @@ class TiffField(
     val tagFormatted: String =
         "0x" + tag.toString(HEX_RADIX).padStart(4, '0')
 
-    val tagInfo: TagInfo = getTag(directoryType, tag)
+    /** TagInfo, if the tag is found in our registry. */
+    val tagInfo: TagInfo? = getTag(directoryType, tag)
 
-    val bytesLength: Int = count.toInt() * fieldType.size
-
-    val byteArrayValue: ByteArray = valueBytes.head(bytesLength)
-
-    val value: Any = tagInfo.getValue(this)
+    val value: Any = if (tagInfo is TagInfoGpsText)
+        tagInfo.getValue(this)
+    else
+        fieldType.getValue(this.valueBytes, this.byteOrder)
 
     val valueDescription: String by lazy {
         try {
 
             if (value is ByteArray) {
+
+                if (value.size == 1)
+                    return@lazy value.first().toString()
 
                 if (value.size <= MAX_BYTE_ARRAY_DISPLAY_SIZE)
                     return@lazy "[${value.toSingleNumberHexes()}]"
@@ -75,20 +79,45 @@ class TiffField(
                 return@lazy "[${value.size} bytes]"
             }
 
-            if (value is IntArray)
-                return@lazy value.contentToString()
+            if (value is IntArray) {
 
-            if (value is ShortArray)
-                return@lazy value.contentToString()
+                if (value.size == 1)
+                    return@lazy value.first().toString()
 
-            if (value is DoubleArray)
                 return@lazy value.contentToString()
+            }
 
-            if (value is FloatArray)
-                return@lazy value.contentToString()
+            if (value is ShortArray) {
 
-            if (value is Array<*>)
+                if (value.size == 1)
+                    return@lazy value.first().toString()
+
                 return@lazy value.contentToString()
+            }
+
+            if (value is DoubleArray) {
+
+                if (value.size == 1)
+                    return@lazy value.first().toString()
+
+                return@lazy value.contentToString()
+            }
+
+            if (value is FloatArray) {
+
+                if (value.size == 1)
+                    return@lazy value.first().toString()
+
+                return@lazy value.contentToString()
+            }
+
+            if (value is RationalNumbers) {
+
+                if (value.values.size == 1)
+                    return@lazy value.values.first().toString()
+
+                return@lazy value.values.contentToString()
+            }
 
             value.toString()
 
@@ -110,7 +139,7 @@ class TiffField(
         }
 
         if (value !is String)
-            throw ImageReadException("Expected String value(" + tagInfo.tagFormatted + "): " + value)
+            throw ImageReadException("Expected String for $tagFormatted, but got: " + value)
 
         return value
     }
@@ -123,17 +152,6 @@ class TiffField(
         if (value is IntArray)
             return value.copyOf()
 
-        if (value is Array<*>) {
-
-            val result = IntArray(value.size)
-
-            repeat(result.size) { i ->
-                result[i] = (value[i] as Number).toInt()
-            }
-
-            return result
-        }
-
         if (value is ShortArray) {
 
             val result = IntArray(value.size)
@@ -145,13 +163,27 @@ class TiffField(
             return result
         }
 
-        throw ImageReadException("Unknown value: $value for ${tagInfo.tagFormatted}")
+        throw ImageReadException("Can't format value of tag $tagFormatted as int: $value")
     }
 
-    fun toInt(): Int = (value as Number).toInt()
+    fun toInt(): Int =
+        if (value is IntArray)
+            value.first()
+        else if (value is ShortArray)
+            (value.first() as Number).toInt()
+        else
+            (value as Number).toInt()
+
+    fun toShort(): Short =
+        if (value is ShortArray)
+            value.first()
+        else
+            (value as Number).toShort()
 
     fun toDouble(): Double =
-        if (value is RationalNumber)
+        if (value is RationalNumbers)
+            value.values.first().doubleValue()
+        else if (value is RationalNumber)
             value.doubleValue()
         else
             (value as Number).toDouble()
@@ -161,7 +193,7 @@ class TiffField(
      * 'tagInfo' might be an Unknown tag and show a placeholder.
      */
     override fun toString(): String =
-        "$offsetFormatted $tagFormatted ${tagInfo.name} = $valueDescription"
+        "$offsetFormatted $tagFormatted ${tagInfo?.name ?: "Unknown"} = $valueDescription"
 
     fun createOversizeValueElement(): TiffElement? =
         valueOffset?.let { OversizeValueElement(it.toInt(), valueBytes.size) }

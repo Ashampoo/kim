@@ -16,7 +16,6 @@
  */
 package com.ashampoo.kim.format.tiff.taginfo
 
-import com.ashampoo.kim.common.ByteOrder
 import com.ashampoo.kim.common.ImageReadException
 import com.ashampoo.kim.common.ImageWriteException
 import com.ashampoo.kim.common.decodeLatin1BytesToString
@@ -25,7 +24,9 @@ import com.ashampoo.kim.common.isEquals
 import com.ashampoo.kim.common.slice
 import com.ashampoo.kim.format.tiff.TiffField
 import com.ashampoo.kim.format.tiff.constant.TiffDirectoryType
-import com.ashampoo.kim.format.tiff.fieldtype.FieldType
+import com.ashampoo.kim.format.tiff.fieldtype.FieldTypeAscii
+import com.ashampoo.kim.format.tiff.fieldtype.FieldTypeByte
+import com.ashampoo.kim.format.tiff.fieldtype.FieldTypeUndefined
 
 /**
  * Used by some GPS tags and the EXIF user comment tag,
@@ -34,17 +35,15 @@ import com.ashampoo.kim.format.tiff.fieldtype.FieldType
  * the non-null-terminated text in an unknown byte order.
  */
 class TagInfoGpsText(
-    name: String,
     tag: Int,
+    name: String,
     exifDirectory: TiffDirectoryType?
-) : TagInfo(name, tag, FieldType.UNDEFINED, TagInfo.LENGTH_UNKNOWN, exifDirectory) {
+) : TagInfo(tag, name, FieldTypeUndefined, TagInfo.LENGTH_UNKNOWN, exifDirectory) {
 
     override fun isText(): Boolean =
         true
 
-    private data class TextEncoding(val prefix: ByteArray, val encodingName: String)
-
-    override fun encodeValue(fieldType: FieldType, value: Any, byteOrder: ByteOrder): ByteArray {
+    fun encodeValue(value: Any): ByteArray {
 
         if (value !is String)
             throw ImageWriteException("GPS text value not String: $value")
@@ -68,17 +67,17 @@ class TagInfoGpsText(
         return result
     }
 
-    override fun getValue(entry: TiffField): String {
+    fun getValue(entry: TiffField): String {
 
         val fieldType = entry.fieldType
 
-        if (fieldType === FieldType.ASCII)
-            return FieldType.ASCII.getValue(entry)
+        if (fieldType === FieldTypeAscii)
+            return FieldTypeAscii.getValue(entry.valueBytes, entry.byteOrder)
 
-        if (fieldType !== FieldType.UNDEFINED && fieldType !== FieldType.BYTE)
+        if (fieldType !== FieldTypeUndefined && fieldType !== FieldTypeByte)
             throw ImageReadException("GPS text field not encoded as bytes.")
 
-        val bytes = entry.byteArrayValue
+        val bytes = entry.valueBytes
 
         if (bytes.all { it == ZERO_BYTE })
             return ""
