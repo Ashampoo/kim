@@ -81,7 +81,6 @@ object TiffConstants {
     const val TIFF_EXIF_IFD = -2
     const val TIFF_GPS = -3
     const val TIFF_INTEROP_IFD = -4
-    const val TIFF_MAKER_NOTES = -5
 
     const val TIFF_MAKER_NOTE_CANON = -6
     const val TIFF_MAKER_NOTE_NIKON = -7

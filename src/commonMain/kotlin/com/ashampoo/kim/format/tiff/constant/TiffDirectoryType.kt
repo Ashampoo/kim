@@ -37,9 +37,6 @@ enum class TiffDirectoryType(
     EXIF_DIRECTORY_INTEROP_IFD(
         false, TiffConstants.TIFF_INTEROP_IFD, "InteropIFD"
     ),
-    EXIF_DIRECTORY_MAKER_NOTES(
-        false, TiffConstants.TIFF_MAKER_NOTES, "MakerNotes"
-    ),
     EXIF_DIRECTORY_EXIF_IFD(
         false, TiffConstants.TIFF_EXIF_IFD, "ExifIFD"
     ),
