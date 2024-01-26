@@ -23,8 +23,8 @@ It's part of [Ashampoo Photos](https://ashampoo.com/photos).
 * JPEG XL: Read EXIF & XMP of uncompressed files
 * TIFF / RAW: Read EXIF & XMP
     + Full support for Adobe DNG, Canon CR2 & Fujifilm RAF
-    + Support for Nikon NEF, Sony ARW & Olympus ORF without lens information
-    + Support for Panasonic RW2 without lens information and image size
+  + Support for Nikon NEF, Sony ARW & Olympus ORF without lens info
+  + Support for Panasonic RW2 without lens info and image size
   + API for preview image extraction of DNG, CR2, RAF, NEF, ARW & RW2
 * Handling of XMP content through
   [XMP Core for Kotlin Multiplatform](https://github.com/Ashampoo/xmpcore)
