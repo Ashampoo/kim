@@ -21,6 +21,7 @@ import com.ashampoo.kim.common.tryWithImageReadException
 import com.ashampoo.kim.format.ImageMetadata
 import com.ashampoo.kim.format.ImageParser
 import com.ashampoo.kim.format.tiff.constant.ExifTag
+import com.ashampoo.kim.format.tiff.constant.TiffDirectoryType
 import com.ashampoo.kim.format.tiff.constant.TiffTag
 import com.ashampoo.kim.input.ByteReader
 import com.ashampoo.kim.input.DefaultRandomAccessByteReader
@@ -57,6 +58,22 @@ object TiffImageParser : ImageParser {
     private fun getImageSize(tiffContents: TiffContents): ImageSize? {
 
         /*
+         * First check if ExifImageWidth & ExifImageHeight are set.
+         * This is the case with Sony ARW files and the only correct information.
+         */
+
+        val exifIfdDir = tiffContents.findTiffDirectory(TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD.directoryType)
+
+        if (exifIfdDir != null) {
+
+            val exifImageWidth = exifIfdDir.findField(ExifTag.EXIF_TAG_EXIF_IMAGE_WIDTH)?.toInt()
+            val exifImageHeight = exifIfdDir.findField(ExifTag.EXIF_TAG_EXIF_IMAGE_HEIGHT)?.toInt()
+
+            if (exifImageWidth != null && exifImageHeight != null)
+                return ImageSize(exifImageWidth, exifImageHeight)
+        }
+
+        /*
          * NEF files have the image length of the full resoltion
          * image in SubIFD1 and not in the first directory, which
          * contains the thumbnail. Just always taking the first
@@ -67,9 +84,6 @@ object TiffImageParser : ImageParser {
          */
 
         val imageSizes = mutableListOf<ImageSize>()
-
-        tiffContents.findTiffField(ExifTag.EXIF_TAG_EXIF_IMAGE_WIDTH)
-
 
         for (directory in tiffContents.directories)
             getImageSize(directory)?.let { imageSizes.add(it) }

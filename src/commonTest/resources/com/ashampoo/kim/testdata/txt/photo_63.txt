@@ -1,5 +1,5 @@
 File format : TIFF
-Resolution  : 4288 x 2858
+Resolution  : 4272 x 2848
 ---- TIFF ----
 Version 42
 Little-endian (Intel, II)
