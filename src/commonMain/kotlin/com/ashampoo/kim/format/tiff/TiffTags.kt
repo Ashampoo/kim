@@ -27,7 +27,8 @@ import com.ashampoo.kim.format.tiff.taginfo.TagInfo
 
 internal object TiffTags {
 
-    private val TIFF_AND_EXIF_TAGS = TiffTag.ALL_TIFF_TAGS + ExifTag.ALL_EXIF_TAGS
+    /* Ordered to give EXIF tag names priority. */
+    private val TIFF_AND_EXIF_TAGS = ExifTag.ALL_EXIF_TAGS + TiffTag.ALL_TIFF_TAGS
 
     private val TIFF_AND_EXIF_TAGS_MAP = TIFF_AND_EXIF_TAGS.groupByTo(mutableMapOf()) { it.tag }
     private val GPS_TAGS_MAP = GpsTag.ALL_GPS_TAGS.groupByTo(mutableMapOf()) { it.tag }
