@@ -132,10 +132,10 @@ interface ByteReader : Closeable {
             throw ImageReadException("Couldn't read 8 bytes for $fieldName")
 
         val result: Long = if (byteOrder == ByteOrder.BIG_ENDIAN)
-            (byte0.toLong() shl 56) or (byte1.toLong() shl 48) or (byte2.toLong() shl 40) or (byte3.toLong() shl 32) or
+            byte0.toLong() shl 56 or (byte1.toLong() shl 48) or (byte2.toLong() shl 40) or (byte3.toLong() shl 32) or
                 (byte4.toLong() shl 24) or (byte5.toLong() shl 16) or (byte6.toLong() shl 8) or (byte7.toLong() shl 0)
         else
-            (byte7.toLong() shl 56) or (byte6.toLong() shl 48) or (byte5.toLong() shl 40) or (byte4.toLong() shl 32) or
+            byte7.toLong() shl 56 or (byte6.toLong() shl 48) or (byte5.toLong() shl 40) or (byte4.toLong() shl 32) or
                 (byte3.toLong() shl 24) or (byte2.toLong() shl 16) or (byte1.toLong() shl 8) or (byte0.toLong() shl 0)
 
         return result
