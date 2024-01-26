@@ -89,17 +89,20 @@ object ExifTag {
 
     val EXIF_TAG_PREVIEW_IMAGE_START_IFD0 = TagInfoLong(
         0x0111, "PreviewImageStart",
-        TIFF_DIRECTORY_IFD0, true
+        TIFF_DIRECTORY_IFD0,
+        isOffset = true
     )
 
     val EXIF_TAG_PREVIEW_IMAGE_START_SUB_IFD1 = TagInfoLong(
         0x0111, "PreviewImageStart",
-        TIFF_DIRECTORY_IFD2, true
+        TIFF_DIRECTORY_IFD2,
+        isOffset = true
     )
 
     val EXIF_TAG_JPG_FROM_RAW_START_SUB_IFD2 = TagInfoLong(
         0x0111, "JpgFromRawStart",
-        TIFF_DIRECTORY_IFD3, true
+        TIFF_DIRECTORY_IFD3,
+        isOffset = true
     )
 
     val EXIF_TAG_PREVIEW_IMAGE_LENGTH_IFD0 = TagInfoLong(
@@ -119,17 +122,20 @@ object ExifTag {
 
     val EXIF_TAG_JPG_FROM_RAW_START_SUB_IFD = TagInfoLong(
         0x0201, "JpgFromRawStart",
-        TIFF_DIRECTORY_IFD1, true
+        TIFF_DIRECTORY_IFD1,
+        isOffset = true
     )
 
     val EXIF_TAG_JPG_FROM_RAW_START_IFD2 = TagInfoLong(
         0x0201, "JpgFromRawStart",
-        TIFF_DIRECTORY_IFD2, true
+        TIFF_DIRECTORY_IFD2,
+        isOffset = true
     )
 
     val EXIF_TAG_OTHER_IMAGE_START = TagInfoLong(
         0x0201, "OtherImageStart",
-        EXIF_DIRECTORY_UNKNOWN, true
+        EXIF_DIRECTORY_UNKNOWN,
+        isOffset = true
     )
 
     val EXIF_TAG_JPG_FROM_RAW_LENGTH_SUB_IFD = TagInfoLong(
