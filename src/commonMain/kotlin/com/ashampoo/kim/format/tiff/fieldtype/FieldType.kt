@@ -18,7 +18,6 @@ package com.ashampoo.kim.format.tiff.fieldtype
 
 import com.ashampoo.kim.common.ByteOrder
 import com.ashampoo.kim.common.ImageReadException
-import com.ashampoo.kim.format.tiff.TiffField
 import com.ashampoo.kim.format.tiff.constant.TiffConstants.FIELD_TYPE_ASCII_INDEX
 import com.ashampoo.kim.format.tiff.constant.TiffConstants.FIELD_TYPE_BYTE_INDEX
 import com.ashampoo.kim.format.tiff.constant.TiffConstants.FIELD_TYPE_DOUBLE_INDEX
@@ -41,7 +40,7 @@ interface FieldType<T> {
 
     val size: Int
 
-    fun getValue(entry: TiffField): T
+    fun getValue(bytes: ByteArray, byteOrder: ByteOrder): T
 
     fun writeData(data: Any, byteOrder: ByteOrder): ByteArray
 

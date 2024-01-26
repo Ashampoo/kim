@@ -72,7 +72,7 @@ class TagInfoGpsText(
         val fieldType = entry.fieldType
 
         if (fieldType === FieldTypeAscii)
-            return FieldTypeAscii.getValue(entry)
+            return FieldTypeAscii.getValue(entry.valueBytes, entry.byteOrder)
 
         if (fieldType !== FieldTypeUndefined && fieldType !== FieldTypeByte)
             throw ImageReadException("GPS text field not encoded as bytes.")

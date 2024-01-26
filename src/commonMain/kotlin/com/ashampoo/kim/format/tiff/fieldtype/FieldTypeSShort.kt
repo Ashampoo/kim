@@ -20,7 +20,6 @@ import com.ashampoo.kim.common.ByteOrder
 import com.ashampoo.kim.common.ImageWriteException
 import com.ashampoo.kim.common.toBytes
 import com.ashampoo.kim.common.toShorts
-import com.ashampoo.kim.format.tiff.TiffField
 import com.ashampoo.kim.format.tiff.constant.TiffConstants
 
 /**
@@ -34,8 +33,8 @@ object FieldTypeSShort : FieldType<ShortArray> {
 
     override val size: Int = 2
 
-    override fun getValue(entry: TiffField): ShortArray =
-        entry.valueBytes.toShorts(entry.byteOrder)
+    override fun getValue(bytes: ByteArray, byteOrder: ByteOrder): ShortArray =
+        bytes.toShorts(byteOrder)
 
     override fun writeData(data: Any, byteOrder: ByteOrder): ByteArray =
         when (data) {

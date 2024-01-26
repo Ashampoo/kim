@@ -20,7 +20,6 @@ import com.ashampoo.kim.common.ByteOrder
 import com.ashampoo.kim.common.ImageWriteException
 import com.ashampoo.kim.common.indexOfNullTerminator
 import com.ashampoo.kim.common.slice
-import com.ashampoo.kim.format.tiff.TiffField
 import com.ashampoo.kim.format.tiff.constant.TiffConstants
 
 /**
@@ -35,7 +34,7 @@ data object FieldTypeAscii : FieldType<String> {
 
     override val size: Int = 1
 
-    override fun getValue(entry: TiffField): String {
+    override fun getValue(bytes: ByteArray, byteOrder: ByteOrder): String {
 
         /*
          * According to EXIF specification:
@@ -45,8 +44,6 @@ data object FieldTypeAscii : FieldType<String> {
          * User Comment (0x9286) are sometimes having multiple strings.
          * We read it all as one String for simplicity.
          */
-
-        val bytes = entry.valueBytes
 
         val nullTerminatorIndex = bytes.indexOfNullTerminator()
 

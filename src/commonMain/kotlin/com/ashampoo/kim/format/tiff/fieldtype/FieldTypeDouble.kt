@@ -20,7 +20,6 @@ import com.ashampoo.kim.common.ByteOrder
 import com.ashampoo.kim.common.ImageWriteException
 import com.ashampoo.kim.common.toBytes
 import com.ashampoo.kim.common.toDoubles
-import com.ashampoo.kim.format.tiff.TiffField
 import com.ashampoo.kim.format.tiff.constant.TiffConstants
 
 /**
@@ -34,8 +33,8 @@ object FieldTypeDouble : FieldType<DoubleArray> {
 
     override val size: Int = 8
 
-    override fun getValue(entry: TiffField): DoubleArray =
-        entry.valueBytes.toDoubles(entry.byteOrder)
+    override fun getValue(bytes: ByteArray, byteOrder: ByteOrder): DoubleArray =
+        bytes.toDoubles(byteOrder)
 
     override fun writeData(data: Any, byteOrder: ByteOrder): ByteArray =
         when (data) {

@@ -20,7 +20,6 @@ import com.ashampoo.kim.common.ByteOrder
 import com.ashampoo.kim.common.ImageWriteException
 import com.ashampoo.kim.common.toBytes
 import com.ashampoo.kim.common.toFloats
-import com.ashampoo.kim.format.tiff.TiffField
 import com.ashampoo.kim.format.tiff.constant.TiffConstants
 
 /**
@@ -34,8 +33,8 @@ object FieldTypeFloat : FieldType<FloatArray> {
 
     override val size: Int = 4
 
-    override fun getValue(entry: TiffField): FloatArray =
-        entry.valueBytes.toFloats(entry.byteOrder)
+    override fun getValue(bytes: ByteArray, byteOrder: ByteOrder): FloatArray =
+        bytes.toFloats(byteOrder)
 
     override fun writeData(data: Any, byteOrder: ByteOrder): ByteArray =
         when (data) {

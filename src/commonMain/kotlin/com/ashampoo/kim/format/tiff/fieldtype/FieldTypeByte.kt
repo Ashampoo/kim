@@ -18,7 +18,6 @@ package com.ashampoo.kim.format.tiff.fieldtype
 
 import com.ashampoo.kim.common.ByteOrder
 import com.ashampoo.kim.common.ImageWriteException
-import com.ashampoo.kim.format.tiff.TiffField
 import com.ashampoo.kim.format.tiff.constant.TiffConstants
 
 /**
@@ -32,8 +31,8 @@ data object FieldTypeByte : FieldType<ByteArray> {
 
     override val size: Int = 1
 
-    override fun getValue(entry: TiffField): ByteArray =
-        entry.valueBytes
+    override fun getValue(bytes: ByteArray, byteOrder: ByteOrder): ByteArray =
+        bytes
 
     override fun writeData(data: Any, byteOrder: ByteOrder): ByteArray =
         when (data) {

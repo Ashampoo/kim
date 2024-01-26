@@ -20,7 +20,6 @@ import com.ashampoo.kim.common.ByteOrder
 import com.ashampoo.kim.common.RationalNumbers
 import com.ashampoo.kim.common.toBytes
 import com.ashampoo.kim.common.toRationals
-import com.ashampoo.kim.format.tiff.TiffField
 import com.ashampoo.kim.format.tiff.constant.TiffConstants
 
 /**
@@ -35,17 +34,9 @@ object FieldTypeSRational : FieldType<RationalNumbers> {
 
     override val size: Int = 8
 
-    override fun getValue(entry: TiffField): RationalNumbers =
-        entry.valueBytes.toRationals(entry.byteOrder, unsignedType = false)
+    override fun getValue(bytes: ByteArray, byteOrder: ByteOrder): RationalNumbers =
+        bytes.toRationals(byteOrder, unsignedType = false)
 
     override fun writeData(data: Any, byteOrder: ByteOrder): ByteArray =
         (data as RationalNumbers).toBytes(byteOrder)
-
-//        val rationalNumbers = arrayOfNulls<RationalNumber>(data.size)
-//
-//        repeat(rationalNumbers.size) { i ->
-//            rationalNumbers[i] = valueOf(i.toDouble())
-//        }
-//
-//        return (rationalNumbers as Array<RationalNumber>).toBytes(byteOrder)
 }

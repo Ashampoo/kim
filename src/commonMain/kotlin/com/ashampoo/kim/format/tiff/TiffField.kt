@@ -63,7 +63,7 @@ class TiffField(
     val value: Any = if (tagInfo is TagInfoGpsText)
         tagInfo.getValue(this)
     else
-        fieldType.getValue(this)
+        fieldType.getValue(this.valueBytes, this.byteOrder)
 
     val valueDescription: String by lazy {
         try {
