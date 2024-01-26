@@ -34,7 +34,7 @@ Big-endian (Motorola, MM)
 0000000482 0x829a ExposureTime = 10/1600 (0.00625)
 0000000494 0x829d FNumber = 63/10 (6.3)
 0000000506 0x8822 ExposureProgram = 0
-0000000518 0x8827 PhotographicSensitivity = 200
+0000000518 0x8827 ISO = 200
 0000000530 0x8830 SensitivityType = 2
 0000000542 0x9003 DateTimeOriginal = 2014:08:12 09:30:58
 0000000554 0x9004 DateTimeDigitized = 2014:08:12 09:30:58

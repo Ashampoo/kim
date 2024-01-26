@@ -297,8 +297,15 @@ object ExifTag {
         isOffset = true
     )
 
+    /**
+     * The ISO field, which has several names in different specs.
+     *
+     * EXIF 2.2: "ISOSpeedRatings"
+     * EXIF 2.3: "PhotographicSensitivity"
+     * ExifTool: "ISO"
+     */
     val EXIF_TAG_ISO = TagInfoShorts(
-        "PhotographicSensitivity", 0x8827, TagInfo.LENGTH_UNKNOWN,
+        "ISO", 0x8827, TagInfo.LENGTH_UNKNOWN,
         TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD
     )
 

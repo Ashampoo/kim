@@ -12,7 +12,7 @@ Little-endian (Intel, II)
 ---- Directory ExifIFD @ 102 ----
 0000000104 0x829a ExposureTime = 1/1250 (8.0E-4)
 0000000116 0x829d FNumber = 14/10 (1.4)
-0000000128 0x8827 PhotographicSensitivity = 100
+0000000128 0x8827 ISO = 100
 0000000140 0x9000 ExifVersion = [0x30, 0x32, 0x33, 0x30]
 0000000152 0x9003 DateTimeOriginal = 2019:01:08 14:48:21
 0000000164 0x9202 ApertureValue = 970854/1000000 (0.970854)

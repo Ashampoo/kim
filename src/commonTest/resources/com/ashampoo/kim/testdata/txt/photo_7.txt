@@ -17,7 +17,7 @@ Little-endian (Intel, II)
 0000000204 0x829a ExposureTime = 1/500 (0.002)
 0000000216 0x829d FNumber = 18/10 (1.8)
 0000000228 0x8822 ExposureProgram = 1
-0000000240 0x8827 PhotographicSensitivity = 100
+0000000240 0x8827 ISO = 100
 0000000252 0x8830 SensitivityType = 2
 0000000264 0x8832 RecommendedExposureIndex = 100
 0000000276 0x9000 ExifVersion = [0x30, 0x32, 0x33, 0x30]
