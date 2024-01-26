@@ -38,37 +38,6 @@ object TiffConstants {
     const val TIFF_DIRECTORY_FOOTER_LENGTH = 4
     const val TIFF_ENTRY_LENGTH = 12
     const val TIFF_ENTRY_MAX_VALUE_LENGTH = 4
-    const val TIFF_COMPRESSION_UNCOMPRESSED_1 = 1
-    const val TIFF_COMPRESSION_UNCOMPRESSED = TIFF_COMPRESSION_UNCOMPRESSED_1
-    const val TIFF_COMPRESSION_CCITT_1D = 2
-    const val TIFF_COMPRESSION_CCITT_GROUP_3 = 3
-    const val TIFF_COMPRESSION_CCITT_GROUP_4 = 4
-    const val TIFF_COMPRESSION_LZW = 5
-    const val TIFF_COMPRESSION_JPEG = 6
-    const val TIFF_COMPRESSION_UNCOMPRESSED_2 = 32771
-    const val TIFF_COMPRESSION_PACKBITS = 32773
-    const val TIFF_COMPRESSION_DEFLATE_PKZIP = 32946
-    const val TIFF_COMPRESSION_DEFLATE_ADOBE = 8
-    const val TIFF_FLAG_T4_OPTIONS_2D = 1
-    const val TIFF_FLAG_T4_OPTIONS_UNCOMPRESSED_MODE = 2
-    const val TIFF_FLAG_T4_OPTIONS_FILL = 4
-    const val TIFF_FLAG_T6_OPTIONS_UNCOMPRESSED_MODE = 2
-
-    /**
-     * Specifies a larger strip-size to be used for compression. This setting
-     * generally produces smaller output files, but requires a slightly longer
-     * processing time. Used in conjunction with the
-     * PARAM_KEY_LZW_COMPRESSION_STRIP_SIZE
-     */
-    const val TIFF_LZW_COMPRESSION_BLOCK_SIZE_MEDIUM = 32768
-
-    /**
-     * Specifies a larger strip-size to be used for compression. This setting
-     * generally produces smaller output files, but requires a slightly longer
-     * processing time. Used in conjunction with the
-     * PARAM_KEY_LZW_COMPRESSION_STRIP_SIZE
-     */
-    const val TIFF_LZW_COMPRESSION_BLOCK_SIZE_LARGE = 65536
 
     const val DIRECTORY_TYPE_ROOT = 0
     const val DIRECTORY_TYPE_SUB = 1
@@ -77,13 +46,15 @@ object TiffConstants {
     const val EXIF_SUB_IFD2 = 3
     const val EXIF_SUB_IFD3 = 4
 
-    const val DIRECTORY_TYPE_UNKNOWN = -1
     const val TIFF_EXIF_IFD = -2
     const val TIFF_GPS = -3
     const val TIFF_INTEROP_IFD = -4
 
-    const val TIFF_MAKER_NOTE_CANON = -6
-    const val TIFF_MAKER_NOTE_NIKON = -7
+    const val DIRECTORY_TYPE_UNKNOWN = -1
+
+    /* Artificial MakerNote directores */
+    const val TIFF_MAKER_NOTE_CANON = -101
+    const val TIFF_MAKER_NOTE_NIKON = -102
 
     /** Root directory */
     const val TIFF_IFD0 = 0

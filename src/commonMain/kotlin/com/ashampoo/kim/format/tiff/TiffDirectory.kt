@@ -138,6 +138,14 @@ class TiffDirectory(
 
     fun createOutputDirectory(byteOrder: ByteOrder): TiffOutputDirectory {
 
+        /*
+         * Prevent attempts to add MakerNote directories.
+         */
+        @Suppress("MagicNumber")
+        check(type > -100) {
+            "Can't create OutputDirectory for artifical MakerNote directory."
+        }
+
         try {
 
             val outputDirectory = TiffOutputDirectory(type, byteOrder)

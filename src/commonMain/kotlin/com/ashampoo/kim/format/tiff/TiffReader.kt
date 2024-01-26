@@ -78,12 +78,13 @@ object TiffReader {
             }
         )
 
-        tryToAddMakerNote(directories, byteReader, tiffHeader.byteOrder)
+        val makerNoteDirectory =
+            tryToParseMakerNote(directories, byteReader, tiffHeader.byteOrder)
 
         if (directories.isEmpty())
             throw ImageReadException("Image did not contain any directories.")
 
-        return TiffContents(tiffHeader, directories)
+        return TiffContents(tiffHeader, directories, makerNoteDirectory)
     }
 
     fun readTiffHeader(byteReader: ByteReader): TiffHeader {
@@ -368,11 +369,11 @@ object TiffReader {
      * Inspect if MakerNotes are present and could be added as
      * TiffDirectory. This is true for almost all manufacturers.
      */
-    private fun tryToAddMakerNote(
+    private fun tryToParseMakerNote(
         directories: MutableList<TiffDirectory>,
         byteReader: RandomAccessByteReader,
         byteOrder: ByteOrder
-    ) {
+    ): TiffDirectory? {
 
         val makerNoteField = TiffDirectory.findTiffField(
             directories,
@@ -387,15 +388,19 @@ object TiffReader {
 
             try {
 
+                var makerNoteDirectory: TiffDirectory? = null
+
                 createMakerNoteDirectory(
                     byteReader,
                     makerNoteField.valueOffset,
                     make,
                     byteOrder = byteOrder,
                     addDirectory = {
-                        directories.add(it)
+                        makerNoteDirectory = it
                     }
                 )
+
+                return makerNoteDirectory
 
             } catch (ignore: Exception) {
 
@@ -404,6 +409,8 @@ object TiffReader {
                 ignore.printStackTrace()
             }
         }
+
+        return null
     }
 
     /**

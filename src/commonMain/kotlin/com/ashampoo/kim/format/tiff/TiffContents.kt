@@ -21,7 +21,9 @@ import com.ashampoo.kim.format.tiff.write.TiffOutputSet
 
 data class TiffContents(
     val header: TiffHeader,
-    val directories: List<TiffDirectory>
+    val directories: List<TiffDirectory>,
+    /** Artifical MakerNote directory */
+    val makerNoteDirectory: TiffDirectory?
 ) {
 
     fun findTiffField(tagInfo: TagInfo): TiffField? =
@@ -65,6 +67,10 @@ data class TiffContents(
 
         for (directory in directories)
             sb.appendLine(directory)
+
+        makerNoteDirectory?.let {
+            sb.appendLine(makerNoteDirectory)
+        }
 
         return sb.toString()
     }
