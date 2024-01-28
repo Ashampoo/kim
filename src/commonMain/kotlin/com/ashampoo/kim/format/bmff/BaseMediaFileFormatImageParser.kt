@@ -54,6 +54,8 @@ object BaseMediaFileFormatImageParser : ImageParser {
             offsetShift = 0
         )
 
+        val position = byteReader.position
+
         if (allBoxes.isEmpty())
             throw ImageReadException("Illegal ISOBMFF: Has no boxes.")
 
@@ -100,7 +102,7 @@ object BaseMediaFileFormatImageParser : ImageParser {
          * in buffer and input everything we read so far in again.
          * FIXME There must be a better solution. Find it.
          */
-        val byteReaderToUse = if (byteReader.position <= minOffset)
+        val byteReaderToUse = if (position <= minOffset)
             byteReader
         else
             ByteArrayByteReader(copyByteReader.getBytes())
@@ -113,13 +115,13 @@ object BaseMediaFileFormatImageParser : ImageParser {
             when (offset.type) {
 
                 MetadataType.EXIF ->
-                    exifBytes = readExifBytes(byteReaderToUse, offset)
+                    exifBytes = readExifBytes(byteReaderToUse, byteReaderToUse.position.toLong(), offset)
 
                 MetadataType.IPTC ->
                     continue // Unsupported
 
                 MetadataType.XMP ->
-                    xmp = readXmpString(byteReaderToUse, offset)
+                    xmp = readXmpString(byteReaderToUse, byteReaderToUse.position.toLong(), offset)
             }
         }
 
@@ -136,11 +138,12 @@ object BaseMediaFileFormatImageParser : ImageParser {
     }
 
     private fun readExifBytes(
-        byteReader: PositionTrackingByteReader,
+        byteReader: ByteReader,
+        position: Long,
         offset: MetadataOffset
     ): ByteArray {
 
-        val bytesToSkip = offset.offset - byteReader.position
+        val bytesToSkip = offset.offset - position
 
         byteReader.skipBytes("offset to EXIF extent", bytesToSkip.toInt())
 
@@ -156,11 +159,12 @@ object BaseMediaFileFormatImageParser : ImageParser {
     }
 
     private fun readXmpString(
-        byteReader: PositionTrackingByteReader,
+        byteReader: ByteReader,
+        position: Long,
         offset: MetadataOffset
     ): String {
 
-        val bytesToSkip = offset.offset - byteReader.position
+        val bytesToSkip = offset.offset - position
 
         byteReader.skipBytes("offset to MIME extent", bytesToSkip.toInt())
 
