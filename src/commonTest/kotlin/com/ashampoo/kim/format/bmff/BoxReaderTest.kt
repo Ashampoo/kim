@@ -18,7 +18,6 @@ package com.ashampoo.kim.format.bmff
 
 import com.ashampoo.kim.format.bmff.box.BoxContainer
 import com.ashampoo.kim.input.ByteArrayByteReader
-import com.ashampoo.kim.input.PositionTrackingByteReaderDecorator
 import com.ashampoo.kim.testdata.KimTestData
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -30,7 +29,7 @@ class BoxReaderTest {
 
         val bytes = KimTestData.getBytesOf(KimTestData.HEIC_TEST_IMAGE_INDEX)
 
-        val byteReader = PositionTrackingByteReaderDecorator(ByteArrayByteReader(bytes))
+        val byteReader = ByteArrayByteReader(bytes)
 
         val boxes = BoxReader.readBoxes(
             byteReader = byteReader,
