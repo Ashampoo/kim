@@ -46,7 +46,8 @@ object BoxReader {
         byteReader: ByteReader,
         stopAfterMetadataRead: Boolean = false,
         positionOffset: Long = 0,
-        offsetShift: Long = 0
+        offsetShift: Long = 0,
+        updatePosition: ((Long) -> Unit)? = null
     ): List<Box> {
 
         var haveSeenJxlHeaderBox: Boolean = false
@@ -76,6 +77,8 @@ object BoxReader {
                 byteReader.readBytes("type", BMFFConstants.TPYE_LENGTH)
             )
 
+            position += BMFFConstants.BOX_HEADER_LENGTH
+
             /*
              * If we read an JXL file and we already have seen the header,
              * all reamining JXLP boxes are image data that we can skip.
@@ -103,7 +106,8 @@ object BoxReader {
             val nextBoxOffset = offset + actualLength
 
             @Suppress("MagicNumber")
-            position += BMFFConstants.BOX_HEADER_LENGTH + if (size == 1L) 8 else 0
+            if (size == 1L)
+                position += 8
 
             val remainingBytesToReadInThisBox = (nextBoxOffset - position).toInt()
 
@@ -150,6 +154,8 @@ object BoxReader {
                 }
             }
         }
+
+        updatePosition?.let { it(position) }
 
         return boxes
     }
