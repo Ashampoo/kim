@@ -44,7 +44,7 @@ class BoxReaderTest {
         assertEquals(48, allBoxes.first { it.type == BoxType.HDLR }.offset)
         assertEquals(118, allBoxes.first { it.type == BoxType.PITM }.offset)
         assertEquals(132, allBoxes.first { it.type == BoxType.IINF }.offset)
-        assertEquals(146, allBoxes.first { it.type == BoxType.INFE }.offset)
+        assertEquals(144, allBoxes.first { it.type == BoxType.INFE }.offset)
         assertEquals(2572, allBoxes.first { it.type == BoxType.ILOC }.offset)
         assertEquals(3404, allBoxes.first { it.type == BoxType.MDAT }.offset)
     }

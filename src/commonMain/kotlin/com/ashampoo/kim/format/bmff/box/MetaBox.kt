@@ -58,6 +58,7 @@ class MetaBox(
         boxes = BoxReader.readBoxes(
             byteReader = byteReader,
             stopAfterMetadataRead = false,
+            positionOffset = 4,
             offsetShift = offset + 8
         )
 

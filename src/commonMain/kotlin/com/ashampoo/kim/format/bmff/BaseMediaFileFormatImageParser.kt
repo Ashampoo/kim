@@ -50,6 +50,7 @@ object BaseMediaFileFormatImageParser : ImageParser {
         val allBoxes = BoxReader.readBoxes(
             byteReader = copyByteReader,
             stopAfterMetadataRead = true,
+            positionOffset = 0,
             offsetShift = 0
         )
 

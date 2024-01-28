@@ -45,12 +45,15 @@ object BoxReader {
     fun readBoxes(
         byteReader: PositionTrackingByteReader,
         stopAfterMetadataRead: Boolean = false,
+        positionOffset: Int = 0,
         offsetShift: Long = 0
     ): List<Box> {
 
         var haveSeenJxlHeaderBox: Boolean = false
 
         val boxes = mutableListOf<Box>()
+
+        var position: Int = positionOffset
 
         while (true) {
 
@@ -63,13 +66,19 @@ object BoxReader {
 
             val offset: Long = byteReader.position.toLong()
 
+            println("$offset == $position")
+
             /* Note: The length includes the 8 header bytes. */
             val length: Long =
                 byteReader.read4BytesAsInt("length", BMFF_BYTE_ORDER).toLong()
 
+            position += 4
+
             val type = BoxType.of(
                 byteReader.readBytes("type", BMFFConstants.TPYE_LENGTH)
             )
+
+            position += BMFFConstants.TPYE_LENGTH
 
             /*
              * If we read an JXL file and we already have seen the header,
@@ -90,11 +99,16 @@ object BoxReader {
                 else -> length
             }
 
+            if (length == 1L)
+                position += 8
+
             val nextBoxOffset = offset + actualLength
 
-            val remainingBytesToReadInThisBox = (nextBoxOffset - byteReader.position).toInt()
+            val remainingBytesToReadInThisBox = (nextBoxOffset - position).toInt()
 
             val bytes = byteReader.readBytes("data", remainingBytesToReadInThisBox)
+
+            position += remainingBytesToReadInThisBox
 
             val globalOffset = offset + offsetShift
 

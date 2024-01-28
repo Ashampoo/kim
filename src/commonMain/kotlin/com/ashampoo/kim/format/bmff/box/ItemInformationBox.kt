@@ -57,7 +57,8 @@ class ItemInformationBox(
         boxes = BoxReader.readBoxes(
             byteReader = byteReader,
             stopAfterMetadataRead = false,
-            offsetShift = offset + 4 + 2 + if (version == 0) 2 else 4
+            positionOffset = 4 + if (version == 0) 2 else 4,
+            offsetShift = offset + 4 + if (version == 0) 2 else 4
         )
 
         val map = mutableMapOf<Int, ItemInfoEntryBox>()
