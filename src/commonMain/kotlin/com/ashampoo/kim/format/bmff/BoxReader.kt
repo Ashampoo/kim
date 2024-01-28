@@ -29,7 +29,7 @@ import com.ashampoo.kim.format.bmff.box.PrimaryItemBox
 import com.ashampoo.kim.format.jxl.box.ExifBox
 import com.ashampoo.kim.format.jxl.box.JxlParticalCodestreamBox
 import com.ashampoo.kim.format.jxl.box.XmlBox
-import com.ashampoo.kim.input.PositionTrackingByteReader
+import com.ashampoo.kim.input.ByteReader
 
 /**
  * Reads ISOBMFF boxes
@@ -43,9 +43,9 @@ object BoxReader {
      * For iPhone HEIC this is possible, but Samsung HEIC has "meta" coming after "mdat"
      */
     fun readBoxes(
-        byteReader: PositionTrackingByteReader,
+        byteReader: ByteReader,
         stopAfterMetadataRead: Boolean = false,
-        positionOffset: Int = 0,
+        positionOffset: Long = 0,
         offsetShift: Long = 0
     ): List<Box> {
 
@@ -53,32 +53,28 @@ object BoxReader {
 
         val boxes = mutableListOf<Box>()
 
-        var position: Int = positionOffset
+        var position: Long = positionOffset
 
         while (true) {
+
+            val available = byteReader.contentLength - position
 
             /*
              * Check if there are enough bytes for another box.
              * If so, we at least need the 8 header bytes.
              */
-            if (byteReader.available < BMFFConstants.BOX_HEADER_LENGTH)
+            if (available < BMFFConstants.BOX_HEADER_LENGTH)
                 break
 
-            val offset: Long = byteReader.position.toLong()
-
-            println("$offset == $position")
+            val offset: Long = position
 
             /* Note: The length includes the 8 header bytes. */
             val length: Long =
                 byteReader.read4BytesAsInt("length", BMFF_BYTE_ORDER).toLong()
 
-            position += 4
-
             val type = BoxType.of(
                 byteReader.readBytes("type", BMFFConstants.TPYE_LENGTH)
             )
-
-            position += BMFFConstants.TPYE_LENGTH
 
             /*
              * If we read an JXL file and we already have seen the header,
@@ -90,7 +86,7 @@ object BoxReader {
             val actualLength: Long = when (length) {
 
                 /* A vaule of zero indicates that it's the last box. */
-                0L -> byteReader.available
+                0L -> available
 
                 /* A length of 1 indicates that we should read the next 8 bytes to get a long value. */
                 1L -> byteReader.read8BytesAsLong("length", BMFF_BYTE_ORDER)
@@ -99,10 +95,10 @@ object BoxReader {
                 else -> length
             }
 
-            if (length == 1L)
-                position += 8
-
             val nextBoxOffset = offset + actualLength
+
+            @Suppress("MagicNumber")
+            position += 4 + BMFFConstants.TPYE_LENGTH + if (length == 1L) 8 else 0
 
             val remainingBytesToReadInThisBox = (nextBoxOffset - position).toInt()
 
@@ -121,6 +117,7 @@ object BoxReader {
                 BoxType.ILOC -> ItemLocationBox(globalOffset, actualLength, bytes)
                 BoxType.PITM -> PrimaryItemBox(globalOffset, actualLength, bytes)
                 BoxType.MDAT -> MediaDataBox(globalOffset, actualLength, bytes)
+                /* JXL boxes */
                 BoxType.EXIF -> ExifBox(globalOffset, actualLength, bytes)
                 BoxType.XML -> XmlBox(globalOffset, actualLength, bytes)
                 BoxType.JXLP -> JxlParticalCodestreamBox(globalOffset, actualLength, bytes)

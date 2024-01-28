@@ -57,7 +57,7 @@ class ItemInformationBox(
         boxes = BoxReader.readBoxes(
             byteReader = byteReader,
             stopAfterMetadataRead = false,
-            positionOffset = 4 + if (version == 0) 2 else 4,
+            positionOffset = 4L + if (version == 0) 2 else 4,
             offsetShift = offset + 4 + if (version == 0) 2 else 4
         )
 
