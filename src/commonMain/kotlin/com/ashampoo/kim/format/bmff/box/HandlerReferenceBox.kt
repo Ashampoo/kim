@@ -25,9 +25,10 @@ import com.ashampoo.kim.input.ByteArrayByteReader
  */
 class HandlerReferenceBox(
     offset: Long,
-    length: Long,
+    size: Long,
+    largeSize: Long?,
     payload: ByteArray
-) : Box(BoxType.HDLR, offset, length, payload) {
+) : Box(BoxType.HDLR, offset, size, largeSize, payload) {
 
     val version: Int
 

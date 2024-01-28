@@ -69,7 +69,7 @@ object BoxReader {
             val offset: Long = position
 
             /* Note: The length includes the 8 header bytes. */
-            val length: Long =
+            val size: Long =
                 byteReader.read4BytesAsInt("length", BMFF_BYTE_ORDER).toLong()
 
             val type = BoxType.of(
@@ -83,22 +83,27 @@ object BoxReader {
             if (stopAfterMetadataRead && type == BoxType.JXLP && haveSeenJxlHeaderBox)
                 break
 
-            val actualLength: Long = when (length) {
+            var largeSize: Long? = null
+
+            val actualLength: Long = when (size) {
 
                 /* A vaule of zero indicates that it's the last box. */
                 0L -> available
 
                 /* A length of 1 indicates that we should read the next 8 bytes to get a long value. */
-                1L -> byteReader.read8BytesAsLong("length", BMFF_BYTE_ORDER)
+                1L -> {
+                    largeSize = byteReader.read8BytesAsLong("length", BMFF_BYTE_ORDER)
+                    largeSize
+                }
 
                 /* Keep the length we already read. */
-                else -> length
+                else -> size
             }
 
             val nextBoxOffset = offset + actualLength
 
             @Suppress("MagicNumber")
-            position += 4 + BMFFConstants.TPYE_LENGTH + if (length == 1L) 8 else 0
+            position += BMFFConstants.BOX_HEADER_LENGTH + if (size == 1L) 8 else 0
 
             val remainingBytesToReadInThisBox = (nextBoxOffset - position).toInt()
 
@@ -109,19 +114,19 @@ object BoxReader {
             val globalOffset = offset + offsetShift
 
             val box = when (type) {
-                BoxType.FTYP -> FileTypeBox(globalOffset, actualLength, bytes)
-                BoxType.META -> MetaBox(globalOffset, actualLength, bytes)
-                BoxType.HDLR -> HandlerReferenceBox(globalOffset, actualLength, bytes)
-                BoxType.IINF -> ItemInformationBox(globalOffset, actualLength, bytes)
-                BoxType.INFE -> ItemInfoEntryBox(globalOffset, actualLength, bytes)
-                BoxType.ILOC -> ItemLocationBox(globalOffset, actualLength, bytes)
-                BoxType.PITM -> PrimaryItemBox(globalOffset, actualLength, bytes)
-                BoxType.MDAT -> MediaDataBox(globalOffset, actualLength, bytes)
+                BoxType.FTYP -> FileTypeBox(globalOffset, size, largeSize, bytes)
+                BoxType.META -> MetaBox(globalOffset, size, largeSize, bytes)
+                BoxType.HDLR -> HandlerReferenceBox(globalOffset, size, largeSize, bytes)
+                BoxType.IINF -> ItemInformationBox(globalOffset, size, largeSize, bytes)
+                BoxType.INFE -> ItemInfoEntryBox(globalOffset, size, largeSize, bytes)
+                BoxType.ILOC -> ItemLocationBox(globalOffset, size, largeSize, bytes)
+                BoxType.PITM -> PrimaryItemBox(globalOffset, size, largeSize, bytes)
+                BoxType.MDAT -> MediaDataBox(globalOffset, size, largeSize, bytes)
                 /* JXL boxes */
-                BoxType.EXIF -> ExifBox(globalOffset, actualLength, bytes)
-                BoxType.XML -> XmlBox(globalOffset, actualLength, bytes)
-                BoxType.JXLP -> JxlParticalCodestreamBox(globalOffset, actualLength, bytes)
-                else -> Box(type, globalOffset, actualLength, bytes)
+                BoxType.EXIF -> ExifBox(globalOffset, size, largeSize, bytes)
+                BoxType.XML -> XmlBox(globalOffset, size, largeSize, bytes)
+                BoxType.JXLP -> JxlParticalCodestreamBox(globalOffset, size, largeSize, bytes)
+                else -> Box(type, globalOffset, size, largeSize, bytes)
             }
 
             boxes.add(box)

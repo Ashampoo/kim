@@ -23,9 +23,10 @@ import com.ashampoo.kim.format.bmff.box.Box
  */
 class JxlParticalCodestreamBox(
     offset: Long,
-    length: Long,
+    size: Long,
+    largeSize: Long?,
     payload: ByteArray
-) : Box(BoxType.JXLP, offset, length, payload) {
+) : Box(BoxType.JXLP, offset, size, largeSize, payload) {
 
     val isHeader: Boolean
 

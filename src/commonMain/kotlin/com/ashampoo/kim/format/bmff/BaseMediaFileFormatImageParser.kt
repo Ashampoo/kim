@@ -56,6 +56,11 @@ object BaseMediaFileFormatImageParser : ImageParser {
 
         val position = byteReader.position
 
+        val lengthSum = allBoxes.sumOf { it.actualLength }
+
+        if (position.toLong() != lengthSum)
+            println("$position != $lengthSum")
+
         if (allBoxes.isEmpty())
             throw ImageReadException("Illegal ISOBMFF: Has no boxes.")
 

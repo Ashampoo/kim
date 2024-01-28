@@ -26,9 +26,10 @@ import com.ashampoo.kim.input.ByteArrayByteReader
  */
 class ExifBox(
     offset: Long,
-    length: Long,
+    size: Long,
+    largeSize: Long?,
     payload: ByteArray
-) : Box(BoxType.EXIF, offset, length, payload) {
+) : Box(BoxType.EXIF, offset, size, largeSize, payload) {
 
     val version: Int
 

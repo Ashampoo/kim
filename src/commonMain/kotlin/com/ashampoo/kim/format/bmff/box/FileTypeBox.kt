@@ -19,6 +19,7 @@ package com.ashampoo.kim.format.bmff.box
 import com.ashampoo.kim.common.toFourCCTypeString
 import com.ashampoo.kim.format.bmff.BMFFConstants
 import com.ashampoo.kim.format.bmff.BMFFConstants.BMFF_BYTE_ORDER
+import com.ashampoo.kim.format.bmff.BMFFConstants.BOX_HEADER_LENGTH
 import com.ashampoo.kim.format.bmff.BoxType
 import com.ashampoo.kim.input.ByteArrayByteReader
 
@@ -27,9 +28,10 @@ import com.ashampoo.kim.input.ByteArrayByteReader
  */
 class FileTypeBox(
     offset: Long,
-    length: Long,
+    size: Long,
+    largeSize: Long?,
     payload: ByteArray
-) : Box(BoxType.FTYP, offset, length, payload) {
+) : Box(BoxType.FTYP, offset, size, largeSize, payload) {
 
     val majorBrand: String
 
@@ -49,7 +51,7 @@ class FileTypeBox(
             .read4BytesAsInt("minorBrand", BMFF_BYTE_ORDER)
             .toFourCCTypeString()
 
-        val brandCount: Int = (length.toInt() - 8 - 8) / 4
+        val brandCount: Int = (actualLength.toInt() - BOX_HEADER_LENGTH - 8 - 8) / 4
 
         val brands = mutableListOf<String>()
 

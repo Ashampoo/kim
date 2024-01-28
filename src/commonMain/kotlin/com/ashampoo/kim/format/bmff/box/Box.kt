@@ -16,16 +16,32 @@
  */
 package com.ashampoo.kim.format.bmff.box
 
+import com.ashampoo.kim.format.bmff.BMFFConstants.BOX_HEADER_LENGTH
 import com.ashampoo.kim.format.bmff.BoxType
 
 open class Box(
     val type: BoxType,
     val offset: Long,
-    val length: Long,
-    /* Payload bytes, not including type & length bytes */
+    val size: Long,
+    val largeSize: Long?,
+    /** Payload bytes, not including type & length bytes */
     val payload: ByteArray
 ) {
 
+    /*
+     * "size" is an integer that specifies the number of bytes in this box,
+     * including all its fields and contained boxes; if size is 1 then the
+     * actual size is in the field largesize; if size is 0, then this
+     * box is the last one in the file, and its contents extend to the
+     * end of the file (normally only used for a Media Data Box)
+     */
+    val actualLength: Long =
+        when (size) {
+            0L -> BOX_HEADER_LENGTH.toLong() + payload.size
+            1L -> largeSize!!
+            else -> size
+        }
+
     override fun toString(): String =
-        "Box '$type' @ $offset ($length bytes)"
+        "Box '$type' @ $offset ($actualLength bytes)"
 }

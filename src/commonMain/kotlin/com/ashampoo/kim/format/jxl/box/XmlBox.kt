@@ -23,9 +23,10 @@ import com.ashampoo.kim.format.bmff.box.Box
  */
 class XmlBox(
     offset: Long,
-    length: Long,
+    size: Long,
+    largeSize: Long?,
     payload: ByteArray
-) : Box(BoxType.XML, offset, length, payload) {
+) : Box(BoxType.XML, offset, size, largeSize, payload) {
 
     val xmp: String
 
