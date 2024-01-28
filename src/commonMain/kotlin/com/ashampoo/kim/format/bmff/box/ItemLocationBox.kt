@@ -26,9 +26,10 @@ import com.ashampoo.kim.input.ByteArrayByteReader
  */
 class ItemLocationBox(
     offset: Long,
-    length: Long,
+    size: Long,
+    largeSize: Long?,
     payload: ByteArray
-) : Box(BoxType.ILOC, offset, length, payload) {
+) : Box(BoxType.ILOC, offset, size, largeSize, payload) {
 
     /**
      * The version of the box.

@@ -24,11 +24,10 @@ import com.ashampoo.kim.format.bmff.BMFFConstants.BMFF_BYTE_ORDER
 import com.ashampoo.kim.format.bmff.BMFFConstants.TIFF_HEADER_OFFSET_BYTE_COUNT
 import com.ashampoo.kim.format.bmff.box.FileTypeBox
 import com.ashampoo.kim.format.bmff.box.MetaBox
+import com.ashampoo.kim.format.jxl.JxlReader
 import com.ashampoo.kim.format.tiff.TiffReader
 import com.ashampoo.kim.input.ByteArrayByteReader
 import com.ashampoo.kim.input.ByteReader
-import com.ashampoo.kim.input.PositionTrackingByteReader
-import com.ashampoo.kim.input.PositionTrackingByteReaderDecorator
 
 /**
  * Reads containers that follow the ISO base media file format
@@ -39,17 +38,18 @@ import com.ashampoo.kim.input.PositionTrackingByteReaderDecorator
  */
 object BaseMediaFileFormatImageParser : ImageParser {
 
-    override fun parseMetadata(byteReader: ByteReader): ImageMetadata =
-        parseMetadata(PositionTrackingByteReaderDecorator(byteReader))
-
-    private fun parseMetadata(byteReader: PositionTrackingByteReader): ImageMetadata {
+    override fun parseMetadata(byteReader: ByteReader): ImageMetadata {
 
         val copyByteReader = CopyByteReader(byteReader)
+
+        var position: Long = 0
 
         val allBoxes = BoxReader.readBoxes(
             byteReader = copyByteReader,
             stopAfterMetadataRead = true,
-            offsetShift = 0
+            positionOffset = 0,
+            offsetShift = 0,
+            updatePosition = { position = it }
         )
 
         if (allBoxes.isEmpty())
@@ -66,7 +66,7 @@ object BaseMediaFileFormatImageParser : ImageParser {
          * This format has EXIF & XMP neatly in dedicated boxes, so we can just extract these.
          */
         if (fileTypeBox.majorBrand == FileTypeBox.JXL_BRAND)
-            return JxlHandler.createMetadata(allBoxes)
+            return JxlReader.createMetadata(allBoxes)
 
         val metaBox = allBoxes.filterIsInstance<MetaBox>().firstOrNull()
 
@@ -98,10 +98,15 @@ object BaseMediaFileFormatImageParser : ImageParser {
          * in buffer and input everything we read so far in again.
          * FIXME There must be a better solution. Find it.
          */
-        val byteReaderToUse = if (byteReader.position <= minOffset)
+        val onPositionBeforeMinimumOffset = position <= minOffset
+
+        val byteReaderToUse = if (onPositionBeforeMinimumOffset)
             byteReader
         else
             ByteArrayByteReader(copyByteReader.getBytes())
+
+        if (!onPositionBeforeMinimumOffset)
+            position = 0
 
         var exifBytes: ByteArray? = null
         var xmp: String? = null
@@ -110,14 +115,18 @@ object BaseMediaFileFormatImageParser : ImageParser {
 
             when (offset.type) {
 
-                MetadataType.EXIF ->
-                    exifBytes = readExifBytes(byteReaderToUse, offset)
+                MetadataType.EXIF -> {
+                    exifBytes = readExifBytes(byteReaderToUse, position, offset)
+                    position = offset.offset + offset.length
+                }
 
                 MetadataType.IPTC ->
                     continue // Unsupported
 
-                MetadataType.XMP ->
-                    xmp = readXmpString(byteReaderToUse, offset)
+                MetadataType.XMP -> {
+                    xmp = readXmpString(byteReaderToUse, position, offset)
+                    position = offset.offset + offset.length
+                }
             }
         }
 
@@ -134,11 +143,16 @@ object BaseMediaFileFormatImageParser : ImageParser {
     }
 
     private fun readExifBytes(
-        byteReader: PositionTrackingByteReader,
+        byteReader: ByteReader,
+        position: Long,
         offset: MetadataOffset
     ): ByteArray {
 
-        val bytesToSkip = offset.offset - byteReader.position
+        val bytesToSkip = offset.offset - position
+
+        check(bytesToSkip >= 0) {
+            "Position must be before extent offset: position=$position offset=$offset"
+        }
 
         byteReader.skipBytes("offset to EXIF extent", bytesToSkip.toInt())
 
@@ -148,17 +162,23 @@ object BaseMediaFileFormatImageParser : ImageParser {
         /* Usualy there are 6 bytes skipped, which are the EXIF header. ("Exif.."). */
         byteReader.skipBytes("offset to TIFF header", tiffHeaderOffset)
 
-        return byteReader.readBytes(
+        val exifBytesLength =
             offset.length.toInt() - TIFF_HEADER_OFFSET_BYTE_COUNT - tiffHeaderOffset
-        )
+
+        return byteReader.readBytes(exifBytesLength)
     }
 
     private fun readXmpString(
-        byteReader: PositionTrackingByteReader,
+        byteReader: ByteReader,
+        position: Long,
         offset: MetadataOffset
     ): String {
 
-        val bytesToSkip = offset.offset - byteReader.position
+        val bytesToSkip = offset.offset - position
+
+        check(bytesToSkip >= 0) {
+            "Position must be before extent offset: position=$position offset=$offset"
+        }
 
         byteReader.skipBytes("offset to MIME extent", bytesToSkip.toInt())
 

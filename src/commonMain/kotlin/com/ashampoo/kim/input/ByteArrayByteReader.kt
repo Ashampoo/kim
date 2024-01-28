@@ -27,16 +27,10 @@ import kotlin.math.min
  */
 class ByteArrayByteReader(
     private val bytes: ByteArray
-) : RandomAccessByteReader, PositionTrackingByteReader {
+) : RandomAccessByteReader {
 
     override val contentLength: Long =
         bytes.size.toLong()
-
-    override val position: Int
-        get() = currentPosition
-
-    override val available: Long
-        get() = contentLength - position
 
     private var currentPosition = 0
 

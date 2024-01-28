@@ -27,9 +27,10 @@ import com.ashampoo.kim.input.ByteArrayByteReader
  */
 class ItemInfoEntryBox(
     offset: Long,
-    length: Long,
+    size: Long,
+    largeSize: Long?,
     payload: ByteArray
-) : Box(BoxType.INFE, offset, length, payload) {
+) : Box(BoxType.INFE, offset, size, largeSize, payload) {
 
     val version: Int
 

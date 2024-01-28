@@ -26,9 +26,10 @@ import com.ashampoo.kim.format.bmff.BoxType
  */
 class MediaDataBox(
     offset: Long,
-    length: Long,
+    size: Long,
+    largeSize: Long?,
     payload: ByteArray
-) : Box(BoxType.MDAT, offset, length, payload) {
+) : Box(BoxType.MDAT, offset, size, largeSize, payload) {
 
     override fun toString(): String =
         "$type Box"

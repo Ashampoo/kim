@@ -15,23 +15,17 @@
  */
 package com.ashampoo.kim.format.bmff
 
-import com.ashampoo.kim.input.PositionTrackingByteReader
+import com.ashampoo.kim.input.ByteReader
 import com.ashampoo.kim.output.ByteArrayByteWriter
 
 internal class CopyByteReader(
-    val byteReader: PositionTrackingByteReader
-) : PositionTrackingByteReader {
+    val byteReader: ByteReader
+) : ByteReader {
 
     private val byteWriter = ByteArrayByteWriter()
 
     override val contentLength: Long =
         byteReader.contentLength
-
-    override val position: Int
-        get() = byteReader.position
-
-    override val available: Long
-        get() = byteReader.available
 
     fun getBytes(): ByteArray =
         byteWriter.toByteArray()

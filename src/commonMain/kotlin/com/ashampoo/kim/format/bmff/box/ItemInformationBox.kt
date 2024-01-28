@@ -27,9 +27,10 @@ import com.ashampoo.kim.input.ByteArrayByteReader
  */
 class ItemInformationBox(
     offset: Long,
-    length: Long,
+    size: Long,
+    largeSize: Long?,
     payload: ByteArray
-) : Box(BoxType.IINF, offset, length, payload), BoxContainer {
+) : Box(BoxType.IINF, offset, size, largeSize, payload), BoxContainer {
 
     val version: Int
 
@@ -57,7 +58,8 @@ class ItemInformationBox(
         boxes = BoxReader.readBoxes(
             byteReader = byteReader,
             stopAfterMetadataRead = false,
-            offsetShift = offset + 4 + 2 + if (version == 0) 2 else 4
+            positionOffset = 4L + if (version == 0) 2 else 4,
+            offsetShift = offset + 4 + if (version == 0) 2 else 4
         )
 
         val map = mutableMapOf<Int, ItemInfoEntryBox>()

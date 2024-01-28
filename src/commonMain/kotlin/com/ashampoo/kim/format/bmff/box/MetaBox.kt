@@ -31,9 +31,10 @@ import com.ashampoo.kim.input.ByteArrayByteReader
  */
 class MetaBox(
     offset: Long,
-    length: Long,
+    size: Long,
+    largeSize: Long?,
     payload: ByteArray
-) : Box(BoxType.META, offset, length, payload), BoxContainer {
+) : Box(BoxType.META, offset, size, largeSize, payload), BoxContainer {
 
     val version: Int
 
@@ -58,6 +59,7 @@ class MetaBox(
         boxes = BoxReader.readBoxes(
             byteReader = byteReader,
             stopAfterMetadataRead = false,
+            positionOffset = 4,
             offsetShift = offset + 8
         )
 

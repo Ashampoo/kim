@@ -18,18 +18,18 @@ package com.ashampoo.kim.format.bmff
 
 import com.ashampoo.kim.format.bmff.BMFFConstants.BMFF_BYTE_ORDER
 import com.ashampoo.kim.format.bmff.box.Box
-import com.ashampoo.kim.format.bmff.box.ExifBox
 import com.ashampoo.kim.format.bmff.box.FileTypeBox
 import com.ashampoo.kim.format.bmff.box.HandlerReferenceBox
 import com.ashampoo.kim.format.bmff.box.ItemInfoEntryBox
 import com.ashampoo.kim.format.bmff.box.ItemInformationBox
 import com.ashampoo.kim.format.bmff.box.ItemLocationBox
-import com.ashampoo.kim.format.bmff.box.JxlParticalCodestreamBox
 import com.ashampoo.kim.format.bmff.box.MediaDataBox
 import com.ashampoo.kim.format.bmff.box.MetaBox
 import com.ashampoo.kim.format.bmff.box.PrimaryItemBox
-import com.ashampoo.kim.format.bmff.box.XmlBox
-import com.ashampoo.kim.input.PositionTrackingByteReader
+import com.ashampoo.kim.format.jxl.box.ExifBox
+import com.ashampoo.kim.format.jxl.box.JxlParticalCodestreamBox
+import com.ashampoo.kim.format.jxl.box.XmlBox
+import com.ashampoo.kim.input.ByteReader
 
 /**
  * Reads ISOBMFF boxes
@@ -43,33 +43,41 @@ object BoxReader {
      * For iPhone HEIC this is possible, but Samsung HEIC has "meta" coming after "mdat"
      */
     fun readBoxes(
-        byteReader: PositionTrackingByteReader,
+        byteReader: ByteReader,
         stopAfterMetadataRead: Boolean = false,
-        offsetShift: Long = 0
+        positionOffset: Long = 0,
+        offsetShift: Long = 0,
+        updatePosition: ((Long) -> Unit)? = null
     ): List<Box> {
 
         var haveSeenJxlHeaderBox: Boolean = false
 
         val boxes = mutableListOf<Box>()
 
+        var position: Long = positionOffset
+
         while (true) {
+
+            val available = byteReader.contentLength - position
 
             /*
              * Check if there are enough bytes for another box.
              * If so, we at least need the 8 header bytes.
              */
-            if (byteReader.available < BMFFConstants.BOX_HEADER_LENGTH)
+            if (available < BMFFConstants.BOX_HEADER_LENGTH)
                 break
 
-            val offset: Long = byteReader.position.toLong()
+            val offset: Long = position
 
             /* Note: The length includes the 8 header bytes. */
-            val length: Long =
+            val size: Long =
                 byteReader.read4BytesAsInt("length", BMFF_BYTE_ORDER).toLong()
 
             val type = BoxType.of(
                 byteReader.readBytes("type", BMFFConstants.TPYE_LENGTH)
             )
+
+            position += BMFFConstants.BOX_HEADER_LENGTH
 
             /*
              * If we read an JXL file and we already have seen the header,
@@ -78,39 +86,51 @@ object BoxReader {
             if (stopAfterMetadataRead && type == BoxType.JXLP && haveSeenJxlHeaderBox)
                 break
 
-            val actualLength: Long = when (length) {
+            var largeSize: Long? = null
+
+            val actualLength: Long = when (size) {
 
                 /* A vaule of zero indicates that it's the last box. */
-                0L -> byteReader.available
+                0L -> available
 
                 /* A length of 1 indicates that we should read the next 8 bytes to get a long value. */
-                1L -> byteReader.read8BytesAsLong("length", BMFF_BYTE_ORDER)
+                1L -> {
+                    largeSize = byteReader.read8BytesAsLong("length", BMFF_BYTE_ORDER)
+                    largeSize
+                }
 
                 /* Keep the length we already read. */
-                else -> length
+                else -> size
             }
 
             val nextBoxOffset = offset + actualLength
 
-            val remainingBytesToReadInThisBox = (nextBoxOffset - byteReader.position).toInt()
+            @Suppress("MagicNumber")
+            if (size == 1L)
+                position += 8
+
+            val remainingBytesToReadInThisBox = (nextBoxOffset - position).toInt()
 
             val bytes = byteReader.readBytes("data", remainingBytesToReadInThisBox)
+
+            position += remainingBytesToReadInThisBox
 
             val globalOffset = offset + offsetShift
 
             val box = when (type) {
-                BoxType.FTYP -> FileTypeBox(globalOffset, actualLength, bytes)
-                BoxType.META -> MetaBox(globalOffset, actualLength, bytes)
-                BoxType.HDLR -> HandlerReferenceBox(globalOffset, actualLength, bytes)
-                BoxType.IINF -> ItemInformationBox(globalOffset, actualLength, bytes)
-                BoxType.INFE -> ItemInfoEntryBox(globalOffset, actualLength, bytes)
-                BoxType.ILOC -> ItemLocationBox(globalOffset, actualLength, bytes)
-                BoxType.PITM -> PrimaryItemBox(globalOffset, actualLength, bytes)
-                BoxType.MDAT -> MediaDataBox(globalOffset, actualLength, bytes)
-                BoxType.EXIF -> ExifBox(globalOffset, actualLength, bytes)
-                BoxType.XML -> XmlBox(globalOffset, actualLength, bytes)
-                BoxType.JXLP -> JxlParticalCodestreamBox(globalOffset, actualLength, bytes)
-                else -> Box(type, globalOffset, actualLength, bytes)
+                BoxType.FTYP -> FileTypeBox(globalOffset, size, largeSize, bytes)
+                BoxType.META -> MetaBox(globalOffset, size, largeSize, bytes)
+                BoxType.HDLR -> HandlerReferenceBox(globalOffset, size, largeSize, bytes)
+                BoxType.IINF -> ItemInformationBox(globalOffset, size, largeSize, bytes)
+                BoxType.INFE -> ItemInfoEntryBox(globalOffset, size, largeSize, bytes)
+                BoxType.ILOC -> ItemLocationBox(globalOffset, size, largeSize, bytes)
+                BoxType.PITM -> PrimaryItemBox(globalOffset, size, largeSize, bytes)
+                BoxType.MDAT -> MediaDataBox(globalOffset, size, largeSize, bytes)
+                /* JXL boxes */
+                BoxType.EXIF -> ExifBox(globalOffset, size, largeSize, bytes)
+                BoxType.XML -> XmlBox(globalOffset, size, largeSize, bytes)
+                BoxType.JXLP -> JxlParticalCodestreamBox(globalOffset, size, largeSize, bytes)
+                else -> Box(type, globalOffset, size, largeSize, bytes)
             }
 
             boxes.add(box)
@@ -134,6 +154,8 @@ object BoxReader {
                 }
             }
         }
+
+        updatePosition?.let { it(position) }
 
         return boxes
     }

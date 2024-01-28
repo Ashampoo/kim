@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 Ashampoo GmbH & Co. KG
+ * Copyright 2024 Ashampoo GmbH & Co. KG
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,7 +18,6 @@ package com.ashampoo.kim.format.bmff
 
 import com.ashampoo.kim.format.bmff.box.BoxContainer
 import com.ashampoo.kim.input.ByteArrayByteReader
-import com.ashampoo.kim.input.PositionTrackingByteReaderDecorator
 import com.ashampoo.kim.testdata.KimTestData
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -30,7 +29,7 @@ class BoxReaderTest {
 
         val bytes = KimTestData.getBytesOf(KimTestData.HEIC_TEST_IMAGE_INDEX)
 
-        val byteReader = PositionTrackingByteReaderDecorator(ByteArrayByteReader(bytes))
+        val byteReader = ByteArrayByteReader(bytes)
 
         val boxes = BoxReader.readBoxes(
             byteReader = byteReader,
@@ -44,7 +43,7 @@ class BoxReaderTest {
         assertEquals(48, allBoxes.first { it.type == BoxType.HDLR }.offset)
         assertEquals(118, allBoxes.first { it.type == BoxType.PITM }.offset)
         assertEquals(132, allBoxes.first { it.type == BoxType.IINF }.offset)
-        assertEquals(146, allBoxes.first { it.type == BoxType.INFE }.offset)
+        assertEquals(144, allBoxes.first { it.type == BoxType.INFE }.offset)
         assertEquals(2572, allBoxes.first { it.type == BoxType.ILOC }.offset)
         assertEquals(3404, allBoxes.first { it.type == BoxType.MDAT }.offset)
     }
