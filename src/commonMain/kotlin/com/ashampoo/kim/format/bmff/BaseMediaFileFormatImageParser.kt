@@ -24,6 +24,7 @@ import com.ashampoo.kim.format.bmff.BMFFConstants.BMFF_BYTE_ORDER
 import com.ashampoo.kim.format.bmff.BMFFConstants.TIFF_HEADER_OFFSET_BYTE_COUNT
 import com.ashampoo.kim.format.bmff.box.FileTypeBox
 import com.ashampoo.kim.format.bmff.box.MetaBox
+import com.ashampoo.kim.format.jxl.JxlReader
 import com.ashampoo.kim.format.tiff.TiffReader
 import com.ashampoo.kim.input.ByteArrayByteReader
 import com.ashampoo.kim.input.ByteReader
@@ -66,7 +67,7 @@ object BaseMediaFileFormatImageParser : ImageParser {
          * This format has EXIF & XMP neatly in dedicated boxes, so we can just extract these.
          */
         if (fileTypeBox.majorBrand == FileTypeBox.JXL_BRAND)
-            return JxlHandler.createMetadata(allBoxes)
+            return JxlReader.createMetadata(allBoxes)
 
         val metaBox = allBoxes.filterIsInstance<MetaBox>().firstOrNull()
 
