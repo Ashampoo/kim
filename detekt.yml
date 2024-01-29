@@ -708,7 +708,7 @@ style:
       - 'trimIndent'
       - 'trimMargin'
   UnderscoresInNumericLiterals:
-    active: true
+    active: false
     acceptableLength: 4
     allowNonStandardGrouping: false
   UnnecessaryAbstractClass:
