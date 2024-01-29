@@ -166,27 +166,29 @@ class TiffField(
         throw ImageReadException("Can't format value of tag $tagFormatted as int: $value")
     }
 
-    fun toInt(): Int =
-        if (value is IntArray)
-            value.first()
-        else if (value is ShortArray)
-            (value.first() as Number).toInt()
-        else
-            (value as Number).toInt()
+    fun toInt(): Int = when (value) {
+        is ByteArray -> value.first().toInt()
+        is ShortArray -> value.first().toInt()
+        is IntArray -> value.first().toInt()
+        else -> (value as Number).toInt()
+    }
 
-    fun toShort(): Short =
-        if (value is ShortArray)
-            value.first()
-        else
-            (value as Number).toShort()
+    fun toShort(): Short = when (value) {
+        is ByteArray -> value.first().toShort()
+        is ShortArray -> value.first()
+        is IntArray -> value.first().toShort()
+        else -> (value as Number).toShort()
+    }
 
-    fun toDouble(): Double =
-        if (value is RationalNumbers)
-            value.values.first().doubleValue()
-        else if (value is RationalNumber)
-            value.doubleValue()
-        else
-            (value as Number).toDouble()
+    fun toDouble(): Double = when (value) {
+        is RationalNumbers -> value.values.first().doubleValue()
+        is RationalNumber -> value.doubleValue()
+        is ByteArray -> value.first().toDouble()
+        is ShortArray -> value.first().toDouble()
+        is IntArray -> value.first().toDouble()
+        is FloatArray -> value.first().toDouble()
+        else -> (value as Number).toDouble()
+    }
 
     /*
      * Note that we need to show the local 'tagFormatted', because
