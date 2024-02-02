@@ -126,15 +126,7 @@ private fun extractTakenDateAsIso(metadata: ImageMetadata): String? {
     if (takenDate == null && takenDateField != null)
         takenDate = takenDateField.toStringValue()
 
-    if (takenDate == null)
-        return null
-
-    /*
-     * We need to check if the taken date is a placeholder value.
-     * If it's a placeholder, "exif.dateOriginal" will return wrong values.
-     * See https://github.com/drewnoakes/metadata-extractor/issues/609
-     */
-    if (isExifDateEmpty(takenDate))
+    if (takenDate == null || isExifDateEmpty(takenDate))
         return null
 
     return convertExifDateToIso8601Date(takenDate)
