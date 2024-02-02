@@ -99,7 +99,9 @@ object KimTestData {
     )
 
     val jxlPhotoIds: Set<Int> = setOf(
-        JXL_CONTAINER_UNCOMPRESSED_INDEX
+        JXL_CONTAINER_DARKTABLE_INDEX,
+        JXL_CONTAINER_UNCOMPRESSED_INDEX,
+        JXL_CONTAINER_COMPRESSED_INDEX
     )
 
     private fun getExtension(index: Int) = when (index) {

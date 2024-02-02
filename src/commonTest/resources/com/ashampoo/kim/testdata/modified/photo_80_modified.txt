@@ -1,0 +1,23 @@
+File format : JXL
+Resolution  : null
+---- TIFF ----
+Version 42
+Big-endian (Motorola, MM)
+---- Directory IFD0 @ 8 ----
+0000000010 0x8769 ExifOffset = 28
+
+---- Directory ExifIFD @ 28 ----
+0000000030 0x9003 DateTimeOriginal = 2023:08:01 08:00:00
+
+---- XMP ----
+<?xpacket begin="﻿" id="W5M0MpCehiHzreSzNTczkc9d"?>
+    <x:xmpmeta xmlns:x="adobe:ns:meta/" x:xmptk="Adobe XMP Core 6.1.10">
+      <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+        <rdf:Description rdf:about=""
+            xmlns:xmp="http://ns.adobe.com/xap/1.0/"
+            xmlns:exif="http://ns.adobe.com/exif/1.0/"
+          exif:DateTimeOriginal="2020-10-05T13:37:42"
+          xmp:Rating="3"/>
+      </rdf:RDF>
+    </x:xmpmeta>
+<?xpacket end="w"?>
