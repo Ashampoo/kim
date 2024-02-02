@@ -296,15 +296,22 @@ object TiffReader {
                 continue
             }
 
-            val valueLength = count * fieldType.size
+            val valueLength: Int = count * fieldType.size
 
             val isLocalValue: Boolean =
                 count * fieldType.size <= TiffConstants.TIFF_ENTRY_MAX_VALUE_LENGTH
 
             val valueBytes: ByteArray = if (!isLocalValue) {
 
-                /* Ignore corrupt offsets */
-                if (valueOrOffset < 0 || valueOrOffset + valueLength > byteReader.contentLength)
+                val endPos = valueOrOffset + valueLength
+
+                /*
+                 * Ignore corrupt offsets.
+                 *
+                 * Note that the endPos may become negative if one value is too large for an int.
+                 * That's why we need to check both offset and endPos for negativity.
+                 */
+                if (valueOrOffset < 0 || endPos < 0 || endPos > byteReader.contentLength)
                     continue
 
                 byteReader.readBytes(valueOrOffset.toInt(), valueLength.toInt())
