@@ -57,6 +57,8 @@ object JxlWriter {
 
         /*
          * Security check first
+         *
+         * TODO Remove this once we have brotli support.
          */
 
         val compressedBoxes = modifiedBoxes.filterIsInstance<CompressedBox>()
