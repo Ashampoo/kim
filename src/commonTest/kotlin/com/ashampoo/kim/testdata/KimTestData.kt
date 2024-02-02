@@ -98,6 +98,10 @@ object KimTestData {
         PNG_GIMP_TEST_IMAGE_INDEX
     )
 
+    val jxlPhotoIds: Set<Int> = setOf(
+        JXL_CONTAINER_UNCOMPRESSED_INDEX
+    )
+
     private fun getExtension(index: Int) = when (index) {
         GIF_TEST_IMAGE_INDEX -> "gif"
         WEBP_TEST_IMAGE_INDEX -> "webp"
