@@ -22,14 +22,13 @@ import com.ashampoo.kim.common.ImageWriteException
 import com.ashampoo.kim.format.tiff.TiffContents
 import com.ashampoo.kim.format.tiff.TiffElement
 import com.ashampoo.kim.format.tiff.TiffReader
-import com.ashampoo.kim.format.tiff.constant.TiffConstants
 import com.ashampoo.kim.format.tiff.constant.TiffConstants.TIFF_HEADER_SIZE
 import com.ashampoo.kim.output.BinaryByteWriter.Companion.createBinaryByteWriter
 import com.ashampoo.kim.output.BufferByteWriter
 import com.ashampoo.kim.output.ByteWriter
 
 class TiffWriterLossless(
-    byteOrder: ByteOrder = TiffConstants.DEFAULT_TIFF_BYTE_ORDER,
+    byteOrder: ByteOrder,
     private val exifBytes: ByteArray
 ) : TiffWriterBase(byteOrder) {
 

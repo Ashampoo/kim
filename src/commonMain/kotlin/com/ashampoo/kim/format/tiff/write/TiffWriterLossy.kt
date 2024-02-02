@@ -17,7 +17,6 @@
 package com.ashampoo.kim.format.tiff.write
 
 import com.ashampoo.kim.common.ByteOrder
-import com.ashampoo.kim.format.tiff.constant.TiffConstants
 import com.ashampoo.kim.format.tiff.constant.TiffConstants.TIFF_HEADER_SIZE
 import com.ashampoo.kim.output.BinaryByteWriter
 import com.ashampoo.kim.output.BinaryByteWriter.Companion.createBinaryByteWriter
@@ -25,7 +24,7 @@ import com.ashampoo.kim.output.ByteWriter
 import kotlin.jvm.JvmStatic
 
 class TiffWriterLossy(
-    byteOrder: ByteOrder = TiffConstants.DEFAULT_TIFF_BYTE_ORDER
+    byteOrder: ByteOrder
 ) : TiffWriterBase(byteOrder) {
 
     override fun write(byteWriter: ByteWriter, outputSet: TiffOutputSet) {

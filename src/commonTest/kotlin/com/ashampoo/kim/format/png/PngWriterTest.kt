@@ -130,9 +130,14 @@ class PngWriterTest {
             val oldExifBytes = oldMetadata.exifBytes
 
             val writer = if (oldExifBytes != null)
-                TiffWriterLossless(exifBytes = oldExifBytes)
+                TiffWriterLossless(
+                    byteOrder = tiffOutputSet.byteOrder,
+                    exifBytes = oldExifBytes
+                )
             else
-                TiffWriterLossy()
+                TiffWriterLossy(
+                    byteOrder = tiffOutputSet.byteOrder
+                )
 
             writer.write(exifBytesWriter, tiffOutputSet)
 

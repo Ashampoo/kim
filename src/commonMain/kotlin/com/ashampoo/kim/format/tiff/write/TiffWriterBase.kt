@@ -249,12 +249,20 @@ abstract class TiffWriterBase(
     companion object {
 
         /** Returns an appropriate TiffImageWriter instance. */
-        fun createTiffWriter(oldExifBytes: ByteArray?): TiffWriterBase {
+        fun createTiffWriter(
+            byteOrder: ByteOrder,
+            oldExifBytes: ByteArray?
+        ): TiffWriterBase {
 
             return if (oldExifBytes != null)
-                TiffWriterLossless(exifBytes = oldExifBytes)
+                TiffWriterLossless(
+                    byteOrder = byteOrder,
+                    exifBytes = oldExifBytes
+                )
             else
-                TiffWriterLossy()
+                TiffWriterLossy(
+                    byteOrder = byteOrder
+                )
         }
     }
 }
