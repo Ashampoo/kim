@@ -13,13 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.ashampoo.kim.format.png
+package com.ashampoo.kim.format.jxl
 
 import com.ashampoo.kim.common.ImageWriteException
 import com.ashampoo.kim.common.startsWith
 import com.ashampoo.kim.common.tryWithImageWriteException
 import com.ashampoo.kim.format.ImageFormatMagicNumbers
 import com.ashampoo.kim.format.MetadataUpdater
+import com.ashampoo.kim.format.bmff.BoxReader
 import com.ashampoo.kim.format.tiff.write.TiffOutputSet
 import com.ashampoo.kim.format.tiff.write.TiffWriterBase
 import com.ashampoo.kim.format.xmp.XmpWriter
@@ -31,7 +32,7 @@ import com.ashampoo.kim.output.ByteWriter
 import com.ashampoo.xmp.XMPMeta
 import com.ashampoo.xmp.XMPMetaFactory
 
-internal object PngUpdater : MetadataUpdater {
+internal object JxlUpdater : MetadataUpdater {
 
     @Throws(ImageWriteException::class)
     override fun update(
@@ -40,9 +41,12 @@ internal object PngUpdater : MetadataUpdater {
         update: MetadataUpdate
     ) = tryWithImageWriteException {
 
-        val chunks = PngImageParser.readChunks(byteReader, chunkTypeFilter = null)
+        val allBoxes = BoxReader.readBoxes(
+            byteReader = byteReader,
+            stopAfterMetadataRead = false
+        )
 
-        val metadata = PngImageParser.parseMetadataFromChunks(chunks)
+        val metadata = JxlReader.createMetadata(allBoxes)
 
         val xmpMeta: XMPMeta = if (metadata.xmp != null)
             XMPMetaFactory.parseFromString(metadata.xmp)
@@ -76,16 +80,10 @@ internal object PngUpdater : MetadataUpdater {
             null
         }
 
-        PngWriter.writeImage(
-            chunks = chunks,
+        JxlWriter.writeImage(
+            boxes = allBoxes,
             byteWriter = byteWriter,
             exifBytes = exifBytes,
-            /*
-             * IPTC is not written because it's not recognized everywhere.
-             * XMP is the better choice. If users demand it we may add it.
-             * The logic is already implemented.
-             */
-            iptcBytes = null,
             xmp = updatedXmp
         )
     }
@@ -96,14 +94,17 @@ internal object PngUpdater : MetadataUpdater {
         thumbnailBytes: ByteArray
     ): ByteArray = tryWithImageWriteException {
 
-        if (!bytes.startsWith(ImageFormatMagicNumbers.png))
-            throw ImageWriteException("Provided input bytes are not PNG!")
+        if (!bytes.startsWith(ImageFormatMagicNumbers.jxl))
+            throw ImageWriteException("Provided input bytes are not JXL!")
 
         val byteReader = ByteArrayByteReader(bytes)
 
-        val chunks = PngImageParser.readChunks(byteReader, chunkTypeFilter = null)
+        val allBoxes = BoxReader.readBoxes(
+            byteReader = byteReader,
+            stopAfterMetadataRead = false
+        )
 
-        val metadata = PngImageParser.parseMetadataFromChunks(chunks)
+        val metadata = JxlReader.createMetadata(allBoxes)
 
         val outputSet = metadata.exif?.createOutputSet() ?: TiffOutputSet()
 
@@ -122,11 +123,10 @@ internal object PngUpdater : MetadataUpdater {
 
         val byteWriter = ByteArrayByteWriter()
 
-        PngWriter.writeImage(
-            chunks = chunks,
+        JxlWriter.writeImage(
+            boxes = allBoxes,
             byteWriter = byteWriter,
             exifBytes = exifBytes,
-            iptcBytes = null,
             xmp = null // No change to XMP
         )
 

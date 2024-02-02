@@ -17,7 +17,6 @@ package com.ashampoo.kim.format.jxl
 
 import com.ashampoo.kim.Kim
 import com.ashampoo.kim.common.writeBytes
-import com.ashampoo.kim.format.jxl.box.JxlWriter
 import com.ashampoo.kim.format.tiff.constant.ExifTag
 import com.ashampoo.kim.format.tiff.write.TiffOutputSet
 import com.ashampoo.kim.format.tiff.write.TiffWriterLossless

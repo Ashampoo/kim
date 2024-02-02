@@ -26,6 +26,7 @@ import com.ashampoo.kim.format.cr2.Cr2PreviewExtractor
 import com.ashampoo.kim.format.dng.DngPreviewExtractor
 import com.ashampoo.kim.format.jpeg.JpegMetadataExtractor
 import com.ashampoo.kim.format.jpeg.JpegUpdater
+import com.ashampoo.kim.format.jxl.JxlUpdater
 import com.ashampoo.kim.format.nef.NefPreviewExtractor
 import com.ashampoo.kim.format.png.PngMetadataExtractor
 import com.ashampoo.kim.format.png.PngUpdater
@@ -217,6 +218,7 @@ object Kim {
         return@tryWithImageWriteException when (imageFormat) {
             ImageFormat.JPEG -> JpegUpdater.update(prePendingByteReader, byteWriter, update)
             ImageFormat.PNG -> PngUpdater.update(prePendingByteReader, byteWriter, update)
+            ImageFormat.JXL -> JxlUpdater.update(prePendingByteReader, byteWriter, update)
             null -> throw ImageWriteException("Unknown or unsupported file format.")
             else -> throw ImageWriteException("Can't embed metadata into $imageFormat.")
         }
@@ -234,6 +236,7 @@ object Kim {
         return@tryWithImageWriteException when (imageFormat) {
             ImageFormat.JPEG -> JpegUpdater.updateThumbnail(bytes, thumbnailBytes)
             ImageFormat.PNG -> PngUpdater.updateThumbnail(bytes, thumbnailBytes)
+            ImageFormat.JXL -> JxlUpdater.updateThumbnail(bytes, thumbnailBytes)
             null -> throw ImageWriteException("Unknown or unsupported file format.")
             else -> throw ImageWriteException("Can't embed thumbnail into $imageFormat.")
         }

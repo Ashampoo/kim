@@ -13,13 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.ashampoo.kim.format.jxl.box
+package com.ashampoo.kim.format.jxl
 
 import com.ashampoo.kim.common.ImageWriteException
 import com.ashampoo.kim.format.bmff.BMFFConstants
 import com.ashampoo.kim.format.bmff.BoxReader
 import com.ashampoo.kim.format.bmff.BoxType
 import com.ashampoo.kim.format.bmff.box.Box
+import com.ashampoo.kim.format.jxl.box.CompressedBox
 import com.ashampoo.kim.input.ByteReader
 import com.ashampoo.kim.output.ByteWriter
 
