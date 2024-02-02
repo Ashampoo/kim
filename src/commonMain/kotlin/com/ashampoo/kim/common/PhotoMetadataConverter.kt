@@ -31,10 +31,14 @@ import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toInstant
 
 fun ImageMetadata.convertToPhotoMetadata(
-    includeThumbnail: Boolean = false
+    includeThumbnail: Boolean = false,
+    ignoreOrientation: Boolean = false
 ): PhotoMetadata {
 
-    val orientation = TiffOrientation.of(findShortValue(TiffTag.TIFF_TAG_ORIENTATION)?.toInt())
+    val orientation = if (ignoreOrientation)
+        TiffOrientation.STANDARD
+    else
+        TiffOrientation.of(findShortValue(TiffTag.TIFF_TAG_ORIENTATION)?.toInt())
 
     val takenDateMillis = extractTakenDateMillis(this)
 
