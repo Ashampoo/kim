@@ -64,7 +64,10 @@ internal object PngUpdater : MetadataUpdater {
             val exifBytesWriter = ByteArrayByteWriter()
 
             TiffWriterBase
-                .createTiffWriter(metadata.exifBytes)
+                .createTiffWriter(
+                    byteOrder = outputSet.byteOrder,
+                    oldExifBytes = metadata.exifBytes
+                )
                 .write(exifBytesWriter, outputSet)
 
             exifBytesWriter.toByteArray()
@@ -109,7 +112,10 @@ internal object PngUpdater : MetadataUpdater {
         val exifBytesWriter = ByteArrayByteWriter()
 
         TiffWriterBase
-            .createTiffWriter(metadata.exifBytes)
+            .createTiffWriter(
+                byteOrder = outputSet.byteOrder,
+                oldExifBytes = metadata.exifBytes
+            )
             .write(exifBytesWriter, outputSet)
 
         val exifBytes = exifBytesWriter.toByteArray()
@@ -121,7 +127,7 @@ internal object PngUpdater : MetadataUpdater {
             byteWriter = byteWriter,
             exifBytes = exifBytes,
             iptcBytes = null,
-            xmp = null
+            xmp = null // No change to XMP
         )
 
         return byteWriter.toByteArray()

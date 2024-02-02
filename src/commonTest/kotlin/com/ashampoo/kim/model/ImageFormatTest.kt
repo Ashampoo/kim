@@ -57,7 +57,7 @@ class ImageFormatTest {
                 index == KimTestData.HEIC_TEST_IMAGE_FROM_JPG_USING_IMAGEMAGICK_INDEX -> ImageFormat.HEIC
                 index == KimTestData.HEIC_TEST_IMAGE_FROM_JPG_USING_APPLE_INDEX -> ImageFormat.HEIC
                 index == KimTestData.HEIC_TEST_IMAGE_FROM_SAMSUNG_INDEX -> ImageFormat.HEIC
-                index == KimTestData.JXL_NAKED_CODESTREAM_INDEX -> null
+                index == KimTestData.JXL_CONTAINER_DARKTABLE_INDEX -> ImageFormat.JXL
                 index == KimTestData.JXL_CONTAINER_UNCOMPRESSED_INDEX -> ImageFormat.JXL
                 index == KimTestData.JXL_CONTAINER_COMPRESSED_INDEX -> ImageFormat.JXL
                 else -> null

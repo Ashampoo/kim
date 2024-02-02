@@ -16,6 +16,6 @@ pnoto_75.heic = photo_31.jpg converted to HEIC using ImageMagick
 pnoto_76.heic = photo_1.jpg converted to HEIC using Apple Preview
 photo_77.heic = Samsung Galaxy S21 5G Ultra OOC-HEIC
 
-photo_78.jxl = photo_6.jpg -> JXL naked codestream (converted JPG with GIMP)
+photo_78.jxl = photo_6.jpg -> JXL using converted with darktable 4.6.0 from the JPG
 photo_79.jxl = photo_6.jpg -> JXL using cjxl with container & without metadata compression
 photo_80.jxl = photo_6.jpg -> JXL using cjxl with container & with metadata compression

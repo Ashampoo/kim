@@ -31,10 +31,14 @@ import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toInstant
 
 fun ImageMetadata.convertToPhotoMetadata(
-    includeThumbnail: Boolean = false
+    includeThumbnail: Boolean = false,
+    ignoreOrientation: Boolean = false
 ): PhotoMetadata {
 
-    val orientation = TiffOrientation.of(findShortValue(TiffTag.TIFF_TAG_ORIENTATION)?.toInt())
+    val orientation = if (ignoreOrientation)
+        TiffOrientation.STANDARD
+    else
+        TiffOrientation.of(findShortValue(TiffTag.TIFF_TAG_ORIENTATION)?.toInt())
 
     val takenDateMillis = extractTakenDateMillis(this)
 
@@ -126,15 +130,7 @@ private fun extractTakenDateAsIso(metadata: ImageMetadata): String? {
     if (takenDate == null && takenDateField != null)
         takenDate = takenDateField.toStringValue()
 
-    if (takenDate == null)
-        return null
-
-    /*
-     * We need to check if the taken date is a placeholder value.
-     * If it's a placeholder, "exif.dateOriginal" will return wrong values.
-     * See https://github.com/drewnoakes/metadata-extractor/issues/609
-     */
-    if (isExifDateEmpty(takenDate))
+    if (takenDate == null || isExifDateEmpty(takenDate))
         return null
 
     return convertExifDateToIso8601Date(takenDate)

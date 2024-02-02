@@ -104,6 +104,11 @@ data class BoxType internal constructor(
         val XML = of("xml ".encodeToByteArray())
 
         /**
+         * Extra box for brotli compressed data as part of the JPEG XL spec.
+         */
+        val BROB = of("brob".encodeToByteArray())
+
+        /**
          * JPEG XL partical codestream box
          */
         val JXLP = of("jxlp".encodeToByteArray())

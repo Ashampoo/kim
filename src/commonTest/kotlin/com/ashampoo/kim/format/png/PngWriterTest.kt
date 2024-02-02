@@ -33,6 +33,7 @@ import com.ashampoo.kim.testdata.KimTestData
 import kotlinx.io.files.Path
 import kotlin.test.BeforeTest
 import kotlin.test.Test
+import kotlin.test.assertContentEquals
 import kotlin.test.assertEquals
 import kotlin.test.assertNotEquals
 import kotlin.test.assertNotNull
@@ -57,6 +58,41 @@ class PngWriterTest {
     @BeforeTest
     fun setUp() {
         Kim.underUnitTesting = true
+    }
+
+    /**
+     * Tests that there is no loss if writing
+     * the PNG chunks again without any change.
+     *
+     * This basically tests if write order is
+     * kept and CRC calculation is correct.
+     */
+    @Test
+    fun testNoChange() {
+
+        for (index in KimTestData.pngPhotoIds) {
+
+            val bytes = KimTestData.getBytesOf(index)
+
+            val byteReader = ByteArrayByteReader(bytes)
+
+            val byteWriter = ByteArrayByteWriter()
+
+            PngWriter.writeImage(
+                byteReader = byteReader,
+                byteWriter = byteWriter,
+                exifBytes = null,
+                iptcBytes = null,
+                xmp = null
+            )
+
+            val newBytes = byteWriter.toByteArray()
+
+            assertContentEquals(
+                expected = bytes,
+                actual = newBytes
+            )
+        }
     }
 
     /**
@@ -94,9 +130,14 @@ class PngWriterTest {
             val oldExifBytes = oldMetadata.exifBytes
 
             val writer = if (oldExifBytes != null)
-                TiffWriterLossless(exifBytes = oldExifBytes)
+                TiffWriterLossless(
+                    byteOrder = tiffOutputSet.byteOrder,
+                    exifBytes = oldExifBytes
+                )
             else
-                TiffWriterLossy()
+                TiffWriterLossy(
+                    byteOrder = tiffOutputSet.byteOrder
+                )
 
             writer.write(exifBytesWriter, tiffOutputSet)
 

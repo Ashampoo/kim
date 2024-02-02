@@ -62,7 +62,9 @@ private fun Short.toBytes(byteOrder: ByteOrder, result: ByteArray, offset: Int) 
 fun Int.toBytes(byteOrder: ByteOrder): ByteArray {
 
     val result = ByteArray(4)
+
     this.toBytes(byteOrder, result, 0)
+
     return result
 }
 
@@ -97,7 +99,9 @@ private fun Int.toBytes(byteOrder: ByteOrder, result: ByteArray, offset: Int) {
 fun Float.toBytes(byteOrder: ByteOrder): ByteArray {
 
     val result = ByteArray(4)
+
     this.toBytes(byteOrder, result, 0)
+
     return result
 }
 

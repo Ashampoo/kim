@@ -20,7 +20,7 @@ It's part of [Ashampoo Photos](https://ashampoo.com/photos).
     + Also read non-standard EXIF & IPTC from `tEXt`/`zTXt` chunk
 * WebP: Read EXIF & XMP
 * HEIC / AVIF: Read EXIF & XMP
-* JPEG XL: Read EXIF & XMP of uncompressed files
+* JXL: Read & Write EXIF & XMP of uncompressed files
 * TIFF / RAW: Read EXIF & XMP
     + Full support for Adobe DNG, Canon CR2 & Fujifilm RAF
     + Support for Nikon NEF, Sony ARW & Olympus ORF without lens info
@@ -37,7 +37,7 @@ of Ashampoo Photos, which, in turn, is driven by user community feedback.
 ## Installation
 
 ```
-implementation("com.ashampoo:kim:0.12.1")
+implementation("com.ashampoo:kim:0.13")
 ```
 
 ## Sample usages

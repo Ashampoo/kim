@@ -4,7 +4,7 @@ import org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalWasmDsl
 
 plugins {
     kotlin("multiplatform") version "1.9.22"
-    id("com.android.library") version "8.0.2"
+    id("com.android.library") version "8.1.1"
     id("maven-publish")
     id("signing")
     id("io.gitlab.arturbosch.detekt") version "1.23.4"
@@ -13,7 +13,7 @@ plugins {
     id("com.asarkar.gradle.build-time-tracker") version "4.3.0"
     id("me.qoomon.git-versioning") version "6.4.3"
     id("com.goncalossilva.resources") version "0.4.0"
-    id("com.github.ben-manes.versions") version "0.50.0"
+    id("com.github.ben-manes.versions") version "0.51.0"
     id("org.jetbrains.dokka") version "1.9.10"
 }
 
@@ -24,11 +24,11 @@ repositories {
 
 val productName = "Ashampoo Kim"
 
-val ktorVersion: String = "2.3.7"
+val ktorVersion: String = "2.3.8"
 val xmpCoreVersion: String = "1.0.0"
 val dateTimeVersion: String = "0.5.0"
 val testRessourcesVersion: String = "0.4.0"
-val ioCoreVersion: String = "0.3.0"
+val ioCoreVersion: String = "0.3.1"
 
 description = productName
 group = "com.ashampoo"

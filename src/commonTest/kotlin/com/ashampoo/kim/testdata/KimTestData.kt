@@ -60,7 +60,7 @@ object KimTestData {
     const val HEIC_TEST_IMAGE_FROM_JPG_USING_IMAGEMAGICK_INDEX: Int = 75
     const val HEIC_TEST_IMAGE_FROM_JPG_USING_APPLE_INDEX: Int = 76
     const val HEIC_TEST_IMAGE_FROM_SAMSUNG_INDEX: Int = 77
-    const val JXL_NAKED_CODESTREAM_INDEX: Int = 78
+    const val JXL_CONTAINER_DARKTABLE_INDEX: Int = 78
     const val JXL_CONTAINER_UNCOMPRESSED_INDEX: Int = 79
     const val JXL_CONTAINER_COMPRESSED_INDEX: Int = 80
 
@@ -98,6 +98,12 @@ object KimTestData {
         PNG_GIMP_TEST_IMAGE_INDEX
     )
 
+    val jxlPhotoIds: Set<Int> = setOf(
+        JXL_CONTAINER_DARKTABLE_INDEX,
+        JXL_CONTAINER_UNCOMPRESSED_INDEX,
+        JXL_CONTAINER_COMPRESSED_INDEX
+    )
+
     private fun getExtension(index: Int) = when (index) {
         GIF_TEST_IMAGE_INDEX -> "gif"
         WEBP_TEST_IMAGE_INDEX -> "webp"
@@ -126,7 +132,7 @@ object KimTestData {
         DNG_RW2_TEST_IMAGE_INDEX -> "dng"
         DNG_ORF_TEST_IMAGE_INDEX -> "dng"
         HIF_TEST_IMAGE_INDEX -> "hif"
-        JXL_NAKED_CODESTREAM_INDEX -> "jxl"
+        JXL_CONTAINER_DARKTABLE_INDEX -> "jxl"
         JXL_CONTAINER_UNCOMPRESSED_INDEX -> "jxl"
         JXL_CONTAINER_COMPRESSED_INDEX -> "jxl"
         else -> "jpg"
