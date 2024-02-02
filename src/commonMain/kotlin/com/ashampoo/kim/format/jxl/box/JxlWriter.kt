@@ -15,6 +15,7 @@
  */
 package com.ashampoo.kim.format.jxl.box
 
+import com.ashampoo.kim.common.ImageWriteException
 import com.ashampoo.kim.format.bmff.BMFFConstants
 import com.ashampoo.kim.format.bmff.BoxReader
 import com.ashampoo.kim.format.bmff.BoxType
@@ -23,6 +24,15 @@ import com.ashampoo.kim.input.ByteReader
 import com.ashampoo.kim.output.ByteWriter
 
 object JxlWriter {
+
+    /*
+     * As a safety measure we don't want to write uncompressed boxes to
+     * a file that already has compressed boxes. This might cause data loss.
+     */
+    private const val BROB_WARNING =
+        "This file contains compressed data we can't yet read. " +
+            "Writing to this file will result in data loss. " +
+            "Please only update uncompressed metadata for now."
 
     fun writeImage(
         byteReader: ByteReader,
@@ -44,6 +54,21 @@ object JxlWriter {
     ) {
 
         val modifiedBoxes = boxes.toMutableList()
+
+        /*
+         * Security check first
+         */
+
+        val compressedBoxes = modifiedBoxes.filterIsInstance<CompressedBox>()
+
+        if (compressedBoxes.isNotEmpty()) {
+
+            if (exifBytes != null && compressedBoxes.any { it.actualType == BoxType.EXIF })
+                throw ImageWriteException(BROB_WARNING)
+
+            if (xmp != null && compressedBoxes.any { it.actualType == BoxType.XML })
+                throw ImageWriteException(BROB_WARNING)
+        }
 
         /*
          * Delete old boxes that are going to be replaced.

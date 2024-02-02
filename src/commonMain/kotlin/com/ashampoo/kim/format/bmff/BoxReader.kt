@@ -26,6 +26,7 @@ import com.ashampoo.kim.format.bmff.box.ItemLocationBox
 import com.ashampoo.kim.format.bmff.box.MediaDataBox
 import com.ashampoo.kim.format.bmff.box.MetaBox
 import com.ashampoo.kim.format.bmff.box.PrimaryItemBox
+import com.ashampoo.kim.format.jxl.box.CompressedBox
 import com.ashampoo.kim.format.jxl.box.ExifBox
 import com.ashampoo.kim.format.jxl.box.JxlParticalCodestreamBox
 import com.ashampoo.kim.format.jxl.box.XmlBox
@@ -130,6 +131,7 @@ object BoxReader {
                 BoxType.EXIF -> ExifBox(globalOffset, size, largeSize, bytes)
                 BoxType.XML -> XmlBox(globalOffset, size, largeSize, bytes)
                 BoxType.JXLP -> JxlParticalCodestreamBox(globalOffset, size, largeSize, bytes)
+                BoxType.BROB -> CompressedBox(globalOffset, size, largeSize, bytes)
                 else -> Box(type, globalOffset, size, largeSize, bytes)
             }
 
