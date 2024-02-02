@@ -32,4 +32,16 @@ interface ByteWriter : Closeable {
         write(0xFF and (value shr 8))
         write(0xFF and (value shr 0))
     }
+
+    @Suppress("MagicNumber")
+    fun writeLong(value: Long) {
+        write(0xFF and (value shr 56).toInt())
+        write(0xFF and (value shr 48).toInt())
+        write(0xFF and (value shr 40).toInt())
+        write(0xFF and (value shr 32).toInt())
+        write(0xFF and (value shr 24).toInt())
+        write(0xFF and (value shr 16).toInt())
+        write(0xFF and (value shr 8).toInt())
+        write(0xFF and value.toInt())
+    }
 }
