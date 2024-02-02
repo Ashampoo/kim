@@ -21,6 +21,7 @@ import com.ashampoo.kim.format.bmff.BoxReader
 import com.ashampoo.kim.format.bmff.BoxType
 import com.ashampoo.kim.format.bmff.box.Box
 import com.ashampoo.kim.format.jxl.box.CompressedBox
+import com.ashampoo.kim.format.jxl.box.JxlParticalCodestreamBox
 import com.ashampoo.kim.input.ByteReader
 import com.ashampoo.kim.output.ByteWriter
 
@@ -85,7 +86,13 @@ object JxlWriter {
 
         /*
          * Write the new file
+         *
+         * We look first if there is a JXLP header box.
+         * If so, this is the right place to insert metadata after.
+         * Otherwise we insert right after FTYP.
          */
+        val jxlpHeaderBox =
+            modifiedBoxes.filterIsInstance<JxlParticalCodestreamBox>().firstOrNull { it.isHeader }
 
         for (box in modifiedBoxes) {
 
@@ -99,8 +106,11 @@ object JxlWriter {
 
             byteWriter.write(box.payload)
 
-            /* Write new metadata chunks right after the FTYP box. */
-            if (BoxType.FTYP == box.type) {
+            val shouldInsertMetadata =
+                jxlpHeaderBox != null && box == jxlpHeaderBox ||
+                    jxlpHeaderBox == null && box.type == BoxType.FTYP
+
+            if (shouldInsertMetadata) {
 
                 if (exifBytes != null) {
 
