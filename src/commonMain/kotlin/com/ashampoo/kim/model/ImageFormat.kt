@@ -41,7 +41,8 @@ enum class ImageFormat(
     RW2("image/x-panasonic-rw2", "com.panasonic.raw-image", setOf("rw2")),
     ORF("image/x-olympus-orf", "com.olympus.raw-image", setOf("orf")),
     DNG("image/x-adobe-dng", "com.adobe.raw-image", setOf("dng")),
-    JXL("image/jxl", "public.jxl", setOf("jxl"));
+    JXL("image/jxl", "public.jxl", setOf("jxl")),
+    MP4("video/mp4", "public.mpeg-4", setOf("mp4"));
 
     fun isMetadataEmbeddable(): Boolean =
         this == ImageFormat.JPEG || this == ImageFormat.PNG || this == ImageFormat.JXL
@@ -181,6 +182,8 @@ enum class ImageFormat(
                 bytes.startsWithNullable(ImageFormatMagicNumbers.hevx) -> ImageFormat.HEIC
                 /* Check AVIF */
                 bytes.startsWithNullable(ImageFormatMagicNumbers.avif) -> ImageFormat.AVIF
+                /* Check MP4 */
+                // TODO
                 /* Check GIF and other unlikely formats... */
                 bytes.startsWith(ImageFormatMagicNumbers.gif87a) -> ImageFormat.GIF
                 bytes.startsWith(ImageFormatMagicNumbers.gif89a) -> ImageFormat.GIF

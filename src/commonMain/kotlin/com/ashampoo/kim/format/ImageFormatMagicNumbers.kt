@@ -115,6 +115,51 @@ object ImageFormatMagicNumbers {
         null, null, null, null
     ).plus("ftypavif".encodeToByteArray().toList())
 
+    /*
+     * MP4 Base w/ AVC ext [ISO 14496-12:2005]
+     *
+     * See http://www.ftyps.com/
+     */
+    val avc1: List<Byte?> = byteListOf(
+        null, null, null, null
+    ).plus("ftyavc1".encodeToByteArray().toList())
+
+    /*
+     * MP4 Base Media v2 [ISO 14496-12:2005]
+     *
+     * See http://www.ftyps.com/
+     */
+    val iso2: List<Byte?> = byteListOf(
+        null, null, null, null
+    ).plus("ftyiso2".encodeToByteArray().toList())
+
+    /*
+     * MP4 Base Media v1 [IS0 14496-12:2003]
+     *
+     * See http://www.ftyps.com/
+     */
+    val isom: List<Byte?> = byteListOf(
+        null, null, null, null
+    ).plus("ftyisom".encodeToByteArray().toList())
+
+    /*
+     * MP4 v1 [ISO 14496-1:ch13]
+     *
+     * See http://www.ftyps.com/
+     */
+    val mp41: List<Byte?> = byteListOf(
+        null, null, null, null
+    ).plus("ftymp41".encodeToByteArray().toList())
+
+    /*
+     * MP4 v2 [ISO 14496-14]
+     *
+     * See http://www.ftyps.com/
+     */
+    val mp42: List<Byte?> = byteListOf(
+        null, null, null, null
+    ).plus("ftymp42".encodeToByteArray().toList())
+
     /* The regular ISOBMFF-based JPEG XL */
     val jxl: List<Byte> = byteListOf(
         0x00, 0x00, 0x00, 0x0C, 0x4A, 0x58, 0x4C, 0x20, 0x0D, 0x0A, 0x87, 0x0A
