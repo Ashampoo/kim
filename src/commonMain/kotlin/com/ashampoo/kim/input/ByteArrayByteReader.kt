@@ -44,7 +44,12 @@ class ByteArrayByteReader(
 
     override fun readBytes(count: Int): ByteArray {
 
-        val bytes = bytes.copyOfRange(currentPosition, min(currentPosition + count, bytes.size))
+        val targetToIndex = currentPosition + count
+
+        val bytes = bytes.copyOfRange(
+            fromIndex = currentPosition,
+            toIndex = min(targetToIndex, bytes.size)
+        )
 
         currentPosition += bytes.size
 

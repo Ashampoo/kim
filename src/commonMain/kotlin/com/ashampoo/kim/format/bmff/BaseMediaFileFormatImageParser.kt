@@ -25,6 +25,7 @@ import com.ashampoo.kim.format.bmff.BMFFConstants.TIFF_HEADER_OFFSET_BYTE_COUNT
 import com.ashampoo.kim.format.bmff.box.FileTypeBox
 import com.ashampoo.kim.format.bmff.box.MetaBox
 import com.ashampoo.kim.format.jxl.JxlReader
+import com.ashampoo.kim.format.tiff.TiffContents
 import com.ashampoo.kim.format.tiff.TiffReader
 import com.ashampoo.kim.input.ByteArrayByteReader
 import com.ashampoo.kim.input.ByteReader
@@ -100,24 +101,51 @@ object BaseMediaFileFormatImageParser : ImageParser {
          */
         val onPositionBeforeMinimumOffset = position <= minOffset
 
-        val byteReaderToUse = if (onPositionBeforeMinimumOffset)
+        val byteReaderToUse = if (onPositionBeforeMinimumOffset) {
+
             byteReader
-        else
+
+        } else {
+
+            /* Read all remaining bytes. */
+            copyByteReader.readRemainingBytes()
+
             ByteArrayByteReader(copyByteReader.getBytes())
+        }
+
+        check(byteReader.contentLength == byteReaderToUse.contentLength) {
+            "Content length is different: ${byteReader.contentLength} != ${byteReaderToUse.contentLength}"
+        }
 
         if (!onPositionBeforeMinimumOffset)
             position = 0
 
         var exifBytes: ByteArray? = null
+        var exif: TiffContents? = null
         var xmp: String? = null
 
+        @Suppress("LoopWithTooManyJumpStatements")
         for (offset in metadataOffsets) {
+
+            /*
+             * Ignore illegal offsets.
+             * endPosition is checked for negative values to also catch value overflows.
+             */
+            if (offset.endPosition < 0 || offset.endPosition > byteReader.contentLength) {
+                println("Ignored illegal start offset: $offset")
+                continue
+            }
 
             when (offset.type) {
 
                 MetadataType.EXIF -> {
+
                     exifBytes = readExifBytes(byteReaderToUse, position, offset)
-                    position = offset.offset + offset.length
+
+                    /* Parse EXIF in place to fail fast if reading went wrong. */
+                    exif = TiffReader.read(exifBytes)
+
+                    position = offset.endPosition
                 }
 
                 MetadataType.IPTC ->
@@ -125,12 +153,10 @@ object BaseMediaFileFormatImageParser : ImageParser {
 
                 MetadataType.XMP -> {
                     xmp = readXmpString(byteReaderToUse, position, offset)
-                    position = offset.offset + offset.length
+                    position = offset.endPosition
                 }
             }
         }
-
-        val exif = exifBytes?.let { TiffReader.read(exifBytes) }
 
         return ImageMetadata(
             imageFormat = null, // could be any ISO BMFF
@@ -165,7 +191,7 @@ object BaseMediaFileFormatImageParser : ImageParser {
         val exifBytesLength =
             offset.length.toInt() - TIFF_HEADER_OFFSET_BYTE_COUNT - tiffHeaderOffset
 
-        return byteReader.readBytes(exifBytesLength)
+        return byteReader.readBytes("EXIF extent data", exifBytesLength)
     }
 
     private fun readXmpString(
@@ -182,7 +208,7 @@ object BaseMediaFileFormatImageParser : ImageParser {
 
         byteReader.skipBytes("offset to MIME extent", bytesToSkip.toInt())
 
-        val mimeBytes = byteReader.readBytes(offset.length.toInt())
+        val mimeBytes = byteReader.readBytes("MIME extent data", offset.length.toInt())
 
         return mimeBytes.decodeToString()
     }
