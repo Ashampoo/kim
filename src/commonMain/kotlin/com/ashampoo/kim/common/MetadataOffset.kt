@@ -19,4 +19,7 @@ data class MetadataOffset(
     val type: MetadataType,
     val offset: Long,
     val length: Long
-)
+) {
+
+    val endPosition = offset + length
+}
