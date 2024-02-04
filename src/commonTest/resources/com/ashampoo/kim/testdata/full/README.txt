@@ -1,4 +1,4 @@
-# Special photos
+# Special files
 
 photo_20.jpg = EXIF DateTimeOriginal with all zeros
 photo_21.jpg = Corrupted IFD1
@@ -19,3 +19,6 @@ photo_77.heic = Samsung Galaxy S21 5G Ultra OOC-HEIC
 photo_78.jxl = photo_6.jpg -> JXL using converted with darktable 4.6.0 from the JPG
 photo_79.jxl = photo_6.jpg -> JXL using cjxl with container & without metadata compression
 photo_80.jxl = photo_6.jpg -> JXL using cjxl with container & with metadata compression
+
+photo_81.mp4 = Fuji X-T4 OOC-MP4
+photo_82.mov = Fuji X-T4 OOC-MOV

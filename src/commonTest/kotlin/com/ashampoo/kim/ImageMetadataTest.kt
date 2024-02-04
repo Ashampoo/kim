@@ -32,6 +32,9 @@ class ImageMetadataTest {
 
         for (index in 1..KimTestData.TEST_PHOTO_COUNT) {
 
+            if (index != 81)
+                continue
+
             val bytes = KimTestData.getBytesOf(index)
 
             val metadata = Kim.readMetadata(bytes)

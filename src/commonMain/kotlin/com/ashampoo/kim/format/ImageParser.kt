@@ -50,6 +50,8 @@ fun interface ImageParser {
 
                 ImageFormat.RAF -> RafImageParser
 
+                ImageFormat.MP4,
+                ImageFormat.MOV,
                 ImageFormat.HEIC,
                 ImageFormat.AVIF,
                 ImageFormat.JXL -> BaseMediaFileFormatImageParser

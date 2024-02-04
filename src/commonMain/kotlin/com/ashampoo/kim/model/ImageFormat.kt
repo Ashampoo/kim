@@ -42,7 +42,8 @@ enum class ImageFormat(
     ORF("image/x-olympus-orf", "com.olympus.raw-image", setOf("orf")),
     DNG("image/x-adobe-dng", "com.adobe.raw-image", setOf("dng")),
     JXL("image/jxl", "public.jxl", setOf("jxl")),
-    MP4("video/mp4", "public.mpeg-4", setOf("mp4"));
+    MP4("video/mp4", "public.mpeg-4", setOf("mp4")),
+    MOV("video/quicktime", "com.apple.quicktime-movie", setOf("mov"));
 
     fun isMetadataEmbeddable(): Boolean =
         this == ImageFormat.JPEG || this == ImageFormat.PNG || this == ImageFormat.JXL
@@ -183,7 +184,13 @@ enum class ImageFormat(
                 /* Check AVIF */
                 bytes.startsWithNullable(ImageFormatMagicNumbers.avif) -> ImageFormat.AVIF
                 /* Check MP4 */
-                // TODO
+                bytes.startsWithNullable(ImageFormatMagicNumbers.avc1) -> ImageFormat.MP4
+                bytes.startsWithNullable(ImageFormatMagicNumbers.iso2) -> ImageFormat.MP4
+                bytes.startsWithNullable(ImageFormatMagicNumbers.isom) -> ImageFormat.MP4
+                bytes.startsWithNullable(ImageFormatMagicNumbers.mp41) -> ImageFormat.MP4
+                bytes.startsWithNullable(ImageFormatMagicNumbers.mp42) -> ImageFormat.MP4
+                /* Check MOV */
+                bytes.startsWithNullable(ImageFormatMagicNumbers.mov) -> ImageFormat.MOV
                 /* Check GIF and other unlikely formats... */
                 bytes.startsWith(ImageFormatMagicNumbers.gif87a) -> ImageFormat.GIF
                 bytes.startsWith(ImageFormatMagicNumbers.gif89a) -> ImageFormat.GIF
