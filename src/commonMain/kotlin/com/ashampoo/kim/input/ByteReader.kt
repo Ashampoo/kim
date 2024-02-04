@@ -194,12 +194,19 @@ interface ByteReader : Closeable {
 
         while (count != total) {
 
-            val skipped = readBytes(count.toInt()).size
+            val skippedByteCount = readBytes(count).size
 
-            if (skipped < 1)
-                throw ImageReadException("$fieldName (skipped $skipped of $count bytes)")
+            if (skippedByteCount == 0) {
 
-            total += skipped
+                val missingBytesCount = count - total
+
+                throw ImageReadException(
+                    "Skipped $total bytes of $count for $fieldName: " +
+                    "Missing $missingBytesCount bytes."
+                )
+            }
+
+            total += skippedByteCount
         }
     }
 
