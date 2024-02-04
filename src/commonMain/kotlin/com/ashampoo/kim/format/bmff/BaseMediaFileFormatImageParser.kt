@@ -101,10 +101,21 @@ object BaseMediaFileFormatImageParser : ImageParser {
          */
         val onPositionBeforeMinimumOffset = position <= minOffset
 
-        val byteReaderToUse = if (onPositionBeforeMinimumOffset)
+        val byteReaderToUse = if (onPositionBeforeMinimumOffset) {
+
             byteReader
-        else
+
+        } else {
+
+            /* Read all remaining bytes. */
+            copyByteReader.readRemainingBytes()
+
             ByteArrayByteReader(copyByteReader.getBytes())
+        }
+
+        check(byteReader.contentLength == byteReaderToUse.contentLength) {
+            "Content length is different: ${byteReader.contentLength} != ${byteReaderToUse.contentLength}"
+        }
 
         if (!onPositionBeforeMinimumOffset)
             position = 0
