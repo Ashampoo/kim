@@ -21,17 +21,36 @@ import kotlinx.io.buffered
 import kotlinx.io.files.Path
 import kotlinx.io.files.SystemFileSystem
 import kotlinx.io.readByteArray
+import kotlin.math.min
 
 class KotlinIoSourceByteReader(
     val source: Source,
     override val contentLength: Long
 ) : ByteReader {
 
-    override fun readByte(): Byte? =
-        if (source.exhausted()) null else source.readByte()
+    private var position = 0
 
-    override fun readBytes(count: Int): ByteArray =
-        source.readByteArray(count)
+    private val remainingByteCount: Int
+        get() = (contentLength - position).toInt()
+
+    override fun readByte(): Byte? {
+
+        if (source.exhausted())
+            return null
+
+        position++
+
+        return source.readByte()
+    }
+
+    override fun readBytes(count: Int): ByteArray {
+
+        val bytes = source.readByteArray(min(count, remainingByteCount))
+
+        position += bytes.size
+
+        return bytes
+    }
 
     override fun close() =
         source.close()
