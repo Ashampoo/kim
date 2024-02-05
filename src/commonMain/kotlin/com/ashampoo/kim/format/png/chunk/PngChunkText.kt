@@ -35,21 +35,19 @@ class PngChunkText(
 
     init {
 
-        val index = bytes.indexOfNullTerminator()
+        val nullTerminatorIndex = bytes.indexOfNullTerminator()
 
-        if (index < 0)
+        if (nullTerminatorIndex < 0)
             throw ImageReadException("PNG tEXt chunk keyword is not terminated.")
 
         keyword = bytes.copyOfRange(
             fromIndex = 0,
-            toIndex = index
+            toIndex = nullTerminatorIndex
         ).decodeLatin1BytesToString()
 
-        val textLength = bytes.size - (index + 1)
-
         text = bytes.copyOfRange(
-            fromIndex = index + 1,
-            toIndex = textLength
+            fromIndex = nullTerminatorIndex + 1,
+            toIndex = bytes.size
         ).decodeLatin1BytesToString()
     }
 
