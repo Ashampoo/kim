@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.ashampoo.kim.format.jxl
+package com.ashampoo.kim.format.webp
 
 import com.ashampoo.kim.Kim
 import com.ashampoo.kim.common.writeBytes
@@ -33,7 +33,7 @@ import kotlin.test.assertNotEquals
 import kotlin.test.assertNotNull
 import kotlin.test.fail
 
-class JxlWriterTest {
+class WebPWriterTest {
 
     private val expectedXmp = """
         <?xpacket begin="﻿" id="W5M0MpCehiHzreSzNTczkc9d"?>
@@ -56,12 +56,12 @@ class JxlWriterTest {
 
     /**
      * Tests that there is no loss if writing
-     * the JXL chunks again without any change.
+     * the WebP chunks again without any change.
      */
     @Test
     fun testNoChange() {
 
-        for (index in KimTestData.jxlPhotoIds) {
+        for (index in KimTestData.webpPhotoIds) {
 
             val bytes = KimTestData.getBytesOf(index)
 
@@ -69,7 +69,7 @@ class JxlWriterTest {
 
             val byteWriter = ByteArrayByteWriter()
 
-            JxlWriter.writeImage(
+            WebPWriter.writeImage(
                 byteReader = byteReader,
                 byteWriter = byteWriter,
                 exifBytes = null,
@@ -77,6 +77,8 @@ class JxlWriterTest {
             )
 
             val newBytes = byteWriter.toByteArray()
+
+            Path("test.webp").writeBytes(newBytes)
 
             assertContentEquals(
                 expected = bytes,
@@ -92,11 +94,7 @@ class JxlWriterTest {
     @Test
     fun testUpdateMetadata() {
 
-        for (index in KimTestData.jxlPhotoIds) {
-
-            // TODO Support compressed boxes
-            if (index == KimTestData.JXL_CONTAINER_COMPRESSED_INDEX)
-                continue
+        for (index in KimTestData.webpPhotoIds) {
 
             val bytes = KimTestData.getBytesOf(index)
 
@@ -139,7 +137,7 @@ class JxlWriterTest {
 
             val byteWriter = ByteArrayByteWriter()
 
-            JxlWriter.writeImage(
+            WebPWriter.writeImage(
                 byteReader = ByteArrayByteReader(bytes),
                 byteWriter,
                 exifBytes,
@@ -165,7 +163,7 @@ class JxlWriterTest {
 
             if (!equals) {
 
-                Path("build/photo_${index}_modified.jxl")
+                Path("build/photo_${index}_modified.webp")
                     .writeBytes(newBytes)
 
                 /* Also write a string representation to see differences more quickly. */

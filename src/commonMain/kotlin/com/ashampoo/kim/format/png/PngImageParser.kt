@@ -55,6 +55,9 @@ object PngImageParser : ImageParser {
 
             val chunks = readChunks(byteReader, metadataChunkTypes)
 
+            if (chunks.isEmpty())
+                throw ImageReadException("Did not find any chunks in file.")
+
             return@tryWithImageReadException parseMetadataFromChunks(chunks)
         }
 
@@ -62,7 +65,18 @@ object PngImageParser : ImageParser {
     fun parseMetadataFromChunks(chunks: List<PngChunk>): ImageMetadata =
         tryWithImageReadException {
 
-            val imageSize = chunks.filterIsInstance<PngChunkIhdr>().first().imageSize
+            require(chunks.isNotEmpty()) {
+                "Given chunk list was empty."
+            }
+
+            val headerChunk = chunks.filterIsInstance<PngChunkIhdr>().firstOrNull()
+
+            checkNotNull(headerChunk) {
+                "Did not find mandatory IHDR chunk. " +
+                    "Found chunk types: ${chunks.map { it.type }}"
+            }
+
+            val imageSize = headerChunk.imageSize
 
             /*
              * We attempt to read EXIF data from the EXIF chunk, which has been the standard

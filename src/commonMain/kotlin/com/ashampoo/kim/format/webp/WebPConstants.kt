@@ -29,6 +29,8 @@ object WebPConstants {
 
     const val CHUNK_SIZE_LENGTH = 4
 
+    const val CHUNK_HEADER_LENGTH = WebPConstants.TPYE_LENGTH + WebPConstants.CHUNK_SIZE_LENGTH
+
     const val VP8X_PAYLOAD_LENGTH = 10
 
     /**

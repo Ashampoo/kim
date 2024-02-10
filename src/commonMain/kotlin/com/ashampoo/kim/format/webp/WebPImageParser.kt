@@ -47,7 +47,17 @@ object WebPImageParser : ImageParser {
                 stopAfterMetadataRead = true
             )
 
-            val imageSize = chunks.filterIsInstance<ImageSizeAware>().first().imageSize
+            if (chunks.isEmpty())
+                throw ImageReadException("Did not find any chunks in file.")
+
+            val imageSizeAwareChunk = chunks.filterIsInstance<ImageSizeAware>().firstOrNull()
+
+            checkNotNull(imageSizeAwareChunk) {
+                "Did not find a header chunk containing the image size. " +
+                    "Found chunk types: ${chunks.map { it.type }}"
+            }
+
+            val imageSize = imageSizeAwareChunk.imageSize
 
             val exifChunk = chunks.filterIsInstance<WebPChunkExif>().firstOrNull()
             val xmpChunk = chunks.filterIsInstance<WebPChunkXmp>().firstOrNull()
