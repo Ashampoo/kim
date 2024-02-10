@@ -64,13 +64,20 @@ object WebPWriter {
             contentByteWriter.write(chunk.type.bytes)
 
             contentByteWriter.writeInt(
-                WebPConstants.CHUNK_HEADER_LENGTH + chunk.bytes.size,
+                chunk.bytes.size,
                 WEBP_BYTE_ORDER
             )
 
             contentByteWriter.write(chunk.bytes)
 
-            val shouldInsertMetadata = false &&
+            /*
+             * If chunk size is odd, a single padding byte (which MUST be 0
+             * to conform with RIFF) is added.
+             */
+            if (chunk.bytes.size % 2 != 0)
+                contentByteWriter.write(0)
+
+            val shouldInsertMetadata =
                 chunk is ImageSizeAware
 
             if (shouldInsertMetadata) {
@@ -80,11 +87,18 @@ object WebPWriter {
                     contentByteWriter.write(WebPChunkType.EXIF.bytes)
 
                     contentByteWriter.writeInt(
-                        WebPConstants.CHUNK_HEADER_LENGTH + exifBytes.size,
+                        exifBytes.size,
                         WEBP_BYTE_ORDER
                     )
 
                     contentByteWriter.write(exifBytes)
+
+                    /*
+                     * If chunk size is odd, a single padding byte (which MUST be 0
+                     * to conform with RIFF) is added.
+                     */
+                    if (exifBytes.size % 2 != 0)
+                        contentByteWriter.write(0)
                 }
 
                 if (xmp != null) {
@@ -94,11 +108,18 @@ object WebPWriter {
                     contentByteWriter.write(WebPChunkType.XMP.bytes)
 
                     contentByteWriter.writeInt(
-                        WebPConstants.CHUNK_HEADER_LENGTH + xmpBytes.size,
+                        xmpBytes.size,
                         WEBP_BYTE_ORDER
                     )
 
                     contentByteWriter.write(xmpBytes)
+
+                    /*
+                     * If chunk size is odd, a single padding byte (which MUST be 0
+                     * to conform with RIFF) is added.
+                     */
+                    if (xmpBytes.size % 2 != 0)
+                        contentByteWriter.write(0)
                 }
             }
         }
