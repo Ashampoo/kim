@@ -16,7 +16,6 @@
 package com.ashampoo.kim.format.webp
 
 import com.ashampoo.kim.format.webp.WebPConstants.WEBP_BYTE_ORDER
-import com.ashampoo.kim.format.webp.chunk.ImageSizeAware
 import com.ashampoo.kim.format.webp.chunk.WebPChunk
 import com.ashampoo.kim.input.ByteReader
 import com.ashampoo.kim.output.ByteArrayByteWriter
@@ -59,6 +58,9 @@ object WebPWriter {
 
         contentByteWriter.write(WebPConstants.WEBP_SIGNATURE)
 
+        /*
+         * First write all other chunks in the original order.
+         */
         for (chunk in modifiedChunks) {
 
             contentByteWriter.write(chunk.type.bytes)
@@ -76,52 +78,57 @@ object WebPWriter {
              */
             if (chunk.bytes.size % 2 != 0)
                 contentByteWriter.write(0)
+        }
 
-            val shouldInsertMetadata =
-                chunk is ImageSizeAware
+        /*
+         * A major design flaw of WebP is that is specifies the metadata chunks to come last.
+         *
+         * This is what the documentation says:
+         * "All chunks SHOULD be placed in the same order as listed above. If a chunk appears in
+         * the wrong place, the file is invalid, but readers MAY parse the file, ignoring the
+         * chunks that are out of order."
+         *
+         * See https://developers.google.com/speed/webp/docs/riff_container#extended_file_format
+         */
 
-            if (shouldInsertMetadata) {
+        if (exifBytes != null) {
 
-                if (exifBytes != null) {
+            contentByteWriter.write(WebPChunkType.EXIF.bytes)
 
-                    contentByteWriter.write(WebPChunkType.EXIF.bytes)
+            contentByteWriter.writeInt(
+                exifBytes.size,
+                WEBP_BYTE_ORDER
+            )
 
-                    contentByteWriter.writeInt(
-                        exifBytes.size,
-                        WEBP_BYTE_ORDER
-                    )
+            contentByteWriter.write(exifBytes)
 
-                    contentByteWriter.write(exifBytes)
+            /*
+             * If chunk size is odd, a single padding byte (which MUST be 0
+             * to conform with RIFF) is added.
+             */
+            if (exifBytes.size % 2 != 0)
+                contentByteWriter.write(0)
+        }
 
-                    /*
-                     * If chunk size is odd, a single padding byte (which MUST be 0
-                     * to conform with RIFF) is added.
-                     */
-                    if (exifBytes.size % 2 != 0)
-                        contentByteWriter.write(0)
-                }
+        if (xmp != null) {
 
-                if (xmp != null) {
+            val xmpBytes = xmp.encodeToByteArray()
 
-                    val xmpBytes = xmp.encodeToByteArray()
+            contentByteWriter.write(WebPChunkType.XMP.bytes)
 
-                    contentByteWriter.write(WebPChunkType.XMP.bytes)
+            contentByteWriter.writeInt(
+                xmpBytes.size,
+                WEBP_BYTE_ORDER
+            )
 
-                    contentByteWriter.writeInt(
-                        xmpBytes.size,
-                        WEBP_BYTE_ORDER
-                    )
+            contentByteWriter.write(xmpBytes)
 
-                    contentByteWriter.write(xmpBytes)
-
-                    /*
-                     * If chunk size is odd, a single padding byte (which MUST be 0
-                     * to conform with RIFF) is added.
-                     */
-                    if (xmpBytes.size % 2 != 0)
-                        contentByteWriter.write(0)
-                }
-            }
+            /*
+             * If chunk size is odd, a single padding byte (which MUST be 0
+             * to conform with RIFF) is added.
+             */
+            if (xmpBytes.size % 2 != 0)
+                contentByteWriter.write(0)
         }
 
         val contentBytes = contentByteWriter.toByteArray()

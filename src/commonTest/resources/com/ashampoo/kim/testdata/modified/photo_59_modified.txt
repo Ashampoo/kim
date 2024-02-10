@@ -1,0 +1,74 @@
+File format : WEBP
+Resolution  : 5184 x 3456
+---- TIFF ----
+Version 42
+Little-endian (Intel, II)
+---- Directory IFD0 @ 8 ----
+0000000010 0x0100 ImageWidth = 5184
+0000000022 0x0101 ImageLength = 3456
+0000000034 0x0102 BitsPerSample = [8, 8, 8]
+0000000046 0x010f Make = Canon
+0000000058 0x0110 Model = Canon EOS Rebel T6
+0000000070 0x0112 Orientation = 1
+0000000082 0x011a XResolution = 240/1 (240.0)
+0000000094 0x011b YResolution = 240/1 (240.0)
+0000000106 0x0128 ResolutionUnit = 2
+0000000118 0x0131 Software = GIMP 2.10.30
+0000000130 0x0132 ModifyDate = 2022:09:26 14:42:58
+0000000142 0x8769 ExifOffset = 240
+
+---- Directory ExifIFD @ 240 ----
+0000000242 0x829a ExposureTime = 1/60 (0.016667)
+0000000254 0x829d FNumber = 8/1 (8.0)
+0000000266 0x8822 ExposureProgram = 8
+0000000278 0x8827 ISO = 100
+0000000290 0x8830 SensitivityType = 2
+0000000302 0x8832 RecommendedExposureIndex = 100
+0000000314 0x9000 ExifVersion = [0x30, 0x32, 0x33, 0x30]
+0000000326 0x9003 DateTimeOriginal = 2023:08:01 08:00:00
+0000000338 0x9004 DateTimeDigitized = 2019:07:24 17:15:41
+0000000350 0x9201 ShutterSpeedValue = 5906891/1000000 (5.906891)
+0000000362 0x9202 ApertureValue = 6/1 (6.0)
+0000000374 0x9204 ExposureCompensation = 0/1 (0.0)
+0000000386 0x9205 MaxApertureValue = 3625/1000 (3.625)
+0000000398 0x9207 MeteringMode = 5
+0000000410 0x9209 Flash = 16
+0000000422 0x920a FocalLength = 18/1 (18.0)
+0000000434 0x9291 SubSecTimeOriginal = 09
+0000000446 0x9292 SubSecTimeDigitized = 09
+0000000458 0xa001 ColorSpace = 1
+0000000470 0xa20e FocalPlaneXResolution = 5184000/905 (5728.176796)
+0000000482 0xa20f FocalPlaneYResolution = 3456000/595 (5808.403361)
+0000000494 0xa210 FocalPlaneResolutionUnit = 2
+0000000506 0xa401 CustomRendered = 0
+0000000518 0xa402 ExposureMode = 0
+0000000530 0xa403 WhiteBalance = 0
+0000000542 0xa406 SceneCaptureType = 0
+0000000554 0xa431 BodySerialNumber = 222073077744
+0000000566 0xa432 LensSpecification = [18/1 (18.0), 55/1 (55.0), Invalid rational (0/0), Invalid rational (0/0)]
+0000000578 0xa434 LensModel = EF-S18-55mm f/3.5-5.6 IS II
+0000000590 0xa435 LensSerialNumber = 000001a354
+
+---- Directory SubIFD @ 804 ----
+0000000806 0x00fe NewSubfileType = 1
+0000000818 0x0100 ImageWidth = 256
+0000000830 0x0101 ImageLength = 170
+0000000842 0x0102 BitsPerSample = [8, 8, 8]
+0000000854 0x0103 Compression = 6
+0000000866 0x0106 PhotometricInterpretation = 6
+0000000878 0x0115 SamplesPerPixel = 3
+0000000890 0x0201 JpgFromRawStart = 924
+0000000902 0x0202 JpgFromRawLength = 7245
+
+---- XMP ----
+<?xpacket begin="﻿" id="W5M0MpCehiHzreSzNTczkc9d"?>
+    <x:xmpmeta xmlns:x="adobe:ns:meta/" x:xmptk="Adobe XMP Core 6.1.10">
+      <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+        <rdf:Description rdf:about=""
+            xmlns:xmp="http://ns.adobe.com/xap/1.0/"
+            xmlns:exif="http://ns.adobe.com/exif/1.0/"
+          exif:DateTimeOriginal="2020-10-05T13:37:42"
+          xmp:Rating="3"/>
+      </rdf:RDF>
+    </x:xmpmeta>
+<?xpacket end="w"?>
