@@ -15,8 +15,11 @@
  */
 package com.ashampoo.kim.format.webp
 
+import com.ashampoo.kim.common.ImageWriteException
 import com.ashampoo.kim.format.webp.WebPConstants.WEBP_BYTE_ORDER
+import com.ashampoo.kim.format.webp.chunk.ImageSizeAware
 import com.ashampoo.kim.format.webp.chunk.WebPChunk
+import com.ashampoo.kim.format.webp.chunk.WebPChunkVP8X
 import com.ashampoo.kim.input.ByteReader
 import com.ashampoo.kim.output.ByteArrayByteWriter
 import com.ashampoo.kim.output.ByteWriter
@@ -42,6 +45,9 @@ object WebPWriter {
         xmp: String?
     ) {
 
+        if (chunks.isEmpty())
+            throw ImageWriteException("No chunks to write!")
+
         val modifiedChunks = chunks.toMutableList()
 
         /*
@@ -53,6 +59,54 @@ object WebPWriter {
 
         if (xmp != null)
             modifiedChunks.removeAll { it.type == WebPChunkType.XMP }
+
+        val headerChunk = modifiedChunks.first()
+
+        /**
+         * To write Exif & XMP we require the WebP file to have
+         * a VP8X header with the correct marks set.
+         *
+         * If it already has one, we correct the header.
+         * If it's missing the header we add it.
+         */
+        if (headerChunk is WebPChunkVP8X) {
+
+            val replacementChunk = WebPChunkVP8X(
+                bytes = WebPChunkVP8X.createBytes(
+                    hasIcc = headerChunk.hasIcc,
+                    hasAlpha = headerChunk.hasAlpha,
+                    hasExif = if (exifBytes != null) true else headerChunk.hasExif,
+                    hasXmp = if (xmp != null) true else headerChunk.hasXmp,
+                    hasAnimation = headerChunk.hasAnimation,
+                    imageSize = headerChunk.imageSize
+                )
+            )
+
+            modifiedChunks.set(
+                index = 0,
+                element = replacementChunk
+            )
+
+        } else {
+
+            /* Must be VP8 or VP8L */
+            if (headerChunk !is ImageSizeAware)
+                throw ImageWriteException("Illegal header chunk: $headerChunk")
+
+            modifiedChunks.add(
+                index = 0,
+                element = WebPChunkVP8X(
+                    bytes = WebPChunkVP8X.createBytes(
+                        hasIcc = false,
+                        hasAlpha = false,
+                        hasExif = exifBytes != null,
+                        hasXmp = xmp != null,
+                        hasAnimation = false,
+                        imageSize = headerChunk.imageSize
+                    )
+                )
+            )
+        }
 
         val contentByteWriter = ByteArrayByteWriter()
 
