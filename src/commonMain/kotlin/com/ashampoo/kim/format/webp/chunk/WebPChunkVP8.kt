@@ -20,6 +20,9 @@ import com.ashampoo.kim.common.ImageReadException
 import com.ashampoo.kim.format.webp.WebPChunkType
 import com.ashampoo.kim.model.ImageSize
 
+/*
+ * https://developers.google.com/speed/webp/docs/riff_container#simple_file_format_lossy
+ */
 @Suppress("MagicNumber")
 class WebPChunkVP8(
     bytes: ByteArray
