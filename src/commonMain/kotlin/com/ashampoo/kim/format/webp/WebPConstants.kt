@@ -29,4 +29,6 @@ object WebPConstants {
 
     const val CHUNK_SIZE_LENGTH = 4
 
+    const val VP8X_PAYLOAD_LENGTH = 10
+
 }

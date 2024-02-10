@@ -18,6 +18,7 @@ package com.ashampoo.kim.format.webp.chunk
 
 import com.ashampoo.kim.common.ImageReadException
 import com.ashampoo.kim.format.webp.WebPChunkType
+import com.ashampoo.kim.format.webp.WebPConstants.VP8X_PAYLOAD_LENGTH
 import com.ashampoo.kim.model.ImageSize
 
 /*
@@ -38,8 +39,8 @@ class WebPChunkVP8X(
 
     init {
 
-        if (bytes.size != REQUIRED_BYTE_SIZE)
-            throw ImageReadException("VP8X chunk size must be 10")
+        if (bytes.size != VP8X_PAYLOAD_LENGTH)
+            throw ImageReadException("VP8X chunk must be 10 bytes long.")
 
         val mark: Int = bytes[0].toInt() and 0xFF
 
@@ -71,9 +72,4 @@ class WebPChunkVP8X(
             " hasIcc=$hasIcc hasAlpha=$hasAlpha hasExif=$hasExif" +
             " hasXmp=$hasXmp hasAnimation=$hasAnimation" +
             " imageSize=$imageSize"
-
-    companion object {
-
-        private const val REQUIRED_BYTE_SIZE: Int = 10
-    }
 }
