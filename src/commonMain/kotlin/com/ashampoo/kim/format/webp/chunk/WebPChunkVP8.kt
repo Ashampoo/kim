@@ -18,6 +18,7 @@ package com.ashampoo.kim.format.webp.chunk
 
 import com.ashampoo.kim.common.ImageReadException
 import com.ashampoo.kim.format.webp.WebPChunkType
+import com.ashampoo.kim.format.webp.WebPConstants
 import com.ashampoo.kim.model.ImageSize
 
 /*
@@ -87,6 +88,9 @@ class WebPChunkVP8(
             width = b6 + (b7 and 63 shl 8),
             height = b8 + (b9 and 63 shl 8)
         )
+
+        if (imageSize.longestSide > WebPConstants.MAX_SIDE_LENGTH)
+            throw ImageReadException("Illegal dimensions: $imageSize")
 
         horizontalScale = b7 shr 6
         verticalScale = b9 shr 6

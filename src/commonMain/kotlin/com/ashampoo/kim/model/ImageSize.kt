@@ -15,10 +15,15 @@
  */
 package com.ashampoo.kim.model
 
+import kotlin.math.max
+
 data class ImageSize(
     val width: Int,
     val height: Int
 ) {
+
+    val longestSide: Int
+        get() = max(width, height)
 
     override fun toString(): String =
         "$width x $height"

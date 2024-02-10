@@ -15,29 +15,147 @@
  */
 package com.ashampoo.kim.format.webp.chunk
 
+import com.ashampoo.kim.common.convertHexStringToByteArray
+import com.ashampoo.kim.format.webp.WebPConstants
+import com.ashampoo.kim.model.ImageSize
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
 class WebPChunkVP8XTest {
 
-    val testBytes = byteArrayOf(
-        0x2C, 0x00, 0x00, 0x00, 0x3F, 0x14, 0x00, 0x7F, 0x0D, 0x00
-    )
-
+    /**
+     * Tests parsing headers of real WebP files.
+     */
     @Test
     fun testParse() {
 
         assertEquals(
-            "WebPChunk 'VP8X' (10 bytes) " +
+            expected = "WebPChunk 'VP8X' (10 bytes) " +
                 "hasIcc=true " +
                 "hasAlpha=false " +
                 "hasExif=true " +
                 "hasXmp=true " +
                 "hasAnimation=false " +
                 "imageSize=5184 x 3456",
-            WebPChunkVP8X(
-                testBytes
+            actual = WebPChunkVP8X(
+                convertHexStringToByteArray("2c0000003f14007f0d00")
             ).toString()
         )
+    }
+
+    /**
+     *
+     */
+    @Test
+    fun testCreateBytes() {
+
+        assertEquals(
+            expected = "WebPChunk 'VP8X' (10 bytes) " +
+                "hasIcc=false " +
+                "hasAlpha=false " +
+                "hasExif=false " +
+                "hasXmp=false " +
+                "hasAnimation=false " +
+                "imageSize=1 x 1",
+            actual = WebPChunkVP8X(
+                bytes = WebPChunkVP8X.createBytes(
+                    hasIcc = false,
+                    hasAlpha = false,
+                    hasExif = false,
+                    hasXmp = false,
+                    hasAnimation = false,
+                    imageSize = ImageSize(
+                        width = 1,
+                        height = 1
+                    )
+                )
+            ).toString()
+        )
+
+        assertEquals(
+            expected = "WebPChunk 'VP8X' (10 bytes) " +
+                "hasIcc=true " +
+                "hasAlpha=true " +
+                "hasExif=true " +
+                "hasXmp=true " +
+                "hasAnimation=true " +
+                "imageSize=512 x 512",
+            actual = WebPChunkVP8X(
+                bytes = WebPChunkVP8X.createBytes(
+                    hasIcc = true,
+                    hasAlpha = true,
+                    hasExif = true,
+                    hasXmp = true,
+                    hasAnimation = true,
+                    imageSize = ImageSize(
+                        width = 512,
+                        height = 512
+                    )
+                )
+            ).toString()
+        )
+
+        assertEquals(
+            expected = "WebPChunk 'VP8X' (10 bytes) " +
+                "hasIcc=false " +
+                "hasAlpha=true " +
+                "hasExif=true " +
+                "hasXmp=false " +
+                "hasAnimation=false " +
+                "imageSize=16383 x 16383",
+            actual = WebPChunkVP8X(
+                bytes = WebPChunkVP8X.createBytes(
+                    hasIcc = false,
+                    hasAlpha = true,
+                    hasExif = true,
+                    hasXmp = false,
+                    hasAnimation = false,
+                    imageSize = ImageSize(
+                        width = WebPConstants.MAX_SIDE_LENGTH,
+                        height = WebPConstants.MAX_SIDE_LENGTH
+                    )
+                )
+            ).toString()
+        )
+
+        /*
+         * Test random combinations
+         */
+        repeat(50) {
+
+            val hasIcc = (0..1).random() == 1
+            val hasAlpha = (0..1).random() == 1
+            val hasExif = (0..1).random() == 1
+            val hasXmp = (0..1).random() == 1
+            val hasAnimation = (0..1).random() == 1
+            val imageSize = ImageSize(
+                width = (1..WebPConstants.MAX_SIDE_LENGTH).random(),
+                height = (1..WebPConstants.MAX_SIDE_LENGTH).random()
+            )
+
+            val expectedString = "WebPChunk 'VP8X' (10 bytes) " +
+                "hasIcc=$hasIcc " +
+                "hasAlpha=$hasAlpha " +
+                "hasExif=$hasExif " +
+                "hasXmp=$hasXmp " +
+                "hasAnimation=$hasAnimation " +
+                "imageSize=${imageSize.width} x ${imageSize.height}"
+
+            println(expectedString)
+
+            assertEquals(
+                expected = expectedString,
+                actual = WebPChunkVP8X(
+                    bytes = WebPChunkVP8X.createBytes(
+                        hasIcc = hasIcc,
+                        hasAlpha = hasAlpha,
+                        hasExif = hasExif,
+                        hasXmp = hasXmp,
+                        hasAnimation = hasAnimation,
+                        imageSize = imageSize
+                    )
+                ).toString()
+            )
+        }
     }
 }

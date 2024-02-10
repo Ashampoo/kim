@@ -18,6 +18,7 @@ package com.ashampoo.kim.format.webp.chunk
 
 import com.ashampoo.kim.common.ImageReadException
 import com.ashampoo.kim.format.webp.WebPChunkType
+import com.ashampoo.kim.format.webp.WebPConstants
 import com.ashampoo.kim.format.webp.WebPConstants.VP8X_PAYLOAD_LENGTH
 import com.ashampoo.kim.model.ImageSize
 
@@ -58,13 +59,13 @@ class WebPChunkVP8X(
             (bytes[8].toInt() and 0xFF shl 8) +
             (bytes[9].toInt() and 0xFF shl 16) + 1
 
-        if (canvasWidth * canvasHeight < 0)
-            throw ImageReadException("Illegal canvas size: $canvasWidth x $canvasHeight")
-
         imageSize = ImageSize(
             width = canvasWidth,
             height = canvasHeight
         )
+
+        if (imageSize.longestSide > WebPConstants.MAX_SIDE_LENGTH)
+            throw ImageReadException("Illegal dimensions: $imageSize")
     }
 
     override fun toString(): String =
@@ -72,4 +73,56 @@ class WebPChunkVP8X(
             " hasIcc=$hasIcc hasAlpha=$hasAlpha hasExif=$hasExif" +
             " hasXmp=$hasXmp hasAnimation=$hasAnimation" +
             " imageSize=$imageSize"
+
+    companion object {
+
+        fun createBytes(
+            hasIcc: Boolean,
+            hasAlpha: Boolean,
+            hasExif: Boolean,
+            hasXmp: Boolean,
+            hasAnimation: Boolean,
+            imageSize: ImageSize
+        ): ByteArray {
+
+            if (imageSize.longestSide > WebPConstants.MAX_SIDE_LENGTH)
+                throw ImageReadException("Illegal dimensions: $imageSize")
+
+            val byteArray = ByteArray(VP8X_PAYLOAD_LENGTH)
+
+            /* Set the mark byte based on flags */
+            var mark = 0
+
+            if (hasIcc)
+                mark = mark or 32
+
+            if (hasAlpha)
+                mark = mark or 16
+
+            if (hasExif)
+                mark = mark or 8
+
+            if (hasXmp)
+                mark = mark or 4
+
+            if (hasAnimation)
+                mark = mark or 2
+
+            byteArray[0] = mark.toByte()
+
+            /* Set canvas width */
+            val canvasWidth = imageSize.width - 1
+            byteArray[4] = canvasWidth.toByte()
+            byteArray[5] = (canvasWidth shr 8).toByte()
+            byteArray[6] = (canvasWidth shr 16).toByte()
+
+            /* Set canvas height */
+            val canvasHeight = imageSize.height - 1
+            byteArray[7] = canvasHeight.toByte()
+            byteArray[8] = (canvasHeight shr 8).toByte()
+            byteArray[9] = (canvasHeight shr 16).toByte()
+
+            return byteArray
+        }
+    }
 }

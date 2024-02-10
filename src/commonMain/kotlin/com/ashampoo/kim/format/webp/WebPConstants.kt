@@ -31,4 +31,11 @@ object WebPConstants {
 
     const val VP8X_PAYLOAD_LENGTH = 10
 
+    /**
+     * 16383 x 16383 pixels is the max size for an WebP
+     *
+     * https://developers.google.com/speed/webp/faq#what_is_the_maximum_size_a_webp_image_can_be
+     */
+    const val MAX_SIDE_LENGTH: Int = 16383
+
 }
