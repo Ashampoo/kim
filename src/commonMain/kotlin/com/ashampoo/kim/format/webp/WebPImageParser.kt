@@ -81,6 +81,8 @@ object WebPImageParser : ImageParser {
 
         val length = byteReader.read4BytesAsInt("length", WEBP_BYTE_ORDER)
 
+
+
         byteReader.readAndVerifyBytes("WEBP signature", WEBP_SIGNATURE)
 
         return readChunksInternal(

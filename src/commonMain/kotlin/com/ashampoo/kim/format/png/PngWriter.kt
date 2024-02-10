@@ -17,6 +17,7 @@
 package com.ashampoo.kim.format.png
 
 import com.ashampoo.kim.common.toHex
+import com.ashampoo.kim.format.png.PngConstants.PNG_BYTE_ORDER
 import com.ashampoo.kim.format.png.PngCrc.continuePartialCrc
 import com.ashampoo.kim.format.png.PngCrc.finishPartialCrc
 import com.ashampoo.kim.format.png.PngCrc.startPartialCrc
@@ -116,7 +117,7 @@ object PngWriter {
 
         val dataLength = data?.size ?: 0
 
-        byteWriter.writeInt(dataLength)
+        byteWriter.writeInt(dataLength, PNG_BYTE_ORDER)
         byteWriter.write(chunkType.bytes)
 
         if (data != null)
@@ -131,7 +132,7 @@ object PngWriter {
 
         val crc = finishPartialCrc(crc2).toInt()
 
-        byteWriter.writeInt(crc)
+        byteWriter.writeInt(crc, PNG_BYTE_ORDER)
     }
 
     /**

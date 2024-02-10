@@ -41,7 +41,7 @@ class WebPChunkVP8X(
     init {
 
         if (bytes.size != VP8X_PAYLOAD_LENGTH)
-            throw ImageReadException("VP8X chunk must be 10 bytes long.")
+            throw ImageReadException("VP8X chunk must be 10 bytes long, but was ${bytes.size}.")
 
         val mark: Int = bytes[0].toInt() and 0xFF
 

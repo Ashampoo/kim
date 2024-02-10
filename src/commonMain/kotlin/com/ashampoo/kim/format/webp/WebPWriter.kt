@@ -15,6 +15,7 @@
  */
 package com.ashampoo.kim.format.webp
 
+import com.ashampoo.kim.format.webp.WebPConstants.WEBP_BYTE_ORDER
 import com.ashampoo.kim.format.webp.chunk.ImageSizeAware
 import com.ashampoo.kim.format.webp.chunk.WebPChunk
 import com.ashampoo.kim.input.ByteReader
@@ -61,7 +62,12 @@ object WebPWriter {
         for (chunk in modifiedChunks) {
 
             contentByteWriter.write(chunk.type.bytes)
-            contentByteWriter.writeInt(WebPConstants.CHUNK_HEADER_LENGTH + chunk.bytes.size)
+
+            contentByteWriter.writeInt(
+                WebPConstants.CHUNK_HEADER_LENGTH + chunk.bytes.size,
+                WEBP_BYTE_ORDER
+            )
+
             contentByteWriter.write(chunk.bytes)
 
             val shouldInsertMetadata = false &&
@@ -72,7 +78,12 @@ object WebPWriter {
                 if (exifBytes != null) {
 
                     contentByteWriter.write(WebPChunkType.EXIF.bytes)
-                    contentByteWriter.writeInt(WebPConstants.CHUNK_HEADER_LENGTH + exifBytes.size)
+
+                    contentByteWriter.writeInt(
+                        WebPConstants.CHUNK_HEADER_LENGTH + exifBytes.size,
+                        WEBP_BYTE_ORDER
+                    )
+
                     contentByteWriter.write(exifBytes)
                 }
 
@@ -81,7 +92,12 @@ object WebPWriter {
                     val xmpBytes = xmp.encodeToByteArray()
 
                     contentByteWriter.write(WebPChunkType.XMP.bytes)
-                    contentByteWriter.writeInt(WebPConstants.CHUNK_HEADER_LENGTH + xmpBytes.size)
+
+                    contentByteWriter.writeInt(
+                        WebPConstants.CHUNK_HEADER_LENGTH + xmpBytes.size,
+                        WEBP_BYTE_ORDER
+                    )
+
                     contentByteWriter.write(xmpBytes)
                 }
             }
@@ -90,7 +106,9 @@ object WebPWriter {
         val contentBytes = contentByteWriter.toByteArray()
 
         byteWriter.write(WebPConstants.RIFF_SIGNATURE)
-        byteWriter.writeInt(contentBytes.size)
+
+        byteWriter.writeInt(contentBytes.size, WEBP_BYTE_ORDER)
+
         byteWriter.write(contentBytes)
 
         byteWriter.close()
