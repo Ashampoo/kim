@@ -104,6 +104,10 @@ object KimTestData {
         JXL_CONTAINER_COMPRESSED_INDEX
     )
 
+    val webpPhotoIds: Set<Int> = setOf(
+        WEBP_TEST_IMAGE_INDEX
+    )
+
     private fun getExtension(index: Int) = when (index) {
         GIF_TEST_IMAGE_INDEX -> "gif"
         WEBP_TEST_IMAGE_INDEX -> "webp"

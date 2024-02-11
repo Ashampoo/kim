@@ -18,8 +18,12 @@ package com.ashampoo.kim.format.webp.chunk
 
 import com.ashampoo.kim.common.ImageReadException
 import com.ashampoo.kim.format.webp.WebPChunkType
+import com.ashampoo.kim.format.webp.WebPConstants
 import com.ashampoo.kim.model.ImageSize
 
+/*
+ * https://developers.google.com/speed/webp/docs/riff_container#simple_file_format_lossy
+ */
 @Suppress("MagicNumber")
 class WebPChunkVP8(
     bytes: ByteArray
@@ -84,6 +88,9 @@ class WebPChunkVP8(
             width = b6 + (b7 and 63 shl 8),
             height = b8 + (b9 and 63 shl 8)
         )
+
+        if (imageSize.longestSide > WebPConstants.MAX_SIDE_LENGTH)
+            throw ImageReadException("Illegal dimensions: $imageSize")
 
         horizontalScale = b7 shr 6
         verticalScale = b9 shr 6

@@ -13,18 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.ashampoo.kim.model
+package com.ashampoo.kim.format.webp
 
-import kotlin.math.max
+import com.ashampoo.kim.format.AbstractUpdaterTest
 
-data class ImageSize(
-    val width: Int,
-    val height: Int
-) {
-
-    val longestSide: Int
-        get() = max(width, height)
-
-    override fun toString(): String =
-        "$width x $height"
-}
+class WebpUpdaterTest : AbstractUpdaterTest("webp")

@@ -42,9 +42,29 @@ object WebPImageParser : ImageParser {
     override fun parseMetadata(byteReader: ByteReader): ImageMetadata =
         tryWithImageReadException {
 
-            val chunks = readChunks(byteReader)
+            val chunks = readChunks(
+                byteReader = byteReader,
+                stopAfterMetadataRead = true
+            )
 
-            val imageSize = chunks.filterIsInstance<ImageSizeAware>().first().imageSize
+            if (chunks.isEmpty())
+                throw ImageReadException("Did not find any chunks in file.")
+
+            parseMetadataFromChunks(chunks)
+        }
+
+    @Throws(ImageReadException::class)
+    fun parseMetadataFromChunks(chunks: List<WebPChunk>): ImageMetadata =
+        tryWithImageReadException {
+
+            val imageSizeAwareChunk = chunks.filterIsInstance<ImageSizeAware>().firstOrNull()
+
+            checkNotNull(imageSizeAwareChunk) {
+                "Did not find a header chunk containing the image size. " +
+                    "Found chunk types: ${chunks.map { it.type }}"
+            }
+
+            val imageSize = imageSizeAwareChunk.imageSize
 
             val exifChunk = chunks.filterIsInstance<WebPChunkExif>().firstOrNull()
             val xmpChunk = chunks.filterIsInstance<WebPChunkXmp>().firstOrNull()
@@ -60,7 +80,8 @@ object WebPImageParser : ImageParser {
         }
 
     fun readChunks(
-        byteReader: ByteReader
+        byteReader: ByteReader,
+        stopAfterMetadataRead: Boolean = false
     ): List<WebPChunk> = tryWithImageReadException {
 
         byteReader.readAndVerifyBytes("RIFF signature", RIFF_SIGNATURE)
@@ -69,12 +90,17 @@ object WebPImageParser : ImageParser {
 
         byteReader.readAndVerifyBytes("WEBP signature", WEBP_SIGNATURE)
 
-        return readChunksInternal(byteReader, length - WEBP_SIGNATURE.size)
+        return readChunksInternal(
+            byteReader = byteReader,
+            bytesToRead = length - WEBP_SIGNATURE.size,
+            stopAfterMetadataRead = stopAfterMetadataRead
+        )
     }
 
     private fun readChunksInternal(
         byteReader: ByteReader,
-        bytesToRead: Int
+        bytesToRead: Int,
+        stopAfterMetadataRead: Boolean
     ): List<WebPChunk> {
 
         val chunks = mutableListOf<WebPChunk>()
@@ -118,6 +144,27 @@ object WebPImageParser : ImageParser {
             }
 
             chunks.add(chunk)
+
+            /*
+             * After reading the header we can decide if we need to
+             * read the rest of the file for metadata.
+             */
+            if (stopAfterMetadataRead) {
+
+                /*
+                 * Older chunk header types do not support Exif & XMP.
+                 * So we can stop right here for those old formats.
+                 */
+                if (chunkType == WebPChunkType.VP8 && chunkType == WebPChunkType.VP8L)
+                    break
+
+                /*
+                 * If the header reveals that there will be no EXIF and no XMP
+                 * we don't need to read the whole file.
+                 */
+                if (chunk is WebPChunkVP8X && !chunk.hasExif && !chunk.hasXmp)
+                    break
+            }
         }
 
         return chunks

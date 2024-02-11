@@ -96,12 +96,18 @@ object JxlWriter {
 
         for (box in modifiedBoxes) {
 
-            byteWriter.writeInt(box.size.toInt())
+            byteWriter.writeInt(
+                box.size.toInt(),
+                BMFFConstants.BMFF_BYTE_ORDER
+            )
 
             byteWriter.write(box.type.bytes)
 
             box.largeSize?.let {
-                byteWriter.writeLong(box.largeSize)
+                byteWriter.writeLong(
+                    box.largeSize,
+                    BMFFConstants.BMFF_BYTE_ORDER
+                )
             }
 
             byteWriter.write(box.payload)
@@ -116,11 +122,11 @@ object JxlWriter {
 
                     val size = BMFFConstants.BOX_HEADER_LENGTH + 4 + exifBytes.size
 
-                    byteWriter.writeInt(size)
+                    byteWriter.writeInt(size, BMFFConstants.BMFF_BYTE_ORDER)
                     byteWriter.write(BoxType.EXIF.bytes)
 
                     /* Version and flags, all zeros. */
-                    byteWriter.writeInt(0)
+                    byteWriter.writeInt(0, BMFFConstants.BMFF_BYTE_ORDER)
 
                     byteWriter.write(exifBytes)
                 }
@@ -131,7 +137,8 @@ object JxlWriter {
 
                     val size = BMFFConstants.BOX_HEADER_LENGTH + xmpBytes.size
 
-                    byteWriter.writeInt(size)
+                    byteWriter.writeInt(size, BMFFConstants.BMFF_BYTE_ORDER)
+
                     byteWriter.write(BoxType.XML.bytes)
 
                     byteWriter.write(xmpBytes)

@@ -34,6 +34,7 @@ import com.ashampoo.kim.format.raf.RafMetadataExtractor
 import com.ashampoo.kim.format.raf.RafPreviewExtractor
 import com.ashampoo.kim.format.rw2.Rw2PreviewExtractor
 import com.ashampoo.kim.format.tiff.TiffReader
+import com.ashampoo.kim.format.webp.WebPUpdater
 import com.ashampoo.kim.input.ByteArrayByteReader
 import com.ashampoo.kim.input.ByteReader
 import com.ashampoo.kim.input.DefaultRandomAccessByteReader
@@ -218,6 +219,7 @@ object Kim {
         return@tryWithImageWriteException when (imageFormat) {
             ImageFormat.JPEG -> JpegUpdater.update(prePendingByteReader, byteWriter, update)
             ImageFormat.PNG -> PngUpdater.update(prePendingByteReader, byteWriter, update)
+            ImageFormat.WEBP -> WebPUpdater.update(prePendingByteReader, byteWriter, update)
             ImageFormat.JXL -> JxlUpdater.update(prePendingByteReader, byteWriter, update)
             null -> throw ImageWriteException("Unknown or unsupported file format.")
             else -> throw ImageWriteException("Can't embed metadata into $imageFormat.")
@@ -236,6 +238,7 @@ object Kim {
         return@tryWithImageWriteException when (imageFormat) {
             ImageFormat.JPEG -> JpegUpdater.updateThumbnail(bytes, thumbnailBytes)
             ImageFormat.PNG -> PngUpdater.updateThumbnail(bytes, thumbnailBytes)
+            ImageFormat.WEBP -> WebPUpdater.updateThumbnail(bytes, thumbnailBytes)
             ImageFormat.JXL -> JxlUpdater.updateThumbnail(bytes, thumbnailBytes)
             null -> throw ImageWriteException("Unknown or unsupported file format.")
             else -> throw ImageWriteException("Can't embed thumbnail into $imageFormat.")
