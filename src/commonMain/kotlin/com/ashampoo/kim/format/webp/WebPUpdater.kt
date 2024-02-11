@@ -16,7 +16,7 @@
 package com.ashampoo.kim.format.webp
 
 import com.ashampoo.kim.common.ImageWriteException
-import com.ashampoo.kim.common.startsWith
+import com.ashampoo.kim.common.startsWithNullable
 import com.ashampoo.kim.common.tryWithImageWriteException
 import com.ashampoo.kim.format.ImageFormatMagicNumbers
 import com.ashampoo.kim.format.MetadataUpdater
@@ -90,8 +90,8 @@ internal object WebPUpdater : MetadataUpdater {
         thumbnailBytes: ByteArray
     ): ByteArray = tryWithImageWriteException {
 
-        if (!bytes.startsWith(ImageFormatMagicNumbers.png))
-            throw ImageWriteException("Provided input bytes are not PNG!")
+        if (!bytes.startsWithNullable(ImageFormatMagicNumbers.webP))
+            throw ImageWriteException("Provided input bytes are not WebP!")
 
         val byteReader = ByteArrayByteReader(bytes)
 
