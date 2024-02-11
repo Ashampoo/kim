@@ -50,6 +50,13 @@ object WebPImageParser : ImageParser {
             if (chunks.isEmpty())
                 throw ImageReadException("Did not find any chunks in file.")
 
+            parseMetadataFromChunks(chunks)
+        }
+
+    @Throws(ImageReadException::class)
+    fun parseMetadataFromChunks(chunks: List<WebPChunk>): ImageMetadata =
+        tryWithImageReadException {
+
             val imageSizeAwareChunk = chunks.filterIsInstance<ImageSizeAware>().firstOrNull()
 
             checkNotNull(imageSizeAwareChunk) {
@@ -80,8 +87,6 @@ object WebPImageParser : ImageParser {
         byteReader.readAndVerifyBytes("RIFF signature", RIFF_SIGNATURE)
 
         val length = byteReader.read4BytesAsInt("length", WEBP_BYTE_ORDER)
-
-
 
         byteReader.readAndVerifyBytes("WEBP signature", WEBP_SIGNATURE)
 
