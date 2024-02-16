@@ -57,11 +57,27 @@ class ByteArrayByteReader(
     }
 
     override fun moveTo(position: Int) {
+
+        require(position <= contentLength) {
+            "Can't move to $position in content of $contentLength bytes."
+        }
+
         this.currentPosition = position
     }
 
-    override fun readBytes(offset: Int, length: Int): ByteArray =
-        bytes.copyOfRange(offset, offset + length)
+    override fun readBytes(offset: Int, length: Int): ByteArray {
+
+        require(offset > 0) { "Offset must be positive: $offset" }
+        require(length > 0) { "Length must be positive: $length" }
+
+        val toIndex = offset + length
+
+        require(offset + length <= contentLength) {
+            "Requested to read to index $toIndex where max index is ${contentLength - 1}"
+        }
+
+        return bytes.copyOfRange(offset, toIndex)
+    }
 
     override fun close() {
         /* Does nothing. */
