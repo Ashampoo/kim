@@ -340,10 +340,15 @@ object TiffReader {
         return fields
     }
 
+    /**
+     * Reads the thumbnail image if data is valid or returns NULL if a problem was found.
+     *
+     * Discarding corrupt thumbnails is not a big issue, so no exceptions will be thrown here.
+     */
     private fun getJpegRawImageData(
         byteReader: RandomAccessByteReader,
         directory: TiffDirectory
-    ): JpegImageDataElement {
+    ): JpegImageDataElement? {
 
         val element = directory.getJpegRawImageDataElement()
 
@@ -356,10 +361,13 @@ object TiffReader {
         if (offset + length > byteReader.contentLength)
             length = (byteReader.contentLength - offset).toInt()
 
+        if (length <= 0)
+            return null
+
         val data = byteReader.readBytes(offset.toInt(), length)
 
         if (data.size != length)
-            throw ImageReadException("Unexpected length: Wanted $length, but got ${data.size}")
+            return null
 
         /*
          * Note: Apache Commons Imaging has a validation check here to ensure that
