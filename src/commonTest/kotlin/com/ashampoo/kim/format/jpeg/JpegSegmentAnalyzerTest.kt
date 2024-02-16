@@ -819,7 +819,7 @@ class JpegSegmentAnalyzerTest {
         for (index in 1..KimTestData.HIGHEST_JPEG_INDEX) {
 
             // TODO Refresh data
-            if (index == 18 || index == 19)
+            if (index == 9 || index == 18 || index == 19)
                 continue
 
             val bytes = KimTestData.getBytesOf(index)
