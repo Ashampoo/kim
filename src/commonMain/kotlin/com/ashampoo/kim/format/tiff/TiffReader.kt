@@ -19,7 +19,9 @@ package com.ashampoo.kim.format.tiff
 import com.ashampoo.kim.common.ByteOrder
 import com.ashampoo.kim.common.ImageReadException
 import com.ashampoo.kim.common.head
+import com.ashampoo.kim.common.startsWith
 import com.ashampoo.kim.common.toInt
+import com.ashampoo.kim.format.ImageFormatMagicNumbers
 import com.ashampoo.kim.format.tiff.constant.ExifTag
 import com.ashampoo.kim.format.tiff.constant.TiffConstants
 import com.ashampoo.kim.format.tiff.constant.TiffConstants.DIRECTORY_TYPE_SUB
@@ -364,9 +366,16 @@ object TiffReader {
         if (length <= 0)
             return null
 
-        val data = byteReader.readBytes(offset.toInt(), length)
+        val bytes = byteReader.readBytes(offset.toInt(), length)
 
-        if (data.size != length)
+        if (bytes.size != length)
+            return null
+
+        /*
+         * Ignore it if it's not a JPEG.
+         * Some files have random garbage bytes here.
+         */
+        if (!bytes.startsWith(ImageFormatMagicNumbers.jpeg))
             return null
 
         /*
@@ -377,7 +386,7 @@ object TiffReader {
          * there are some random bytes present.
          */
 
-        return JpegImageDataElement(offset, length, data)
+        return JpegImageDataElement(offset, length, bytes)
     }
 
     /**

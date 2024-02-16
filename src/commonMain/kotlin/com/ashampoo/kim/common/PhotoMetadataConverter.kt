@@ -17,12 +17,14 @@ package com.ashampoo.kim.common
 
 import com.ashampoo.kim.Kim.underUnitTesting
 import com.ashampoo.kim.format.ImageMetadata
+import com.ashampoo.kim.format.jpeg.JpegImageParser
 import com.ashampoo.kim.format.jpeg.iptc.IptcTypes
 import com.ashampoo.kim.format.tiff.GPSInfo
 import com.ashampoo.kim.format.tiff.constant.ExifTag
 import com.ashampoo.kim.format.tiff.constant.TiffConstants
 import com.ashampoo.kim.format.tiff.constant.TiffTag
 import com.ashampoo.kim.format.xmp.XmpReader
+import com.ashampoo.kim.input.ByteArrayByteReader
 import com.ashampoo.kim.model.GpsCoordinates
 import com.ashampoo.kim.model.PhotoMetadata
 import com.ashampoo.kim.model.TiffOrientation
@@ -86,6 +88,17 @@ fun ImageMetadata.convertToPhotoMetadata(
         XmpReader.readMetadata(it)
     }
 
+    val thumbnailBytes = if (includeThumbnail)
+        getExifThumbnailBytes()
+    else
+        null
+
+    val thumbnailImageSize = thumbnailBytes?.let {
+        JpegImageParser.getImageSize(
+            ByteArrayByteReader(thumbnailBytes)
+        )
+    }
+
     /*
      * Embedded XMP metadata has higher priority than EXIF or IPTC
      * for certain fields because it's the newer format. Some fields
@@ -113,7 +126,8 @@ fun ImageMetadata.convertToPhotoMetadata(
         keywords = keywords.ifEmpty { xmpMetadata?.keywords ?: emptySet() },
         faces = xmpMetadata?.faces ?: emptyMap(),
         personsInImage = xmpMetadata?.personsInImage ?: emptySet(),
-        thumbnailBytes = if (includeThumbnail) getExifThumbnailBytes() else null
+        thumbnailImageSize = thumbnailImageSize,
+        thumbnailBytes = thumbnailBytes
     )
 }
 

@@ -57,6 +57,7 @@ data class PhotoMetadata(
     val personsInImage: Set<String> = emptySet(),
 
     /* EXIF Thumbnail (IFD1) */
+    val thumbnailImageSize: ImageSize? = null,
     val thumbnailBytes: ByteArray? = null
 
 ) {
@@ -136,7 +137,11 @@ data class PhotoMetadata(
 
             /* Persons */
             faces = faces.ifEmpty { other.faces },
-            personsInImage = personsInImage.ifEmpty { other.personsInImage }
+            personsInImage = personsInImage.ifEmpty { other.personsInImage },
+
+            /* EXIF Thumbnail (IFD1) */
+            thumbnailImageSize = thumbnailImageSize,
+            thumbnailBytes = thumbnailBytes
         )
     }
 

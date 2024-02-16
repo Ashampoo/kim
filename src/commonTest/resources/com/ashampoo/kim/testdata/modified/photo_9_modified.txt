@@ -14,7 +14,7 @@ Little-endian (Intel, II)
 0000000094 0x0131 Software = Adobe Photoshop Lightroom Classic 8.2 (Windows)
 0000000106 0x0132 ModifyDate = 2023:05:10 13:37:42
 0000000118 0x8769 ExifOffset = 1146
-0000000130 0x8825 GPSInfo = 16964
+0000000130 0x8825 GPSInfo = 16946
 0000000142 0x9c9b Unknown = [48 bytes]
 0000000154 0x9c9e Unknown = [632 bytes]
 0000000166 0x9c9f Unknown = [114 bytes]
@@ -52,20 +52,18 @@ Little-endian (Intel, II)
 0000001496 0xa434 LensModel = EF300mm f/2.8L IS II USM
 0000001508 0xa435 LensSerialNumber = 4250000105
 
----- Directory GPS @ 16964 ----
-0000016966 0x0000 GPSVersionID = [0x02, 0x03, 0x00, 0x00]
-0000016978 0x0001 GPSLatitudeRef = N
-0000016990 0x0002 GPSLatitude = [53/1 (53.0), 13/1 (13.0), 24519/2500 (9.8076)]
-0000017002 0x0003 GPSLongitudeRef = E
-0000017014 0x0004 GPSLongitude = [8/1 (8.0), 14/1 (14.0), 56949/2500 (22.7796)]
+---- Directory GPS @ 16946 ----
+0000016948 0x0000 GPSVersionID = [0x02, 0x03, 0x00, 0x00]
+0000016960 0x0001 GPSLatitudeRef = N
+0000016972 0x0002 GPSLatitude = [53/1 (53.0), 13/1 (13.0), 24519/2500 (9.8076)]
+0000016984 0x0003 GPSLongitudeRef = E
+0000016996 0x0004 GPSLongitude = [8/1 (8.0), 14/1 (14.0), 56949/2500 (22.7796)]
 
 ---- Directory SubIFD @ 2290 ----
 0000002292 0x0103 Compression = 6
 0000002304 0x011a XResolution = 72/1 (72.0)
 0000002316 0x011b YResolution = 72/1 (72.0)
 0000002328 0x0128 ResolutionUnit = 2
-0000002340 0x0201 JpgFromRawStart = 2384
-0000002352 0x0202 JpgFromRawLength = 14580
 
 ---- IPTC ----
 Caption/Abstract (120) = 'two green parrots'
