@@ -73,7 +73,7 @@ class TiffField(
                 if (value.size == 1)
                     return@lazy value.first().toString()
 
-                if (value.size <= MAX_BYTE_ARRAY_DISPLAY_SIZE)
+                if (value.size <= MAX_ARRAY_LENGTH_DISPLAY_SIZE)
                     return@lazy "[${value.toSingleNumberHexes()}]"
 
                 return@lazy "[${value.size} bytes]"
@@ -84,7 +84,10 @@ class TiffField(
                 if (value.size == 1)
                     return@lazy value.first().toString()
 
-                return@lazy value.contentToString()
+                if (value.size <= MAX_ARRAY_LENGTH_DISPLAY_SIZE)
+                    return@lazy value.contentToString()
+
+                return@lazy "[${value.size} ints]"
             }
 
             if (value is ShortArray) {
@@ -92,7 +95,10 @@ class TiffField(
                 if (value.size == 1)
                     return@lazy value.first().toString()
 
-                return@lazy value.contentToString()
+                if (value.size <= MAX_ARRAY_LENGTH_DISPLAY_SIZE)
+                    return@lazy value.contentToString()
+
+                return@lazy "[${value.size} shorts]"
             }
 
             if (value is DoubleArray) {
@@ -100,7 +106,10 @@ class TiffField(
                 if (value.size == 1)
                     return@lazy value.first().toString()
 
-                return@lazy value.contentToString()
+                if (value.size <= MAX_ARRAY_LENGTH_DISPLAY_SIZE)
+                    return@lazy value.contentToString()
+
+                return@lazy "[${value.size} doubles]"
             }
 
             if (value is FloatArray) {
@@ -108,7 +117,10 @@ class TiffField(
                 if (value.size == 1)
                     return@lazy value.first().toString()
 
-                return@lazy value.contentToString()
+                if (value.size <= MAX_ARRAY_LENGTH_DISPLAY_SIZE)
+                    return@lazy value.contentToString()
+
+                return@lazy "[${value.size} floats]"
             }
 
             if (value is RationalNumbers) {
@@ -116,7 +128,10 @@ class TiffField(
                 if (value.values.size == 1)
                     return@lazy value.values.first().toString()
 
-                return@lazy value.values.contentToString()
+                if (value.values.size <= MAX_ARRAY_LENGTH_DISPLAY_SIZE)
+                    return@lazy value.values.contentToString()
+
+                return@lazy "[${value.values.size} rationals]"
             }
 
             value.toString()
@@ -213,6 +228,6 @@ class TiffField(
 
     companion object {
 
-        private const val MAX_BYTE_ARRAY_DISPLAY_SIZE = 10
+        private const val MAX_ARRAY_LENGTH_DISPLAY_SIZE = 10
     }
 }
