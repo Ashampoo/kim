@@ -187,6 +187,7 @@ class TiffField(
         is ShortArray -> value.first().toDouble()
         is IntArray -> value.first().toDouble()
         is FloatArray -> value.first().toDouble()
+        is DoubleArray -> value.first().toDouble()
         else -> (value as Number).toDouble()
     }
 
