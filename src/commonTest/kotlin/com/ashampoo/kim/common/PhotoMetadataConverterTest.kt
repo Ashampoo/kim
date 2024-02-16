@@ -62,7 +62,9 @@ class PhotoMetadataConverterTest {
         if (index == KimTestData.HEIC_TEST_IMAGE_INDEX)
             return
 
-        val photoMetadata = Kim.readMetadata(bytes)?.convertToPhotoMetadata()
+        val photoMetadata = Kim.readMetadata(bytes)?.convertToPhotoMetadata(
+            includeThumbnail = true
+        )
 
         assertNotNull(photoMetadata)
 
@@ -76,7 +78,7 @@ class PhotoMetadataConverterTest {
         stringBuilder.appendLine(
             "name;widthPx;heightPx;orientation;takenDate;latitude;longitude;" +
                 "cameraMake;cameraModel;lensMake;lensModel;iso;exposureTime;fNumber;" +
-                "focalLength;rating;keywords"
+                "focalLength;rating;keywords;thumbnailImageSize;thumbnailBytes.size"
         )
 
         for (entry in metadataMap.entries) {
@@ -91,7 +93,8 @@ class PhotoMetadataConverterTest {
                     "${metadata.cameraMake};${metadata.cameraModel};${metadata.lensMake};" +
                     "${metadata.lensModel};${metadata.iso};${metadata.exposureTime};" +
                     "${metadata.fNumber};${metadata.focalLength};${metadata.rating?.value};" +
-                    "${metadata.keywords}"
+                    "${metadata.keywords};${metadata.thumbnailImageSize};" +
+                    "${metadata.thumbnailBytes?.size}"
             )
         }
 

@@ -1,88 +1,76 @@
 File format : JPEG
-Resolution  : 3948 x 2632
+Resolution  : 2468 x 4051
 ---- TIFF ----
 Version 42
 Little-endian (Intel, II)
 ---- Directory IFD0 @ 8 ----
-0000000010 0x010f Make = NIKON CORPORATION
-0000000022 0x0110 Model = NIKON D850
-0000000034 0x0112 Orientation = 1
-0000000046 0x011a XResolution = 3000000/10000 (300.0)
-0000000058 0x011b YResolution = 3000000/10000 (300.0)
+0000000010 0x010e ImageDescription = Green Leaves with Raindrops
+0000000022 0x010f Make = FUJIFILM
+0000000034 0x0110 Model = X-T2
+0000000046 0x011a XResolution = 240/1 (240.0)
+0000000058 0x011b YResolution = 240/1 (240.0)
 0000000070 0x0128 ResolutionUnit = 2
-0000000082 0x0131 Software = Adobe Photoshop 21.0 (Macintosh)
-0000000094 0x0132 ModifyDate = 2020:02:08 08:46:48
-0000000106 0x8769 ExifOffset = 222
+0000000082 0x0131 Software = Adobe Photoshop Lightroom Classic 9.1 (Macintosh)
+0000000094 0x0132 ModifyDate = 2020:03:15 02:13:20
+0000000106 0x013b Artist = OMID ARMIN
+0000000118 0x8298 Copyright = OMID ARMIN
+0000000130 0x8769 ExifOffset = 312
+0000000142 0x8825 GPSInfo = 820
 
----- Directory ExifIFD @ 222 ----
-0000000224 0x829a ExposureTime = 1/800 (0.00125)
-0000000236 0x829d FNumber = 32/10 (3.2)
-0000000248 0x8822 ExposureProgram = 1
-0000000260 0x8827 ISO = 100
-0000000272 0x8830 SensitivityType = 2
-0000000284 0x8832 RecommendedExposureIndex = 100
-0000000296 0x9000 ExifVersion = [0x30, 0x32, 0x33, 0x31]
-0000000308 0x9003 DateTimeOriginal = 2020:01:18 17:28:22
-0000000320 0x9004 DateTimeDigitized = 2020:01:18 17:28:22
-0000000332 0x9010 OffsetTime = -07:00
-0000000344 0x9011 OffsetTimeOriginal = -08:00
-0000000356 0x9012 Unknown = -08:00
-0000000368 0x9201 ShutterSpeedValue = 9643856/1000000 (9.643856)
-0000000380 0x9202 ApertureValue = 3356144/1000000 (3.356144)
-0000000392 0x9204 ExposureCompensation = 0/6 (0.0)
-0000000404 0x9205 MaxApertureValue = 30/10 (3.0)
-0000000416 0x9207 MeteringMode = 2
-0000000428 0x9208 LightSource = 0
-0000000440 0x9209 Flash = 0
-0000000452 0x920a FocalLength = 310/10 (31.0)
-0000000464 0x9291 SubSecTimeOriginal = 56
-0000000476 0x9292 SubSecTimeDigitized = 56
-0000000488 0xa001 ColorSpace = -1
-0000000500 0xa002 ExifImageWidth = 3948
-0000000512 0xa003 ExifImageHeight = 2632
-0000000524 0xa20e FocalPlaneXResolution = 75409805/32768 (2301.324615)
-0000000536 0xa20f FocalPlaneYResolution = 75409805/32768 (2301.324615)
-0000000548 0xa210 FocalPlaneResolutionUnit = 3
-0000000560 0xa217 SensingMethod = 2
-0000000572 0xa300 FileSource = 3
-0000000584 0xa301 SceneType = 1
-0000000596 0xa302 CFAPattern = [0x02, 0x00, 0x02, 0x00, 0x00, 0x01, 0x01, 0x02]
-0000000608 0xa401 CustomRendered = 0
-0000000620 0xa402 ExposureMode = 1
-0000000632 0xa403 WhiteBalance = 0
-0000000644 0xa405 FocalLengthIn35mmFormat = 31
-0000000656 0xa406 SceneCaptureType = 0
-0000000668 0xa407 GainControl = 0
-0000000680 0xa408 Contrast = 0
-0000000692 0xa409 Saturation = 0
-0000000704 0xa40a Sharpness = 0
-0000000716 0xa40c SubjectDistanceRange = 0
-0000000728 0xa431 BodySerialNumber = 3036315
-0000000740 0xa432 LensSpecification = [240/10 (24.0), 700/10 (70.0), 28/10 (2.8), 28/10 (2.8)]
-0000000752 0xa434 LensModel = 24.0-70.0 mm f/2.8
+---- Directory ExifIFD @ 312 ----
+0000000314 0x829d FNumber = 5.6
+0000000326 0x8827 ISO = 200
+0000000338 0x9000 ExifVersion = [0x30, 0x32, 0x33, 0x31]
+0000000350 0x9003 DateTimeOriginal = 2020:03:15 02:13:20
+0000000362 0x9004 DateTimeDigitized = 2020:03:15 02:13:20
+0000000374 0x9010 OffsetTime = +04:30
+0000000386 0x9012 Unknown = +03:00
+0000000398 0x9201 ShutterSpeedValue = 19868/4049 (4.906891)
+0000000410 0x9202 ApertureValue = 6/1 (6.0)
+0000000422 0x9207 MeteringMode = 5
+0000000434 0x9208 LightSource = 0
+0000000446 0x9209 Flash = 0
+0000000458 0x920a FocalLength = 90.0
+0000000470 0xa001 ColorSpace = 1
+0000000482 0xa217 SensingMethod = 2
+0000000494 0xa402 ExposureMode = 1
+0000000506 0xa403 WhiteBalance = 0
+0000000518 0xa405 FocalLengthIn35mmFormat = 135
+0000000530 0xa406 SceneCaptureType = 0
+0000000542 0xa40a Sharpness = 0
+0000000554 0xa40c SubjectDistanceRange = 0
+0000000566 0xa430 CameraOwnerName = OMIDARMIN
+0000000578 0xa431 BodySerialNumber = 71U61184
+0000000590 0xa432 LensSpecification = [90/1 (90.0), 90/1 (90.0), 2/1 (2.0), 2/1 (2.0)]
+0000000602 0xa433 LensMake = FUJIFILM
+0000000614 0xa434 LensModel = XF90mmF2 R LM WR
+0000000626 0xa435 LensSerialNumber = 78B01761
 
----- Directory SubIFD @ 972 ----
-0000000974 0x0103 Compression = 6
-0000000986 0x011a XResolution = 72/1 (72.0)
-0000000998 0x011b YResolution = 72/1 (72.0)
-0000001010 0x0128 ResolutionUnit = 2
-0000001022 0x0201 JpgFromRawStart = 1066
-0000001034 0x0202 JpgFromRawLength = 4954
+---- Directory GPS @ 820 ----
+0000000822 0x0000 GPSVersionID = [0x02, 0x03, 0x00, 0x00]
+0000000834 0x0001 GPSLatitudeRef = N
+0000000846 0x0002 GPSLatitude = [35/1 (35.0), 41/1 (41.0), 26391/1250 (21.1128)]
+0000000858 0x0003 GPSLongitudeRef = E
+0000000870 0x0004 GPSLongitude = [51/1 (51.0), 23/1 (23.0), 25383/1250 (20.3064)]
+
+---- Directory SubIFD @ 934 ----
+0000000936 0x0103 Compression = 6
+0000000948 0x011a XResolution = 72/1 (72.0)
+0000000960 0x011b YResolution = 72/1 (72.0)
+0000000972 0x0128 ResolutionUnit = 2
+0000000984 0x0201 JpgFromRawStart = 1028
+0000000996 0x0202 JpgFromRawLength = 15133
 
 ---- IPTC ----
-Date Created (55) = '20200118'
-Time Created (60) = '172822-0800'
-Object Name (5) = 'Hearts on the Shore'
-Caption/Abstract (120) = 'white sand with heart shaped sand'
-Keywords (25) = 'coast'
-Keywords (25) = 'outdoors'
-Keywords (25) = 'rug'
-Keywords (25) = 'sand'
-Keywords (25) = 'water'
-Keywords (25) = 'sea'
-Keywords (25) = 'shoreline'
-Keywords (25) = 'ocean'
-Keywords (25) = 'nature'
+Object Name (5) = 'Green & Yellow Leaves'
+Digital Creation Date (62) = '20200315'
+Digital Creation Time (63) = '144901+0000'
+Headline (105) = 'Green Leaves with Raindrops'
+Caption/Abstract (120) = 'green and brown leaf plant'
+Date Created (55) = '20200315'
+Time Created (60) = '144901+0000'
+By-line (80) = 'OMID ARMIN'
+Keywords (25) = 'fern'
 
 ---- XMP ----
 <?xpacket begin='﻿' id='W5M0MpCehiHzreSzNTczkc9d'?>
@@ -90,43 +78,98 @@ Keywords (25) = 'nature'
 <rdf:RDF xmlns:rdf='http://www.w3.org/1999/02/22-rdf-syntax-ns#'>
 
  <rdf:Description rdf:about=''
-  xmlns:aux='http://ns.adobe.com/exif/1.0/aux/'>
-  <aux:ApproximateFocusDistance>355/100</aux:ApproximateFocusDistance>
-  <aux:DistortionCorrectionAlreadyApplied>True</aux:DistortionCorrectionAlreadyApplied>
-  <aux:ImageNumber>23644</aux:ImageNumber>
-  <aux:Lens>24.0-70.0 mm f/2.8</aux:Lens>
-  <aux:LensID>170</aux:LensID>
-  <aux:LensInfo>240/10 700/10 28/10 28/10</aux:LensInfo>
-  <aux:SerialNumber>3036315</aux:SerialNumber>
-  <aux:VignetteCorrectionAlreadyApplied>True</aux:VignetteCorrectionAlreadyApplied>
+  xmlns:MicrosoftPhoto='http://ns.microsoft.com/photo/1.0'>
+  <MicrosoftPhoto:LastKeywordXMP>
+   <rdf:Bag>
+    <rdf:li>background</rdf:li>
+    <rdf:li>abstract</rdf:li>
+    <rdf:li>floral</rdf:li>
+    <rdf:li>tree</rdf:li>
+    <rdf:li>pattern</rdf:li>
+    <rdf:li>summer</rdf:li>
+    <rdf:li>texture</rdf:li>
+    <rdf:li>nature</rdf:li>
+    <rdf:li>leaf</rdf:li>
+    <rdf:li>spring</rdf:li>
+    <rdf:li>flora</rdf:li>
+    <rdf:li>foliage</rdf:li>
+    <rdf:li>forest</rdf:li>
+    <rdf:li>green</rdf:li>
+    <rdf:li>natural</rdf:li>
+    <rdf:li>outdoor</rdf:li>
+    <rdf:li>plant</rdf:li>
+    <rdf:li>closeup</rdf:li>
+    <rdf:li>fern</rdf:li>
+    <rdf:li>fresh</rdf:li>
+    <rdf:li>garden</rdf:li>
+    <rdf:li>growth</rdf:li>
+    <rdf:li>jungle</rdf:li>
+    <rdf:li>lush</rdf:li>
+    <rdf:li>season</rdf:li>
+    <rdf:li>tropical</rdf:li>
+    <rdf:li>wallpaper</rdf:li>
+    <rdf:li>authentic</rdf:li>
+    <rdf:li>concept</rdf:li>
+    <rdf:li>crowd</rdf:li>
+    <rdf:li>dark</rdf:li>
+    <rdf:li>dew</rdf:li>
+    <rdf:li>drop</rdf:li>
+    <rdf:li>environment</rdf:li>
+    <rdf:li>herbal</rdf:li>
+    <rdf:li>horizontal</rdf:li>
+    <rdf:li>lifestyle</rdf:li>
+    <rdf:li>macro</rdf:li>
+    <rdf:li>many</rdf:li>
+    <rdf:li>minimalizm</rdf:li>
+    <rdf:li>overgrown</rdf:li>
+    <rdf:li>raindrop</rdf:li>
+    <rdf:li>seasonal</rdf:li>
+    <rdf:li>space</rdf:li>
+    <rdf:li>template</rdf:li>
+    <rdf:li>tiny</rdf:li>
+    <rdf:li>topview</rdf:li>
+    <rdf:li>beautiful</rdf:li>
+   </rdf:Bag>
+  </MicrosoftPhoto:LastKeywordXMP>
  </rdf:Description>
 
  <rdf:Description rdf:about=''
   xmlns:dc='http://purl.org/dc/elements/1.1/'>
+  <dc:creator>
+   <rdf:Seq>
+    <rdf:li>OMID ARMIN</rdf:li>
+   </rdf:Seq>
+  </dc:creator>
+  <dc:description>
+   <rdf:Alt>
+    <rdf:li xml:lang='x-default'>Green Leaves with Raindrops</rdf:li>
+   </rdf:Alt>
+  </dc:description>
   <dc:format>image/jpeg</dc:format>
+  <dc:title>
+   <rdf:Alt>
+    <rdf:li xml:lang='x-default'>leafs fern rain drops tropical top view nature background dreen fine art fresh sweet cool new</rdf:li>
+   </rdf:Alt>
+  </dc:title>
  </rdf:Description>
 
  <rdf:Description rdf:about=''
   xmlns:photoshop='http://ns.adobe.com/photoshop/1.0/'>
-  <photoshop:ColorMode>3</photoshop:ColorMode>
-  <photoshop:DateCreated>2020-01-18T17:28:22.056-08:00</photoshop:DateCreated>
-  <photoshop:DocumentAncestors>
-   <rdf:Bag>
-    <rdf:li>adobe:docid:photoshop:4175d938-93f1-924b-9e9c-eb3dcbc947ca</rdf:li>
-    <rdf:li>xmp.did:3ff520b3-d1f6-42f9-9906-354073c4a7e9</rdf:li>
-   </rdf:Bag>
-  </photoshop:DocumentAncestors>
-  <photoshop:ICCProfile>Adobe RGB (1998)</photoshop:ICCProfile>
-  <photoshop:LegacyIPTCDigest>0E471C54765BB5CE2FE1EFB43F428AEE</photoshop:LegacyIPTCDigest>
+  <photoshop:Headline>Green Leaves with Raindrops</photoshop:Headline>
  </rdf:Description>
 
  <rdf:Description rdf:about=''
   xmlns:xmp='http://ns.adobe.com/xap/1.0/'>
-  <xmp:CreateDate>2020-01-18T17:28:22</xmp:CreateDate>
-  <xmp:CreatorTool>NIKON D850 Ver.1.02     </xmp:CreatorTool>
-  <xmp:MetadataDate>2020-02-08T08:46:48-07:00</xmp:MetadataDate>
-  <xmp:ModifyDate>2020-02-08T08:46:48-07:00</xmp:ModifyDate>
-  <xmp:Rating>4</xmp:Rating>
+  <xmp:CreateDate>2020:03:15 02:13:20</xmp:CreateDate>
+  <xmp:CreatorTool>Adobe Photoshop Lightroom Classic 9.1 (Macintosh)</xmp:CreatorTool>
+  <xmp:MetadataDate>2020-03-15T15:01:39</xmp:MetadataDate>
+  <xmp:ModifyDate>2020:03:15 02:13:20</xmp:ModifyDate>
+  <xmp:Rating>3</xmp:Rating>
+  <xmp:Title>
+   <rdf:Alt>
+    <rdf:li xml:lang='x-default'>Green Leaves with Raindrops</rdf:li>
+   </rdf:Alt>
+  </xmp:Title>
  </rdf:Description>
 
  <rdf:Description rdf:about=''
@@ -134,278 +177,69 @@ Keywords (25) = 'nature'
   xmlns:stRef='http://ns.adobe.com/xap/1.0/sType/ResourceRef#'
   xmlns:xmpMM='http://ns.adobe.com/xap/1.0/mm/'>
   <xmpMM:DerivedFrom rdf:parseType='Resource'>
-   <stRef:documentID>xmp.did:c8692041-63f7-4d21-bec9-e970b76b434e</stRef:documentID>
-   <stRef:instanceID>xmp.iid:c8692041-63f7-4d21-bec9-e970b76b434e</stRef:instanceID>
-   <stRef:originalDocumentID>FE70A58626BB309F945E62BC25DCC69F</stRef:originalDocumentID>
+   <stRef:documentID>adobe:docid:photoshop:1dac68d7-b38e-be48-9481-fc9fb64abaf6</stRef:documentID>
+   <stRef:instanceID>xmp.iid:d68c4979-1ec8-4632-8dfa-4a18eb77448d</stRef:instanceID>
+   <stRef:originalDocumentID>2715DE32B6D506FE63E4AF4472B81477</stRef:originalDocumentID>
   </xmpMM:DerivedFrom>
-  <xmpMM:DocumentID>xmp.did:c8692041-63f7-4d21-bec9-e970b76b434e</xmpMM:DocumentID>
+  <xmpMM:DocumentID>xmp.did:45ef8506-db98-4494-ab8d-937e1863f279</xmpMM:DocumentID>
   <xmpMM:History>
    <rdf:Seq>
     <rdf:li rdf:parseType='Resource'>
      <stEvt:action>saved</stEvt:action>
      <stEvt:changed>/metadata</stEvt:changed>
-     <stEvt:instanceID>xmp.iid:edab6c79-1aab-4ae1-993c-dd79fff9441c</stEvt:instanceID>
-     <stEvt:softwareAgent>Adobe Photoshop Camera Raw 12.1 (Macintosh)</stEvt:softwareAgent>
-     <stEvt:when>2020-01-19T07:38:10-08:00</stEvt:when>
-    </rdf:li>
-    <rdf:li rdf:parseType='Resource'>
-     <stEvt:action>derived</stEvt:action>
-     <stEvt:parameters>converted from image/x-nikon-nef to image/tiff</stEvt:parameters>
+     <stEvt:instanceID>xmp.iid:19d74c34-d007-ce46-a65e-b28ffe9c04fb</stEvt:instanceID>
+     <stEvt:softwareAgent>Adobe Photoshop Lightroom 6.0 (Windows)</stEvt:softwareAgent>
+     <stEvt:when>2018-05-18T19:46:22+03:00</stEvt:when>
     </rdf:li>
     <rdf:li rdf:parseType='Resource'>
      <stEvt:action>saved</stEvt:action>
      <stEvt:changed>/</stEvt:changed>
-     <stEvt:instanceID>xmp.iid:54213404-50c4-4bc1-8b5e-ca608d491353</stEvt:instanceID>
-     <stEvt:softwareAgent>Adobe Photoshop Camera Raw 12.1 (Macintosh)</stEvt:softwareAgent>
-     <stEvt:when>2020-01-19T07:38:17-08:00</stEvt:when>
+     <stEvt:instanceID>xmp.iid:3932C920BF5AE811B02FE4D155B26AA7</stEvt:instanceID>
+     <stEvt:softwareAgent>Adobe Photoshop CS5.1 Windows</stEvt:softwareAgent>
+     <stEvt:when>2018-05-18T20:42:59+03:00</stEvt:when>
     </rdf:li>
     <rdf:li rdf:parseType='Resource'>
      <stEvt:action>saved</stEvt:action>
      <stEvt:changed>/</stEvt:changed>
-     <stEvt:instanceID>xmp.iid:91ee3fcb-a536-49e8-ad83-8c8c4f8014a0</stEvt:instanceID>
+     <stEvt:instanceID>xmp.iid:e7507599-587f-49bc-9634-3716191649f9</stEvt:instanceID>
      <stEvt:softwareAgent>Adobe Photoshop 21.0 (Macintosh)</stEvt:softwareAgent>
-     <stEvt:when>2020-01-19T07:39:52-08:00</stEvt:when>
+     <stEvt:when>2020-04-02T01:56:28+04:30</stEvt:when>
     </rdf:li>
     <rdf:li rdf:parseType='Resource'>
      <stEvt:action>converted</stEvt:action>
-     <stEvt:parameters>from image/tiff to image/jpeg</stEvt:parameters>
+     <stEvt:parameters>from image/jpeg to application/vnd.adobe.photoshop</stEvt:parameters>
     </rdf:li>
     <rdf:li rdf:parseType='Resource'>
      <stEvt:action>derived</stEvt:action>
-     <stEvt:parameters>converted from image/tiff to image/jpeg</stEvt:parameters>
+     <stEvt:parameters>converted from image/jpeg to application/vnd.adobe.photoshop</stEvt:parameters>
     </rdf:li>
     <rdf:li rdf:parseType='Resource'>
      <stEvt:action>saved</stEvt:action>
      <stEvt:changed>/</stEvt:changed>
-     <stEvt:instanceID>xmp.iid:504517e5-4d2d-4ff9-ab4d-6cb7a4c1545c</stEvt:instanceID>
+     <stEvt:instanceID>xmp.iid:d68c4979-1ec8-4632-8dfa-4a18eb77448d</stEvt:instanceID>
      <stEvt:softwareAgent>Adobe Photoshop 21.0 (Macintosh)</stEvt:softwareAgent>
-     <stEvt:when>2020-01-19T07:39:52-08:00</stEvt:when>
-    </rdf:li>
-    <rdf:li rdf:parseType='Resource'>
-     <stEvt:action>saved</stEvt:action>
-     <stEvt:changed>/metadata</stEvt:changed>
-     <stEvt:instanceID>xmp.iid:a153dabd-59ba-4c6e-aba1-553767255325</stEvt:instanceID>
-     <stEvt:softwareAgent>Adobe Photoshop Camera Raw 12.1 (Macintosh)</stEvt:softwareAgent>
-     <stEvt:when>2020-01-19T07:44:21-08:00</stEvt:when>
-    </rdf:li>
-    <rdf:li rdf:parseType='Resource'>
-     <stEvt:action>derived</stEvt:action>
-     <stEvt:parameters>converted from image/jpeg to image/tiff</stEvt:parameters>
-    </rdf:li>
-    <rdf:li rdf:parseType='Resource'>
-     <stEvt:action>saved</stEvt:action>
-     <stEvt:changed>/</stEvt:changed>
-     <stEvt:instanceID>xmp.iid:07d6cc09-cb39-46e7-bc3d-0380e00b4d4b</stEvt:instanceID>
-     <stEvt:softwareAgent>Adobe Photoshop Camera Raw 12.1 (Macintosh)</stEvt:softwareAgent>
-     <stEvt:when>2020-01-19T07:44:24-08:00</stEvt:when>
-    </rdf:li>
-    <rdf:li rdf:parseType='Resource'>
-     <stEvt:action>saved</stEvt:action>
-     <stEvt:changed>/</stEvt:changed>
-     <stEvt:instanceID>xmp.iid:5e666aac-e58f-41c4-82eb-4b8ba1d9c23d</stEvt:instanceID>
-     <stEvt:softwareAgent>Adobe Photoshop 21.0 (Macintosh)</stEvt:softwareAgent>
-     <stEvt:when>2020-01-19T07:45:53-08:00</stEvt:when>
+     <stEvt:when>2020-04-02T01:56:28+04:30</stEvt:when>
     </rdf:li>
     <rdf:li rdf:parseType='Resource'>
      <stEvt:action>converted</stEvt:action>
-     <stEvt:parameters>from image/tiff to image/jpeg</stEvt:parameters>
+     <stEvt:parameters>from application/vnd.adobe.photoshop to image/vnd.adobe.photoshop</stEvt:parameters>
     </rdf:li>
     <rdf:li rdf:parseType='Resource'>
      <stEvt:action>derived</stEvt:action>
-     <stEvt:parameters>converted from image/tiff to image/jpeg</stEvt:parameters>
+     <stEvt:parameters>converted from image/vnd.adobe.photoshop to image/jpeg, saved to new location</stEvt:parameters>
     </rdf:li>
     <rdf:li rdf:parseType='Resource'>
      <stEvt:action>saved</stEvt:action>
      <stEvt:changed>/</stEvt:changed>
-     <stEvt:instanceID>xmp.iid:817bc10c-57a5-4064-bb95-536749889727</stEvt:instanceID>
-     <stEvt:softwareAgent>Adobe Photoshop 21.0 (Macintosh)</stEvt:softwareAgent>
-     <stEvt:when>2020-01-19T07:45:53-08:00</stEvt:when>
-    </rdf:li>
-    <rdf:li rdf:parseType='Resource'>
-     <stEvt:action>saved</stEvt:action>
-     <stEvt:changed>/</stEvt:changed>
-     <stEvt:instanceID>xmp.iid:0e0de60d-9dd4-420f-bf1e-056c4de9389b</stEvt:instanceID>
-     <stEvt:softwareAgent>Adobe Photoshop 21.0 (Macintosh)</stEvt:softwareAgent>
-     <stEvt:when>2020-01-19T07:52:27-08:00</stEvt:when>
-    </rdf:li>
-    <rdf:li rdf:parseType='Resource'>
-     <stEvt:action>saved</stEvt:action>
-     <stEvt:changed>/metadata</stEvt:changed>
-     <stEvt:instanceID>xmp.iid:3bbbbb50-2b69-412a-8da7-ebe4b7b946ba</stEvt:instanceID>
-     <stEvt:softwareAgent>Adobe Photoshop Camera Raw 12.1 (Macintosh)</stEvt:softwareAgent>
-     <stEvt:when>2020-01-25T06:30:49-08:00</stEvt:when>
-    </rdf:li>
-    <rdf:li rdf:parseType='Resource'>
-     <stEvt:action>derived</stEvt:action>
-     <stEvt:parameters>converted from image/jpeg to image/tiff</stEvt:parameters>
-    </rdf:li>
-    <rdf:li rdf:parseType='Resource'>
-     <stEvt:action>saved</stEvt:action>
-     <stEvt:changed>/</stEvt:changed>
-     <stEvt:instanceID>xmp.iid:3ff520b3-d1f6-42f9-9906-354073c4a7e9</stEvt:instanceID>
-     <stEvt:softwareAgent>Adobe Photoshop Camera Raw 12.1 (Macintosh)</stEvt:softwareAgent>
-     <stEvt:when>2020-01-25T06:31-08:00</stEvt:when>
-    </rdf:li>
-    <rdf:li rdf:parseType='Resource'>
-     <stEvt:action>saved</stEvt:action>
-     <stEvt:changed>/</stEvt:changed>
-     <stEvt:instanceID>xmp.iid:dea5b69c-6c2a-4587-90e0-360b5bd881bd</stEvt:instanceID>
-     <stEvt:softwareAgent>Adobe Photoshop 21.0 (Macintosh)</stEvt:softwareAgent>
-     <stEvt:when>2020-01-25T06:32:20-08:00</stEvt:when>
-    </rdf:li>
-    <rdf:li rdf:parseType='Resource'>
-     <stEvt:action>converted</stEvt:action>
-     <stEvt:parameters>from image/tiff to image/jpeg</stEvt:parameters>
-    </rdf:li>
-    <rdf:li rdf:parseType='Resource'>
-     <stEvt:action>derived</stEvt:action>
-     <stEvt:parameters>converted from image/tiff to image/jpeg</stEvt:parameters>
-    </rdf:li>
-    <rdf:li rdf:parseType='Resource'>
-     <stEvt:action>saved</stEvt:action>
-     <stEvt:changed>/</stEvt:changed>
-     <stEvt:instanceID>xmp.iid:db2154f0-29a0-4501-946a-67152d71dd28</stEvt:instanceID>
-     <stEvt:softwareAgent>Adobe Photoshop 21.0 (Macintosh)</stEvt:softwareAgent>
-     <stEvt:when>2020-01-25T06:32:20-08:00</stEvt:when>
-    </rdf:li>
-    <rdf:li rdf:parseType='Resource'>
-     <stEvt:action>saved</stEvt:action>
-     <stEvt:changed>/metadata</stEvt:changed>
-     <stEvt:instanceID>xmp.iid:7e2dbb6a-7ecf-4717-a6ca-540cdc80f483</stEvt:instanceID>
-     <stEvt:softwareAgent>Adobe Photoshop Camera Raw 12.1 (Macintosh)</stEvt:softwareAgent>
-     <stEvt:when>2020-01-25T08:38:46-08:00</stEvt:when>
-    </rdf:li>
-    <rdf:li rdf:parseType='Resource'>
-     <stEvt:action>derived</stEvt:action>
-     <stEvt:parameters>converted from image/jpeg to image/tiff</stEvt:parameters>
-    </rdf:li>
-    <rdf:li rdf:parseType='Resource'>
-     <stEvt:action>saved</stEvt:action>
-     <stEvt:changed>/</stEvt:changed>
-     <stEvt:instanceID>xmp.iid:dc4f3a33-b497-474a-86ef-7a46e93470b5</stEvt:instanceID>
-     <stEvt:softwareAgent>Adobe Photoshop Camera Raw 12.1 (Macintosh)</stEvt:softwareAgent>
-     <stEvt:when>2020-01-25T08:38:47-08:00</stEvt:when>
-    </rdf:li>
-    <rdf:li rdf:parseType='Resource'>
-     <stEvt:action>derived</stEvt:action>
-     <stEvt:parameters>converted from image/tiff to image/jpeg</stEvt:parameters>
-    </rdf:li>
-    <rdf:li rdf:parseType='Resource'>
-     <stEvt:action>saved</stEvt:action>
-     <stEvt:changed>/</stEvt:changed>
-     <stEvt:instanceID>xmp.iid:fd2ef984-93d1-468d-993a-f19f5630680a</stEvt:instanceID>
-     <stEvt:softwareAgent>Adobe Photoshop 21.0 (Macintosh)</stEvt:softwareAgent>
-     <stEvt:when>2020-01-25T08:38:59-08:00</stEvt:when>
-    </rdf:li>
-    <rdf:li rdf:parseType='Resource'>
-     <stEvt:action>saved</stEvt:action>
-     <stEvt:changed>/metadata</stEvt:changed>
-     <stEvt:instanceID>xmp.iid:6858410a-315f-42d5-861d-2fa836172dac</stEvt:instanceID>
-     <stEvt:softwareAgent>Adobe Photoshop Camera Raw 12.1 (Macintosh)</stEvt:softwareAgent>
-     <stEvt:when>2020-01-27T23:29:57-08:00</stEvt:when>
-    </rdf:li>
-    <rdf:li rdf:parseType='Resource'>
-     <stEvt:action>derived</stEvt:action>
-     <stEvt:parameters>converted from image/jpeg to image/tiff</stEvt:parameters>
-    </rdf:li>
-    <rdf:li rdf:parseType='Resource'>
-     <stEvt:action>saved</stEvt:action>
-     <stEvt:changed>/</stEvt:changed>
-     <stEvt:instanceID>xmp.iid:fac57150-ea09-4a76-a2c3-49fe413ddbc1</stEvt:instanceID>
-     <stEvt:softwareAgent>Adobe Photoshop Camera Raw 12.1 (Macintosh)</stEvt:softwareAgent>
-     <stEvt:when>2020-01-27T23:30:05-08:00</stEvt:when>
-    </rdf:li>
-    <rdf:li rdf:parseType='Resource'>
-     <stEvt:action>saved</stEvt:action>
-     <stEvt:changed>/</stEvt:changed>
-     <stEvt:instanceID>xmp.iid:1be1ab9f-f595-4c62-b814-a213e55047d3</stEvt:instanceID>
-     <stEvt:softwareAgent>Adobe Photoshop 21.0 (Macintosh)</stEvt:softwareAgent>
-     <stEvt:when>2020-01-27T23:30:19-08:00</stEvt:when>
-    </rdf:li>
-    <rdf:li rdf:parseType='Resource'>
-     <stEvt:action>converted</stEvt:action>
-     <stEvt:parameters>from image/tiff to image/jpeg</stEvt:parameters>
-    </rdf:li>
-    <rdf:li rdf:parseType='Resource'>
-     <stEvt:action>derived</stEvt:action>
-     <stEvt:parameters>converted from image/tiff to image/jpeg</stEvt:parameters>
-    </rdf:li>
-    <rdf:li rdf:parseType='Resource'>
-     <stEvt:action>saved</stEvt:action>
-     <stEvt:changed>/</stEvt:changed>
-     <stEvt:instanceID>xmp.iid:e1caa918-cfbe-476c-ae4f-088620b9c999</stEvt:instanceID>
-     <stEvt:softwareAgent>Adobe Photoshop 21.0 (Macintosh)</stEvt:softwareAgent>
-     <stEvt:when>2020-01-27T23:30:19-08:00</stEvt:when>
-    </rdf:li>
-    <rdf:li rdf:parseType='Resource'>
-     <stEvt:action>saved</stEvt:action>
-     <stEvt:changed>/metadata</stEvt:changed>
-     <stEvt:instanceID>xmp.iid:01bd7cf8-e6a1-4b63-bce6-fb42e01d0951</stEvt:instanceID>
-     <stEvt:softwareAgent>Adobe Photoshop Camera Raw 12.1 (Macintosh)</stEvt:softwareAgent>
-     <stEvt:when>2020-02-08T08:45:03-07:00</stEvt:when>
-    </rdf:li>
-    <rdf:li rdf:parseType='Resource'>
-     <stEvt:action>saved</stEvt:action>
-     <stEvt:changed>/metadata</stEvt:changed>
-     <stEvt:instanceID>xmp.iid:e50abce5-1f36-4d9f-bbba-241dc6a20e07</stEvt:instanceID>
-     <stEvt:softwareAgent>Adobe Photoshop Camera Raw 12.1 (Macintosh)</stEvt:softwareAgent>
-     <stEvt:when>2020-02-08T08:45:42-07:00</stEvt:when>
-    </rdf:li>
-    <rdf:li rdf:parseType='Resource'>
-     <stEvt:action>derived</stEvt:action>
-     <stEvt:parameters>converted from image/jpeg to image/tiff</stEvt:parameters>
-    </rdf:li>
-    <rdf:li rdf:parseType='Resource'>
-     <stEvt:action>saved</stEvt:action>
-     <stEvt:changed>/</stEvt:changed>
-     <stEvt:instanceID>xmp.iid:5206e00c-b360-485d-8869-459d85ae3ce2</stEvt:instanceID>
-     <stEvt:softwareAgent>Adobe Photoshop Camera Raw 12.1 (Macintosh)</stEvt:softwareAgent>
-     <stEvt:when>2020-02-08T08:45:42-07:00</stEvt:when>
-    </rdf:li>
-    <rdf:li rdf:parseType='Resource'>
-     <stEvt:action>derived</stEvt:action>
-     <stEvt:parameters>converted from image/tiff to image/jpeg</stEvt:parameters>
-    </rdf:li>
-    <rdf:li rdf:parseType='Resource'>
-     <stEvt:action>saved</stEvt:action>
-     <stEvt:changed>/</stEvt:changed>
-     <stEvt:instanceID>xmp.iid:110342a5-d3aa-4257-914e-418b9629c650</stEvt:instanceID>
-     <stEvt:softwareAgent>Adobe Photoshop 21.0 (Macintosh)</stEvt:softwareAgent>
-     <stEvt:when>2020-02-08T08:46-07:00</stEvt:when>
-    </rdf:li>
-    <rdf:li rdf:parseType='Resource'>
-     <stEvt:action>saved</stEvt:action>
-     <stEvt:changed>/metadata</stEvt:changed>
-     <stEvt:instanceID>xmp.iid:7f75f01b-267e-4630-a1d5-b1afb1a5bda9</stEvt:instanceID>
-     <stEvt:softwareAgent>Adobe Photoshop Camera Raw 12.1 (Macintosh)</stEvt:softwareAgent>
-     <stEvt:when>2020-02-08T08:46:18-07:00</stEvt:when>
-    </rdf:li>
-    <rdf:li rdf:parseType='Resource'>
-     <stEvt:action>derived</stEvt:action>
-     <stEvt:parameters>converted from image/jpeg to image/tiff</stEvt:parameters>
-    </rdf:li>
-    <rdf:li rdf:parseType='Resource'>
-     <stEvt:action>saved</stEvt:action>
-     <stEvt:changed>/</stEvt:changed>
-     <stEvt:instanceID>xmp.iid:c8692041-63f7-4d21-bec9-e970b76b434e</stEvt:instanceID>
-     <stEvt:softwareAgent>Adobe Photoshop Camera Raw 12.1 (Macintosh)</stEvt:softwareAgent>
-     <stEvt:when>2020-02-08T08:46:19-07:00</stEvt:when>
-    </rdf:li>
-    <rdf:li rdf:parseType='Resource'>
-     <stEvt:action>derived</stEvt:action>
-     <stEvt:parameters>converted from image/tiff to image/jpeg</stEvt:parameters>
-    </rdf:li>
-    <rdf:li rdf:parseType='Resource'>
-     <stEvt:action>saved</stEvt:action>
-     <stEvt:changed>/</stEvt:changed>
-     <stEvt:instanceID>xmp.iid:f3d1ba30-5073-4364-b39e-b98fb1412d7b</stEvt:instanceID>
-     <stEvt:softwareAgent>Adobe Photoshop 21.0 (Macintosh)</stEvt:softwareAgent>
-     <stEvt:when>2020-02-08T08:46:48-07:00</stEvt:when>
+     <stEvt:instanceID>xmp.iid:45ef8506-db98-4494-ab8d-937e1863f279</stEvt:instanceID>
+     <stEvt:softwareAgent>Adobe Photoshop Lightroom Classic 9.1 (Macintosh)</stEvt:softwareAgent>
+     <stEvt:when>2020-04-02T01:57:57+04:30</stEvt:when>
     </rdf:li>
    </rdf:Seq>
   </xmpMM:History>
-  <xmpMM:InstanceID>xmp.iid:f3d1ba30-5073-4364-b39e-b98fb1412d7b</xmpMM:InstanceID>
-  <xmpMM:OriginalDocumentID>FE70A58626BB309F945E62BC25DCC69F</xmpMM:OriginalDocumentID>
+  <xmpMM:InstanceID>xmp.iid:45ef8506-db98-4494-ab8d-937e1863f279</xmpMM:InstanceID>
+  <xmpMM:OriginalDocumentID>2715DE32B6D506FE63E4AF4472B81477</xmpMM:OriginalDocumentID>
+  <xmpMM:PreservedFileName>12.psd</xmpMM:PreservedFileName>
  </rdf:Description>
 
  <rdf:Description rdf:about=''
@@ -419,7 +253,7 @@ Keywords (25) = 'nature'
   <crs:CameraProfileDigest>54650A341B5B5CCAE8442D0B43A92BCE</crs:CameraProfileDigest>
   <crs:Clarity2012>0</crs:Clarity2012>
   <crs:ColorNoiseReduction>0</crs:ColorNoiseReduction>
-  <crs:Contrast2012>-6</crs:Contrast2012>
+  <crs:Contrast2012>0</crs:Contrast2012>
   <crs:ConvertToGrayscale>False</crs:ConvertToGrayscale>
   <crs:DefringeGreenAmount>0</crs:DefringeGreenAmount>
   <crs:DefringeGreenHueHi>60</crs:DefringeGreenHueHi>
@@ -478,6 +312,7 @@ Keywords (25) = 'nature'
   <crs:PerspectiveY>0.00</crs:PerspectiveY>
   <crs:PostCropVignetteAmount>0</crs:PostCropVignetteAmount>
   <crs:ProcessVersion>11.0</crs:ProcessVersion>
+  <crs:RawFileName/>
   <crs:RedHue>0</crs:RedHue>
   <crs:RedSaturation>0</crs:RedSaturation>
   <crs:Saturation>0</crs:Saturation>

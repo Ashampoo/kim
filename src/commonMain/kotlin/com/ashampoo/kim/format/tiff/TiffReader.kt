@@ -19,7 +19,9 @@ package com.ashampoo.kim.format.tiff
 import com.ashampoo.kim.common.ByteOrder
 import com.ashampoo.kim.common.ImageReadException
 import com.ashampoo.kim.common.head
+import com.ashampoo.kim.common.startsWith
 import com.ashampoo.kim.common.toInt
+import com.ashampoo.kim.format.ImageFormatMagicNumbers
 import com.ashampoo.kim.format.tiff.constant.ExifTag
 import com.ashampoo.kim.format.tiff.constant.TiffConstants
 import com.ashampoo.kim.format.tiff.constant.TiffConstants.DIRECTORY_TYPE_SUB
@@ -340,10 +342,15 @@ object TiffReader {
         return fields
     }
 
+    /**
+     * Reads the thumbnail image if data is valid or returns NULL if a problem was found.
+     *
+     * Discarding corrupt thumbnails is not a big issue, so no exceptions will be thrown here.
+     */
     private fun getJpegRawImageData(
         byteReader: RandomAccessByteReader,
         directory: TiffDirectory
-    ): JpegImageDataElement {
+    ): JpegImageDataElement? {
 
         val element = directory.getJpegRawImageDataElement()
 
@@ -356,10 +363,20 @@ object TiffReader {
         if (offset + length > byteReader.contentLength)
             length = (byteReader.contentLength - offset).toInt()
 
-        val data = byteReader.readBytes(offset.toInt(), length)
+        if (length <= 0)
+            return null
 
-        if (data.size != length)
-            throw ImageReadException("Unexpected length: Wanted $length, but got ${data.size}")
+        val bytes = byteReader.readBytes(offset.toInt(), length)
+
+        if (bytes.size != length)
+            return null
+
+        /*
+         * Ignore it if it's not a JPEG.
+         * Some files have random garbage bytes here.
+         */
+        if (!bytes.startsWith(ImageFormatMagicNumbers.jpeg))
+            return null
 
         /*
          * Note: Apache Commons Imaging has a validation check here to ensure that
@@ -369,7 +386,7 @@ object TiffReader {
          * there are some random bytes present.
          */
 
-        return JpegImageDataElement(offset, length, data)
+        return JpegImageDataElement(offset, length, bytes)
     }
 
     /**

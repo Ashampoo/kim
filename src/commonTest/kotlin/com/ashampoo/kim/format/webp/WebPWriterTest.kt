@@ -78,8 +78,6 @@ class WebPWriterTest {
 
             val newBytes = byteWriter.toByteArray()
 
-            Path("test.webp").writeBytes(newBytes)
-
             assertContentEquals(
                 expected = bytes,
                 actual = newBytes
