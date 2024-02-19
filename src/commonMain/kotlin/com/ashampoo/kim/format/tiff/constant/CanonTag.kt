@@ -37,6 +37,16 @@ object CanonTag {
         TiffDirectoryType.EXIF_DIRECTORY_MAKER_NOTE_CANON
     )
 
+    val CANON_IMAGE_TYPE = TagInfoAscii(
+        0x0006, "CanonImageType", TagInfo.LENGTH_UNKNOWN,
+        TiffDirectoryType.EXIF_DIRECTORY_MAKER_NOTE_CANON
+    )
+
+    val CANON_FIRMWARE_VERSION = TagInfoAscii(
+        0x0007, "CanonFirmwareVersion", TagInfo.LENGTH_UNKNOWN,
+        TiffDirectoryType.EXIF_DIRECTORY_MAKER_NOTE_CANON
+    )
+
     val FILE_NUMBER = TagInfoLong(
         0x0008, "FileNumber",
         TiffDirectoryType.EXIF_DIRECTORY_MAKER_NOTE_CANON
@@ -52,10 +62,39 @@ object CanonTag {
         TiffDirectoryType.EXIF_DIRECTORY_MAKER_NOTE_CANON
     )
 
+    /**
+     * See https://exiftool.org/TagNames/Canon.html#CanonModelID
+     */
+    val CANON_MODEL_ID = TagInfoLong(
+        0x0010, "CanonModelID",
+        TiffDirectoryType.EXIF_DIRECTORY_MAKER_NOTE_CANON
+    )
+
+    val LENS_MODEL = TagInfoAscii(
+        0x0095, "LensModel", TagInfo.LENGTH_UNKNOWN,
+        TiffDirectoryType.EXIF_DIRECTORY_MAKER_NOTE_CANON
+    )
+
+    val INTERNAL_SERIAL_NUMBER = TagInfoAscii(
+        0x0096, "InternalSerialNumber", TagInfo.LENGTH_UNKNOWN,
+        TiffDirectoryType.EXIF_DIRECTORY_MAKER_NOTE_CANON
+    )
+
+    val LENS_INFO = TagInfoUndefineds(
+        0x4019, "LensInfo", TagInfo.LENGTH_UNKNOWN,
+        TiffDirectoryType.EXIF_DIRECTORY_MAKER_NOTE_CANON
+    )
+
     val ALL = listOf(
         CANON_CAMERA_SETTINGS,
+        CANON_IMAGE_TYPE,
+        CANON_FIRMWARE_VERSION,
         FILE_NUMBER,
         OWNER_NAME,
-        SERIAL_NUMBER
+        SERIAL_NUMBER,
+        CANON_MODEL_ID,
+        LENS_MODEL,
+        INTERNAL_SERIAL_NUMBER,
+        LENS_INFO
     )
 }

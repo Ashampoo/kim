@@ -73,20 +73,20 @@ Little-endian (Intel, II)
 0000000912 0x0002 Unknown = [0, 24, 8902, 19690]
 0000000924 0x0003 Unknown = [0, 0, 0, 0]
 0000000936 0x0004 Unknown = [34 shorts]
-0000000948 0x0006 Unknown = Canon EOS 60D
-0000000960 0x0007 Unknown = Firmware Version 1.1.1
+0000000948 0x0006 CanonImageType = Canon EOS 60D
+0000000960 0x0007 CanonFirmwareVersion = Firmware Version 1.1.1
 0000000972 0x0009 OwnerName = Stefan Oltmann
 0000000984 0x000c SerialNumber = 1581036387
 0000000996 0x000d Unknown = [1536 bytes]
-0000001008 0x0010 Unknown = -2147483001
+0000001008 0x0010 CanonModelID = -2147483001
 0000001020 0x0013 Unknown = [0, 159, 7, 112]
 0000001032 0x0015 Unknown = -1610612736
 0000001044 0x0019 Unknown = 1
 0000001056 0x0026 Unknown = [48 shorts]
 0000001068 0x0083 Unknown = 0
 0000001080 0x0093 Unknown = [27 shorts]
-0000001092 0x0095 Unknown = EF-S15-85mm f/3.5-5.6 IS USM
-0000001104 0x0096 Unknown = WB0607529
+0000001092 0x0095 LensModel = EF-S15-85mm f/3.5-5.6 IS USM
+0000001104 0x0096 InternalSerialNumber = WB0607529
 0000001116 0x0097 Unknown = [1024 bytes]
 0000001128 0x0098 Unknown = [0, 0, 0, 0]
 0000001140 0x0099 Unknown = [74 ints]
@@ -106,7 +106,7 @@ Little-endian (Intel, II)
 0000001308 0x4016 Unknown = [24, 0, 1, 0, 0, 1]
 0000001320 0x4017 Unknown = [197383, 1811939375]
 0000001332 0x4018 Unknown = [12, 0, 3]
-0000001344 0x4019 Unknown = [30 bytes]
+0000001344 0x4019 LensInfo = [30 bytes]
 0000001356 0x4020 Unknown = [20, 0, 0, 0, 0]
 
 ---- XMP ----
