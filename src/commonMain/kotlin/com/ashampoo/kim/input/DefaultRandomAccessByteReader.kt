@@ -15,6 +15,7 @@
  */
 package com.ashampoo.kim.input
 
+import com.ashampoo.kim.format.jpeg.JpegConstants
 import kotlin.math.max
 
 /**
@@ -30,7 +31,7 @@ class DefaultRandomAccessByteReader(
 
     private var currentPosition: Int = 0
 
-    private var bufferedBytesSize: Int = 0
+    private var bufferPosition: Int = 0
 
     private var buffer = ByteArray(0)
 
@@ -41,7 +42,7 @@ class DefaultRandomAccessByteReader(
 
         val endIndex = currentPosition + 1
 
-        if (endIndex > bufferedBytesSize)
+        if (endIndex > bufferPosition)
             readToIndex(endIndex)
 
         return buffer[currentPosition++]
@@ -54,7 +55,7 @@ class DefaultRandomAccessByteReader(
 
         val endIndex = currentPosition + count.coerceAtMost(contentLength.toInt())
 
-        if (endIndex > bufferedBytesSize)
+        if (endIndex > bufferPosition)
             readToIndex(endIndex)
 
         val bytes = buffer.copyOfRange(currentPosition, endIndex)
@@ -77,7 +78,7 @@ class DefaultRandomAccessByteReader(
 
         val endIndex = offset + length
 
-        if (endIndex > bufferedBytesSize)
+        if (endIndex > bufferPosition)
             readToIndex(endIndex)
 
         return buffer.copyOfRange(offset, endIndex)
@@ -88,15 +89,10 @@ class DefaultRandomAccessByteReader(
 
     private fun readToIndex(index: Int) {
 
-        val missingBytesCount = index - bufferedBytesSize
-
-        val bytes = byteReader.readBytes(missingBytesCount)
-
-        val oldSize = buffer.size
-
-        val newSizeRequiredSize = oldSize + bytes.size
-
-        if (newSizeRequiredSize > buffer.size) {
+        /*
+         * Check if the need to expand the buffer first.
+         */
+        if (index > buffer.size) {
 
             /*
              * Copying an array is expensive. So we want at least expand
@@ -104,21 +100,27 @@ class DefaultRandomAccessByteReader(
              */
 
             val newBufferSize =
-                max(newSizeRequiredSize, oldSize + BUFFER_EXPANSION)
+                max(index, buffer.size + BUFFER_EXPANSION)
 
-            // TODO only expand a minimum of BUFFER_EXPANSION
-
-            buffer = buffer.copyOf(newSizeRequiredSize)
+            buffer = buffer.copyOf(newBufferSize)
         }
 
-        for (i in bytes.indices)
-            buffer[oldSize + i] = bytes[i]
+        val missingBytesCount = index - bufferPosition
 
-        bufferedBytesSize = newSizeRequiredSize
+        val bytes = byteReader.readBytes(missingBytesCount)
+
+        for (i in bytes.indices)
+            buffer[bufferPosition + i] = bytes[i]
+
+        bufferPosition = index
     }
 
     companion object {
 
-        private const val BUFFER_EXPANSION = 1024
+        /*
+         * We read the file in chunks of the usual EXIF size (65kb).
+         * This is to minimize array copy operations.
+         */
+        private const val BUFFER_EXPANSION = JpegConstants.MAX_SEGMENT_SIZE
     }
 }
