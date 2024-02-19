@@ -24,9 +24,9 @@ import com.ashampoo.kim.input.ByteReader
 
 class JfifSegment(
     marker: Int,
-    markerLength: Int,
+    length: Int,
     byteReader: ByteReader
-) : Segment(marker, markerLength) {
+) : Segment(marker, length) {
 
     val jfifMajorVersion: Int
     val jfifMinorVersion: Int
