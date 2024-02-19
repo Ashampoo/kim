@@ -100,19 +100,18 @@ object JpegConstants {
     const val DAC_MARKER = 0xFFC0 + 0xC
 
     const val SOF0_MARKER = 0xFFC0
-    const val SOF1_MARKER = 0xFFC0 + 0x1
-    const val SOF2_MARKER = 0xFFC0 + 0x2
-    const val SOF3_MARKER = 0xFFC0 + 0x3
-    const val SOF5_MARKER = 0xFFC0 + 0x5
-    const val SOF6_MARKER = 0xFFC0 + 0x6
-    const val SOF7_MARKER = 0xFFC0 + 0x7
-    const val SOF8_MARKER = 0xFFC0 + 0x8
-    const val SOF9_MARKER = 0xFFC0 + 0x9
-    const val SOF10_MARKER = 0xFFC0 + 0xA
-    const val SOF11_MARKER = 0xFFC0 + 0xB
-    const val SOF13_MARKER = 0xFFC0 + 0xD
-    const val SOF14_MARKER = 0xFFC0 + 0xE
-    const val SOF15_MARKER = 0xFFC0 + 0xF
+    const val SOF1_MARKER = 0xFFC1
+    const val SOF2_MARKER = 0xFFC2
+    const val SOF3_MARKER = 0xFFC3
+    const val SOF5_MARKER = 0xFFC5
+    const val SOF6_MARKER = 0xFFC6
+    const val SOF7_MARKER = 0xFFC7
+    const val SOF9_MARKER = 0xFFC9
+    const val SOF10_MARKER = 0xFFCA
+    const val SOF11_MARKER = 0xFFCB
+    const val SOF13_MARKER = 0xFFCD
+    const val SOF14_MARKER = 0xFFCE
+    const val SOF15_MARKER = 0xFFCF
 
     // marker for restart intervals
     const val DRI_MARKER = 0xFFDD
@@ -150,38 +149,13 @@ object JpegConstants {
         JpegConstants.SOF15_MARKER
     )
 
-    @OptIn(ExperimentalStdlibApi::class)
-    fun markerDescription(marker: Int): String =
-        when (marker) {
-            COM_MARKER_1 -> "COM (Comment)"
-            COM_MARKER_2 -> "COM (Comment)"
-            DHT_MARKER -> "DHT (Define Huffman Table)"
-            DQT_MARKER -> "DQT (Define Quantization Table)"
-            DRI_MARKER -> "DRI (Define Restart Interval)"
-            EOI_MARKER -> "EOI (End of Image)"
-            JPEG_APP0_MARKER -> "APP0 JFIF"
-            JPEG_APP1_MARKER -> "APP1"
-            JPEG_APP2_MARKER -> "APP2"
-            JPEG_APP13_MARKER -> "APP13 IPTC"
-            JPEG_APP15_MARKER -> "APP15"
-            SOF0_MARKER -> "SOF0 (Start of Frame, Baseline DCT)"
-            SOF2_MARKER -> "SOF2 (Start of Frame, Progressive DCT)"
-            SOI_MARKER -> "SOI (Start of Image)"
-            SOS_MARKER -> "SOS (Start of Scan)"
-            else -> marker.toShort().toHexString(HexFormat.UpperCase)
-        }
-
-//    val MARKERS = listOf(
-//        JPEG_APP0, JPEG_APP0_MARKER,
-//        JPEG_APP1_MARKER, JPEG_APP2_MARKER, JPEG_APP13_MARKER,
-//        JPEG_APP14_MARKER, JPEG_APP15_MARKER, JFIF_MARKER,
-//        SOF0_MARKER, SOF1_MARKER, SOF2_MARKER, SOF3_MARKER, DHT_MARKER,
-//        SOF5_MARKER, SOF6_MARKER, SOF7_MARKER, SOF8_MARKER, SOF9_MARKER,
-//        SOF10_MARKER, SOF11_MARKER, DAC_MARKER, SOF13_MARKER,
-//        SOF14_MARKER, SOF15_MARKER, EOI_MARKER, SOS_MARKER, DQT_MARKER,
-//        DNL_MARKER, COM_MARKER, DRI_MARKER, RST0_MARKER, RST1_MARKER, RST2_MARKER,
-//        RST3_MARKER, RST4_MARKER, RST5_MARKER, RST6_MARKER, RST7_MARKER
-//    )
+    val SOFN_MARKER_BYTES = listOf(
+        0xC0.toByte(), 0xC1.toByte(), 0xC2.toByte(),
+        0xC3.toByte(), 0xC5.toByte(), 0xC6.toByte(),
+        0xC7.toByte(), 0xC9.toByte(), 0xCA.toByte(),
+        0xCB.toByte(), 0xCD.toByte(), 0xCE.toByte(),
+        0xCF.toByte()
+    )
 
     val APP13_IDENTIFIER = byteArrayOf(
         0x50, // P
@@ -208,4 +182,35 @@ object JpegConstants {
     /** Hex value of "8BIM" (38 42 49 4D) */
     const val IPTC_RESOURCE_BLOCK_SIGNATURE_HEX = "3842494d"
 
+    @OptIn(ExperimentalStdlibApi::class)
+    fun markerDescription(marker: Int): String =
+        when (marker) {
+            COM_MARKER_1 -> "COM (Comment)"
+            COM_MARKER_2 -> "COM (Comment)"
+            DHT_MARKER -> "DHT (Define Huffman Table)"
+            DQT_MARKER -> "DQT (Define Quantization Table)"
+            DRI_MARKER -> "DRI (Define Restart Interval)"
+            EOI_MARKER -> "EOI (End of Image)"
+            JPEG_APP0_MARKER -> "APP0 JFIF"
+            JPEG_APP1_MARKER -> "APP1 (Application Segment)"
+            JPEG_APP2_MARKER -> "APP2 (Application Segment)"
+            JPEG_APP13_MARKER -> "APP13 IPTC"
+            JPEG_APP15_MARKER -> "APP15 (Application Segment)"
+            SOF0_MARKER -> "SOF0 (Start of Frame, Baseline DCT)"
+            SOF1_MARKER -> "SOF1 (Start of Frame, Extended Sequential DCT)"
+            SOF2_MARKER -> "SOF2 (Start of Frame, Progressive DCT)"
+            SOF3_MARKER -> "SOF3 (Start of Frame, Lossless (sequential))"
+            SOF5_MARKER -> "SOF5 (Start of Frame, Differential sequential DCT)"
+            SOF6_MARKER -> "SOF6 (Start of Frame, Differential progressive DCT)"
+            SOF7_MARKER -> "SOF7 (Start of Frame, Differential lossless (sequential))"
+            SOF9_MARKER -> "SOF9 (Start of Frame, Extended sequential DCT, Arithmetic coding)"
+            SOF10_MARKER -> "SOF10 (Start of Frame, Progressive DCT, Arithmetic coding)"
+            SOF11_MARKER -> "SOF11 (Start of Frame, Lossless (sequential), Arithmetic coding)"
+            SOF13_MARKER -> "SOF13 (Start of Frame, Differential sequential DCT, Arithmetic coding)"
+            SOF14_MARKER -> "SOF14 (Start of Frame, Differential progressive DCT, Arithmetic coding)"
+            SOF15_MARKER -> "SOF15 (Start of Frame, Differential lossless (sequential), Arithmetic coding)"
+            SOI_MARKER -> "SOI (Start of Image)"
+            SOS_MARKER -> "SOS (Start of Scan)"
+            else -> marker.toShort().toHexString(HexFormat.UpperCase)
+        }
 }

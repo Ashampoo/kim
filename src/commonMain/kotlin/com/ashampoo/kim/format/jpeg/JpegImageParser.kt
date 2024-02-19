@@ -19,7 +19,9 @@ package com.ashampoo.kim.format.jpeg
 import com.ashampoo.kim.common.ImageReadException
 import com.ashampoo.kim.common.getRemainingBytes
 import com.ashampoo.kim.common.startsWith
+import com.ashampoo.kim.common.toSingleNumberHexes
 import com.ashampoo.kim.common.tryWithImageReadException
+import com.ashampoo.kim.format.ImageFormatMagicNumbers
 import com.ashampoo.kim.format.ImageMetadata
 import com.ashampoo.kim.format.ImageParser
 import com.ashampoo.kim.format.jpeg.iptc.IptcMetadata
@@ -42,12 +44,68 @@ object JpegImageParser : ImageParser {
 
     fun getImageSize(byteReader: ByteReader): ImageSize {
 
-        val firstSegment =
-            readSegments(byteReader, JpegConstants.SOFN_MARKERS).firstOrNull() as? SofnSegment
+        val magicNumberBytes = byteReader.readBytes(ImageFormatMagicNumbers.jpeg.size).toList()
 
-        requireNotNull(firstSegment) { "SOF header not found. Is it really a JPEG?" }
+        /* Ensure it's actually a JPEG. */
+        require(magicNumberBytes == ImageFormatMagicNumbers.jpeg) {
+            "JPEG magic number mismatch: ${magicNumberBytes.toByteArray().toSingleNumberHexes()}"
+        }
 
-        return ImageSize(firstSegment.width, firstSegment.height)
+        @Suppress("LoopWithTooManyJumpStatements")
+        do {
+
+            var segmentIdentifier = byteReader.readByte() ?: break
+            var segmentType = byteReader.readByte() ?: break
+
+            /*
+             * Find the segment marker. Markers are zero or more 0xFF bytes, followed by
+             * a 0xFF and then a byte not equal to 0x00 or 0xFF.
+             */
+            while (
+                segmentIdentifier != JpegMetadataExtractor.SEGMENT_IDENTIFIER ||
+                segmentType == JpegMetadataExtractor.SEGMENT_IDENTIFIER ||
+                segmentType.toInt() == 0
+            ) {
+
+                segmentIdentifier = segmentType
+
+                val nextSegmentType = byteReader.readByte() ?: break
+
+                segmentType = nextSegmentType
+            }
+
+            if (
+                segmentType == JpegMetadataExtractor.SEGMENT_START_OF_SCAN ||
+                segmentType == JpegMetadataExtractor.MARKER_END_OF_IMAGE
+            )
+                break
+
+            /* Note: Segment length includes size bytes */
+            val segmentLength =
+                byteReader.read2BytesAsInt("segmentLength", JpegConstants.JPEG_BYTE_ORDER) - 2
+
+            if (segmentLength <= 0)
+                throw ImageReadException("Illegal JPEG segment length: $segmentLength")
+
+            /* We are only looking for a SOF segment. */
+            if (!JpegConstants.SOFN_MARKER_BYTES.contains(segmentType)) {
+
+                byteReader.skipBytes("skip segment", segmentLength)
+
+                continue
+            }
+
+            /* Skip precision */
+            byteReader.skipBytes("Precision", 1)
+
+            val height = byteReader.read2BytesAsInt("Height", JpegConstants.JPEG_BYTE_ORDER)
+            val width = byteReader.read2BytesAsInt("Width", JpegConstants.JPEG_BYTE_ORDER)
+
+            return ImageSize(width, height)
+
+        } while (true)
+
+        throw ImageReadException("Did not find image size.")
     }
 
     @Throws(ImageReadException::class)
