@@ -15,12 +15,10 @@
  */
 package com.ashampoo.kim.format.raf
 
+import com.ashampoo.kim.common.ByteOrder
 import com.ashampoo.kim.common.ImageReadException
-import com.ashampoo.kim.common.toSingleNumberHexes
 import com.ashampoo.kim.common.tryWithImageReadException
 import com.ashampoo.kim.format.ImageFormatMagicNumbers
-import com.ashampoo.kim.format.jpeg.JpegConstants
-import com.ashampoo.kim.format.jpeg.JpegMetadataExtractor
 import com.ashampoo.kim.input.ByteReader
 
 object RafPreviewExtractor {
@@ -30,42 +28,23 @@ object RafPreviewExtractor {
         reader: ByteReader
     ): ByteArray? = tryWithImageReadException {
 
-        val magicNumberBytes = reader.readBytes(ImageFormatMagicNumbers.raf.size).toList()
-
-        /* Ensure it's actually an RAF. */
-        require(magicNumberBytes == ImageFormatMagicNumbers.raf) {
-            "RAF magic number mismatch: ${magicNumberBytes.toByteArray().toSingleNumberHexes()}"
-        }
-
-        RafMetadataExtractor.skipToJpegMagicBytes(reader)
-
-        val bytes = mutableListOf<Byte>()
-
-        bytes.addAll(
-            listOf(JpegConstants.SOI[0], JpegConstants.SOI[1], 0xFF.toByte())
+        reader.readAndVerifyBytes(
+            "RAF magic number",
+            ImageFormatMagicNumbers.raf.toByteArray()
         )
 
-        JpegMetadataExtractor.readSegmentBytesIntoList(reader, bytes)
+        reader.skipBytes("86 header bytes", RafMetadataExtractor.REMAINING_HEADER_BYTE_COUNT)
 
-        /*
-         * Now we are in Start-of-Scan segment and need to read until FF D9 (EOI)
-         */
+        val offset = reader.read4BytesAsInt("JPEG offset", ByteOrder.BIG_ENDIAN)
 
-        @Suppress("LoopWithTooManyJumpStatements")
-        while (true) {
+        val length = reader.read4BytesAsInt("JPG length", ByteOrder.BIG_ENDIAN)
 
-            val byte = reader.readByte() ?: break
+        @Suppress("MagicNumber")
+        val remainingBytesToOffset = offset -
+            (RafMetadataExtractor.REMAINING_HEADER_BYTE_COUNT + ImageFormatMagicNumbers.raf.size + 8)
 
-            bytes.add(byte)
+        reader.skipBytes("Skip JPEG offset", remainingBytesToOffset)
 
-            /* Search the header and then break */
-            if (bytes.size >= 2 &&
-                bytes[bytes.lastIndex - 1] == JpegMetadataExtractor.SEGMENT_IDENTIFIER &&
-                bytes[bytes.lastIndex - 0] == JpegMetadataExtractor.MARKER_END_OF_IMAGE
-            )
-                break
-        }
-
-        return@tryWithImageReadException bytes.toByteArray()
+        return reader.readBytes(length)
     }
 }

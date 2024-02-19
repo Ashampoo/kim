@@ -52,10 +52,10 @@ enum class ImageFormat(
     companion object {
 
         /**
-         * RAF is the longest format that requires us to read 15 bytes to detect it.
+         * RAF is the longest format that requires us to read 16 bytes to detect it.
          * Right after that we need 12 bytes to check for HEIC.
          */
-        const val REQUIRED_HEADER_BYTE_COUNT_FOR_DETECTION: Int = 15
+        const val REQUIRED_HEADER_BYTE_COUNT_FOR_DETECTION: Int = 16
 
         private val allImageFormats = ImageFormat.values()
 
