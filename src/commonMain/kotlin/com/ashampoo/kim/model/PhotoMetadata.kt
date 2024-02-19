@@ -140,8 +140,8 @@ data class PhotoMetadata(
             personsInImage = personsInImage.ifEmpty { other.personsInImage },
 
             /* EXIF Thumbnail (IFD1) */
-            thumbnailImageSize = thumbnailImageSize,
-            thumbnailBytes = thumbnailBytes
+            thumbnailImageSize = thumbnailImageSize ?: other.thumbnailImageSize,
+            thumbnailBytes = thumbnailBytes ?: other.thumbnailBytes
         )
     }
 
