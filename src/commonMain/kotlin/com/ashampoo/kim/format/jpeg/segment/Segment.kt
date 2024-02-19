@@ -16,13 +16,7 @@
  */
 package com.ashampoo.kim.format.jpeg.segment
 
-import com.ashampoo.kim.common.ByteOrder
-
 abstract class Segment(val marker: Int, val length: Int) {
-
-    /* Big endian is the most common byte order. */
-    var byteOrder: ByteOrder = ByteOrder.BIG_ENDIAN
-        protected set
 
     abstract fun getDescription(): String
 

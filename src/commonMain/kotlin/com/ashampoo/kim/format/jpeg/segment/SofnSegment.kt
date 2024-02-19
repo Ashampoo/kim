@@ -17,6 +17,7 @@
 package com.ashampoo.kim.format.jpeg.segment
 
 import com.ashampoo.kim.format.jpeg.JpegConstants
+import com.ashampoo.kim.format.jpeg.JpegConstants.JPEG_BYTE_ORDER
 import com.ashampoo.kim.input.ByteArrayByteReader
 import com.ashampoo.kim.input.ByteReader
 
@@ -30,8 +31,8 @@ class SofnSegment(marker: Int, markerLength: Int, byteReader: ByteReader) : Segm
         /* Skip precision */
         byteReader.skipBytes("Precision", 1)
 
-        height = byteReader.read2BytesAsInt("Height", byteOrder)
-        width = byteReader.read2BytesAsInt("Width", byteOrder)
+        height = byteReader.read2BytesAsInt("Height", JPEG_BYTE_ORDER)
+        width = byteReader.read2BytesAsInt("Width", JPEG_BYTE_ORDER)
     }
 
     constructor(marker: Int, segmentData: ByteArray) :
