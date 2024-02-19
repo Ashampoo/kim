@@ -15,6 +15,9 @@
  */
 package com.ashampoo.kim.input
 
+import com.ashampoo.kim.format.jpeg.JpegConstants
+import kotlin.math.max
+
 /**
  * This class buffers the reading from the original ByteReader and
  * provides random access needed for parsing TIFF files.
@@ -28,7 +31,9 @@ class DefaultRandomAccessByteReader(
 
     private var currentPosition: Int = 0
 
-    private val buffer: MutableList<Byte> = ArrayList(INITIAL_SIZE)
+    private var bufferPosition: Int = 0
+
+    private var buffer = ByteArray(0)
 
     override fun readByte(): Byte? {
 
@@ -37,7 +42,7 @@ class DefaultRandomAccessByteReader(
 
         val endIndex = currentPosition + 1
 
-        if (endIndex > buffer.size)
+        if (endIndex > bufferPosition)
             readToIndex(endIndex)
 
         return buffer[currentPosition++]
@@ -50,10 +55,10 @@ class DefaultRandomAccessByteReader(
 
         val endIndex = currentPosition + count.coerceAtMost(contentLength.toInt())
 
-        if (endIndex > buffer.size)
+        if (endIndex > bufferPosition)
             readToIndex(endIndex)
 
-        val bytes = buffer.subList(currentPosition, endIndex).toByteArray()
+        val bytes = buffer.copyOfRange(currentPosition, endIndex)
 
         currentPosition += bytes.size
 
@@ -73,10 +78,10 @@ class DefaultRandomAccessByteReader(
 
         val endIndex = offset + length
 
-        if (endIndex > buffer.size)
+        if (endIndex > bufferPosition)
             readToIndex(endIndex)
 
-        return buffer.subList(offset, endIndex).toByteArray()
+        return buffer.copyOfRange(offset, endIndex)
     }
 
     override fun close() =
@@ -84,17 +89,38 @@ class DefaultRandomAccessByteReader(
 
     private fun readToIndex(index: Int) {
 
-        val missingBytesCount = index - buffer.size
+        /*
+         * Check if the need to expand the buffer first.
+         */
+        if (index > buffer.size) {
+
+            /*
+             * Copying an array is expensive. So we want at least expand
+             * it with a defined BUFFER_EXPANSION and never with just one byte.
+             */
+
+            val newBufferSize =
+                max(index, buffer.size + BUFFER_EXPANSION)
+
+            buffer = buffer.copyOf(newBufferSize)
+        }
+
+        val missingBytesCount = index - bufferPosition
 
         val bytes = byteReader.readBytes(missingBytesCount)
 
-        if (bytes.size == 1)
-            buffer.add(bytes.first())
-        else
-            buffer.addAll(bytes.asIterable())
+        for (i in bytes.indices)
+            buffer[bufferPosition + i] = bytes[i]
+
+        bufferPosition = index
     }
 
     companion object {
-        const val INITIAL_SIZE = 1024
+
+        /*
+         * We read the file in chunks of the usual EXIF size (65kb).
+         * This is to minimize array copy operations.
+         */
+        private const val BUFFER_EXPANSION = JpegConstants.MAX_SEGMENT_SIZE
     }
 }

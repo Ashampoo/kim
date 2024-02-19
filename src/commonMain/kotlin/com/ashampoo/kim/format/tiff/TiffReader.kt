@@ -256,8 +256,13 @@ object TiffReader {
         directoryType: Int
     ): MutableList<TiffField> {
 
-        val fields = mutableListOf<TiffField>()
+        /*
+         * We use an ArrayList to provide a capacity.
+         * This shows a small performance improvement in the Profiler.
+         */
+        val fields = ArrayList<TiffField>(entryCount)
 
+        @Suppress("LoopWithTooManyJumpStatements")
         for (entryIndex in 0 until entryCount) {
 
             val offset = fieldsOffset + entryIndex * TiffConstants.TIFF_ENTRY_LENGTH
@@ -415,9 +420,9 @@ object TiffReader {
                 var makerNoteDirectory: TiffDirectory? = null
 
                 createMakerNoteDirectory(
-                    byteReader,
-                    makerNoteField.valueOffset,
-                    make,
+                    byteReader = byteReader,
+                    makerNoteValueOffset = makerNoteField.valueOffset,
+                    make = make,
                     byteOrder = byteOrder,
                     addDirectory = {
                         makerNoteDirectory = it

@@ -77,20 +77,20 @@ Little-endian (Intel, II)
 0000000916 0x0002 Unknown = [12576, 12590, 12590, 0]
 0000000928 0x0003 Unknown = [0, 0, 0, 0]
 0000000940 0x0004 Unknown = [34 shorts]
-0000000952 0x0006 Unknown = ��
-0000000964 0x0007 Unknown = �
+0000000952 0x0006 CanonImageType = ��
+0000000964 0x0007 CanonFirmwareVersion = �
 0000000976 0x0009 OwnerName = 
 0000000988 0x000c SerialNumber = -783560944
 0000001000 0x000d Unknown = [1536 bytes]
-0000001012 0x0010 Unknown = -2147483001
+0000001012 0x0010 CanonModelID = -2147483001
 0000001024 0x0013 Unknown = [0, 0, 0, 0]
 0000001036 0x0015 Unknown = -1610612736
 0000001048 0x0019 Unknown = 1
 0000001060 0x0026 Unknown = [48 shorts]
 0000001072 0x0083 Unknown = 0
 0000001084 0x0093 Unknown = [27 shorts]
-0000001096 0x0095 Unknown = 
-0000001108 0x0096 Unknown = 
+0000001096 0x0095 LensModel = 
+0000001108 0x0096 InternalSerialNumber = 
 0000001120 0x0097 Unknown = [1024 bytes]
 0000001132 0x0098 Unknown = [1, 0, 514, 0]
 0000001144 0x0099 Unknown = [74 ints]
@@ -111,6 +111,6 @@ Little-endian (Intel, II)
 0000001312 0x4016 Unknown = [0, 0, 0, 0, 0, 0]
 0000001324 0x4017 Unknown = [0, 0]
 0000001336 0x4018 Unknown = [0, 0, 0]
-0000001348 0x4019 Unknown = [30 bytes]
+0000001348 0x4019 LensInfo = [30 bytes]
 0000001360 0x4020 Unknown = [0, 0, 0, 0, 0]
 

@@ -15,16 +15,14 @@
  */
 package com.ashampoo.kim.format.raf
 
+import com.ashampoo.kim.common.ByteOrder
 import com.ashampoo.kim.common.ImageReadException
-import com.ashampoo.kim.common.toSingleNumberHexes
 import com.ashampoo.kim.common.tryWithImageReadException
 import com.ashampoo.kim.format.ImageFormatMagicNumbers
 import com.ashampoo.kim.format.ImageMetadata
 import com.ashampoo.kim.format.ImageParser
-import com.ashampoo.kim.format.jpeg.JpegConstants
 import com.ashampoo.kim.format.jpeg.JpegImageParser
 import com.ashampoo.kim.input.ByteReader
-import com.ashampoo.kim.input.PrePendingByteReader
 import com.ashampoo.kim.model.ImageFormat
 
 object RafImageParser : ImageParser {
@@ -38,25 +36,23 @@ object RafImageParser : ImageParser {
     override fun parseMetadata(byteReader: ByteReader): ImageMetadata =
         tryWithImageReadException {
 
-            val magicNumberBytes = byteReader.readBytes(ImageFormatMagicNumbers.raf.size).toList()
-
-            /* Ensure it's actually an RAF. */
-            require(magicNumberBytes == ImageFormatMagicNumbers.raf) {
-                "RAF magic number mismatch: ${magicNumberBytes.toByteArray().toSingleNumberHexes()}"
-            }
-
-            RafMetadataExtractor.skipToJpegMagicBytes(byteReader)
-
-            /* Create a new reader, prepending the jpegMagicNumbers, and read the contained JPEG. */
-            val newReader = PrePendingByteReader(
-                delegate = byteReader,
-                prependedBytes = listOf(
-                    JpegConstants.SOI[0], JpegConstants.SOI[1], 0xFF.toByte()
-                )
+            byteReader.readAndVerifyBytes(
+                "RAF magic number",
+                ImageFormatMagicNumbers.raf.toByteArray()
             )
 
+            byteReader.skipBytes("86 header bytes", RafMetadataExtractor.REMAINING_HEADER_BYTE_COUNT)
+
+            val offset = byteReader.read4BytesAsInt("JPEG offset", ByteOrder.BIG_ENDIAN)
+
+            @Suppress("MagicNumber")
+            val remainingBytesToOffset = offset -
+                (RafMetadataExtractor.REMAINING_HEADER_BYTE_COUNT + ImageFormatMagicNumbers.raf.size + 4)
+
+            byteReader.skipBytes("Skip JPEG offset", remainingBytesToOffset)
+
             return@tryWithImageReadException JpegImageParser
-                .parseMetadata(newReader)
+                .parseMetadata(byteReader)
                 .copy(imageFormat = ImageFormat.RAF)
         }
 }

@@ -15,66 +15,43 @@
  */
 package com.ashampoo.kim.format.raf
 
+import com.ashampoo.kim.common.ByteOrder
 import com.ashampoo.kim.common.ImageReadException
-import com.ashampoo.kim.common.toSingleNumberHexes
 import com.ashampoo.kim.common.tryWithImageReadException
 import com.ashampoo.kim.format.ImageFormatMagicNumbers
 import com.ashampoo.kim.format.MetadataExtractor
-import com.ashampoo.kim.format.jpeg.JpegConstants
 import com.ashampoo.kim.format.jpeg.JpegMetadataExtractor
 import com.ashampoo.kim.input.ByteReader
-import com.ashampoo.kim.input.PrePendingByteReader
 
 object RafMetadataExtractor : MetadataExtractor {
 
+    const val REMAINING_HEADER_BYTE_COUNT = 68
+
     /**
      * The RAF file contains a JPEG with EXIF metadata.
-     * We just have to find it and read the data from there it.
+     *
+     * See http://fileformats.archiveteam.org/wiki/Fujifilm_RAF
      */
     @Throws(ImageReadException::class)
     override fun extractMetadataBytes(
         byteReader: ByteReader
     ): ByteArray = tryWithImageReadException {
 
-        val magicNumberBytes = byteReader.readBytes(ImageFormatMagicNumbers.raf.size).toList()
-
-        /* Ensure it's actually an RAF. */
-        require(magicNumberBytes == ImageFormatMagicNumbers.raf) {
-            "RAF magic number mismatch: ${magicNumberBytes.toByteArray().toSingleNumberHexes()}"
-        }
-
-        skipToJpegMagicBytes(byteReader)
-
-        /* Create a new reader, prepending the jpegMagicNumbers, and read the contained JPEG. */
-        val newReader = PrePendingByteReader(
-            delegate = byteReader,
-            prependedBytes = listOf(
-                JpegConstants.SOI[0], JpegConstants.SOI[1], 0xFF.toByte()
-            )
+        byteReader.readAndVerifyBytes(
+            "RAF magic number",
+            ImageFormatMagicNumbers.raf.toByteArray()
         )
 
-        return@tryWithImageReadException JpegMetadataExtractor.extractMetadataBytes(newReader)
-    }
+        byteReader.skipBytes("86 header bytes", REMAINING_HEADER_BYTE_COUNT)
 
-    @Suppress("ComplexCondition", "LoopWithTooManyJumpStatements", "MagicNumber")
-    internal fun skipToJpegMagicBytes(byteReader: ByteReader) {
+        val offset = byteReader.read4BytesAsInt("JPEG offset", ByteOrder.BIG_ENDIAN)
 
-        @Suppress("kotlin:S1481") // false positive
-        val bytes = mutableListOf<Byte>()
+        @Suppress("MagicNumber")
+        val remainingBytesToOffset = offset -
+            (REMAINING_HEADER_BYTE_COUNT + ImageFormatMagicNumbers.raf.size + 4)
 
-        while (true) {
+        byteReader.skipBytes("Skip JPEG offset", remainingBytesToOffset)
 
-            val byte = byteReader.readByte() ?: break
-
-            bytes.add(byte)
-
-            /* Search the header and then break */
-            if (bytes.size >= 3 &&
-                bytes[bytes.lastIndex - 2] == JpegConstants.SOI[0] &&
-                bytes[bytes.lastIndex - 1] == JpegConstants.SOI[1] &&
-                bytes[bytes.lastIndex - 0] == 0xFF.toByte()
-            )
-                break
-        }
+        return@tryWithImageReadException JpegMetadataExtractor.extractMetadataBytes(byteReader)
     }
 }

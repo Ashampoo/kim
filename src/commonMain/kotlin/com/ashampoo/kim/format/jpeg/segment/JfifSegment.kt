@@ -18,10 +18,15 @@ package com.ashampoo.kim.format.jpeg.segment
 
 import com.ashampoo.kim.common.ImageReadException
 import com.ashampoo.kim.format.jpeg.JpegConstants
+import com.ashampoo.kim.format.jpeg.JpegConstants.JPEG_BYTE_ORDER
 import com.ashampoo.kim.input.ByteArrayByteReader
 import com.ashampoo.kim.input.ByteReader
 
-class JfifSegment(marker: Int, markerLength: Int, byteReader: ByteReader) : Segment(marker, markerLength) {
+class JfifSegment(
+    marker: Int,
+    length: Int,
+    byteReader: ByteReader
+) : Segment(marker, length) {
 
     val jfifMajorVersion: Int
     val jfifMinorVersion: Int
@@ -45,8 +50,8 @@ class JfifSegment(marker: Int, markerLength: Int, byteReader: ByteReader) : Segm
         jfifMajorVersion = byteReader.readByte("JFIF major version").toInt()
         jfifMinorVersion = byteReader.readByte("JFIF minor version").toInt()
         densityUnits = byteReader.readByte("density units").toInt()
-        xDensity = byteReader.read2BytesAsInt("xDensity", byteOrder)
-        yDensity = byteReader.read2BytesAsInt("yDensity", byteOrder)
+        xDensity = byteReader.read2BytesAsInt("xDensity", JPEG_BYTE_ORDER)
+        yDensity = byteReader.read2BytesAsInt("yDensity", JPEG_BYTE_ORDER)
         xThumbnail = byteReader.readByte("xThumbnail").toInt()
         yThumbnail = byteReader.readByte("yThumbnail").toInt()
 
