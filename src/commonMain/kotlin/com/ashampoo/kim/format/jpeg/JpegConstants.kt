@@ -88,16 +88,15 @@ object JpegConstants {
     val SOI = byteArrayOf(0xFF.toByte(), 0xD8.toByte())
     val EOI = byteArrayOf(0xFF.toByte(), 0xD9.toByte())
 
-    const val JPEG_APP0 = 0xE0
-    const val JPEG_APP0_MARKER = 0xFF00 or JPEG_APP0
-    const val JPEG_APP1_MARKER = 0xFF00 or JPEG_APP0 + 1
-    const val JPEG_APP2_MARKER = 0xFF00 or JPEG_APP0 + 2
-    const val JPEG_APP13_MARKER = 0xFF00 or JPEG_APP0 + 13
-    const val JPEG_APP15_MARKER = 0xFF00 or JPEG_APP0 + 15
+    const val JPEG_APP0_MARKER = 0xFFE0
+    const val JPEG_APP1_MARKER = 0xFFE1
+    const val JPEG_APP2_MARKER = 0xFFE2
+    const val JPEG_APP13_MARKER = 0xFFED
+    const val JPEG_APP15_MARKER = 0xFFEF
 
     const val JFIF_MARKER = 0xFFE0
-    const val DHT_MARKER = 0xFFC0 + 0x4
-    const val DAC_MARKER = 0xFFC0 + 0xC
+    const val DHT_MARKER = 0xFFC4
+    const val DAC_MARKER = 0xFFCC
 
     const val SOF0_MARKER = 0xFFC0
     const val SOF1_MARKER = 0xFFC1
@@ -113,16 +112,15 @@ object JpegConstants {
     const val SOF14_MARKER = 0xFFCE
     const val SOF15_MARKER = 0xFFCF
 
-    // marker for restart intervals
     const val DRI_MARKER = 0xFFDD
-    const val RST0_MARKER = 0xFFD0
-    const val RST1_MARKER = 0xFFD0 + 0x1
-    const val RST2_MARKER = 0xFFD0 + 0x2
-    const val RST3_MARKER = 0xFFD0 + 0x3
-    const val RST4_MARKER = 0xFFD0 + 0x4
-    const val RST5_MARKER = 0xFFD0 + 0x5
-    const val RST6_MARKER = 0xFFD0 + 0x6
-    const val RST7_MARKER = 0xFFD0 + 0x7
+//    const val RST0_MARKER = 0xFFD0
+//    const val RST1_MARKER = 0xFFD1
+//    const val RST2_MARKER = 0xFFD2
+//    const val RST3_MARKER = 0xFFD3
+//    const val RST4_MARKER = 0xFFD4
+//    const val RST5_MARKER = 0xFFD5
+//    const val RST6_MARKER = 0xFFD6
+//    const val RST7_MARKER = 0xFFD7
 
     const val SOI_MARKER = 0xFFD8
     const val EOI_MARKER = 0xFFD9
