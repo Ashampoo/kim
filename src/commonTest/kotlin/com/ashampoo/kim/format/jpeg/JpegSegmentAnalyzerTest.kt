@@ -136,34 +136,6 @@ class JpegSegmentAnalyzerTest {
             JpegSegmentAnalyzer.JpegSegmentInfo(40635, 65498, 1095574),
             JpegSegmentAnalyzer.JpegSegmentInfo(1136209, 65497, 2),
         ),
-        8 to listOf(
-            JpegSegmentAnalyzer.JpegSegmentInfo(0, 65496, 2),
-            JpegSegmentAnalyzer.JpegSegmentInfo(2, 65505, 14498),
-            JpegSegmentAnalyzer.JpegSegmentInfo(14500, 65517, 13832),
-            JpegSegmentAnalyzer.JpegSegmentInfo(28332, 65506, 3162),
-            JpegSegmentAnalyzer.JpegSegmentInfo(31494, 65505, 13428),
-            JpegSegmentAnalyzer.JpegSegmentInfo(44922, 65499, 134),
-            JpegSegmentAnalyzer.JpegSegmentInfo(45056, 65501, 6),
-            JpegSegmentAnalyzer.JpegSegmentInfo(45062, 65518, 16),
-            JpegSegmentAnalyzer.JpegSegmentInfo(45078, 65472, 19),
-            JpegSegmentAnalyzer.JpegSegmentInfo(45097, 65476, 173),
-            JpegSegmentAnalyzer.JpegSegmentInfo(45270, 65498, 1193722),
-            JpegSegmentAnalyzer.JpegSegmentInfo(1238992, 65497, 2),
-        ),
-        9 to listOf(
-            JpegSegmentAnalyzer.JpegSegmentInfo(0, 65496, 2),
-            JpegSegmentAnalyzer.JpegSegmentInfo(2, 65505, 1038),
-            JpegSegmentAnalyzer.JpegSegmentInfo(1040, 65517, 252),
-            JpegSegmentAnalyzer.JpegSegmentInfo(1292, 65506, 3162),
-            JpegSegmentAnalyzer.JpegSegmentInfo(4454, 65505, 17364),
-            JpegSegmentAnalyzer.JpegSegmentInfo(21818, 65499, 134),
-            JpegSegmentAnalyzer.JpegSegmentInfo(21952, 65501, 6),
-            JpegSegmentAnalyzer.JpegSegmentInfo(21958, 65518, 16),
-            JpegSegmentAnalyzer.JpegSegmentInfo(21974, 65472, 19),
-            JpegSegmentAnalyzer.JpegSegmentInfo(21993, 65476, 171),
-            JpegSegmentAnalyzer.JpegSegmentInfo(22164, 65498, 206956),
-            JpegSegmentAnalyzer.JpegSegmentInfo(229120, 65497, 2),
-        ),
         10 to listOf(
             JpegSegmentAnalyzer.JpegSegmentInfo(0, 65496, 2),
             JpegSegmentAnalyzer.JpegSegmentInfo(2, 65505, 15900),
@@ -299,23 +271,6 @@ class JpegSegmentAnalyzerTest {
             JpegSegmentAnalyzer.JpegSegmentInfo(3783, 65476, 55),
             JpegSegmentAnalyzer.JpegSegmentInfo(3838, 65498, 1203907),
             JpegSegmentAnalyzer.JpegSegmentInfo(1207745, 65497, 2),
-        ),
-        18 to listOf(
-            JpegSegmentAnalyzer.JpegSegmentInfo(0, 65496, 2),
-            JpegSegmentAnalyzer.JpegSegmentInfo(2, 65505, 15788),
-            JpegSegmentAnalyzer.JpegSegmentInfo(15790, 65517, 15214),
-            JpegSegmentAnalyzer.JpegSegmentInfo(31004, 65506, 578),
-            JpegSegmentAnalyzer.JpegSegmentInfo(31582, 65505, 14448),
-            JpegSegmentAnalyzer.JpegSegmentInfo(46030, 65518, 16),
-            JpegSegmentAnalyzer.JpegSegmentInfo(46046, 65499, 69),
-            JpegSegmentAnalyzer.JpegSegmentInfo(46115, 65499, 69),
-            JpegSegmentAnalyzer.JpegSegmentInfo(46184, 65472, 19),
-            JpegSegmentAnalyzer.JpegSegmentInfo(46203, 65476, 30),
-            JpegSegmentAnalyzer.JpegSegmentInfo(46233, 65476, 64),
-            JpegSegmentAnalyzer.JpegSegmentInfo(46297, 65476, 27),
-            JpegSegmentAnalyzer.JpegSegmentInfo(46324, 65476, 42),
-            JpegSegmentAnalyzer.JpegSegmentInfo(46366, 65498, 985753),
-            JpegSegmentAnalyzer.JpegSegmentInfo(1032119, 65497, 2),
         ),
         20 to listOf(
             JpegSegmentAnalyzer.JpegSegmentInfo(0, 65496, 2),
@@ -819,7 +774,7 @@ class JpegSegmentAnalyzerTest {
         for (index in 1..KimTestData.HIGHEST_JPEG_INDEX) {
 
             // TODO Refresh data
-            if (index == 9 || index == 18 || index == 19)
+            if (index == 8 || index == 9 || index == 18 || index == 19)
                 continue
 
             val bytes = KimTestData.getBytesOf(index)

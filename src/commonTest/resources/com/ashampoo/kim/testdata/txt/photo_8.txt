@@ -1,63 +1,92 @@
 File format : JPEG
-Resolution  : 5472 x 3648
+Resolution  : 3880 x 2906
 ---- TIFF ----
 Version 42
 Little-endian (Intel, II)
 ---- Directory IFD0 @ 8 ----
-0000000010 0x010f Make = Canon
-0000000022 0x0110 Model = Canon EOS 6D
-0000000034 0x011a XResolution = 240/1 (240.0)
-0000000046 0x011b YResolution = 240/1 (240.0)
-0000000058 0x0128 ResolutionUnit = 2
-0000000070 0x0131 Software = Adobe Photoshop Lightroom 5.7.1 (Macintosh)
-0000000082 0x0132 ModifyDate = 2019:02:16 19:26:00
-0000000094 0x8769 ExifOffset = 210
+0000000010 0x010e ImageDescription = Aerial picture of Campuhan Ridge Walk , Scenic Green Valley in Ubud Bali. Drone photo. Indonesia.
+0000000022 0x010f Make = DJI
+0000000034 0x0110 Model = FC2103
+0000000046 0x011a XResolution = 350/1 (350.0)
+0000000058 0x011b YResolution = 350/1 (350.0)
+0000000070 0x0128 ResolutionUnit = 2
+0000000082 0x0131 Software = Adobe Photoshop Lightroom Classic 8.0 (Macintosh)
+0000000094 0x0132 ModifyDate = 2018:11:02 22:07:18
+0000000106 0x0213 YCbCrPositioning = 1
+0000000118 0x8769 ExifOffset = 1562
+0000000130 0x8825 GPSInfo = 2250
+0000000142 0x9c9b Unknown = [87 shorts]
+0000000154 0x9c9e Unknown = [409 shorts]
+0000000166 0x9c9f Unknown = [98 shorts]
 
----- Directory ExifIFD @ 210 ----
-0000000212 0x829a ExposureTime = 1/4000 (2.5E-4)
-0000000224 0x829d FNumber = 14/10 (1.4)
-0000000236 0x8822 ExposureProgram = 1
-0000000248 0x8827 ISO = 250
-0000000260 0x8830 SensitivityType = 2
-0000000272 0x8832 RecommendedExposureIndex = 250
-0000000284 0x9000 ExifVersion = [0x30, 0x32, 0x33, 0x30]
-0000000296 0x9003 DateTimeOriginal = 2019:02:16 06:37:31
-0000000308 0x9004 DateTimeDigitized = 2019:02:16 06:37:31
-0000000320 0x9201 ShutterSpeedValue = 11965784/1000000 (11.965784)
-0000000332 0x9202 ApertureValue = 970854/1000000 (0.970854)
-0000000344 0x9204 ExposureCompensation = 0/1 (0.0)
-0000000356 0x9205 MaxApertureValue = 1/1 (1.0)
-0000000368 0x9207 MeteringMode = 5
-0000000380 0x9209 Flash = 16
-0000000392 0x920a FocalLength = 35/1 (35.0)
-0000000404 0x9291 SubSecTimeOriginal = 93
-0000000416 0x9292 SubSecTimeDigitized = 93
-0000000428 0xa001 ColorSpace = 1
-0000000440 0xa20e FocalPlaneXResolution = 5472000/1436 (3810.584958)
-0000000452 0xa20f FocalPlaneYResolution = 3648000/956 (3815.899582)
-0000000464 0xa210 FocalPlaneResolutionUnit = 2
-0000000476 0xa401 CustomRendered = 0
-0000000488 0xa402 ExposureMode = 1
-0000000500 0xa403 WhiteBalance = 0
-0000000512 0xa406 SceneCaptureType = 0
-0000000524 0xa431 BodySerialNumber = 252020002303
-0000000536 0xa432 LensSpecification = [35/1 (35.0), 35/1 (35.0), Invalid rational (0/0), Invalid rational (0/0)]
-0000000548 0xa434 LensModel = 35mm
-0000000560 0xa435 LensSerialNumber = 0000000000
+---- Directory ExifIFD @ 1562 ----
+0000001564 0x829a ExposureTime = 1/200 (0.005)
+0000001576 0x829d FNumber = 28/10 (2.8)
+0000001588 0x8822 ExposureProgram = 1
+0000001600 0x8827 ISO = 100
+0000001612 0x9000 ExifVersion = [0x30, 0x32, 0x33, 0x30]
+0000001624 0x9003 DateTimeOriginal = 2018:10:07 07:23:09
+0000001636 0x9004 DateTimeDigitized = 2018:10:07 07:23:09
+0000001648 0x9101 ComponentsConfiguration = [0x01, 0x02, 0x03, 0x00]
+0000001660 0x9201 ShutterSpeedValue = 7643856/1000000 (7.643856)
+0000001672 0x9202 ApertureValue = 2970854/1000000 (2.970854)
+0000001684 0x9204 ExposureCompensation = -23/10 (-2.3)
+0000001696 0x9205 MaxApertureValue = 2971/1000 (2.971)
+0000001708 0x9207 MeteringMode = 1
+0000001720 0x9208 LightSource = 0
+0000001732 0x9209 Flash = 32
+0000001744 0x920a FocalLength = 45/10 (4.5)
+0000001756 0x9286 UserComment = SSUCv3H4sIAAAAAAAAE22NOw7DMAiG78LsobOvEmUgDk0sIVsCPFSW716oMnb7+F9MOFBrgTyBzmpdKjLkV4LKPNQErfbmwkpQ0OjyAGmk8aJWPk7uPBPbjAxkgAQ6joCV/mi7V7rdJLEj1M6gN7KSG0JMqPFj271iaON3zbW+/Ph+vKwAAAA=
+0000001768 0xa000 FlashpixVersion = [0x30, 0x31, 0x30, 0x30]
+0000001780 0xa001 ColorSpace = 1
+0000001792 0xa002 ExifImageWidth = 0
+0000001804 0xa003 ExifImageHeight = 0
+0000001816 0xa300 FileSource = 3
+0000001828 0xa301 SceneType = 1
+0000001840 0xa401 CustomRendered = 0
+0000001852 0xa402 ExposureMode = 1
+0000001864 0xa403 WhiteBalance = 0
+0000001876 0xa405 FocalLengthIn35mmFormat = 24
+0000001888 0xa406 SceneCaptureType = 0
+0000001900 0xa407 GainControl = 0
+0000001912 0xa408 Contrast = 0
+0000001924 0xa409 Saturation = 0
+0000001936 0xa40a Sharpness = 2
+0000001948 0xa40c SubjectDistanceRange = 0
 
----- Directory SubIFD @ 752 ----
-0000000754 0x0103 Compression = 6
-0000000766 0x011a XResolution = 72/1 (72.0)
-0000000778 0x011b YResolution = 72/1 (72.0)
-0000000790 0x0128 ResolutionUnit = 2
-0000000802 0x0201 JpgFromRawStart = 846
-0000000814 0x0202 JpgFromRawLength = 13642
+---- Directory GPS @ 2250 ----
+0000002252 0x0000 GPSVersionID = [0x02, 0x03, 0x00, 0x00]
+0000002264 0x0001 GPSLatitudeRef = S
+0000002276 0x0002 GPSLatitude = [8/1 (8.0), 30/1 (30.0), 0/1 (0.0)]
+0000002288 0x0003 GPSLongitudeRef = E
+0000002300 0x0004 GPSLongitude = [115/1 (115.0), 15/1 (15.0), 279989/16666 (16.800012)]
+0000002312 0x0005 GPSAltitudeRef = 0
+0000002324 0x0006 GPSAltitude = 271/10 (27.1)
+
+---- Directory SubIFD @ 2396 ----
+0000002398 0x0103 Compression = 6
+0000002410 0x011a XResolution = 72/1 (72.0)
+0000002422 0x011b YResolution = 72/1 (72.0)
+0000002434 0x0128 ResolutionUnit = 2
+0000002446 0x0201 JpgFromRawStart = 0
+0000002458 0x0201 JpgFromRawStart = 2514
+0000002470 0x0202 JpgFromRawLength = 11460
+0000002482 0x0202 JpgFromRawLength = 0
 
 ---- IPTC ----
-Date Created (55) = '20190216'
-Time Created (60) = '063731'
-Digital Creation Date (62) = '20190216'
-Digital Creation Time (63) = '063731'
+Keywords (25) = 'green'
+Keywords (25) = 'slope'
+Keywords (25) = 'aerial view'
+Keywords (25) = 'nature'
+Keywords (25) = 'scenery'
+Keywords (25) = 'outdoors'
+Keywords (25) = 'mountain'
+Keywords (25) = 'landscape'
+Date Created (55) = '20181007'
+Time Created (60) = '072309'
+Digital Creation Date (62) = '20181007'
+Digital Creation Time (63) = '072309'
+Caption/Abstract (120) = 'green covered mountain with gray concrete walking path aerial photography'
 
 ---- XMP ----
 <?xpacket begin='﻿' id='W5M0MpCehiHzreSzNTczkc9d'?>
@@ -65,260 +94,142 @@ Digital Creation Time (63) = '063731'
 <rdf:RDF xmlns:rdf='http://www.w3.org/1999/02/22-rdf-syntax-ns#'>
 
  <rdf:Description rdf:about=''
-  xmlns:aux='http://ns.adobe.com/exif/1.0/aux/'>
-  <aux:ApproximateFocusDistance>72/100</aux:ApproximateFocusDistance>
-  <aux:Firmware>1.1.4</aux:Firmware>
-  <aux:FlashCompensation>0/1</aux:FlashCompensation>
-  <aux:ImageNumber>0</aux:ImageNumber>
-  <aux:Lens>35mm</aux:Lens>
-  <aux:LensID>169</aux:LensID>
-  <aux:LensInfo>35/1 35/1 0/0 0/0</aux:LensInfo>
-  <aux:LensSerialNumber>0000000000</aux:LensSerialNumber>
-  <aux:SerialNumber>252020002303</aux:SerialNumber>
+  xmlns:MicrosoftPhoto='http://ns.microsoft.com/photo/1.0'>
+  <MicrosoftPhoto:LastKeywordXMP>
+   <rdf:Seq>
+    <rdf:li>hill</rdf:li>
+    <rdf:li> nature</rdf:li>
+    <rdf:li> path</rdf:li>
+    <rdf:li> ubud</rdf:li>
+    <rdf:li> landscape</rdf:li>
+    <rdf:li> trekking</rdf:li>
+    <rdf:li> tree</rdf:li>
+    <rdf:li> travel</rdf:li>
+    <rdf:li> green</rdf:li>
+    <rdf:li> bali</rdf:li>
+    <rdf:li> background</rdf:li>
+    <rdf:li> grass</rdf:li>
+    <rdf:li> beautiful</rdf:li>
+    <rdf:li> ridge</rdf:li>
+    <rdf:li> tourism</rdf:li>
+    <rdf:li> walk</rdf:li>
+    <rdf:li> asia</rdf:li>
+    <rdf:li> summer</rdf:li>
+    <rdf:li> sky</rdf:li>
+    <rdf:li> indonesia</rdf:li>
+    <rdf:li> scenic</rdf:li>
+    <rdf:li> campuhan</rdf:li>
+    <rdf:li> holidays</rdf:li>
+    <rdf:li> road</rdf:li>
+    <rdf:li> tropical</rdf:li>
+    <rdf:li> trail</rdf:li>
+    <rdf:li> field</rdf:li>
+    <rdf:li> paradise</rdf:li>
+    <rdf:li> paddy</rdf:li>
+    <rdf:li> palm</rdf:li>
+    <rdf:li> photography</rdf:li>
+    <rdf:li> planet</rdf:li>
+    <rdf:li> view</rdf:li>
+    <rdf:li> bali indonesia</rdf:li>
+    <rdf:li> outdoor</rdf:li>
+    <rdf:li> panoramic</rdf:li>
+    <rdf:li> drone</rdf:li>
+    <rdf:li> scene</rdf:li>
+    <rdf:li> nobody</rdf:li>
+    <rdf:li> growth</rdf:li>
+    <rdf:li> cloud</rdf:li>
+    <rdf:li> sunny</rdf:li>
+    <rdf:li> scenery</rdf:li>
+    <rdf:li> way</rdf:li>
+    <rdf:li> plant</rdf:li>
+    <rdf:li> environment</rdf:li>
+    <rdf:li> terrace</rdf:li>
+    <rdf:li> forest</rdf:li>
+    <rdf:li> natural</rdf:li>
+    <rdf:li> trek</rdf:li>
+   </rdf:Seq>
+  </MicrosoftPhoto:LastKeywordXMP>
  </rdf:Description>
 
  <rdf:Description rdf:about=''
   xmlns:dc='http://purl.org/dc/elements/1.1/'>
-  <dc:format>image/jpeg</dc:format>
+  <dc:description>
+   <rdf:Alt>
+    <rdf:li xml:lang='x-default'>Aerial picture of Campuhan Ridge Walk , Scenic Green Valley in Ubud Bali. Drone photo. Indonesia.</rdf:li>
+   </rdf:Alt>
+  </dc:description>
+  <dc:subject>
+   <rdf:Seq>
+    <rdf:li>hill</rdf:li>
+    <rdf:li> nature</rdf:li>
+    <rdf:li> path</rdf:li>
+    <rdf:li> ubud</rdf:li>
+    <rdf:li> landscape</rdf:li>
+    <rdf:li> trekking</rdf:li>
+    <rdf:li> tree</rdf:li>
+    <rdf:li> travel</rdf:li>
+    <rdf:li> green</rdf:li>
+    <rdf:li> bali</rdf:li>
+    <rdf:li> background</rdf:li>
+    <rdf:li> grass</rdf:li>
+    <rdf:li> beautiful</rdf:li>
+    <rdf:li> ridge</rdf:li>
+    <rdf:li> tourism</rdf:li>
+    <rdf:li> walk</rdf:li>
+    <rdf:li> asia</rdf:li>
+    <rdf:li> summer</rdf:li>
+    <rdf:li> sky</rdf:li>
+    <rdf:li> indonesia</rdf:li>
+    <rdf:li> scenic</rdf:li>
+    <rdf:li> campuhan</rdf:li>
+    <rdf:li> holidays</rdf:li>
+    <rdf:li> road</rdf:li>
+    <rdf:li> tropical</rdf:li>
+    <rdf:li> trail</rdf:li>
+    <rdf:li> field</rdf:li>
+    <rdf:li> paradise</rdf:li>
+    <rdf:li> paddy</rdf:li>
+    <rdf:li> palm</rdf:li>
+    <rdf:li> photography</rdf:li>
+    <rdf:li> planet</rdf:li>
+    <rdf:li> view</rdf:li>
+    <rdf:li> bali indonesia</rdf:li>
+    <rdf:li> outdoor</rdf:li>
+    <rdf:li> panoramic</rdf:li>
+    <rdf:li> drone</rdf:li>
+    <rdf:li> scene</rdf:li>
+    <rdf:li> nobody</rdf:li>
+    <rdf:li> growth</rdf:li>
+    <rdf:li> cloud</rdf:li>
+    <rdf:li> sunny</rdf:li>
+    <rdf:li> scenery</rdf:li>
+    <rdf:li> way</rdf:li>
+    <rdf:li> plant</rdf:li>
+    <rdf:li> environment</rdf:li>
+    <rdf:li> terrace</rdf:li>
+    <rdf:li> forest</rdf:li>
+    <rdf:li> natural</rdf:li>
+    <rdf:li> trek</rdf:li>
+   </rdf:Seq>
+  </dc:subject>
+  <dc:title>
+   <rdf:Alt>
+    <rdf:li xml:lang='x-default'>Aerial picture of Campuhan Ridge Walk , Scenic Green Valley in Ubud Bali. Drone photo.</rdf:li>
+   </rdf:Alt>
+  </dc:title>
  </rdf:Description>
 
  <rdf:Description rdf:about=''
   xmlns:photoshop='http://ns.adobe.com/photoshop/1.0/'>
-  <photoshop:DateCreated>2019-02-16T06:37:31.93</photoshop:DateCreated>
+  <photoshop:DateCreated>2018-10-07T07:23:09</photoshop:DateCreated>
  </rdf:Description>
 
  <rdf:Description rdf:about=''
   xmlns:xmp='http://ns.adobe.com/xap/1.0/'>
-  <xmp:CreateDate>2019-02-16T06:37:31.93</xmp:CreateDate>
-  <xmp:CreatorTool>Adobe Photoshop Lightroom 5.7.1 (Macintosh)</xmp:CreatorTool>
-  <xmp:MetadataDate>2019-02-16T19:26-05:00</xmp:MetadataDate>
-  <xmp:ModifyDate>2019-02-16T19:26:00-05:00</xmp:ModifyDate>
-  <xmp:Rating>3</xmp:Rating>
- </rdf:Description>
-
- <rdf:Description rdf:about=''
-  xmlns:stEvt='http://ns.adobe.com/xap/1.0/sType/ResourceEvent#'
-  xmlns:stRef='http://ns.adobe.com/xap/1.0/sType/ResourceRef#'
-  xmlns:xmpMM='http://ns.adobe.com/xap/1.0/mm/'>
-  <xmpMM:DerivedFrom rdf:parseType='Resource'>
-   <stRef:documentID>7AE2C6EAF539AF535316F1B6DBCC874C</stRef:documentID>
-   <stRef:originalDocumentID>7AE2C6EAF539AF535316F1B6DBCC874C</stRef:originalDocumentID>
-  </xmpMM:DerivedFrom>
-  <xmpMM:DocumentID>xmp.did:04e69b56-089f-4b0b-a69d-08111a57f914</xmpMM:DocumentID>
-  <xmpMM:History>
-   <rdf:Seq>
-    <rdf:li rdf:parseType='Resource'>
-     <stEvt:action>derived</stEvt:action>
-     <stEvt:parameters>saved to new location</stEvt:parameters>
-    </rdf:li>
-    <rdf:li rdf:parseType='Resource'>
-     <stEvt:action>saved</stEvt:action>
-     <stEvt:changed>/</stEvt:changed>
-     <stEvt:instanceID>xmp.iid:04e69b56-089f-4b0b-a69d-08111a57f914</stEvt:instanceID>
-     <stEvt:softwareAgent>Adobe Photoshop Lightroom 5.7.1 (Macintosh)</stEvt:softwareAgent>
-     <stEvt:when>2019-02-16T19:26-05:00</stEvt:when>
-    </rdf:li>
-   </rdf:Seq>
-  </xmpMM:History>
-  <xmpMM:InstanceID>xmp.iid:04e69b56-089f-4b0b-a69d-08111a57f914</xmpMM:InstanceID>
-  <xmpMM:OriginalDocumentID>7AE2C6EAF539AF535316F1B6DBCC874C</xmpMM:OriginalDocumentID>
- </rdf:Description>
-
- <rdf:Description rdf:about=''
-  xmlns:crs='http://ns.adobe.com/camera-raw-settings/1.0/'>
-  <crs:AlreadyApplied>True</crs:AlreadyApplied>
-  <crs:AutoLateralCA>0</crs:AutoLateralCA>
-  <crs:AutoWhiteVersion>134348800</crs:AutoWhiteVersion>
-  <crs:Blacks2012>+25</crs:Blacks2012>
-  <crs:BlueHue>0</crs:BlueHue>
-  <crs:BlueSaturation>0</crs:BlueSaturation>
-  <crs:CameraProfile>Embedded</crs:CameraProfile>
-  <crs:Clarity2012>+11</crs:Clarity2012>
-  <crs:ColorNoiseReduction>25</crs:ColorNoiseReduction>
-  <crs:ColorNoiseReductionDetail>50</crs:ColorNoiseReductionDetail>
-  <crs:ColorNoiseReductionSmoothness>50</crs:ColorNoiseReductionSmoothness>
-  <crs:Contrast2012>+6</crs:Contrast2012>
-  <crs:ConvertToGrayscale>False</crs:ConvertToGrayscale>
-  <crs:DefringeGreenAmount>0</crs:DefringeGreenAmount>
-  <crs:DefringeGreenHueHi>60</crs:DefringeGreenHueHi>
-  <crs:DefringeGreenHueLo>40</crs:DefringeGreenHueLo>
-  <crs:DefringePurpleAmount>0</crs:DefringePurpleAmount>
-  <crs:DefringePurpleHueHi>70</crs:DefringePurpleHueHi>
-  <crs:DefringePurpleHueLo>30</crs:DefringePurpleHueLo>
-  <crs:Exposure2012>+0.25</crs:Exposure2012>
-  <crs:GradientBasedCorrections>
-   <rdf:Seq>
-    <rdf:li rdf:parseType='Resource'>
-     <crs:CorrectionActive>true</crs:CorrectionActive>
-     <crs:CorrectionAmount>1.000000</crs:CorrectionAmount>
-     <crs:CorrectionMasks>
-      <rdf:Seq>
-       <rdf:li rdf:parseType='Resource'>
-        <crs:FullX>0.083913</crs:FullX>
-        <crs:FullY>0.268014</crs:FullY>
-        <crs:MaskValue>1.000000</crs:MaskValue>
-        <crs:What>Mask/Gradient</crs:What>
-        <crs:ZeroX>0.373893</crs:ZeroX>
-        <crs:ZeroY>0.266914</crs:ZeroY>
-       </rdf:li>
-      </rdf:Seq>
-     </crs:CorrectionMasks>
-     <crs:LocalBrightness>0.000000</crs:LocalBrightness>
-     <crs:LocalClarity2012>0.000000</crs:LocalClarity2012>
-     <crs:LocalContrast2012>0.000000</crs:LocalContrast2012>
-     <crs:LocalDefringe>0.000000</crs:LocalDefringe>
-     <crs:LocalExposure2012>0.224449</crs:LocalExposure2012>
-     <crs:LocalHighlights2012>0.000000</crs:LocalHighlights2012>
-     <crs:LocalLuminanceNoise>0.000000</crs:LocalLuminanceNoise>
-     <crs:LocalMoire>0.000000</crs:LocalMoire>
-     <crs:LocalSaturation>0.000000</crs:LocalSaturation>
-     <crs:LocalShadows2012>0.000000</crs:LocalShadows2012>
-     <crs:LocalSharpness>0.000000</crs:LocalSharpness>
-     <crs:LocalTemperature>0.000000</crs:LocalTemperature>
-     <crs:LocalTint>0.000000</crs:LocalTint>
-     <crs:LocalToningHue>0.000000</crs:LocalToningHue>
-     <crs:LocalToningSaturation>0.000000</crs:LocalToningSaturation>
-     <crs:What>Correction</crs:What>
-    </rdf:li>
-   </rdf:Seq>
-  </crs:GradientBasedCorrections>
-  <crs:GrainAmount>16</crs:GrainAmount>
-  <crs:GrainFrequency>45</crs:GrainFrequency>
-  <crs:GrainSeed>3872006559</crs:GrainSeed>
-  <crs:GrainSize>40</crs:GrainSize>
-  <crs:GreenHue>0</crs:GreenHue>
-  <crs:GreenSaturation>0</crs:GreenSaturation>
-  <crs:HasCrop>False</crs:HasCrop>
-  <crs:HasSettings>True</crs:HasSettings>
-  <crs:Highlights2012>-20</crs:Highlights2012>
-  <crs:HueAdjustmentAqua>+28</crs:HueAdjustmentAqua>
-  <crs:HueAdjustmentBlue>-15</crs:HueAdjustmentBlue>
-  <crs:HueAdjustmentGreen>+8</crs:HueAdjustmentGreen>
-  <crs:HueAdjustmentMagenta>+15</crs:HueAdjustmentMagenta>
-  <crs:HueAdjustmentOrange>-8</crs:HueAdjustmentOrange>
-  <crs:HueAdjustmentPurple>-3</crs:HueAdjustmentPurple>
-  <crs:HueAdjustmentRed>-6</crs:HueAdjustmentRed>
-  <crs:HueAdjustmentYellow>-5</crs:HueAdjustmentYellow>
-  <crs:IncrementalTemperature>+2</crs:IncrementalTemperature>
-  <crs:IncrementalTint>-7</crs:IncrementalTint>
-  <crs:LensManualDistortionAmount>0</crs:LensManualDistortionAmount>
-  <crs:LensProfileEnable>0</crs:LensProfileEnable>
-  <crs:LensProfileSetup>LensDefaults</crs:LensProfileSetup>
-  <crs:LuminanceAdjustmentAqua>+4</crs:LuminanceAdjustmentAqua>
-  <crs:LuminanceAdjustmentBlue>-31</crs:LuminanceAdjustmentBlue>
-  <crs:LuminanceAdjustmentGreen>-15</crs:LuminanceAdjustmentGreen>
-  <crs:LuminanceAdjustmentMagenta>+30</crs:LuminanceAdjustmentMagenta>
-  <crs:LuminanceAdjustmentOrange>-6</crs:LuminanceAdjustmentOrange>
-  <crs:LuminanceAdjustmentPurple>+30</crs:LuminanceAdjustmentPurple>
-  <crs:LuminanceAdjustmentRed>+5</crs:LuminanceAdjustmentRed>
-  <crs:LuminanceAdjustmentYellow>0</crs:LuminanceAdjustmentYellow>
-  <crs:LuminanceSmoothing>0</crs:LuminanceSmoothing>
-  <crs:ParametricDarks>0</crs:ParametricDarks>
-  <crs:ParametricHighlightSplit>75</crs:ParametricHighlightSplit>
-  <crs:ParametricHighlights>0</crs:ParametricHighlights>
-  <crs:ParametricLights>0</crs:ParametricLights>
-  <crs:ParametricMidtoneSplit>50</crs:ParametricMidtoneSplit>
-  <crs:ParametricShadowSplit>25</crs:ParametricShadowSplit>
-  <crs:ParametricShadows>0</crs:ParametricShadows>
-  <crs:PerspectiveAspect>0</crs:PerspectiveAspect>
-  <crs:PerspectiveHorizontal>0</crs:PerspectiveHorizontal>
-  <crs:PerspectiveRotate>0.0</crs:PerspectiveRotate>
-  <crs:PerspectiveScale>100</crs:PerspectiveScale>
-  <crs:PerspectiveUpright>0</crs:PerspectiveUpright>
-  <crs:PerspectiveVertical>0</crs:PerspectiveVertical>
-  <crs:PostCropVignetteAmount>0</crs:PostCropVignetteAmount>
-  <crs:ProcessVersion>6.7</crs:ProcessVersion>
-  <crs:RedHue>0</crs:RedHue>
-  <crs:RedSaturation>0</crs:RedSaturation>
-  <crs:Saturation>-4</crs:Saturation>
-  <crs:SaturationAdjustmentAqua>-33</crs:SaturationAdjustmentAqua>
-  <crs:SaturationAdjustmentBlue>-30</crs:SaturationAdjustmentBlue>
-  <crs:SaturationAdjustmentGreen>-50</crs:SaturationAdjustmentGreen>
-  <crs:SaturationAdjustmentMagenta>-5</crs:SaturationAdjustmentMagenta>
-  <crs:SaturationAdjustmentOrange>-7</crs:SaturationAdjustmentOrange>
-  <crs:SaturationAdjustmentPurple>-25</crs:SaturationAdjustmentPurple>
-  <crs:SaturationAdjustmentRed>-2</crs:SaturationAdjustmentRed>
-  <crs:SaturationAdjustmentYellow>-20</crs:SaturationAdjustmentYellow>
-  <crs:ShadowTint>0</crs:ShadowTint>
-  <crs:Shadows2012>+20</crs:Shadows2012>
-  <crs:SharpenDetail>25</crs:SharpenDetail>
-  <crs:SharpenEdgeMasking>0</crs:SharpenEdgeMasking>
-  <crs:SharpenRadius>+1.0</crs:SharpenRadius>
-  <crs:Sharpness>51</crs:Sharpness>
-  <crs:SplitToningBalance>+98</crs:SplitToningBalance>
-  <crs:SplitToningHighlightHue>79</crs:SplitToningHighlightHue>
-  <crs:SplitToningHighlightSaturation>5</crs:SplitToningHighlightSaturation>
-  <crs:SplitToningShadowHue>74</crs:SplitToningShadowHue>
-  <crs:SplitToningShadowSaturation>4</crs:SplitToningShadowSaturation>
-  <crs:ToneCurve>
-   <rdf:Seq>
-    <rdf:li>0, 0</rdf:li>
-    <rdf:li>255, 255</rdf:li>
-   </rdf:Seq>
-  </crs:ToneCurve>
-  <crs:ToneCurveBlue>
-   <rdf:Seq>
-    <rdf:li>0, 0</rdf:li>
-    <rdf:li>255, 255</rdf:li>
-   </rdf:Seq>
-  </crs:ToneCurveBlue>
-  <crs:ToneCurveGreen>
-   <rdf:Seq>
-    <rdf:li>0, 0</rdf:li>
-    <rdf:li>255, 255</rdf:li>
-   </rdf:Seq>
-  </crs:ToneCurveGreen>
-  <crs:ToneCurveName>Linear</crs:ToneCurveName>
-  <crs:ToneCurveName2012>Custom</crs:ToneCurveName2012>
-  <crs:ToneCurvePV2012>
-   <rdf:Seq>
-    <rdf:li>1, 2</rdf:li>
-    <rdf:li>50, 47</rdf:li>
-    <rdf:li>123, 131</rdf:li>
-    <rdf:li>192, 189</rdf:li>
-    <rdf:li>255, 255</rdf:li>
-   </rdf:Seq>
-  </crs:ToneCurvePV2012>
-  <crs:ToneCurvePV2012Blue>
-   <rdf:Seq>
-    <rdf:li>0, 26</rdf:li>
-    <rdf:li>34, 38</rdf:li>
-    <rdf:li>92, 88</rdf:li>
-    <rdf:li>163, 177</rdf:li>
-    <rdf:li>222, 233</rdf:li>
-    <rdf:li>255, 255</rdf:li>
-   </rdf:Seq>
-  </crs:ToneCurvePV2012Blue>
-  <crs:ToneCurvePV2012Green>
-   <rdf:Seq>
-    <rdf:li>0, 14</rdf:li>
-    <rdf:li>34, 27</rdf:li>
-    <rdf:li>90, 88</rdf:li>
-    <rdf:li>163, 180</rdf:li>
-    <rdf:li>255, 255</rdf:li>
-   </rdf:Seq>
-  </crs:ToneCurvePV2012Green>
-  <crs:ToneCurvePV2012Red>
-   <rdf:Seq>
-    <rdf:li>0, 6</rdf:li>
-    <rdf:li>37, 26</rdf:li>
-    <rdf:li>90, 88</rdf:li>
-    <rdf:li>161, 182</rdf:li>
-    <rdf:li>215, 228</rdf:li>
-    <rdf:li>255, 255</rdf:li>
-   </rdf:Seq>
-  </crs:ToneCurvePV2012Red>
-  <crs:ToneCurveRed>
-   <rdf:Seq>
-    <rdf:li>0, 0</rdf:li>
-    <rdf:li>255, 255</rdf:li>
-   </rdf:Seq>
-  </crs:ToneCurveRed>
-  <crs:Version>8.7.1</crs:Version>
-  <crs:Vibrance>-2</crs:Vibrance>
-  <crs:VignetteAmount>0</crs:VignetteAmount>
-  <crs:WhiteBalance>Custom</crs:WhiteBalance>
-  <crs:Whites2012>-14</crs:Whites2012>
+  <xmp:CreateDate>2018-10-07T07:23:09</xmp:CreateDate>
+  <xmp:CreatorTool>Adobe Photoshop Lightroom Classic 8.0 (Macintosh)</xmp:CreatorTool>
+  <xmp:ModifyDate>2018-11-02T22:07:18</xmp:ModifyDate>
+  <xmp:Rating>1</xmp:Rating>
  </rdf:Description>
 </rdf:RDF>
 </x:xmpmeta>

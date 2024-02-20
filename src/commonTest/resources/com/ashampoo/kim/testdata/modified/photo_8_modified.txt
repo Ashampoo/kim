@@ -1,73 +1,89 @@
 File format : JPEG
-Resolution  : 5472 x 3648
+Resolution  : 3880 x 2906
 ---- TIFF ----
 Version 42
 Little-endian (Intel, II)
 ---- Directory IFD0 @ 8 ----
-0000000010 0x010f Make = Canon
-0000000022 0x0110 Model = Canon EOS 6D
-0000000034 0x0112 Orientation = 8
-0000000046 0x011a XResolution = 240/1 (240.0)
-0000000058 0x011b YResolution = 240/1 (240.0)
-0000000070 0x0128 ResolutionUnit = 2
-0000000082 0x0131 Software = Adobe Photoshop Lightroom 5.7.1 (Macintosh)
-0000000094 0x0132 ModifyDate = 2023:05:10 13:37:42
-0000000106 0x8769 ExifOffset = 234
-0000000118 0x8825 GPSInfo = 14512
+0000000010 0x010e ImageDescription = Aerial picture of Campuhan Ridge Walk , Scenic Green Valley in Ubud Bali. Drone photo. Indonesia.
+0000000022 0x010f Make = DJI
+0000000034 0x0110 Model = FC2103
+0000000046 0x0112 Orientation = 8
+0000000058 0x011a XResolution = 350/1 (350.0)
+0000000070 0x011b YResolution = 350/1 (350.0)
+0000000082 0x0128 ResolutionUnit = 2
+0000000094 0x0131 Software = Adobe Photoshop Lightroom Classic 8.0 (Macintosh)
+0000000106 0x0132 ModifyDate = 2023:05:10 13:37:42
+0000000118 0x0213 YCbCrPositioning = 1
+0000000130 0x8769 ExifOffset = 1574
+0000000142 0x8825 GPSInfo = 2262
+0000000154 0x9c9b Unknown = [87 shorts]
+0000000166 0x9c9e Unknown = [409 shorts]
+0000000178 0x9c9f Unknown = [98 shorts]
 
----- Directory ExifIFD @ 234 ----
-0000000236 0x829a ExposureTime = 1/4000 (2.5E-4)
-0000000248 0x829d FNumber = 14/10 (1.4)
-0000000260 0x8822 ExposureProgram = 1
-0000000272 0x8827 PhotographicSensitivity = 250
-0000000284 0x8830 SensitivityType = 2
-0000000296 0x8832 RecommendedExposureIndex = 250
-0000000308 0x9000 ExifVersion = [0x30, 0x32, 0x33, 0x30]
-0000000320 0x9003 DateTimeOriginal = 2023:05:10 13:37:42
-0000000332 0x9004 DateTimeDigitized = 2023:05:10 13:37:42
-0000000344 0x9201 ShutterSpeedValue = 11965784/1000000 (11.965784)
-0000000356 0x9202 ApertureValue = 970854/1000000 (0.970854)
-0000000368 0x9204 ExposureCompensation = 0/1 (0.0)
-0000000380 0x9205 MaxApertureValue = 1/1 (1.0)
-0000000392 0x9207 MeteringMode = 5
-0000000404 0x9209 Flash = 16
-0000000416 0x920a FocalLength = 35/1 (35.0)
-0000000428 0x9291 SubSecTimeOriginal = 93
-0000000440 0x9292 SubSecTimeDigitized = 93
-0000000452 0xa001 ColorSpace = 1
-0000000464 0xa20e FocalPlaneXResolution = 5472000/1436 (3810.584958)
-0000000476 0xa20f FocalPlaneYResolution = 3648000/956 (3815.899582)
-0000000488 0xa210 FocalPlaneResolutionUnit = 2
-0000000500 0xa401 CustomRendered = 0
-0000000512 0xa402 ExposureMode = 1
-0000000524 0xa403 WhiteBalance = 0
-0000000536 0xa406 SceneCaptureType = 0
-0000000548 0xa431 BodySerialNumber = 252020002303
-0000000560 0xa432 LensSpecification = [35/1 (35.0), 35/1 (35.0), Invalid rational (0/0), Invalid rational (0/0)]
-0000000572 0xa434 LensModel = 35mm
-0000000584 0xa435 LensSerialNumber = 0000000000
+---- Directory ExifIFD @ 1574 ----
+0000001576 0x829a ExposureTime = 1/200 (0.005)
+0000001588 0x829d FNumber = 28/10 (2.8)
+0000001600 0x8822 ExposureProgram = 1
+0000001612 0x8827 ISO = 100
+0000001624 0x9000 ExifVersion = [0x30, 0x32, 0x33, 0x30]
+0000001636 0x9003 DateTimeOriginal = 2023:05:10 13:37:42
+0000001648 0x9004 DateTimeDigitized = 2023:05:10 13:37:42
+0000001660 0x9101 ComponentsConfiguration = [0x01, 0x02, 0x03, 0x00]
+0000001672 0x9201 ShutterSpeedValue = 7643856/1000000 (7.643856)
+0000001684 0x9202 ApertureValue = 2970854/1000000 (2.970854)
+0000001696 0x9204 ExposureCompensation = -23/10 (-2.3)
+0000001708 0x9205 MaxApertureValue = 2971/1000 (2.971)
+0000001720 0x9207 MeteringMode = 1
+0000001732 0x9208 LightSource = 0
+0000001744 0x9209 Flash = 32
+0000001756 0x920a FocalLength = 45/10 (4.5)
+0000001768 0x9286 UserComment = SSUCv3H4sIAAAAAAAAE22NOw7DMAiG78LsobOvEmUgDk0sIVsCPFSW716oMnb7+F9MOFBrgTyBzmpdKjLkV4LKPNQErfbmwkpQ0OjyAGmk8aJWPk7uPBPbjAxkgAQ6joCV/mi7V7rdJLEj1M6gN7KSG0JMqPFj271iaON3zbW+/Ph+vKwAAAA=
+0000001780 0xa000 FlashpixVersion = [0x30, 0x31, 0x30, 0x30]
+0000001792 0xa001 ColorSpace = 1
+0000001804 0xa002 ExifImageWidth = 0
+0000001816 0xa003 ExifImageHeight = 0
+0000001828 0xa300 FileSource = 3
+0000001840 0xa301 SceneType = 1
+0000001852 0xa401 CustomRendered = 0
+0000001864 0xa402 ExposureMode = 1
+0000001876 0xa403 WhiteBalance = 0
+0000001888 0xa405 FocalLengthIn35mmFormat = 24
+0000001900 0xa406 SceneCaptureType = 0
+0000001912 0xa407 GainControl = 0
+0000001924 0xa408 Contrast = 0
+0000001936 0xa409 Saturation = 0
+0000001948 0xa40a Sharpness = 2
+0000001960 0xa40c SubjectDistanceRange = 0
 
----- Directory GPS @ 14512 ----
-0000014514 0x0000 GPSVersionID = [0x02, 0x03, 0x00, 0x00]
-0000014526 0x0001 GPSLatitudeRef = N
-0000014538 0x0002 GPSLatitude = [53/1 (53.0), 13/1 (13.0), 24519/2500 (9.8076)]
-0000014550 0x0003 GPSLongitudeRef = E
-0000014562 0x0004 GPSLongitude = [8/1 (8.0), 14/1 (14.0), 56949/2500 (22.7796)]
+---- Directory GPS @ 2262 ----
+0000002264 0x0000 GPSVersionID = [0x02, 0x03, 0x00, 0x00]
+0000002276 0x0001 GPSLatitudeRef = N
+0000002288 0x0002 GPSLatitude = [53/1 (53.0), 13/1 (13.0), 24519/2500 (9.8076)]
+0000002300 0x0003 GPSLongitudeRef = E
+0000002312 0x0004 GPSLongitude = [8/1 (8.0), 14/1 (14.0), 56949/2500 (22.7796)]
+0000002324 0x0005 GPSAltitudeRef = 0
+0000002336 0x0006 GPSAltitude = 271/10 (27.1)
 
----- Directory SubIFD @ 776 ----
-0000000778 0x0103 Compression = 6
-0000000790 0x011a XResolution = 72/1 (72.0)
-0000000802 0x011b YResolution = 72/1 (72.0)
-0000000814 0x0128 ResolutionUnit = 2
-0000000826 0x0201 JpgFromRawStart = 870
-0000000838 0x0202 JpgFromRawLength = 13642
-
+---- Directory SubIFD @ 2408 ----
+0000002410 0x0103 Compression = 6
+0000002422 0x011a XResolution = 72/1 (72.0)
+0000002434 0x011b YResolution = 72/1 (72.0)
+0000002446 0x0128 ResolutionUnit = 2
 
 ---- IPTC ----
-Digital Creation Time (63) = '063731'
-Digital Creation Date (62) = '20190216'
-Time Created (60) = '063731'
-Date Created (55) = '20190216'
+Caption/Abstract (120) = 'green covered mountain with gray concrete walking path aerial photography'
+Digital Creation Time (63) = '072309'
+Digital Creation Date (62) = '20181007'
+Time Created (60) = '072309'
+Date Created (55) = '20181007'
+Keywords (25) = 'green'
+Keywords (25) = 'slope'
+Keywords (25) = 'aerial view'
+Keywords (25) = 'nature'
+Keywords (25) = 'scenery'
+Keywords (25) = 'outdoors'
+Keywords (25) = 'mountain'
+Keywords (25) = 'landscape'
 Keywords (25) = 'Umlauts: äöüß'
 
 ---- XMP ----

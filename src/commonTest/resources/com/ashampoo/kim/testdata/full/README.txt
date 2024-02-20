@@ -1,5 +1,6 @@
 # Special photos
 
+photo_8.jpg = Starts with IFD1 thumbnail data at offset 0
 photo_9.jpg = Corrupted thumbnail data, but intact IFD1
 photo_18.jpg = Corrupted IFD1 (thumbnail)
 photo_19.jpg = F-Number is stored as double array
