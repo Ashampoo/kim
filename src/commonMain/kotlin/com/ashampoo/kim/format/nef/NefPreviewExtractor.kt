@@ -32,7 +32,7 @@ object NefPreviewExtractor : TiffPreviewExtractor {
     ): ByteArray? = tryWithImageReadException {
 
         val ifd1 = tiffContents.directories.find {
-            it.type == TiffConstants.TIFF_IFD1
+            it.type == TiffConstants.TIFF_DIRECTORY_TYPE_IFD1
         } ?: return null
 
         val previewImageStart =

@@ -39,7 +39,7 @@ object DngPreviewExtractor : TiffPreviewExtractor {
             return null
 
         val ifd2 = tiffContents.directories.find {
-            it.type == TiffConstants.TIFF_IFD2
+            it.type == TiffConstants.TIFF_DIRECTORY_TYPE_IFD2
         } ?: return null
 
         val previewImageStart =

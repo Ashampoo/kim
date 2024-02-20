@@ -78,7 +78,7 @@ Big-endian (Motorola, MM)
 0000181818 0x0202 JpgFromRawLength = 1470727
 0000181830 0x0213 YCbCrPositioning = 2
 
----- Directory IFD2 @ 181864 ----
+---- Directory SubIFD1 @ 181864 ----
 0000181866 0x00fe NewSubfileType = 0
 0000181878 0x0100 ImageWidth = 4992
 0000181890 0x0101 ImageLength = 3280

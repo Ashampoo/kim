@@ -125,7 +125,7 @@ Little-endian (Intel, II)
 0000745488 0xc74e Unknown = [184 bytes]
 0000745500 0xc761 Unknown = [2.0641153582055387E-4, 3.0483049720786857E-7]
 
----- Directory IFD2 @ 747148 ----
+---- Directory SubIFD1 @ 747148 ----
 0000747150 0x00fe NewSubfileType = 1
 0000747162 0x0100 ImageWidth = 1024
 0000747174 0x0101 ImageLength = 768
