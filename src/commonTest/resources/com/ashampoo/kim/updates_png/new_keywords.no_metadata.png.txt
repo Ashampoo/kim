@@ -1,0 +1,27 @@
+File format : PNG
+Resolution  : 500 x 333
+---- IPTC ----
+Caption/Abstract (120) = 'time lapse photography of fire'
+Date Created (55) = '2023-07-12'
+Keywords (25) = 'human'
+Keywords (25) = 'person'
+Keywords (25) = 'people'
+Time Created (60) = '15:28:58-15:28'
+
+---- XMP ----
+<?xpacket begin="﻿" id="W5M0MpCehiHzreSzNTczkc9d"?>
+<x:xmpmeta xmlns:x="adobe:ns:meta/" x:xmptk="Ashampoo XMP Core 1.1.0">
+  <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+    <rdf:Description rdf:about=""
+        xmlns:dc="http://purl.org/dc/elements/1.1/">
+      <dc:subject>
+        <rdf:Bag>
+          <rdf:li>hello</rdf:li>
+          <rdf:li>test</rdf:li>
+          <rdf:li>Äußerst öffentlich</rdf:li>
+        </rdf:Bag>
+      </dc:subject>
+    </rdf:Description>
+  </rdf:RDF>
+</x:xmpmeta>
+<?xpacket end="w"?>

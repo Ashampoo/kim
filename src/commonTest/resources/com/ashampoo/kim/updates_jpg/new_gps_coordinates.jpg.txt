@@ -20,7 +20,7 @@ Little-endian (Intel, II)
 0000000236 0x829a ExposureTime = 1/4000 (2.5E-4)
 0000000248 0x829d FNumber = 56/10 (5.6)
 0000000260 0x8822 ExposureProgram = 4
-0000000272 0x8827 PhotographicSensitivity = 3200
+0000000272 0x8827 ISO = 3200
 0000000284 0x8830 SensitivityType = 2
 0000000296 0x8832 RecommendedExposureIndex = 3200
 0000000308 0x9000 ExifVersion = [0x30, 0x32, 0x33, 0x30]
@@ -41,7 +41,7 @@ Little-endian (Intel, II)
 0000000488 0xa000 FlashpixVersion = [0x30, 0x31, 0x30, 0x30]
 0000000500 0xa001 ColorSpace = 1
 0000000512 0xa002 ExifImageWidth = 2304
-0000000524 0xa003 ExifImageLength = 1536
+0000000524 0xa003 ExifImageHeight = 1536
 0000000536 0xa005 InteropOffset = 18522
 0000000548 0xa20e FocalPlaneXResolution = 2304000/879 (2621.16041)
 0000000560 0xa20f FocalPlaneYResolution = 1536000/586 (2621.16041)
@@ -72,7 +72,7 @@ Little-endian (Intel, II)
 0000018614 0x0003 GPSLongitudeRef = E
 0000018626 0x0004 GPSLongitude = [8/1 (8.0), 14/1 (14.0), 56949/2500 (22.7796)]
 
----- Directory SubIFD @ 18690 ----
+---- Directory IFD1 @ 18690 ----
 0000018692 0x0103 Compression = 6
 0000018704 0x011a XResolution = 180/1 (180.0)
 0000018716 0x011b YResolution = 180/1 (180.0)
@@ -80,6 +80,53 @@ Little-endian (Intel, II)
 0000018740 0x0201 JpgFromRawStart = 18784
 0000018752 0x0202 JpgFromRawLength = 3209
 
+---- Directory MakerNoteCanon @ 864 ----
+0000000866 0x0001 CanonCameraSettings = [50 shorts]
+0000000878 0x0003 Unknown = [0, 0, 0, 0]
+0000000890 0x0004 Unknown = [34 shorts]
+0000000902 0x0006 CanonImageType = IMG:EOS M3 JPEG
+0000000914 0x0007 CanonFirmwareVersion = Firmware Version 1.01
+0000000926 0x0008 FileNumber = 1237368
+0000000938 0x000d Unknown = [3684 ints]
+0000000950 0x0010 CanonModelID = 57933824
+0000000962 0x0013 Unknown = [0, 159, 7, 112]
+0000000974 0x0018 Unknown = [256 bytes]
+0000000986 0x0019 Unknown = 1
+0000000998 0x001c Unknown = 0
+0000001010 0x001e Unknown = 16843008
+0000001022 0x0022 Unknown = [208 shorts]
+0000001034 0x0023 Unknown = [8, 0]
+0000001046 0x0027 Unknown = [21 shorts]
+0000001058 0x0028 Unknown = [16 bytes]
+0000001070 0x002d Unknown = 0
+0000001082 0x002e Unknown = [27 shorts]
+0000001094 0x002f Unknown = [17 shorts]
+0000001106 0x0031 Unknown = [12, 1, -1, -1, -1, -1]
+0000001118 0x0033 Unknown = [-1493755867, -590263106, -2110198950, 788824414]
+0000001130 0x0035 Unknown = [16, 0, 32766, 0]
+0000001142 0x0037 Unknown = [8, 0]
+0000001154 0x0038 Unknown = [0x08, 0x00, 0x00, 0x00, 0x70, 0x29, 0xd5, 0x7b]
+0000001166 0x003c Unknown = [218 shorts]
+0000001178 0x003d Unknown = [32, 1, 0, 0, 0, 0, 0, 0]
+0000001190 0x003f Unknown = 1
+0000001202 0x0093 Unknown = [33 shorts]
+0000001214 0x0096 InternalSerialNumber = SA0151220
+0000001226 0x0099 Unknown = [34 ints]
+0000001238 0x009a Unknown = [0, 2304, 1536, 0, 0]
+0000001250 0x00a0 Unknown = [14 shorts]
+0000001262 0x00aa Unknown = [12, 392, 545, 546, 2614, 0]
+0000001274 0x00d0 Unknown = 0
+0000001286 0x4008 Unknown = [135, 135, 135]
+0000001298 0x4009 Unknown = [255, 255, 255]
+0000001310 0x4010 Unknown = 
+0000001322 0x4012 Unknown = 
+0000001334 0x4016 Unknown = [32, 0, 1, 0, 1, 1, 1, 0]
+0000001346 0x4018 Unknown = [36, 0, 0, 0, 0, 0, 1, 0, 1]
+0000001358 0x4020 Unknown = [28, 0, 0, 0, 0, 0, 0]
+0000001370 0x4023 Unknown = [16, 1, 4320, 2880]
+0000001382 0x4024 Unknown = [53 ints]
+0000001394 0x402b Unknown = [24, 0, 0, 0, 0, 0]
+0000001406 0x402c Unknown = [8, 0]
 
 ---- IPTC ----
 Caption/Abstract (120) = 'time lapse photography of fire'
@@ -89,7 +136,7 @@ Keywords (25) = 'people'
 
 ---- XMP ----
 <?xpacket begin="﻿" id="W5M0MpCehiHzreSzNTczkc9d"?>
-<x:xmpmeta xmlns:x="adobe:ns:meta/" x:xmptk="Adobe XMP Core 5.1.3">
+<x:xmpmeta xmlns:x="adobe:ns:meta/" x:xmptk="Ashampoo XMP Core 1.1.0">
   <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
     <rdf:Description rdf:about=""
         xmlns:exif="http://ns.adobe.com/exif/1.0/"
