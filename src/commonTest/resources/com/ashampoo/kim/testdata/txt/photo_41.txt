@@ -58,7 +58,7 @@ Big-endian (Motorola, MM)
 ---- Directory GPS @ 5482 ----
 0000005484 0x0000 GPSVersionID = [0x02, 0x03, 0x00, 0x00]
 
----- Directory SubIFD @ 5500 ----
+---- Directory IFD1 @ 5500 ----
 0000005502 0x0103 Compression = 6
 0000005514 0x011a XResolution = 300/1 (300.0)
 0000005526 0x011b YResolution = 300/1 (300.0)

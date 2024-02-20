@@ -47,7 +47,7 @@ Little-endian (Intel, II)
 0000000600 0xa434 LensModel = 100mm
 0000000612 0xa435 LensSerialNumber = 0000000000
 
----- Directory SubIFD @ 804 ----
+---- Directory IFD1 @ 804 ----
 0000000806 0x0103 Compression = 6
 0000000818 0x011a XResolution = 72/1 (72.0)
 0000000830 0x011b YResolution = 72/1 (72.0)

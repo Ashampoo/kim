@@ -42,7 +42,7 @@ internal object TiffTags {
          */
         @Suppress("UseIfInsteadOfWhen")
         val possibleMatches = when (directoryType) {
-            TiffConstants.TIFF_GPS -> GPS_TAGS_MAP[tag]
+            TiffConstants.TIFF_DIRECTORY_GPS -> GPS_TAGS_MAP[tag]
             TiffConstants.TIFF_MAKER_NOTE_CANON -> CANON_TAGS_MAP[tag]
             TiffConstants.TIFF_MAKER_NOTE_NIKON -> NIKON_TAGS_MAP[tag]
             else -> TIFF_AND_EXIF_TAGS_MAP[tag]

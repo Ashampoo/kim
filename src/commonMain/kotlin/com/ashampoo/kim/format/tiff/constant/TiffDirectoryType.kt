@@ -35,13 +35,13 @@ enum class TiffDirectoryType(
         TiffConstants.TIFF_IFD3, "IFD3", true
     ),
     EXIF_DIRECTORY_INTEROP_IFD(
-        TiffConstants.TIFF_INTEROP_IFD, "InteropIFD", false
+        TiffConstants.TIFF_DIRECTORY_INTEROP_IFD, "InteropIFD", false
     ),
     EXIF_DIRECTORY_EXIF_IFD(
         TiffConstants.TIFF_EXIF_IFD, "ExifIFD", false
     ),
     EXIF_DIRECTORY_GPS(
-        TiffConstants.TIFF_GPS, "GPS", false
+        TiffConstants.TIFF_DIRECTORY_GPS, "GPS", false
     ),
     EXIF_DIRECTORY_MAKER_NOTE_CANON(
         TiffConstants.TIFF_MAKER_NOTE_CANON, "MakerNoteCanon", false

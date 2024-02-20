@@ -60,7 +60,7 @@ Little-endian (Intel, II)
 0000000756 0xa432 LensSpecification = [700/10 (70.0), 2000/10 (200.0), 28/10 (2.8), 28/10 (2.8)]
 0000000768 0xa434 LensModel = 70.0-200.0 mm f/2.8
 
----- Directory SubIFD @ 964 ----
+---- Directory IFD1 @ 964 ----
 0000000966 0x0103 Compression = 6
 0000000978 0x011a XResolution = 72/1 (72.0)
 0000000990 0x011b YResolution = 72/1 (72.0)

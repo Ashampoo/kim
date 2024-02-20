@@ -49,7 +49,7 @@ Little-endian (Intel, II)
 0000000578 0xa434 LensModel = EF-S18-55mm f/3.5-5.6 IS II
 0000000590 0xa435 LensSerialNumber = 000001a354
 
----- Directory SubIFD @ 804 ----
+---- Directory IFD1 @ 804 ----
 0000000806 0x00fe NewSubfileType = 1
 0000000818 0x0100 ImageWidth = 256
 0000000830 0x0101 ImageLength = 170

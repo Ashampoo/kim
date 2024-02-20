@@ -54,7 +54,7 @@ Big-endian (Motorola, MM)
 0000000662 0xa434 LensModel = iPhone SE (3rd generation) back camera 3.99mm f/1.8
 0000000674 0xa460 Unknown = 2
 
----- Directory SubIFD @ 2288 ----
+---- Directory IFD1 @ 2288 ----
 0000002290 0x0103 Compression = 6
 0000002302 0x011a XResolution = 72/1 (72.0)
 0000002314 0x011b YResolution = 72/1 (72.0)

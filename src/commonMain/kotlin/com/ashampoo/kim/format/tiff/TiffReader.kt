@@ -24,7 +24,7 @@ import com.ashampoo.kim.common.toInt
 import com.ashampoo.kim.format.ImageFormatMagicNumbers
 import com.ashampoo.kim.format.tiff.constant.ExifTag
 import com.ashampoo.kim.format.tiff.constant.TiffConstants
-import com.ashampoo.kim.format.tiff.constant.TiffConstants.DIRECTORY_TYPE_SUB
+import com.ashampoo.kim.format.tiff.constant.TiffConstants.DIRECTORY_TYPE_IFD1
 import com.ashampoo.kim.format.tiff.constant.TiffConstants.EXIF_SUB_IFD1
 import com.ashampoo.kim.format.tiff.constant.TiffConstants.EXIF_SUB_IFD2
 import com.ashampoo.kim.format.tiff.constant.TiffConstants.EXIF_SUB_IFD3
@@ -49,9 +49,9 @@ object TiffReader {
 
     private val directoryTypeMap = mapOf(
         ExifTag.EXIF_TAG_EXIF_OFFSET to TiffConstants.TIFF_EXIF_IFD,
-        ExifTag.EXIF_TAG_GPSINFO to TiffConstants.TIFF_GPS,
-        ExifTag.EXIF_TAG_INTEROP_OFFSET to TiffConstants.TIFF_INTEROP_IFD,
-        ExifTag.EXIF_TAG_SUB_IFDS_OFFSET to TiffConstants.DIRECTORY_TYPE_SUB
+        ExifTag.EXIF_TAG_GPSINFO to TiffConstants.TIFF_DIRECTORY_GPS,
+        ExifTag.EXIF_TAG_INTEROP_OFFSET to TiffConstants.TIFF_DIRECTORY_INTEROP_IFD,
+        ExifTag.EXIF_TAG_SUB_IFDS_OFFSET to TiffConstants.DIRECTORY_TYPE_IFD1
     )
 
     /**
@@ -73,7 +73,7 @@ object TiffReader {
             byteReader = byteReader,
             byteOrder = tiffHeader.byteOrder,
             directoryOffset = tiffHeader.offsetToFirstIFD,
-            directoryType = TiffConstants.DIRECTORY_TYPE_ROOT,
+            directoryType = TiffConstants.DIRECTORY_TYPE_IFD0,
             visitedOffsets = mutableListOf<Int>(),
             addDirectory = {
                 directories.add(it)
@@ -209,7 +209,7 @@ object TiffReader {
                                 1 -> EXIF_SUB_IFD1
                                 2 -> EXIF_SUB_IFD2
                                 3 -> EXIF_SUB_IFD3
-                                else -> DIRECTORY_TYPE_SUB
+                                else -> DIRECTORY_TYPE_IFD1
                             }
                         else
                             directoryTypeMap.get(offsetField)!!
@@ -290,7 +290,7 @@ object TiffReader {
              * Except for the GPS directory where GPSVersionID is indeed zero,
              * but a valid field. So we shouldn't skip it.
              */
-            if (tag == 0 && directoryType != TiffConstants.TIFF_GPS)
+            if (tag == 0 && directoryType != TiffConstants.TIFF_DIRECTORY_GPS)
                 continue
 
             val fieldType = try {

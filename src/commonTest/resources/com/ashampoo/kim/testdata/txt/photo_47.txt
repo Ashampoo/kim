@@ -52,7 +52,7 @@ Little-endian (Intel, II)
 0000000668 0xa434 LensModel = OLYMPUS M.40-150mm F2.8
 0000000680 0xa435 LensSerialNumber = ABV25833600
 
----- Directory SubIFD @ 902 ----
+---- Directory IFD1 @ 902 ----
 0000000904 0x0103 Compression = 6
 0000000916 0x011a XResolution = 72/1 (72.0)
 0000000928 0x011b YResolution = 72/1 (72.0)

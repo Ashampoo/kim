@@ -44,7 +44,7 @@ fun ImageMetadata.convertToPhotoMetadata(
 
     val takenDateMillis = extractTakenDateMillis(this)
 
-    val gpsDirectory = findTiffDirectory(TiffConstants.TIFF_GPS)
+    val gpsDirectory = findTiffDirectory(TiffConstants.TIFF_DIRECTORY_GPS)
 
     val gps = gpsDirectory?.let { GPSInfo.createFrom(it) }
 

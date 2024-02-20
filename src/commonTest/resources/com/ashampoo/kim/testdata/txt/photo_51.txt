@@ -62,7 +62,7 @@ Little-endian (Intel, II)
 0000000956 0x0003 GPSLongitudeRef = E
 0000000968 0x0004 GPSLongitude = [102/1 (102.0), 5/1 (5.0), 64797/2500 (25.9188)]
 
----- Directory SubIFD @ 1032 ----
+---- Directory IFD1 @ 1032 ----
 0000001034 0x00fe NewSubfileType = 1
 0000001046 0x0100 ImageWidth = 256
 0000001058 0x0101 ImageLength = 170

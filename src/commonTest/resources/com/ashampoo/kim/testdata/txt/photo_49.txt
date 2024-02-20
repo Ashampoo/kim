@@ -60,7 +60,7 @@ Little-endian (Intel, II)
 0000008860 0x0001 InteroperabilityIndex = R98
 0000008872 0x0002 InteroperabilityVersion = [0x30, 0x31, 0x30, 0x30]
 
----- Directory SubIFD @ 9060 ----
+---- Directory IFD1 @ 9060 ----
 0000009062 0x0103 Compression = 6
 0000009074 0x011a XResolution = 72/1 (72.0)
 0000009086 0x011b YResolution = 72/1 (72.0)

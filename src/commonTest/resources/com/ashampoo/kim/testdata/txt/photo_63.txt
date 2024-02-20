@@ -62,7 +62,7 @@ Little-endian (Intel, II)
 0000044150 0x0001 InteroperabilityIndex = R98
 0000044162 0x0002 InteroperabilityVersion = [0x30, 0x31, 0x30, 0x30]
 
----- Directory SubIFD @ 118108 ----
+---- Directory IFD1 @ 118108 ----
 0000118110 0x00fe NewSubfileType = 0
 0000118122 0x0100 ImageWidth = 4288
 0000118134 0x0101 ImageLength = 2858
@@ -85,7 +85,7 @@ Little-endian (Intel, II)
 0000118338 0x0116 RowsPerStrip = 2858
 0000118350 0x0117 PreviewImageLength = 12255104
 
----- Directory SubIFD @ 44178 ----
+---- Directory IFD1 @ 44178 ----
 0000044180 0x00fe NewSubfileType = 1
 0000044192 0x0103 Compression = 6
 0000044204 0x010f Make = SONY

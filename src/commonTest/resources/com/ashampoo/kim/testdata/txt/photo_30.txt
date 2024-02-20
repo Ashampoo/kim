@@ -46,7 +46,7 @@ Little-endian (Intel, II)
 0000000528 0xa405 FocalLengthIn35mmFormat = 52
 0000000540 0xa406 SceneCaptureType = 0
 
----- Directory SubIFD @ 660 ----
+---- Directory IFD1 @ 660 ----
 0000000662 0x0103 Compression = 6
 0000000674 0x011a XResolution = 72/1 (72.0)
 0000000686 0x011b YResolution = 72/1 (72.0)

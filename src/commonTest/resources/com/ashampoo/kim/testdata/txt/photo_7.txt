@@ -45,7 +45,7 @@ Little-endian (Intel, II)
 0000000540 0xa40a Sharpness = 0
 0000000552 0xa434 LensModel = DT 0mm F0 SAM
 
----- Directory SubIFD @ 694 ----
+---- Directory IFD1 @ 694 ----
 0000000696 0x0103 Compression = 6
 0000000708 0x011a XResolution = 72/1 (72.0)
 0000000720 0x011b YResolution = 72/1 (72.0)
