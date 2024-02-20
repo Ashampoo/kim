@@ -64,11 +64,11 @@ Little-endian (Intel, II)
 0000002324 0x0005 GPSAltitudeRef = 0
 0000002336 0x0006 GPSAltitude = 271/10 (27.1)
 
----- Directory SubIFD @ 2408 ----
-0000002410 0x0103 Compression = 6
-0000002422 0x011a XResolution = 72/1 (72.0)
-0000002434 0x011b YResolution = 72/1 (72.0)
-0000002446 0x0128 ResolutionUnit = 2
+---- Directory SubIFD @ 2538 ----
+0000002540 0x0103 Compression = 6
+0000002552 0x011a XResolution = 72/1 (72.0)
+0000002564 0x011b YResolution = 72/1 (72.0)
+0000002576 0x0128 ResolutionUnit = 2
 
 ---- IPTC ----
 Caption/Abstract (120) = 'green covered mountain with gray concrete walking path aerial photography'

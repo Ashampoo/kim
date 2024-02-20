@@ -61,6 +61,13 @@ class TiffWriterLossless(
 
         for (directory in tiffContents.directories) {
 
+            /*
+             * Don't write IFD1 directories without image data. If the thumbnail image is broken
+             * on load, we should drop the IFD1 on rewrite entirely. It's just a waste of space.
+             */
+            if (directory.type == 1 && directory.jpegImageDataElement == null)
+                continue
+
             elements.add(directory)
 
             for (field in directory.getDirectoryEntries()) {
