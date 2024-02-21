@@ -124,6 +124,30 @@ jobs:
           if-no-files-found: error
           name: kim-win-lib.zip
           path: build/bin/win/releaseStatic
+      - name: Upload kim-linuxArm64.kexe
+        uses: actions/upload-artifact@v3
+        with:
+          if-no-files-found: error
+          name: kim-linuxArm64.kexe
+          path: build/bin/linuxArm64/releaseExecutable/kim.kexe
+      - name: Upload kim-linuxX64-lib.zip
+        uses: actions/upload-artifact@v3
+        with:
+          if-no-files-found: error
+          name: kim-linuxX64-lib.zip
+          path: build/bin/linuxX64/releaseStatic
+      - name: Upload kim-linuxX64.kexe
+        uses: actions/upload-artifact@v3
+        with:
+          if-no-files-found: error
+          name: kim-linuxX64.kexe
+          path: build/bin/linuxX64/releaseExecutable/kim.kexe
+      - name: Upload kim-linuxArm64-lib.zip
+        uses: actions/upload-artifact@v3
+        with:
+          if-no-files-found: error
+          name: kim-linuxArm64-lib.zip
+          path: build/bin/linuxArm64/releaseStatic
       - name: Export secring.pgp
         if: startsWith(github.ref, 'refs/tags/') # Only for releases
         run: |

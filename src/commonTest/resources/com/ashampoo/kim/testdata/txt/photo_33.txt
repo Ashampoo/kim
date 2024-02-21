@@ -55,7 +55,7 @@ Little-endian (Intel, II)
 0000000820 0x0003 GPSLongitudeRef = W
 0000000832 0x0004 GPSLongitude = [116/1 (116.0), 12/1 (12.0), 95546/1817 (52.58448)]
 
----- Directory SubIFD @ 896 ----
+---- Directory IFD1 @ 896 ----
 0000000898 0x0103 Compression = 6
 0000000910 0x011a XResolution = 72/1 (72.0)
 0000000922 0x011b YResolution = 72/1 (72.0)

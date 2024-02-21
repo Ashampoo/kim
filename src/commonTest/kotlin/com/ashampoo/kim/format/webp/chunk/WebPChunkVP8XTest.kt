@@ -141,8 +141,6 @@ class WebPChunkVP8XTest {
                 "hasAnimation=$hasAnimation " +
                 "imageSize=${imageSize.width} x ${imageSize.height}"
 
-            println(expectedString)
-
             assertEquals(
                 expected = expectedString,
                 actual = WebPChunkVP8X(

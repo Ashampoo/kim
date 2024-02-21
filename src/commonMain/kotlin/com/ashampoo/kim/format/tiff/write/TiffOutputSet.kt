@@ -66,14 +66,14 @@ class TiffOutputSet(
     fun getDirectories(): List<TiffOutputDirectory> = directories
 
     fun getOrCreateRootDirectory(): TiffOutputDirectory =
-        findDirectory(TiffConstants.DIRECTORY_TYPE_ROOT) ?: addRootDirectory()
+        findDirectory(TiffConstants.TIFF_DIRECTORY_TYPE_IFD0) ?: addRootDirectory()
 
     fun getOrCreateExifDirectory(): TiffOutputDirectory {
 
         /* The EXIF directory requires root directory. */
         getOrCreateRootDirectory()
 
-        return findDirectory(TiffConstants.TIFF_EXIF_IFD) ?: addExifDirectory()
+        return findDirectory(TiffConstants.TIFF_DIRECTORY_EXIF) ?: addExifDirectory()
     }
 
     fun getOrCreateThumbnailDirectory(): TiffOutputDirectory {
@@ -81,7 +81,7 @@ class TiffOutputSet(
         /* The Thumbnail directory requires root directory. */
         getOrCreateRootDirectory()
 
-        return findDirectory(TiffConstants.TIFF_IFD1) ?: addThumbnailDirectory()
+        return findDirectory(TiffConstants.TIFF_DIRECTORY_TYPE_IFD1) ?: addThumbnailDirectory()
     }
 
     fun getOrCreateGPSDirectory(): TiffOutputDirectory {
@@ -89,7 +89,7 @@ class TiffOutputSet(
         /* The GPS directory requires EXIF directory */
         getOrCreateExifDirectory()
 
-        return findDirectory(TiffConstants.TIFF_GPS) ?: addGPSDirectory()
+        return findDirectory(TiffConstants.TIFF_DIRECTORY_GPS) ?: addGPSDirectory()
     }
 
     fun findDirectory(directoryType: Int): TiffOutputDirectory? =
@@ -246,14 +246,14 @@ class TiffOutputSet(
             .firstOrNull()
 
     fun addRootDirectory(): TiffOutputDirectory =
-        addDirectory(TiffOutputDirectory(TiffConstants.DIRECTORY_TYPE_ROOT, byteOrder))
+        addDirectory(TiffOutputDirectory(TiffConstants.TIFF_DIRECTORY_TYPE_IFD0, byteOrder))
 
     fun addExifDirectory(): TiffOutputDirectory =
-        addDirectory(TiffOutputDirectory(TiffConstants.TIFF_EXIF_IFD, byteOrder))
+        addDirectory(TiffOutputDirectory(TiffConstants.TIFF_DIRECTORY_EXIF, byteOrder))
 
     fun addThumbnailDirectory(): TiffOutputDirectory =
-        addDirectory(TiffOutputDirectory(TiffConstants.TIFF_IFD1, byteOrder))
+        addDirectory(TiffOutputDirectory(TiffConstants.TIFF_DIRECTORY_TYPE_IFD1, byteOrder))
 
     fun addGPSDirectory(): TiffOutputDirectory =
-        addDirectory(TiffOutputDirectory(TiffConstants.TIFF_GPS, byteOrder))
+        addDirectory(TiffOutputDirectory(TiffConstants.TIFF_DIRECTORY_GPS, byteOrder))
 }

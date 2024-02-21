@@ -61,7 +61,7 @@ abstract class TiffWriterBase(
 
                 when (dirType) {
 
-                    TiffConstants.TIFF_EXIF_IFD -> {
+                    TiffConstants.TIFF_DIRECTORY_EXIF -> {
 
                         if (exifDirectory != null)
                             throw ImageWriteException("More than one EXIF directory.")
@@ -69,7 +69,7 @@ abstract class TiffWriterBase(
                         exifDirectory = directory
                     }
 
-                    TiffConstants.TIFF_GPS -> {
+                    TiffConstants.TIFF_DIRECTORY_GPS -> {
 
                         if (gpsDirectory != null)
                             throw ImageWriteException("More than one GPS directory.")
@@ -77,7 +77,7 @@ abstract class TiffWriterBase(
                         gpsDirectory = directory
                     }
 
-                    TiffConstants.TIFF_INTEROP_IFD -> {
+                    TiffConstants.TIFF_DIRECTORY_INTEROP -> {
 
                         if (interoperabilityDirectory != null)
                             throw ImageWriteException("More than one Interoperability directory.")
@@ -157,7 +157,7 @@ abstract class TiffWriterBase(
             previousDirectory = directory
         }
 
-        val rootDirectory = directoryTypeMap[TiffConstants.DIRECTORY_TYPE_ROOT]
+        val rootDirectory = directoryTypeMap[TiffConstants.TIFF_DIRECTORY_TYPE_IFD0]
 
         if (rootDirectory == null)
             throw ImageWriteException("Root directory is missing.")

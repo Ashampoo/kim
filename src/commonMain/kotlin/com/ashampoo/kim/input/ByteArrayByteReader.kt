@@ -67,7 +67,7 @@ class ByteArrayByteReader(
 
     override fun readBytes(offset: Int, length: Int): ByteArray {
 
-        require(offset > 0) { "Offset must be positive: $offset" }
+        require(offset >= 0) { "Offset must be positive: $offset" }
         require(length > 0) { "Length must be positive: $length" }
 
         val toIndex = offset + length

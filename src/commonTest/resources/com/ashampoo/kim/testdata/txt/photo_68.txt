@@ -102,7 +102,7 @@ Little-endian (Intel, II)
 0000187324 0xa432 LensSpecification = [180/10 (18.0), 550/10 (55.0), 35/10 (3.5), 56/10 (5.6)]
 0000187336 0xa434 LensModel = 18.0-55.0 mm f/3.5-5.6
 
----- Directory SubIFD @ 187536 ----
+---- Directory IFD1 @ 187536 ----
 0000187538 0x00fe NewSubfileType = 0
 0000187550 0x0100 ImageWidth = 4948
 0000187562 0x0101 ImageLength = 3280
@@ -191,7 +191,7 @@ Little-endian (Intel, II)
 0000197388 0xc741 Unknown = [256 bytes]
 0000197400 0xc7aa Unknown = 256
 
----- Directory SubIFD @ 197728 ----
+---- Directory IFD1 @ 197728 ----
 0000197730 0x00fe NewSubfileType = 1
 0000197742 0x0100 ImageWidth = 256
 0000197754 0x0101 ImageLength = 170

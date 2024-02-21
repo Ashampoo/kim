@@ -82,7 +82,7 @@ Big-endian (Motorola, MM)
 0000022414 0x0012 GPSMapDatum = WGS-84
 0000022426 0x001d GPSDateStamp = 2019:10:18
 
----- Directory SubIFD @ 22552 ----
+---- Directory IFD1 @ 22552 ----
 0000022554 0x0103 Compression = 6
 0000022566 0x011a XResolution = 96/1 (96.0)
 0000022578 0x011b YResolution = 96/1 (96.0)

@@ -50,7 +50,7 @@ Little-endian (Intel, II)
 0000000968 0xa409 Saturation = 0
 0000000980 0xa40a Sharpness = 0
 
----- Directory SubIFD @ 1218 ----
+---- Directory IFD1 @ 1218 ----
 0000001220 0x00fe NewSubfileType = 1
 0000001232 0x0100 ImageWidth = 256
 0000001244 0x0101 ImageLength = 256

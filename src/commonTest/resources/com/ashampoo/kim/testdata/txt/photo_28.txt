@@ -71,7 +71,7 @@ Little-endian (Intel, II)
 ---- Directory GPS @ 18876 ----
 0000018878 0x0000 GPSVersionID = [0x02, 0x03, 0x00, 0x00]
 
----- Directory SubIFD @ 18894 ----
+---- Directory IFD1 @ 18894 ----
 0000018896 0x0103 Compression = 6
 0000018908 0x011a XResolution = 180/1 (180.0)
 0000018920 0x011b YResolution = 180/1 (180.0)

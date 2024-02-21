@@ -242,18 +242,17 @@ class TiffDirectory(
         fun description(type: Int): String {
             return when (type) {
                 TiffConstants.DIRECTORY_TYPE_UNKNOWN -> "Unknown"
-                TiffConstants.DIRECTORY_TYPE_ROOT -> "IFD0"
-                TiffConstants.DIRECTORY_TYPE_SUB -> "SubIFD"
+                TiffConstants.TIFF_DIRECTORY_TYPE_IFD0 -> "IFD0"
+                TiffConstants.TIFF_DIRECTORY_TYPE_IFD1 -> "IFD1"
                 TiffConstants.EXIF_SUB_IFD1 -> "SubIFD1"
                 TiffConstants.EXIF_SUB_IFD2 -> "SubIFD2"
                 TiffConstants.EXIF_SUB_IFD3 -> "SubIFD3"
-                // TiffConstants.DIRECTORY_TYPE_THUMBNAIL -> "Thumbnail"
-                TiffConstants.TIFF_EXIF_IFD -> "ExifIFD"
-                TiffConstants.TIFF_GPS -> "GPS"
-                TiffConstants.TIFF_INTEROP_IFD -> "InteropIFD"
+                TiffConstants.TIFF_DIRECTORY_EXIF -> "ExifIFD"
+                TiffConstants.TIFF_DIRECTORY_GPS -> "GPS"
+                TiffConstants.TIFF_DIRECTORY_INTEROP -> "InteropIFD"
                 TiffConstants.TIFF_MAKER_NOTE_CANON -> "MakerNoteCanon"
                 TiffConstants.TIFF_MAKER_NOTE_NIKON -> "MakerNoteNikon"
-                else -> "Bad Type"
+                else -> "Unknown type $type"
             }
         }
 

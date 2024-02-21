@@ -170,7 +170,7 @@ class ImageFormatTest {
 
         assertEquals(
             expected = ImageFormat.WEBP,
-            actual = ImageFormat.byUniformTypeIdentifier("public.webp")
+            actual = ImageFormat.byUniformTypeIdentifier("org.webmproject.webp")
         )
 
         assertEquals(

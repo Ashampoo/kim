@@ -66,7 +66,7 @@ Little-endian (Intel, II)
 0000046454 0x0001 InteroperabilityIndex = R98
 0000046466 0x0002 InteroperabilityVersion = [0x30, 0x31, 0x30, 0x30]
 
----- Directory SubIFD @ 46654 ----
+---- Directory IFD1 @ 46654 ----
 0000046656 0x0201 JpgFromRawStart = 55156
 0000046668 0x0202 JpgFromRawLength = 11248
 

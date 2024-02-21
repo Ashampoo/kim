@@ -52,7 +52,7 @@ Little-endian (Intel, II)
 0000000634 0xa432 LensSpecification = [1040/100 (10.4), 3710/100 (37.1), 18/10 (1.8), 49/10 (4.9)]
 0000000646 0xa434 LensModel = 28-100mm F1.8-4.9
 
----- Directory SubIFD @ 848 ----
+---- Directory IFD1 @ 848 ----
 0000000850 0x0103 Compression = 6
 0000000862 0x011a XResolution = 72/1 (72.0)
 0000000874 0x011b YResolution = 72/1 (72.0)
@@ -62,7 +62,7 @@ Little-endian (Intel, II)
 
 ---- XMP ----
 <?xpacket begin="﻿" id="W5M0MpCehiHzreSzNTczkc9d"?>
-<x:xmpmeta xmlns:x="adobe:ns:meta/" x:xmptk="Adobe XMP Core 5.1.3">
+<x:xmpmeta xmlns:x="adobe:ns:meta/" x:xmptk="Ashampoo XMP Core 1.1.0">
   <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
     <rdf:Description rdf:about=""
         xmlns:aux="http://ns.adobe.com/exif/1.0/aux/"

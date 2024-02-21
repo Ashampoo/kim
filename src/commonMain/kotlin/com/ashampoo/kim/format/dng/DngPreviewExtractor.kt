@@ -38,15 +38,15 @@ object DngPreviewExtractor : TiffPreviewExtractor {
         if (ifd0.getFieldValue(TiffTag.TIFF_TAG_DNG_VERSION, false) == null)
             return null
 
-        val subIfd1 = tiffContents.directories.find {
-            it.type == TiffConstants.EXIF_SUB_IFD1
+        val ifd2 = tiffContents.directories.find {
+            it.type == TiffConstants.TIFF_DIRECTORY_TYPE_IFD2
         } ?: return null
 
         val previewImageStart =
-            subIfd1.getFieldValue(ExifTag.EXIF_TAG_PREVIEW_IMAGE_START_SUB_IFD1) ?: return null
+            ifd2.getFieldValue(ExifTag.EXIF_TAG_PREVIEW_IMAGE_START_SUB_IFD1) ?: return null
 
         val previewLength =
-            subIfd1.getFieldValue(ExifTag.EXIF_TAG_PREVIEW_IMAGE_LENGTH_SUB_IFD1) ?: return null
+            ifd2.getFieldValue(ExifTag.EXIF_TAG_PREVIEW_IMAGE_LENGTH_SUB_IFD1) ?: return null
 
         if (previewLength == 0)
             return null

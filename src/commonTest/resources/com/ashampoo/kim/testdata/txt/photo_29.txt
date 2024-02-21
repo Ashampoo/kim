@@ -60,7 +60,7 @@ Little-endian (Intel, II)
 0000000752 0xa434 LensModel = OLYMPUS M.14-42mm F3.5-5.6 II R
 0000000764 0xa435 LensSerialNumber = ABGD50966
 
----- Directory SubIFD @ 992 ----
+---- Directory IFD1 @ 992 ----
 0000000994 0x0103 Compression = 6
 0000001006 0x011a XResolution = 72/1 (72.0)
 0000001018 0x011b YResolution = 72/1 (72.0)

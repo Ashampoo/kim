@@ -23,25 +23,25 @@ enum class TiffDirectoryType(
 ) {
 
     TIFF_DIRECTORY_IFD0(
-        TiffConstants.TIFF_IFD0, "IFD0", true
+        TiffConstants.TIFF_DIRECTORY_TYPE_IFD0, "IFD0", true
     ),
     TIFF_DIRECTORY_IFD1(
-        TiffConstants.TIFF_IFD1, "IFD1", true
+        TiffConstants.TIFF_DIRECTORY_TYPE_IFD1, "IFD1", true
     ),
     TIFF_DIRECTORY_IFD2(
-        TiffConstants.TIFF_IFD2, "IFD2", true
+        TiffConstants.TIFF_DIRECTORY_TYPE_IFD2, "IFD2", true
     ),
     TIFF_DIRECTORY_IFD3(
-        TiffConstants.TIFF_IFD3, "IFD3", true
+        TiffConstants.TIFF_DIRECTORY_TYPE_IFD3, "IFD3", true
     ),
     EXIF_DIRECTORY_INTEROP_IFD(
-        TiffConstants.TIFF_INTEROP_IFD, "InteropIFD", false
+        TiffConstants.TIFF_DIRECTORY_INTEROP, "InteropIFD", false
     ),
     EXIF_DIRECTORY_EXIF_IFD(
-        TiffConstants.TIFF_EXIF_IFD, "ExifIFD", false
+        TiffConstants.TIFF_DIRECTORY_EXIF, "ExifIFD", false
     ),
     EXIF_DIRECTORY_GPS(
-        TiffConstants.TIFF_GPS, "GPS", false
+        TiffConstants.TIFF_DIRECTORY_GPS, "GPS", false
     ),
     EXIF_DIRECTORY_MAKER_NOTE_CANON(
         TiffConstants.TIFF_MAKER_NOTE_CANON, "MakerNoteCanon", false

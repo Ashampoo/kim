@@ -4,10 +4,10 @@ import org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalWasmDsl
 
 plugins {
     kotlin("multiplatform") version "1.9.22"
-    id("com.android.library") version "8.1.1"
+    id("com.android.library") version "8.2.2"
     id("maven-publish")
     id("signing")
-    id("io.gitlab.arturbosch.detekt") version "1.23.4"
+    id("io.gitlab.arturbosch.detekt") version "1.23.5"
     id("org.sonarqube") version "4.3.1.3277"
     id("org.jetbrains.kotlinx.kover") version "0.6.1"
     id("com.asarkar.gradle.build-time-tracker") version "4.3.0"
@@ -25,7 +25,7 @@ repositories {
 val productName = "Ashampoo Kim"
 
 val ktorVersion: String = "2.3.8"
-val xmpCoreVersion: String = "1.0.0"
+val xmpCoreVersion: String = "1.1.0"
 val dateTimeVersion: String = "0.5.0"
 val testRessourcesVersion: String = "0.4.0"
 val ioCoreVersion: String = "0.3.1"
@@ -138,6 +138,28 @@ kotlin {
         }
     }
 
+    linuxX64 {
+        binaries {
+            executable(setOf(NativeBuildType.RELEASE)) {
+                entryPoint = "com.ashampoo.kim.main"
+            }
+            staticLib(namePrefix = "", setOf(NativeBuildType.RELEASE)) {
+                baseName = "kim"
+            }
+        }
+    }
+
+    linuxArm64 {
+        binaries {
+            executable(setOf(NativeBuildType.RELEASE)) {
+                entryPoint = "com.ashampoo.kim.main"
+            }
+            staticLib(namePrefix = "", setOf(NativeBuildType.RELEASE)) {
+                baseName = "kim"
+            }
+        }
+    }
+
     jvm {
 
         java {
@@ -187,6 +209,8 @@ kotlin {
     listOf(
         /* App Store */
         iosArm64(),
+        /* Apple Intel iOS Simulator */
+        iosX64(),
         /* Apple Silicon iOS Simulator */
         iosSimulatorArm64(),
         /* macOS Devices */
@@ -243,7 +267,18 @@ kotlin {
         dependsOn(posixMain)
     }
 
+    @Suppress("UnusedPrivateMember", "UNUSED_VARIABLE") // False positive
+    val linuxX64Main by sourceSets.getting {
+        dependsOn(posixMain)
+    }
+
+    @Suppress("UnusedPrivateMember", "UNUSED_VARIABLE") // False positive
+    val linuxArm64Main by sourceSets.getting {
+        dependsOn(posixMain)
+    }
+
     val iosArm64Main by sourceSets.getting
+    val iosX64Main by sourceSets.getting
     val iosSimulatorArm64Main by sourceSets.getting
     val macosX64Main by sourceSets.getting
     val macosArm64Main by sourceSets.getting
@@ -256,12 +291,14 @@ kotlin {
         dependsOn(posixMain)
 
         iosArm64Main.dependsOn(this)
+        iosX64Main.dependsOn(this)
         iosSimulatorArm64Main.dependsOn(this)
         macosX64Main.dependsOn(this)
         macosArm64Main.dependsOn(this)
     }
 
     val iosArm64Test by sourceSets.getting
+    val iosX64Test by sourceSets.getting
     val iosSimulatorArm64Test by sourceSets.getting
     val macosX64Test by sourceSets.getting
     val macosArm64Test by sourceSets.getting
@@ -272,6 +309,7 @@ kotlin {
         dependsOn(commonTest)
 
         iosArm64Test.dependsOn(this)
+        iosX64Test.dependsOn(this)
         iosSimulatorArm64Test.dependsOn(this)
         macosX64Test.dependsOn(this)
         macosArm64Test.dependsOn(this)
@@ -280,6 +318,7 @@ kotlin {
     val wasmJsMain by sourceSets.getting
     // val wasmWasiMain by sourceSets.getting
 
+    @Suppress("UnusedPrivateMember", "UNUSED_VARIABLE") // False positive
     val wasmMain by sourceSets.creating {
 
         dependsOn(commonMain)
@@ -313,7 +352,7 @@ android {
     sourceSets["main"].res.srcDirs("src/commonMain/resources")
 
     defaultConfig {
-        minSdk = 23
+        minSdk = 21
     }
 
     compileOptions {
@@ -356,10 +395,13 @@ afterEvaluate {
         val signJvmPublication by tasks.getting
         val signAndroidReleasePublication by tasks.getting
         val signIosArm64Publication by tasks.getting
+        val signIosX64Publication by tasks.getting
         val signIosSimulatorArm64Publication by tasks.getting
         val signMacosArm64Publication by tasks.getting
         val signMacosX64Publication by tasks.getting
         val signWinPublication by tasks.getting
+        val signLinuxX64Publication by tasks.getting
+        val signLinuxArm64Publication by tasks.getting
         val signWasmJsPublication by tasks.getting
         // val signWasmWasiPublication by tasks.getting
         val signKotlinMultiplatformPublication by tasks.getting
@@ -367,10 +409,13 @@ afterEvaluate {
         val publishJvmPublicationToSonatypeRepository by tasks.getting
         val publishAndroidReleasePublicationToSonatypeRepository by tasks.getting
         val publishIosArm64PublicationToSonatypeRepository by tasks.getting
+        val publishIosX64PublicationToSonatypeRepository by tasks.getting
         val publishIosSimulatorArm64PublicationToSonatypeRepository by tasks.getting
         val publishMacosArm64PublicationToSonatypeRepository by tasks.getting
         val publishMacosX64PublicationToSonatypeRepository by tasks.getting
         val publishWinPublicationToSonatypeRepository by tasks.getting
+        val publishLinuxX64PublicationToSonatypeRepository by tasks.getting
+        val publishLinuxArm64PublicationToSonatypeRepository by tasks.getting
         val publishWasmJsPublicationToSonatypeRepository by tasks.getting
         // val publishWasmWasiPublicationToSonatypeRepository by tasks.getting
         val publishKotlinMultiplatformPublicationToSonatypeRepository by tasks.getting
@@ -378,9 +423,11 @@ afterEvaluate {
 
         val signTasks = listOf(
             signJvmPublication, signAndroidReleasePublication,
-            signIosArm64Publication, signIosSimulatorArm64Publication,
+            signIosArm64Publication, signIosX64Publication,
+            signIosSimulatorArm64Publication,
             signMacosArm64Publication, signMacosX64Publication,
-            signWinPublication, signWasmJsPublication, // signWasmWasiPublication,
+            signWinPublication, signLinuxX64Publication, signLinuxArm64Publication,
+            signWasmJsPublication, // signWasmWasiPublication,
             signKotlinMultiplatformPublication
         )
 
@@ -388,10 +435,13 @@ afterEvaluate {
             publishJvmPublicationToSonatypeRepository,
             publishAndroidReleasePublicationToSonatypeRepository,
             publishIosArm64PublicationToSonatypeRepository,
+            publishIosX64PublicationToSonatypeRepository,
             publishIosSimulatorArm64PublicationToSonatypeRepository,
             publishMacosArm64PublicationToSonatypeRepository,
             publishMacosX64PublicationToSonatypeRepository,
             publishWinPublicationToSonatypeRepository,
+            publishLinuxX64PublicationToSonatypeRepository,
+            publishLinuxArm64PublicationToSonatypeRepository,
             publishWasmJsPublicationToSonatypeRepository,
             // publishWasmWasiPublicationToSonatypeRepository,
             publishKotlinMultiplatformPublicationToSonatypeRepository,
@@ -462,12 +512,3 @@ publishing {
     }
 }
 // endregion
-
-//rootProject.the<NodeJsRootExtension>().apply {
-//    nodeVersion = "21.0.0-v8-canary202309143a48826a08"
-//    nodeDownloadBaseUrl = "https://nodejs.org/download/v8-canary"
-//}
-//
-//tasks.withType<org.jetbrains.kotlin.gradle.targets.js.npm.tasks.KotlinNpmInstallTask>().configureEach {
-//    args.add("--ignore-engines")
-//}

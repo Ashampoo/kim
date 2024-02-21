@@ -68,7 +68,7 @@ Big-endian (Motorola, MM)
 ---- Directory GPS @ 124124 ----
 0000124126 0x0000 GPSVersionID = [0x02, 0x03, 0x00, 0x00]
 
----- Directory SubIFD @ 181744 ----
+---- Directory IFD1 @ 181744 ----
 0000181746 0x00fe NewSubfileType = 1
 0000181758 0x0103 Compression = 6
 0000181770 0x011a XResolution = 300/1 (300.0)

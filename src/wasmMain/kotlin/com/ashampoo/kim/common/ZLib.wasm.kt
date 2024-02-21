@@ -38,6 +38,7 @@ private fun ByteArray.toUint8Array(): Uint8Array {
     return result
 }
 
+@Suppress("UnusedPrivateMember", "UNUSED_VARIABLE") // False positive
 @JsModule("pako")
 private external object Pako {
     fun deflate(data: String): Uint8Array

@@ -30,7 +30,7 @@ enum class ImageFormat(
     JPEG("image/jpeg", "public.jpeg", setOf("jpg", "jpeg")),
     GIF("image/gif", "com.compuserve.gif", setOf("gif")),
     PNG("image/png", "public.png", setOf("png")),
-    WEBP("image/webp", "public.webp", setOf("webp")),
+    WEBP("image/webp", "org.webmproject.webp", setOf("webp")),
     TIFF("image/tiff", "public.tiff", setOf("tif", "tiff")),
     HEIC("image/heic", "public.heic", setOf("heic")),
     AVIF("image/avif", "public.avif", setOf("avif")),

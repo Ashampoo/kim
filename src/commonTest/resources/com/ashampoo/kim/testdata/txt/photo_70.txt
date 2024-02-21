@@ -95,7 +95,7 @@ Little-endian (Intel, II)
 0000745004 0xa40a Sharpness = 0
 0000745016 0xa431 BodySerialNumber = F111311090158
 
----- Directory SubIFD @ 745174 ----
+---- Directory IFD1 @ 745174 ----
 0000745176 0x00fe NewSubfileType = 0
 0000745188 0x0100 ImageWidth = 3664
 0000745200 0x0101 ImageLength = 2752
@@ -184,7 +184,7 @@ Little-endian (Intel, II)
 0000748304 0xc741 Unknown = [256 bytes]
 0000748316 0xc7aa Unknown = 256
 
----- Directory SubIFD @ 748644 ----
+---- Directory IFD1 @ 748644 ----
 0000748646 0x00fe NewSubfileType = 1
 0000748658 0x0100 ImageWidth = 256
 0000748670 0x0101 ImageLength = 192

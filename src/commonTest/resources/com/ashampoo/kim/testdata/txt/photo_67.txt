@@ -105,7 +105,7 @@ Little-endian (Intel, II)
 0000152310 0xa434 LensModel = XC35mmF2
 0000152322 0xa435 LensSerialNumber = 0AA16656
 
----- Directory SubIFD @ 152538 ----
+---- Directory IFD1 @ 152538 ----
 0000152540 0x00fe NewSubfileType = 0
 0000152552 0x0100 ImageWidth = 6240
 0000152564 0x0101 ImageLength = 4160
@@ -194,7 +194,7 @@ Little-endian (Intel, II)
 0000158096 0xc741 Unknown = [256 bytes]
 0000158108 0xc7aa Unknown = 256
 
----- Directory SubIFD @ 158436 ----
+---- Directory IFD1 @ 158436 ----
 0000158438 0x00fe NewSubfileType = 1
 0000158450 0x0100 ImageWidth = 256
 0000158462 0x0101 ImageLength = 171

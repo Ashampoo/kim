@@ -46,7 +46,7 @@ Little-endian (Intel, II)
 0000000552 0xa432 LensSpecification = [50/1 (50.0), 50/1 (50.0), Invalid rational (0/0), Invalid rational (0/0)]
 0000000564 0xa434 LensModel = EF50mm f/1.8 II
 
----- Directory SubIFD @ 752 ----
+---- Directory IFD1 @ 752 ----
 0000000754 0x0103 Compression = 6
 0000000766 0x011a XResolution = 72/1 (72.0)
 0000000778 0x011b YResolution = 72/1 (72.0)

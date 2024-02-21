@@ -98,7 +98,7 @@ Little-endian (Intel, II)
 0000109296 0xa434 LensModel = EF-S15-85mm f/3.5-5.6 IS USM
 0000109308 0xa435 LensSerialNumber = 0000118484
 
----- Directory SubIFD @ 109546 ----
+---- Directory IFD1 @ 109546 ----
 0000109548 0x00fe NewSubfileType = 0
 0000109560 0x0100 ImageWidth = 5344
 0000109572 0x0101 ImageLength = 3516
@@ -186,7 +186,7 @@ Little-endian (Intel, II)
 0000113480 0xc741 Unknown = [256 bytes]
 0000113492 0xc7aa Unknown = 256
 
----- Directory SubIFD @ 113820 ----
+---- Directory IFD1 @ 113820 ----
 0000113822 0x00fe NewSubfileType = 1
 0000113834 0x0100 ImageWidth = 256
 0000113846 0x0101 ImageLength = 171
