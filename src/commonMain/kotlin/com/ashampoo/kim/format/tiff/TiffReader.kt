@@ -432,10 +432,10 @@ object TiffReader {
                 return makerNoteDirectory
 
             } catch (ignore: Exception) {
-
-                /* Interpreting the Maker Note is optional. */
-                @Suppress("PrintStackTrace")
-                ignore.printStackTrace()
+                /*
+                 * Be silent here.
+                 * MakerNote support is experimental.
+                 */
             }
         }
 
