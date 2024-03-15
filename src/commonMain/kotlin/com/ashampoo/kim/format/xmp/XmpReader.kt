@@ -58,17 +58,16 @@ object XmpReader {
                 ?.substringBefore('+')
                 ?.substringBefore('Z')
 
-        val takenDate = if (takenDateIsoStringWithoutTimezone != null)
+        val takenDate = takenDateIsoStringWithoutTimezone?.let {
             try {
-                LocalDateTime.parse(takenDateIsoStringWithoutTimezone)
+                LocalDateTime.parse(it)
                     .toInstant(timeZone)
                     .toEpochMilliseconds()
             } catch (ignore: Exception) {
                 /* We ignore invalid XMP DateTimeOriginal values. */
                 null
             }
-        else
-            null
+        }
 
         /*
          * Read location
