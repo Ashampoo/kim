@@ -3,7 +3,7 @@ import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
 import org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalWasmDsl
 
 plugins {
-    kotlin("multiplatform") version "1.9.22"
+    kotlin("multiplatform") version "1.9.23"
     id("com.android.library") version "8.2.2"
     id("maven-publish")
     id("signing")
@@ -14,7 +14,7 @@ plugins {
     id("me.qoomon.git-versioning") version "6.4.3"
     id("com.goncalossilva.resources") version "0.4.0"
     id("com.github.ben-manes.versions") version "0.51.0"
-    id("org.jetbrains.dokka") version "1.9.10"
+    id("org.jetbrains.dokka") version "1.9.20"
 }
 
 repositories {
@@ -169,7 +169,7 @@ kotlin {
         }
     }
 
-    js()
+//    js()
 
     @OptIn(ExperimentalWasmDsl::class)
     wasmJs {
@@ -318,14 +318,14 @@ kotlin {
         macosArm64Test.dependsOn(this)
     }
 
-    val jsMain by sourceSets.getting {
-
-        dependsOn(commonMain)
-
-        dependencies {
-            implementation(npm("pako", "2.1.0"))
-        }
-    }
+//    val jsMain by sourceSets.getting {
+//
+//        dependsOn(commonMain)
+//
+//        dependencies {
+//            implementation(npm("pako", "2.1.0"))
+//        }
+//    }
 
     val wasmJsMain by sourceSets.getting
     // val wasmWasiMain by sourceSets.getting
