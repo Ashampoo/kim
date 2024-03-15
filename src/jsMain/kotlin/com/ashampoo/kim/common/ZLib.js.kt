@@ -15,9 +15,8 @@
  */
 package com.ashampoo.kim.common
 
+import org.khronos.webgl.Int8Array
 import org.khronos.webgl.Uint8Array
-import org.khronos.webgl.get
-import org.khronos.webgl.set
 
 actual fun compress(input: String): ByteArray =
     Pako.deflate(input).toByteArray()
@@ -28,14 +27,11 @@ actual fun decompress(byteArray: ByteArray): String =
 private val toStringOptions: dynamic = js("({to: 'string'})")
 
 private fun Uint8Array.toByteArray(): ByteArray =
-    ByteArray(length) { this[it] }
+    Int8Array(buffer, byteOffset, length).unsafeCast<ByteArray>()
 
 private fun ByteArray.toUint8Array(): Uint8Array {
-    val result = Uint8Array(size)
-    forEachIndexed { index, byte ->
-        result[index] = byte
-    }
-    return result
+    val int8array = unsafeCast<Int8Array>()
+    return Uint8Array(int8array.buffer, int8array.byteOffset, int8array.length)
 }
 
 @Suppress("UnusedPrivateMember", "UNUSED_VARIABLE") // False positive
