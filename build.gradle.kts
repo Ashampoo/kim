@@ -169,7 +169,7 @@ kotlin {
     }
 
     js() {
-        nodejs()
+        // nodejs()
     }
 
     @OptIn(ExperimentalWasmDsl::class)
