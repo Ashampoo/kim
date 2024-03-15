@@ -125,7 +125,7 @@ val newBytes = Kim.update(
 )
 ```
 
-See [JpegUpdaterTest](src/commonTest/kotlin/com/ashampoo/kim/format/jpeg/JpegUpdaterTest.kt)
+See [AbstractUpdaterTest](src/commonTest/kotlin/com/ashampoo/kim/format/AbstractUpdaterTest.kt)
 for more samples.
 
 ### Update thumbnail using Kim.update() API
