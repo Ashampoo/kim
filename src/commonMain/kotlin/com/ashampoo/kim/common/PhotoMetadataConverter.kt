@@ -122,7 +122,7 @@ fun ImageMetadata.convertToPhotoMetadata(
         exposureTime = exposureTime,
         fNumber = fNumber,
         focalLength = focalLength,
-        flagged = xmpMetadata?.flagged,
+        flagged = xmpMetadata?.flagged ?: false,
         rating = xmpMetadata?.rating,
         keywords = keywords.ifEmpty { xmpMetadata?.keywords ?: emptySet() },
         faces = xmpMetadata?.faces ?: emptyMap(),

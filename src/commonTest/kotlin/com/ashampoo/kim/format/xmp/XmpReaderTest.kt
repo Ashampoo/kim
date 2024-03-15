@@ -40,24 +40,10 @@ class XmpReaderTest {
 
         assertEquals(
             expected = PhotoMetadata(
-                widthPx = null,
-                heightPx = null,
                 orientation = TiffOrientation.STANDARD,
                 takenDate = 1_664_279_361_000,
-                gpsCoordinates = null,
-                location = null,
-                cameraMake = null,
-                cameraModel = null,
-                lensMake = null,
-                lensModel = null,
-                iso = null,
-                exposureTime = null,
-                fNumber = null,
-                focalLength = null,
                 rating = PhotoRating.THREE_STARS,
-                keywords = setOf("Braut", "Bräutigam", "Paar", "After-Party"),
-                faces = emptyMap(),
-                personsInImage = emptySet()
+                keywords = setOf("Braut", "Bräutigam", "Paar", "After-Party")
             ),
             actual = XmpReader.readMetadata(xmp)
         )
@@ -70,29 +56,17 @@ class XmpReaderTest {
 
         assertEquals(
             expected = PhotoMetadata(
-                widthPx = null,
-                heightPx = null,
                 orientation = TiffOrientation.STANDARD,
                 takenDate = 1_664_279_361_000,
                 gpsCoordinates = GpsCoordinates(
                     latitude = 53.2193388,
                     longitude = 8.239984883333333
                 ),
-                location = null,
-                cameraMake = null,
-                cameraModel = null,
-                lensMake = null,
-                lensModel = null,
-                iso = null,
-                exposureTime = null,
-                fNumber = null,
-                focalLength = null,
                 rating = PhotoRating.FOUR_STARS,
                 keywords = setOf("Pflanze", "Ecke", "MacBook"),
                 faces = mapOf(
                     "MacBook" to XMPRegionArea(0.581172, 0.66247, 0.583093, 0.502398)
-                ),
-                personsInImage = emptySet()
+                )
             ),
             actual = XmpReader.readMetadata(xmp)
         )
@@ -105,20 +79,7 @@ class XmpReaderTest {
 
         assertEquals(
             expected = PhotoMetadata(
-                widthPx = null,
-                heightPx = null,
-                orientation = null,
                 takenDate = 1_540_041_598_000,
-                gpsCoordinates = null,
-                location = null,
-                cameraMake = null,
-                cameraModel = null,
-                lensMake = null,
-                lensModel = null,
-                iso = null,
-                exposureTime = null,
-                fNumber = null,
-                focalLength = null,
                 rating = PhotoRating.THREE_STARS,
                 keywords = setOf(
                     "\"fuchs\"",
@@ -132,7 +93,8 @@ class XmpReaderTest {
                 faces = mapOf(
                     "Swiper" to XMPRegionArea(0.404336, 0.422313, 0.124503, 0.240097)
                 ),
-                personsInImage = setOf("Swiper")
+                personsInImage = setOf("Swiper"),
+                albums = emptySet()
             ),
             actual = XmpReader.readMetadata(xmp)
         )
@@ -145,23 +107,12 @@ class XmpReaderTest {
 
         assertEquals(
             expected = PhotoMetadata(
-                widthPx = null,
-                heightPx = null,
                 orientation = TiffOrientation.STANDARD,
                 takenDate = 1_456_064_625_420,
                 gpsCoordinates = GpsCoordinates(
                     latitude = 53.21939166666667,
                     longitude = 8.239661666666667
                 ),
-                location = null,
-                cameraMake = null,
-                cameraModel = null,
-                lensMake = null,
-                lensModel = null,
-                iso = null,
-                exposureTime = null,
-                fNumber = null,
-                focalLength = null,
                 rating = PhotoRating.REJECTED,
                 keywords = setOf("animal", "bird"),
                 faces = mapOf(
@@ -182,20 +133,7 @@ class XmpReaderTest {
 
         assertEquals(
             expected = PhotoMetadata(
-                widthPx = null,
-                heightPx = null,
                 orientation = TiffOrientation.ROTATE_RIGHT,
-                takenDate = null,
-                gpsCoordinates = null,
-                location = null,
-                cameraMake = null,
-                cameraModel = null,
-                lensMake = null,
-                lensModel = null,
-                iso = null,
-                exposureTime = null,
-                fNumber = null,
-                focalLength = null,
                 rating = PhotoRating.FOUR_STARS,
                 keywords = emptySet(),
                 faces = emptyMap(),
@@ -212,20 +150,7 @@ class XmpReaderTest {
 
         assertEquals(
             expected = PhotoMetadata(
-                widthPx = null,
-                heightPx = null,
-                orientation = null,
                 takenDate = 1_540_041_598_620,
-                gpsCoordinates = null,
-                location = null,
-                cameraMake = null,
-                cameraModel = null,
-                lensMake = null,
-                lensModel = null,
-                iso = null,
-                exposureTime = null,
-                fNumber = null,
-                focalLength = null,
                 rating = PhotoRating.FIVE_STARS,
                 keywords = setOf(
                     "\"fuchs\"",

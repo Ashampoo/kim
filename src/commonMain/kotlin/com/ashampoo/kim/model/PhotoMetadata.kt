@@ -49,7 +49,7 @@ data class PhotoMetadata(
     val focalLength: Double? = null,
 
     /* Ratings & Tags */
-    val flagged: Boolean? = null,
+    val flagged: Boolean = false,
     val rating: PhotoRating? = null,
     val keywords: Set<String> = emptySet(),
 
