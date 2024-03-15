@@ -316,6 +316,8 @@ kotlin {
         macosArm64Test.dependsOn(this)
     }
 
+    js()
+
     val wasmJsMain by sourceSets.getting
     // val wasmWasiMain by sourceSets.getting
 
