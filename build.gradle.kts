@@ -169,7 +169,7 @@ kotlin {
         }
     }
 
-//    js()
+    js()
 
     @OptIn(ExperimentalWasmDsl::class)
     wasmJs {
@@ -318,14 +318,14 @@ kotlin {
         macosArm64Test.dependsOn(this)
     }
 
-//    val jsMain by sourceSets.getting {
-//
-//        dependsOn(commonMain)
-//
-//        dependencies {
-//            implementation(npm("pako", "2.1.0"))
-//        }
-//    }
+    val jsMain by sourceSets.getting {
+
+        dependsOn(commonMain)
+
+        dependencies {
+            implementation(npm("pako", "2.1.0"))
+        }
+    }
 
     val wasmJsMain by sourceSets.getting
     // val wasmWasiMain by sourceSets.getting
@@ -414,6 +414,7 @@ afterEvaluate {
         val signWinPublication by tasks.getting
         val signLinuxX64Publication by tasks.getting
         val signLinuxArm64Publication by tasks.getting
+        val signJsPublication by tasks.getting
         val signWasmJsPublication by tasks.getting
         // val signWasmWasiPublication by tasks.getting
         val signKotlinMultiplatformPublication by tasks.getting
@@ -428,6 +429,7 @@ afterEvaluate {
         val publishWinPublicationToSonatypeRepository by tasks.getting
         val publishLinuxX64PublicationToSonatypeRepository by tasks.getting
         val publishLinuxArm64PublicationToSonatypeRepository by tasks.getting
+        val publishJsPublicationToSonatypeRepository by tasks.getting
         val publishWasmJsPublicationToSonatypeRepository by tasks.getting
         // val publishWasmWasiPublicationToSonatypeRepository by tasks.getting
         val publishKotlinMultiplatformPublicationToSonatypeRepository by tasks.getting
@@ -439,7 +441,7 @@ afterEvaluate {
             signIosSimulatorArm64Publication,
             signMacosArm64Publication, signMacosX64Publication,
             signWinPublication, signLinuxX64Publication, signLinuxArm64Publication,
-            signWasmJsPublication, // signWasmWasiPublication,
+            signJsPublication, signWasmJsPublication, // signWasmWasiPublication,
             signKotlinMultiplatformPublication
         )
 
@@ -454,6 +456,7 @@ afterEvaluate {
             publishWinPublicationToSonatypeRepository,
             publishLinuxX64PublicationToSonatypeRepository,
             publishLinuxArm64PublicationToSonatypeRepository,
+            publishJsPublicationToSonatypeRepository,
             publishWasmJsPublicationToSonatypeRepository,
             // publishWasmWasiPublicationToSonatypeRepository,
             publishKotlinMultiplatformPublicationToSonatypeRepository,
