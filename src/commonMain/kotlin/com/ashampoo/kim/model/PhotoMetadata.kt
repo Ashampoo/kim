@@ -136,7 +136,7 @@ data class PhotoMetadata(
             focalLength = focalLength ?: other.focalLength,
 
             /* Ratings & Tags */
-            flagged = flagged ?: other.flagged,
+            flagged = flagged || other.flagged,
             rating = rating ?: other.rating,
             keywords = keywords.ifEmpty { other.keywords },
 
