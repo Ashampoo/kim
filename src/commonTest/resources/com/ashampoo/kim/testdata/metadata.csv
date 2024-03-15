@@ -1,80 +1,80 @@
-name;widthPx;heightPx;orientation;takenDate;latitude;longitude;cameraMake;cameraModel;lensMake;lensModel;iso;exposureTime;fNumber;focalLength;rating;keywords;thumbnailImageSize;thumbnailBytes.size
-photo_1.jpg;4000;2670;STANDARD;1563088871470;55.911315916666666;36.9634819;Canon;Canon EOS 70D;null;EF-S55-250mm f/4-5.6 IS STM;250;0.0025;7.1;250.0;0;[honey bee, animal, insect, invertebrate, apidae, bee];null;null
-photo_2.jpg;1367;2000;STANDARD;1556991300910;null;null;NIKON CORPORATION;NIKON D810;null;null;4000;0.025;2.8;200.0;null;[mammal, dog, pet, canine, wildlife, red fox];174 x 256;9800
-photo_3.jpg;2074;2592;null;1588252095000;null;null;OLYMPUS CORPORATION;E-M10 Mark III;null;OLYMPUS M.30mm F3.5 Macro;500;0.004;5.6;30.0;2;[invertebrate, animal];205 x 256;12001
-photo_4.jpg;5184;3456;null;1577057308230;null;null;Canon;Canon EOS REBEL T5i;null;EF-S18-55mm f/3.5-5.6 IS STM;1600;0.0015625;5.6;18.0;1;[wood, floor, cat, flooring, mammal, pet, animal];256 x 171;7757
-photo_5.jpg;3771;2121;null;1548094438000;null;null;FUJIFILM;X-T20;FUJIFILM;XF90mmF2 R LM WR;250;0.005;2.0;90.0;5;[london];256 x 144;12539
-photo_6.jpg;3000;1688;null;1551068056000;null;null;SONY;DSC-RX100;null;28-100mm F1.8-4.9;125;0.004;8.0;10.4;0;[tortoise, reptile, sea turtle, water, outdoors];256 x 144;11246
-photo_7.jpg;6000;3376;null;1555517508000;null;null;SONY;ILCE-6000;null;DT 0mm F0 SAM;100;0.002;1.8;50.0;0;[grass, dog, plant, mammal, animal, pet, canine, hound];256 x 144;8586
-photo_8.jpg;3880;2906;null;1538889789000;-8.5;115.25466667000013;DJI;FC2103;null;null;100;0.005;2.8;4.5;1;[green, slope, aerial view, nature, scenery, outdoors, mountain, landscape];null;null
-photo_9.jpg;5946;3964;null;1551179986330;null;null;Canon;Canon EOS 5D Mark IV;null;EF300mm f/2.8L IS II USM;800;0.002;5.0;300.0;3;[bird, animal];null;null
-photo_10.jpg;3320;2490;null;1557499439770;null;null;Canon;Canon EOS 5D Mark IV;null;EF300mm f/2.8L IS II USM;160;6.25E-4;4.0;300.0;2;[];256 x 192;15009
-photo_11.jpg;4094;2699;null;1367412950000;null;null;NIKON CORPORATION;NIKON D7000;null;150.0 mm f/2.8;280;0.001;6.3;150.0;1;[];null;null
-photo_12.jpg;3482;2460;null;1296308573000;null;null;SONY;DSLR-A700;null;100-300mm F4.5-5.6;400;5.0E-4;5.6;250.0;4;[animal, bald eagle];256 x 181;12006
-photo_13.jpg;1920;1080;null;null;34.0522342000061;-118.24368490001069;null;null;null;null;null;null;null;null;1;[plant, mammal, food, seasoning, flora, dill];null;null
-photo_14.jpg;1920;1200;null;null;null;null;null;null;null;null;null;null;null;null;0;[tortoise, sea life, reptile];null;null
-photo_15.jpg;5045;4000;STANDARD;1571392576570;53.595344099913866;9.941622399947342;NIKON CORPORATION;NIKON D5600;null;null;2800;0.008;6.3;200.0;3;[];256 x 203;13995
-photo_16.jpg;2072;2590;null;1544435452820;null;null;Canon;Canon EOS 5D Mark III;null;EF100mm f/2.8L Macro IS USM;100;0.004;2.8;100.0;2;[bird, animal, macaw, parrot];205 x 256;18107
-photo_17.jpg;3136;3919;null;1546951701000;null;null;NIKON CORPORATION;NIKON D610;null;85.0 mm f/1.4;100;8.0E-4;1.4;85.0;5;[animal, cat, pet, mammal, abyssinian];null;null
-photo_18.jpg;3456;2304;null;1542687264000;null;null;Canon;Canon EOS 60D;null;EF-S18-200mm f/3.5-5.6 IS;100;0.0015625;7.1;155.0;null;[];null;null
-photo_19.jpg;2468;4051;null;1584231200000;35.689198;51.388974;FUJIFILM;X-T2;FUJIFILM;XF90mmF2 R LM WR;200;null;5.6;90.0;3;[fern];156 x 256;15133
-photo_20.jpg;250;250;ROTATE_RIGHT;null;null;null;OLYMPUS OPTICAL CO.,LTD;C750UZ;null;null;200;0.03333333333333333;4.0;6.3;null;[];256 x 256;5648
-photo_21.jpg;4522;6783;STANDARD;1546604284700;null;null;NIKON CORPORATION;NIKON D810;null;null;200;0.005;5.6;85.0;null;[mammal, animal, giant panda, bear, wildlife, furniture];null;null
-photo_22.jpg;3024;4032;null;1581943666950;null;null;Apple;iPhone 11 Pro Max;Apple;iPhone 11 Pro Max back dual camera 6mm f/2;80;0.008333333333333333;2.0;6.0;null;[];120 x 160;7487
-photo_23.jpg;6144;8192;STANDARD;1701759044000;null;null;Nothing;A063;null;null;1939;0.04;1.88;5.59;null;[];null;null
-photo_24.jpg;3000;2000;null;1549610355000;null;null;SONY;ILCE-7RM3;null;FE 24-70mm F2.8 GM;2000;2.0;2.8;25.0;3;[puddle];256 x 171;10674
-photo_25.jpg;4660;3106;STANDARD;1526579057200;null;null;Canon;Canon EOS 500D;null;EF50mm f/1.8 II;100;0.00625;3.2;50.0;4;[mammal, hedgehog, porcupine, animal, rodent];160 x 107;6164
-photo_26.jpg;2304;1536;STANDARD;1491612327500;null;null;NIKON CORPORATION;NIKON D3300;null;55.0-200.0 mm f/4.0-5.6;1600;0.0025;4.0;55.0;0;[cherry blossom, flora, flower, plant];null;null
-photo_27.jpg;3705;2470;null;1309069015000;22.8016472;120.285884599995;Canon;Canon EOS REBEL T3i;null;EF400mm f/5.6L USM;400;0.0015625;5.6;400.0;3;[invertebrate, cosmos];256 x 171;9685
-photo_28.jpg;2304;1536;STANDARD;1510515708760;null;null;Canon;Canon EOS M3;null;EF-M18-55mm f/3.5-5.6 IS STM;3200;2.5E-4;5.6;55.0;2;[human, person, people];160 x 120;3209
-photo_29.jpg;2920;4045;STANDARD;1500229594000;null;null;OLYMPUS IMAGING CORP.;E-M10;null;OLYMPUS M.14-42mm F3.5-5.6 II R;100;0.004;3.5;14.0;5;[];116 x 160;4532
-photo_30.jpg;3024;4032;STANDARD;1581943666950;null;null;Apple;iPhone 11 Pro Max;null;null;80;0.008333333333333333;2.0;6.0;null;[];120 x 160;4070
-photo_31.jpg;5472;3648;STANDARD;1444567304000;null;null;Canon;Canon EOS 70D;null;EF50mm f/1.8 STM;400;0.016666666666666666;3.2;50.0;0;[];160 x 120;8567
-photo_32.jpg;3525;1500;null;null;null;null;null;null;null;null;null;null;null;null;2;[];256 x 109;9559
-photo_33.jpg;6000;4000;null;1510187139000;43.61871020000487;-116.21460679997554;SONY;ILCE-6300;null;E 55-210mm F4.5-6.3 OSS;200;0.01;6.3;193.0;1;[animal, waterfowl];256 x 171;12748
-photo_34.jpg;4928;3264;STANDARD;1352360484200;50.40160062469378;19.40082002893384;NIKON CORPORATION;NIKON D5100;null;null;800;0.025;5.3;75.0;0;[mammal];null;null
-photo_35.jpg;3382;2673;null;1544627475890;null;null;Canon;Canon EOS 5D Mark IV;null;EF100mm f/2.8L Macro IS USM;1600;0.00625;6.3;100.0;5;[];256 x 202;11636
-photo_36.jpg;4240;2384;STANDARD;1498511925000;null;null;FUJIFILM;X-Pro2;FUJIFILM;XF90mmF2 R LM WR;200;2.5E-4;2.0;90.0;0;[blossom, flora, dahlia, plant];null;null
-photo_37.jpg;5870;2799;STANDARD;1532721723350;null;null;NIKON CORPORATION;NIKON D7200;null;35.0 mm f/1.8;100;10.0;6.3;35.0;3;[eclipse, outdoors, nature, lunar eclipse, space, outer space, night, astronomy, universe];159 x 76;1487
-photo_38.jpg;2371;1580;STANDARD;1399301366760;null;null;Canon;Canon EOS 550D;null;EF70-200mm f/4L USM;400;8.0E-4;4.0;154.0;2;[foal];160 x 107;11065
-photo_39.jpg;4608;3456;STANDARD;1466260726000;null;null;OLYMPUS IMAGING CORP.  ;E-M10           ;null;OLYMPUS M.40-150mm F4.0-5.6 R;400;0.0125;5.0;102.0;1;[];160 x 120;9032
-photo_40.jpg;4272;2848;STANDARD;1561620317200;null;null;NIKON CORPORATION;NIKON D500;null;70.0-200.0 mm f/2.8;320;0.003125;8.0;86.0;3;[wildlife, bear];160 x 107;3320
-photo_41.jpg;4928;3264;STANDARD;1503579240000;null;null;PENTAX             ;PENTAX K-50        ;null;null;1600;0.0025;3.5;18.0;1;[outdoors];160 x 120;6551
-photo_42.jpg;3870;3131;null;1570103057900;null;null;Canon;Canon EOS 7D Mark II;null;EF100-400mm f/4.5-5.6L IS II USM;640;0.00125;5.6;400.0;4;[animal, grass, plant, finch, lawn, bird, reed];256 x 207;20962
-photo_43.jpg;4032;3024;null;1553273402935;34.463058333333336;-119.75821666666667;Apple;iPhone XS;Apple;iPhone XS back dual camera 6mm f/2.4;50;0.00819672131147541;2.4;6.0;4;[nature, field, grassland, outdoors];null;null
-photo_44.jpg;6000;4000;STANDARD;1539078920860;null;null;Canon;Canon EOS 77D;null;EF100-400mm f/4.5-5.6L IS USM;400;0.002;8.0;400.0;2;[animal, bald eagle, eagle, bird];160 x 120;7437
-photo_45.jpg;3594;2446;STANDARD;1500308474000;null;null;SONY;ILCE-7S;null;FE 24-240mm F3.5-6.3 OSS;800;0.0015625;6.3;240.0;2;[];256 x 174;12731
-photo_46.jpg;4390;2927;null;1540041598620;null;null;Canon;Canon EOS 6D;null;100mm;125;0.005;2.0;100.0;0;[canine, wildlife, red fox, pet, animal, mammal, dog, fox];256 x 171;10447
-photo_47.jpg;3038;3038;null;1531503487000;null;null;OLYMPUS IMAGING CORP.;E-M5MarkII;null;OLYMPUS M.40-150mm F2.8;500;0.003125;2.8;150.0;2;[bird, animal, outdoors, duck];256 x 256;11446
-photo_48.jpg;4032;3024;ROTATE_RIGHT;1669813020203;null;null;Apple;iPhone SE (3rd generation);Apple;iPhone SE (3rd generation) back camera 3.99mm f/1.8;50;0.01;1.8;3.99;null;[];160 x 120;11130
-photo_49.jpg;5184;3456;STANDARD;1638761253820;null;null;Canon;Canon EOS 60D;null;EF-S15-85mm f/3.5-5.6 IS USM;400;0.016666666666666666;5.0;24.0;0;[];160 x 120;11200
-photo_50.jpg;6240;4160;STANDARD;1684514510000;null;null;FUJIFILM;X-T4;FUJIFILM;XC35mmF2;400;0.025;4.0;35.0;0;[];160 x 120;9359
-photo_51.png;1500;1000;STANDARD;1583941053360;14.962422;102.090533;Canon;Canon EOS R;null;EF70-300mm f/4-5.6L IS USM;125;0.008;6.3;300.0;2;[cobra, sea life, animal, reptile, turtle, snake];256 x 170;6554
-photo_52.png;1000;668;STANDARD;1563088871470;55.911316666666664;36.96348166666667;Canon;Canon EOS 70D;null;EF-S55-250mm f/4-5.6 IS STM;250;0.0025;7.1;250.0;0;[dxfoto, published];null;null
-photo_53.png;1000;668;STANDARD;1563088871470;55.911315916666666;36.9634819;Canon;Canon EOS 70D;null;EF-S55-250mm f/4-5.6 IS STM;250;0.0025;7.1;250.0;0;[honey bee, animal, insect, invertebrate, apidae, bee];256 x 171;7278
-photo_54.tif;1200;800;STANDARD;1637818851450;null;null;Canon;Canon EOS 60D;null;EF-S15-85mm f/3.5-5.6 IS USM;400;0.03333333333333333;5.0;57.0;0;[];null;null
-photo_55.tif;1200;800;STANDARD;1637818851450;null;null;Canon;Canon EOS 60D;null;EF-S15-85mm f/3.5-5.6 IS USM;400;0.03333333333333333;5.0;57.0;0;[];null;null
-photo_56.tif;1200;800;STANDARD;1637818851450;null;null;Canon;Canon EOS 60D;null;EF-S15-85mm f/3.5-5.6 IS USM;400;0.03333333333333333;5.0;57.0;0;[];null;null
-photo_57.cr2;5184;3456;STANDARD;1638761253820;null;null;Canon;Canon EOS 60D;null;EF-S15-85mm f/3.5-5.6 IS USM;400;0.016666666666666666;5.0;24.0;0;[];160 x 120;11248
-photo_58.raf;4416;2944;STANDARD;1684514510000;null;null;FUJIFILM;X-T4;FUJIFILM;XC35mmF2;400;0.025;4.0;35.0;0;[];160 x 120;9457
-photo_59.webp;5184;3456;STANDARD;1563981341900;null;null;Canon;Canon EOS Rebel T6;null;EF-S18-55mm f/3.5-5.6 IS II;100;0.016666666666666666;8.0;18.0;2;[];256 x 170;7245
-photo_61.gif;null;null;null;null;null;null;null;null;null;null;null;null;null;null;null;[];null;null
-photo_62.nef;4992;3280;STANDARD;1407828658100;null;null;NIKON CORPORATION;NIKON D5100;null;null;200;0.00625;6.3;30.0;null;[];4928 x 3264;1470727
-photo_63.arw;4272;2848;STANDARD;1265033028000;null;null;SONY;DSLR-A500;null;null;200;0.016666666666666666;8.0;18.0;null;[];1616 x 1080;736202
-photo_64.rw2;null;null;STANDARD;1416431264000;null;null;Panasonic;DMC-LX7;null;null;160;0.016666666666666666;1.4;4.7;null;[];null;null
-photo_65.orf;3680;2760;STANDARD;1419774657000;null;null;OLYMPUS IMAGING CORP.  ;XZ-1            ;null;null;100;0.0015625;4.0;15.27;null;[];null;null
-photo_66.dng;5344;3516;STANDARD;1638761253820;null;null;Canon;Canon EOS 60D;null;EF-S15-85mm f/3.5-5.6 IS USM;400;0.016666666666666666;5.0;24.0;null;[];null;null
-photo_67.dng;6240;4160;STANDARD;1684514510000;null;null;FUJIFILM;X-T4;FUJIFILM;XC35mmF2;400;0.025;4.0;35.0;null;[];null;null
-photo_68.dng;4948;3280;STANDARD;1407828658100;null;null;NIKON CORPORATION;NIKON D5100;null;18.0-55.0 mm f/3.5-5.6;200;0.00625;6.3;30.0;null;[];null;null
-photo_69.dng;4288;2858;STANDARD;1265033028000;null;null;SONY;DSLR-A500;null;DT 18-55mm F3.5-5.6 SAM;200;0.016666666666666666;8.0;18.0;null;[];null;null
-photo_70.dng;3664;2752;STANDARD;1416431264000;null;null;Panasonic;DMC-LX7;null;null;160;0.016666666666666666;1.4;4.7;null;[];null;null
-photo_71.dng;3680;2760;STANDARD;1419774657000;null;null;OLYMPUS IMAGING CORP.;XZ-1;null;null;100;0.0015625;4.0;15.27;null;[];null;null
-photo_72.hif;null;null;null;1654877860250;30.052485;101.96257277777778;SONY;ILCE-7M4;null;FE 24-70mm F2.8 GM II;100;0.04;2.8;24.0;0;[];null;null
-photo_73.heic;null;null;STANDARD;1688729862000;53.21939166666667;8.239661666666667;Apple;iPhone SE (3rd generation);Apple;iPhone SE (3rd generation) back camera 3.99mm f/1.8;40;0.00625;1.8;3.99;3;[bird, cat, dog];null;null
-photo_74.avif;null;null;STANDARD;1444567304000;null;null;Canon;Canon EOS 70D;null;EF50mm f/1.8 STM;400;0.016666666666666666;3.2;50.0;0;[];160 x 120;8567
-photo_75.heic;null;null;STANDARD;1444567304000;null;null;Canon;Canon EOS 70D;null;EF50mm f/1.8 STM;400;0.016666666666666666;3.2;50.0;0;[];160 x 120;8567
-photo_76.heic;null;null;STANDARD;1563088871470;55.911316666666664;36.963480555555556;Canon;Canon EOS 70D;null;EF-S55-250mm f/4-5.6 IS STM;250;0.0025;7.1;250.0;0;[dxfoto, published];null;null
-photo_77.heic;null;null;ROTATE_RIGHT;1696689965871;null;null;samsung;SM-G998B;null;null;640;0.016666666666666666;1.8;6.7;null;[];null;null
-photo_78.jxl;null;null;STANDARD;1551068056000;null;null;SONY;DSC-RX100;null;28-100mm F1.8-4.9;125;0.004;8.0;10.4;0;[outdoors, reptile, sea turtle, tortoise, water];null;null
-photo_79.jxl;null;null;null;1551068056000;null;null;SONY;DSC-RX100;null;28-100mm F1.8-4.9;125;0.004;8.0;10.4;0;[];256 x 144;11246
-photo_80.jxl;null;null;null;null;null;null;null;null;null;null;null;null;null;null;null;[];null;null
+name;widthPx;heightPx;orientation;takenDate;latitude;longitude;cameraMake;cameraModel;lensMake;lensModel;iso;exposureTime;fNumber;focalLength;flagged;rating;keywords;personsInAlbums;albums;thumbnailImageSize;thumbnailBytes.size
+photo_1.jpg;4000;2670;STANDARD;1563088871470;55.911315916666666;36.9634819;Canon;Canon EOS 70D;null;EF-S55-250mm f/4-5.6 IS STM;250;0.0025;7.1;250.0;false;0;[honey bee, animal, insect, invertebrate, apidae, bee];[];[];null;null
+photo_2.jpg;1367;2000;STANDARD;1556991300910;null;null;NIKON CORPORATION;NIKON D810;null;null;4000;0.025;2.8;200.0;false;null;[mammal, dog, pet, canine, wildlife, red fox];[];[];174 x 256;9800
+photo_3.jpg;2074;2592;null;1588252095000;null;null;OLYMPUS CORPORATION;E-M10 Mark III;null;OLYMPUS M.30mm F3.5 Macro;500;0.004;5.6;30.0;false;2;[invertebrate, animal];[];[];205 x 256;12001
+photo_4.jpg;5184;3456;null;1577057308230;null;null;Canon;Canon EOS REBEL T5i;null;EF-S18-55mm f/3.5-5.6 IS STM;1600;0.0015625;5.6;18.0;false;1;[wood, floor, cat, flooring, mammal, pet, animal];[];[];256 x 171;7757
+photo_5.jpg;3771;2121;null;1548094438000;null;null;FUJIFILM;X-T20;FUJIFILM;XF90mmF2 R LM WR;250;0.005;2.0;90.0;false;5;[london];[];[];256 x 144;12539
+photo_6.jpg;3000;1688;null;1551068056000;null;null;SONY;DSC-RX100;null;28-100mm F1.8-4.9;125;0.004;8.0;10.4;false;0;[tortoise, reptile, sea turtle, water, outdoors];[];[];256 x 144;11246
+photo_7.jpg;6000;3376;null;1555517508000;null;null;SONY;ILCE-6000;null;DT 0mm F0 SAM;100;0.002;1.8;50.0;false;0;[grass, dog, plant, mammal, animal, pet, canine, hound];[];[];256 x 144;8586
+photo_8.jpg;3880;2906;null;1538889789000;-8.5;115.25466667000013;DJI;FC2103;null;null;100;0.005;2.8;4.5;false;1;[green, slope, aerial view, nature, scenery, outdoors, mountain, landscape];[];[];null;null
+photo_9.jpg;5946;3964;null;1551179986330;null;null;Canon;Canon EOS 5D Mark IV;null;EF300mm f/2.8L IS II USM;800;0.002;5.0;300.0;false;3;[bird, animal];[];[];null;null
+photo_10.jpg;3320;2490;null;1557499439770;null;null;Canon;Canon EOS 5D Mark IV;null;EF300mm f/2.8L IS II USM;160;6.25E-4;4.0;300.0;false;2;[];[];[];256 x 192;15009
+photo_11.jpg;4094;2699;null;1367412950000;null;null;NIKON CORPORATION;NIKON D7000;null;150.0 mm f/2.8;280;0.001;6.3;150.0;false;1;[];[];[];null;null
+photo_12.jpg;3482;2460;null;1296308573000;null;null;SONY;DSLR-A700;null;100-300mm F4.5-5.6;400;5.0E-4;5.6;250.0;false;4;[animal, bald eagle];[];[];256 x 181;12006
+photo_13.jpg;1920;1080;null;null;34.0522342000061;-118.24368490001069;null;null;null;null;null;null;null;null;false;1;[plant, mammal, food, seasoning, flora, dill];[];[];null;null
+photo_14.jpg;1920;1200;null;null;null;null;null;null;null;null;null;null;null;null;false;0;[tortoise, sea life, reptile];[];[];null;null
+photo_15.jpg;5045;4000;STANDARD;1571392576570;53.595344099913866;9.941622399947342;NIKON CORPORATION;NIKON D5600;null;null;2800;0.008;6.3;200.0;false;3;[];[];[];256 x 203;13995
+photo_16.jpg;2072;2590;null;1544435452820;null;null;Canon;Canon EOS 5D Mark III;null;EF100mm f/2.8L Macro IS USM;100;0.004;2.8;100.0;false;2;[bird, animal, macaw, parrot];[];[];205 x 256;18107
+photo_17.jpg;3136;3919;null;1546951701000;null;null;NIKON CORPORATION;NIKON D610;null;85.0 mm f/1.4;100;8.0E-4;1.4;85.0;false;5;[animal, cat, pet, mammal, abyssinian];[];[];null;null
+photo_18.jpg;3456;2304;null;1542687264000;null;null;Canon;Canon EOS 60D;null;EF-S18-200mm f/3.5-5.6 IS;100;0.0015625;7.1;155.0;false;null;[];[];[];null;null
+photo_19.jpg;2468;4051;null;1584231200000;35.689198;51.388974;FUJIFILM;X-T2;FUJIFILM;XF90mmF2 R LM WR;200;null;5.6;90.0;false;3;[fern];[];[];156 x 256;15133
+photo_20.jpg;250;250;ROTATE_RIGHT;null;null;null;OLYMPUS OPTICAL CO.,LTD;C750UZ;null;null;200;0.03333333333333333;4.0;6.3;false;null;[];[];[];256 x 256;5648
+photo_21.jpg;4522;6783;STANDARD;1546604284700;null;null;NIKON CORPORATION;NIKON D810;null;null;200;0.005;5.6;85.0;false;null;[mammal, animal, giant panda, bear, wildlife, furniture];[];[];null;null
+photo_22.jpg;3024;4032;null;1581943666950;null;null;Apple;iPhone 11 Pro Max;Apple;iPhone 11 Pro Max back dual camera 6mm f/2;80;0.008333333333333333;2.0;6.0;false;null;[];[];[];120 x 160;7487
+photo_23.jpg;6144;8192;STANDARD;1701759044000;null;null;Nothing;A063;null;null;1939;0.04;1.88;5.59;false;null;[];[];[];null;null
+photo_24.jpg;3000;2000;null;1549610355000;null;null;SONY;ILCE-7RM3;null;FE 24-70mm F2.8 GM;2000;2.0;2.8;25.0;false;3;[puddle];[];[];256 x 171;10674
+photo_25.jpg;4660;3106;STANDARD;1526579057200;null;null;Canon;Canon EOS 500D;null;EF50mm f/1.8 II;100;0.00625;3.2;50.0;false;4;[mammal, hedgehog, porcupine, animal, rodent];[];[];160 x 107;6164
+photo_26.jpg;2304;1536;STANDARD;1491612327500;null;null;NIKON CORPORATION;NIKON D3300;null;55.0-200.0 mm f/4.0-5.6;1600;0.0025;4.0;55.0;false;0;[cherry blossom, flora, flower, plant];[];[];null;null
+photo_27.jpg;3705;2470;null;1309069015000;22.8016472;120.285884599995;Canon;Canon EOS REBEL T3i;null;EF400mm f/5.6L USM;400;0.0015625;5.6;400.0;false;3;[invertebrate, cosmos];[];[];256 x 171;9685
+photo_28.jpg;2304;1536;STANDARD;1510515708760;null;null;Canon;Canon EOS M3;null;EF-M18-55mm f/3.5-5.6 IS STM;3200;2.5E-4;5.6;55.0;false;2;[human, person, people];[];[];160 x 120;3209
+photo_29.jpg;2920;4045;STANDARD;1500229594000;null;null;OLYMPUS IMAGING CORP.;E-M10;null;OLYMPUS M.14-42mm F3.5-5.6 II R;100;0.004;3.5;14.0;false;5;[];[];[];116 x 160;4532
+photo_30.jpg;3024;4032;STANDARD;1581943666950;null;null;Apple;iPhone 11 Pro Max;null;null;80;0.008333333333333333;2.0;6.0;false;null;[];[];[];120 x 160;4070
+photo_31.jpg;5472;3648;STANDARD;1444567304000;null;null;Canon;Canon EOS 70D;null;EF50mm f/1.8 STM;400;0.016666666666666666;3.2;50.0;false;0;[];[];[];160 x 120;8567
+photo_32.jpg;3525;1500;null;null;null;null;null;null;null;null;null;null;null;null;false;2;[];[];[];256 x 109;9559
+photo_33.jpg;6000;4000;null;1510187139000;43.61871020000487;-116.21460679997554;SONY;ILCE-6300;null;E 55-210mm F4.5-6.3 OSS;200;0.01;6.3;193.0;false;1;[animal, waterfowl];[];[];256 x 171;12748
+photo_34.jpg;4928;3264;STANDARD;1352360484200;50.40160062469378;19.40082002893384;NIKON CORPORATION;NIKON D5100;null;null;800;0.025;5.3;75.0;false;0;[mammal];[];[];null;null
+photo_35.jpg;3382;2673;null;1544627475890;null;null;Canon;Canon EOS 5D Mark IV;null;EF100mm f/2.8L Macro IS USM;1600;0.00625;6.3;100.0;false;5;[];[];[];256 x 202;11636
+photo_36.jpg;4240;2384;STANDARD;1498511925000;null;null;FUJIFILM;X-Pro2;FUJIFILM;XF90mmF2 R LM WR;200;2.5E-4;2.0;90.0;false;0;[blossom, flora, dahlia, plant];[];[];null;null
+photo_37.jpg;5870;2799;STANDARD;1532721723350;null;null;NIKON CORPORATION;NIKON D7200;null;35.0 mm f/1.8;100;10.0;6.3;35.0;false;3;[eclipse, outdoors, nature, lunar eclipse, space, outer space, night, astronomy, universe];[];[];159 x 76;1487
+photo_38.jpg;2371;1580;STANDARD;1399301366760;null;null;Canon;Canon EOS 550D;null;EF70-200mm f/4L USM;400;8.0E-4;4.0;154.0;false;2;[foal];[];[];160 x 107;11065
+photo_39.jpg;4608;3456;STANDARD;1466260726000;null;null;OLYMPUS IMAGING CORP.  ;E-M10           ;null;OLYMPUS M.40-150mm F4.0-5.6 R;400;0.0125;5.0;102.0;false;1;[];[];[];160 x 120;9032
+photo_40.jpg;4272;2848;STANDARD;1561620317200;null;null;NIKON CORPORATION;NIKON D500;null;70.0-200.0 mm f/2.8;320;0.003125;8.0;86.0;false;3;[wildlife, bear];[];[];160 x 107;3320
+photo_41.jpg;4928;3264;STANDARD;1503579240000;null;null;PENTAX             ;PENTAX K-50        ;null;null;1600;0.0025;3.5;18.0;false;1;[outdoors];[];[];160 x 120;6551
+photo_42.jpg;3870;3131;null;1570103057900;null;null;Canon;Canon EOS 7D Mark II;null;EF100-400mm f/4.5-5.6L IS II USM;640;0.00125;5.6;400.0;false;4;[animal, grass, plant, finch, lawn, bird, reed];[];[];256 x 207;20962
+photo_43.jpg;4032;3024;null;1553273402935;34.463058333333336;-119.75821666666667;Apple;iPhone XS;Apple;iPhone XS back dual camera 6mm f/2.4;50;0.00819672131147541;2.4;6.0;false;4;[nature, field, grassland, outdoors];[];[];null;null
+photo_44.jpg;6000;4000;STANDARD;1539078920860;null;null;Canon;Canon EOS 77D;null;EF100-400mm f/4.5-5.6L IS USM;400;0.002;8.0;400.0;false;2;[animal, bald eagle, eagle, bird];[];[];160 x 120;7437
+photo_45.jpg;3594;2446;STANDARD;1500308474000;null;null;SONY;ILCE-7S;null;FE 24-240mm F3.5-6.3 OSS;800;0.0015625;6.3;240.0;false;2;[];[];[];256 x 174;12731
+photo_46.jpg;4390;2927;null;1540041598620;null;null;Canon;Canon EOS 6D;null;100mm;125;0.005;2.0;100.0;false;0;[canine, wildlife, red fox, pet, animal, mammal, dog, fox];[];[];256 x 171;10447
+photo_47.jpg;3038;3038;null;1531503487000;null;null;OLYMPUS IMAGING CORP.;E-M5MarkII;null;OLYMPUS M.40-150mm F2.8;500;0.003125;2.8;150.0;false;2;[bird, animal, outdoors, duck];[];[];256 x 256;11446
+photo_48.jpg;4032;3024;ROTATE_RIGHT;1669813020203;null;null;Apple;iPhone SE (3rd generation);Apple;iPhone SE (3rd generation) back camera 3.99mm f/1.8;50;0.01;1.8;3.99;false;null;[];[];[];160 x 120;11130
+photo_49.jpg;5184;3456;STANDARD;1638761253820;null;null;Canon;Canon EOS 60D;null;EF-S15-85mm f/3.5-5.6 IS USM;400;0.016666666666666666;5.0;24.0;false;0;[];[];[];160 x 120;11200
+photo_50.jpg;6240;4160;STANDARD;1684514510000;null;null;FUJIFILM;X-T4;FUJIFILM;XC35mmF2;400;0.025;4.0;35.0;false;0;[];[];[];160 x 120;9359
+photo_51.png;1500;1000;STANDARD;1583941053360;14.962422;102.090533;Canon;Canon EOS R;null;EF70-300mm f/4-5.6L IS USM;125;0.008;6.3;300.0;false;2;[cobra, sea life, animal, reptile, turtle, snake];[];[];256 x 170;6554
+photo_52.png;1000;668;STANDARD;1563088871470;55.911316666666664;36.96348166666667;Canon;Canon EOS 70D;null;EF-S55-250mm f/4-5.6 IS STM;250;0.0025;7.1;250.0;false;0;[dxfoto, published];[];[];null;null
+photo_53.png;1000;668;STANDARD;1563088871470;55.911315916666666;36.9634819;Canon;Canon EOS 70D;null;EF-S55-250mm f/4-5.6 IS STM;250;0.0025;7.1;250.0;false;0;[honey bee, animal, insect, invertebrate, apidae, bee];[];[];256 x 171;7278
+photo_54.tif;1200;800;STANDARD;1637818851450;null;null;Canon;Canon EOS 60D;null;EF-S15-85mm f/3.5-5.6 IS USM;400;0.03333333333333333;5.0;57.0;false;0;[];[];[];null;null
+photo_55.tif;1200;800;STANDARD;1637818851450;null;null;Canon;Canon EOS 60D;null;EF-S15-85mm f/3.5-5.6 IS USM;400;0.03333333333333333;5.0;57.0;false;0;[];[];[];null;null
+photo_56.tif;1200;800;STANDARD;1637818851450;null;null;Canon;Canon EOS 60D;null;EF-S15-85mm f/3.5-5.6 IS USM;400;0.03333333333333333;5.0;57.0;false;0;[];[];[];null;null
+photo_57.cr2;5184;3456;STANDARD;1638761253820;null;null;Canon;Canon EOS 60D;null;EF-S15-85mm f/3.5-5.6 IS USM;400;0.016666666666666666;5.0;24.0;false;0;[];[];[];160 x 120;11248
+photo_58.raf;4416;2944;STANDARD;1684514510000;null;null;FUJIFILM;X-T4;FUJIFILM;XC35mmF2;400;0.025;4.0;35.0;false;0;[];[];[];160 x 120;9457
+photo_59.webp;5184;3456;STANDARD;1563981341900;null;null;Canon;Canon EOS Rebel T6;null;EF-S18-55mm f/3.5-5.6 IS II;100;0.016666666666666666;8.0;18.0;false;2;[];[];[];256 x 170;7245
+photo_61.gif;null;null;null;null;null;null;null;null;null;null;null;null;null;null;false;null;[];[];[];null;null
+photo_62.nef;4992;3280;STANDARD;1407828658100;null;null;NIKON CORPORATION;NIKON D5100;null;null;200;0.00625;6.3;30.0;false;null;[];[];[];4928 x 3264;1470727
+photo_63.arw;4272;2848;STANDARD;1265033028000;null;null;SONY;DSLR-A500;null;null;200;0.016666666666666666;8.0;18.0;false;null;[];[];[];1616 x 1080;736202
+photo_64.rw2;null;null;STANDARD;1416431264000;null;null;Panasonic;DMC-LX7;null;null;160;0.016666666666666666;1.4;4.7;false;null;[];[];[];null;null
+photo_65.orf;3680;2760;STANDARD;1419774657000;null;null;OLYMPUS IMAGING CORP.  ;XZ-1            ;null;null;100;0.0015625;4.0;15.27;false;null;[];[];[];null;null
+photo_66.dng;5344;3516;STANDARD;1638761253820;null;null;Canon;Canon EOS 60D;null;EF-S15-85mm f/3.5-5.6 IS USM;400;0.016666666666666666;5.0;24.0;false;null;[];[];[];null;null
+photo_67.dng;6240;4160;STANDARD;1684514510000;null;null;FUJIFILM;X-T4;FUJIFILM;XC35mmF2;400;0.025;4.0;35.0;false;null;[];[];[];null;null
+photo_68.dng;4948;3280;STANDARD;1407828658100;null;null;NIKON CORPORATION;NIKON D5100;null;18.0-55.0 mm f/3.5-5.6;200;0.00625;6.3;30.0;false;null;[];[];[];null;null
+photo_69.dng;4288;2858;STANDARD;1265033028000;null;null;SONY;DSLR-A500;null;DT 18-55mm F3.5-5.6 SAM;200;0.016666666666666666;8.0;18.0;false;null;[];[];[];null;null
+photo_70.dng;3664;2752;STANDARD;1416431264000;null;null;Panasonic;DMC-LX7;null;null;160;0.016666666666666666;1.4;4.7;false;null;[];[];[];null;null
+photo_71.dng;3680;2760;STANDARD;1419774657000;null;null;OLYMPUS IMAGING CORP.;XZ-1;null;null;100;0.0015625;4.0;15.27;false;null;[];[];[];null;null
+photo_72.hif;null;null;null;1654877860250;30.052485;101.96257277777778;SONY;ILCE-7M4;null;FE 24-70mm F2.8 GM II;100;0.04;2.8;24.0;false;0;[];[];[];null;null
+photo_73.heic;null;null;STANDARD;1688729862000;53.21939166666667;8.239661666666667;Apple;iPhone SE (3rd generation);Apple;iPhone SE (3rd generation) back camera 3.99mm f/1.8;40;0.00625;1.8;3.99;false;3;[bird, cat, dog];[];[];null;null
+photo_74.avif;null;null;STANDARD;1444567304000;null;null;Canon;Canon EOS 70D;null;EF50mm f/1.8 STM;400;0.016666666666666666;3.2;50.0;false;0;[];[];[];160 x 120;8567
+photo_75.heic;null;null;STANDARD;1444567304000;null;null;Canon;Canon EOS 70D;null;EF50mm f/1.8 STM;400;0.016666666666666666;3.2;50.0;false;0;[];[];[];160 x 120;8567
+photo_76.heic;null;null;STANDARD;1563088871470;55.911316666666664;36.963480555555556;Canon;Canon EOS 70D;null;EF-S55-250mm f/4-5.6 IS STM;250;0.0025;7.1;250.0;false;0;[dxfoto, published];[];[];null;null
+photo_77.heic;null;null;ROTATE_RIGHT;1696689965871;null;null;samsung;SM-G998B;null;null;640;0.016666666666666666;1.8;6.7;false;null;[];[];[];null;null
+photo_78.jxl;null;null;STANDARD;1551068056000;null;null;SONY;DSC-RX100;null;28-100mm F1.8-4.9;125;0.004;8.0;10.4;false;0;[outdoors, reptile, sea turtle, tortoise, water];[];[];null;null
+photo_79.jxl;null;null;null;1551068056000;null;null;SONY;DSC-RX100;null;28-100mm F1.8-4.9;125;0.004;8.0;10.4;false;0;[];[];[];256 x 144;11246
+photo_80.jxl;null;null;null;null;null;null;null;null;null;null;null;null;null;null;false;null;[];[];[];null;null

@@ -44,6 +44,13 @@ sealed interface MetadataUpdate {
     ) : MetadataUpdate
 
     /**
+     * Set a photo as flagged/tagged/picked.
+     */
+    data class Flagged(
+        val flagged: Boolean
+    ) : MetadataUpdate
+
+    /**
      * Set a new Rating.
      * Can't be NULL and should be UNRATED instead.
      */
@@ -68,10 +75,17 @@ sealed interface MetadataUpdate {
     ) : MetadataUpdate
 
     /**
-     * List of new faces to set. An empty list removes all faces.
+     * List of new persons to set. An empty list removes all persons.
      */
     data class Persons(
         val personsInImage: Set<String>
+    ) : MetadataUpdate
+
+    /**
+     * List of new albums to set. An empty list removes all albums.
+     */
+    data class Albums(
+        val albums: Set<String>
     ) : MetadataUpdate
 
 }

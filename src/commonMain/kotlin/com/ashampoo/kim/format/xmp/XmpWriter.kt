@@ -75,6 +75,9 @@ object XmpWriter {
                     deleteGpsCoordinates()
             }
 
+            is MetadataUpdate.Flagged ->
+                setFlagged(update.flagged)
+
             is MetadataUpdate.Rating ->
                 setRating(update.photoRating.value)
 
@@ -86,6 +89,9 @@ object XmpWriter {
 
             is MetadataUpdate.Persons ->
                 setPersonsInImage(update.personsInImage)
+
+            is MetadataUpdate.Albums ->
+                setAlbums(update.albums)
         }
     }
 

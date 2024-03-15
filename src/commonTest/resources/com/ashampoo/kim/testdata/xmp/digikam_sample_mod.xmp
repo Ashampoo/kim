@@ -1,5 +1,5 @@
 <?xpacket begin="﻿" id="W5M0MpCehiHzreSzNTczkc9d"?>
-<x:xmpmeta xmlns:x="adobe:ns:meta/" x:xmptk="Ashampoo XMP Core 1.1.0">
+<x:xmpmeta xmlns:x="adobe:ns:meta/" x:xmptk="Ashampoo XMP Core 1.2.0">
   <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
     <rdf:Description rdf:about=""
         xmlns:Iptc4xmpCore="http://iptc.org/std/Iptc4xmpCore/1.0/xmlns/"
@@ -7,7 +7,7 @@
         xmlns:MP="http://ns.microsoft.com/photo/1.2/"
         xmlns:MPRI="http://ns.microsoft.com/photo/1.2/t/RegionInfo#"
         xmlns:MPReg="http://ns.microsoft.com/photo/1.2/t/Region#"
-        xmlns:MicrosoftPhoto_1_="http://ns.microsoft.com/photo/1.0/"
+        xmlns:MicrosoftPhoto="http://ns.microsoft.com/photo/1.0/"
         xmlns:acdsee="http://ns.acdsee.com/iptc/1.0/"
         xmlns:dc="http://purl.org/dc/elements/1.1/"
         xmlns:digiKam="http://www.digikam.org/ns/1.0/"
@@ -22,7 +22,7 @@
         xmlns:xmp="http://ns.adobe.com/xap/1.0/"
       Iptc4xmpCore:CountryCode="DEU"
       Iptc4xmpCore:Location="Wahnbek"
-      MicrosoftPhoto_1_:Rating="75"
+      MicrosoftPhoto:Rating="75"
       acdsee:categories="&lt;Categories&gt;&lt;Category Assigned=&quot;1&quot;&gt;Pflanze&lt;/Category&gt;&lt;Category Assigned=&quot;1&quot;&gt;Ecke&lt;/Category&gt;&lt;Category Assigned=&quot;0&quot;&gt;People&lt;Category Assigned=&quot;1&quot;&gt;MacBook&lt;/Category&gt;&lt;/Category&gt;&lt;/Categories&gt;"
       acdsee:notes="Standard caption"
       acdsee:rating="4"
@@ -102,13 +102,13 @@
           </rdf:Bag>
         </MPRI:Regions>
       </MP:RegionInfo>
-      <MicrosoftPhoto_1_:LastKeywordXMP>
+      <MicrosoftPhoto:LastKeywordXMP>
         <rdf:Bag>
           <rdf:li>Pflanze</rdf:li>
           <rdf:li>Ecke</rdf:li>
           <rdf:li>People/MacBook</rdf:li>
         </rdf:Bag>
-      </MicrosoftPhoto_1_:LastKeywordXMP>
+      </MicrosoftPhoto:LastKeywordXMP>
       <dc:creator>
         <rdf:Seq>
           <rdf:li>Stefan Oltmann                                                                                                                                                                                                                                                 </rdf:li>

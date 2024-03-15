@@ -19,6 +19,7 @@ import com.ashampoo.kim.common.writeBytes
 import com.ashampoo.kim.testdata.KimTestData
 import kotlinx.io.files.Path
 import kotlin.test.Test
+import kotlin.test.fail
 
 class ImageMetadataTest {
 
@@ -46,7 +47,7 @@ class ImageMetadataTest {
                 Path("build/photo_$index.txt")
                     .writeBytes(actualToString)
 
-                // fail("photo_$index.txt is different.")
+                fail("photo_$index.txt is different.")
             }
         }
     }

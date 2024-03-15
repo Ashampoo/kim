@@ -3,7 +3,7 @@ import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
 import org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalWasmDsl
 
 plugins {
-    kotlin("multiplatform") version "1.9.22"
+    kotlin("multiplatform") version "1.9.23"
     id("com.android.library") version "8.2.2"
     id("maven-publish")
     id("signing")
@@ -14,7 +14,7 @@ plugins {
     id("me.qoomon.git-versioning") version "6.4.3"
     id("com.goncalossilva.resources") version "0.4.0"
     id("com.github.ben-manes.versions") version "0.51.0"
-    id("org.jetbrains.dokka") version "1.9.10"
+    id("org.jetbrains.dokka") version "1.9.20"
 }
 
 repositories {
@@ -25,7 +25,7 @@ repositories {
 val productName = "Ashampoo Kim"
 
 val ktorVersion: String = "2.3.8"
-val xmpCoreVersion: String = "1.1.0"
+val xmpCoreVersion: String = "1.2.0"
 val dateTimeVersion: String = "0.5.0"
 val testRessourcesVersion: String = "0.4.0"
 val ioCoreVersion: String = "0.3.1"
@@ -166,6 +166,10 @@ kotlin {
             sourceCompatibility = JavaVersion.VERSION_17
             targetCompatibility = JavaVersion.VERSION_17
         }
+    }
+
+    js() {
+        // nodejs()
     }
 
     @OptIn(ExperimentalWasmDsl::class)
@@ -315,6 +319,15 @@ kotlin {
         macosArm64Test.dependsOn(this)
     }
 
+    val jsMain by sourceSets.getting {
+
+        dependsOn(commonMain)
+
+        dependencies {
+            implementation(npm("pako", "2.1.0"))
+        }
+    }
+
     val wasmJsMain by sourceSets.getting
     // val wasmWasiMain by sourceSets.getting
 
@@ -402,6 +415,7 @@ afterEvaluate {
         val signWinPublication by tasks.getting
         val signLinuxX64Publication by tasks.getting
         val signLinuxArm64Publication by tasks.getting
+        val signJsPublication by tasks.getting
         val signWasmJsPublication by tasks.getting
         // val signWasmWasiPublication by tasks.getting
         val signKotlinMultiplatformPublication by tasks.getting
@@ -416,6 +430,7 @@ afterEvaluate {
         val publishWinPublicationToSonatypeRepository by tasks.getting
         val publishLinuxX64PublicationToSonatypeRepository by tasks.getting
         val publishLinuxArm64PublicationToSonatypeRepository by tasks.getting
+        val publishJsPublicationToSonatypeRepository by tasks.getting
         val publishWasmJsPublicationToSonatypeRepository by tasks.getting
         // val publishWasmWasiPublicationToSonatypeRepository by tasks.getting
         val publishKotlinMultiplatformPublicationToSonatypeRepository by tasks.getting
@@ -427,7 +442,7 @@ afterEvaluate {
             signIosSimulatorArm64Publication,
             signMacosArm64Publication, signMacosX64Publication,
             signWinPublication, signLinuxX64Publication, signLinuxArm64Publication,
-            signWasmJsPublication, // signWasmWasiPublication,
+            signJsPublication, signWasmJsPublication, // signWasmWasiPublication,
             signKotlinMultiplatformPublication
         )
 
@@ -442,6 +457,7 @@ afterEvaluate {
             publishWinPublicationToSonatypeRepository,
             publishLinuxX64PublicationToSonatypeRepository,
             publishLinuxArm64PublicationToSonatypeRepository,
+            publishJsPublicationToSonatypeRepository,
             publishWasmJsPublicationToSonatypeRepository,
             // publishWasmWasiPublicationToSonatypeRepository,
             publishKotlinMultiplatformPublicationToSonatypeRepository,

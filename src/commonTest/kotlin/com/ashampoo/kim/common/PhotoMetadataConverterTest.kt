@@ -78,7 +78,8 @@ class PhotoMetadataConverterTest {
         stringBuilder.appendLine(
             "name;widthPx;heightPx;orientation;takenDate;latitude;longitude;" +
                 "cameraMake;cameraModel;lensMake;lensModel;iso;exposureTime;fNumber;" +
-                "focalLength;rating;keywords;thumbnailImageSize;thumbnailBytes.size"
+                "focalLength;flagged;rating;keywords;personsInAlbums;albums;" +
+                "thumbnailImageSize;thumbnailBytes.size"
         )
 
         for (entry in metadataMap.entries) {
@@ -92,9 +93,10 @@ class PhotoMetadataConverterTest {
                     "${metadata.gpsCoordinates?.latitude};${metadata.gpsCoordinates?.longitude};" +
                     "${metadata.cameraMake};${metadata.cameraModel};${metadata.lensMake};" +
                     "${metadata.lensModel};${metadata.iso};${metadata.exposureTime};" +
-                    "${metadata.fNumber};${metadata.focalLength};${metadata.rating?.value};" +
-                    "${metadata.keywords};${metadata.thumbnailImageSize};" +
-                    "${metadata.thumbnailBytes?.size}"
+                    "${metadata.fNumber};${metadata.focalLength};" +
+                    "${metadata.flagged};${metadata.rating?.value};" +
+                    "${metadata.keywords};${metadata.personsInImage};${metadata.albums};" +
+                    "${metadata.thumbnailImageSize};${metadata.thumbnailBytes?.size}"
             )
         }
 

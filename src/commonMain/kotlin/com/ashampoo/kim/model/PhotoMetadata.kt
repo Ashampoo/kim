@@ -49,12 +49,16 @@ data class PhotoMetadata(
     val focalLength: Double? = null,
 
     /* Ratings & Tags */
+    val flagged: Boolean = false,
     val rating: PhotoRating? = null,
     val keywords: Set<String> = emptySet(),
 
     /* Persons */
     val faces: Map<String, XMPRegionArea> = emptyMap(),
     val personsInImage: Set<String> = emptySet(),
+
+    /* Albums */
+    val albums: Set<String> = emptySet(),
 
     /* EXIF Thumbnail (IFD1) */
     val thumbnailImageSize: ImageSize? = null,
@@ -132,12 +136,16 @@ data class PhotoMetadata(
             focalLength = focalLength ?: other.focalLength,
 
             /* Ratings & Tags */
+            flagged = flagged || other.flagged,
             rating = rating ?: other.rating,
             keywords = keywords.ifEmpty { other.keywords },
 
             /* Persons */
             faces = faces.ifEmpty { other.faces },
             personsInImage = personsInImage.ifEmpty { other.personsInImage },
+
+            /* Albums */
+            albums = albums.ifEmpty { other.albums },
 
             /* EXIF Thumbnail (IFD1) */
             thumbnailImageSize = thumbnailImageSize ?: other.thumbnailImageSize,
