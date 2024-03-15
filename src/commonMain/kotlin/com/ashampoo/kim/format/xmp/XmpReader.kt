@@ -86,18 +86,18 @@ object XmpReader {
          */
 
         return PhotoMetadata(
-            widthPx = null,
-            heightPx = null,
             orientation = TiffOrientation.of(xmpMeta.getOrientation()),
             takenDate = takenDate,
             gpsCoordinates = gpsCoordinates,
             location = null, // TODO Read location information to avoid GPS resolving!
+            flagged = xmpMeta.isFlagged(),
             rating = xmpMeta.getRating()?.let { PhotoRating.of(it) },
             keywords = xmpMeta.getKeywords().ifEmpty {
                 xmpMeta.getAcdSeeKeywords()
             },
             faces = xmpMeta.getFaces(),
-            personsInImage = xmpMeta.getPersonsInImage()
+            personsInImage = xmpMeta.getPersonsInImage(),
+            albums = xmpMeta.getAlbums()
         )
     }
 
