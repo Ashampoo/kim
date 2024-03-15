@@ -7,6 +7,7 @@
 ![Windows](https://img.shields.io/badge/-Windows-gray.svg?style=flat)
 ![Linux](https://img.shields.io/badge/-Linux-gray.svg?style=flat)
 ![macOS](https://img.shields.io/badge/-macOS-gray.svg?style=flat)
+![JS](https://img.shields.io/badge/-JS-gray.svg?style=flat)
 ![WASM](https://img.shields.io/badge/-WASM-gray.svg?style=flat)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=kim&metric=coverage)](https://sonarcloud.io/summary/new_code?id=kim)
 
@@ -38,7 +39,7 @@ of Ashampoo Photos, which, in turn, is driven by user community feedback.
 ## Installation
 
 ```
-implementation("com.ashampoo:kim:0.15.1")
+implementation("com.ashampoo:kim:0.16")
 ```
 
 ## Sample usages
