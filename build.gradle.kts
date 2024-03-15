@@ -169,6 +169,8 @@ kotlin {
         }
     }
 
+    js()
+
     @OptIn(ExperimentalWasmDsl::class)
     wasmJs {
         // All tests reading from files fail, because kotlinx-io
@@ -316,7 +318,14 @@ kotlin {
         macosArm64Test.dependsOn(this)
     }
 
-    js()
+    val jsMain by sourceSets.getting {
+
+        dependsOn(commonMain)
+
+        dependencies {
+            implementation(npm("pako", "2.1.0"))
+        }
+    }
 
     val wasmJsMain by sourceSets.getting
     // val wasmWasiMain by sourceSets.getting
