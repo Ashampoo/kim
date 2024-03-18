@@ -39,7 +39,8 @@ import com.ashampoo.kim.model.ImageFormat
 
 object PngImageParser : ImageParser {
 
-    private val controlCharRegex = Regex("[\\p{Cntrl}]")
+    /* Note that [\\p{Cntrl}] does not work for Kotlin/JS. */
+    private val controlCharRegex = Regex("[\\x00-\\x1F\\x7F-\\x9F]")
 
     private val metadataChunkTypes = listOf(
         PngChunkType.IHDR,
