@@ -28,7 +28,7 @@ val ktorVersion: String = "2.3.8"
 val xmpCoreVersion: String = "1.2.0"
 val dateTimeVersion: String = "0.5.0"
 val testRessourcesVersion: String = "0.4.0"
-val ioCoreVersion: String = "0.3.1"
+val ioCoreVersion: String = "0.3.2"
 
 description = productName
 group = "com.ashampoo"
