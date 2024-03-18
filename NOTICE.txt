@@ -10,7 +10,7 @@ Logic for reading ISOBMFF containers was derived from 'metadata-extractor'
 developed by Drew Noakes (https://github.com/drewnoakes/metadata-extractor).
 Copyright 2002-2023 Drew Noakes and contributors
 
-This product includes images from Unplash provided under
+This product includes images from Unsplash provided under
 the Unsplash license (https://unsplash.com/license).
 These files are used as test data.
 
