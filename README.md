@@ -39,7 +39,13 @@ of Ashampoo Photos, which, in turn, is driven by user community feedback.
 ## Installation
 
 ```
-implementation("com.ashampoo:kim:0.16")
+implementation("com.ashampoo:kim:0.16.1")
+```
+
+For the targets `wasmJs` & `js` you also need to specify this:
+
+```
+implementation(npm("pako", "2.1.0"))
 ```
 
 ## Sample usages
