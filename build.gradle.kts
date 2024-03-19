@@ -168,7 +168,7 @@ kotlin {
         }
     }
 
-    js() {
+    js {
         // nodejs()
     }
 
@@ -193,9 +193,6 @@ kotlin {
 
             /* XMP handling */
             api("com.ashampoo:xmpcore:$xmpCoreVersion")
-
-            /* Multiplatform file access */
-            api("org.jetbrains.kotlinx:kotlinx-io-core:$ioCoreVersion")
         }
     }
 
@@ -236,13 +233,28 @@ kotlin {
         }
     }
 
+    /*
+     * Extra sourceSet to exclude unsupported features from JS / wasmJS targets.
+     */
     val ktorMain by sourceSets.creating {
 
         dependsOn(commonMain)
 
         dependencies {
 
+            /*
+             * Ktor extensions
+             *
+             * Not available in commonMain due to missing WASM support.
+             */
             api("io.ktor:ktor-io:$ktorVersion")
+
+            /*
+             * Multiplatform file access
+             *
+             * Not available in commonMain due to missing JS browser support.
+             */
+            api("org.jetbrains.kotlinx:kotlinx-io-core:$ioCoreVersion")
         }
     }
 
@@ -280,6 +292,7 @@ kotlin {
     val linuxArm64Main by sourceSets.getting {
         dependsOn(posixMain)
     }
+
 
     val iosArm64Main by sourceSets.getting
     val iosX64Main by sourceSets.getting

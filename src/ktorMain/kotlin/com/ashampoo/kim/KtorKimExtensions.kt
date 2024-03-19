@@ -16,11 +16,14 @@
 package com.ashampoo.kim
 
 import com.ashampoo.kim.common.ImageReadException
+import com.ashampoo.kim.common.tryWithImageReadException
 import com.ashampoo.kim.format.ImageMetadata
+import com.ashampoo.kim.input.KotlinIoSourceByteReader
 import com.ashampoo.kim.input.KtorByteReadChannelByteReader
 import com.ashampoo.kim.input.KtorInputByteReader
 import io.ktor.utils.io.ByteReadChannel
 import io.ktor.utils.io.core.ByteReadPacket
+import kotlinx.io.files.Path
 
 @Throws(ImageReadException::class)
 fun Kim.readMetadata(byteReadPacket: ByteReadPacket): ImageMetadata? =
@@ -29,3 +32,12 @@ fun Kim.readMetadata(byteReadPacket: ByteReadPacket): ImageMetadata? =
 @Throws(ImageReadException::class)
 fun Kim.readMetadata(byteReadChannel: ByteReadChannel, contentLength: Long): ImageMetadata? =
     Kim.readMetadata(KtorByteReadChannelByteReader(byteReadChannel, contentLength))
+
+@OptIn(ExperimentalStdlibApi::class)
+@Throws(ImageReadException::class)
+fun readMetadata(path: Path): ImageMetadata? = tryWithImageReadException {
+
+    KotlinIoSourceByteReader.read(path) { byteReader ->
+        byteReader?.let { Kim.readMetadata(it) }
+    }
+}

@@ -39,7 +39,7 @@ of Ashampoo Photos, which, in turn, is driven by user community feedback.
 ## Installation
 
 ```
-implementation("com.ashampoo:kim:0.16.1")
+implementation("com.ashampoo:kim:0.16.2")
 ```
 
 For the targets `wasmJs` & `js` you also need to specify this:
@@ -52,9 +52,9 @@ implementation(npm("pako", "2.1.0"))
 
 ### Read metadata
 
-`Kim.readMetadata()` takes `kotlin.ByteArray`, `kotlinx.io.files.Path`, Ktor `ByteReadPacket` &
-Ktor `ByteReadChannel` on all platforms and depending on the platform also `java.io.File`,
-`java.io.InputStream`, `NSData` and string paths.
+`Kim.readMetadata()` takes `kotlin.ByteArray` on all platforms and depending on
+the platform also `kotlinx.io.files.Path`, Ktor `ByteReadPacket` & `ByteReadChannel`,
+`java.io.File`, `java.io.InputStream`, `NSData` and `String` paths.
 
 ```kotlin
 val bytes: ByteArray = loadBytes()
