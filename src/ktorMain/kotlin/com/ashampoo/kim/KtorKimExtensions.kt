@@ -35,7 +35,7 @@ fun Kim.readMetadata(byteReadChannel: ByteReadChannel, contentLength: Long): Ima
 
 @OptIn(ExperimentalStdlibApi::class)
 @Throws(ImageReadException::class)
-fun readMetadata(path: Path): ImageMetadata? = tryWithImageReadException {
+fun Kim.readMetadata(path: Path): ImageMetadata? = tryWithImageReadException {
 
     KotlinIoSourceByteReader.read(path) { byteReader ->
         byteReader?.let { Kim.readMetadata(it) }
