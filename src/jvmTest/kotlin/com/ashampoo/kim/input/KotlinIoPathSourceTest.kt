@@ -16,6 +16,7 @@
 package com.ashampoo.kim.input
 
 import com.ashampoo.kim.Kim
+import com.ashampoo.kim.readMetadata
 import com.ashampoo.kim.testdata.KimTestData
 import kotlinx.io.files.Path
 import kotlin.test.Test

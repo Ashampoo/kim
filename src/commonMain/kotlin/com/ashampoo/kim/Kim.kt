@@ -38,14 +38,12 @@ import com.ashampoo.kim.format.webp.WebPUpdater
 import com.ashampoo.kim.input.ByteArrayByteReader
 import com.ashampoo.kim.input.ByteReader
 import com.ashampoo.kim.input.DefaultRandomAccessByteReader
-import com.ashampoo.kim.input.KotlinIoSourceByteReader
 import com.ashampoo.kim.input.PrePendingByteReader
 import com.ashampoo.kim.input.use
 import com.ashampoo.kim.model.ImageFormat
 import com.ashampoo.kim.model.MetadataUpdate
 import com.ashampoo.kim.output.ByteArrayByteWriter
 import com.ashampoo.kim.output.ByteWriter
-import kotlinx.io.files.Path
 
 object Kim {
 
@@ -58,16 +56,6 @@ object Kim {
             null
         else
             readMetadata(ByteArrayByteReader(bytes))
-
-    @OptIn(ExperimentalStdlibApi::class)
-    @kotlin.jvm.JvmStatic
-    @Throws(ImageReadException::class)
-    fun readMetadata(path: Path): ImageMetadata? = tryWithImageReadException {
-
-        KotlinIoSourceByteReader.read(path) { byteReader ->
-            byteReader?.let { readMetadata(it) }
-        }
-    }
 
     @kotlin.jvm.JvmStatic
     @Throws(ImageReadException::class)
