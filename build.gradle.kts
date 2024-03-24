@@ -163,8 +163,8 @@ kotlin {
     jvm {
 
         java {
-            sourceCompatibility = JavaVersion.VERSION_17
-            targetCompatibility = JavaVersion.VERSION_17
+            sourceCompatibility = JavaVersion.VERSION_11
+            targetCompatibility = JavaVersion.VERSION_11
         }
     }
 
@@ -292,7 +292,6 @@ kotlin {
     val linuxArm64Main by sourceSets.getting {
         dependsOn(posixMain)
     }
-
 
     val iosArm64Main by sourceSets.getting
     val iosX64Main by sourceSets.getting
