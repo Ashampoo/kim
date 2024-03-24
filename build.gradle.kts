@@ -25,7 +25,7 @@ repositories {
 val productName = "Ashampoo Kim"
 
 val ktorVersion: String = "2.3.8"
-val xmpCoreVersion: String = "1.2.0"
+val xmpCoreVersion: String = "1.2.1"
 val dateTimeVersion: String = "0.5.0"
 val testRessourcesVersion: String = "0.4.0"
 val ioCoreVersion: String = "0.3.2"
@@ -163,8 +163,8 @@ kotlin {
     jvm {
 
         java {
-            sourceCompatibility = JavaVersion.VERSION_17
-            targetCompatibility = JavaVersion.VERSION_17
+            sourceCompatibility = JavaVersion.VERSION_11
+            targetCompatibility = JavaVersion.VERSION_11
         }
     }
 
@@ -292,7 +292,6 @@ kotlin {
     val linuxArm64Main by sourceSets.getting {
         dependsOn(posixMain)
     }
-
 
     val iosArm64Main by sourceSets.getting
     val iosX64Main by sourceSets.getting

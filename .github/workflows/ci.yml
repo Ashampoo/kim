@@ -20,14 +20,14 @@ jobs:
         timeout-minutes: 5
         with:
           fetch-depth: 0 # no shallow clones for SonarQube
-      - name: Set up Java JDK 18
+      - name: Set up Java JDK 17
         uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
-          java-version: '18.0.2+9'
-      - name: Select XCode 15.0.1
+          java-version: '17.0.10+7'
+      - name: Select XCode 15.2
         run: |
-          sudo xcode-select -s /Applications/Xcode_15.0.1.app/Contents/Developer
+          sudo xcode-select -s /Applications/Xcode_15.2.app/Contents/Developer
           xcodebuild -version
       - name: Gradle Cache
         uses: actions/cache@v3
