@@ -202,7 +202,7 @@ interface ByteReader : Closeable {
 
                 throw ImageReadException(
                     "Skipped $total bytes of $count for $fieldName: " +
-                    "Missing $missingBytesCount bytes."
+                        "Missing $missingBytesCount bytes."
                 )
             }
 
