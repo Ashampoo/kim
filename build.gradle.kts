@@ -7,12 +7,12 @@ plugins {
     id("com.android.library") version "8.2.2"
     id("maven-publish")
     id("signing")
-    id("io.gitlab.arturbosch.detekt") version "1.23.5"
+    id("io.gitlab.arturbosch.detekt") version "1.23.6"
     id("org.sonarqube") version "4.3.1.3277"
     id("org.jetbrains.kotlinx.kover") version "0.6.1"
     id("com.asarkar.gradle.build-time-tracker") version "4.3.0"
     id("me.qoomon.git-versioning") version "6.4.3"
-    id("com.goncalossilva.resources") version "0.4.0"
+    id("com.goncalossilva.resources") version "0.4.1"
     id("com.github.ben-manes.versions") version "0.51.0"
     id("org.jetbrains.dokka") version "1.9.20"
 }
@@ -25,7 +25,7 @@ repositories {
 val productName = "Ashampoo Kim"
 
 val ktorVersion: String = "2.3.8"
-val xmpCoreVersion: String = "1.2.1"
+val xmpCoreVersion: String = "1.2.2"
 val dateTimeVersion: String = "0.5.0"
 val testRessourcesVersion: String = "0.4.0"
 val ioCoreVersion: String = "0.3.2"
@@ -110,7 +110,7 @@ koverMerged {
 }
 
 dependencies {
-    detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:1.23.5")
+    detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:1.23.6")
 }
 
 kotlin {

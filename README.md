@@ -39,7 +39,7 @@ of Ashampoo Photos, which, in turn, is driven by user community feedback.
 ## Installation
 
 ```
-implementation("com.ashampoo:kim:0.16.3")
+implementation("com.ashampoo:kim:0.16.4")
 ```
 
 For the targets `wasmJs` & `js` you also need to specify this:
@@ -132,8 +132,7 @@ val newBytes = Kim.update(
 )
 ```
 
-See [AbstractUpdaterTest](src/commonTest/kotlin/com/ashampoo/kim/format/AbstractUpdaterTest.kt)
-for more samples.
+See [AbstractUpdaterTest](src/commonTest/kotlin/com/ashampoo/kim/format/AbstractUpdaterTest.kt) for more samples.
 
 ### Update thumbnail using Kim.update() API
 
@@ -146,6 +145,10 @@ val newBytes = Kim.updateThumbnail(
     thumbnailBytes = thumbnailBytes
 )
 ```
+
+### Using Java
+
+See the [Java example project](examples/kim-java-sample) how to use Kim in Java projects.
 
 ## Limitations
 

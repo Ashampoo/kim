@@ -1,0 +1,26 @@
+plugins {
+    id 'java'
+}
+
+group = 'com.ashampoo'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'com.ashampoo:kim:0.16.4'
+}
+
+// Needed to make it work for the Gradle java plugin
+// See https://github.com/pdvrieze/xmlutil/issues/200#issuecomment-2024831114
+// Thanks to Paul de Vrieze
+
+def platformAttr = Attribute.of("org.jetbrains.kotlin.platform.type", String)
+
+configurations.configureEach {
+    attributes {
+        attribute platformAttr, "jvm"
+    }
+}
