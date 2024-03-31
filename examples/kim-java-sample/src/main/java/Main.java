@@ -1,4 +1,5 @@
 import com.ashampoo.kim.Kim;
+import com.ashampoo.kim.KimJvm;
 import com.ashampoo.kim.format.ImageMetadata;
 import com.ashampoo.kim.input.ByteReader;
 import com.ashampoo.kim.input.JvmInputStreamByteReader;
@@ -16,22 +17,11 @@ public class Main {
 
         File testFile = new File("testphoto.jpg");
 
-        /*
-         * You can also use Kim_jvmKt.readMetadata(Kim.INSTANCE, testFile);
-         * which does exactly what the code below does under the hood.
-         * Unfortunately the syntax is not so pretty as it is for Kotlin.
-         */
-        try (FileInputStream inputStream = new FileInputStream(testFile)) {
+        ImageMetadata imageMetadata = KimJvm.readMetadata(testFile);
 
-            ByteReader byteReader =
-                new JvmInputStreamByteReader(inputStream, testFile.length());
-
-            ImageMetadata imageMetadata = Kim.readMetadata(byteReader);
-
-            System.out.println("---");
-            System.out.println(imageMetadata);
-            System.out.println("---");
-        }
+        System.out.println("---");
+        System.out.println(imageMetadata);
+        System.out.println("---");
 
         try (FileInputStream inputStream = new FileInputStream(testFile)) {
 

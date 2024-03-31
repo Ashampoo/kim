@@ -21,18 +21,39 @@ import com.ashampoo.kim.input.JvmInputStreamByteReader
 import java.io.File
 import java.io.InputStream
 
+/**
+ * Extra object to have a nicer API for Java projects
+ */
+object KimJvm {
+
+    @JvmStatic
+    @Throws(ImageReadException::class)
+    fun readMetadata(inputStream: InputStream, length: Long) =
+        Kim.readMetadata(JvmInputStreamByteReader(inputStream, length))
+
+    @JvmStatic
+    @Throws(ImageReadException::class)
+    fun readMetadata(path: String): ImageMetadata? =
+        readMetadata(File(path))
+
+    @JvmStatic
+    @Throws(ImageReadException::class)
+    fun readMetadata(file: File): ImageMetadata? {
+
+        check(file.exists()) { "File does not exist: $file" }
+
+        return readMetadata(file.inputStream(), file.length())
+    }
+}
+
 @Throws(ImageReadException::class)
 fun Kim.readMetadata(inputStream: InputStream, length: Long): ImageMetadata? =
-    Kim.readMetadata(JvmInputStreamByteReader(inputStream, length))
+    KimJvm.readMetadata(inputStream, length)
 
 @Throws(ImageReadException::class)
 fun Kim.readMetadata(path: String): ImageMetadata? =
-    Kim.readMetadata(File(path))
+    KimJvm.readMetadata(path)
 
 @Throws(ImageReadException::class)
-fun Kim.readMetadata(file: File): ImageMetadata? {
-
-    check(file.exists()) { "File does not exist: $file" }
-
-    return Kim.readMetadata(file.inputStream(), file.length())
-}
+fun Kim.readMetadata(file: File): ImageMetadata? =
+    KimJvm.readMetadata(file)
