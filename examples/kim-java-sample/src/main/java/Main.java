@@ -16,6 +16,11 @@ public class Main {
 
         File testFile = new File("testphoto.jpg");
 
+        /*
+         * You can also use Kim_jvmKt.readMetadata(Kim.INSTANCE, testFile);
+         * which does exactly what the code below does under the hood.
+         * Unfortunately the syntax is not so pretty as it is for Kotlin.
+         */
         try (FileInputStream inputStream = new FileInputStream(testFile)) {
 
             ByteReader byteReader =
