@@ -111,7 +111,7 @@ Little-endian (Intel, II)
 0000001210 0x000f Unknown = [232 shorts]
 0000001222 0x0001 CanonCameraSettings = [49 shorts]
 0000001234 0x0093 Unknown = [32 shorts]
-0000001246 0x00a0 Unknown = [14 shorts]
+0000001246 0x00a0 Unknown = [28, 0, 0, 0, 0, 0, 0, 0, -1, 2600, 132, 0, 0, 0]
 0000001258 0x0004 Unknown = [34 shorts]
 0000001270 0x0035 Unknown = [16, 180, 17, 0]
 

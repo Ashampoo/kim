@@ -1,0 +1,37 @@
+File format : TIFF
+Resolution  : 1 x 1
+---- TIFF ----
+Version 42
+Little-endian (Intel, II)
+---- Directory IFD0 @ 8 ----
+0000000010 0x0100 ImageWidth = 1
+0000000022 0x0101 ImageLength = 1
+0000000034 0x0102 BitsPerSample = [8, 8, 8]
+0000000046 0x0103 Compression = 8
+0000000058 0x0106 PhotometricInterpretation = 2
+0000000070 0x010e ImageDescription = GeoTiff
+0000000082 0x0111 PreviewImageStart = 488
+0000000094 0x0112 Orientation = 1
+0000000106 0x0115 SamplesPerPixel = 3
+0000000118 0x0116 RowsPerStrip = 128
+0000000130 0x0117 PreviewImageLength = 14
+0000000142 0x011a XResolution = 1/1 (1.0)
+0000000154 0x011b YResolution = 1/1 (1.0)
+0000000166 0x011c PlanarConfiguration = 1
+0000000178 0x011d PageName = 5.tiff
+0000000190 0x0128 ResolutionUnit = 2
+0000000202 0x013d Predictor = 2
+0000000214 0x0153 SampleFormat = [1, 1, 1]
+0000000226 0x85d8 ModelTransformationTag = [2.2084813898977268E-5, 6.257284036419086E-6, 0.0, 9.17998827675385, 4.182818845875441E-6, -1.4578887684121357E-5, 0.0, 48.69211299143424, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0]
+0000000238 0x8769 ExifOffset = 470
+0000000250 0x87af GeoKeyDirectoryTag = [1, 0, 2, 3, 1024, 0, 1, 2, 2048, 0, 1, 4326, 1025, 0, 1, 1]
+
+---- Directory ExifIFD @ 470 ----
+0000000472 0xa001 ColorSpace = 1
+
+---- GeoTiff ----
+Version         : 1.0.2
+Model type      : Geographic
+Raster type     : Pixel Is Area
+Geographic type : WGS 84
+

@@ -23,3 +23,6 @@ photo_77.heic = Samsung Galaxy S21 5G Ultra OOC-HEIC
 photo_78.jxl = photo_6.jpg -> JXL using converted with darktable 4.6.0 from the JPG
 photo_79.jxl = photo_6.jpg -> JXL using cjxl with container & without metadata compression
 photo_80.jxl = photo_6.jpg -> JXL using cjxl with container & with metadata compression
+
+photo_81.tif = GeoTiff using one tie-point and pixel scaling
+photo_82.tif = GeoTiff using full affine transform matrix

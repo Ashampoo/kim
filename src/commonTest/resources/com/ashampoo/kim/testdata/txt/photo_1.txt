@@ -75,7 +75,7 @@ Little-endian (Intel, II)
 0000000858 0x0004 Unknown = [34 shorts]
 0000000870 0x0035 Unknown = [16, 180, 17, 0]
 0000000882 0x0093 Unknown = [32 shorts]
-0000000894 0x00a0 Unknown = [14 shorts]
+0000000894 0x00a0 Unknown = [28, 0, 0, 0, 0, 0, 0, 0, -1, 2600, 132, 0, 0, 0]
 0000000906 0x0002 Unknown = [0, 250, 2838, 23076]
 0000000918 0x0003 Unknown = [0, 0, 0, 0]
 0000000930 0x0006 CanonImageType = Canon EOS 70D
@@ -100,7 +100,7 @@ Little-endian (Intel, II)
 0000001158 0x4010 Unknown = 
 0000001170 0x4011 Unknown = [252 bytes]
 0000001182 0x4012 Unknown = 
-0000001194 0x4013 Unknown = [11 ints]
+0000001194 0x4013 Unknown = [44, 0, 0, 10, -1, 0, 10, 0, 10, 0, 10]
 0000001206 0x4015 Unknown = [456 bytes]
 0000001218 0x4016 Unknown = [28, 0, 1, 0, 0, 1, 1]
 0000001230 0x4018 Unknown = [28, 0, 3, 0, 0, 3, 1]

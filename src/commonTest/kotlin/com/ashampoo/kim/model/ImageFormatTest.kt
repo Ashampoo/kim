@@ -60,6 +60,8 @@ class ImageFormatTest {
                 index == KimTestData.JXL_CONTAINER_DARKTABLE_INDEX -> ImageFormat.JXL
                 index == KimTestData.JXL_CONTAINER_UNCOMPRESSED_INDEX -> ImageFormat.JXL
                 index == KimTestData.JXL_CONTAINER_COMPRESSED_INDEX -> ImageFormat.JXL
+                index == KimTestData.GEOTIFF_PIXEL_SCALING_INDEX -> ImageFormat.TIFF
+                index == KimTestData.GEOTIFF_AFFINE_TRANSFORM_INDEX -> ImageFormat.TIFF
                 else -> null
             }
 

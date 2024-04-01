@@ -260,11 +260,29 @@ class TiffDirectory(
          * Note: Keep in sync with TiffTags.getTag()
          */
         @Suppress("UnnecessaryParentheses")
-        fun findTiffField(directories: List<TiffDirectory>, tagInfo: TagInfo): TiffField? =
-            directories.firstOrNull { directory ->
-                directory.type == tagInfo.directoryType?.typeId ||
-                    (tagInfo.directoryType?.isImageDirectory == true && directory.type >= 0) ||
-                    (tagInfo.directoryType?.isImageDirectory == false && directory.type < 0)
-            }?.findField(tagInfo)
+        fun findTiffField(directories: List<TiffDirectory>, tagInfo: TagInfo): TiffField? {
+
+            /*
+             * TagInfos that specify a directory (like GPS and MakerNotes)
+             * should be exact matches.
+             */
+            if (tagInfo.directoryType != null) {
+
+                directories
+                    .firstOrNull { directory -> directory.type == tagInfo.directoryType.typeId }
+                    ?.findField(tagInfo)
+            }
+
+            /*
+             * All others are matched with all directories.
+             */
+            for (directory in directories) {
+                directory.findField(tagInfo)?.let {
+                    return it
+                }
+            }
+
+            return null
+        }
     }
 }

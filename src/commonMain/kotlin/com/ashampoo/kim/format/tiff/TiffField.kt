@@ -228,6 +228,10 @@ class TiffField(
 
     companion object {
 
-        private const val MAX_ARRAY_LENGTH_DISPLAY_SIZE = 10
+        /**
+         * Limit to 16 bytes, so that a GeoTiff ModelTransformationTag
+         * is still displayed in full, but not values greater than that.
+         */
+        private const val MAX_ARRAY_LENGTH_DISPLAY_SIZE = 16
     }
 }

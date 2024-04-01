@@ -39,7 +39,7 @@ of Ashampoo Photos, which, in turn, is driven by user community feedback.
 ## Installation
 
 ```
-implementation("com.ashampoo:kim:0.16.4")
+implementation("com.ashampoo:kim:0.17")
 ```
 
 For the targets `wasmJs` & `js` you also need to specify this:
@@ -159,6 +159,7 @@ See the [Java example project](examples/kim-java-sample) how to use Kim in Java 
     + Can't extract preview image of ORF as offsets are burried into MakerNote.
     + Can't identify lens info of NEF, ARW, RW2 & ORF because this is constructed from MakerNote fields.
     + Missing image size for RW2 as this is also burried in MakerNotes.
+* GeoTiff support is limited and supports only reading at this time.
 
 ### Regarding HEIC & AVIF metadata
 

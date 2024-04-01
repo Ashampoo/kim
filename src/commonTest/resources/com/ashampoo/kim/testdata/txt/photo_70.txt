@@ -39,7 +39,7 @@ Little-endian (Intel, II)
 0000000394 0xc634 Unknown = [616970 bytes]
 0000000406 0xc65a Unknown = 17
 0000000418 0xc65b Unknown = 21
-0000000430 0xc65d Unknown = [16 bytes]
+0000000430 0xc65d Unknown = [0xe3, 0xdc, 0x5c, 0x51, 0x47, 0x2f, 0xca, 0x3b, 0x6b, 0x6e, 0xd4, 0x01, 0x27, 0x70, 0xbc, 0xd2]
 0000000442 0xc68b Unknown = photo_64.rw2
 0000000454 0xc6f4 Unknown = com.adobe
 0000000466 0xc6f8 Unknown = Adobe Standard
@@ -52,13 +52,13 @@ Little-endian (Intel, II)
 0000000550 0xc715 Unknown = [5482/10000 (0.5482), 4214/10000 (0.4214), -53/10000 (-0.0053), 1410/10000 (0.141), 10704/10000 (1.0704), -2114/10000 (-0.2114), 164/10000 (0.0164), -2579/10000 (-0.2579), 10667/10000 (1.0667)]
 0000000562 0xc716 Unknown = Adobe DNG Converter
 0000000574 0xc717 Unknown = 15.4
-0000000586 0xc719 Unknown = [16 bytes]
+0000000586 0xc719 Unknown = [0xcd, 0x4f, 0x12, 0x43, 0xc9, 0x6b, 0xae, 0x12, 0x0d, 0xe6, 0x4a, 0x68, 0x8f, 0x03, 0xbb, 0xf1]
 0000000598 0xc71a Unknown = 2
 0000000610 0xc71b Unknown = 2023-07-26T06:11:34+02:00
 0000000622 0xc725 Unknown = [36, 8, 16]
 0000000634 0xc726 Unknown = [13824 floats]
 0000000646 0xc761 Unknown = [2.0641153582055387E-4, 3.0483049720786857E-7]
-0000000658 0xc7a7 Unknown = [16 bytes]
+0000000658 0xc7a7 Unknown = [0x90, 0xe0, 0x8e, 0xc5, 0x0e, 0xa2, 0x2e, 0x0b, 0x2b, 0xc9, 0x6f, 0xb6, 0x30, 0xe2, 0xce, 0xb2]
 
 ---- Directory ExifIFD @ 744630 ----
 0000744632 0x829a ExposureTime = 1/60 (0.016667)
@@ -143,7 +143,7 @@ Little-endian (Intel, II)
 0000747318 0x0214 ReferenceBlackWhite = [0/1 (0.0), 255/1 (255.0), 128/1 (128.0), 255/1 (255.0), 128/1 (128.0), 255/1 (255.0)]
 0000747330 0xc716 Unknown = Adobe DNG Converter
 0000747342 0xc717 Unknown = 15.4
-0000747354 0xc719 Unknown = [16 bytes]
+0000747354 0xc719 Unknown = [0xcd, 0x4f, 0x12, 0x43, 0xc9, 0x6b, 0xae, 0x12, 0x0d, 0xe6, 0x4a, 0x68, 0x8f, 0x03, 0xbb, 0xf1]
 0000747366 0xc71a Unknown = 2
 0000747378 0xc71b Unknown = 2023-07-26T06:11:34+02:00
 
@@ -158,8 +158,8 @@ Little-endian (Intel, II)
 0000747626 0x011c PlanarConfiguration = 1
 0000747638 0x0142 TileWidth = 512
 0000747650 0x0143 TileLength = 512
-0000747662 0x0144 TileOffsets = [12 ints]
-0000747674 0x0145 TileByteCounts = [12 ints]
+0000747662 0x0144 TileOffsets = [1063626, 1152024, 1239494, 1319338, 1372880, 1464272, 1552292, 1632972, 1685810, 1770122, 1866434, 1958686]
+0000747674 0x0145 TileByteCounts = [88397, 87470, 79844, 53542, 91391, 88020, 80679, 52838, 84311, 96312, 92252, 55016]
 0000747686 0xc716 Unknown = Adobe DNG Converter
 0000747698 0xc717 Unknown = 15.4
 0000747710 0xc741 Unknown = [256 bytes]
