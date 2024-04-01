@@ -30,3 +30,9 @@ Little-endian (Intel, II)
 ---- Directory ExifIFD @ 426 ----
 0000000428 0xa001 ColorSpace = 1
 
+---- GeoTiff ----
+Version         : 1.0.2
+Model type      : Geographic
+Raster type     : Pixel Is Point
+Geographic type : WGS 84
+

@@ -1,0 +1,211 @@
+/*
+ * Copyright 2024 Ashampoo GmbH & Co. KG
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package com.ashampoo.kim.format.tiff.geotiff
+
+import kotlin.jvm.JvmStatic
+
+/**
+ * 6.3.2.1 Geographic CS Type Codes
+ *
+ * See http://geotiff.maptools.org/spec/geotiff6.html#6.3.2.1
+ */
+@Suppress("MagicNumber")
+enum class GeoTiffGeographicType(
+    val typeCode: Short,
+    val displayName: String
+) {
+
+    GCS_ADINDAN(4201, "Adindan"),
+    GCS_AGD66(4202, "AGD66"),
+    GCS_AGD84(4203, "AGD84"),
+    GCS_AIN_EL_ABD(4204, "Ain el Abd"),
+    GCS_AFGOOYE(4205, "Afgooye"),
+    GCS_AGADEZ(4206, "Agadez"),
+    GCS_LISBON(4207, "Lisbon"),
+    GCS_ARATU(4208, "Aratu"),
+    GCS_ARC_1950(4209, "Arc 1950"),
+    GCS_ARC_1960(4210, "Arc 1960"),
+    GCS_BATAVIA(4211, "Batavia"),
+    GCS_BARBADOS(4212, "Barbados"),
+    GCS_BEDUARAM(4213, "Beduaram"),
+    GCS_BEIJING_1954(4214, "Beijing 1954"),
+    GCS_BELGE_1950(4215, "Belge 1950"),
+    GCS_BERMUDA_1957(4216, "Bermuda 1957"),
+    GCS_BERN_1898(4217, "Bern 1898"),
+    GCS_BOGOTA(4218, "Bogota"),
+    GCS_BUKIT_RIMPAH(4219, "Bukit Rimpah"),
+    GCS_CAMACUPA(4220, "Camacupa"),
+    GCS_CAMPO_INCHAUSPE(4221, "Campo Inchauspe"),
+    GCS_CAPE(4222, "Cape"),
+    GCS_CARTHAGE(4223, "Carthage"),
+    GCS_CHUA(4224, "Chua"),
+    GCS_CORREGO_ALEGRE(4225, "Corrego Alegre"),
+    GCS_COTE_D_IVOIRE(4226, "Cote d Ivoire"),
+    GCS_DEIR_EZ_ZOR(4227, "Deir ez Zor"),
+    GCS_DOUALA(4228, "Douala"),
+    GCS_EGYPT_1907(4229, "Egypt 1907"),
+    GCS_ED50(4230, "ED50"),
+    GCS_ED87(4231, "ED87"),
+    GCS_FAHUD(4232, "Fahud"),
+    GCS_GANDAJIKA_1970(4233, "Gandajika 1970"),
+    GCS_GAROUA(4234, "Garoua"),
+    GCS_GUYANE_FRANCAISE(4235, "Guyane Francaise"),
+    GCS_HU_TZU_SHAN(4236, "Hu Tzu Shan"),
+    GCS_HD72(4237, "HD72"),
+    GCS_ID74(4238, "ID74"),
+    GCS_INDIAN_1954(4239, "Indian 1954"),
+    GCS_INDIAN_1975(4240, "Indian 1975"),
+    GCS_JAMAICA_1875(4241, "Jamaica 1875"),
+    GCS_JAD69(4242, "JAD69"),
+    GCS_KALIANPUR(4243, "Kalianpur"),
+    GCS_KANDAWALA(4244, "Kandawala"),
+    GCS_KERTAU(4245, "Kertau"),
+    GCS_KOC(4246, "KOC"),
+    GCS_LA_CANOA(4247, "La Canoa"),
+    GCS_PSAD56(4248, "PSAD56"),
+    GCS_LAKE(4249, "Lake"),
+    GCS_LEIGON(4250, "Leigon"),
+    GCS_LIBERIA_1964(4251, "Liberia 1964"),
+    GCS_LOME(4252, "Lome"),
+    GCS_LUZON_1911(4253, "Luzon 1911"),
+    GCS_HITO_XVIII_1963(4254, "Hito XVIII 1963"),
+    GCS_HERAT_NORTH(4255, "Herat North"),
+    GCS_MAHE_1971(4256, "Mahe 1971"),
+    GCS_MAKASSAR(4257, "Makassar"),
+    GCS_EUREF89(4258, "EUREF89"),
+    GCS_MALONGO_1987(4259, "Malongo 1987"),
+    GCS_MANOCA(4260, "Manoca"),
+    GCS_MERCHICH(4261, "Merchich"),
+    GCS_MASSAWA(4262, "Massawa"),
+    GCS_MINNA(4263, "Minna"),
+    GCS_MHAST(4264, "Mhast"),
+    GCS_MONTE_MARIO(4265, "Monte Mario"),
+    GCS_M_PORALOKO(4266, "M poraloko"),
+    GCS_NAD27(4267, "NAD27"),
+    GCS_NAD_MICHIGAN(4268, "NAD Michigan"),
+    GCS_NAD83(4269, "NAD83"),
+    GCS_NAHRWAN_1967(4270, "Nahrwan 1967"),
+    GCS_NAPARIMA_1972(4271, "Naparima 1972"),
+    GCS_GD49(4272, "GD49"),
+    GCS_NGO_1948(4273, "NGO 1948"),
+    GCS_DATUM_73(4274, "Datum 73"),
+    GCS_NTF(4275, "NTF"),
+    GCS_NSWC_9Z_2(4276, "NSWC 9Z 2"),
+    GCS_OSGB_1936(4277, "OSGB 1936"),
+    GCS_OSGB70(4278, "OSGB70"),
+    GCS_OS_SN80(4279, "OS SN80"),
+    GCS_PADANG(4280, "Padang"),
+    GCS_PALESTINE_1923(4281, "Palestine 1923"),
+    GCS_POINTE_NOIRE(4282, "Pointe Noire"),
+    GCS_GDA94(4283, "GDA94"),
+    GCS_PULKOVO_1942(4284, "Pulkovo 1942"),
+    GCS_QATAR(4285, "Qatar"),
+    GCS_QATAR_1948(4286, "Qatar 1948"),
+    GCS_QORNOQ(4287, "Qornoq"),
+    GCS_LOMA_QUINTANA(4288, "Loma Quintana"),
+    GCS_AMERSFOORT(4289, "Amersfoort"),
+    GCS_RT38(4290, "RT38"),
+    GCS_SAD69(4291, "SAD69"),
+    GCS_SAPPER_HILL_1943(4292, "Sapper Hill 1943"),
+    GCS_SCHWARZECK(4293, "Schwarzeck"),
+    GCS_SEGORA(4294, "Segora"),
+    GCS_SERINDUNG(4295, "Serindung"),
+    GCS_SUDAN(4296, "Sudan"),
+    GCS_TANANARIVE(4297, "Tananarive"),
+    GCS_TIMBALAI_1948(4298, "Timbalai 1948"),
+    GCS_TM65(4299, "TM65"),
+    GCS_TM75(4300, "TM75"),
+    GCS_TOKYO(4301, "Tokyo"),
+    GCS_TRINIDAD_1903(4302, "Trinidad 1903"),
+    GCS_TC_1948(4303, "TC 1948"),
+    GCS_VOIROL_1875(4304, "Voirol 1875"),
+    GCS_VOIROL_UNIFIE(4305, "Voirol Unifie"),
+    GCS_BERN_1938(4306, "Bern 1938"),
+    GCS_NORD_SAHARA_1959(4307, "Nord Sahara 1959"),
+    GCS_STOCKHOLM_1938(4308, "Stockholm 1938"),
+    GCS_YACARE(4309, "Yacare"),
+    GCS_YOFF(4310, "Yoff"),
+    GCS_ZANDERIJ(4311, "Zanderij"),
+    GCS_MGI(4312, "MGI"),
+    GCS_BELGE_1972(4313, "Belge 1972"),
+    GCS_DHDN(4314, "DHDN"),
+    GCS_CONAKRY_1905(4315, "Conakry 1905"),
+    GCS_WGS_72(4322, "WGS 72"),
+    GCS_WGS_72BE(4324, "WGS 72BE"),
+    GCS_WGS_84(4326, "WGS 84"),
+    GCS_BERN_1898_BERN(4801, "Bern 1898 Bern"),
+    GCS_BOGOTA_BOGOTA(4802, "Bogota Bogota"),
+    GCS_LISBON_LISBON(4803, "Lisbon Lisbon"),
+    GCS_MAKASSAR_JAKARTA(4804, "Makassar Jakarta"),
+    GCS_MGI_FERRO(4805, "MGI Ferro"),
+    GCS_MONTE_MARIO_ROME(4806, "Monte Mario Rome"),
+    GCS_NTF_PARIS(4807, "NTF Paris"),
+    GCS_PADANG_JAKARTA(4808, "Padang Jakarta"),
+    GCS_BELGE_1950_BRUSSELS(4809, "Belge 1950 Brussels"),
+    GCS_TANANARIVE_PARIS(4810, "Tananarive Paris"),
+    GCS_VOIROL_1875_PARIS(4811, "Voirol 1875 Paris"),
+    GCS_VOIROL_UNIFIE_PARIS(4812, "Voirol Unifie Paris"),
+    GCS_BATAVIA_JAKARTA(4813, "Batavia Jakarta"),
+    GCS_ATF_PARIS(4901, "ATF Paris"),
+    GCS_NDG_PARIS(4902, "NDG Paris"),
+
+    /* Ellipsoid-Only GCS */
+    GCSE_AIRY1830(4001, "Airy 1830"),
+    GCSE_AIRYMODIFIED1849(4002, "Airy Modified 1849"),
+    GCSE_AUSTRALIANNATIONALSPHEROID(4003, "Australian National Spheroid"),
+    GCSE_BESSEL1841(4004, "Bessel 1841"),
+    GCSE_BESSELMODIFIED(4005, "Bessel Modified"),
+    GCSE_BESSELNAMIBIA(4006, "Bessel Namibia"),
+    GCSE_CLARKE1858(4007, "Clarke 1858"),
+    GCSE_CLARKE1866(4008, "Clarke 1866"),
+    GCSE_CLARKE1866_MICHIGAN(4009, "Clarke 1866 Michigan"),
+    GCSE_CLARKE1880_BENOIT(4010, "Clarke 1880 Benoit"),
+    GCSE_CLARKE1880_IGN(4011, "Clarke 1880 IGN"),
+    GCSE_CLARKE1880_RGS(4012, "Clarke 1880 RGS"),
+    GCSE_CLARKE1880_ARC(4013, "Clarke 1880 Arc"),
+    GCSE_CLARKE1880_SGA1922(4014, "Clarke1880 SGA 1922"),
+    GCSE_EVEREST1830_1937ADJUSTMENT(4015, "Everest 1830 1937 Adjustment"),
+    GCSE_EVEREST1830_1967DEFINITION(4016, "Everest 1830 1967 Definition"),
+    GCSE_EVEREST1830_1975DEFINITION(4017, "Everest 1830 1975 Definition"),
+    GCSE_EVEREST1830MODIFIED(4018, "Everest1830 Modified"),
+    GCSE_GRS1980(4019, "GRS 1980"),
+    GCSE_HELMERT1906(4020, "Helmert 1906"),
+    GCSE_INDONESIANNATIONALSPHEROID(4021, "Indonesian National Spheroid"),
+    GCSE_INTERNATIONAL1924(4022, "International 1924"),
+    GCSE_INTERNATIONAL1967(4023, "International 1967"),
+    GCSE_KRASSOWSKY1940(4024, "Krassowsky 1940"),
+    GCSE_NWL9D(4025, "NWL9D"),
+    GCSE_NWL10D(4026, "NWL10D"),
+    GCSE_PLESSIS1817(4027, "Plessis 1817"),
+    GCSE_STRUVE1860(4028, "Struve 1860"),
+    GCSE_WAROFFICE(4029, "War Office"),
+    GCSE_WGS84(4030, "WGS84"),
+    GCSE_GEM10C(4031, "GEM10C"),
+    GCSE_OSU86F(4032, "OSU86F"),
+    GCSE_OSU91A(4033, "OSU91A"),
+    GCSE_CLARKE1880(4034, "Clarke 1880"),
+    GCSE_SPHERE(4035, "Sphere"),
+
+    /** user-defined */
+    USER_DEFINED(32767, "User Defined");
+
+    companion object {
+
+        @JvmStatic
+        fun of(typeCode: Short): GeoTiffGeographicType? =
+            GeoTiffGeographicType.values().firstOrNull { it.typeCode == typeCode }
+    }
+}

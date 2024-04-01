@@ -16,14 +16,17 @@
  */
 package com.ashampoo.kim.format.tiff
 
+import com.ashampoo.kim.format.tiff.geotiff.GeoTiffDirectory
 import com.ashampoo.kim.format.tiff.taginfo.TagInfo
 import com.ashampoo.kim.format.tiff.write.TiffOutputSet
 
 data class TiffContents(
     val header: TiffHeader,
     val directories: List<TiffDirectory>,
-    /** Artifical MakerNote directory */
-    val makerNoteDirectory: TiffDirectory?
+    /** Artificial MakerNote directory */
+    val makerNoteDirectory: TiffDirectory?,
+    /** Artificial GeoTiff directory */
+    val geoTiffDirectory: GeoTiffDirectory?
 ) {
 
     fun findTiffField(tagInfo: TagInfo): TiffField? =
@@ -70,6 +73,10 @@ data class TiffContents(
 
         makerNoteDirectory?.let {
             sb.appendLine(makerNoteDirectory)
+        }
+
+        geoTiffDirectory?.let {
+            sb.appendLine(geoTiffDirectory)
         }
 
         return sb.toString()

@@ -23,6 +23,7 @@ import com.ashampoo.kim.common.startsWith
 import com.ashampoo.kim.common.toInt
 import com.ashampoo.kim.format.ImageFormatMagicNumbers
 import com.ashampoo.kim.format.tiff.constant.ExifTag
+import com.ashampoo.kim.format.tiff.constant.GeoTiffTag
 import com.ashampoo.kim.format.tiff.constant.TiffConstants
 import com.ashampoo.kim.format.tiff.constant.TiffConstants.EXIF_SUB_IFD1
 import com.ashampoo.kim.format.tiff.constant.TiffConstants.EXIF_SUB_IFD2
@@ -30,6 +31,7 @@ import com.ashampoo.kim.format.tiff.constant.TiffConstants.EXIF_SUB_IFD3
 import com.ashampoo.kim.format.tiff.constant.TiffConstants.TIFF_DIRECTORY_TYPE_IFD1
 import com.ashampoo.kim.format.tiff.constant.TiffTag
 import com.ashampoo.kim.format.tiff.fieldtype.FieldType.Companion.getFieldType
+import com.ashampoo.kim.format.tiff.geotiff.GeoTiffDirectory
 import com.ashampoo.kim.format.tiff.taginfo.TagInfoLong
 import com.ashampoo.kim.format.tiff.taginfo.TagInfoLongs
 import com.ashampoo.kim.input.ByteArrayByteReader
@@ -80,13 +82,15 @@ object TiffReader {
             }
         )
 
-        val makerNoteDirectory =
-            tryToParseMakerNote(directories, byteReader, tiffHeader.byteOrder)
-
         if (directories.isEmpty())
             throw ImageReadException("Image did not contain any directories.")
 
-        return TiffContents(tiffHeader, directories, makerNoteDirectory)
+        val makerNoteDirectory =
+            tryToParseMakerNote(directories, byteReader, tiffHeader.byteOrder)
+
+        val geoTiffDirectory = tryToParseGeoTiff(directories)
+
+        return TiffContents(tiffHeader, directories, makerNoteDirectory, geoTiffDirectory)
     }
 
     fun readTiffHeader(byteReader: ByteReader): TiffHeader {
@@ -498,6 +502,40 @@ object TiffReader {
                 visitedOffsets = mutableListOf<Int>(),
                 addDirectory = addDirectory
             )
+        }
+    }
+
+    /**
+     * Inspect if MakerNotes are present and could be added as
+     * TiffDirectory. This is true for almost all manufacturers.
+     */
+    private fun tryToParseGeoTiff(
+        directories: MutableList<TiffDirectory>
+    ): GeoTiffDirectory? {
+
+        try {
+
+            val geoTiffDirectoryField = TiffDirectory.findTiffField(
+                directories,
+                GeoTiffTag.EXIF_TAG_GEO_KEY_DIRECTORY_TAG
+            ) ?: return null
+
+            val shorts = geoTiffDirectoryField.value as? ShortArray
+
+            if (shorts != null)
+                return GeoTiffDirectory.parseFrom(shorts)
+
+            return null
+
+        } catch (ignore: Exception) {
+
+            ignore.printStackTrace() // FIXME
+
+            /*
+             * Be silent here as GeoTiff interpretation is not essential.
+             */
+
+            return null
         }
     }
 }
