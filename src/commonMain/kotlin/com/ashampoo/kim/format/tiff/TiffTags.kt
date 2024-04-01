@@ -29,10 +29,10 @@ import com.ashampoo.kim.format.tiff.taginfo.TagInfo
 internal object TiffTags {
 
     /* Note: Ordered to give EXIF tag names priority. */
-    private val TIFF_AND_EXIF_TAGS = ExifTag.ALL_EXIF_TAGS + TiffTag.ALL_TIFF_TAGS + GeoTiffTag.ALL
+    private val TIFF_AND_EXIF_TAGS = ExifTag.ALL + TiffTag.ALL + GeoTiffTag.ALL
 
     private val TIFF_AND_EXIF_TAGS_MAP = TIFF_AND_EXIF_TAGS.groupByTo(mutableMapOf()) { it.tag }
-    private val GPS_TAGS_MAP = GpsTag.ALL_GPS_TAGS.groupByTo(mutableMapOf()) { it.tag }
+    private val GPS_TAGS_MAP = GpsTag.ALL.groupByTo(mutableMapOf()) { it.tag }
     private val CANON_TAGS_MAP = CanonTag.ALL.groupByTo(mutableMapOf()) { it.tag }
     private val NIKON_TAGS_MAP = NikonTag.ALL.groupByTo(mutableMapOf()) { it.tag }
 
