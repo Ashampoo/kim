@@ -24,3 +24,4 @@
 /build/
 /local.properties
 /.idea/kim.iml
+/src/commonTest/resources/com/ashampoo/kim/testdata/full/*.html
