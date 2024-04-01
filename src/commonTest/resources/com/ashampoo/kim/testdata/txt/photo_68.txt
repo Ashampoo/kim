@@ -43,7 +43,7 @@ Little-endian (Intel, II)
 0000000442 0xc634 Unknown = [123120 bytes]
 0000000454 0xc65a Unknown = 17
 0000000466 0xc65b Unknown = 21
-0000000478 0xc65d Unknown = [16 bytes]
+0000000478 0xc65d Unknown = [0xe2, 0x33, 0x18, 0x65, 0x5e, 0x8c, 0x48, 0x55, 0x0e, 0xd2, 0x71, 0xc3, 0x8d, 0x24, 0xba, 0x9f]
 0000000490 0xc68b Unknown = photo_62.nef
 0000000502 0xc6f3 Unknown = com.adobe
 0000000514 0xc6f4 Unknown = com.adobe
@@ -55,13 +55,13 @@ Little-endian (Intel, II)
 0000000586 0xc715 Unknown = [6876/10000 (0.6876), 3081/10000 (0.3081), -314/10000 (-0.0314), 2676/10000 (0.2676), 10343/10000 (1.0343), -3019/10000 (-0.3019), 151/10000 (0.0151), -1801/10000 (-0.1801), 9901/10000 (0.9901)]
 0000000598 0xc716 Unknown = Adobe DNG Converter
 0000000610 0xc717 Unknown = 15.4
-0000000622 0xc719 Unknown = [16 bytes]
+0000000622 0xc719 Unknown = [0x8e, 0x8b, 0x9c, 0x27, 0x16, 0xe5, 0xc9, 0xe9, 0x0b, 0x68, 0xab, 0x8a, 0x0b, 0x1a, 0xd3, 0x87]
 0000000634 0xc71a Unknown = 2
 0000000646 0xc71b Unknown = 2023-07-26T06:11:34+02:00
 0000000658 0xc725 Unknown = [36, 8, 16]
 0000000670 0xc726 Unknown = [13824 floats]
 0000000682 0xc761 Unknown = [5.8872358281834134E-5, 2.4396739365771742E-8, 5.051956969558251E-5, 1.7905222916852902E-8, 5.8139925230792704E-5, 2.000309103754009E-8]
-0000000694 0xc7a7 Unknown = [16 bytes]
+0000000694 0xc7a7 Unknown = [0x98, 0xc9, 0x64, 0x82, 0xfe, 0x76, 0xd6, 0xa5, 0xf8, 0xb5, 0xbe, 0x6f, 0xe9, 0xb8, 0x05, 0x66]
 
 ---- Directory ExifIFD @ 186902 ----
 0000186904 0x829a ExposureTime = 1/160 (0.00625)
@@ -150,7 +150,7 @@ Little-endian (Intel, II)
 0000196434 0x0214 ReferenceBlackWhite = [0/1 (0.0), 255/1 (255.0), 128/1 (128.0), 255/1 (255.0), 128/1 (128.0), 255/1 (255.0)]
 0000196446 0xc716 Unknown = Adobe DNG Converter
 0000196458 0xc717 Unknown = 15.4
-0000196470 0xc719 Unknown = [16 bytes]
+0000196470 0xc719 Unknown = [0x8e, 0x8b, 0x9c, 0x27, 0x16, 0xe5, 0xc9, 0xe9, 0x0b, 0x68, 0xab, 0x8a, 0x0b, 0x1a, 0xd3, 0x87]
 0000196482 0xc71a Unknown = 2
 0000196494 0xc71b Unknown = 2023-07-26T06:11:34+02:00
 

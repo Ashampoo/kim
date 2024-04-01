@@ -19,6 +19,7 @@ package com.ashampoo.kim.format.tiff
 import com.ashampoo.kim.format.tiff.constant.CanonTag
 import com.ashampoo.kim.format.tiff.constant.ExifTag
 import com.ashampoo.kim.format.tiff.constant.ExifTag.EXIF_DIRECTORY_UNKNOWN
+import com.ashampoo.kim.format.tiff.constant.GeoTiffTag
 import com.ashampoo.kim.format.tiff.constant.GpsTag
 import com.ashampoo.kim.format.tiff.constant.NikonTag
 import com.ashampoo.kim.format.tiff.constant.TiffConstants
@@ -27,8 +28,8 @@ import com.ashampoo.kim.format.tiff.taginfo.TagInfo
 
 internal object TiffTags {
 
-    /* Ordered to give EXIF tag names priority. */
-    private val TIFF_AND_EXIF_TAGS = ExifTag.ALL_EXIF_TAGS + TiffTag.ALL_TIFF_TAGS
+    /* Note: Ordered to give EXIF tag names priority. */
+    private val TIFF_AND_EXIF_TAGS = ExifTag.ALL_EXIF_TAGS + TiffTag.ALL_TIFF_TAGS + GeoTiffTag.ALL
 
     private val TIFF_AND_EXIF_TAGS_MAP = TIFF_AND_EXIF_TAGS.groupByTo(mutableMapOf()) { it.tag }
     private val GPS_TAGS_MAP = GpsTag.ALL_GPS_TAGS.groupByTo(mutableMapOf()) { it.tag }

@@ -45,7 +45,7 @@ Little-endian (Intel, II)
 0000000466 0xc634 Unknown = [45224 bytes]
 0000000478 0xc65a Unknown = 17
 0000000490 0xc65b Unknown = 21
-0000000502 0xc65d Unknown = [16 bytes]
+0000000502 0xc65d Unknown = [0x2e, 0xc3, 0x25, 0x29, 0x70, 0xf6, 0x2a, 0xf0, 0x9e, 0x5b, 0xe2, 0xe2, 0xaa, 0xe6, 0xe3, 0x2f]
 0000000514 0xc68b Unknown = photo_57.cr2
 0000000526 0xc6f3 Unknown = com.adobe
 0000000538 0xc6f4 Unknown = com.adobe
@@ -56,13 +56,13 @@ Little-endian (Intel, II)
 0000000598 0xc715 Unknown = [7286/10000 (0.7286), 1385/10000 (0.1385), 972/10000 (0.0972), 2600/10000 (0.26), 9468/10000 (0.9468), -2068/10000 (-0.2068), 93/10000 (0.0093), -2268/10000 (-0.2268), 10426/10000 (1.0426)]
 0000000610 0xc716 Unknown = Adobe DNG Converter
 0000000622 0xc717 Unknown = 15.4
-0000000634 0xc719 Unknown = [16 bytes]
+0000000634 0xc719 Unknown = [0xaf, 0xda, 0x71, 0x6c, 0x9c, 0x81, 0xbc, 0x81, 0xa5, 0x9a, 0xa6, 0xda, 0xdf, 0xfe, 0xbb, 0x69]
 0000000646 0xc71a Unknown = 2
 0000000658 0xc71b Unknown = 2023-07-26T06:11:34+02:00
 0000000670 0xc725 Unknown = [36, 8, 16]
 0000000682 0xc726 Unknown = [13824 floats]
 0000000694 0xc761 Unknown = [1.366262302586404E-4, 3.882895441490322E-7]
-0000000706 0xc7a7 Unknown = [16 bytes]
+0000000706 0xc7a7 Unknown = [0x67, 0x76, 0x02, 0xf9, 0x81, 0x09, 0x13, 0xa4, 0xf5, 0xcb, 0x71, 0xc8, 0x83, 0x3d, 0x77, 0xf1]
 
 ---- Directory ExifIFD @ 108934 ----
 0000108936 0x829a ExposureTime = 1/60 (0.016667)
@@ -145,7 +145,7 @@ Little-endian (Intel, II)
 0000112526 0x0214 ReferenceBlackWhite = [0/1 (0.0), 255/1 (255.0), 128/1 (128.0), 255/1 (255.0), 128/1 (128.0), 255/1 (255.0)]
 0000112538 0xc716 Unknown = Adobe DNG Converter
 0000112550 0xc717 Unknown = 15.4
-0000112562 0xc719 Unknown = [16 bytes]
+0000112562 0xc719 Unknown = [0xaf, 0xda, 0x71, 0x6c, 0x9c, 0x81, 0xbc, 0x81, 0xa5, 0x9a, 0xa6, 0xda, 0xdf, 0xfe, 0xbb, 0x69]
 0000112574 0xc71a Unknown = 2
 0000112586 0xc71b Unknown = 2023-07-26T06:11:34+02:00
 
