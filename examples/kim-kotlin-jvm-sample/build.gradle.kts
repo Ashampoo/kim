@@ -10,5 +10,5 @@ repositories {
 }
 
 dependencies {
-    implementation("com.ashampoo:kim:0.16.3")
+    implementation("com.ashampoo:kim:0.17")
 }
