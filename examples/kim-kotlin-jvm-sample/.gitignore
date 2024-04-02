@@ -39,4 +39,5 @@ bin/
 .DS_Store
 
 ### Test files ###
-/testphoto_mod.jpg
+/testphoto_mod1.jpg
+/testphoto_mod2.jpg

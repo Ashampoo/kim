@@ -1,4 +1,7 @@
 import com.ashampoo.kim.Kim
+import com.ashampoo.kim.format.jpeg.JpegRewriter
+import com.ashampoo.kim.format.tiff.constant.ExifTag
+import com.ashampoo.kim.format.tiff.write.TiffOutputSet
 import com.ashampoo.kim.input.JvmInputStreamByteReader
 import com.ashampoo.kim.input.use
 import com.ashampoo.kim.model.MetadataUpdate
@@ -8,23 +11,64 @@ import java.io.File
 
 fun main() {
 
-    val testFile = File("testphoto.jpg")
+    printMetadata()
 
-    val imageMetadata = Kim.readMetadata(testFile)
+    updateTakenDate()
 
-    println("---")
+    updateTakenDateLowLevel()
+}
+
+fun printMetadata() {
+
+    val inputFile = File("testphoto.jpg")
+
+    val imageMetadata = Kim.readMetadata(inputFile)
+
     println(imageMetadata)
-    println("---")
+}
+
+/**
+ * Shows how to update the taken date using Kim.update() API
+ */
+fun updateTakenDate() {
 
     val update = MetadataUpdate.TakenDate(System.currentTimeMillis())
 
-    val outputFile = File("testphoto_mod.jpg")
+    val inputFile = File("testphoto.jpg")
+    val outputFile = File("testphoto_mod1.jpg")
 
-    JvmInputStreamByteReader(testFile.inputStream(), testFile.length()).use { byteReader ->
+    JvmInputStreamByteReader(inputFile.inputStream(), inputFile.length()).use { byteReader ->
 
         OutputStreamByteWriter(outputFile.outputStream()).use { byteWriter ->
 
             Kim.update(byteReader, byteWriter, update)
         }
+    }
+}
+
+/**
+ * Shows how to update the taken date using the low level API.
+ */
+fun updateTakenDateLowLevel() {
+
+    val inputFile = File("testphoto.jpg")
+    val outputFile = File("testphoto_mod2.jpg")
+
+    val metadata = Kim.readMetadata(inputFile) ?: return
+
+    val outputSet: TiffOutputSet = metadata.exif?.createOutputSet() ?: TiffOutputSet()
+
+    val rootDirectory = outputSet.getOrCreateRootDirectory()
+
+    rootDirectory.removeField(ExifTag.EXIF_TAG_DATE_TIME_ORIGINAL)
+    rootDirectory.add(ExifTag.EXIF_TAG_DATE_TIME_ORIGINAL, "2222:02:02 13:37:42")
+
+    OutputStreamByteWriter(outputFile.outputStream()).use { outputStreamByteWriter ->
+
+        JpegRewriter.updateExifMetadataLossless(
+            byteReader = JvmInputStreamByteReader(inputFile.inputStream(), inputFile.length()),
+            byteWriter = outputStreamByteWriter,
+            outputSet = outputSet
+        )
     }
 }

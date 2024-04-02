@@ -114,7 +114,7 @@ rootDirectory.add(TiffTag.TIFF_TAG_ORIENTATION, 8)
 OutputStreamByteWriter(outputFile.outputStream()).use { outputStreamByteWriter ->
 
     JpegRewriter.updateExifMetadataLossless(
-        byteReader = JvmInputStreamByteReader(inputFile.inputStream(), inputFile.length),
+        byteReader = JvmInputStreamByteReader(inputFile.inputStream(), inputFile.length()),
         byteWriter = outputStreamByteWriter,
         outputSet = outputSet
     )
