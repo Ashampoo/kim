@@ -19,9 +19,7 @@ public class Main {
 
         ImageMetadata imageMetadata = KimJvm.readMetadata(testFile);
 
-        System.out.println("---");
         System.out.println(imageMetadata);
-        System.out.println("---");
 
         try (FileInputStream inputStream = new FileInputStream(testFile)) {
 
