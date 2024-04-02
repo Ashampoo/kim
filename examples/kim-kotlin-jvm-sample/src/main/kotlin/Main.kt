@@ -1,8 +1,10 @@
 import com.ashampoo.kim.Kim
+import com.ashampoo.kim.common.ByteOrder
 import com.ashampoo.kim.format.jpeg.JpegRewriter
 import com.ashampoo.kim.format.tiff.constant.ExifTag
 import com.ashampoo.kim.format.tiff.constant.GeoTiffTag
 import com.ashampoo.kim.format.tiff.write.TiffOutputSet
+import com.ashampoo.kim.format.tiff.write.TiffWriterLossless
 import com.ashampoo.kim.input.JvmInputStreamByteReader
 import com.ashampoo.kim.input.use
 import com.ashampoo.kim.model.MetadataUpdate
@@ -18,7 +20,9 @@ fun main() {
 
     updateTakenDateLowLevelApi()
 
-    setGeoTiff()
+    setGeoTiffToJpeg()
+
+    setGeoTiffToTif()
 }
 
 fun printMetadata() {
@@ -76,7 +80,7 @@ fun updateTakenDateLowLevelApi() {
     }
 }
 
-fun setGeoTiff() {
+fun setGeoTiffToJpeg() {
 
     val inputFile = File("testphoto.jpg")
     val outputFile = File("testphoto_mod3.jpg")
@@ -106,6 +110,46 @@ fun setGeoTiff() {
 
         JpegRewriter.updateExifMetadataLossless(
             byteReader = JvmInputStreamByteReader(inputFile.inputStream(), inputFile.length()),
+            byteWriter = outputStreamByteWriter,
+            outputSet = outputSet
+        )
+    }
+}
+
+fun setGeoTiffToTif() {
+
+    val inputFile = File("empty.tif")
+    val outputFile = File("geotiff.tif")
+
+    val metadata = Kim.readMetadata(inputFile) ?: return
+
+    val outputSet: TiffOutputSet = metadata.exif?.createOutputSet() ?: TiffOutputSet()
+
+    val rootDirectory = outputSet.getOrCreateRootDirectory()
+
+    rootDirectory.add(
+        GeoTiffTag.EXIF_TAG_MODEL_PIXEL_SCALE_TAG,
+        doubleArrayOf(0.0002303616678184751, -0.0001521606816798535, 0.0)
+    )
+
+    rootDirectory.add(
+        GeoTiffTag.EXIF_TAG_MODEL_TIEPOINT_TAG,
+        doubleArrayOf(0.0, 0.0, 0.0, 8.915687629578438, 48.92432542097789, 0.0)
+    )
+
+    rootDirectory.add(
+        GeoTiffTag.EXIF_TAG_GEO_KEY_DIRECTORY_TAG,
+        shortArrayOf(1, 0, 2, 3, 1024, 0, 1, 2, 2048, 0, 1, 4326, 1025, 0, 1, 2)
+    )
+
+    OutputStreamByteWriter(outputFile.outputStream()).use { outputStreamByteWriter ->
+
+        val writer = TiffWriterLossless(
+            ByteOrder.LITTLE_ENDIAN,
+            exifBytes = inputFile.readBytes()
+        )
+
+        writer.write(
             byteWriter = outputStreamByteWriter,
             outputSet = outputSet
         )
