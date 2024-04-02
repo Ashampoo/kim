@@ -121,6 +121,8 @@ OutputStreamByteWriter(outputFile.outputStream()).use { outputStreamByteWriter -
 }
 ```
 
+See the [example project](examples/kim-kotlin-jvm-sample/src/main/kotlin/Main.kt) for more details.
+
 ### Change orientation using Kim.update() API
 
 ```kotlin
@@ -148,7 +150,7 @@ val newBytes = Kim.updateThumbnail(
 
 ### Using Java
 
-See the [Java example project](examples/kim-java-sample) how to use Kim in Java projects.
+See the [Java example project](examples/kim-java-sample/src/main/java/Main.java) how to use Kim in Java projects.
 
 ## Limitations
 
