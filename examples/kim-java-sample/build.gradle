@@ -10,7 +10,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'com.ashampoo:kim:0.16.4'
+    implementation 'com.ashampoo:kim:0.17'
 }
 
 // Needed to make it work for the Gradle java plugin

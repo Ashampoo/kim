@@ -114,12 +114,14 @@ rootDirectory.add(TiffTag.TIFF_TAG_ORIENTATION, 8)
 OutputStreamByteWriter(outputFile.outputStream()).use { outputStreamByteWriter ->
 
     JpegRewriter.updateExifMetadataLossless(
-        byteReader = JvmInputStreamByteReader(inputFile.inputStream(), inputFile.length),
+        byteReader = JvmInputStreamByteReader(inputFile.inputStream(), inputFile.length()),
         byteWriter = outputStreamByteWriter,
         outputSet = outputSet
     )
 }
 ```
+
+See the [example project](examples/kim-kotlin-jvm-sample/src/main/kotlin/Main.kt) for more details.
 
 ### Change orientation using Kim.update() API
 
@@ -148,7 +150,7 @@ val newBytes = Kim.updateThumbnail(
 
 ### Using Java
 
-See the [Java example project](examples/kim-java-sample) how to use Kim in Java projects.
+See the [Java example project](examples/kim-java-sample/src/main/java/Main.java) how to use Kim in Java projects.
 
 ## Limitations
 
@@ -159,7 +161,7 @@ See the [Java example project](examples/kim-java-sample) how to use Kim in Java 
     + Can't extract preview image of ORF as offsets are burried into MakerNote.
     + Can't identify lens info of NEF, ARW, RW2 & ORF because this is constructed from MakerNote fields.
     + Missing image size for RW2 as this is also burried in MakerNotes.
-* GeoTiff support is limited and supports only reading at this time.
+* There is right now no convienient tooling for GeoTiff like there is for GPS.
 
 ### Regarding HEIC & AVIF metadata
 

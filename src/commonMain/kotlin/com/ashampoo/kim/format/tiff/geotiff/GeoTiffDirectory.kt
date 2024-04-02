@@ -105,17 +105,17 @@ data class GeoTiffDirectory(
                  */
                 val geoKey = GeoKey.of(keyId) ?: return@repeat
 
-                /*
-                 * "TIFFTagLocation" indicates which TIFF tag contains the value(s)
-                 * of the Key: if TIFFTagLocation is 0, then the value is SHORT,
-                 * and is contained in the "Value_Offset" entry. Otherwise, the type
-                 * (format) of the value is implied by the TIFF-Type of the tag
-                 * containing the value.
-                 */
-                val tiffTagLocation = shorts[3 + index * 4 + 2]
-
-                /* "Count" indicates the number of values in this key. */
-                val count = shorts[3 + index * 4 + 3]
+//                /*
+//                 * "TIFFTagLocation" indicates which TIFF tag contains the value(s)
+//                 * of the Key: if TIFFTagLocation is 0, then the value is SHORT,
+//                 * and is contained in the "Value_Offset" entry. Otherwise, the type
+//                 * (format) of the value is implied by the TIFF-Type of the tag
+//                 * containing the value.
+//                 */
+//                val tiffTagLocation = shorts[3 + index * 4 + 2]
+//
+//                /* "Count" indicates the number of values in this key. */
+//                val count = shorts[3 + index * 4 + 3]
 
                 /*
                  * "Value_Offset" Value_Offset indicates the index-offset *into* the TagArray
