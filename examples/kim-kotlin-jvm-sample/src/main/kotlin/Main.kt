@@ -58,10 +58,10 @@ fun updateTakenDateLowLevel() {
 
     val outputSet: TiffOutputSet = metadata.exif?.createOutputSet() ?: TiffOutputSet()
 
-    val rootDirectory = outputSet.getOrCreateRootDirectory()
+    val exifDirectory = outputSet.getOrCreateExifDirectory()
 
-    rootDirectory.removeField(ExifTag.EXIF_TAG_DATE_TIME_ORIGINAL)
-    rootDirectory.add(ExifTag.EXIF_TAG_DATE_TIME_ORIGINAL, "2222:02:02 13:37:42")
+    exifDirectory.removeField(ExifTag.EXIF_TAG_DATE_TIME_ORIGINAL)
+    exifDirectory.add(ExifTag.EXIF_TAG_DATE_TIME_ORIGINAL, "2222:02:02 13:37:42")
 
     OutputStreamByteWriter(outputFile.outputStream()).use { outputStreamByteWriter ->
 
