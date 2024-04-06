@@ -57,7 +57,7 @@ enum class ImageFormat(
          */
         const val REQUIRED_HEADER_BYTE_COUNT_FOR_DETECTION: Int = 16
 
-        private val allImageFormats = ImageFormat.values()
+        private val allImageFormats = ImageFormat.entries
 
         private val allFileNameExtensions = getAllFileNameExtensions()
 

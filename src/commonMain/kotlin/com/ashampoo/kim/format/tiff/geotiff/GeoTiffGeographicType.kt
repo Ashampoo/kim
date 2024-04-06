@@ -206,6 +206,6 @@ enum class GeoTiffGeographicType(
 
         @JvmStatic
         fun of(typeCode: Short): GeoTiffGeographicType? =
-            GeoTiffGeographicType.values().firstOrNull { it.typeCode == typeCode }
+            GeoTiffGeographicType.entries.firstOrNull { it.typeCode == typeCode }
     }
 }

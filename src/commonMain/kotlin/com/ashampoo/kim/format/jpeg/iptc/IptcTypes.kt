@@ -89,7 +89,7 @@ enum class IptcTypes(
 
         init {
 
-            for (iptcType in IptcTypes.values())
+            for (iptcType in IptcTypes.entries)
                 iptcTypeMap[iptcType.type] = iptcType
         }
 
