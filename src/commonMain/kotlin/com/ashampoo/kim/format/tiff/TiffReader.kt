@@ -183,10 +183,10 @@ object TiffReader {
         )
 
         if (directory.hasJpegImageData())
-            directory.jpegImageDataElement = getJpegImageDataElement(byteReader, directory)
+            directory.thumbnailImageDataElement = getJpegImageDataElement(byteReader, directory)
 
         if (directory.hasStripImageData())
-            directory.stripImageDataElement = getStripImageDataElement(byteReader, directory)
+            directory.tiffImageDataElement = getStripImageDataElement(byteReader, directory)
 
         addDirectory(directory)
 
@@ -407,7 +407,7 @@ object TiffReader {
     private fun getStripImageDataElement(
         byteReader: RandomAccessByteReader,
         directory: TiffDirectory
-    ): StripImageDataElement? {
+    ): TiffImageDataElement? {
 
         val element = directory.getStripImageDataElement()
 
@@ -431,7 +431,7 @@ object TiffReader {
         if (bytes.size != length)
             return null
 
-        return StripImageDataElement(offset, length, bytes)
+        return TiffImageDataElement(offset, length, bytes)
     }
 
     /**

@@ -53,8 +53,8 @@ class TiffDirectory(
         TiffConstants.TIFF_ENTRY_LENGTH + TiffConstants.TIFF_DIRECTORY_FOOTER_LENGTH
 ) {
 
-    var jpegImageDataElement: JpegImageDataElement? = null
-    var stripImageDataElement: StripImageDataElement? = null
+    var thumbnailImageDataElement: JpegImageDataElement? = null
+    var tiffImageDataElement: TiffImageDataElement? = null
 
     fun getDirectoryEntries(): List<TiffField> = entries
 
@@ -229,9 +229,9 @@ class TiffDirectory(
                     )
             }
 
-            outputDirectory.setJpegImageData(jpegImageDataElement)
+            outputDirectory.setThumbnailImageDataElement(thumbnailImageDataElement)
 
-            outputDirectory.setStripImageData(stripImageDataElement)
+            outputDirectory.setTiffImageDataElement(tiffImageDataElement)
 
             return outputDirectory
 

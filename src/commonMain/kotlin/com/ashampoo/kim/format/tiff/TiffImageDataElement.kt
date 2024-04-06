@@ -16,7 +16,7 @@
  */
 package com.ashampoo.kim.format.tiff
 
-class StripImageDataElement(
+class TiffImageDataElement(
     offset: Int,
     length: Int,
     val bytes: ByteArray
