@@ -183,7 +183,10 @@ object TiffReader {
         )
 
         if (directory.hasJpegImageData())
-            directory.jpegImageDataElement = getJpegRawImageData(byteReader, directory)
+            directory.thumbnailImageDataElement = getJpegImageDataElement(byteReader, directory)
+
+        if (directory.hasStripImageData())
+            directory.tiffImageDataElement = getStripImageDataElement(byteReader, directory)
 
         addDirectory(directory)
 
@@ -356,22 +359,25 @@ object TiffReader {
      *
      * Discarding corrupt thumbnails is not a big issue, so no exceptions will be thrown here.
      */
-    private fun getJpegRawImageData(
+    private fun getJpegImageDataElement(
         byteReader: RandomAccessByteReader,
         directory: TiffDirectory
     ): JpegImageDataElement? {
 
-        val element = directory.getJpegRawImageDataElement()
+        val element = directory.getJpegImageDataElement()
 
         val offset = element.offset
         var length = element.length
 
         /*
-         * If the length is not correct (going beyond the file size), we adjust it.
+         * If the length is not correct (going beyond the file size) we need to adjust it.
          */
         if (offset + length > byteReader.contentLength)
             length = (byteReader.contentLength - offset).toInt()
 
+        /*
+         * If the new length is 0 or negative, ignore this element.
+         */
         if (length <= 0)
             return null
 
@@ -396,6 +402,36 @@ object TiffReader {
          */
 
         return JpegImageDataElement(offset, length, bytes)
+    }
+
+    private fun getStripImageDataElement(
+        byteReader: RandomAccessByteReader,
+        directory: TiffDirectory
+    ): TiffImageDataElement? {
+
+        val element = directory.getStripImageDataElement()
+
+        val offset = element.offset
+        var length = element.length
+
+        /*
+         * If the length is not correct (going beyond the file size) we need to adjust it.
+         */
+        if (offset + length > byteReader.contentLength)
+            length = (byteReader.contentLength - offset).toInt()
+
+        /*
+         * If the new length is 0 or negative, ignore this element.
+         */
+        if (length <= 0)
+            return null
+
+        val bytes = byteReader.readBytes(offset.toInt(), length)
+
+        if (bytes.size != length)
+            return null
+
+        return TiffImageDataElement(offset, length, bytes)
     }
 
     /**

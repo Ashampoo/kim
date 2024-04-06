@@ -53,12 +53,16 @@ class TiffDirectory(
         TiffConstants.TIFF_ENTRY_LENGTH + TiffConstants.TIFF_DIRECTORY_FOOTER_LENGTH
 ) {
 
-    var jpegImageDataElement: JpegImageDataElement? = null
+    var thumbnailImageDataElement: JpegImageDataElement? = null
+    var tiffImageDataElement: TiffImageDataElement? = null
 
     fun getDirectoryEntries(): List<TiffField> = entries
 
     fun hasJpegImageData(): Boolean =
         null != findField(TiffTag.TIFF_TAG_JPEG_INTERCHANGE_FORMAT)
+
+    fun hasStripImageData(): Boolean =
+        null != findField(TiffTag.TIFF_TAG_STRIP_OFFSETS)
 
     fun findField(tag: TagInfo): TiffField? {
         return findField(
@@ -120,17 +124,33 @@ class TiffDirectory(
         return field.valueBytes.toInts(field.byteOrder)
     }
 
-    fun getJpegRawImageDataElement(): ImageDataElement {
+    fun getJpegImageDataElement(): ImageDataElement {
 
         val jpegInterchangeFormat = findField(TiffTag.TIFF_TAG_JPEG_INTERCHANGE_FORMAT)
         val jpegInterchangeFormatLength = findField(TiffTag.TIFF_TAG_JPEG_INTERCHANGE_FORMAT_LENGTH)
 
         if (jpegInterchangeFormat != null && jpegInterchangeFormatLength != null) {
 
-            val offset = jpegInterchangeFormat.toIntArray()[0]
-            val byteCount = jpegInterchangeFormatLength.toIntArray()[0]
+            val offset = jpegInterchangeFormat.toInt()
+            val byteCount = jpegInterchangeFormatLength.toInt()
 
             return ImageDataElement(offset, byteCount)
+        }
+
+        throw ImageReadException("Couldn't find image data.")
+    }
+
+    fun getStripImageDataElement(): ImageDataElement {
+
+        val offsetField = findField(TiffTag.TIFF_TAG_STRIP_OFFSETS)
+        val lengthField = findField(TiffTag.TIFF_TAG_STRIP_BYTE_COUNTS)
+
+        if (offsetField != null && lengthField != null) {
+
+            val offset = offsetField.toInt()
+            val length = lengthField.toInt()
+
+            return ImageDataElement(offset, length)
         }
 
         throw ImageReadException("Couldn't find image data.")
@@ -209,7 +229,9 @@ class TiffDirectory(
                     )
             }
 
-            outputDirectory.setJpegImageData(jpegImageDataElement)
+            outputDirectory.setThumbnailImageDataElement(thumbnailImageDataElement)
+
+            outputDirectory.setTiffImageDataElement(tiffImageDataElement)
 
             return outputDirectory
 

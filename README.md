@@ -39,7 +39,7 @@ of Ashampoo Photos, which, in turn, is driven by user community feedback.
 ## Installation
 
 ```
-implementation("com.ashampoo:kim:0.17")
+implementation("com.ashampoo:kim:0.17.1")
 ```
 
 For the targets `wasmJs` & `js` you also need to specify this:

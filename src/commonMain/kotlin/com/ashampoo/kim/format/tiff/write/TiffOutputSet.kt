@@ -145,7 +145,7 @@ class TiffOutputSet(
 
         val thumbnailDirectory = getOrCreateThumbnailDirectory()
 
-        thumbnailDirectory.setJpegImageData(
+        thumbnailDirectory.setThumbnailImageDataElement(
             JpegImageDataElement(
                 /* Offset will be calculated, but the block should come early in the file. */
                 offset = -1,

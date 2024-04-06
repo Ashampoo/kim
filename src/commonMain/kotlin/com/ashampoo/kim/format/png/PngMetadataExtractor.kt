@@ -214,7 +214,7 @@ object PngMetadataExtractor : MetadataExtractor {
 
             fun get(bytes: ByteArray): PngChunkType? {
 
-                for (type in PngChunkType.values())
+                for (type in PngChunkType.entries)
                     if (bytes.contentEquals(type.bytes))
                         return type
 
