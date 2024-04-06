@@ -202,6 +202,8 @@ kotlin {
 
             /* Kotlin Test */
             implementation(kotlin("test"))
+
+            implementation("org.jetbrains.kotlinx:kotlinx-io-core:$ioCoreVersion")
         }
     }
 
