@@ -5,6 +5,7 @@ import com.ashampoo.kim.format.tiff.constant.ExifTag
 import com.ashampoo.kim.format.tiff.constant.GeoTiffTag
 import com.ashampoo.kim.format.tiff.write.TiffOutputSet
 import com.ashampoo.kim.format.tiff.write.TiffWriterLossless
+import com.ashampoo.kim.format.tiff.write.TiffWriterLossy
 import com.ashampoo.kim.input.JvmInputStreamByteReader
 import com.ashampoo.kim.input.use
 import com.ashampoo.kim.model.MetadataUpdate
@@ -144,9 +145,8 @@ fun setGeoTiffToTif() {
 
     OutputStreamByteWriter(outputFile.outputStream()).use { outputStreamByteWriter ->
 
-        val writer = TiffWriterLossless(
-            ByteOrder.LITTLE_ENDIAN,
-            exifBytes = inputFile.readBytes()
+        val writer = TiffWriterLossy(
+            ByteOrder.LITTLE_ENDIAN
         )
 
         writer.write(

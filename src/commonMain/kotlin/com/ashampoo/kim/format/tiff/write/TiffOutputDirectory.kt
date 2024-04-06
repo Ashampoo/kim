@@ -24,7 +24,6 @@ import com.ashampoo.kim.common.toBytes
 import com.ashampoo.kim.format.tiff.JpegImageDataElement
 import com.ashampoo.kim.format.tiff.StripImageDataElement
 import com.ashampoo.kim.format.tiff.TiffDirectory.Companion.description
-import com.ashampoo.kim.format.tiff.constant.ExifTag
 import com.ashampoo.kim.format.tiff.constant.TiffConstants.TIFF_DIRECTORY_FOOTER_LENGTH
 import com.ashampoo.kim.format.tiff.constant.TiffConstants.TIFF_DIRECTORY_HEADER_LENGTH
 import com.ashampoo.kim.format.tiff.constant.TiffConstants.TIFF_ENTRY_LENGTH
@@ -470,9 +469,11 @@ class TiffOutputDirectory(
         outputSummary: TiffOffsetItems
     ): List<TiffOutputItem> {
 
-        /* First validate directory fields. */
+        /* First remove old fields */
         removeFieldIfPresent(TiffTag.TIFF_TAG_JPEG_INTERCHANGE_FORMAT)
         removeFieldIfPresent(TiffTag.TIFF_TAG_JPEG_INTERCHANGE_FORMAT_LENGTH)
+        removeFieldIfPresent(TiffTag.TIFF_TAG_STRIP_OFFSETS)
+        removeFieldIfPresent(TiffTag.TIFF_TAG_STRIP_BYTE_COUNTS)
 
         var jpegOffsetField: TiffOutputField? = null
 
@@ -518,8 +519,6 @@ class TiffOutputDirectory(
             add(stripByteCountsField)
         }
 
-        removeFieldIfPresent(ExifTag.EXIF_TAG_PREVIEW_IMAGE_START_IFD0)
-        removeFieldIfPresent(ExifTag.EXIF_TAG_PREVIEW_IMAGE_LENGTH_IFD0)
         removeFieldIfPresent(TiffTag.TIFF_TAG_TILE_OFFSETS)
         removeFieldIfPresent(TiffTag.TIFF_TAG_TILE_BYTE_COUNTS)
 
