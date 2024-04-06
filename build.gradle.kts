@@ -110,6 +110,7 @@ koverMerged {
 }
 
 dependencies {
+    testImplementation(project(":"))
     detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:1.23.6")
 }
 
