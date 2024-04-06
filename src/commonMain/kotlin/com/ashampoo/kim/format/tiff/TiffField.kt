@@ -165,7 +165,7 @@ class TiffField(
             return intArrayOf(value.toInt())
 
         if (value is IntArray)
-            return value.copyOf()
+            return value
 
         if (value is ShortArray) {
 

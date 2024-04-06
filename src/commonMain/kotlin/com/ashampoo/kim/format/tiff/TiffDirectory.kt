@@ -54,11 +54,15 @@ class TiffDirectory(
 ) {
 
     var jpegImageDataElement: JpegImageDataElement? = null
+    var stripImageDataElement: StripImageDataElement? = null
 
     fun getDirectoryEntries(): List<TiffField> = entries
 
     fun hasJpegImageData(): Boolean =
         null != findField(TiffTag.TIFF_TAG_JPEG_INTERCHANGE_FORMAT)
+
+    fun hasStripImageData(): Boolean =
+        null != findField(TiffTag.TIFF_TAG_STRIP_OFFSETS)
 
     fun findField(tag: TagInfo): TiffField? {
         return findField(
@@ -120,7 +124,7 @@ class TiffDirectory(
         return field.valueBytes.toInts(field.byteOrder)
     }
 
-    fun getJpegRawImageDataElement(): ImageDataElement {
+    fun getJpegImageDataElement(): ImageDataElement {
 
         val jpegInterchangeFormat = findField(TiffTag.TIFF_TAG_JPEG_INTERCHANGE_FORMAT)
         val jpegInterchangeFormatLength = findField(TiffTag.TIFF_TAG_JPEG_INTERCHANGE_FORMAT_LENGTH)
@@ -131,6 +135,22 @@ class TiffDirectory(
             val byteCount = jpegInterchangeFormatLength.toIntArray()[0]
 
             return ImageDataElement(offset, byteCount)
+        }
+
+        throw ImageReadException("Couldn't find image data.")
+    }
+
+    fun getStripImageDataElement(): ImageDataElement {
+
+        val offsetField = findField(TiffTag.TIFF_TAG_STRIP_OFFSETS)
+        val lengthField = findField(TiffTag.TIFF_TAG_STRIP_BYTE_COUNTS)
+
+        if (offsetField != null && lengthField != null) {
+
+            val offset = offsetField.toIntArray()[0]
+            val length = lengthField.toIntArray()[0]
+
+            return ImageDataElement(offset, length)
         }
 
         throw ImageReadException("Couldn't find image data.")

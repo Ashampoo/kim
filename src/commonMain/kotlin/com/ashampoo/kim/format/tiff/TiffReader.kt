@@ -185,6 +185,9 @@ object TiffReader {
         if (directory.hasJpegImageData())
             directory.jpegImageDataElement = getJpegRawImageData(byteReader, directory)
 
+        if (directory.hasStripImageData())
+            directory.stripImageDataElement = getStripRawImageData(byteReader, directory)
+
         addDirectory(directory)
 
         /* Read offset directories */
@@ -361,17 +364,20 @@ object TiffReader {
         directory: TiffDirectory
     ): JpegImageDataElement? {
 
-        val element = directory.getJpegRawImageDataElement()
+        val element = directory.getJpegImageDataElement()
 
         val offset = element.offset
         var length = element.length
 
         /*
-         * If the length is not correct (going beyond the file size), we adjust it.
+         * If the length is not correct (going beyond the file size) we need to adjust it.
          */
         if (offset + length > byteReader.contentLength)
             length = (byteReader.contentLength - offset).toInt()
 
+        /*
+         * If the new length is 0 or negative, ignore this element.
+         */
         if (length <= 0)
             return null
 
@@ -396,6 +402,36 @@ object TiffReader {
          */
 
         return JpegImageDataElement(offset, length, bytes)
+    }
+
+    private fun getStripRawImageData(
+        byteReader: RandomAccessByteReader,
+        directory: TiffDirectory
+    ): StripImageDataElement? {
+
+        val element = directory.getStripImageDataElement()
+
+        val offset = element.offset
+        var length = element.length
+
+        /*
+         * If the length is not correct (going beyond the file size) we need to adjust it.
+         */
+        if (offset + length > byteReader.contentLength)
+            length = (byteReader.contentLength - offset).toInt()
+
+        /*
+         * If the new length is 0 or negative, ignore this element.
+         */
+        if (length <= 0)
+            return null
+
+        val bytes = byteReader.readBytes(offset.toInt(), length)
+
+        if (bytes.size != length)
+            return null
+
+        return StripImageDataElement(offset, length, bytes)
     }
 
     /**

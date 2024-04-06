@@ -179,6 +179,12 @@ object TiffTag {
         TIFF_DIRECTORY_IFD0
     )
 
+    val TIFF_TAG_STRIP_OFFSETS = TagInfoLong(
+        0x0111, "StripOffsets",
+        TIFF_DIRECTORY_IFD0,
+        isOffset = true
+    )
+
     val TIFF_TAG_ORIENTATION = TagInfoShort(
         0x0112, "Orientation",
         TIFF_DIRECTORY_IFD0
@@ -206,6 +212,11 @@ object TiffTag {
      */
     val TIFF_TAG_ROWS_PER_STRIP = TagInfoLong(
         0x0116, "RowsPerStrip", TIFF_DIRECTORY_IFD0
+    )
+
+    val TIFF_TAG_STRIP_BYTE_COUNTS = TagInfoLong(
+        0x0117, "StripByteCounts",
+        TIFF_DIRECTORY_IFD0
     )
 
     val TIFF_TAG_MIN_SAMPLE_VALUE = TagInfoShorts(

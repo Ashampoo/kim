@@ -90,6 +90,10 @@ class TiffWriterLossless(
             directory.jpegImageDataElement?.let {
                 elements.add(it)
             }
+
+            directory.stripImageDataElement?.let {
+                elements.add(it)
+            }
         }
 
         elements.sortWith(TiffElement.offsetComparator)
