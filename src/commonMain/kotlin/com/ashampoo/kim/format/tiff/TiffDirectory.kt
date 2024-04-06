@@ -131,8 +131,8 @@ class TiffDirectory(
 
         if (jpegInterchangeFormat != null && jpegInterchangeFormatLength != null) {
 
-            val offset = jpegInterchangeFormat.toIntArray()[0]
-            val byteCount = jpegInterchangeFormatLength.toIntArray()[0]
+            val offset = jpegInterchangeFormat.toInt()
+            val byteCount = jpegInterchangeFormatLength.toInt()
 
             return ImageDataElement(offset, byteCount)
         }
