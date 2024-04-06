@@ -22,6 +22,7 @@ import com.ashampoo.kim.common.RationalNumber
 import com.ashampoo.kim.common.RationalNumbers
 import com.ashampoo.kim.common.toBytes
 import com.ashampoo.kim.format.tiff.JpegImageDataElement
+import com.ashampoo.kim.format.tiff.StripImageDataElement
 import com.ashampoo.kim.format.tiff.TiffDirectory.Companion.description
 import com.ashampoo.kim.format.tiff.constant.ExifTag
 import com.ashampoo.kim.format.tiff.constant.TiffConstants.TIFF_DIRECTORY_FOOTER_LENGTH
@@ -79,6 +80,9 @@ class TiffOutputDirectory(
     override var offset: Int = UNDEFINED_VALUE
 
     var rawJpegImageDataElement: JpegImageDataElement? = null
+        private set
+
+    var rawStripImageDataElement: StripImageDataElement? = null
         private set
 
     fun setNextDirectory(nextDirectory: TiffOutputDirectory?) {
@@ -448,8 +452,12 @@ class TiffOutputDirectory(
     }
 
     /* Internal, because callers should use setThumbnailBytes() */
-    internal fun setJpegImageData(rawJpegImageDataElement: JpegImageDataElement?) {
-        this.rawJpegImageDataElement = rawJpegImageDataElement
+    internal fun setJpegImageData(jpegImageDataElement: JpegImageDataElement?) {
+        this.rawJpegImageDataElement = jpegImageDataElement
+    }
+
+    internal fun setStripImageData(strimageDataElement: StripImageDataElement?) {
+        this.rawStripImageDataElement = strimageDataElement
     }
 
     override fun getItemLength(): Int =
@@ -472,7 +480,8 @@ class TiffOutputDirectory(
 
             jpegOffsetField = TiffOutputField(
                 TiffTag.TIFF_TAG_JPEG_INTERCHANGE_FORMAT.tag,
-                FieldTypeLong, 1, ByteArray(TIFF_ENTRY_MAX_VALUE_LENGTH)
+                FieldTypeLong, 1,
+                ByteArray(TIFF_ENTRY_MAX_VALUE_LENGTH)
             )
 
             add(jpegOffsetField)
@@ -485,6 +494,28 @@ class TiffOutputDirectory(
             )
 
             add(jpegLengthField)
+        }
+
+        var stripOffsetField: TiffOutputField? = null
+
+        if (rawStripImageDataElement != null) {
+
+            stripOffsetField = TiffOutputField(
+                TiffTag.TIFF_TAG_STRIP_OFFSETS.tag,
+                FieldTypeLong, 1,
+                ByteArray(TIFF_ENTRY_MAX_VALUE_LENGTH)
+            )
+
+            add(stripOffsetField)
+
+            val lengthValue = FieldTypeLong.writeData(rawStripImageDataElement!!.length, outputSummary.byteOrder)
+
+            val stripByteCountsField = TiffOutputField(
+                TiffTag.TIFF_TAG_STRIP_BYTE_COUNTS.tag,
+                FieldTypeLong, 1, lengthValue
+            )
+
+            add(stripByteCountsField)
         }
 
         removeFieldIfPresent(ExifTag.EXIF_TAG_PREVIEW_IMAGE_START_IFD0)
@@ -517,6 +548,18 @@ class TiffOutputDirectory(
             result.add(item)
 
             outputSummary.addOffsetItem(TiffOffsetItem(item, jpegOffsetField!!))
+        }
+
+        if (rawStripImageDataElement != null) {
+
+            val item: TiffOutputItem = TiffOutputValue(
+                "rawStripImageDataElement",
+                rawStripImageDataElement!!.bytes
+            )
+
+            result.add(item)
+
+            outputSummary.addOffsetItem(TiffOffsetItem(item, stripOffsetField!!))
         }
 
         return result

@@ -231,6 +231,8 @@ class TiffDirectory(
 
             outputDirectory.setJpegImageData(jpegImageDataElement)
 
+            outputDirectory.setStripImageData(stripImageDataElement)
+
             return outputDirectory
 
         } catch (ex: ImageReadException) {
