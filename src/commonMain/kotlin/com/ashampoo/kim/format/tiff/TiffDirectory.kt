@@ -147,8 +147,8 @@ class TiffDirectory(
 
         if (offsetField != null && lengthField != null) {
 
-            val offset = offsetField.toIntArray()[0]
-            val length = lengthField.toIntArray()[0]
+            val offset = offsetField.toInt()
+            val length = lengthField.toInt()
 
             return ImageDataElement(offset, length)
         }
