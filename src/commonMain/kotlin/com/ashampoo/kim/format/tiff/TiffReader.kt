@@ -183,10 +183,10 @@ object TiffReader {
         )
 
         if (directory.hasJpegImageData())
-            directory.jpegImageDataElement = getJpegRawImageData(byteReader, directory)
+            directory.jpegImageDataElement = getJpegImageDataElement(byteReader, directory)
 
         if (directory.hasStripImageData())
-            directory.stripImageDataElement = getStripRawImageData(byteReader, directory)
+            directory.stripImageDataElement = getStripImageDataElement(byteReader, directory)
 
         addDirectory(directory)
 
@@ -359,7 +359,7 @@ object TiffReader {
      *
      * Discarding corrupt thumbnails is not a big issue, so no exceptions will be thrown here.
      */
-    private fun getJpegRawImageData(
+    private fun getJpegImageDataElement(
         byteReader: RandomAccessByteReader,
         directory: TiffDirectory
     ): JpegImageDataElement? {
@@ -404,7 +404,7 @@ object TiffReader {
         return JpegImageDataElement(offset, length, bytes)
     }
 
-    private fun getStripRawImageData(
+    private fun getStripImageDataElement(
         byteReader: RandomAccessByteReader,
         directory: TiffDirectory
     ): StripImageDataElement? {
