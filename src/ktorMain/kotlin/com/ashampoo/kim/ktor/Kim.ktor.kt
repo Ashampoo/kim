@@ -13,31 +13,37 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.ashampoo.kim
+package com.ashampoo.kim.ktor
 
+import com.ashampoo.kim.Kim
 import com.ashampoo.kim.common.ImageReadException
-import com.ashampoo.kim.common.tryWithImageReadException
 import com.ashampoo.kim.format.ImageMetadata
-import com.ashampoo.kim.input.KotlinIoSourceByteReader
 import com.ashampoo.kim.input.KtorByteReadChannelByteReader
 import com.ashampoo.kim.input.KtorInputByteReader
 import io.ktor.utils.io.ByteReadChannel
 import io.ktor.utils.io.core.ByteReadPacket
-import kotlinx.io.files.Path
+import kotlin.jvm.JvmStatic
+
+/**
+ * Extra object to have a nicer API for Java projects
+ */
+object KimKtor {
+
+    @JvmStatic
+    @Throws(ImageReadException::class)
+    fun readMetadata(byteReadPacket: ByteReadPacket): ImageMetadata? =
+        Kim.readMetadata(KtorInputByteReader(byteReadPacket))
+
+    @JvmStatic
+    @Throws(ImageReadException::class)
+    fun readMetadata(byteReadChannel: ByteReadChannel, contentLength: Long): ImageMetadata? =
+        Kim.readMetadata(KtorByteReadChannelByteReader(byteReadChannel, contentLength))
+}
 
 @Throws(ImageReadException::class)
 fun Kim.readMetadata(byteReadPacket: ByteReadPacket): ImageMetadata? =
-    Kim.readMetadata(KtorInputByteReader(byteReadPacket))
+    KimKtor.readMetadata(byteReadPacket)
 
 @Throws(ImageReadException::class)
 fun Kim.readMetadata(byteReadChannel: ByteReadChannel, contentLength: Long): ImageMetadata? =
-    Kim.readMetadata(KtorByteReadChannelByteReader(byteReadChannel, contentLength))
-
-@OptIn(ExperimentalStdlibApi::class)
-@Throws(ImageReadException::class)
-fun Kim.readMetadata(path: Path): ImageMetadata? = tryWithImageReadException {
-
-    KotlinIoSourceByteReader.read(path) { byteReader ->
-        byteReader?.let { Kim.readMetadata(it) }
-    }
-}
+    KimKtor.readMetadata(byteReadChannel, contentLength)

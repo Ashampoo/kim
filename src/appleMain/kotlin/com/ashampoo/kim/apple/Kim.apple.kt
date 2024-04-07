@@ -13,8 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.ashampoo.kim
+package com.ashampoo.kim.apple
 
+import com.ashampoo.kim.Kim
 import com.ashampoo.kim.common.ImageReadException
 import com.ashampoo.kim.common.readFileAsByteArray
 import com.ashampoo.kim.format.ImageMetadata
@@ -25,21 +26,31 @@ import kotlinx.cinterop.usePinned
 import platform.Foundation.NSData
 import platform.posix.memcpy
 
-/*
- * Extension functions for integration with Swift.
+/**
+ * Extra object to be aligned with the other modules.
  */
+object KimApple {
+
+    @Throws(ImageReadException::class)
+    fun readMetadata(data: NSData): ImageMetadata? =
+        Kim.readMetadata(ByteArrayByteReader(convertDataToByteArray(data)))
+
+    @Throws(ImageReadException::class)
+    fun readMetadata(path: String): ImageMetadata? {
+
+        val fileBytes = readFileAsByteArray(path) ?: return null
+
+        return Kim.readMetadata(ByteArrayByteReader(fileBytes))
+    }
+}
 
 @Throws(ImageReadException::class)
 fun Kim.readMetadata(data: NSData): ImageMetadata? =
-    Kim.readMetadata(ByteArrayByteReader(convertDataToByteArray(data)))
+    KimApple.readMetadata(data)
 
 @Throws(ImageReadException::class)
-fun Kim.readMetadata(path: String): ImageMetadata? {
-
-    val fileBytes = readFileAsByteArray(path) ?: return null
-
-    return Kim.readMetadata(ByteArrayByteReader(fileBytes))
-}
+fun Kim.readMetadata(path: String): ImageMetadata? =
+    KimApple.readMetadata(path)
 
 @OptIn(ExperimentalForeignApi::class)
 private fun convertDataToByteArray(data: NSData): ByteArray {
