@@ -1,5 +1,4 @@
 import com.ashampoo.kim.Kim
-import com.ashampoo.kim.common.ByteOrder
 import com.ashampoo.kim.common.writeBytes
 import com.ashampoo.kim.format.jpeg.JpegRewriter
 import com.ashampoo.kim.format.tiff.TiffContents
@@ -156,9 +155,7 @@ fun setGeoTiffToTiff() {
 
     OutputStreamByteWriter(outputFile.outputStream()).use { outputStreamByteWriter ->
 
-        val tiffWriter = TiffWriterLossy(
-            ByteOrder.LITTLE_ENDIAN
-        )
+        val tiffWriter = TiffWriterLossy(outputSet.byteOrder)
 
         tiffWriter.write(
             byteWriter = outputStreamByteWriter,
@@ -202,9 +199,7 @@ fun setGeoTiffToTiffUsingKotlinx() {
 
     val byteArrayByteWriter = ByteArrayByteWriter()
 
-    val tiffWriter = TiffWriterLossy(
-        ByteOrder.LITTLE_ENDIAN
-    )
+    val tiffWriter = TiffWriterLossy(outputSet.byteOrder)
 
     tiffWriter.write(
         byteWriter = byteArrayByteWriter,
@@ -261,9 +256,7 @@ fun setGeoTiffToTiffUsingKotlinxAndTiffReader() {
 
     val byteArrayByteWriter = ByteArrayByteWriter()
 
-    val tiffWriter = TiffWriterLossy(
-        ByteOrder.LITTLE_ENDIAN
-    )
+    val tiffWriter = TiffWriterLossy(outputSet.byteOrder)
 
     tiffWriter.write(
         byteWriter = byteArrayByteWriter,
