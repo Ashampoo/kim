@@ -1,5 +1,5 @@
 import com.ashampoo.kim.Kim;
-import com.ashampoo.kim.KimJvm;
+import com.ashampoo.kim.jvm.KimJvm;
 import com.ashampoo.kim.format.ImageMetadata;
 import com.ashampoo.kim.input.ByteReader;
 import com.ashampoo.kim.input.JvmInputStreamByteReader;
@@ -32,11 +32,11 @@ public class Main {
 
             Kim.update(byteReader, byteWriter, update);
 
-            byte[] updatesBytes = byteWriter.toByteArray();
+            byte[] updatedBytes = byteWriter.toByteArray();
 
             try (FileOutputStream fos = new FileOutputStream("testphoto_mod.jpg")) {
 
-                fos.write(updatesBytes);
+                fos.write(updatedBytes);
             }
         }
     }
