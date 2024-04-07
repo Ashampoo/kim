@@ -463,16 +463,11 @@ class TiffOutputDirectory(
     private fun removeFieldIfPresent(tagInfo: TagInfo) =
         findField(tagInfo)?.let { field -> fields.remove(field) }
 
-    fun getOutputItems(
-        outputSummary: TiffOffsetItems
-    ): List<TiffOutputItem> {
+    fun getOutputItems(tiffOffsetItems: TiffOffsetItems): List<TiffOutputItem> {
 
         /* First remove old fields */
         removeFieldIfPresent(TiffTag.TIFF_TAG_JPEG_INTERCHANGE_FORMAT)
         removeFieldIfPresent(TiffTag.TIFF_TAG_JPEG_INTERCHANGE_FORMAT_LENGTH)
-        removeFieldIfPresent(TiffTag.TIFF_TAG_STRIP_OFFSETS)
-        removeFieldIfPresent(TiffTag.TIFF_TAG_ROWS_PER_STRIP)
-        removeFieldIfPresent(TiffTag.TIFF_TAG_STRIP_BYTE_COUNTS)
 
         var thumbnailOffsetField: TiffOutputField? = null
 
@@ -488,7 +483,7 @@ class TiffOutputDirectory(
 
             val lengthValue = FieldTypeLong.writeData(
                 thumbnailBytes!!.size,
-                outputSummary.byteOrder
+                tiffOffsetItems.byteOrder
             )
 
             val jpegLengthField = TiffOutputField(
@@ -503,6 +498,10 @@ class TiffOutputDirectory(
 
         if (tiffImageBytes != null) {
 
+            removeFieldIfPresent(TiffTag.TIFF_TAG_STRIP_OFFSETS)
+            removeFieldIfPresent(TiffTag.TIFF_TAG_ROWS_PER_STRIP)
+            removeFieldIfPresent(TiffTag.TIFF_TAG_STRIP_BYTE_COUNTS)
+
             stripOffsetField = TiffOutputField(
                 TiffTag.TIFF_TAG_STRIP_OFFSETS.tag,
                 FieldTypeLong, 1,
@@ -513,7 +512,7 @@ class TiffOutputDirectory(
 
             val lengthValue = FieldTypeLong.writeData(
                 tiffImageBytes!!.size,
-                outputSummary.byteOrder
+                tiffOffsetItems.byteOrder
             )
 
             val stripByteCountsField = TiffOutputField(
@@ -526,7 +525,7 @@ class TiffOutputDirectory(
             /* Set to MAX value. We combine all strips into one block. */
             val rowsPerStripValue = FieldTypeLong.writeData(
                 Int.MAX_VALUE,
-                outputSummary.byteOrder
+                tiffOffsetItems.byteOrder
             )
 
             val rowsPerStripField = TiffOutputField(
@@ -564,7 +563,7 @@ class TiffOutputDirectory(
 
             result.add(item)
 
-            outputSummary.addOffsetItem(TiffOffsetItem(item, thumbnailOffsetField!!))
+            tiffOffsetItems.addOffsetItem(TiffOffsetItem(item, thumbnailOffsetField!!))
         }
 
         if (tiffImageBytes != null) {
@@ -576,7 +575,7 @@ class TiffOutputDirectory(
 
             result.add(item)
 
-            outputSummary.addOffsetItem(TiffOffsetItem(item, stripOffsetField!!))
+            tiffOffsetItems.addOffsetItem(TiffOffsetItem(item, stripOffsetField!!))
         }
 
         return result

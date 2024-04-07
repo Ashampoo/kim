@@ -43,5 +43,4 @@ bin/
 /testphoto_mod2.jpg
 /testphoto_mod3.jpg
 /geotiff.tif
-/geotiff_kotlinxio.tif
-/geotiff_lowlevel.tif
+/geotiff_kotlinx.tif

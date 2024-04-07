@@ -24,6 +24,7 @@ import com.ashampoo.kim.format.tiff.TiffImageParser
 import com.ashampoo.kim.format.webp.WebPImageParser
 import com.ashampoo.kim.input.ByteReader
 import com.ashampoo.kim.model.ImageFormat
+import kotlin.jvm.JvmStatic
 
 fun interface ImageParser {
 
@@ -32,6 +33,7 @@ fun interface ImageParser {
 
     companion object {
 
+        @JvmStatic
         fun forFormat(imageFormat: ImageFormat): ImageParser? =
             when (imageFormat) {
 

@@ -62,9 +62,7 @@ class PhotoMetadataConverterTest {
         if (index == KimTestData.HEIC_TEST_IMAGE_INDEX)
             return
 
-        val photoMetadata = Kim.readMetadata(bytes)?.convertToPhotoMetadata(
-            includeThumbnail = true
-        )
+        val photoMetadata = Kim.readMetadata(bytes)?.convertToPhotoMetadata()
 
         assertNotNull(photoMetadata)
 
