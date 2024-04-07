@@ -37,7 +37,7 @@ data class TiffContents(
 
     fun getExifThumbnailBytes(): ByteArray? =
         directories.asSequence()
-            .mapNotNull { it.thumbnailImageDataElement?.bytes }
+            .mapNotNull { it.thumbnailBytes }
             .firstOrNull()
 
     fun createOutputSet(): TiffOutputSet {

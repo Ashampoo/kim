@@ -21,9 +21,7 @@ import com.ashampoo.kim.common.ImageWriteException
 import com.ashampoo.kim.common.RationalNumber
 import com.ashampoo.kim.common.RationalNumbers
 import com.ashampoo.kim.common.toBytes
-import com.ashampoo.kim.format.tiff.JpegImageDataElement
 import com.ashampoo.kim.format.tiff.TiffDirectory.Companion.description
-import com.ashampoo.kim.format.tiff.TiffImageDataElement
 import com.ashampoo.kim.format.tiff.constant.TiffConstants.TIFF_DIRECTORY_FOOTER_LENGTH
 import com.ashampoo.kim.format.tiff.constant.TiffConstants.TIFF_DIRECTORY_HEADER_LENGTH
 import com.ashampoo.kim.format.tiff.constant.TiffConstants.TIFF_ENTRY_LENGTH
@@ -78,10 +76,10 @@ class TiffOutputDirectory(
 
     override var offset: Int = UNDEFINED_VALUE
 
-    var thumbnailImageDataElement: JpegImageDataElement? = null
+    var thumbnailBytes: ByteArray? = null
         private set
 
-    var tiffImageDataElement: TiffImageDataElement? = null
+    var tiffImageBytes: ByteArray? = null
         private set
 
     fun setNextDirectory(nextDirectory: TiffOutputDirectory?) {
@@ -451,12 +449,12 @@ class TiffOutputDirectory(
     }
 
     /* Internal, because callers should use setThumbnailBytes() */
-    internal fun setThumbnailImageDataElement(thumbnailImageDataElement: JpegImageDataElement?) {
-        this.thumbnailImageDataElement = thumbnailImageDataElement
+    internal fun setThumbnailBytes(thumbnailBytes: ByteArray?) {
+        this.thumbnailBytes = thumbnailBytes
     }
 
-    internal fun setTiffImageDataElement(tiffImageDataElement: TiffImageDataElement?) {
-        this.tiffImageDataElement = tiffImageDataElement
+    internal fun setTiffImageBytes(tiffImageBytes: ByteArray?) {
+        this.tiffImageBytes = tiffImageBytes
     }
 
     override fun getItemLength(): Int =
@@ -477,7 +475,7 @@ class TiffOutputDirectory(
 
         var thumbnailOffsetField: TiffOutputField? = null
 
-        if (thumbnailImageDataElement != null) {
+        if (thumbnailBytes != null) {
 
             thumbnailOffsetField = TiffOutputField(
                 TiffTag.TIFF_TAG_JPEG_INTERCHANGE_FORMAT.tag,
@@ -487,7 +485,10 @@ class TiffOutputDirectory(
 
             add(thumbnailOffsetField)
 
-            val lengthValue = FieldTypeLong.writeData(thumbnailImageDataElement!!.length, outputSummary.byteOrder)
+            val lengthValue = FieldTypeLong.writeData(
+                thumbnailBytes!!.size,
+                outputSummary.byteOrder
+            )
 
             val jpegLengthField = TiffOutputField(
                 TiffTag.TIFF_TAG_JPEG_INTERCHANGE_FORMAT_LENGTH.tag,
@@ -499,7 +500,7 @@ class TiffOutputDirectory(
 
         var stripOffsetField: TiffOutputField? = null
 
-        if (tiffImageDataElement != null) {
+        if (tiffImageBytes != null) {
 
             stripOffsetField = TiffOutputField(
                 TiffTag.TIFF_TAG_STRIP_OFFSETS.tag,
@@ -509,7 +510,10 @@ class TiffOutputDirectory(
 
             add(stripOffsetField)
 
-            val lengthValue = FieldTypeLong.writeData(tiffImageDataElement!!.length, outputSummary.byteOrder)
+            val lengthValue = FieldTypeLong.writeData(
+                tiffImageBytes!!.size,
+                outputSummary.byteOrder
+            )
 
             val stripByteCountsField = TiffOutputField(
                 TiffTag.TIFF_TAG_STRIP_BYTE_COUNTS.tag,
@@ -537,11 +541,11 @@ class TiffOutputDirectory(
             result.add(item)
         }
 
-        if (thumbnailImageDataElement != null) {
+        if (thumbnailBytes != null) {
 
             val item: TiffOutputItem = TiffOutputValue(
                 "thumbnailImageDataElement",
-                thumbnailImageDataElement!!.bytes
+                thumbnailBytes!!
             )
 
             result.add(item)
@@ -549,11 +553,11 @@ class TiffOutputDirectory(
             outputSummary.addOffsetItem(TiffOffsetItem(item, thumbnailOffsetField!!))
         }
 
-        if (tiffImageDataElement != null) {
+        if (tiffImageBytes != null) {
 
             val item: TiffOutputItem = TiffOutputValue(
                 "tiffImageDataElement",
-                tiffImageDataElement!!.bytes
+                tiffImageBytes!!
             )
 
             result.add(item)

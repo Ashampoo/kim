@@ -53,8 +53,8 @@ class TiffDirectory(
         TiffConstants.TIFF_ENTRY_LENGTH + TiffConstants.TIFF_DIRECTORY_FOOTER_LENGTH
 ) {
 
-    var thumbnailImageDataElement: JpegImageDataElement? = null
-    var tiffImageDataElement: TiffImageDataElement? = null
+    var thumbnailBytes: ByteArray? = null
+    var tiffImageBytes: ByteArray? = null
 
     fun getDirectoryEntries(): List<TiffField> = entries
 
@@ -124,7 +124,7 @@ class TiffDirectory(
         return field.valueBytes.toInts(field.byteOrder)
     }
 
-    fun getJpegImageDataElement(): ImageDataElement {
+    fun getJpegImageDataElement(): ImageDataElement? {
 
         val jpegInterchangeFormat = findField(TiffTag.TIFF_TAG_JPEG_INTERCHANGE_FORMAT)
         val jpegInterchangeFormatLength = findField(TiffTag.TIFF_TAG_JPEG_INTERCHANGE_FORMAT_LENGTH)
@@ -137,23 +137,35 @@ class TiffDirectory(
             return ImageDataElement(offset, byteCount)
         }
 
-        throw ImageReadException("Couldn't find image data.")
+        return null
     }
 
-    fun getStripImageDataElement(): ImageDataElement {
+    /**
+     * Returns a list as tiff image bytes can be splitted upon the whole file.
+     * ImageIO creates small splits while GIMP creates a single big chunk.
+     */
+    fun getStripImageDataElements(): List<ImageDataElement>? {
 
         val offsetField = findField(TiffTag.TIFF_TAG_STRIP_OFFSETS)
         val lengthField = findField(TiffTag.TIFF_TAG_STRIP_BYTE_COUNTS)
 
         if (offsetField != null && lengthField != null) {
 
-            val offset = offsetField.toInt()
-            val length = lengthField.toInt()
+            val offsets = offsetField.toIntArray()
+            val lengths = lengthField.toIntArray()
 
-            return ImageDataElement(offset, length)
+            if (offsets.size != lengths.size)
+                throw ImageReadException("Offsets & Lengths mismatch: ${offsets.size} != ${lengths.size}")
+
+            val imageDataElements = mutableListOf<ImageDataElement>()
+
+            for (index in offsets.indices)
+                imageDataElements.add(ImageDataElement(offsets[index], lengths[index]))
+
+            return imageDataElements
         }
 
-        throw ImageReadException("Couldn't find image data.")
+        return null
     }
 
     fun createOutputDirectory(byteOrder: ByteOrder): TiffOutputDirectory {
@@ -229,9 +241,8 @@ class TiffDirectory(
                     )
             }
 
-            outputDirectory.setThumbnailImageDataElement(thumbnailImageDataElement)
-
-            outputDirectory.setTiffImageDataElement(tiffImageDataElement)
+            outputDirectory.setThumbnailBytes(thumbnailBytes)
+            outputDirectory.setTiffImageBytes(tiffImageBytes)
 
             return outputDirectory
 

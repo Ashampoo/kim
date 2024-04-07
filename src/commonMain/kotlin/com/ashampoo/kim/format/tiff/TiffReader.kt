@@ -37,6 +37,7 @@ import com.ashampoo.kim.format.tiff.taginfo.TagInfoLongs
 import com.ashampoo.kim.input.ByteArrayByteReader
 import com.ashampoo.kim.input.ByteReader
 import com.ashampoo.kim.input.RandomAccessByteReader
+import com.ashampoo.kim.output.ByteArrayByteWriter
 
 object TiffReader {
 
@@ -183,10 +184,10 @@ object TiffReader {
         )
 
         if (directory.hasJpegImageData())
-            directory.thumbnailImageDataElement = getJpegImageDataElement(byteReader, directory)
+            directory.thumbnailBytes = readThumbnailBytes(byteReader, directory)
 
         if (directory.hasStripImageData())
-            directory.tiffImageDataElement = getStripImageDataElement(byteReader, directory)
+            directory.tiffImageBytes = readTiffImageBytes(byteReader, directory)
 
         addDirectory(directory)
 
@@ -359,12 +360,12 @@ object TiffReader {
      *
      * Discarding corrupt thumbnails is not a big issue, so no exceptions will be thrown here.
      */
-    private fun getJpegImageDataElement(
+    private fun readThumbnailBytes(
         byteReader: RandomAccessByteReader,
         directory: TiffDirectory
-    ): JpegImageDataElement? {
+    ): ByteArray? {
 
-        val element = directory.getJpegImageDataElement()
+        val element = directory.getJpegImageDataElement() ?: return null
 
         val offset = element.offset
         var length = element.length
@@ -401,37 +402,47 @@ object TiffReader {
          * there are some random bytes present.
          */
 
-        return JpegImageDataElement(offset, length, bytes)
+        return bytes
     }
 
-    private fun getStripImageDataElement(
+    private fun readTiffImageBytes(
         byteReader: RandomAccessByteReader,
         directory: TiffDirectory
-    ): TiffImageDataElement? {
+    ): ByteArray? {
 
-        val element = directory.getStripImageDataElement()
+        val elements = directory.getStripImageDataElements() ?: return null
 
-        val offset = element.offset
-        var length = element.length
+        val byteArrayByteWriter = ByteArrayByteWriter()
 
-        /*
-         * If the length is not correct (going beyond the file size) we need to adjust it.
-         */
-        if (offset + length > byteReader.contentLength)
-            length = (byteReader.contentLength - offset).toInt()
+        for (element in elements) {
 
-        /*
-         * If the new length is 0 or negative, ignore this element.
-         */
-        if (length <= 0)
-            return null
+            val offset = element.offset
+            var length = element.length
 
-        val bytes = byteReader.readBytes(offset.toInt(), length)
+            /*
+             * If the length is not correct (going beyond the file size) we need to adjust it.
+             */
+            if (offset + length > byteReader.contentLength)
+                length = (byteReader.contentLength - offset).toInt()
 
-        if (bytes.size != length)
-            return null
+            /*
+             * If the new length is 0 or negative, ignore this element.
+             */
+            if (length <= 0)
+                continue
 
-        return TiffImageDataElement(offset, length, bytes)
+            val bytes = byteReader.readBytes(offset.toInt(), length)
+
+            /*
+             * Break if something is wrong.
+             */
+            if (bytes.size != length)
+                return null
+
+            byteArrayByteWriter.write(bytes)
+        }
+
+        return byteArrayByteWriter.toByteArray()
     }
 
     /**
