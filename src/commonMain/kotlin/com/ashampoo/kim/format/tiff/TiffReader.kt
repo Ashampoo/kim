@@ -38,7 +38,9 @@ import com.ashampoo.kim.input.ByteArrayByteReader
 import com.ashampoo.kim.input.ByteReader
 import com.ashampoo.kim.input.RandomAccessByteReader
 import com.ashampoo.kim.output.ByteArrayByteWriter
+import kotlin.jvm.JvmStatic
 
+@Suppress("TooManyFunctions")
 object TiffReader {
 
     const val NIKON_MAKER_NOTE_SIGNATURE = "Nikon\u0000"
@@ -61,6 +63,7 @@ object TiffReader {
      * Convenience method for calls with short byte array like
      * the EXIF bytes in JPG, which are limited to 64 KB.
      */
+    @JvmStatic
     fun read(exifBytes: ByteArray): TiffContents =
         read(ByteArrayByteReader(exifBytes))
 
@@ -72,6 +75,7 @@ object TiffReader {
      *                           This should only set if a rewrite of the file is intended.
      *                           For normal reading of RAW metadata this consumes a lot of memory.
      */
+    @JvmStatic
     fun read(
         byteReader: RandomAccessByteReader,
         readTiffImageBytes: Boolean = false
@@ -106,7 +110,7 @@ object TiffReader {
         return TiffContents(tiffHeader, directories, makerNoteDirectory, geoTiffDirectory)
     }
 
-    fun readTiffHeader(byteReader: ByteReader): TiffHeader {
+    internal fun readTiffHeader(byteReader: ByteReader): TiffHeader {
 
         val byteOrder1 = byteReader.readByte("Byte order: First byte")
         val byteOrder2 = byteReader.readByte("Byte Order: Second byte")
