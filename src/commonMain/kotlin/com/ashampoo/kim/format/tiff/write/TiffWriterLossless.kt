@@ -65,7 +65,7 @@ class TiffWriterLossless(
              * Don't write IFD1 directories without image data. If the thumbnail image is broken
              * on load, we should drop the IFD1 on rewrite entirely. It's just a waste of space.
              */
-            if (directory.type == 1 && directory.thumbnailImageDataElement == null)
+            if (directory.type == 1 && directory.thumbnailBytes == null)
                 continue
 
             elements.add(directory)
@@ -87,12 +87,12 @@ class TiffWriterLossless(
                 }
             }
 
-            directory.thumbnailImageDataElement?.let {
+            directory.getJpegImageDataElement()?.let {
                 elements.add(it)
             }
 
-            directory.tiffImageDataElement?.let {
-                elements.add(it)
+            directory.getStripImageDataElements()?.let {
+                elements.addAll(it)
             }
         }
 

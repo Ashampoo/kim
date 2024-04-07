@@ -16,7 +16,6 @@
 package com.ashampoo.kim.format.tiff
 
 import com.ashampoo.kim.Kim
-import com.ashampoo.kim.common.ByteOrder
 import com.ashampoo.kim.common.readBytes
 import com.ashampoo.kim.common.writeBytes
 import com.ashampoo.kim.format.tiff.constant.GeoTiffTag
@@ -66,9 +65,7 @@ class GeoTiffUpdateTest {
 
         val byteWriter = ByteArrayByteWriter()
 
-        val writer = TiffWriterLossy(
-            ByteOrder.LITTLE_ENDIAN
-        )
+        val writer = TiffWriterLossy(outputSet.byteOrder)
 
         writer.write(
             byteWriter = byteWriter,
