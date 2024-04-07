@@ -64,7 +64,18 @@ object TiffReader {
     fun read(exifBytes: ByteArray): TiffContents =
         read(ByteArrayByteReader(exifBytes))
 
-    fun read(byteReader: RandomAccessByteReader): TiffContents {
+    /**
+     * Reads the TIFF file.
+     *
+     * @param byteReader The bytes source
+     * @param readTiffImageBytes Flag to include strip bytes.
+     *                           This should only set if a rewrite of the file is intended.
+     *                           For normal reading of RAW metadata this consumes a lot of memory.
+     */
+    fun read(
+        byteReader: RandomAccessByteReader,
+        readTiffImageBytes: Boolean = false
+    ): TiffContents {
 
         val tiffHeader = readTiffHeader(byteReader)
 
@@ -78,6 +89,7 @@ object TiffReader {
             directoryOffset = tiffHeader.offsetToFirstIFD,
             directoryType = TiffConstants.TIFF_DIRECTORY_TYPE_IFD0,
             visitedOffsets = mutableListOf<Int>(),
+            readTiffImageBytes = readTiffImageBytes,
             addDirectory = {
                 directories.add(it)
             }
@@ -125,6 +137,7 @@ object TiffReader {
         directoryOffset: Int,
         directoryType: Int,
         visitedOffsets: MutableList<Int>,
+        readTiffImageBytes: Boolean,
         addDirectory: (TiffDirectory) -> Unit
     ): Boolean {
 
@@ -186,7 +199,7 @@ object TiffReader {
         if (directory.hasJpegImageData())
             directory.thumbnailBytes = readThumbnailBytes(byteReader, directory)
 
-        if (directory.hasStripImageData())
+        if (readTiffImageBytes && directory.hasStripImageData())
             directory.tiffImageBytes = readTiffImageBytes(byteReader, directory)
 
         addDirectory(directory)
@@ -228,6 +241,7 @@ object TiffReader {
                             directoryOffset = subDirOffset,
                             directoryType = subDirectoryType,
                             visitedOffsets = visitedOffsets,
+                            readTiffImageBytes = readTiffImageBytes,
                             addDirectory = addDirectory
                         )
 
@@ -250,6 +264,7 @@ object TiffReader {
                 directoryOffset = directory.nextDirectoryOffset,
                 directoryType = directoryType + 1,
                 visitedOffsets = visitedOffsets,
+                readTiffImageBytes = readTiffImageBytes,
                 addDirectory = addDirectory
             )
 
@@ -516,6 +531,7 @@ object TiffReader {
                 directoryOffset = makerNoteValueOffset,
                 directoryType = TiffConstants.TIFF_MAKER_NOTE_CANON,
                 visitedOffsets = mutableListOf<Int>(),
+                readTiffImageBytes = false,
                 addDirectory = addDirectory
             )
         }
@@ -547,6 +563,7 @@ object TiffReader {
                 directoryOffset = makerNoteValueOffset + 18,
                 directoryType = TiffConstants.TIFF_MAKER_NOTE_NIKON,
                 visitedOffsets = mutableListOf<Int>(),
+                readTiffImageBytes = false,
                 addDirectory = addDirectory
             )
         }

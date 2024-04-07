@@ -33,7 +33,6 @@ import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toInstant
 
 fun ImageMetadata.convertToPhotoMetadata(
-    includeThumbnail: Boolean = false,
     ignoreOrientation: Boolean = false
 ): PhotoMetadata {
 
@@ -88,10 +87,7 @@ fun ImageMetadata.convertToPhotoMetadata(
         XmpReader.readMetadata(it)
     }
 
-    val thumbnailBytes = if (includeThumbnail)
-        getExifThumbnailBytes()
-    else
-        null
+    val thumbnailBytes = getExifThumbnailBytes()
 
     val thumbnailImageSize = thumbnailBytes?.let {
         JpegImageParser.getImageSize(

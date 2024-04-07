@@ -15,13 +15,13 @@
  */
 package com.ashampoo.kim.format.tiff
 
-import com.ashampoo.kim.Kim
 import com.ashampoo.kim.common.readBytes
 import com.ashampoo.kim.common.writeBytes
 import com.ashampoo.kim.format.tiff.constant.GeoTiffTag
 import com.ashampoo.kim.format.tiff.write.TiffOutputSet
 import com.ashampoo.kim.format.tiff.write.TiffWriterLossy
 import com.ashampoo.kim.getPathForResource
+import com.ashampoo.kim.input.ByteArrayByteReader
 import com.ashampoo.kim.output.ByteArrayByteWriter
 import kotlinx.io.files.Path
 import kotlin.test.Test
@@ -42,9 +42,12 @@ class GeoTiffUpdateTest {
     @Test
     fun testSetGeoTiff() {
 
-        val metadata = Kim.readMetadata(originalBytes) ?: return
+        val tiffContents = TiffReader.read(
+            byteReader = ByteArrayByteReader(originalBytes),
+            readTiffImageBytes = true
+        )
 
-        val outputSet: TiffOutputSet = metadata.exif?.createOutputSet() ?: TiffOutputSet()
+        val outputSet: TiffOutputSet = tiffContents.createOutputSet()
 
         val rootDirectory = outputSet.getOrCreateRootDirectory()
 
@@ -84,5 +87,4 @@ class GeoTiffUpdateTest {
             fail("geotiff.tif has not the expected bytes!")
         }
     }
-
 }
