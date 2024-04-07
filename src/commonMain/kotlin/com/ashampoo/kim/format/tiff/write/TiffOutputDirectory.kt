@@ -471,6 +471,7 @@ class TiffOutputDirectory(
         removeFieldIfPresent(TiffTag.TIFF_TAG_JPEG_INTERCHANGE_FORMAT)
         removeFieldIfPresent(TiffTag.TIFF_TAG_JPEG_INTERCHANGE_FORMAT_LENGTH)
         removeFieldIfPresent(TiffTag.TIFF_TAG_STRIP_OFFSETS)
+        removeFieldIfPresent(TiffTag.TIFF_TAG_ROWS_PER_STRIP)
         removeFieldIfPresent(TiffTag.TIFF_TAG_STRIP_BYTE_COUNTS)
 
         var thumbnailOffsetField: TiffOutputField? = null
@@ -521,6 +522,19 @@ class TiffOutputDirectory(
             )
 
             add(stripByteCountsField)
+
+            /* Set to MAX value. We combine all strips into one block. */
+            val rowsPerStripValue = FieldTypeLong.writeData(
+                Int.MAX_VALUE,
+                outputSummary.byteOrder
+            )
+
+            val rowsPerStripField = TiffOutputField(
+                TiffTag.TIFF_TAG_ROWS_PER_STRIP.tag,
+                FieldTypeLong, 1, rowsPerStripValue
+            )
+
+            add(rowsPerStripField)
         }
 
         removeFieldIfPresent(TiffTag.TIFF_TAG_TILE_OFFSETS)
