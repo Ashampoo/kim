@@ -42,7 +42,7 @@ import com.ashampoo.kim.model.ImageSize
 
 object JpegImageParser : ImageParser {
 
-    fun getImageSize(byteReader: ByteReader): ImageSize {
+    fun getImageSize(byteReader: ByteReader): ImageSize? {
 
         val magicNumberBytes = byteReader.readBytes(ImageFormatMagicNumbers.jpeg.size).toList()
 
@@ -51,11 +51,15 @@ object JpegImageParser : ImageParser {
             "JPEG magic number mismatch: ${magicNumberBytes.toByteArray().toSingleNumberHexes()}"
         }
 
+        var readBytesCount = magicNumberBytes.size
+
         @Suppress("LoopWithTooManyJumpStatements")
         do {
 
             var segmentIdentifier = byteReader.readByte() ?: break
             var segmentType = byteReader.readByte() ?: break
+
+            readBytesCount += 2
 
             /*
              * Find the segment marker. Markers are zero or more 0xFF bytes, followed by
@@ -71,6 +75,8 @@ object JpegImageParser : ImageParser {
 
                 val nextSegmentType = byteReader.readByte() ?: break
 
+                readBytesCount += 1
+
                 segmentType = nextSegmentType
             }
 
@@ -80,17 +86,31 @@ object JpegImageParser : ImageParser {
             )
                 break
 
+            /* If we don't have anough bytes for the segment count we are done reading. */
+            if (byteReader.contentLength - readBytesCount < 2)
+                break
+
             /* Note: Segment length includes size bytes */
             val segmentLength =
                 byteReader.read2BytesAsInt("segmentLength", JpegConstants.JPEG_BYTE_ORDER) - 2
 
+            readBytesCount += 2
+
             if (segmentLength <= 0)
-                throw ImageReadException("Illegal JPEG segment length: $segmentLength")
+                continue
 
             /* We are only looking for a SOF segment. */
             if (!JpegConstants.SOFN_MARKER_BYTES.contains(segmentType)) {
 
+                val remainingByteCount = byteReader.contentLength - readBytesCount
+
+                /* Ignore invalid segment lengths */
+                if (segmentLength > remainingByteCount)
+                    continue
+
                 byteReader.skipBytes("skip segment", segmentLength)
+
+                readBytesCount += segmentLength
 
                 continue
             }
@@ -105,7 +125,7 @@ object JpegImageParser : ImageParser {
 
         } while (true)
 
-        throw ImageReadException("Did not find image size.")
+        return null
     }
 
     @Throws(ImageReadException::class)
