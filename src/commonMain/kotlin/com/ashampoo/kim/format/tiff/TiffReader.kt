@@ -37,7 +37,6 @@ import com.ashampoo.kim.format.tiff.taginfo.TagInfoLongs
 import com.ashampoo.kim.input.ByteArrayByteReader
 import com.ashampoo.kim.input.ByteReader
 import com.ashampoo.kim.input.RandomAccessByteReader
-import com.ashampoo.kim.output.ByteArrayByteWriter
 import kotlin.jvm.JvmStatic
 
 @Suppress("TooManyFunctions")
@@ -204,7 +203,7 @@ object TiffReader {
             directory.thumbnailBytes = readThumbnailBytes(byteReader, directory)
 
         if (readTiffImageBytes && directory.hasStripImageData())
-            directory.tiffImageBytes = readTiffImageBytes(byteReader, directory)
+            directory.tiffImageStrips = readTiffImageStrips(byteReader, directory)
 
         addDirectory(directory)
 
@@ -441,14 +440,14 @@ object TiffReader {
         return bytes
     }
 
-    private fun readTiffImageBytes(
+    private fun readTiffImageStrips(
         byteReader: RandomAccessByteReader,
         directory: TiffDirectory
-    ): ByteArray? {
+    ): List<ByteArray>? {
 
         val elements = directory.getStripImageDataElements() ?: return null
 
-        val byteArrayByteWriter = ByteArrayByteWriter()
+        val strips = mutableListOf<ByteArray>()
 
         for (element in elements) {
 
@@ -475,10 +474,10 @@ object TiffReader {
             if (bytes.size != length)
                 return null
 
-            byteArrayByteWriter.write(bytes)
+            strips.add(bytes)
         }
 
-        return byteArrayByteWriter.toByteArray()
+        return strips
     }
 
     /**

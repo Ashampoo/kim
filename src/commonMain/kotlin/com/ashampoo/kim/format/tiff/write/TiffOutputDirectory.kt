@@ -79,7 +79,7 @@ class TiffOutputDirectory(
     var thumbnailBytes: ByteArray? = null
         private set
 
-    var tiffImageBytes: ByteArray? = null
+    var tiffImageStrips: List<ByteArray>? = null
         private set
 
     fun setNextDirectory(nextDirectory: TiffOutputDirectory?) {
@@ -453,8 +453,8 @@ class TiffOutputDirectory(
         this.thumbnailBytes = thumbnailBytes
     }
 
-    internal fun setTiffImageBytes(tiffImageBytes: ByteArray?) {
-        this.tiffImageBytes = tiffImageBytes
+    internal fun setTiffImageStrips(tiffImageStrips: List<ByteArray>?) {
+        this.tiffImageStrips = tiffImageStrips
     }
 
     override fun getItemLength(): Int =
@@ -494,50 +494,29 @@ class TiffOutputDirectory(
             add(jpegLengthField)
         }
 
-        var stripOffsetField: TiffOutputField? = null
+        var stripOffsetFields: List<TiffOutputField>? = null
 
-        if (tiffImageBytes != null) {
+        tiffImageStrips?.let {
+
+            val offsetFields = mutableListOf<TiffOutputField>()
 
             removeFieldIfPresent(TiffTag.TIFF_TAG_STRIP_OFFSETS)
-            removeFieldIfPresent(TiffTag.TIFF_TAG_ROWS_PER_STRIP)
-            removeFieldIfPresent(TiffTag.TIFF_TAG_STRIP_BYTE_COUNTS)
 
-            stripOffsetField = TiffOutputField(
-                TiffTag.TIFF_TAG_STRIP_OFFSETS.tag,
-                FieldTypeLong, 1,
-                ByteArray(TIFF_ENTRY_MAX_VALUE_LENGTH)
-            )
+            repeat(it.size) {
 
-            add(stripOffsetField)
+                val stripOffsetField = TiffOutputField(
+                    TiffTag.TIFF_TAG_STRIP_OFFSETS.tag,
+                    FieldTypeLong, 1,
+                    ByteArray(TIFF_ENTRY_MAX_VALUE_LENGTH)
+                )
 
-            val lengthValue = FieldTypeLong.writeData(
-                tiffImageBytes!!.size,
-                tiffOffsetItems.byteOrder
-            )
+                add(stripOffsetField)
 
-            val stripByteCountsField = TiffOutputField(
-                TiffTag.TIFF_TAG_STRIP_BYTE_COUNTS.tag,
-                FieldTypeLong, 1, lengthValue
-            )
+                offsetFields.add(stripOffsetField)
+            }
 
-            add(stripByteCountsField)
-
-            /* Set to MAX value. We combine all strips into one block. */
-            val rowsPerStripValue = FieldTypeLong.writeData(
-                Int.MAX_VALUE,
-                tiffOffsetItems.byteOrder
-            )
-
-            val rowsPerStripField = TiffOutputField(
-                TiffTag.TIFF_TAG_ROWS_PER_STRIP.tag,
-                FieldTypeLong, 1, rowsPerStripValue
-            )
-
-            add(rowsPerStripField)
+            stripOffsetFields = offsetFields
         }
-
-        removeFieldIfPresent(TiffTag.TIFF_TAG_TILE_OFFSETS)
-        removeFieldIfPresent(TiffTag.TIFF_TAG_TILE_BYTE_COUNTS)
 
         val result = mutableListOf<TiffOutputItem>()
 
@@ -554,11 +533,10 @@ class TiffOutputDirectory(
             result.add(item)
         }
 
-        if (thumbnailBytes != null) {
+        thumbnailBytes?.let {
 
             val item: TiffOutputItem = TiffOutputValue(
-                "thumbnailImageDataElement",
-                thumbnailBytes!!
+                "thumbnailImageDataElement", it
             )
 
             result.add(item)
@@ -566,16 +544,23 @@ class TiffOutputDirectory(
             tiffOffsetItems.addOffsetItem(TiffOffsetItem(item, thumbnailOffsetField!!))
         }
 
-        if (tiffImageBytes != null) {
+        tiffImageStrips?.let {
 
-            val item: TiffOutputItem = TiffOutputValue(
-                "tiffImageDataElement",
-                tiffImageBytes!!
-            )
+            for ((index, each) in it.withIndex()) {
 
-            result.add(item)
+                val item: TiffOutputItem = TiffOutputValue(
+                    "tiffImageDataElement",
+                    each
+                )
 
-            tiffOffsetItems.addOffsetItem(TiffOffsetItem(item, stripOffsetField!!))
+                result.add(item)
+
+                val stripOffsetField = stripOffsetFields!![index]
+
+                tiffOffsetItems.addOffsetItem(
+                    TiffOffsetItem(item, stripOffsetField)
+                )
+            }
         }
 
         return result

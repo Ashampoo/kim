@@ -54,7 +54,12 @@ class TiffDirectory(
 ) {
 
     var thumbnailBytes: ByteArray? = null
-    var tiffImageBytes: ByteArray? = null
+
+    /*
+     * A tiff file contains usually multiple strips
+     * that can't be merged together if they are zipped.
+     */
+    var tiffImageStrips: List<ByteArray>? = null
 
     fun getDirectoryEntries(): List<TiffField> = entries
 
@@ -242,7 +247,7 @@ class TiffDirectory(
             }
 
             outputDirectory.setThumbnailBytes(thumbnailBytes)
-            outputDirectory.setTiffImageBytes(tiffImageBytes)
+            outputDirectory.setTiffImageStrips(tiffImageStrips)
 
             return outputDirectory
 
