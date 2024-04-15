@@ -1,86 +1,26 @@
 File format : JPEG
-Resolution  : 6000 x 4000
+Resolution  : 2820 x 3077
 ---- TIFF ----
 Version 42
-Little-endian (Intel, II)
+Big-endian (Motorola, MM)
 ---- Directory IFD0 @ 8 ----
-0000000010 0x010f Make = Canon
-0000000022 0x0110 Model = Canon EOS 77D
-0000000034 0x0112 Orientation = 8
-0000000046 0x011a XResolution = 72/1 (72.0)
-0000000058 0x011b YResolution = 72/1 (72.0)
-0000000070 0x0128 ResolutionUnit = 2
-0000000082 0x0132 ModifyDate = 2023:05:10 13:37:42
-0000000094 0x013b Artist = HENRIK HANSEN
-0000000106 0x0213 YCbCrPositioning = 2
-0000000118 0x8769 ExifOffset = 216
-0000000130 0x8825 GPSInfo = 10408
+0000000010 0x0112 Orientation = 8
+0000000022 0x0132 ModifyDate = 2023:05:10 13:37:42
+0000000034 0x8769 ExifOffset = 84
+0000000046 0x8825 GPSInfo = 156
 
----- Directory ExifIFD @ 216 ----
-0000000218 0x829a ExposureTime = 1/500 (0.002)
-0000000230 0x829d FNumber = 8/1 (8.0)
-0000000242 0x8822 ExposureProgram = 2
-0000000254 0x8827 PhotographicSensitivity = 400
-0000000266 0x8830 SensitivityType = 2
-0000000278 0x8832 RecommendedExposureIndex = 400
-0000000290 0x9000 ExifVersion = [0x30, 0x32, 0x33, 0x30]
-0000000302 0x9003 DateTimeOriginal = 2023:05:10 13:37:42
-0000000314 0x9004 DateTimeDigitized = 2023:05:10 13:37:42
-0000000326 0x9101 ComponentsConfiguration = [0x01, 0x02, 0x03, 0x00]
-0000000338 0x9201 ShutterSpeedValue = 589824/65536 (9.0)
-0000000350 0x9202 ApertureValue = 393216/65536 (6.0)
-0000000362 0x9204 ExposureCompensation = 0/1 (0.0)
-0000000374 0x9207 MeteringMode = 5
-0000000386 0x9209 Flash = 16
-0000000398 0x920a FocalLength = 400/1 (400.0)
-0000000410 0x927c MakerNote = [9512 bytes]
-0000000422 0x9290 SubSecTime = 86
-0000000434 0x9291 SubSecTimeOriginal = 86
-0000000446 0x9292 SubSecTimeDigitized = 86
-0000000458 0xa000 FlashpixVersion = [0x30, 0x31, 0x30, 0x30]
-0000000470 0xa001 ColorSpace = 1
-0000000482 0xa002 ExifImageWidth = 6000
-0000000494 0xa003 ExifImageLength = 4000
-0000000506 0xa005 InteropOffset = 10378
-0000000518 0xa20e FocalPlaneXResolution = 6000000/921 (6514.65798)
-0000000530 0xa20f FocalPlaneYResolution = 4000000/594 (6734.006734)
-0000000542 0xa210 FocalPlaneResolutionUnit = 2
-0000000554 0xa401 CustomRendered = 0
-0000000566 0xa402 ExposureMode = 0
-0000000578 0xa403 WhiteBalance = 0
-0000000590 0xa406 SceneCaptureType = 0
-0000000602 0xa430 CameraOwnerName = 
-0000000614 0xa431 BodySerialNumber = 143031003387
-0000000626 0xa432 LensSpecification = [100/1 (100.0), 400/1 (400.0), 0/1 (0.0), 0/1 (0.0)]
-0000000638 0xa434 LensModel = EF100-400mm f/4.5-5.6L IS USM
-0000000650 0xa435 LensSerialNumber = 0000000000
+---- Directory ExifIFD @ 84 ----
+0000000086 0x9003 DateTimeOriginal = 2023:05:10 13:37:42
+0000000098 0x9004 DateTimeDigitized = 2023:05:10 13:37:42
 
----- Directory InteropIFD @ 10378 ----
-0000010380 0x0001 InteroperabilityIndex = R98
-0000010392 0x0002 InteroperabilityVersion = [0x30, 0x31, 0x30, 0x30]
-
----- Directory GPS @ 10408 ----
-0000010410 0x0000 GPSVersionID = [0x02, 0x03, 0x00, 0x00]
-0000010422 0x0001 GPSLatitudeRef = N
-0000010434 0x0002 GPSLatitude = [53/1 (53.0), 13/1 (13.0), 24519/2500 (9.8076)]
-0000010446 0x0003 GPSLongitudeRef = E
-0000010458 0x0004 GPSLongitude = [8/1 (8.0), 14/1 (14.0), 56949/2500 (22.7796)]
-
----- Directory SubIFD @ 10522 ----
-0000010524 0x0103 Compression = 6
-0000010536 0x011a XResolution = 72/1 (72.0)
-0000010548 0x011b YResolution = 72/1 (72.0)
-0000010560 0x0128 ResolutionUnit = 2
-0000010572 0x0201 JpgFromRawStart = 10608
-0000010584 0x0202 JpgFromRawLength = 7437
-
+---- Directory GPS @ 156 ----
+0000000158 0x0000 GPSVersionID = [0x02, 0x03, 0x00, 0x00]
+0000000170 0x0001 GPSLatitudeRef = N
+0000000182 0x0002 GPSLatitude = [53/1 (53.0), 13/1 (13.0), 24519/2500 (9.8076)]
+0000000194 0x0003 GPSLongitudeRef = E
+0000000206 0x0004 GPSLongitude = [8/1 (8.0), 14/1 (14.0), 56949/2500 (22.7796)]
 
 ---- IPTC ----
-Caption/Abstract (120) = 'American eagle during daytime'
-Keywords (25) = 'animal'
-Keywords (25) = 'bald eagle'
-Keywords (25) = 'eagle'
-Keywords (25) = 'bird'
 Keywords (25) = 'Umlauts: äöüß'
 
 ---- XMP ----

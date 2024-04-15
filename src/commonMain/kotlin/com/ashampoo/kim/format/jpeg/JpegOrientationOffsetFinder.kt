@@ -84,17 +84,28 @@ object JpegOrientationOffsetFinder {
             if (segmentType == SEGMENT_START_OF_SCAN || segmentType == MARKER_END_OF_IMAGE)
                 break
 
+            /* If we don't have anough bytes for the segment count we are done reading. */
+            if (byteReader.contentLength - positionCounter < 2)
+                break
+
             /* Note: Segment length includes size bytes */
             val segmentLength =
                 byteReader.read2BytesAsInt("segmentLength", JPEG_BYTE_ORDER) - 2
 
             positionCounter += 2
 
+            /* Ignore invalid segment lengths */
             if (segmentLength <= 0)
-                throw ImageReadException("Illegal JPEG segment length: $segmentLength")
+                continue
 
             /* We are only looking for the EXIF segment. */
             if (segmentType != APP1_MARKER) {
+
+                val remainingByteCount = byteReader.contentLength - positionCounter
+
+                /* Ignore invalid segment lengths */
+                if (segmentLength > remainingByteCount)
+                    continue
 
                 byteReader.skipBytes("skip segment", segmentLength)
 

@@ -54,7 +54,7 @@ fun main(args: Array<String>) {
      * Show what the parsing result looks like
      */
 
-    println("--- Ashampoo Photos Metadata ---")
+    println("--- Ashampoo Photo Organizer Metadata ---")
 
     val photoMetadata = metadata.convertToPhotoMetadata()
 

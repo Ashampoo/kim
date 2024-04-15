@@ -215,10 +215,27 @@ object TiffReader {
 
             if (field != null) {
 
-                val subDirOffsets: IntArray = when (offsetField) {
-                    is TagInfoLong -> intArrayOf(directory.getFieldValue(offsetField)!!)
-                    is TagInfoLongs -> directory.getFieldValue(offsetField)
-                    else -> error("Unknown type: $offsetField")
+                val subDirOffsets: IntArray = try {
+
+                    when (offsetField) {
+                        is TagInfoLong -> intArrayOf(directory.getFieldValue(offsetField)!!)
+                        is TagInfoLongs -> directory.getFieldValue(offsetField)
+                        else -> error("Unknown offset type: $offsetField")
+                    }
+
+                } catch (ignore: ImageReadException) {
+
+                    /*
+                     * If the offset field is broken we don't try
+                     * to read the sub directory.
+                     *
+                     * We need to remove the field pointing to wrong
+                     * data or else we won't be able to update the file.
+                     */
+
+                    fields.remove(field)
+
+                    continue
                 }
 
                 for ((index, subDirOffset) in subDirOffsets.withIndex()) {
@@ -596,8 +613,6 @@ object TiffReader {
             return null
 
         } catch (ignore: Exception) {
-
-            ignore.printStackTrace() // FIXME
 
             /*
              * Be silent here as GeoTiff interpretation is not essential.

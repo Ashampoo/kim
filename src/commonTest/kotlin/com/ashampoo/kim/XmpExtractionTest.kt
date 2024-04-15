@@ -25,7 +25,7 @@ import kotlin.test.fail
 class XmpExtractionTest {
 
     val indicesWithoutXmp = setOf(
-        2, 18, 20, 23, 30, 48,
+        2, 18, 20, 23, 30, 42, 43, 44, 45, 46, 47, 48,
         KimTestData.HEIC_TEST_IMAGE_INDEX,
         KimTestData.GIF_TEST_IMAGE_INDEX,
         KimTestData.NEF_TEST_IMAGE_INDEX,

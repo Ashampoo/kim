@@ -16,35 +16,38 @@
  */
 package com.ashampoo.kim.format.jpeg
 
-import com.ashampoo.kim.common.ImageReadException
 import com.ashampoo.kim.common.toUInt16
 import com.ashampoo.kim.format.jpeg.JpegConstants.JPEG_BYTE_ORDER
 import com.ashampoo.kim.input.ByteReader
 
 object JpegUtils {
 
-    private fun findNextMarkerBytes(byteReader: ByteReader): ByteArray {
-
-        val markerBytes = ByteArray(2)
-
-        do {
-            markerBytes[0] = markerBytes[1]
-            markerBytes[1] = byteReader.readByte("JFIF marker")
-        } while (
-            0xFF and markerBytes[0].toInt() != 0xFF ||
-            0xFF and markerBytes[1].toInt() == 0xFF
-        )
-
-        return markerBytes
-    }
-
     fun traverseJFIF(byteReader: ByteReader, visitor: JpegVisitor) {
 
         byteReader.readAndVerifyBytes("JPEG SOI (0xFFD8)", JpegConstants.SOI)
 
+        var readBytesCount = JpegConstants.SOI.size
+
         while (true) {
 
-            val markerBytes = findNextMarkerBytes(byteReader)
+            val markerBytes = ByteArray(2)
+
+            /*
+             * Find next marker bytes
+             *
+             * If there are no more bytes left we end.
+             */
+            do {
+
+                markerBytes[0] = markerBytes[1]
+                markerBytes[1] = byteReader.readByte() ?: return
+
+                readBytesCount++
+
+            } while (
+                0xFF and markerBytes[0].toInt() != 0xFF ||
+                0xFF and markerBytes[1].toInt() == 0xFF
+            )
 
             val marker = markerBytes.toUInt16(JPEG_BYTE_ORDER)
 
@@ -57,17 +60,35 @@ object JpegUtils {
 
                 visitor.visitSOS(marker, markerBytes, imageData)
 
+                /* Break, because the image segment is the last one. */
                 break
             }
 
+            /* If we don't have anough bytes for the segment count we are done reading. */
+            if (byteReader.contentLength - readBytesCount < 2)
+                break
+
             val segmentLengthBytes = byteReader.readBytes("segmentLengthBytes", 2)
+
+            readBytesCount += 2
 
             val segmentLength = segmentLengthBytes.toUInt16(JPEG_BYTE_ORDER)
 
-            if (segmentLength < 2)
-                throw ImageReadException("Invalid segment size: $segmentLength")
+            val segmentContentLength = segmentLength - 2
 
-            val segmentData = byteReader.readBytes("segmentData", segmentLength - 2)
+            val remainingByteCount = byteReader.contentLength - readBytesCount
+
+            /*
+             * If the segment specifies a zero length or a length that is
+             * longer than the remaining bytes, it's corrupt and should be ignored.
+             * That's what ExifTool does.
+             */
+            if (segmentContentLength <= 0 || segmentContentLength > remainingByteCount)
+                continue
+
+            val segmentData = byteReader.readBytes("segmentData", segmentContentLength)
+
+            readBytesCount += segmentContentLength
 
             val analyzeNextSegment = visitor.visitSegment(
                 marker,

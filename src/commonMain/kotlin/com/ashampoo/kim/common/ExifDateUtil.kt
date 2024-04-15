@@ -15,13 +15,9 @@
  */
 package com.ashampoo.kim.common
 
-/**
- * This class contains extensions needed to
- * interpret bytes in photo files.
- */
-
-private val emptyExifDates = setOf(
+private val emptyExifDateStrings = setOf(
     "0000:00:00 00:00:00",
+    "    :  :     :  :  ",
     "                   "
 )
 
@@ -43,7 +39,7 @@ private const val FIRST_SECOND_INDEX = 17
 private const val SECOND_SECOND_INDEX = 18
 
 fun isExifDateEmpty(exifDate: String?): Boolean =
-    exifDate.isNullOrEmpty() || emptyExifDates.contains(exifDate)
+    exifDate.isNullOrBlank() || emptyExifDateStrings.contains(exifDate)
 
 /**
  * EXIF dates are in the format of "yyyy:MM:dd HH:mm:ss" (19 chars),

@@ -13,7 +13,7 @@
 
 Kim is a Kotlin Multiplatform library for reading and writing image metadata.
 
-It's part of [Ashampoo Photos](https://ashampoo.com/photos).
+It's part of [Ashampoo Photo Organizer](https://ashampoo.com/photo-organizer).
 
 ## Features
 
@@ -34,12 +34,12 @@ It's part of [Ashampoo Photos](https://ashampoo.com/photos).
     + JPG: Lossless rotation by modifying only one byte (where present)
 
 The future development of features on our part is driven entirely by the needs
-of Ashampoo Photos, which, in turn, is driven by user community feedback.
+of Ashampoo Photo Organizer, which, in turn, is driven by user community feedback.
 
 ## Installation
 
 ```
-implementation("com.ashampoo:kim:0.17.3")
+implementation("com.ashampoo:kim:0.17.4")
 ```
 
 For the targets `wasmJs` & `js` you also need to specify this:

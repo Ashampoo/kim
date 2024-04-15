@@ -125,6 +125,8 @@ fun setGeoTiffToJpeg() {
 
 /**
  * Shows how to update set GeoTiff to a TIF file using JVM API.
+ *
+ * CAUTION: Writing TIFF is experimental and may corrupt the file!
  */
 fun setGeoTiffToTiff() {
 

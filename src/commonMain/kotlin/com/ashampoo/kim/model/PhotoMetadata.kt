@@ -24,7 +24,7 @@ import kotlinx.datetime.toLocalDateTime
 
 /**
  * Represents a high-level summary of image metadata extracted from raw ImageMetadata.
- * This summary is used by Ashampoo Photos.
+ * This summary is used by Ashampoo Photo Organizer.
  */
 data class PhotoMetadata(
 
