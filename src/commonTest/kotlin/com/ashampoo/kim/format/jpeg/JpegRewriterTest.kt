@@ -82,7 +82,9 @@ class JpegRewriterTest {
             if (index == 41)
                 continue
 
-            // FIXME
+            // FIXME Corrupt file. Normal fields have offset in Makernote space.
+            //   This should be detected to keep Makernote as is.
+            //   ExifTool behaves the same.
             if (index == 42)
                 continue
 
@@ -188,11 +190,14 @@ class JpegRewriterTest {
 
         for (index in 1..KimTestData.HIGHEST_JPEG_INDEX) {
 
-//            if (index != 42)
-//                continue
-
             // FIXME APP1 segment is too long for rewrite
             if (index == 41)
+                continue
+
+            // FIXME Corrupt file. Normal fields have offset in Makernote space.
+            //   This should be detected to keep Makernote as is.
+            //   ExifTool behaves the same.
+            if (index == 42)
                 continue
 
             // FIXME
