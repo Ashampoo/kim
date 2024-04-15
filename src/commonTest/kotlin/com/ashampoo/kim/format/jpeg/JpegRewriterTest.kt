@@ -88,7 +88,7 @@ class JpegRewriterTest {
             if (index == 42)
                 continue
 
-            // FIXME
+            // FIXME Handle extra ExifOffset in IFD1 (thumbnail)
             if (index == 43)
                 continue
 
@@ -200,7 +200,7 @@ class JpegRewriterTest {
             if (index == 42)
                 continue
 
-            // FIXME
+            // FIXME Handle extra ExifOffset in IFD1 (thumbnail)
             if (index == 43)
                 continue
 

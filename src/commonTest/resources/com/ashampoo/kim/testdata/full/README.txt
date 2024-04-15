@@ -11,7 +11,7 @@ photo_23.jpg = Nothing Phone OOC-JPEG (50 MP)
 photo_30.jpg = Multiple APP1
 photo_41.jpg = Long APP1
 photo_42.jpg = Broken, normal fields point into Makernote space.
-photo_43.jpg = Multiple EXIF offsets on rewrite
+photo_43.jpg = IFD1 (Thumbnail) has its own ExifOffset.
 photo_44.jpg = Broken, but can be read by ExifTool (wrong segment size)
 photo_45.jpg = Broken, but can be read by ExifTool (no SOFN = no image size)
 photo_46.jpg = Broken, but can be read by ExifTool (ExifOffset field corrupt)
