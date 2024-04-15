@@ -74,22 +74,16 @@ object JpegUtils {
 
             val segmentLength = segmentLengthBytes.toUInt16(JPEG_BYTE_ORDER)
 
-            /*
-             * Ignore segments that specify to have zero length
-             * and look for the next marker bytes.
-             * That's also what ExifTool seems to do.
-             */
-            if (segmentLength < 2)
-                continue
-
             val segmentContentLength = segmentLength - 2
 
+            val remainingByteCount = byteReader.contentLength - readBytesCount
+
             /*
-             * If the segment specifies a length that is longer than the
-             * remaining bytes, it's corrupt and should be ignored.
+             * If the segment specifies a zero length or a length that is
+             * longer than the remaining bytes, it's corrupt and should be ignored.
              * That's what ExifTool does.
              */
-            if (segmentContentLength > byteReader.contentLength - readBytesCount)
+            if (segmentContentLength <= 0 || segmentContentLength > remainingByteCount)
                 continue
 
             val segmentData = byteReader.readBytes("segmentData", segmentContentLength)
