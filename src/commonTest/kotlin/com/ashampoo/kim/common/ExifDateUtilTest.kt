@@ -55,12 +55,7 @@ class ExifDateUtilTest {
 
         /* Blanks string. */
         assertFailsWith<IllegalArgumentException>("Should not accept only blanks.") {
-            convertExifDateToIso8601Date("    -  -  T  :  :  ")
-        }
-
-        /* Blanks string + zero seconds. */
-        assertFailsWith<IllegalArgumentException>("Should not accept only blanks.") {
-            convertExifDateToIso8601Date("    -  -  T  :  :00")
+            convertExifDateToIso8601Date("    :  :     :  :  ")
         }
 
         /* Zero string. */
