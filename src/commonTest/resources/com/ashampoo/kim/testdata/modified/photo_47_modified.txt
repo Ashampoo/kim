@@ -1,85 +1,26 @@
 File format : JPEG
-Resolution  : 3038 x 3038
+Resolution  : 260 x 773
 ---- TIFF ----
 Version 42
-Little-endian (Intel, II)
+Big-endian (Motorola, MM)
 ---- Directory IFD0 @ 8 ----
-0000000010 0x010e ImageDescription = OLYMPUS DIGITAL CAMERA
-0000000022 0x010f Make = OLYMPUS IMAGING CORP.
-0000000034 0x0110 Model = E-M5MarkII
-0000000046 0x0112 Orientation = 8
-0000000058 0x011a XResolution = 240/1 (240.0)
-0000000070 0x011b YResolution = 240/1 (240.0)
-0000000082 0x0128 ResolutionUnit = 2
-0000000094 0x0131 Software = Adobe Photoshop Lightroom 6.14 (Windows)
-0000000106 0x0132 ModifyDate = 2023:05:10 13:37:42
-0000000118 0x8769 ExifOffset = 282
-0000000130 0x8825 GPSInfo = 12466
+0000000010 0x0112 Orientation = 8
+0000000022 0x0132 ModifyDate = 2023:05:10 13:37:42
+0000000034 0x8769 ExifOffset = 84
+0000000046 0x8825 GPSInfo = 156
 
----- Directory ExifIFD @ 282 ----
-0000000284 0x829a ExposureTime = 1/320 (0.003125)
-0000000296 0x829d FNumber = 28/10 (2.8)
-0000000308 0x8822 ExposureProgram = 3
-0000000320 0x8827 PhotographicSensitivity = 500
-0000000332 0x8830 SensitivityType = 1
-0000000344 0x9000 ExifVersion = [0x30, 0x32, 0x33, 0x30]
-0000000356 0x9003 DateTimeOriginal = 2023:05:10 13:37:42
-0000000368 0x9004 DateTimeDigitized = 2023:05:10 13:37:42
-0000000380 0x9201 ShutterSpeedValue = 8321928/1000000 (8.321928)
-0000000392 0x9202 ApertureValue = 2970854/1000000 (2.970854)
-0000000404 0x9204 ExposureCompensation = 0/10 (0.0)
-0000000416 0x9205 MaxApertureValue = 768/256 (3.0)
-0000000428 0x9207 MeteringMode = 5
-0000000440 0x9208 LightSource = 0
-0000000452 0x9209 Flash = 24
-0000000464 0x920a FocalLength = 150/1 (150.0)
-0000000476 0xa001 ColorSpace = 1
-0000000488 0xa20e FocalPlaneXResolution = 87196351/32768 (2661.021454)
-0000000500 0xa20f FocalPlaneYResolution = 87196351/32768 (2661.021454)
-0000000512 0xa210 FocalPlaneResolutionUnit = 3
-0000000524 0xa300 FileSource = 3
-0000000536 0xa302 CFAPattern = [0x02, 0x00, 0x02, 0x00, 0x00, 0x01, 0x01, 0x02]
-0000000548 0xa401 CustomRendered = 0
-0000000560 0xa402 ExposureMode = 0
-0000000572 0xa403 WhiteBalance = 0
-0000000584 0xa404 DigitalZoomRatio = 100/100 (1.0)
-0000000596 0xa405 FocalLengthIn35mmFormat = 300
-0000000608 0xa406 SceneCaptureType = 0
-0000000620 0xa407 GainControl = 2
-0000000632 0xa408 Contrast = 0
-0000000644 0xa409 Saturation = 0
-0000000656 0xa40a Sharpness = 0
-0000000668 0xa431 BodySerialNumber = BHEA65641
-0000000680 0xa432 LensSpecification = [40/1 (40.0), 150/1 (150.0), 28/10 (2.8), 28/10 (2.8)]
-0000000692 0xa434 LensModel = OLYMPUS M.40-150mm F2.8
-0000000704 0xa435 LensSerialNumber = ABV25833600
+---- Directory ExifIFD @ 84 ----
+0000000086 0x9003 DateTimeOriginal = 2023:05:10 13:37:42
+0000000098 0x9004 DateTimeDigitized = 2023:05:10 13:37:42
 
----- Directory GPS @ 12466 ----
-0000012468 0x0000 GPSVersionID = [0x02, 0x03, 0x00, 0x00]
-0000012480 0x0001 GPSLatitudeRef = N
-0000012492 0x0002 GPSLatitude = [53/1 (53.0), 13/1 (13.0), 24519/2500 (9.8076)]
-0000012504 0x0003 GPSLongitudeRef = E
-0000012516 0x0004 GPSLongitude = [8/1 (8.0), 14/1 (14.0), 56949/2500 (22.7796)]
-
----- Directory SubIFD @ 926 ----
-0000000928 0x0103 Compression = 6
-0000000940 0x011a XResolution = 72/1 (72.0)
-0000000952 0x011b YResolution = 72/1 (72.0)
-0000000964 0x0128 ResolutionUnit = 2
-0000000976 0x0201 JpgFromRawStart = 1020
-0000000988 0x0202 JpgFromRawLength = 11446
-
+---- Directory GPS @ 156 ----
+0000000158 0x0000 GPSVersionID = [0x02, 0x03, 0x00, 0x00]
+0000000170 0x0001 GPSLatitudeRef = N
+0000000182 0x0002 GPSLatitude = [53/1 (53.0), 13/1 (13.0), 24519/2500 (9.8076)]
+0000000194 0x0003 GPSLongitudeRef = E
+0000000206 0x0004 GPSLongitude = [8/1 (8.0), 14/1 (14.0), 56949/2500 (22.7796)]
 
 ---- IPTC ----
-Caption/Abstract (120) = 'three yellow ducklings on body of water in close-up photography'
-Digital Creation Time (63) = '193807'
-Digital Creation Date (62) = '20180713'
-Time Created (60) = '193807'
-Date Created (55) = '20180713'
-Keywords (25) = 'bird'
-Keywords (25) = 'animal'
-Keywords (25) = 'outdoors'
-Keywords (25) = 'duck'
 Keywords (25) = 'Umlauts: äöüß'
 
 ---- XMP ----
