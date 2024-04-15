@@ -1,113 +1,97 @@
 File format : JPEG
-Resolution  : 4032 x 3024
+Resolution  : 1024 x 768
 ---- TIFF ----
 Version 42
-Big-endian (Motorola, MM)
+Little-endian (Intel, II)
 ---- Directory IFD0 @ 8 ----
-0000000010 0x010f Make = Apple
-0000000022 0x0110 Model = iPhone XS
-0000000034 0x011a XResolution = 72/1 (72.0)
-0000000046 0x011b YResolution = 72/1 (72.0)
-0000000058 0x0128 ResolutionUnit = 2
-0000000070 0x0131 Software = 12.1.4
-0000000082 0x0132 ModifyDate = 2019:03:22 18:50:02
-0000000094 0x0142 TileWidth = 512
-0000000106 0x0143 TileLength = 512
-0000000118 0x0213 YCbCrPositioning = 1
-0000000130 0x8769 ExifOffset = 218
-0000000142 0x8825 GPSInfo = 1796
+0000000010 0x010e ImageDescription =  DIGITAL CAMERA 
+0000000022 0x010f Make = Digital
+0000000034 0x0110 Model = Digital Cam
+0000000046 0x0112 Orientation = 1
+0000000058 0x011a XResolution = 72/1 (72.0)
+0000000070 0x011b YResolution = 72/1 (72.0)
+0000000082 0x0128 ResolutionUnit = 2
+0000000094 0x0131 Software = M4021M-1006
+0000000106 0x0132 ModifyDate = 2004:01:18 04:27:28
+0000000118 0x0213 YCbCrPositioning = 2
+0000000130 0x8769 ExifOffset = 158
+0000000142 0x8825 GPSInfo = 470
 
----- Directory ExifIFD @ 218 ----
-0000000220 0x829a ExposureTime = 1/122 (0.008197)
-0000000232 0x829d FNumber = 12/5 (2.4)
-0000000244 0x8822 ExposureProgram = 2
-0000000256 0x8827 ISO = 50
-0000000268 0x9000 ExifVersion = [0x30, 0x32, 0x32, 0x31]
-0000000280 0x9003 DateTimeOriginal = 2019:03:22 18:50:02
-0000000292 0x9004 DateTimeDigitized = 2019:03:22 18:50:02
-0000000304 0x9101 ComponentsConfiguration = [0x01, 0x02, 0x03, 0x00]
-0000000316 0x9201 ShutterSpeedValue = 328711/47450 (6.927524)
-0000000328 0x9202 ApertureValue = 126503/50079 (2.526069)
-0000000340 0x9203 BrightnessValue = 685337/119222 (5.748411)
-0000000352 0x9204 ExposureCompensation = 0/1 (0.0)
-0000000364 0x9207 MeteringMode = 5
-0000000376 0x9209 Flash = 24
-0000000388 0x920a FocalLength = 6/1 (6.0)
-0000000400 0x9214 SubjectArea = [2007, 1505, 2112, 1270]
-0000000412 0x927c MakerNote = [996 bytes]
-0000000424 0x9291 SubSecTimeOriginal = 935
-0000000436 0x9292 SubSecTimeDigitized = 935
-0000000448 0xa000 FlashpixVersion = [0x30, 0x31, 0x30, 0x30]
-0000000460 0xa001 ColorSpace = -1
-0000000472 0xa002 ExifImageWidth = 4032
-0000000484 0xa003 ExifImageHeight = 3024
-0000000496 0xa217 SensingMethod = 2
-0000000508 0xa301 SceneType = 1
-0000000520 0xa401 CustomRendered = 8
-0000000532 0xa402 ExposureMode = 0
-0000000544 0xa403 WhiteBalance = 0
-0000000556 0xa405 FocalLengthIn35mmFormat = 52
-0000000568 0xa406 SceneCaptureType = 0
-0000000580 0xa432 LensSpecification = [17/4 (4.25), 6/1 (6.0), 9/5 (1.8), 12/5 (2.4)]
-0000000592 0xa433 LensMake = Apple
-0000000604 0xa434 LensModel = iPhone XS back dual camera 6mm f/2.4
+---- Directory ExifIFD @ 158 ----
+0000000160 0x829a ExposureTime = 1000/316682 (0.003158)
+0000000172 0x829d FNumber = 740/100 (7.4)
+0000000184 0x8822 ExposureProgram = 2
+0000000196 0x8827 ISO = 100
+0000000208 0x9000 ExifVersion = [0x30, 0x32, 0x32, 0x30]
+0000000220 0x9003 DateTimeOriginal = 2006:04:26 00:26:14
+0000000232 0x9004 DateTimeDigitized = 2006:04:26 00:26:14
+0000000244 0x9101 ComponentsConfiguration = [0x01, 0x02, 0x03, 0x00]
+0000000256 0x9102 CompressedBitsPerPixel = 2/1 (2.0)
+0000000268 0x9204 ExposureCompensation = 154/10 (15.4)
+0000000280 0x9205 MaxApertureValue = 61/20 (3.05)
+0000000292 0x9207 MeteringMode = 2
+0000000304 0x9208 LightSource = 0
+0000000316 0x9209 Flash = 0
+0000000328 0x920a FocalLength = 1004/100 (10.04)
+0000000340 0xa000 FlashpixVersion = [0x30, 0x31, 0x30, 0x30]
+0000000352 0xa001 ColorSpace = 1
+0000000364 0xa002 ExifImageWidth = 1024
+0000000376 0xa003 ExifImageHeight = 768
+0000000388 0xa004 RelatedSoundFile = 
+0000000400 0xa005 InteropOffset = 440
+0000000412 0xa300 FileSource = 3
+0000000424 0xa301 SceneType = 1
 
----- Directory GPS @ 1796 ----
-0000001798 0x0001 GPSLatitudeRef = N
-0000001810 0x0002 GPSLatitude = [34/1 (34.0), 27/1 (27.0), 4701/100 (47.01)]
-0000001822 0x0003 GPSLongitudeRef = W
-0000001834 0x0004 GPSLongitude = [119/1 (119.0), 45/1 (45.0), 2958/100 (29.58)]
-0000001846 0x0005 GPSAltitudeRef = 0
-0000001858 0x0006 GPSAltitude = 425411/2445 (173.992229)
-0000001870 0x0007 GPSTimeStamp = [1/1 (1.0), 50/1 (50.0), 1/1 (1.0)]
-0000001882 0x000c GPSSpeedRef = K
-0000001894 0x000d GPSSpeed = 76721/92899 (0.825854)
-0000001906 0x0010 GPSImgDirectionRef = T
-0000001918 0x0011 GPSImgDirection = 100129/713 (140.43338)
-0000001930 0x0017 GPSDestBearingRef = T
-0000001942 0x0018 GPSDestBearing = 100129/713 (140.43338)
-0000001954 0x001d GPSDateStamp = 2019:03:23
-0000001966 0x001f Unknown = 79605/8807 (9.038833)
+---- Directory InteropIFD @ 440 ----
+0000000442 0x0001 InteroperabilityIndex = R98
+0000000454 0x0002 InteroperabilityVersion = [0x30, 0x31, 0x30, 0x30]
 
----- IPTC ----
-Keywords (25) = 'nature'
-Keywords (25) = 'field'
-Keywords (25) = 'grassland'
-Keywords (25) = 'outdoors'
+---- Directory GPS @ 470 ----
+0000000472 0x0000 GPSVersionID = [0x02, 0x02, 0x00, 0x00]
 
----- XMP ----
-<?xpacket begin='﻿' id='W5M0MpCehiHzreSzNTczkc9d'?>
-<x:xmpmeta xmlns:x='adobe:ns:meta/' x:xmptk='Image::ExifTool 12.27'>
-<rdf:RDF xmlns:rdf='http://www.w3.org/1999/02/22-rdf-syntax-ns#'>
+---- Directory IFD1 @ 682 ----
+0000000684 0x010e ImageDescription =  DIGITAL CAMERA 
+0000000696 0x010f Make = Digital
+0000000708 0x0110 Model = Digital Cam
+0000000720 0x0112 Orientation = 1
+0000000732 0x011a XResolution = 72/1 (72.0)
+0000000744 0x011b YResolution = 72/1 (72.0)
+0000000756 0x0128 ResolutionUnit = 2
+0000000768 0x0131 Software = M4021M-1006
+0000000780 0x0132 ModifyDate = 2004:01:18 04:27:28
+0000000792 0x0213 YCbCrPositioning = 2
+0000000804 0x8769 ExifOffset = 832
+0000000816 0x8825 GPSInfo = 1144
 
- <rdf:Description rdf:about=''
-  xmlns:xmp='http://ns.adobe.com/xap/1.0/'>
-  <xmp:Rating>4</xmp:Rating>
- </rdf:Description>
-</rdf:RDF>
-</x:xmpmeta>
-                                                                                                    
-                                                                                                    
-                                                                                                    
-                                                                                                    
-                                                                                                    
-                                                                                                    
-                                                                                                    
-                                                                                                    
-                                                                                                    
-                                                                                                    
-                                                                                                    
-                                                                                                    
-                                                                                                    
-                                                                                                    
-                                                                                                    
-                                                                                                    
-                                                                                                    
-                                                                                                    
-                                                                                                    
-                                                                                                    
-                                                                                                    
-                                                                                                    
-                                                                                                    
-                                                                                                    
-<?xpacket end='w'?>
+---- Directory ExifIFD @ 832 ----
+0000000834 0x829a ExposureTime = 1000/316682 (0.003158)
+0000000846 0x829d FNumber = 740/100 (7.4)
+0000000858 0x8822 ExposureProgram = 2
+0000000870 0x8827 ISO = 100
+0000000882 0x9000 ExifVersion = [0x30, 0x32, 0x32, 0x30]
+0000000894 0x9003 DateTimeOriginal = 2006:04:26 00:26:14
+0000000906 0x9004 DateTimeDigitized = 2006:04:26 00:26:14
+0000000918 0x9101 ComponentsConfiguration = [0x01, 0x02, 0x03, 0x00]
+0000000930 0x9102 CompressedBitsPerPixel = 2/1 (2.0)
+0000000942 0x9204 ExposureCompensation = 154/10 (15.4)
+0000000954 0x9205 MaxApertureValue = 61/20 (3.05)
+0000000966 0x9207 MeteringMode = 2
+0000000978 0x9208 LightSource = 0
+0000000990 0x9209 Flash = 0
+0000001002 0x920a FocalLength = 1004/100 (10.04)
+0000001014 0xa000 FlashpixVersion = [0x30, 0x31, 0x30, 0x30]
+0000001026 0xa001 ColorSpace = 1
+0000001038 0xa002 ExifImageWidth = 1024
+0000001050 0xa003 ExifImageHeight = 768
+0000001062 0xa004 RelatedSoundFile = 
+0000001074 0xa005 InteropOffset = 1114
+0000001086 0xa300 FileSource = 3
+0000001098 0xa301 SceneType = 1
+
+---- Directory InteropIFD @ 1114 ----
+0000001116 0x0001 InteroperabilityIndex = R98
+0000001128 0x0002 InteroperabilityVersion = [0x30, 0x31, 0x30, 0x30]
+
+---- Directory GPS @ 1144 ----
+0000001146 0x0000 GPSVersionID = [0x02, 0x02, 0x00, 0x00]
+
