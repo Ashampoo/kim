@@ -34,7 +34,7 @@ It's part of [Ashampoo Photo Organizer](https://ashampoo.com/photo-organizer).
     + JPG: Lossless rotation by modifying only one byte (where present)
 
 The future development of features on our part is driven entirely by the needs
-of Ashampoo Photos, which, in turn, is driven by user community feedback.
+of Ashampoo Photo Organizer, which, in turn, is driven by user community feedback.
 
 ## Installation
 
