@@ -142,7 +142,7 @@ object PhotoMetadataConverter {
     }
 
     @JvmStatic
-    fun extractTakenDateAsIso(metadata: ImageMetadata): String? {
+    fun extractTakenDateAsIsoString(metadata: ImageMetadata): String? {
 
         val takenDateField = metadata.findTiffField(ExifTag.EXIF_TAG_DATE_TIME_ORIGINAL)
             ?: return null
@@ -168,7 +168,7 @@ object PhotoMetadataConverter {
 
         try {
 
-            takenDate = extractTakenDateAsIso(metadata) ?: return null
+            takenDate = extractTakenDateAsIsoString(metadata) ?: return null
 
             val takenDateSubSecond = metadata
                 .findStringValue(ExifTag.EXIF_TAG_SUB_SEC_TIME_ORIGINAL)
