@@ -18,6 +18,7 @@ package com.ashampoo.kim.common
 private val emptyExifDateStrings = setOf(
     "0000:00:00 00:00:00",
     "    -  -  T  :  :  ",
+    "    -  -  T  :  :00",
     "                   "
 )
 
