@@ -614,8 +614,6 @@ object TiffReader {
 
         } catch (ignore: Exception) {
 
-            ignore.printStackTrace() // FIXME
-
             /*
              * Be silent here as GeoTiff interpretation is not essential.
              */
