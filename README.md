@@ -13,7 +13,7 @@
 
 Kim is a Kotlin Multiplatform library for reading and writing image metadata.
 
-It's part of [Ashampoo Photos](https://ashampoo.com/photos).
+It's part of [Ashampoo Photo Organizer](https://ashampoo.com/photo-organizer).
 
 ## Features
 
