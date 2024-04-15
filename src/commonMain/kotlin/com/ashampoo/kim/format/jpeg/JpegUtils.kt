@@ -16,7 +16,6 @@
  */
 package com.ashampoo.kim.format.jpeg
 
-import com.ashampoo.kim.common.ImageReadException
 import com.ashampoo.kim.common.toUInt16
 import com.ashampoo.kim.format.jpeg.JpegConstants.JPEG_BYTE_ORDER
 import com.ashampoo.kim.input.ByteReader
@@ -75,8 +74,13 @@ object JpegUtils {
 
             val segmentLength = segmentLengthBytes.toUInt16(JPEG_BYTE_ORDER)
 
+            /*
+             * Ignore segments that specify to have zero length
+             * and look for the next marker bytes.
+             * That's also what ExifTool seems to do.
+             */
             if (segmentLength < 2)
-                throw ImageReadException("Invalid segment size: $segmentLength")
+                continue
 
             val segmentContentLength = segmentLength - 2
 
