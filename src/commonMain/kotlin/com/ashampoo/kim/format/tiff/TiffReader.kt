@@ -220,7 +220,7 @@ object TiffReader {
                     when (offsetField) {
                         is TagInfoLong -> intArrayOf(directory.getFieldValue(offsetField)!!)
                         is TagInfoLongs -> directory.getFieldValue(offsetField)
-                        else -> intArrayOf()
+                        else -> error("Unknown offset type: $offsetField")
                     }
 
                 } catch (ignore: ImageReadException) {
@@ -229,12 +229,13 @@ object TiffReader {
                      * If the offset field is broken we don't try
                      * to read the sub directory.
                      *
-                     * In case that the Exif Offset field is just a bunch
-                     * of numbers ExifTool also reports them just as a
-                     * value field without further interpretation.
+                     * We need to remove the field pointing to wrong
+                     * data or else we won't be able to update the file.
                      */
 
-                    intArrayOf()
+                    fields.remove(field)
+
+                    continue
                 }
 
                 for ((index, subDirOffset) in subDirOffsets.withIndex()) {

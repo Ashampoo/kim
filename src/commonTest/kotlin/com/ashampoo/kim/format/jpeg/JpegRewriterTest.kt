@@ -92,10 +92,6 @@ class JpegRewriterTest {
             if (index == 43)
                 continue
 
-            // FIXME
-            if (index == 46)
-                continue
-
             val bytes = KimTestData.getBytesOf(index)
 
             val metadata = Kim.readMetadata(bytes)
@@ -202,10 +198,6 @@ class JpegRewriterTest {
 
             // FIXME Handle extra ExifOffset in IFD1 (thumbnail)
             if (index == 43)
-                continue
-
-            // FIXME
-            if (index == 46)
                 continue
 
             val bytes = KimTestData.getBytesOf(index)

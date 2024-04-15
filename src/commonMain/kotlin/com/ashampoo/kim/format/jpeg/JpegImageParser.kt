@@ -230,7 +230,7 @@ object JpegImageParser : ImageParser {
             val iptcMetadata = try {
                 segment.parseIptcMetadata()
             } catch (ignore: ImageReadException) {
-                println("Ignored broken IPTC: ${ignore.message}")
+                /* We ignore proken IPTC. */
                 continue
             }
 

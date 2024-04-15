@@ -1,0 +1,44 @@
+File format : JPEG
+Resolution  : 325 x 407
+---- TIFF ----
+Version 42
+Big-endian (Motorola, MM)
+---- Directory IFD0 @ 200 ----
+0000000202 0x0112 Orientation = 8
+0000000214 0x0131 Software = Adobe Photoshop 7.0
+0000000226 0x0132 ModifyDate = 2023:05:10 13:37:42
+0000000238 0x8769 ExifOffset = 122
+0000000250 0x8825 GPSInfo = 4048
+
+---- Directory ExifIFD @ 122 ----
+0000000124 0x9003 DateTimeOriginal = 2023:05:10 13:37:42
+0000000136 0x9004 DateTimeDigitized = 2023:05:10 13:37:42
+
+---- Directory GPS @ 4048 ----
+0000004050 0x0000 GPSVersionID = [0x02, 0x03, 0x00, 0x00]
+0000004062 0x0001 GPSLatitudeRef = N
+0000004074 0x0002 GPSLatitude = [53/1 (53.0), 13/1 (13.0), 24519/2500 (9.8076)]
+0000004086 0x0003 GPSLongitudeRef = E
+0000004098 0x0004 GPSLongitude = [8/1 (8.0), 14/1 (14.0), 56949/2500 (22.7796)]
+
+---- Directory IFD1 @ 266 ----
+0000000268 0x0103 Compression = 6
+0000000280 0x011a XResolution = 72/851969 (8.5E-5)
+0000000292 0x011b YResolution = 72/1 (72.0)
+0000000304 0x0128 ResolutionUnit = 2
+0000000316 0x0201 JpgFromRawStart = 344
+0000000328 0x0202 JpgFromRawLength = 3664
+
+---- IPTC ----
+Keywords (25) = 'Umlauts: äöüß'
+
+---- XMP ----
+<?xpacket begin="﻿" id="W5M0MpCehiHzreSzNTczkc9d"?>
+    <x:xmpmeta xmlns:x="adobe:ns:meta/" x:xmptk="Adobe XMP Core 6.1.10">
+      <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+        <rdf:Description rdf:about=""
+            xmlns:xmp="http://ns.adobe.com/xap/1.0/"
+          xmp:Rating="3"/>
+      </rdf:RDF>
+    </x:xmpmeta>
+<?xpacket end="w"?>
