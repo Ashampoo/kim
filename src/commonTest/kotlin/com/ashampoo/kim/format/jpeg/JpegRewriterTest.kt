@@ -188,12 +188,11 @@ class JpegRewriterTest {
 
         for (index in 1..KimTestData.HIGHEST_JPEG_INDEX) {
 
+//            if (index != 42)
+//                continue
+
             // FIXME APP1 segment is too long for rewrite
             if (index == 41)
-                continue
-
-            // FIXME
-            if (index == 42)
                 continue
 
             // FIXME
@@ -203,8 +202,6 @@ class JpegRewriterTest {
             // FIXME
             if (index == 46)
                 continue
-
-            println(index)
 
             val bytes = KimTestData.getBytesOf(index)
 
@@ -331,9 +328,10 @@ class JpegRewriterTest {
 
                     if (!bytesEqual) {
 
-                        fail(
-                            "Value mismatch for image #$index and field ${expectedField.tagFormatted}: " +
-                                "$expectedBytesAsHex != $actualBytesAsHex"
+                        assertEquals(
+                            expected = expectedBytesAsHex,
+                            actual = actualBytesAsHex,
+                            message = "Value mismatch for image #$index and field ${expectedField.tagFormatted}"
                         )
                     }
                 }
