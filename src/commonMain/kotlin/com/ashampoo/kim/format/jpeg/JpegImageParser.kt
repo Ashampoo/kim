@@ -96,6 +96,7 @@ object JpegImageParser : ImageParser {
 
             readBytesCount += 2
 
+            /* Ignore invalid segment lengths */
             if (segmentLength <= 0)
                 continue
 
