@@ -138,17 +138,11 @@ object JpegImageParser : ImageParser {
             )
         }
 
-    private fun getImageSize(segments: List<Segment>): ImageSize {
+    private fun getImageSize(segments: List<Segment>): ImageSize? {
 
         val sofnSegment = segments.filterIsInstance<SofnSegment>()
 
-        if (sofnSegment.isEmpty())
-            throw ImageReadException("No JFIF Data Found.")
-
-        if (sofnSegment.size > 1)
-            throw ImageReadException("Redundant JFIF Data Found.")
-
-        val firstSegment = sofnSegment.first()
+        val firstSegment = sofnSegment.firstOrNull() ?: return null
 
         return ImageSize(firstSegment.width, firstSegment.height)
     }

@@ -215,10 +215,26 @@ object TiffReader {
 
             if (field != null) {
 
-                val subDirOffsets: IntArray = when (offsetField) {
-                    is TagInfoLong -> intArrayOf(directory.getFieldValue(offsetField)!!)
-                    is TagInfoLongs -> directory.getFieldValue(offsetField)
-                    else -> error("Unknown type: $offsetField")
+                val subDirOffsets: IntArray = try {
+
+                    when (offsetField) {
+                        is TagInfoLong -> intArrayOf(directory.getFieldValue(offsetField)!!)
+                        is TagInfoLongs -> directory.getFieldValue(offsetField)
+                        else -> intArrayOf()
+                    }
+
+                } catch (ignore: ImageReadException) {
+
+                    /*
+                     * If the offset field is broken we don't try
+                     * to read the sub directory.
+                     *
+                     * In case that the Exif Offset field is just a bunch
+                     * of numbers ExifTool also reports them just as a
+                     * value field without further interpretation.
+                     */
+
+                    intArrayOf()
                 }
 
                 for ((index, subDirOffset) in subDirOffsets.withIndex()) {

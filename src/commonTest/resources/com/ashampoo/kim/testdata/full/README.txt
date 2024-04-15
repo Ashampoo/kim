@@ -12,10 +12,10 @@ photo_30.jpg = Multiple APP1
 photo_41.jpg = Long APP1
 photo_42.jpg = Makernote issue on rewrite
 photo_43.jpg = Multiple EXIF offsets on rewrite
-photo_44.jpg = Broken, but can be read by ExifTool
-photo_45.jpg = Broken, but can be read by ExifTool
-photo_46.jpg = Broken, but can be read by ExifTool
-photo_47.jpg = Broken, but can be read by ExifTool
+photo_44.jpg = Broken, but can be read by ExifTool (wrong segment size)
+photo_45.jpg = Broken, but can be read by ExifTool (no SOFN = no image size)
+photo_46.jpg = Broken, but can be read by ExifTool (ExifOffset field corrupt)
+photo_47.jpg = Broken, but can be read by ExifTool (zero segment size)
 photo_48.jpg = iPhone SE OOC-JPEG
 photo_49.jpg = Canon 60D OOC-JPEG
 photo_50.jpg = Fuji X-T4 OOC-JPEG
