@@ -28,6 +28,8 @@ import kotlinx.datetime.toLocalDateTime
  */
 data class PhotoMetadata(
 
+    val imageFormat: ImageFormat? = null,
+
     /* Image resolution */
     val widthPx: Int? = null,
     val heightPx: Int? = null,
