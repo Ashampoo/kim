@@ -116,6 +116,7 @@ object PhotoMetadataConverter {
          * iso, exposure time, etc.) are always taken from EXIF.
          */
         return PhotoMetadata(
+            imageFormat = imageMetadata.imageFormat,
             widthPx = imageMetadata.imageSize?.width,
             heightPx = imageMetadata.imageSize?.height,
             orientation = orientation,

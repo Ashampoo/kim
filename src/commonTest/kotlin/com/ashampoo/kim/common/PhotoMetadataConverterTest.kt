@@ -74,7 +74,7 @@ class PhotoMetadataConverterTest {
         val stringBuilder = StringBuilder()
 
         stringBuilder.appendLine(
-            "name;widthPx;heightPx;orientation;takenDate;latitude;longitude;" +
+            "name;imageFormat;widthPx;heightPx;orientation;takenDate;latitude;longitude;" +
                 "cameraMake;cameraModel;lensMake;lensModel;iso;exposureTime;fNumber;" +
                 "focalLength;flagged;rating;keywords;personsInAlbums;albums;" +
                 "thumbnailImageSize;thumbnailBytes.size"
@@ -86,7 +86,7 @@ class PhotoMetadataConverterTest {
             val metadata = entry.value
 
             stringBuilder.appendLine(
-                "$name;${metadata.widthPx};${metadata.heightPx};" +
+                "$name;${metadata.imageFormat};${metadata.widthPx};${metadata.heightPx};" +
                     "${metadata.orientation};${metadata.takenDate};" +
                     "${metadata.gpsCoordinates?.latitude};${metadata.gpsCoordinates?.longitude};" +
                     "${metadata.cameraMake};${metadata.cameraModel};${metadata.lensMake};" +
