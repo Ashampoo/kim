@@ -117,6 +117,8 @@ data class PhotoMetadata(
 
         return this.copy(
 
+            imageFormat = imageFormat ?: other.imageFormat,
+
             /* Image resolution */
             widthPx = widthPx ?: other.widthPx,
             heightPx = heightPx ?: other.heightPx,
