@@ -39,7 +39,7 @@ of Ashampoo Photo Organizer, which, in turn, is driven by user community feedbac
 ## Installation
 
 ```
-implementation("com.ashampoo:kim:0.17.6")
+implementation("com.ashampoo:kim:0.17.7")
 ```
 
 For the targets `wasmJs` & `js` you also need to specify this:
