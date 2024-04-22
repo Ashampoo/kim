@@ -24,11 +24,11 @@ repositories {
 
 val productName = "Ashampoo Kim"
 
-val ktorVersion: String = "2.3.8"
+val ktorVersion: String = "2.3.10"
 val xmpCoreVersion: String = "1.2.2"
 val dateTimeVersion: String = "0.5.0"
 val testRessourcesVersion: String = "0.4.0"
-val ioCoreVersion: String = "0.3.2"
+val kotlinxIoVersion: String = "0.3.3"
 
 description = productName
 group = "com.ashampoo"
@@ -203,7 +203,7 @@ kotlin {
             /* Kotlin Test */
             implementation(kotlin("test"))
 
-            implementation("org.jetbrains.kotlinx:kotlinx-io-core:$ioCoreVersion")
+            implementation("org.jetbrains.kotlinx:kotlinx-io-core:$kotlinxIoVersion")
         }
     }
 
@@ -256,7 +256,7 @@ kotlin {
              *
              * Not available in commonMain due to missing JS browser support.
              */
-            api("org.jetbrains.kotlinx:kotlinx-io-core:$ioCoreVersion")
+            api("org.jetbrains.kotlinx:kotlinx-io-core:$kotlinxIoVersion")
         }
     }
 

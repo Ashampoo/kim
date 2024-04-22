@@ -21,6 +21,8 @@ import com.ashampoo.kim.format.ImageMetadata
 import com.ashampoo.kim.input.JvmInputStreamByteReader
 import java.io.File
 import java.io.InputStream
+import java.nio.file.Files
+import java.nio.file.StandardOpenOption
 
 /**
  * Extra object to have a nicer API for Java projects
@@ -43,7 +45,19 @@ object KimJvm {
 
         check(file.exists()) { "File does not exist: $file" }
 
-        return readMetadata(file.inputStream(), file.length())
+        return readMetadata(file.inputStream().buffered(), file.length())
+    }
+
+    @JvmStatic
+    @Throws(ImageReadException::class)
+    fun readMetadata(path: java.nio.file.Path): ImageMetadata? {
+
+        check(Files.exists(path)) { "File does not exist: $path" }
+
+        return readMetadata(
+            inputStream = Files.newInputStream(path, StandardOpenOption.READ).buffered(),
+            length = Files.size(path)
+        )
     }
 }
 
@@ -58,3 +72,7 @@ fun Kim.readMetadata(path: String): ImageMetadata? =
 @Throws(ImageReadException::class)
 fun Kim.readMetadata(file: File): ImageMetadata? =
     KimJvm.readMetadata(file)
+
+@Throws(ImageReadException::class)
+fun Kim.readMetadata(path: java.nio.file.Path): ImageMetadata? =
+    KimJvm.readMetadata(path)

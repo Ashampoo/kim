@@ -13,26 +13,48 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.ashampoo.kim
+package com.ashampoo.kim.android
 
+import com.ashampoo.kim.Kim
 import com.ashampoo.kim.common.ImageReadException
 import com.ashampoo.kim.format.ImageMetadata
 import com.ashampoo.kim.input.AndroidInputStreamByteReader
 import java.io.File
 import java.io.InputStream
 
+/**
+ * Extra object to have a nicer API for Java projects
+ */
+object KimAndroid {
+
+    @JvmStatic
+    @Throws(ImageReadException::class)
+    fun readMetadata(inputStream: InputStream, length: Long): ImageMetadata? =
+        Kim.readMetadata(AndroidInputStreamByteReader(inputStream, length))
+
+    @JvmStatic
+    @Throws(ImageReadException::class)
+    fun readMetadata(path: String): ImageMetadata? =
+        readMetadata(File(path))
+
+    @JvmStatic
+    @Throws(ImageReadException::class)
+    fun readMetadata(file: File): ImageMetadata? {
+
+        check(file.exists()) { "File does not exist: $file" }
+
+        return readMetadata(file.inputStream().buffered(), file.length())
+    }
+}
+
 @Throws(ImageReadException::class)
 fun Kim.readMetadata(inputStream: InputStream, length: Long): ImageMetadata? =
-    Kim.readMetadata(AndroidInputStreamByteReader(inputStream, length))
+    KimAndroid.readMetadata(inputStream, length)
 
 @Throws(ImageReadException::class)
 fun Kim.readMetadata(path: String): ImageMetadata? =
-    Kim.readMetadata(File(path))
+    KimAndroid.readMetadata(path)
 
 @Throws(ImageReadException::class)
-fun Kim.readMetadata(file: File): ImageMetadata? {
-
-    check(file.exists()) { "File does not exist: $file" }
-
-    return Kim.readMetadata(file.inputStream(), file.length())
-}
+fun Kim.readMetadata(file: File): ImageMetadata? =
+    KimAndroid.readMetadata(file)
