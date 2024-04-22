@@ -45,7 +45,7 @@ object KimJvm {
 
         check(file.exists()) { "File does not exist: $file" }
 
-        return readMetadata(file.inputStream(), file.length())
+        return readMetadata(file.inputStream().buffered(), file.length())
     }
 
     @JvmStatic
@@ -55,7 +55,7 @@ object KimJvm {
         check(Files.exists(path)) { "File does not exist: $path" }
 
         return readMetadata(
-            inputStream = Files.newInputStream(path, StandardOpenOption.READ),
+            inputStream = Files.newInputStream(path, StandardOpenOption.READ).buffered(),
             length = Files.size(path)
         )
     }
