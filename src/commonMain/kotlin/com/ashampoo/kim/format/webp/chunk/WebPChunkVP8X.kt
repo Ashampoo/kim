@@ -26,7 +26,7 @@ import com.ashampoo.kim.model.ImageSize
  * https://developers.google.com/speed/webp/docs/riff_container#extended_file_format
  */
 @Suppress("MagicNumber")
-class WebPChunkVP8X(
+internal class WebPChunkVP8X(
     bytes: ByteArray
 ) : WebPChunk(WebPChunkType.VP8X, bytes), ImageSizeAware {
 

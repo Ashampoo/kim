@@ -17,12 +17,12 @@ package com.ashampoo.kim.output
 
 import com.ashampoo.kim.input.Closeable
 
-interface ByteWriter : Closeable {
+public interface ByteWriter : Closeable {
 
-    fun write(byte: Int)
+    public fun write(byte: Int)
 
-    fun write(byteArray: ByteArray)
+    public fun write(byteArray: ByteArray)
 
-    fun flush()
+    public fun flush()
 
 }

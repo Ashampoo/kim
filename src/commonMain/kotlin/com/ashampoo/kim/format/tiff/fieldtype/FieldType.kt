@@ -32,7 +32,7 @@ import com.ashampoo.kim.format.tiff.constant.TiffConstants.FIELD_TYPE_SRATIONAL_
 import com.ashampoo.kim.format.tiff.constant.TiffConstants.FIELD_TYPE_SSHORT_INDEX
 import com.ashampoo.kim.format.tiff.constant.TiffConstants.FIELD_TYPE_UNDEFINED_INDEX
 
-interface FieldType<T> {
+public interface FieldType<T> {
 
     val type: Int
 

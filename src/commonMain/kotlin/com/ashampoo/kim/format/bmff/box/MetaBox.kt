@@ -31,7 +31,7 @@ import com.ashampoo.kim.input.readBytes
  *
  * The Meta Box is a container for several metadata boxes.
  */
-class MetaBox(
+internal class MetaBox(
     offset: Long,
     size: Long,
     largeSize: Long?,

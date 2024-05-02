@@ -18,7 +18,7 @@ package com.ashampoo.kim.format.webp.chunk
 import com.ashampoo.kim.format.tiff.TiffReader
 import com.ashampoo.kim.format.webp.WebPChunkType
 
-class WebPChunkExif(
+internal class WebPChunkExif(
     bytes: ByteArray
 ) : WebPChunk(WebPChunkType.EXIF, bytes) {
 

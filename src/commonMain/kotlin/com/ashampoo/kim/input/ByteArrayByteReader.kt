@@ -25,7 +25,7 @@ import kotlin.math.min
  * Note that huge files in production shouldn't be loaded into a ByteArray.
  * For unit the purpose of unit tests this is acceptable.
  */
-class ByteArrayByteReader(
+public class ByteArrayByteReader(
     private val bytes: ByteArray
 ) : RandomAccessByteReader {
 

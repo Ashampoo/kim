@@ -16,7 +16,7 @@
 package com.ashampoo.kim.input
 
 public fun interface Closeable {
-    fun close()
+    public fun close()
 }
 
 /** Executes the code and closes the source after. */

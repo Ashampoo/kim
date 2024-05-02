@@ -26,9 +26,9 @@ import com.ashampoo.kim.input.read4BytesAsInt
 import com.ashampoo.kim.input.readAndVerifyBytes
 import com.ashampoo.kim.input.skipBytes
 
-object RafMetadataExtractor : MetadataExtractor {
+public object RafMetadataExtractor : MetadataExtractor {
 
-    const val REMAINING_HEADER_BYTE_COUNT = 68
+    internal const val REMAINING_HEADER_BYTE_COUNT = 68
 
     /**
      * The RAF file contains a JPEG with EXIF metadata.

@@ -27,7 +27,7 @@ import com.ashampoo.kim.input.skipBytes
 /**
  * EIC/ISO 14496-12 hdlr box
  */
-class HandlerReferenceBox(
+internal class HandlerReferenceBox(
     offset: Long,
     size: Long,
     largeSize: Long?,

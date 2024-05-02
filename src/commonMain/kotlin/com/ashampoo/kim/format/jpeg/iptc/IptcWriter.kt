@@ -22,11 +22,13 @@ import com.ashampoo.kim.format.jpeg.iptc.IptcParser.APP13_BYTE_ORDER
 import com.ashampoo.kim.output.BigEndianBinaryByteWriter
 import com.ashampoo.kim.output.BinaryByteWriter
 import com.ashampoo.kim.output.ByteArrayByteWriter
+import kotlin.jvm.JvmStatic
 
-object IptcWriter {
+public object IptcWriter {
 
     @Suppress("ThrowsCount")
-    fun writeIptcBlocks(
+    @JvmStatic
+    public fun writeIptcBlocks(
         blocks: List<IptcBlock>,
         includeApp13Identifier: Boolean = true
     ): ByteArray {
@@ -78,7 +80,7 @@ object IptcWriter {
     }
 
     /* Writes the IPTC block in UTF-8 */
-    fun writeIptcBlockData(records: List<IptcRecord>): ByteArray {
+    public fun writeIptcBlockData(records: List<IptcRecord>): ByteArray {
 
         val byteWriter = ByteArrayByteWriter()
 

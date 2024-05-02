@@ -28,7 +28,7 @@ import com.ashampoo.kim.input.DefaultRandomAccessByteReader
 import com.ashampoo.kim.model.ImageFormat
 import com.ashampoo.kim.model.ImageSize
 
-object TiffImageParser : ImageParser {
+public object TiffImageParser : ImageParser {
 
     @Throws(ImageReadException::class)
     override fun parseMetadata(byteReader: ByteReader): ImageMetadata =

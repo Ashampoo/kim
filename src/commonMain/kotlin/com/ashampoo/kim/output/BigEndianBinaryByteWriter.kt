@@ -17,7 +17,7 @@
 package com.ashampoo.kim.output
 
 @Suppress("MagicNumber")
-class BigEndianBinaryByteWriter(byteWriter: ByteWriter) : BinaryByteWriter(byteWriter) {
+internal class BigEndianBinaryByteWriter(byteWriter: ByteWriter) : BinaryByteWriter(byteWriter) {
 
     override fun write2Bytes(value: Int) {
         write(0xFF and (value shr 8))

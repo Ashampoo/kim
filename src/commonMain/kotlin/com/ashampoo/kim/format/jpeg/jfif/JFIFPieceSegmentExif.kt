@@ -16,7 +16,7 @@
  */
 package com.ashampoo.kim.format.jpeg.jfif
 
-class JFIFPieceSegmentExif(
+internal class JFIFPieceSegmentExif(
     marker: Int,
     markerBytes: ByteArray,
     markerLengthBytes: ByteArray,

@@ -24,20 +24,20 @@ import com.ashampoo.kim.common.slice
 import com.ashampoo.kim.format.png.PngChunkType
 import com.ashampoo.kim.format.png.PngConstants
 
-class PngChunkItxt(
+public class PngChunkItxt(
     bytes: ByteArray,
     crc: Int
 ) : PngTextChunk(PngChunkType.ITXT, bytes, crc) {
 
     @kotlin.jvm.JvmField
-    val keyword: String
+    public val keyword: String
 
     @kotlin.jvm.JvmField
-    var text: String
+    public var text: String
 
-    val languageTag: String
+    public val languageTag: String
 
-    val translatedKeyword: String
+    public val translatedKeyword: String
 
     init {
 

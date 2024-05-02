@@ -19,7 +19,7 @@ package com.ashampoo.kim.format.jpeg
 import com.ashampoo.kim.common.ByteOrder
 
 @Suppress("MagicNumber")
-object JpegConstants {
+internal object JpegConstants {
 
     val JPEG_BYTE_ORDER = ByteOrder.BIG_ENDIAN
 

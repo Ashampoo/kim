@@ -37,8 +37,9 @@ import com.ashampoo.kim.input.readAndVerifyBytes
 import com.ashampoo.kim.input.readBytes
 import com.ashampoo.kim.input.skipBytes
 import com.ashampoo.kim.model.ImageFormat
+import kotlin.jvm.JvmStatic
 
-object WebPImageParser : ImageParser {
+public object WebPImageParser : ImageParser {
 
     /*
      * https://developers.google.com/speed/webp/docs/riff_container
@@ -58,7 +59,8 @@ object WebPImageParser : ImageParser {
         }
 
     @Throws(ImageReadException::class)
-    fun parseMetadataFromChunks(chunks: List<WebPChunk>): ImageMetadata =
+    @JvmStatic
+    public fun parseMetadataFromChunks(chunks: List<WebPChunk>): ImageMetadata =
         tryWithImageReadException {
 
             val imageSizeAwareChunk = chunks.filterIsInstance<ImageSizeAware>().firstOrNull()

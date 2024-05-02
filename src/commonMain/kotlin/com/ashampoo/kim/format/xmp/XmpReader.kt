@@ -26,6 +26,7 @@ import com.ashampoo.xmp.XMPMetaFactory
 import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toInstant
+import kotlin.jvm.JvmStatic
 
 /**
  * We only read metadata that the user is likely to change/correct
@@ -34,11 +35,12 @@ import kotlinx.datetime.toInstant
  * We ignore capture parameters like iso, focal length and so
  * on because we prefer to get that from EXIF.
  */
-object XmpReader {
+public object XmpReader {
 
     @Suppress("LoopWithTooManyJumpStatements")
     @Throws(XMPException::class)
-    fun readMetadata(xmp: String): PhotoMetadata {
+    @JvmStatic
+    public fun readMetadata(xmp: String): PhotoMetadata {
 
         val xmpMeta = XMPMetaFactory.parseFromString(xmp)
 
@@ -102,7 +104,8 @@ object XmpReader {
     }
 
     @Suppress("Unused")
-    fun determineXmpPath(path: String): String {
+    @JvmStatic
+    public fun determineXmpPath(path: String): String {
 
         val xmpPath = path.replaceAfterLast(".", "xmp")
 

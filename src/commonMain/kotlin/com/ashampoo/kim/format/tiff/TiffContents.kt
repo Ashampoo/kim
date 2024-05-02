@@ -20,7 +20,7 @@ import com.ashampoo.kim.format.tiff.geotiff.GeoTiffDirectory
 import com.ashampoo.kim.format.tiff.taginfo.TagInfo
 import com.ashampoo.kim.format.tiff.write.TiffOutputSet
 
-data class TiffContents(
+public data class TiffContents(
     val header: TiffHeader,
     val directories: List<TiffDirectory>,
     /** Artificial MakerNote directory */
@@ -29,18 +29,18 @@ data class TiffContents(
     val geoTiffDirectory: GeoTiffDirectory?
 ) {
 
-    fun findTiffField(tagInfo: TagInfo): TiffField? =
+    public fun findTiffField(tagInfo: TagInfo): TiffField? =
         TiffDirectory.findTiffField(directories, tagInfo)
 
-    fun findTiffDirectory(directoryType: Int): TiffDirectory? =
+    public fun findTiffDirectory(directoryType: Int): TiffDirectory? =
         directories.find { it.type == directoryType }
 
-    fun getExifThumbnailBytes(): ByteArray? =
+    public fun getExifThumbnailBytes(): ByteArray? =
         directories.asSequence()
             .mapNotNull { it.thumbnailBytes }
             .firstOrNull()
 
-    fun createOutputSet(): TiffOutputSet {
+    public fun createOutputSet(): TiffOutputSet {
 
         val result = TiffOutputSet(header.byteOrder)
 

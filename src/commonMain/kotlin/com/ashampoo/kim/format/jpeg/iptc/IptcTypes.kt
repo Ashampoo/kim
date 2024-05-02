@@ -17,7 +17,7 @@
 package com.ashampoo.kim.format.jpeg.iptc
 
 @Suppress("MagicNumber")
-enum class IptcTypes(
+internal enum class IptcTypes(
     override val type: Int,
     override val fieldName: String
 ) : IptcType {

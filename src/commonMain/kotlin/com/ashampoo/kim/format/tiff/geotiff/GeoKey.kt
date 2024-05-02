@@ -21,8 +21,8 @@ import kotlin.jvm.JvmStatic
  * See http://geotiff.maptools.org/spec/geotiff6.html
  */
 @Suppress("MagicNumber")
-enum class GeoKey(
-    val keyId: Short
+public enum class GeoKey(
+    public val keyId: Short
 ) {
 
     /* 6.2.1 GeoTIFF Configuration Keys */
@@ -78,10 +78,10 @@ enum class GeoKey(
     VerticalDatumGeoKey(4098),
     VerticalUnitsGeoKey(4099);
 
-    companion object {
+    public companion object {
 
         @JvmStatic
-        fun of(keyId: Short): GeoKey? =
+        public fun of(keyId: Short): GeoKey? =
             GeoKey.entries.firstOrNull { it.keyId == keyId }
     }
 }

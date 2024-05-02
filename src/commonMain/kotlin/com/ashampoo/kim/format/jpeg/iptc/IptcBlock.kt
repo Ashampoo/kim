@@ -19,13 +19,13 @@ package com.ashampoo.kim.format.jpeg.iptc
 /**
  * Represents an IPTC block, a set of key-value pairs of Photoshop IPTC data.
  */
-class IptcBlock(
-    val blockType: Int,
-    val blockNameBytes: ByteArray,
-    val blockData: ByteArray
+public class IptcBlock(
+    public val blockType: Int,
+    public val blockNameBytes: ByteArray,
+    public val blockData: ByteArray
 ) {
 
-    fun isIPTCBlock(): Boolean =
+    public fun isIPTCBlock(): Boolean =
         blockType == IptcConstants.IMAGE_RESOURCE_BLOCK_IPTC_DATA
 
 }

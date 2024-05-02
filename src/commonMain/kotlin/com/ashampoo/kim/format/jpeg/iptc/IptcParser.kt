@@ -33,9 +33,9 @@ import com.ashampoo.kim.input.readByte
 import com.ashampoo.kim.input.readBytes
 import com.ashampoo.kim.input.skipToQuad
 
-object IptcParser {
+internal object IptcParser {
 
-    val EMPTY_BYTE_ARRAY = byteArrayOf()
+    internal val EMPTY_BYTE_ARRAY = byteArrayOf()
 
     /**
      * Block types (or Image Resource IDs) that are not recommended to be
@@ -46,13 +46,13 @@ object IptcParser {
     @Suppress("MagicNumber")
     private val PHOTOSHOP_IGNORED_BLOCK_TYPE = listOf(1084, 1085, 1086, 1087)
 
-    const val CODED_CHARACTER_SET_IPTC_CODE = 90
+    public const val CODED_CHARACTER_SET_IPTC_CODE = 90
 
     /* "ESC % G" as bytes */
-    val UTF8_CHARACTER_ESCAPE_SEQUENCE =
+    public val UTF8_CHARACTER_ESCAPE_SEQUENCE =
         byteArrayOf('\u001B'.code.toByte(), '%'.code.toByte(), 'G'.code.toByte())
 
-    val APP13_BYTE_ORDER = ByteOrder.BIG_ENDIAN
+    public val APP13_BYTE_ORDER = ByteOrder.BIG_ENDIAN
 
     /**
      * Checks if the ByteArray starts with the Photoshop identifaction header.

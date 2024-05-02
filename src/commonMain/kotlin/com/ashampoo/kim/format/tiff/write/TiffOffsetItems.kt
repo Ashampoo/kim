@@ -19,7 +19,7 @@ package com.ashampoo.kim.format.tiff.write
 import com.ashampoo.kim.common.ByteOrder
 import com.ashampoo.kim.format.tiff.fieldtype.FieldTypeLong
 
-class TiffOffsetItems(val byteOrder: ByteOrder) {
+internal class TiffOffsetItems(val byteOrder: ByteOrder) {
 
     private val offsetItems = mutableSetOf<TiffOffsetItem>()
 

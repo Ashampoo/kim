@@ -17,9 +17,9 @@ package com.ashampoo.kim.common
 
 import kotlin.math.round
 
-object PhotoValueFormatter {
+public object PhotoValueFormatter {
 
-    const val MEGA_PIXEL_COUNT: Int = 1_000_000
+    public const val MEGA_PIXEL_COUNT: Int = 1_000_000
 
     private const val BYTES_PER_KB = 1000.0
 
@@ -122,7 +122,7 @@ object PhotoValueFormatter {
      * Formats the file length and shows fractions above kilobytes.
      * This function tries to format byte sizes the Apple way.
      */
-    fun formatFileLength(bytes: Long): String {
+    public fun formatFileLength(bytes: Long): String {
 
         if (bytes < BYTES_PER_KB)
             return "$bytes B"
@@ -160,7 +160,7 @@ object PhotoValueFormatter {
      * This method tries to create a pretty name out of
      * make and model for both camera and lens information.
      */
-    fun createCameraOrLensName(make: String?, model: String?): String? {
+    public fun createCameraOrLensName(make: String?, model: String?): String? {
 
         /*
          * Apparently real EXIF data has surprisingly a lot of
@@ -206,7 +206,7 @@ object PhotoValueFormatter {
             modelMod ?: makeMod
     }
 
-    fun createModifiedLensName(
+    public fun createModifiedLensName(
         cameraName: String?,
         lensName: String?
     ): String? {
@@ -224,7 +224,7 @@ object PhotoValueFormatter {
         }
     }
 
-    fun createCameraAndLensName(
+    public fun createCameraAndLensName(
         cameraName: String?,
         lensName: String?
     ): String? {
@@ -244,10 +244,10 @@ object PhotoValueFormatter {
         }
     }
 
-    fun formatIso(iso: Int): String = "ISO $iso"
+    public fun formatIso(iso: Int): String = "ISO $iso"
 
     @Suppress("MagicNumber")
-    fun formatExposureTime(seconds: Double): String {
+    public fun formatExposureTime(seconds: Double): String {
 
         if (seconds < 1.0)
             return "1/" + (0.5 + 1 / seconds).toInt() + " s"
@@ -262,7 +262,7 @@ object PhotoValueFormatter {
         return "$roundedSeconds'' s"
     }
 
-    fun formatFNumber(fNumber: Double): String {
+    public fun formatFNumber(fNumber: Double): String {
 
         return if (fNumber % 1.0 == 0.0)
             "ƒ${fNumber.toInt()}"
@@ -275,7 +275,7 @@ object PhotoValueFormatter {
      * number like "18mm" and should be formatted like that,
      * but in case of an iPhone is actually can be "4.2mm".
      */
-    fun formatFocalLength(focalLength: Double): String {
+    public fun formatFocalLength(focalLength: Double): String {
 
         return if (focalLength % 1.0 == 0.0)
             "${focalLength.toInt()} mm"

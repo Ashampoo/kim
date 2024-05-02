@@ -20,7 +20,7 @@ import com.ashampoo.kim.common.ImageWriteException
 import com.ashampoo.kim.common.toHex
 import com.ashampoo.kim.output.BinaryByteWriter
 
-class TiffOutputValue internal constructor(
+public class TiffOutputValue internal constructor(
     private val description: String,
     private val bytes: ByteArray
 ) : TiffOutputItem {

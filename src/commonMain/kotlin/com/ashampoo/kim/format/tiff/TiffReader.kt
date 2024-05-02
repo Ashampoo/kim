@@ -47,9 +47,9 @@ import com.ashampoo.kim.output.ByteArrayByteWriter
 import kotlin.jvm.JvmStatic
 
 @Suppress("TooManyFunctions")
-object TiffReader {
+public object TiffReader {
 
-    const val NIKON_MAKER_NOTE_SIGNATURE = "Nikon\u0000"
+    internal const val NIKON_MAKER_NOTE_SIGNATURE = "Nikon\u0000"
 
     private val offsetFields = listOf(
         ExifTag.EXIF_TAG_EXIF_OFFSET,
@@ -70,7 +70,7 @@ object TiffReader {
      * the EXIF bytes in JPG, which are limited to 64 KB.
      */
     @JvmStatic
-    fun read(exifBytes: ByteArray): TiffContents =
+    public fun read(exifBytes: ByteArray): TiffContents =
         read(ByteArrayByteReader(exifBytes))
 
     /**

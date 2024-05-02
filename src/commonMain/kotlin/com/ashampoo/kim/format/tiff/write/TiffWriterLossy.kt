@@ -23,7 +23,7 @@ import com.ashampoo.kim.output.BinaryByteWriter.Companion.createBinaryByteWriter
 import com.ashampoo.kim.output.ByteWriter
 import kotlin.jvm.JvmStatic
 
-class TiffWriterLossy(
+public class TiffWriterLossy(
     byteOrder: ByteOrder
 ) : TiffWriterBase(byteOrder) {
 
@@ -77,7 +77,7 @@ class TiffWriterLossy(
         }
     }
 
-    companion object {
+    private companion object {
 
         private const val FOUR = 4
 

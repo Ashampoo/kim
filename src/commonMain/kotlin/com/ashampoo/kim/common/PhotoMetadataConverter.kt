@@ -38,12 +38,12 @@ import kotlin.jvm.JvmStatic
  * This is a dedicated object with @JvmStatic methods
  * to provide a better API to pure Java projects.
  */
-object PhotoMetadataConverter {
+public object PhotoMetadataConverter {
 
     @JvmStatic
     @JvmOverloads
     @Suppress("LongMethod")
-    fun convertToPhotoMetadata(
+    public fun convertToPhotoMetadata(
         imageMetadata: ImageMetadata,
         ignoreOrientation: Boolean = false
     ): PhotoMetadata {
@@ -143,7 +143,7 @@ object PhotoMetadataConverter {
     }
 
     @JvmStatic
-    fun extractTakenDateAsIsoString(metadata: ImageMetadata): String? {
+    public fun extractTakenDateAsIsoString(metadata: ImageMetadata): String? {
 
         val takenDateField = metadata.findTiffField(ExifTag.EXIF_TAG_DATE_TIME_ORIGINAL)
             ?: return null
@@ -163,7 +163,7 @@ object PhotoMetadataConverter {
     }
 
     @JvmStatic
-    fun extractTakenDateMillis(metadata: ImageMetadata): Long? {
+    public fun extractTakenDateMillis(metadata: ImageMetadata): Long? {
 
         var takenDate: String? = null
 
@@ -208,7 +208,7 @@ object PhotoMetadataConverter {
 
 }
 
-fun ImageMetadata.convertToPhotoMetadata(
+public fun ImageMetadata.convertToPhotoMetadata(
     ignoreOrientation: Boolean = false
 ): PhotoMetadata =
     PhotoMetadataConverter.convertToPhotoMetadata(

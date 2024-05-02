@@ -19,10 +19,10 @@ import kotlin.math.abs
 import kotlin.math.pow
 import kotlin.math.roundToLong
 
-object GpsUtil {
+public object GpsUtil {
 
-    const val MINUTES_PER_HOUR: Double = 60.0
-    const val SECONDS_PER_HOUR: Double = 3600.0
+    internal const val MINUTES_PER_HOUR: Double = 60.0
+    internal const val SECONDS_PER_HOUR: Double = 3600.0
     private const val MAX_DDM_FRACTION_DIGITS: Int = 4
 
     /**
@@ -35,7 +35,7 @@ object GpsUtil {
      * @return the decimal value of the GPS coordinate, or null if the input is null or invalid.
      */
     @Suppress("MagicNumber")
-    fun dmsToDecimal(dms: String?): Double? {
+    public fun dmsToDecimal(dms: String?): Double? {
 
         /* Blank values are illegal. */
         if (dms.isNullOrBlank())
@@ -65,7 +65,7 @@ object GpsUtil {
     /**
      * XMP requires geo data to be in DDM (Degrees, decimal minutes) format.
      */
-    fun decimalLatitudeToDDM(latitude: Double): String {
+    public fun decimalLatitudeToDDM(latitude: Double): String {
 
         val direction = if (latitude >= 0) "N" else "S"
 
@@ -82,7 +82,7 @@ object GpsUtil {
     /**
      * XMP requires geo data to be in DDM (Degrees, decimal minutes) format.
      */
-    fun decimalLongitudeToDDM(longitude: Double): String {
+    public fun decimalLongitudeToDDM(longitude: Double): String {
 
         val direction = if (longitude >= 0) "E" else "W"
 

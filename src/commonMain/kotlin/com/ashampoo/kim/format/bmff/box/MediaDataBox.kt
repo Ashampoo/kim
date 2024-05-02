@@ -24,7 +24,7 @@ import com.ashampoo.kim.format.bmff.BoxType
  * The Media Data Box contains all the actual data.
  * This includes the EXIF bytes.
  */
-class MediaDataBox(
+internal class MediaDataBox(
     offset: Long,
     size: Long,
     largeSize: Long?,

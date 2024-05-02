@@ -25,198 +25,199 @@ import com.ashampoo.kim.format.tiff.taginfo.TagInfoRationals
 import com.ashampoo.kim.format.tiff.taginfo.TagInfoShort
 
 @Suppress("MagicNumber")
-object GpsTag {
+public object GpsTag {
 
-    val GPS_TAG_GPS_VERSION_ID = TagInfoBytes(
+    public val GPS_TAG_GPS_VERSION_ID = TagInfoBytes(
         0x0000, "GPSVersionID", 4,
         TiffDirectoryType.EXIF_DIRECTORY_GPS
     )
 
-    val GPS_VERSION = byteArrayOf(2.toByte(), 3.toByte(), 0.toByte(), 0.toByte())
+    public val GPS_VERSION: ByteArray =
+        byteArrayOf(2.toByte(), 3.toByte(), 0.toByte(), 0.toByte())
 
-    val GPS_TAG_GPS_LATITUDE_REF = TagInfoAscii(
+    public val GPS_TAG_GPS_LATITUDE_REF = TagInfoAscii(
         0x0001, "GPSLatitudeRef", 2,
         TiffDirectoryType.EXIF_DIRECTORY_GPS
     )
 
-    const val GPS_TAG_GPS_LATITUDE_REF_VALUE_NORTH = "N"
-    const val GPS_TAG_GPS_LATITUDE_REF_VALUE_SOUTH = "S"
+    public const val GPS_TAG_GPS_LATITUDE_REF_VALUE_NORTH = "N"
+    public const val GPS_TAG_GPS_LATITUDE_REF_VALUE_SOUTH = "S"
 
-    val GPS_TAG_GPS_LATITUDE = TagInfoRationals(
+    public val GPS_TAG_GPS_LATITUDE = TagInfoRationals(
         0x0002, "GPSLatitude", 3,
         TiffDirectoryType.EXIF_DIRECTORY_GPS
     )
 
-    val GPS_TAG_GPS_LONGITUDE_REF = TagInfoAscii(
+    public val GPS_TAG_GPS_LONGITUDE_REF = TagInfoAscii(
         0x0003, "GPSLongitudeRef", 2,
         TiffDirectoryType.EXIF_DIRECTORY_GPS
     )
 
-    const val GPS_TAG_GPS_LONGITUDE_REF_VALUE_EAST = "E"
-    const val GPS_TAG_GPS_LONGITUDE_REF_VALUE_WEST = "W"
+    public const val GPS_TAG_GPS_LONGITUDE_REF_VALUE_EAST: String = "E"
+    public const val GPS_TAG_GPS_LONGITUDE_REF_VALUE_WEST: String = "W"
 
-    val GPS_TAG_GPS_LONGITUDE = TagInfoRationals(
+    public val GPS_TAG_GPS_LONGITUDE: TagInfoRationals = TagInfoRationals(
         0x0004, "GPSLongitude", 3,
         TiffDirectoryType.EXIF_DIRECTORY_GPS
     )
 
-    val GPS_TAG_GPS_ALTITUDE_REF = TagInfoByte(
+    public val GPS_TAG_GPS_ALTITUDE_REF: TagInfoByte = TagInfoByte(
         0x0005, "GPSAltitudeRef",
         TiffDirectoryType.EXIF_DIRECTORY_GPS
     )
 
-    const val GPS_TAG_GPS_ALTITUDE_REF_VALUE_ABOVE_SEA_LEVEL = 0
-    const val GPS_TAG_GPS_ALTITUDE_REF_VALUE_BELOW_SEA_LEVEL = 1
+    public const val GPS_TAG_GPS_ALTITUDE_REF_VALUE_ABOVE_SEA_LEVEL = 0
+    public const val GPS_TAG_GPS_ALTITUDE_REF_VALUE_BELOW_SEA_LEVEL = 1
 
-    val GPS_TAG_GPS_ALTITUDE = TagInfoRational(
+    public val GPS_TAG_GPS_ALTITUDE = TagInfoRational(
         0x0006, "GPSAltitude",
         TiffDirectoryType.EXIF_DIRECTORY_GPS
     )
 
-    val GPS_TAG_GPS_TIME_STAMP = TagInfoRationals(
+    public val GPS_TAG_GPS_TIME_STAMP = TagInfoRationals(
         0x0007, "GPSTimeStamp", 3,
         TiffDirectoryType.EXIF_DIRECTORY_GPS
     )
 
-    val GPS_TAG_GPS_SATELLITES = TagInfoAscii(
+    public val GPS_TAG_GPS_SATELLITES = TagInfoAscii(
         0x0008, "GPSSatellites", -1,
         TiffDirectoryType.EXIF_DIRECTORY_GPS
     )
 
-    val GPS_TAG_GPS_STATUS = TagInfoAscii(
+    public val GPS_TAG_GPS_STATUS = TagInfoAscii(
         0x0009, "GPSStatus", 2,
         TiffDirectoryType.EXIF_DIRECTORY_GPS
     )
 
-    const val GPS_TAG_GPS_STATUS_VALUE_MEASUREMENT_IN_PROGRESS = "A"
-    const val GPS_TAG_GPS_STATUS_VALUE_MEASUREMENT_INTEROPERABILITY = "V"
+    public const val GPS_TAG_GPS_STATUS_VALUE_MEASUREMENT_IN_PROGRESS = "A"
+    public const val GPS_TAG_GPS_STATUS_VALUE_MEASUREMENT_INTEROPERABILITY = "V"
 
-    val GPS_TAG_GPS_MEASURE_MODE = TagInfoAscii(
+    public val GPS_TAG_GPS_MEASURE_MODE = TagInfoAscii(
         0x000a, "GPSMeasureMode", 2,
         TiffDirectoryType.EXIF_DIRECTORY_GPS
     )
 
-    const val GPS_TAG_GPS_MEASURE_MODE_VALUE_2_DIMENSIONAL_MEASUREMENT = 2
-    const val GPS_TAG_GPS_MEASURE_MODE_VALUE_3_DIMENSIONAL_MEASUREMENT = 3
+    public const val GPS_TAG_GPS_MEASURE_MODE_VALUE_2_DIMENSIONAL_MEASUREMENT = 2
+    public const val GPS_TAG_GPS_MEASURE_MODE_VALUE_3_DIMENSIONAL_MEASUREMENT = 3
 
-    val GPS_TAG_GPS_DOP = TagInfoRational(
+    public val GPS_TAG_GPS_DOP = TagInfoRational(
         0x000b, "GPSDOP",
         TiffDirectoryType.EXIF_DIRECTORY_GPS
     )
 
-    val GPS_TAG_GPS_SPEED_REF = TagInfoAscii(
+    public val GPS_TAG_GPS_SPEED_REF = TagInfoAscii(
         0x000c, "GPSSpeedRef", 2,
         TiffDirectoryType.EXIF_DIRECTORY_GPS
     )
 
-    const val GPS_TAG_GPS_SPEED_REF_VALUE_KMPH = "K"
-    const val GPS_TAG_GPS_SPEED_REF_VALUE_MPH = "M"
-    const val GPS_TAG_GPS_SPEED_REF_VALUE_KNOTS = "N"
+    public const val GPS_TAG_GPS_SPEED_REF_VALUE_KMPH = "K"
+    public const val GPS_TAG_GPS_SPEED_REF_VALUE_MPH = "M"
+    public const val GPS_TAG_GPS_SPEED_REF_VALUE_KNOTS = "N"
 
-    val GPS_TAG_GPS_SPEED = TagInfoRational(
+    public val GPS_TAG_GPS_SPEED = TagInfoRational(
         0x000d, "GPSSpeed",
         TiffDirectoryType.EXIF_DIRECTORY_GPS
     )
 
-    val GPS_TAG_GPS_TRACK_REF = TagInfoAscii(
+    public val GPS_TAG_GPS_TRACK_REF = TagInfoAscii(
         0x000e, "GPSTrackRef", 2,
         TiffDirectoryType.EXIF_DIRECTORY_GPS
     )
 
-    const val GPS_TAG_GPS_TRACK_REF_VALUE_MAGNETIC_NORTH = "M"
-    const val GPS_TAG_GPS_TRACK_REF_VALUE_TRUE_NORTH = "T"
+    public const val GPS_TAG_GPS_TRACK_REF_VALUE_MAGNETIC_NORTH = "M"
+    public const val GPS_TAG_GPS_TRACK_REF_VALUE_TRUE_NORTH = "T"
 
-    val GPS_TAG_GPS_TRACK = TagInfoRational(
+    public val GPS_TAG_GPS_TRACK = TagInfoRational(
         0x000f, "GPSTrack",
         TiffDirectoryType.EXIF_DIRECTORY_GPS
     )
 
-    val GPS_TAG_GPS_IMG_DIRECTION_REF = TagInfoAscii(
+    public val GPS_TAG_GPS_IMG_DIRECTION_REF = TagInfoAscii(
         0x0010, "GPSImgDirectionRef", 2,
         TiffDirectoryType.EXIF_DIRECTORY_GPS
     )
 
-    const val GPS_TAG_GPS_IMG_DIRECTION_REF_VALUE_MAGNETIC_NORTH = "M"
-    const val GPS_TAG_GPS_IMG_DIRECTION_REF_VALUE_TRUE_NORTH = "T"
+    public const val GPS_TAG_GPS_IMG_DIRECTION_REF_VALUE_MAGNETIC_NORTH = "M"
+    public const val GPS_TAG_GPS_IMG_DIRECTION_REF_VALUE_TRUE_NORTH = "T"
 
-    val GPS_TAG_GPS_IMG_DIRECTION = TagInfoRational(
+    public val GPS_TAG_GPS_IMG_DIRECTION = TagInfoRational(
         0x0011, "GPSImgDirection",
         TiffDirectoryType.EXIF_DIRECTORY_GPS
     )
 
-    val GPS_TAG_GPS_MAP_DATUM = TagInfoAscii(
+    public val GPS_TAG_GPS_MAP_DATUM = TagInfoAscii(
         0x0012, "GPSMapDatum", -1,
         TiffDirectoryType.EXIF_DIRECTORY_GPS
     )
 
-    val GPS_TAG_GPS_DEST_LATITUDE_REF = TagInfoAscii(
+    public val GPS_TAG_GPS_DEST_LATITUDE_REF = TagInfoAscii(
         0x0013, "GPSDestLatitudeRef", 2,
         TiffDirectoryType.EXIF_DIRECTORY_GPS
     )
 
-    const val GPS_TAG_GPS_DEST_LATITUDE_REF_VALUE_NORTH = "N"
-    const val GPS_TAG_GPS_DEST_LATITUDE_REF_VALUE_SOUTH = "S"
+    public const val GPS_TAG_GPS_DEST_LATITUDE_REF_VALUE_NORTH = "N"
+    public const val GPS_TAG_GPS_DEST_LATITUDE_REF_VALUE_SOUTH = "S"
 
-    val GPS_TAG_GPS_DEST_LATITUDE = TagInfoRationals(
+    public val GPS_TAG_GPS_DEST_LATITUDE = TagInfoRationals(
         0x0014, "GPSDestLatitude", 3,
         TiffDirectoryType.EXIF_DIRECTORY_GPS
     )
 
-    val GPS_TAG_GPS_DEST_LONGITUDE_REF = TagInfoAscii(
+    public val GPS_TAG_GPS_DEST_LONGITUDE_REF = TagInfoAscii(
         0x0015, "GPSDestLongitudeRef", 2,
         TiffDirectoryType.EXIF_DIRECTORY_GPS
     )
 
-    const val GPS_TAG_GPS_DEST_LONGITUDE_REF_VALUE_EAST = "E"
-    const val GPS_TAG_GPS_DEST_LONGITUDE_REF_VALUE_WEST = "W"
+    public const val GPS_TAG_GPS_DEST_LONGITUDE_REF_VALUE_EAST = "E"
+    public const val GPS_TAG_GPS_DEST_LONGITUDE_REF_VALUE_WEST = "W"
 
-    val GPS_TAG_GPS_DEST_LONGITUDE = TagInfoRationals(
+    public val GPS_TAG_GPS_DEST_LONGITUDE = TagInfoRationals(
         0x0016, "GPSDestLongitude", 3,
         TiffDirectoryType.EXIF_DIRECTORY_GPS
     )
 
-    val GPS_TAG_GPS_DEST_BEARING_REF = TagInfoAscii(
+    public val GPS_TAG_GPS_DEST_BEARING_REF = TagInfoAscii(
         0x0017, "GPSDestBearingRef", 2,
         TiffDirectoryType.EXIF_DIRECTORY_GPS
     )
 
-    const val GPS_TAG_GPS_DEST_BEARING_REF_VALUE_MAGNETIC_NORTH = "M"
-    const val GPS_TAG_GPS_DEST_BEARING_REF_VALUE_TRUE_NORTH = "T"
+    public const val GPS_TAG_GPS_DEST_BEARING_REF_VALUE_MAGNETIC_NORTH = "M"
+    public const val GPS_TAG_GPS_DEST_BEARING_REF_VALUE_TRUE_NORTH = "T"
 
-    val GPS_TAG_GPS_DEST_BEARING = TagInfoRational(
+    public val GPS_TAG_GPS_DEST_BEARING = TagInfoRational(
         0x0018, "GPSDestBearing",
         TiffDirectoryType.EXIF_DIRECTORY_GPS
     )
 
-    val GPS_TAG_GPS_DEST_DISTANCE = TagInfoRational(
+    public val GPS_TAG_GPS_DEST_DISTANCE = TagInfoRational(
         0x001a, "GPSDestDistance",
         TiffDirectoryType.EXIF_DIRECTORY_GPS
     )
 
-    val GPS_TAG_GPS_PROCESSING_METHOD = TagInfoGpsText(
+    public val GPS_TAG_GPS_PROCESSING_METHOD = TagInfoGpsText(
         0x001b, "GPSProcessingMethod",
         TiffDirectoryType.EXIF_DIRECTORY_GPS
     )
 
-    val GPS_TAG_GPS_AREA_INFORMATION = TagInfoGpsText(
+    public val GPS_TAG_GPS_AREA_INFORMATION = TagInfoGpsText(
         0x001c, "GPSAreaInformation",
         TiffDirectoryType.EXIF_DIRECTORY_GPS
     )
 
-    val GPS_TAG_GPS_DATE_STAMP = TagInfoAscii(
+    public val GPS_TAG_GPS_DATE_STAMP = TagInfoAscii(
         0x001d, "GPSDateStamp", 11,
         TiffDirectoryType.EXIF_DIRECTORY_GPS
     )
 
-    val GPS_TAG_GPS_DIFFERENTIAL = TagInfoShort(
+    public val GPS_TAG_GPS_DIFFERENTIAL = TagInfoShort(
         0x001e, "GPSDifferential",
         TiffDirectoryType.EXIF_DIRECTORY_GPS
     )
 
-    const val GPS_TAG_GPS_DIFFERENTIAL_VALUE_NO_CORRECTION = 0
-    const val GPS_TAG_GPS_DIFFERENTIAL_VALUE_DIFFERENTIAL_CORRECTED = 1
+    public const val GPS_TAG_GPS_DIFFERENTIAL_VALUE_NO_CORRECTION = 0
+    public const val GPS_TAG_GPS_DIFFERENTIAL_VALUE_DIFFERENTIAL_CORRECTED = 1
 
-    val ALL = listOf(
+    public val ALL = listOf(
         GPS_TAG_GPS_VERSION_ID, GPS_TAG_GPS_LATITUDE_REF,
         GPS_TAG_GPS_LATITUDE, GPS_TAG_GPS_LONGITUDE_REF,
         GPS_TAG_GPS_LONGITUDE, GPS_TAG_GPS_ALTITUDE_REF,

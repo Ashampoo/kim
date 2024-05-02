@@ -15,7 +15,7 @@
  */
 package com.ashampoo.kim.format.tiff
 
-open class ImageDataElement(
+public open class ImageDataElement(
     offset: Int,
     length: Int
 ) : TiffElement(

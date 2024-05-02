@@ -37,14 +37,14 @@ import com.ashampoo.kim.input.skipBytes
  * This algorithm quickly identifies the EXIF orientation offset.
  * If the file already has one no restructuring of the whole file is necessary.
  */
-object JpegOrientationOffsetFinder {
+public object JpegOrientationOffsetFinder {
 
-    const val APP1_MARKER = 0xE1.toByte()
+    private const val APP1_MARKER = 0xE1.toByte()
 
     @OptIn(ExperimentalStdlibApi::class)
     @Throws(ImageReadException::class)
     @Suppress("ComplexMethod")
-    fun findOrientationOffset(
+    public fun findOrientationOffset(
         byteReader: ByteReader
     ): Long? = tryWithImageReadException {
 

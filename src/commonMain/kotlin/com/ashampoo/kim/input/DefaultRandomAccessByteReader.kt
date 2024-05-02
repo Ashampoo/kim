@@ -23,7 +23,7 @@ import kotlin.math.max
  * provides random access needed for parsing TIFF files.
  */
 public class DefaultRandomAccessByteReader(
-    val byteReader: ByteReader
+    public val byteReader: ByteReader
 ) : RandomAccessByteReader {
 
     override val contentLength: Long =
@@ -84,7 +84,7 @@ public class DefaultRandomAccessByteReader(
         return buffer.copyOfRange(offset, endIndex)
     }
 
-    override fun close() =
+    override fun close(): Unit =
         byteReader.close()
 
     private fun readToIndex(index: Int) {
@@ -115,7 +115,7 @@ public class DefaultRandomAccessByteReader(
         bufferPosition = index
     }
 
-    companion object {
+    private companion object {
 
         /*
          * We read the file in chunks of the usual EXIF size (65kb).

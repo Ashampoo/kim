@@ -21,7 +21,7 @@ import com.ashampoo.kim.format.bmff.box.Box
 /**
  * JPEG XL jxlp box
  */
-class JxlParticalCodestreamBox(
+internal class JxlParticalCodestreamBox(
     offset: Long,
     size: Long,
     largeSize: Long?,

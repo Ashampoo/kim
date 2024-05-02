@@ -21,7 +21,7 @@ import com.ashampoo.kim.format.jpeg.iptc.IptcParser
 import com.ashampoo.kim.input.ByteArrayByteReader
 import com.ashampoo.kim.input.ByteReader
 
-class App13Segment(marker: Int, markerLength: Int, byteReader: ByteReader) :
+internal class App13Segment(marker: Int, markerLength: Int, byteReader: ByteReader) :
     AppnSegment(marker, markerLength, byteReader) {
 
     constructor(marker: Int, segmentData: ByteArray) :

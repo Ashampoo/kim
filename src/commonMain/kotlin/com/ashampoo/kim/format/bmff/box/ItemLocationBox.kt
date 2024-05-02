@@ -31,7 +31,7 @@ import com.ashampoo.kim.input.skipBytes
 /**
  * EIC/ISO 14496-12 iloc box
  */
-class ItemLocationBox(
+internal class ItemLocationBox(
     offset: Long,
     size: Long,
     largeSize: Long?,

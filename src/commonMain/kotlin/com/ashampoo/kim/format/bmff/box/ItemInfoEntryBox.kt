@@ -30,7 +30,7 @@ import com.ashampoo.kim.input.readNullTerminatedString
 /**
  * EIC/ISO 14496-12 infe box
  */
-class ItemInfoEntryBox(
+internal class ItemInfoEntryBox(
     offset: Long,
     size: Long,
     largeSize: Long?,

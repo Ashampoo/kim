@@ -23,7 +23,7 @@ import com.ashampoo.kim.input.readAndVerifyBytes
 import com.ashampoo.kim.input.readBytes
 import com.ashampoo.kim.input.readRemainingBytes
 
-object JpegUtils {
+internal object JpegUtils {
 
     fun traverseJFIF(byteReader: ByteReader, visitor: JpegVisitor) {
 

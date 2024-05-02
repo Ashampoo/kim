@@ -16,7 +16,7 @@
  */
 package com.ashampoo.kim.format.jpeg.segment
 
-class UnknownSegment(marker: Int, bytes: ByteArray) : GenericSegment(marker, bytes) {
+internal class UnknownSegment(marker: Int, bytes: ByteArray) : GenericSegment(marker, bytes) {
 
     override fun getDescription(): String =
         "Unknown ($marker)"

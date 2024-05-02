@@ -21,10 +21,10 @@ import com.ashampoo.kim.common.toSingleNumberHexes
 import com.ashampoo.kim.format.ImageFormatMagicNumbers
 import kotlin.jvm.JvmStatic
 
-enum class ImageFormat(
-    val mimeType: String,
-    val uniformTypeIdentifier: String,
-    val fileNameExtensions: Set<String>
+public enum class ImageFormat(
+    public val mimeType: String,
+    public val uniformTypeIdentifier: String,
+    public val fileNameExtensions: Set<String>
 ) {
 
     JPEG("image/jpeg", "public.jpeg", setOf("jpg", "jpeg")),
@@ -43,19 +43,19 @@ enum class ImageFormat(
     DNG("image/x-adobe-dng", "com.adobe.raw-image", setOf("dng")),
     JXL("image/jxl", "public.jxl", setOf("jxl"));
 
-    fun isMetadataEmbeddable(): Boolean =
+    public fun isMetadataEmbeddable(): Boolean =
         this == ImageFormat.JPEG ||
             this == ImageFormat.PNG ||
             this == ImageFormat.WEBP ||
             this == ImageFormat.JXL
 
-    companion object {
+    public companion object {
 
         /**
          * RAF is the longest format that requires us to read 16 bytes to detect it.
          * Right after that we need 12 bytes to check for HEIC.
          */
-        const val REQUIRED_HEADER_BYTE_COUNT_FOR_DETECTION: Int = 16
+        public const val REQUIRED_HEADER_BYTE_COUNT_FOR_DETECTION: Int = 16
 
         private val allImageFormats = ImageFormat.entries
 
@@ -85,7 +85,7 @@ enum class ImageFormat(
         }
 
         @JvmStatic
-        fun hasValidFileNameExtension(fileName: String): Boolean {
+        public fun hasValidFileNameExtension(fileName: String): Boolean {
 
             for (extension in allFileNameExtensions)
                 if (fileName.endsWith(".$extension", ignoreCase = true))
@@ -95,7 +95,7 @@ enum class ImageFormat(
         }
 
         @JvmStatic
-        fun byMimeType(mimeType: String): ImageFormat? {
+        public fun byMimeType(mimeType: String): ImageFormat? {
 
             for (fileType in allImageFormats)
                 if (mimeType.contentEquals(fileType.mimeType, ignoreCase = true))
@@ -114,7 +114,7 @@ enum class ImageFormat(
         }
 
         @JvmStatic
-        fun byUniformTypeIdentifier(
+        public fun byUniformTypeIdentifier(
             uniformTypeIdentifier: String
         ): ImageFormat? {
 
@@ -126,7 +126,7 @@ enum class ImageFormat(
         }
 
         @JvmStatic
-        fun byFileNameExtension(fileName: String): ImageFormat? {
+        public fun byFileNameExtension(fileName: String): ImageFormat? {
 
             for (fileType in allImageFormats)
                 for (extension in fileType.fileNameExtensions)
@@ -143,7 +143,7 @@ enum class ImageFormat(
          * (for example empty) than the detection returns null.
          */
         @JvmStatic
-        fun detect(bytes: ByteArray): ImageFormat? {
+        public fun detect(bytes: ByteArray): ImageFormat? {
 
             /*
              * If empty or not enough bytes we can't detect the format and will return NULL.
@@ -196,7 +196,7 @@ enum class ImageFormat(
          * It translates to a readable name or returns a hex presentation of the bytes.
          */
         @JvmStatic
-        fun detectNameOrReturnHex(byteArray: ByteArray): String =
+        public fun detectNameOrReturnHex(byteArray: ByteArray): String =
             detect(byteArray)?.name ?: byteArray
                 .take(REQUIRED_HEADER_BYTE_COUNT_FOR_DETECTION)
                 .toByteArray()

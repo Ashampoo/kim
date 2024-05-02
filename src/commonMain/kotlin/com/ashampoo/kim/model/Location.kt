@@ -15,7 +15,7 @@
  */
 package com.ashampoo.kim.model
 
-data class Location(
+public data class Location(
     val name: String?,
     val city: String?,
     val state: String?,

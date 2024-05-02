@@ -41,7 +41,7 @@ import com.ashampoo.kim.input.skipBytes
  *
  * https://en.wikipedia.org/wiki/ISO_base_media_file_format
  */
-object BaseMediaFileFormatImageParser : ImageParser {
+public object BaseMediaFileFormatImageParser : ImageParser {
 
     override fun parseMetadata(byteReader: ByteReader): ImageMetadata {
 

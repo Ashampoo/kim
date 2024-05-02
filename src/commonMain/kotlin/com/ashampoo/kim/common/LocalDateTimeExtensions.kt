@@ -19,7 +19,7 @@ import kotlinx.datetime.LocalDateTime
 
 private const val YEAR_LENGTH = 4
 
-fun LocalDateTime.toExifDateString(): String {
+internal fun LocalDateTime.toExifDateString(): String {
 
     return year.toString().padStart(YEAR_LENGTH, '0') + ":" +
         monthNumber.toString().padStart(2, '0') + ":" +

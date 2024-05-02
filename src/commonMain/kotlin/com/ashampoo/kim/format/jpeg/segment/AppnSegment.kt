@@ -20,7 +20,7 @@ import com.ashampoo.kim.format.jpeg.JpegConstants
 import com.ashampoo.kim.input.ByteArrayByteReader
 import com.ashampoo.kim.input.ByteReader
 
-open class AppnSegment(marker: Int, markerLength: Int, byteReader: ByteReader) :
+internal open class AppnSegment(marker: Int, markerLength: Int, byteReader: ByteReader) :
     GenericSegment(marker, markerLength, byteReader) {
 
     constructor(marker: Int, segmentData: ByteArray) :

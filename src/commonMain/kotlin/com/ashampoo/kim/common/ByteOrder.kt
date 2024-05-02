@@ -15,7 +15,9 @@
  */
 package com.ashampoo.kim.common
 
-enum class ByteOrder(val displayName: String) {
+public enum class ByteOrder(
+    public val displayName: String
+) {
 
     BIG_ENDIAN("Big-endian (Motorola, MM)"),
     LITTLE_ENDIAN("Little-endian (Intel, II)");

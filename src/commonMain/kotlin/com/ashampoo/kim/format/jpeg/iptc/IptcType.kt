@@ -16,11 +16,11 @@
  */
 package com.ashampoo.kim.format.jpeg.iptc
 
-interface IptcType {
+public interface IptcType {
 
-    val type: Int
+    public val type: Int
 
-    val fieldName: String
+    public val fieldName: String
 
     override fun toString(): String
 }

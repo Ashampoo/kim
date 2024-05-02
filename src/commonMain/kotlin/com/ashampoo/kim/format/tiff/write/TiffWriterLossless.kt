@@ -27,7 +27,7 @@ import com.ashampoo.kim.output.BinaryByteWriter.Companion.createBinaryByteWriter
 import com.ashampoo.kim.output.BufferByteWriter
 import com.ashampoo.kim.output.ByteWriter
 
-class TiffWriterLossless(
+public class TiffWriterLossless(
     byteOrder: ByteOrder,
     private val exifBytes: ByteArray
 ) : TiffWriterBase(byteOrder) {
@@ -404,7 +404,7 @@ class TiffWriterLossless(
         byteWriter.write(outputByteArray)
     }
 
-    companion object {
+    private companion object {
 
         const val OFFSET_TOLERANCE = 3
     }

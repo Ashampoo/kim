@@ -17,9 +17,9 @@ package com.ashampoo.kim.format.webp.chunk
 
 import com.ashampoo.kim.format.webp.WebPChunkType
 
-open class WebPChunk(
-    val type: WebPChunkType,
-    val bytes: ByteArray
+public open class WebPChunk(
+    public val type: WebPChunkType,
+    public val bytes: ByteArray
 ) {
 
     override fun toString(): String =

@@ -28,7 +28,7 @@ import com.ashampoo.kim.input.readBytes
 /**
  * EIC/ISO 14496-12 pitm box
  */
-class PrimaryItemBox(
+internal class PrimaryItemBox(
     offset: Long,
     size: Long,
     largeSize: Long?,

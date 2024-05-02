@@ -29,7 +29,7 @@ import com.ashampoo.kim.input.readBytes
 /**
  * EIC/ISO 14496-12 iinf box
  */
-class ItemInformationBox(
+internal class ItemInformationBox(
     offset: Long,
     size: Long,
     largeSize: Long?,

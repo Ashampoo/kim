@@ -25,44 +25,44 @@ import com.ashampoo.kim.format.tiff.taginfo.TagInfoShorts
  * See https://exiftool.org/TagNames/GeoTiff.html
  */
 @Suppress("MagicNumber")
-object GeoTiffTag {
+public object GeoTiffTag {
 
-    val EXIF_TAG_MODEL_PIXEL_SCALE_TAG: TagInfoDoubles = TagInfoDoubles(
+    public val EXIF_TAG_MODEL_PIXEL_SCALE_TAG: TagInfoDoubles = TagInfoDoubles(
         0x830e, "ModelPixelScaleTag", 3,
         EXIF_DIRECTORY_UNKNOWN
     )
 
-    val EXIF_TAG_INTERGRAPH_MATRIX_TAG: TagInfoDoubles = TagInfoDoubles(
+    public val EXIF_TAG_INTERGRAPH_MATRIX_TAG: TagInfoDoubles = TagInfoDoubles(
         0x8480, "IntergraphMatrixTag", -1,
         EXIF_DIRECTORY_UNKNOWN
     )
 
-    val EXIF_TAG_MODEL_TIEPOINT_TAG: TagInfoDoubles = TagInfoDoubles(
+    public val EXIF_TAG_MODEL_TIEPOINT_TAG: TagInfoDoubles = TagInfoDoubles(
         0x8482, "ModelTiepointTag", -1,
         EXIF_DIRECTORY_UNKNOWN
     )
 
-    val EXIF_TAG_MODEL_TRANSFORMATION_TAG: TagInfoDoubles = TagInfoDoubles(
+    public val EXIF_TAG_MODEL_TRANSFORMATION_TAG: TagInfoDoubles = TagInfoDoubles(
         0x85d8, "ModelTransformationTag", 16,
         EXIF_DIRECTORY_UNKNOWN
     )
 
-    val EXIF_TAG_GEO_KEY_DIRECTORY_TAG: TagInfoShorts = TagInfoShorts(
+    public val EXIF_TAG_GEO_KEY_DIRECTORY_TAG: TagInfoShorts = TagInfoShorts(
         0x87af, "GeoKeyDirectoryTag", -1,
         EXIF_DIRECTORY_UNKNOWN
     )
 
-    val EXIF_TAG_GEO_DOUBLE_PARAMS_TAG: TagInfoDoubles = TagInfoDoubles(
+    public val EXIF_TAG_GEO_DOUBLE_PARAMS_TAG: TagInfoDoubles = TagInfoDoubles(
         0x87b0, "GeoDoubleParamsTag", -1,
         EXIF_DIRECTORY_UNKNOWN
     )
 
-    val EXIF_TAG_GEO_ASCII_PARAMS_TAG: TagInfoAscii = TagInfoAscii(
+    public val EXIF_TAG_GEO_ASCII_PARAMS_TAG: TagInfoAscii = TagInfoAscii(
         0x87b1, "GeoAsciiParamsTag", -1,
         EXIF_DIRECTORY_UNKNOWN
     )
 
-    val ALL = listOf(
+    public val ALL = listOf(
         EXIF_TAG_MODEL_PIXEL_SCALE_TAG,
         EXIF_TAG_INTERGRAPH_MATRIX_TAG,
         EXIF_TAG_MODEL_TIEPOINT_TAG,

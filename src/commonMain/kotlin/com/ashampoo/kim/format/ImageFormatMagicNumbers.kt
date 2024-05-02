@@ -22,7 +22,7 @@ package com.ashampoo.kim.format
  * For example HEIC has a broad number of different headers bytes.
  */
 @Suppress("MagicNumber")
-object ImageFormatMagicNumbers {
+internal object ImageFormatMagicNumbers {
 
     val jpeg: List<Byte> = byteListOf(
         0xFF, 0xD8

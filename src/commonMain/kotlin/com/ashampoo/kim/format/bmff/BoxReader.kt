@@ -38,7 +38,7 @@ import com.ashampoo.kim.input.readBytes
 /**
  * Reads ISOBMFF boxes
  */
-object BoxReader {
+internal object BoxReader {
 
     /**
      * @param byteReader The reader as source for the bytes

@@ -357,7 +357,7 @@ private fun ByteArray.toDouble(offset: Int, byteOrder: ByteOrder): Double {
     return Double.fromBits(bits)
 }
 
-fun ByteArray.toDoubles(byteOrder: ByteOrder): DoubleArray =
+internal fun ByteArray.toDoubles(byteOrder: ByteOrder): DoubleArray =
     this.toDoubles(0, size, byteOrder)
 
 private fun ByteArray.toDoubles(offset: Int, length: Int, byteOrder: ByteOrder): DoubleArray {

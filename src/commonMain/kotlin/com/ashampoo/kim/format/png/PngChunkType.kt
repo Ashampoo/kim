@@ -24,7 +24,7 @@ import com.ashampoo.kim.format.png.PngConstants.TPYE_LENGTH
  *
  * @see [Portable Network Graphics Specification - Chunk specifications](http://www.w3.org/TR/PNG/.11Chunks)
  */
-data class PngChunkType internal constructor(
+public data class PngChunkType internal constructor(
     val bytes: ByteArray,
     val name: String,
     val intValue: Int
@@ -47,34 +47,34 @@ data class PngChunkType internal constructor(
     override fun toString(): String =
         name
 
-    companion object {
+    public companion object {
 
         /** Image header */
-        val IHDR = of("IHDR".encodeToByteArray())
+        public val IHDR: PngChunkType = of("IHDR".encodeToByteArray())
 
         /** Image data */
-        val IDAT = of("IDAT".encodeToByteArray())
+        public val IDAT: PngChunkType = of("IDAT".encodeToByteArray())
 
         /** Image end */
-        val IEND = of("IEND".encodeToByteArray())
+        public val IEND: PngChunkType = of("IEND".encodeToByteArray())
 
         /** Time */
-        val TIME = of("tIME".encodeToByteArray())
+        public val TIME: PngChunkType = of("tIME".encodeToByteArray())
 
         /** Text */
-        val TEXT = of("tEXt".encodeToByteArray())
+        public val TEXT: PngChunkType = of("tEXt".encodeToByteArray())
 
         /** Compressed text */
-        val ZTXT = of("zTXt".encodeToByteArray())
+        public val ZTXT: PngChunkType = of("zTXt".encodeToByteArray())
 
         /** UTF-8 text, for example XMP */
-        val ITXT = of("iTXt".encodeToByteArray())
+        public val ITXT: PngChunkType = of("iTXt".encodeToByteArray())
 
         /** EXIF (since 2017) */
-        val EXIF = of("eXIf".encodeToByteArray())
+        public val EXIF: PngChunkType = of("eXIf".encodeToByteArray())
 
         @Suppress("MagicNumber")
-        fun of(typeBytes: ByteArray): PngChunkType {
+        public fun of(typeBytes: ByteArray): PngChunkType {
 
             require(typeBytes.size == TPYE_LENGTH) {
                 "ChunkType must be always 4 bytes, but got ${typeBytes.size} bytes!"

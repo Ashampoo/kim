@@ -20,17 +20,17 @@ import com.ashampoo.kim.input.ByteReader
 import com.ashampoo.kim.model.MetadataUpdate
 import com.ashampoo.kim.output.ByteWriter
 
-interface MetadataUpdater {
+public interface MetadataUpdater {
 
     @Throws(ImageWriteException::class)
-    fun update(
+    public fun update(
         byteReader: ByteReader,
         byteWriter: ByteWriter,
         update: MetadataUpdate
     )
 
     @Throws(ImageWriteException::class)
-    fun updateThumbnail(
+    public fun updateThumbnail(
         bytes: ByteArray,
         thumbnailBytes: ByteArray
     ): ByteArray

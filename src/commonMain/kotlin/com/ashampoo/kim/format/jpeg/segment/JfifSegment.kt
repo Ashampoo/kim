@@ -26,7 +26,7 @@ import com.ashampoo.kim.input.readByte
 import com.ashampoo.kim.input.readBytes
 import com.ashampoo.kim.input.skipBytes
 
-class JfifSegment(
+internal class JfifSegment(
     marker: Int,
     length: Int,
     byteReader: ByteReader

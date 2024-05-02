@@ -15,20 +15,20 @@
  */
 package com.ashampoo.kim.common
 
-open class ImageException(message: String? = null, cause: Throwable? = null) :
+public open class ImageException(message: String? = null, cause: Throwable? = null) :
     RuntimeException(message, cause)
 
-class ImageReadException(message: String? = null, cause: Throwable? = null) :
+public class ImageReadException(message: String? = null, cause: Throwable? = null) :
     ImageException(message, cause)
 
-open class ImageWriteException(message: String? = null, cause: Throwable? = null) :
+public open class ImageWriteException(message: String? = null, cause: Throwable? = null) :
     ImageException(message, cause)
 
 /**
  * We need to ensure that every Exception that can occur is wrapped
  * into an ImageReadException, because on Kotlin/Native this is the expected exception type.
  */
-inline fun <R> tryWithImageReadException(block: () -> R): R =
+internal inline fun <R> tryWithImageReadException(block: () -> R): R =
     try {
         block()
     } catch (ex: ImageReadException) {
@@ -42,7 +42,7 @@ inline fun <R> tryWithImageReadException(block: () -> R): R =
  * We need to ensure that everything is wrapped into an ImageWriteException,
  * because on Kotlin/Native this is the expected exception type.
  */
-inline fun <R> tryWithImageWriteException(block: () -> R): R =
+internal inline fun <R> tryWithImageWriteException(block: () -> R): R =
     try {
         block()
     } catch (ex: ImageWriteException) {

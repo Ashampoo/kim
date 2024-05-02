@@ -24,7 +24,7 @@ import com.ashampoo.kim.format.tiff.constant.TiffConstants
 import com.ashampoo.kim.format.tiff.constant.TiffTag
 import com.ashampoo.kim.input.RandomAccessByteReader
 
-object DngPreviewExtractor : TiffPreviewExtractor {
+public object DngPreviewExtractor : TiffPreviewExtractor {
 
     @Throws(ImageReadException::class)
     override fun extractPreviewImage(

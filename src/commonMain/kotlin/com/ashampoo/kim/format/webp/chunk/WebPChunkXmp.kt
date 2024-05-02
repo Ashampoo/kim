@@ -17,7 +17,7 @@ package com.ashampoo.kim.format.webp.chunk
 
 import com.ashampoo.kim.format.webp.WebPChunkType
 
-class WebPChunkXmp(
+internal class WebPChunkXmp(
     bytes: ByteArray
 ) : WebPChunk(WebPChunkType.XMP, bytes) {
 

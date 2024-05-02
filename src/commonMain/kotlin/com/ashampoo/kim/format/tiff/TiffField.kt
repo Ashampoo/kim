@@ -30,20 +30,20 @@ import com.ashampoo.kim.format.tiff.taginfo.TagInfoGpsText
 /**
  * A TIFF field in a TIFF directory.
  */
-class TiffField(
+public class TiffField(
     /** Offset relative to TIFF header */
-    val offset: Int,
-    val tag: Int,
-    val directoryType: Int,
-    val fieldType: FieldType<out Any>,
-    val count: Int,
+    public val offset: Int,
+    public val tag: Int,
+    public val directoryType: Int,
+    public val fieldType: FieldType<out Any>,
+    public val count: Int,
     /** Set if field has a local value. */
-    val localValue: Int?,
+    public val localValue: Int?,
     /** Set if field has a offset pointer to its value. */
-    val valueOffset: Int?,
-    val valueBytes: ByteArray,
-    val byteOrder: ByteOrder,
-    val sortHint: Int
+    public val valueOffset: Int?,
+    public val valueBytes: ByteArray,
+    public val byteOrder: ByteOrder,
+    public val sortHint: Int
 ) {
 
     /**

@@ -21,17 +21,17 @@ import com.ashampoo.kim.common.decodeLatin1BytesToString
 import com.ashampoo.kim.common.indexOfNullTerminator
 import com.ashampoo.kim.format.png.PngChunkType
 
-class PngChunkText(
+public class PngChunkText(
     chunkType: PngChunkType,
     bytes: ByteArray,
     crc: Int
 ) : PngTextChunk(chunkType, bytes, crc) {
 
     @kotlin.jvm.JvmField
-    val keyword: String
+    public val keyword: String
 
     @kotlin.jvm.JvmField
-    val text: String
+    public val text: String
 
     init {
 

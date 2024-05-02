@@ -19,7 +19,7 @@ package com.ashampoo.kim.format.jpeg.iptc
 /*
  * Represents an IPTC record, a single key-value pair of Photoshop IPTC data.
  */
-data class IptcRecord(
+public data class IptcRecord(
     val iptcType: IptcType,
     val value: String
 ) : Comparable<IptcRecord> {

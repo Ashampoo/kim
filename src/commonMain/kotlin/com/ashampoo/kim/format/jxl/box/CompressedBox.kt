@@ -22,7 +22,7 @@ import com.ashampoo.kim.format.bmff.box.Box
 /**
  * JPEG XL brob box for brotli compressed Exif or XMP
  */
-class CompressedBox(
+internal class CompressedBox(
     offset: Long,
     size: Long,
     largeSize: Long?,

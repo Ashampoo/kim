@@ -21,7 +21,7 @@ import com.ashampoo.kim.model.ImageSize
  * Effectively a marker interface for VP8, VP8L & VP8X.
  * One of these must always be present and contains the image size.
  */
-interface ImageSizeAware {
+internal interface ImageSizeAware {
 
     val imageSize: ImageSize
 

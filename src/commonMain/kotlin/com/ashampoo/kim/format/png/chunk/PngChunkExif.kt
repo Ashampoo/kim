@@ -16,13 +16,14 @@
 package com.ashampoo.kim.format.png.chunk
 
 import com.ashampoo.kim.format.png.PngChunkType
+import com.ashampoo.kim.format.tiff.TiffContents
 import com.ashampoo.kim.format.tiff.TiffReader
 
-class PngChunkExif(
+public class PngChunkExif(
     bytes: ByteArray,
     crc: Int
 ) : PngChunk(PngChunkType.EXIF, bytes, crc) {
 
-    val tiffContents = TiffReader.read(bytes)
+    public val tiffContents: TiffContents = TiffReader.read(bytes)
 
 }

@@ -20,33 +20,33 @@ import com.ashampoo.xmp.XMPRegionArea
 /**
  * Represents possible updates that can be performed.
  */
-sealed interface MetadataUpdate {
+public sealed interface MetadataUpdate {
 
     /**
      * In a perfect world every file has an orientation flag. So we don't want NULLs here.
      */
-    data class Orientation(
+    public data class Orientation(
         val tiffOrientation: TiffOrientation
     ) : MetadataUpdate
 
     /**
      * New taken date in millis or NULL to remove it (if the date is wrong and/or not known).
      */
-    data class TakenDate(
+    public data class TakenDate(
         val takenDate: Long?
     ) : MetadataUpdate
 
     /**
      * New GPS coordinates or NULL to remove it (if the location is wrong and/or not known)
      */
-    data class GpsCoordinates(
+    public data class GpsCoordinates(
         val gpsCoordinates: com.ashampoo.kim.model.GpsCoordinates?
     ) : MetadataUpdate
 
     /**
      * Set a photo as flagged/tagged/picked.
      */
-    data class Flagged(
+    public data class Flagged(
         val flagged: Boolean
     ) : MetadataUpdate
 
@@ -54,21 +54,21 @@ sealed interface MetadataUpdate {
      * Set a new Rating.
      * Can't be NULL and should be UNRATED instead.
      */
-    data class Rating(
+    public data class Rating(
         val photoRating: PhotoRating
     ) : MetadataUpdate
 
     /**
      * List of new keywords to set. An empty list removes all keywords.
      */
-    data class Keywords(
+    public data class Keywords(
         val keywords: Set<String>
     ) : MetadataUpdate
 
     /**
      * List of new faces to set. An empty map removes all faces.
      */
-    data class Faces(
+    public data class Faces(
         val faces: Map<String, XMPRegionArea>,
         val widthPx: Int,
         val heightPx: Int
@@ -77,14 +77,14 @@ sealed interface MetadataUpdate {
     /**
      * List of new persons to set. An empty list removes all persons.
      */
-    data class Persons(
+    public data class Persons(
         val personsInImage: Set<String>
     ) : MetadataUpdate
 
     /**
      * List of new albums to set. An empty list removes all albums.
      */
-    data class Albums(
+    public data class Albums(
         val albums: Set<String>
     ) : MetadataUpdate
 

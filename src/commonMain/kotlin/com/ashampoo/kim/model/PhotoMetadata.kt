@@ -26,7 +26,7 @@ import kotlinx.datetime.toLocalDateTime
  * Represents a high-level summary of image metadata extracted from raw ImageMetadata.
  * This summary is used by Ashampoo Photo Organizer.
  */
-data class PhotoMetadata(
+public data class PhotoMetadata(
 
     val imageFormat: ImageFormat? = null,
 
@@ -98,7 +98,7 @@ data class PhotoMetadata(
     )
 
     @Suppress("DataClassContainsFunctions")
-    fun isEmpty(): Boolean = this == emptyPhotoMetadata
+    public fun isEmpty(): Boolean = this == emptyPhotoMetadata
 
     /**
      * Combine the current metadata with the given one,
@@ -110,7 +110,7 @@ data class PhotoMetadata(
      * If the other metadata is NULL the same object is returned.
      * This API is provided to chain it.
      */
-    fun merge(other: PhotoMetadata?): PhotoMetadata {
+    public fun merge(other: PhotoMetadata?): PhotoMetadata {
 
         if (other == null)
             return this
@@ -157,8 +157,8 @@ data class PhotoMetadata(
         )
     }
 
-    companion object {
+    public companion object {
 
-        val emptyPhotoMetadata: PhotoMetadata = PhotoMetadata()
+        public val emptyPhotoMetadata: PhotoMetadata = PhotoMetadata()
     }
 }

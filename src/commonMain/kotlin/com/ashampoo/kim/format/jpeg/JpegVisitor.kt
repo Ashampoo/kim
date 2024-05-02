@@ -16,7 +16,7 @@
  */
 package com.ashampoo.kim.format.jpeg
 
-interface JpegVisitor {
+internal interface JpegVisitor {
 
     /** Return false to exit before reading image data. */
     fun beginSOS(): Boolean

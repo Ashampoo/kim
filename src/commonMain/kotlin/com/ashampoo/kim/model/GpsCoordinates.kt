@@ -26,21 +26,21 @@ private const val MIN_LONGITUDE = -MAX_LONGITUDE
 private const val THREE_DIGIT_PRECISE: Double = 1_000.0
 private const val FIVE_DIGIT_PRECISE: Double = 100_000.0
 
-data class GpsCoordinates(
+public data class GpsCoordinates(
     val latitude: Double,
     val longitude: Double
 ) {
 
     val displayString: String = "GPS: ${roundForDisplay(latitude)}, ${roundForDisplay(longitude)}"
 
-    fun toRoundedForCaching(): GpsCoordinates = GpsCoordinates(
+    public fun toRoundedForCaching(): GpsCoordinates = GpsCoordinates(
         latitude = roundForCaching(latitude),
         longitude = roundForCaching(longitude)
     )
 
-    fun isNullIsland(): Boolean = latitude == 0.0 && longitude == 0.0
+    public fun isNullIsland(): Boolean = latitude == 0.0 && longitude == 0.0
 
-    fun isValid(): Boolean =
+    public fun isValid(): Boolean =
         latitude in MIN_LATITUDE..MAX_LATITUDE && longitude in MIN_LONGITUDE..MAX_LONGITUDE
 }
 

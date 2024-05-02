@@ -18,15 +18,15 @@ package com.ashampoo.kim.format.tiff.write
 
 import com.ashampoo.kim.output.BinaryByteWriter
 
-interface TiffOutputItem {
+public interface TiffOutputItem {
 
-    var offset: Int
+    public var offset: Int
 
-    fun getItemLength(): Int
+    public fun getItemLength(): Int
 
-    fun writeItem(binaryByteWriter: BinaryByteWriter)
+    public fun writeItem(binaryByteWriter: BinaryByteWriter)
 
-    companion object {
-        const val UNDEFINED_VALUE: Int = -1
+    public companion object {
+        public const val UNDEFINED_VALUE: Int = -1
     }
 }

@@ -17,13 +17,13 @@ package com.ashampoo.kim.input
 
 public interface ByteReader : Closeable {
 
-    val contentLength: Long
+    public val contentLength: Long
 
     /**
      * Returns the next Byte, if any.
      */
-    fun readByte(): Byte?
+    public fun readByte(): Byte?
 
-    fun readBytes(count: Int): ByteArray
+    public fun readBytes(count: Int): ByteArray
 
 }

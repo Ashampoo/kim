@@ -15,7 +15,7 @@
  */
 package com.ashampoo.kim.common
 
-data class MetadataOffset(
+internal data class MetadataOffset(
     val type: MetadataType,
     val offset: Long,
     val length: Long

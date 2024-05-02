@@ -40,8 +40,9 @@ import com.ashampoo.kim.input.readAndVerifyBytes
 import com.ashampoo.kim.input.readBytes
 import com.ashampoo.kim.input.skipBytes
 import com.ashampoo.kim.model.ImageFormat
+import kotlin.jvm.JvmStatic
 
-object PngImageParser : ImageParser {
+public object PngImageParser : ImageParser {
 
     /* Note that [\\p{Cntrl}] does not work for Kotlin/JS. */
     private val controlCharRegex = Regex("[\\x00-\\x1F\\x7F-\\x9F]")
@@ -67,7 +68,8 @@ object PngImageParser : ImageParser {
         }
 
     @Throws(ImageReadException::class)
-    fun parseMetadataFromChunks(chunks: List<PngChunk>): ImageMetadata =
+    @JvmStatic
+    public fun parseMetadataFromChunks(chunks: List<PngChunk>): ImageMetadata =
         tryWithImageReadException {
 
             require(chunks.isNotEmpty()) {
@@ -237,7 +239,8 @@ object PngImageParser : ImageParser {
     private fun readAndVerifySignature(byteReader: ByteReader) =
         byteReader.readAndVerifyBytes("PNG signature", PngConstants.PNG_SIGNATURE)
 
-    fun readChunks(
+    @JvmStatic
+    public fun readChunks(
         byteReader: ByteReader,
         chunkTypeFilter: List<PngChunkType>?
     ): List<PngChunk> = tryWithImageReadException {

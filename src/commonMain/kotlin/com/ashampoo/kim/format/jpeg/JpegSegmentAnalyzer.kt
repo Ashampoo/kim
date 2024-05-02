@@ -28,16 +28,18 @@ import com.ashampoo.kim.format.jpeg.JpegMetadataExtractor.SEGMENT_START_OF_SCAN
 import com.ashampoo.kim.input.ByteReader
 import com.ashampoo.kim.input.read2BytesAsInt
 import com.ashampoo.kim.input.skipBytes
+import kotlin.jvm.JvmStatic
 
 /**
  * Algorithm to find segment offsets, types and lengths
  */
-object JpegSegmentAnalyzer {
+public object JpegSegmentAnalyzer {
 
     @OptIn(ExperimentalStdlibApi::class)
     @Throws(ImageReadException::class)
     @Suppress("ComplexMethod")
-    fun findSegmentInfos(
+    @JvmStatic
+    public fun findSegmentInfos(
         byteReader: ByteReader
     ): List<JpegSegmentInfo> = tryWithImageReadException {
 
@@ -146,7 +148,7 @@ object JpegSegmentAnalyzer {
         return segmentInfos
     }
 
-    data class JpegSegmentInfo(
+    public data class JpegSegmentInfo(
         val offset: Int,
         val marker: Int,
         val length: Int

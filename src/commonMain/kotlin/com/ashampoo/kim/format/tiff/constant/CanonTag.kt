@@ -26,38 +26,38 @@ import com.ashampoo.kim.format.tiff.taginfo.TagInfoUndefineds
  * See https://exiftool.org/TagNames/Canon.html
  */
 @Suppress("MagicNumber", "LargeClass", "StringLiteralDuplication")
-object CanonTag {
+public object CanonTag {
 
     /*
      * TODO This list is incomplete
      */
 
-    val CANON_CAMERA_SETTINGS = TagInfoUndefineds(
+    public val CANON_CAMERA_SETTINGS = TagInfoUndefineds(
         0x0001, "CanonCameraSettings", TagInfo.LENGTH_UNKNOWN,
         TiffDirectoryType.EXIF_DIRECTORY_MAKER_NOTE_CANON
     )
 
-    val CANON_IMAGE_TYPE = TagInfoAscii(
+    public val CANON_IMAGE_TYPE = TagInfoAscii(
         0x0006, "CanonImageType", TagInfo.LENGTH_UNKNOWN,
         TiffDirectoryType.EXIF_DIRECTORY_MAKER_NOTE_CANON
     )
 
-    val CANON_FIRMWARE_VERSION = TagInfoAscii(
+    public val CANON_FIRMWARE_VERSION = TagInfoAscii(
         0x0007, "CanonFirmwareVersion", TagInfo.LENGTH_UNKNOWN,
         TiffDirectoryType.EXIF_DIRECTORY_MAKER_NOTE_CANON
     )
 
-    val FILE_NUMBER = TagInfoLong(
+    public val FILE_NUMBER = TagInfoLong(
         0x0008, "FileNumber",
         TiffDirectoryType.EXIF_DIRECTORY_MAKER_NOTE_CANON
     )
 
-    val OWNER_NAME = TagInfoAscii(
+    public val OWNER_NAME = TagInfoAscii(
         0x0009, "OwnerName", TagInfo.LENGTH_UNKNOWN,
         TiffDirectoryType.EXIF_DIRECTORY_MAKER_NOTE_CANON
     )
 
-    val SERIAL_NUMBER = TagInfoLong(
+    public val SERIAL_NUMBER = TagInfoLong(
         0x000c, "SerialNumber",
         TiffDirectoryType.EXIF_DIRECTORY_MAKER_NOTE_CANON
     )
@@ -65,27 +65,27 @@ object CanonTag {
     /**
      * See https://exiftool.org/TagNames/Canon.html#CanonModelID
      */
-    val CANON_MODEL_ID = TagInfoLong(
+    public val CANON_MODEL_ID = TagInfoLong(
         0x0010, "CanonModelID",
         TiffDirectoryType.EXIF_DIRECTORY_MAKER_NOTE_CANON
     )
 
-    val LENS_MODEL = TagInfoAscii(
+    public val LENS_MODEL = TagInfoAscii(
         0x0095, "LensModel", TagInfo.LENGTH_UNKNOWN,
         TiffDirectoryType.EXIF_DIRECTORY_MAKER_NOTE_CANON
     )
 
-    val INTERNAL_SERIAL_NUMBER = TagInfoAscii(
+    public val INTERNAL_SERIAL_NUMBER = TagInfoAscii(
         0x0096, "InternalSerialNumber", TagInfo.LENGTH_UNKNOWN,
         TiffDirectoryType.EXIF_DIRECTORY_MAKER_NOTE_CANON
     )
 
-    val LENS_INFO = TagInfoUndefineds(
+    public val LENS_INFO = TagInfoUndefineds(
         0x4019, "LensInfo", TagInfo.LENGTH_UNKNOWN,
         TiffDirectoryType.EXIF_DIRECTORY_MAKER_NOTE_CANON
     )
 
-    val ALL = listOf(
+    public val ALL = listOf(
         CANON_CAMERA_SETTINGS,
         CANON_IMAGE_TYPE,
         CANON_FIRMWARE_VERSION,

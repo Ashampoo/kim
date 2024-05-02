@@ -42,9 +42,9 @@ import com.ashampoo.kim.input.skipBytes
 import com.ashampoo.kim.model.ImageFormat
 import com.ashampoo.kim.model.ImageSize
 
-object JpegImageParser : ImageParser {
+public object JpegImageParser : ImageParser {
 
-    fun getImageSize(byteReader: ByteReader): ImageSize? {
+    public fun getImageSize(byteReader: ByteReader): ImageSize? {
 
         val magicNumberBytes = byteReader.readBytes(ImageFormatMagicNumbers.jpeg.size).toList()
 

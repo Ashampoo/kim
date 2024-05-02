@@ -16,7 +16,7 @@
  */
 package com.ashampoo.kim.format.bmff.box
 
-interface BoxContainer {
+internal interface BoxContainer {
 
     val boxes: List<Box>
 

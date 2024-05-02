@@ -18,7 +18,9 @@ package com.ashampoo.kim.output
 
 import com.ashampoo.kim.common.ByteOrder
 
-abstract class BinaryByteWriter(val byteWriter: ByteWriter) : ByteWriter {
+abstract class BinaryByteWriter(
+    val byteWriter: ByteWriter
+) : ByteWriter {
 
     abstract fun write2Bytes(value: Int)
 
