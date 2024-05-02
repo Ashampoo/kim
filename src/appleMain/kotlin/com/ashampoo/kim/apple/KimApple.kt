@@ -29,14 +29,14 @@ import platform.posix.memcpy
 /**
  * Extra object to be aligned with the other modules.
  */
-object KimApple {
+public object KimApple {
 
     @Throws(ImageReadException::class)
-    fun readMetadata(data: NSData): ImageMetadata? =
+    public fun readMetadata(data: NSData): ImageMetadata? =
         Kim.readMetadata(ByteArrayByteReader(convertDataToByteArray(data)))
 
     @Throws(ImageReadException::class)
-    fun readMetadata(path: String): ImageMetadata? {
+    public fun readMetadata(path: String): ImageMetadata? {
 
         val fileBytes = readFileAsByteArray(path) ?: return null
 
@@ -45,11 +45,11 @@ object KimApple {
 }
 
 @Throws(ImageReadException::class)
-fun Kim.readMetadata(data: NSData): ImageMetadata? =
+private fun Kim.readMetadata(data: NSData): ImageMetadata? =
     KimApple.readMetadata(data)
 
 @Throws(ImageReadException::class)
-fun Kim.readMetadata(path: String): ImageMetadata? =
+public fun Kim.readMetadata(path: String): ImageMetadata? =
     KimApple.readMetadata(path)
 
 @OptIn(ExperimentalForeignApi::class)

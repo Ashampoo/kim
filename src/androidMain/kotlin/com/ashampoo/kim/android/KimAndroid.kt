@@ -25,21 +25,21 @@ import java.io.InputStream
 /**
  * Extra object to have a nicer API for Java projects
  */
-object KimAndroid {
+public object KimAndroid {
 
     @JvmStatic
     @Throws(ImageReadException::class)
-    fun readMetadata(inputStream: InputStream, length: Long): ImageMetadata? =
+    public fun readMetadata(inputStream: InputStream, length: Long): ImageMetadata? =
         Kim.readMetadata(AndroidInputStreamByteReader(inputStream, length))
 
     @JvmStatic
     @Throws(ImageReadException::class)
-    fun readMetadata(path: String): ImageMetadata? =
+    public fun readMetadata(path: String): ImageMetadata? =
         readMetadata(File(path))
 
     @JvmStatic
     @Throws(ImageReadException::class)
-    fun readMetadata(file: File): ImageMetadata? {
+    public fun readMetadata(file: File): ImageMetadata? {
 
         check(file.exists()) { "File does not exist: $file" }
 
@@ -48,13 +48,13 @@ object KimAndroid {
 }
 
 @Throws(ImageReadException::class)
-fun Kim.readMetadata(inputStream: InputStream, length: Long): ImageMetadata? =
+public fun Kim.readMetadata(inputStream: InputStream, length: Long): ImageMetadata? =
     KimAndroid.readMetadata(inputStream, length)
 
 @Throws(ImageReadException::class)
-fun Kim.readMetadata(path: String): ImageMetadata? =
+public fun Kim.readMetadata(path: String): ImageMetadata? =
     KimAndroid.readMetadata(path)
 
 @Throws(ImageReadException::class)
-fun Kim.readMetadata(file: File): ImageMetadata? =
+public fun Kim.readMetadata(file: File): ImageMetadata? =
     KimAndroid.readMetadata(file)

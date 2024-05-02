@@ -26,12 +26,12 @@ import kotlin.jvm.JvmStatic
 /**
  * Extra object to have a nicer API for Java projects
  */
-object KimKotlinx {
+public object KimKotlinx {
 
     @JvmStatic
     @OptIn(ExperimentalStdlibApi::class)
     @Throws(ImageReadException::class)
-    fun readMetadata(path: Path): ImageMetadata? = tryWithImageReadException {
+    public fun readMetadata(path: Path): ImageMetadata? = tryWithImageReadException {
 
         KotlinIoSourceByteReader.read(path) { byteReader ->
             byteReader?.let { Kim.readMetadata(it) }
@@ -41,5 +41,5 @@ object KimKotlinx {
 
 @OptIn(ExperimentalStdlibApi::class)
 @Throws(ImageReadException::class)
-fun Kim.readMetadata(path: Path): ImageMetadata? =
+public fun Kim.readMetadata(path: Path): ImageMetadata? =
     KimKotlinx.readMetadata(path)

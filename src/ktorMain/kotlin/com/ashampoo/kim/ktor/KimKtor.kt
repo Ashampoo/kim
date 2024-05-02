@@ -27,23 +27,23 @@ import kotlin.jvm.JvmStatic
 /**
  * Extra object to have a nicer API for Java projects
  */
-object KimKtor {
+public object KimKtor {
 
     @JvmStatic
     @Throws(ImageReadException::class)
-    fun readMetadata(byteReadPacket: ByteReadPacket): ImageMetadata? =
+    public fun readMetadata(byteReadPacket: ByteReadPacket): ImageMetadata? =
         Kim.readMetadata(KtorInputByteReader(byteReadPacket))
 
     @JvmStatic
     @Throws(ImageReadException::class)
-    fun readMetadata(byteReadChannel: ByteReadChannel, contentLength: Long): ImageMetadata? =
+    public fun readMetadata(byteReadChannel: ByteReadChannel, contentLength: Long): ImageMetadata? =
         Kim.readMetadata(KtorByteReadChannelByteReader(byteReadChannel, contentLength))
 }
 
 @Throws(ImageReadException::class)
-fun Kim.readMetadata(byteReadPacket: ByteReadPacket): ImageMetadata? =
+public fun Kim.readMetadata(byteReadPacket: ByteReadPacket): ImageMetadata? =
     KimKtor.readMetadata(byteReadPacket)
 
 @Throws(ImageReadException::class)
-fun Kim.readMetadata(byteReadChannel: ByteReadChannel, contentLength: Long): ImageMetadata? =
+public fun Kim.readMetadata(byteReadChannel: ByteReadChannel, contentLength: Long): ImageMetadata? =
     KimKtor.readMetadata(byteReadChannel, contentLength)

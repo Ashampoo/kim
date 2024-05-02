@@ -47,7 +47,7 @@ import com.ashampoo.kim.output.ByteWriter
 
 public object Kim {
 
-    var underUnitTesting: Boolean = false
+    internal var underUnitTesting: Boolean = false
 
     @kotlin.jvm.JvmStatic
     @Throws(ImageReadException::class)
