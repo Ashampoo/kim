@@ -57,7 +57,7 @@ object PhotoMetadataConverter {
 
         val gpsDirectory = imageMetadata.findTiffDirectory(TiffConstants.TIFF_DIRECTORY_GPS)
 
-        val gps = gpsDirectory?.let { GPSInfo.createFrom(it) }
+        val gps = gpsDirectory?.let(GPSInfo::createFrom)
 
         val latitude = gps?.getLatitudeAsDegreesNorth()
         val longitude = gps?.getLongitudeAsDegreesEast()
