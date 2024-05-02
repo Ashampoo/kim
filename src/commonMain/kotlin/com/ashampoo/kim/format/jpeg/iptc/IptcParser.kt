@@ -32,8 +32,9 @@ import com.ashampoo.kim.input.read4BytesAsInt
 import com.ashampoo.kim.input.readByte
 import com.ashampoo.kim.input.readBytes
 import com.ashampoo.kim.input.skipToQuad
+import kotlin.jvm.JvmStatic
 
-internal object IptcParser {
+public object IptcParser {
 
     internal val EMPTY_BYTE_ARRAY = byteArrayOf()
 
@@ -58,7 +59,8 @@ internal object IptcParser {
      * Checks if the ByteArray starts with the Photoshop identifaction header.
      * This is mandatory for IPTC embedded into APP13.
      */
-    fun isPhotoshopApp13Segment(segmentData: ByteArray): Boolean {
+    @JvmStatic
+    public fun isPhotoshopApp13Segment(segmentData: ByteArray): Boolean {
 
         if (!segmentData.startsWith(JpegConstants.APP13_IDENTIFIER))
             return false
@@ -75,7 +77,8 @@ internal object IptcParser {
      * @param bytes                 The IPTC bytes
      * @param startsWithApp13Header If IPTC is read from JPEG the header is required.
      */
-    fun parseIptc(
+    @JvmStatic
+    public fun parseIptc(
         bytes: ByteArray,
         startsWithApp13Header: Boolean = true
     ): IptcMetadata {
