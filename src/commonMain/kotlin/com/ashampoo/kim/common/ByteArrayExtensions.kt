@@ -53,7 +53,7 @@ internal fun ByteArray.indexOfNullTerminator(start: Int): Int {
     return -1
 }
 
-internal fun ByteArray.startsWith(bytes: ByteArray): Boolean {
+public fun ByteArray.startsWith(bytes: ByteArray): Boolean {
 
     if (bytes.size > size)
         return false
@@ -65,7 +65,7 @@ internal fun ByteArray.startsWith(bytes: ByteArray): Boolean {
     return true
 }
 
-internal fun ByteArray.startsWith(bytes: List<Byte>): Boolean {
+public fun ByteArray.startsWith(bytes: List<Byte>): Boolean {
 
     if (bytes.size > size)
         return false
