@@ -1,0 +1,265 @@
+File format : WEBP
+Resolution  : 5184 x 3456
+---- TIFF ----
+Version 42
+Little-endian (Intel, II)
+---- Directory IFD0 @ 8 ----
+0000000010 0x0100 ImageWidth = 5184
+0000000022 0x0101 ImageLength = 3456
+0000000034 0x0102 BitsPerSample = [8, 8, 8]
+0000000046 0x010f Make = Canon
+0000000058 0x0110 Model = Canon EOS Rebel T6
+0000000070 0x0112 Orientation = 6
+0000000082 0x011a XResolution = 240/1 (240.0)
+0000000094 0x011b YResolution = 240/1 (240.0)
+0000000106 0x0128 ResolutionUnit = 2
+0000000118 0x0131 Software = GIMP 2.10.30
+0000000130 0x0132 ModifyDate = 2022:09:26 14:42:58
+0000000142 0x8769 ExifOffset = 240
+
+---- Directory ExifIFD @ 240 ----
+0000000242 0x829a ExposureTime = 1/60 (0.016667)
+0000000254 0x829d FNumber = 8/1 (8.0)
+0000000266 0x8822 ExposureProgram = 8
+0000000278 0x8827 ISO = 100
+0000000290 0x8830 SensitivityType = 2
+0000000302 0x8832 RecommendedExposureIndex = 100
+0000000314 0x9000 ExifVersion = [0x30, 0x32, 0x33, 0x30]
+0000000326 0x9003 DateTimeOriginal = 2019:07:24 17:15:41
+0000000338 0x9004 DateTimeDigitized = 2019:07:24 17:15:41
+0000000350 0x9201 ShutterSpeedValue = 5906891/1000000 (5.906891)
+0000000362 0x9202 ApertureValue = 6/1 (6.0)
+0000000374 0x9204 ExposureCompensation = 0/1 (0.0)
+0000000386 0x9205 MaxApertureValue = 3625/1000 (3.625)
+0000000398 0x9207 MeteringMode = 5
+0000000410 0x9209 Flash = 16
+0000000422 0x920a FocalLength = 18/1 (18.0)
+0000000434 0x9291 SubSecTimeOriginal = 09
+0000000446 0x9292 SubSecTimeDigitized = 09
+0000000458 0xa001 ColorSpace = 1
+0000000470 0xa20e FocalPlaneXResolution = 5184000/905 (5728.176796)
+0000000482 0xa20f FocalPlaneYResolution = 3456000/595 (5808.403361)
+0000000494 0xa210 FocalPlaneResolutionUnit = 2
+0000000506 0xa401 CustomRendered = 0
+0000000518 0xa402 ExposureMode = 0
+0000000530 0xa403 WhiteBalance = 0
+0000000542 0xa406 SceneCaptureType = 0
+0000000554 0xa431 BodySerialNumber = 222073077744
+0000000566 0xa432 LensSpecification = [18/1 (18.0), 55/1 (55.0), Invalid rational (0/0), Invalid rational (0/0)]
+0000000578 0xa434 LensModel = EF-S18-55mm f/3.5-5.6 IS II
+0000000590 0xa435 LensSerialNumber = 000001a354
+
+---- Directory IFD1 @ 804 ----
+0000000806 0x00fe NewSubfileType = 1
+0000000818 0x0100 ImageWidth = 256
+0000000830 0x0101 ImageLength = 170
+0000000842 0x0102 BitsPerSample = [8, 8, 8]
+0000000854 0x0103 Compression = 6
+0000000866 0x0106 PhotometricInterpretation = 6
+0000000878 0x0115 SamplesPerPixel = 3
+0000000890 0x0201 JpgFromRawStart = 924
+0000000902 0x0202 JpgFromRawLength = 7245
+
+---- XMP ----
+<?xpacket begin="﻿" id="W5M0MpCehiHzreSzNTczkc9d"?>
+<x:xmpmeta xmlns:x="adobe:ns:meta/" x:xmptk="Ashampoo XMP Core 1.3.0">
+  <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+    <rdf:Description rdf:about=""
+        xmlns:GIMP="http://www.gimp.org/xmp/"
+        xmlns:aux="http://ns.adobe.com/exif/1.0/aux/"
+        xmlns:crs="http://ns.adobe.com/camera-raw-settings/1.0/"
+        xmlns:dc="http://purl.org/dc/elements/1.1/"
+        xmlns:exifEX="http://cipa.jp/exif/1.0/"
+        xmlns:photoshop="http://ns.adobe.com/photoshop/1.0/"
+        xmlns:tiff="http://ns.adobe.com/tiff/1.0/"
+        xmlns:xmp="http://ns.adobe.com/xap/1.0/"
+        xmlns:xmpMM="http://ns.adobe.com/xap/1.0/mm/"
+        xmlns:stRef="http://ns.adobe.com/xap/1.0/sType/ResourceRef#"
+        xmlns:stEvt="http://ns.adobe.com/xap/1.0/sType/ResourceEvent#"
+      GIMP:API="2.0"
+      GIMP:Platform="Mac OS"
+      GIMP:TimeStamp="1664196186260564"
+      GIMP:Version="2.10.30"
+      aux:ApproximateFocusDistance="349/100"
+      aux:Firmware="1.1.0"
+      aux:FlashCompensation="0/1"
+      aux:ImageNumber="0"
+      aux:Lens="EF-S18-55mm f/3.5-5.6 IS II"
+      aux:LensID="52"
+      aux:LensInfo="18/1 55/1 0/0 0/0"
+      aux:LensSerialNumber="000001a354"
+      aux:SerialNumber="222073077744"
+      crs:AlreadyApplied="True"
+      crs:AutoLateralCA="0"
+      crs:AutoToneDigest="0DE0C3C7543100E2B4373122553C562A"
+      crs:AutoToneDigestNoSat="EBA30A17B751770B7607353DE5AEE0E9"
+      crs:Blacks2012="-25"
+      crs:BlueHue="-88"
+      crs:BlueSaturation="-48"
+      crs:CameraProfile="Adobe Standard"
+      crs:CameraProfileDigest="8F4BCAD6A71A9A16C5CECE7FB37BE896"
+      crs:Clarity2012="0"
+      crs:ColorNoiseReduction="0"
+      crs:Contrast2012="-74"
+      crs:ConvertToGrayscale="False"
+      crs:DefringeGreenAmount="0"
+      crs:DefringeGreenHueHi="60"
+      crs:DefringeGreenHueLo="40"
+      crs:DefringePurpleAmount="0"
+      crs:DefringePurpleHueHi="70"
+      crs:DefringePurpleHueLo="30"
+      crs:Dehaze="0"
+      crs:Exposure2012="0.00"
+      crs:GrainAmount="0"
+      crs:GreenHue="0"
+      crs:GreenSaturation="0"
+      crs:HasCrop="False"
+      crs:HasSettings="True"
+      crs:Highlights2012="-72"
+      crs:HueAdjustmentAqua="0"
+      crs:HueAdjustmentBlue="0"
+      crs:HueAdjustmentGreen="0"
+      crs:HueAdjustmentMagenta="0"
+      crs:HueAdjustmentOrange="0"
+      crs:HueAdjustmentPurple="0"
+      crs:HueAdjustmentRed="0"
+      crs:HueAdjustmentYellow="0"
+      crs:LensManualDistortionAmount="0"
+      crs:LensProfileEnable="0"
+      crs:LensProfileSetup="LensDefaults"
+      crs:LuminanceAdjustmentAqua="+49"
+      crs:LuminanceAdjustmentBlue="+44"
+      crs:LuminanceAdjustmentGreen="0"
+      crs:LuminanceAdjustmentMagenta="0"
+      crs:LuminanceAdjustmentOrange="0"
+      crs:LuminanceAdjustmentPurple="0"
+      crs:LuminanceAdjustmentRed="0"
+      crs:LuminanceAdjustmentYellow="0"
+      crs:LuminanceSmoothing="0"
+      crs:OverrideLookVignette="False"
+      crs:ParametricDarks="-3"
+      crs:ParametricHighlightSplit="75"
+      crs:ParametricHighlights="+11"
+      crs:ParametricLights="0"
+      crs:ParametricMidtoneSplit="50"
+      crs:ParametricShadowSplit="25"
+      crs:ParametricShadows="-16"
+      crs:PerspectiveAspect="0"
+      crs:PerspectiveHorizontal="0"
+      crs:PerspectiveRotate="0.0"
+      crs:PerspectiveScale="100"
+      crs:PerspectiveUpright="0"
+      crs:PerspectiveVertical="0"
+      crs:PerspectiveX="0.00"
+      crs:PerspectiveY="0.00"
+      crs:PostCropVignetteAmount="0"
+      crs:ProcessVersion="11.0"
+      crs:RawFileName="IMG_0031.CR2"
+      crs:RedHue="+48"
+      crs:RedSaturation="+30"
+      crs:Saturation="-1"
+      crs:SaturationAdjustmentAqua="-5"
+      crs:SaturationAdjustmentBlue="0"
+      crs:SaturationAdjustmentGreen="0"
+      crs:SaturationAdjustmentMagenta="0"
+      crs:SaturationAdjustmentOrange="-21"
+      crs:SaturationAdjustmentPurple="0"
+      crs:SaturationAdjustmentRed="-15"
+      crs:SaturationAdjustmentYellow="0"
+      crs:ShadowTint="0"
+      crs:Shadows2012="+59"
+      crs:SharpenDetail="25"
+      crs:SharpenEdgeMasking="0"
+      crs:SharpenRadius="+1.0"
+      crs:Sharpness="0"
+      crs:SplitToningBalance="0"
+      crs:SplitToningHighlightHue="0"
+      crs:SplitToningHighlightSaturation="0"
+      crs:SplitToningShadowHue="0"
+      crs:SplitToningShadowSaturation="0"
+      crs:Temperature="5550"
+      crs:Tint="+10"
+      crs:ToneCurve="0, 0, 255, 255"
+      crs:ToneCurveBlue="0, 0, 255, 255"
+      crs:ToneCurveGreen="0, 0, 255, 255"
+      crs:ToneCurveName="Linear"
+      crs:ToneCurveName2012="Linear"
+      crs:ToneCurvePV2012="0, 0, 255, 255"
+      crs:ToneCurvePV2012Blue="0, 0, 255, 255"
+      crs:ToneCurvePV2012Green="0, 0, 255, 255"
+      crs:ToneCurvePV2012Red="0, 0, 255, 255"
+      crs:ToneCurveRed="0, 0, 255, 255"
+      crs:ToneMapStrength="0"
+      crs:UprightCenterMode="0"
+      crs:UprightCenterNormX="0.5"
+      crs:UprightCenterNormY="0.5"
+      crs:UprightFocalLength35mm="35"
+      crs:UprightFocalMode="0"
+      crs:UprightFourSegmentsCount="0"
+      crs:UprightPreview="False"
+      crs:UprightTransformCount="6"
+      crs:UprightVersion="151388160"
+      crs:Version="11.1"
+      crs:Vibrance="+12"
+      crs:VignetteAmount="0"
+      crs:WhiteBalance="As Shot"
+      crs:Whites2012="-85"
+      dc:format="image/jpeg"
+      exifEX:LensModel="EF-S18-55mm f/3.5-5.6 IS II"
+      photoshop:DateCreated="2019-07-24T17:15:41.09"
+      tiff:Orientation="6"
+      xmp:CreateDate="2019-07-24T17:15:41.09"
+      xmp:CreatorTool="GIMP 2.10"
+      xmp:MetadataDate="2019-07-25T09:51:16-07:00"
+      xmp:ModifyDate="2019-07-25T09:51:16-07:00"
+      xmp:Rating="2"
+      xmpMM:DocumentID="xmp.did:84a3bb93-c18a-4f32-becb-7381417d4f44"
+      xmpMM:InstanceID="xmp.iid:2d83b93d-ee1e-470c-9705-05eba0760e8a"
+      xmpMM:OriginalDocumentID="616095E96B9CD92923C156A4A8A93845">
+      <crs:Look>
+        <rdf:Description
+          crs:Amount="1.000000"
+          crs:Group="lang=&quot;x-default&quot; Profiles"
+          crs:Name="Adobe Color"
+          crs:SupportsAmount="false"
+          crs:SupportsMonochrome="false"
+          crs:SupportsOutputReferred="false"
+          crs:UUID="B952C231111CD8E0ECCF14B86BAA7077">
+        <crs:Parameters
+          crs:CameraProfile="Adobe Standard"
+          crs:ConvertToGrayscale="False"
+          crs:LookTable="E1095149FDB39D7A057BAB208837E2E1"
+          crs:ProcessVersion="11.0"
+          crs:ToneCurvePV2012="0, 0, 22, 16, 40, 35, 127, 127, 224, 230, 240, 246, 255, 255"
+          crs:ToneCurvePV2012Blue="0, 0, 255, 255"
+          crs:ToneCurvePV2012Green="0, 0, 255, 255"
+          crs:ToneCurvePV2012Red="0, 0, 255, 255"
+          crs:Version="11.1"/>
+        </rdf:Description>
+      </crs:Look>
+      <xmpMM:DerivedFrom
+        stRef:documentID="616095E96B9CD92923C156A4A8A93845"
+        stRef:originalDocumentID="616095E96B9CD92923C156A4A8A93845"/>
+      <xmpMM:History>
+        <rdf:Seq>
+          <rdf:li
+            stEvt:action="derived"
+            stEvt:parameters="converted from image/x-canon-cr2 to image/jpeg, saved to new location"/>
+          <rdf:li
+            stEvt:action="saved"
+            stEvt:changed="/"
+            stEvt:instanceID="xmp.iid:84a3bb93-c18a-4f32-becb-7381417d4f44"
+            stEvt:softwareAgent="Adobe Photoshop Lightroom Classic 8.1 (Macintosh)"
+            stEvt:when="2019-07-25T09:51:16-07:00"/>
+          <rdf:li
+            stEvt:action="saved"
+            stEvt:changed="/"
+            stEvt:instanceID="xmp.iid:df016ef5-f27d-4e17-8ca4-8f5cdedf76d8"
+            stEvt:softwareAgent="Gimp 2.10 (Mac OS)"
+            stEvt:when="2022-09-26T14:43:06+02:00"/>
+        </rdf:Seq>
+      </xmpMM:History>
+    </rdf:Description>
+  </rdf:RDF>
+</x:xmpmeta>
+<?xpacket end="w"?>

@@ -1,0 +1,173 @@
+File format : PNG
+Resolution  : 500 x 333
+---- TIFF ----
+Version 42
+Little-endian (Intel, II)
+---- Directory IFD0 @ 8 ----
+0000000010 0x0100 ImageWidth = 500
+0000000022 0x0101 ImageLength = 333
+0000000034 0x0102 BitsPerSample = [8, 8, 8]
+0000000046 0x010f Make = Canon
+0000000058 0x0110 Model = Canon EOS M3
+0000000070 0x0112 Orientation = 1
+0000000082 0x011a XResolution = 180/1 (180.0)
+0000000094 0x011b YResolution = 180/1 (180.0)
+0000000106 0x0128 ResolutionUnit = 2
+0000000118 0x0131 Software = GIMP 2.10.30
+0000000130 0x0132 ModifyDate = 2023:07:12 15:28:58
+0000000142 0x0213 YCbCrPositioning = 2
+0000000154 0x8769 ExifOffset = 258
+0000000166 0x8825 GPSInfo = 4584
+
+---- Directory ExifIFD @ 258 ----
+0000000260 0x829a ExposureTime = 1/4000 (2.5E-4)
+0000000272 0x829d FNumber = 56/10 (5.6)
+0000000284 0x8822 ExposureProgram = 4
+0000000296 0x8827 ISO = 3200
+0000000308 0x8830 SensitivityType = 2
+0000000320 0x8832 RecommendedExposureIndex = 3200
+0000000332 0x9000 ExifVersion = [0x30, 0x32, 0x33, 0x30]
+0000000344 0x9003 DateTimeOriginal = 2017:11:12 21:41:48
+0000000356 0x9004 DateTimeDigitized = 2017:11:12 21:41:48
+0000000368 0x9101 ComponentsConfiguration = [0x01, 0x02, 0x03, 0x00]
+0000000380 0x9102 CompressedBitsPerPixel = 3/1 (3.0)
+0000000392 0x9201 ShutterSpeedValue = 383/32 (11.96875)
+0000000404 0x9202 ApertureValue = 159/32 (4.96875)
+0000000416 0x9204 ExposureCompensation = 0/3 (0.0)
+0000000428 0x9207 MeteringMode = 5
+0000000440 0x9209 Flash = 16
+0000000452 0x920a FocalLength = 55/1 (55.0)
+0000000464 0x927c MakerNote = [3624 bytes]
+0000000476 0x9286 UserComment = 
+0000000488 0x9290 SubSecTime =   
+0000000500 0x9291 SubSecTimeOriginal = 76
+0000000512 0x9292 SubSecTimeDigitized = 76
+0000000524 0xa000 FlashpixVersion = [0x30, 0x31, 0x30, 0x30]
+0000000536 0xa001 ColorSpace = 1
+0000000548 0xa002 ExifImageWidth = 2304
+0000000560 0xa003 ExifImageHeight = 1536
+0000000572 0xa20e FocalPlaneXResolution = 2304000/879 (2621.16041)
+0000000584 0xa20f FocalPlaneYResolution = 1536000/586 (2621.16041)
+0000000596 0xa210 FocalPlaneResolutionUnit = 2
+0000000608 0xa217 SensingMethod = 2
+0000000620 0xa300 FileSource = 3
+0000000632 0xa401 CustomRendered = 0
+0000000644 0xa402 ExposureMode = 0
+0000000656 0xa403 WhiteBalance = 1
+0000000668 0xa404 DigitalZoomRatio = 6000/6000 (1.0)
+0000000680 0xa406 SceneCaptureType = 0
+0000000692 0xa431 BodySerialNumber = 073043001183
+0000000704 0xa432 LensSpecification = [18/1 (18.0), 55/1 (55.0), 0/1 (0.0), 0/1 (0.0)]
+0000000716 0xa434 LensModel = EF-M18-55mm f/3.5-5.6 IS STM
+0000000728 0xa435 LensSerialNumber = 0000455071
+
+---- Directory GPS @ 4584 ----
+0000004586 0x0000 GPSVersionID = [0x02, 0x03, 0x00, 0x00]
+
+---- Directory IFD1 @ 4602 ----
+0000004604 0x00fe NewSubfileType = 1
+0000004616 0x0100 ImageWidth = 256
+0000004628 0x0101 ImageLength = 170
+0000004640 0x0102 BitsPerSample = [8, 8, 8]
+0000004652 0x0103 Compression = 6
+0000004664 0x0106 PhotometricInterpretation = 6
+0000004676 0x0115 SamplesPerPixel = 3
+0000004688 0x0201 JpgFromRawStart = 4722
+0000004700 0x0202 JpgFromRawLength = 5056
+
+---- Directory MakerNoteCanon @ 840 ----
+0000000842 0x0003 Unknown = [0, 0, 0, 0]
+0000000854 0x0018 Unknown = 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0000000866 0x0019 Unknown = 1
+0000000878 0x001c Unknown = 0
+0000000890 0x001e Unknown = 16843008
+0000000902 0x0022 Unknown = 416 0 0 16 8 1 1 640 480 0 0 0 0 0 8 384 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0000000914 0x0023 Unknown = 8 0
+0000000926 0x0027 Unknown = 10 0 65535 0 65535 42 65535 0 0 65535 65535 65535 65535 65535 65535 65535 0 65535 65535 65535 65535
+0000000938 0x0028 Unknown = 109 12 231 51 175 248 209 220 90 235 56 130 94 129 4 47
+0000000950 0x002d Unknown = 0
+0000000962 0x002e Unknown = 54 32767 32767 65535 65535 32767 32767 32767 0 65535 1 65535 65535 65535 65535 32767 32767 32767 65535 65535 65535 65535 65535 0 0 0 0
+0000000974 0x002f Unknown = 34 2 65535 65535 65535 65535 65535 65535 65535 65535 65535 65535 65535 65535 65535 65535 65535
+0000000986 0x0031 Unknown = 12 1 65535 65535 65535 65535
+0000000998 0x0033 Unknown = 2801211429 3704704190 2184768346 788824414
+0000001010 0x0037 Unknown = 8 0
+0000001022 0x0038 Unknown = 8 0 0 0 112 41 213 123
+0000001034 0x003c Unknown = 436 13 49 1 2304 1536 6000 4000 600 156 12880 0 29995 20 0 12880 0 0 27472 27492 62825 206 12744 78 148 56112 1638 56112 10 2 56112 257 0 2 0 1 62825 97 65535 162 156 12880 0 29995 20 0 12880 0 12744 78 83 56112 1550 56112 10 2 56112 800 56112 1644 56112 10 2 56112 257 0 2 0 1 62825 103 65535 172 156 12880 0 29995 20 0 12880 0 0 27472 27492 62825 204 12744 78 156 56112 1650 56112 10 2 56112 257 0 65535 8421 156 12880 0 29995 20 0 12880 0 12744 78 83 56112 1600 56112 10 2 56112 257 0 2 0 1 62825 115 65535 8421 156 12880 0 29995 20 0 12880 0 0 27472 27492 62825 202 56112 504 160 584 0 56112 10 2 56112 257 0 2 0 1 62825 99 65535 0 65535 8421 156 12880 0 29995 20 0 12880 0 0 27472 27492 62825 192 12744 78 83 56112 1631 56112 10 2 56112 257 0 2 0 1 62825 103 12880 200 12956 12952 29771 29995 20 0 12880 0 0 27472 27492 62825 206 12744 78 1 0 0 0 0 0 0 0 0 0 0 0 0 65531
+0000001046 0x003d Unknown = 32 1 0 0 0 0 0 0
+0000001058 0x003f Unknown = 1
+0000001070 0x009a Unknown = 0 2304 1536 0 0
+0000001082 0x4008 Unknown = 135 135 135
+0000001094 0x4009 Unknown = 255 255 255
+0000001106 0x4016 Unknown = 32 0 1 0 1 1 1 0
+0000001118 0x4018 Unknown = 36 0 0 0 0 0 1 0 1
+0000001130 0x4020 Unknown = 28 0 0 0 0 0 0
+0000001142 0x4023 Unknown = 16 1 4320 2880
+0000001154 0x4024 Unknown = 212 7 1 20 1 257 1 4294967295 2 20 1 513 1 4294967295 3 20 1 769 1 4294967295 4 56 4 1025 1 4294967295 1026 1 4294967295 1027 1 4294967295 1028 1 4294967295 5 20 1 1281 1 4294967295 6 20 1 1537 1 4294967295 7 20 1 1793 1 4294967295
+0000001166 0x402b Unknown = 24 0 0 0 0 0
+0000001178 0x402c Unknown = 8 0
+0000001190 0x000f Unknown = [34 shorts]
+0000001202 0x0008 FileNumber = 1237368
+0000001214 0x0007 CanonFirmwareVersion = Firmware Version 1.01
+0000001226 0x0006 CanonImageType = IMG:EOS M3 JPEG
+0000001238 0x0096 InternalSerialNumber = SA0151220
+0000001250 0x00aa Unknown = [12, 392, 545, 546, 2614, 0]
+0000001262 0x0010 CanonModelID = 57933824
+0000001274 0x0013 Unknown = [0, 159, 7, 112]
+0000001286 0x00d0 Unknown = 0
+0000001298 0x0001 CanonCameraSettings = [48 shorts]
+0000001310 0x0093 Unknown = [33 shorts]
+0000001322 0x00a0 Unknown = [28, 0, 0, -1, -1, -1, -1, -1, -1, -1, 132, 0, 9, -1]
+0000001334 0x0004 Unknown = [34 shorts]
+0000001346 0x0035 Unknown = [16, 0, 32766, 0]
+
+---- IPTC ----
+Caption/Abstract (120) = 'time lapse photography of fire'
+Date Created (55) = '2023-07-12'
+Keywords (25) = 'human'
+Keywords (25) = 'person'
+Keywords (25) = 'people'
+Time Created (60) = '15:28:58-15:28'
+
+---- XMP ----
+<?xpacket begin="﻿" id="W5M0MpCehiHzreSzNTczkc9d"?>
+<x:xmpmeta xmlns:x="adobe:ns:meta/" x:xmptk="Ashampoo XMP Core 1.3.0">
+  <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+    <rdf:Description rdf:about=""
+        xmlns:GIMP="http://www.gimp.org/xmp/"
+        xmlns:dc="http://purl.org/dc/elements/1.1/"
+        xmlns:tiff="http://ns.adobe.com/tiff/1.0/"
+        xmlns:xmp="http://ns.adobe.com/xap/1.0/"
+        xmlns:xmpMM="http://ns.adobe.com/xap/1.0/mm/"
+        xmlns:stEvt="http://ns.adobe.com/xap/1.0/sType/ResourceEvent#"
+      GIMP:API="2.0"
+      GIMP:Platform="Mac OS"
+      GIMP:TimeStamp="1689168546958559"
+      GIMP:Version="2.10.30"
+      dc:Format="image/png"
+      tiff:Orientation="1"
+      xmp:CreatorTool="GIMP 2.10"
+      xmp:Rating="2"
+      xmpMM:DocumentID="gimp:docid:gimp:008091ee-2d50-4d1d-8112-4cb6b993f829"
+      xmpMM:InstanceID="xmp.iid:d6632067-909d-439e-bbc8-b2c999060e48"
+      xmpMM:OriginalDocumentID="xmp.did:f003abfc-0e70-4e1a-bc68-aa4f21dd83f9">
+      <dc:subject>
+        <rdf:Bag>
+          <rdf:li>hello</rdf:li>
+          <rdf:li>test</rdf:li>
+          <rdf:li>Äußerst öffentlich</rdf:li>
+        </rdf:Bag>
+      </dc:subject>
+      <xmpMM:History>
+        <rdf:Seq>
+          <rdf:li
+            stEvt:action="saved"
+            stEvt:changed="/"
+            stEvt:instanceID="xmp.iid:32b50e0e-abd4-4969-a70b-f6ac8c74734e"
+            stEvt:softwareAgent="Gimp 2.10 (Mac OS)"
+            stEvt:when="2023-07-12T15:29:06+02:00"/>
+        </rdf:Seq>
+      </xmpMM:History>
+    </rdf:Description>
+  </rdf:RDF>
+</x:xmpmeta>
+<?xpacket end="w"?>

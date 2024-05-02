@@ -1,0 +1,38 @@
+File format : PNG
+Resolution  : 500 x 333
+---- TIFF ----
+Version 42
+Big-endian (Motorola, MM)
+---- Directory IFD0 @ 8 ----
+0000000010 0x8769 ExifOffset = 40
+0000000022 0x8825 GPSInfo = 48
+
+---- Directory ExifIFD @ 40 ----
+
+---- Directory GPS @ 48 ----
+0000000050 0x0000 GPSVersionID = [0x02, 0x03, 0x00, 0x00]
+0000000062 0x0001 GPSLatitudeRef = N
+0000000074 0x0002 GPSLatitude = [53/1 (53.0), 13/1 (13.0), 24519/2500 (9.8076)]
+0000000086 0x0003 GPSLongitudeRef = E
+0000000098 0x0004 GPSLongitude = [8/1 (8.0), 14/1 (14.0), 56949/2500 (22.7796)]
+
+---- IPTC ----
+Caption/Abstract (120) = 'time lapse photography of fire'
+Date Created (55) = '2023-07-12'
+Keywords (25) = 'human'
+Keywords (25) = 'person'
+Keywords (25) = 'people'
+Time Created (60) = '15:28:58-15:28'
+
+---- XMP ----
+<?xpacket begin="﻿" id="W5M0MpCehiHzreSzNTczkc9d"?>
+<x:xmpmeta xmlns:x="adobe:ns:meta/" x:xmptk="Ashampoo XMP Core 1.3.0">
+  <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+    <rdf:Description rdf:about=""
+        xmlns:exif="http://ns.adobe.com/exif/1.0/"
+      exif:GPSLatitude="53,13.1635N"
+      exif:GPSLongitude="8,14.3797E"
+      exif:GPSVersionID="2.3.0.0"/>
+  </rdf:RDF>
+</x:xmpmeta>
+<?xpacket end="w"?>

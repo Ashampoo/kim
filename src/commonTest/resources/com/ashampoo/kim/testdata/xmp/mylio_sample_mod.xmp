@@ -1,0 +1,116 @@
+<?xpacket begin="﻿" id="W5M0MpCehiHzreSzNTczkc9d"?>
+<x:xmpmeta xmlns:x="adobe:ns:meta/" x:xmptk="Ashampoo XMP Core 1.3.0">
+  <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+    <rdf:Description rdf:about=""
+        xmlns:Iptc4xmpExt="http://iptc.org/std/Iptc4xmpExt/2008-02-29/"
+        xmlns:MY="http://ns.mylollc.com/MyloEdit/"
+        xmlns:dc="http://purl.org/dc/elements/1.1/"
+        xmlns:exif="http://ns.adobe.com/exif/1.0/"
+        xmlns:mwg-rs="http://www.metadataworkinggroup.com/schemas/regions/"
+        xmlns:stDim="http://ns.adobe.com/xap/1.0/sType/Dimensions#"
+        xmlns:stArea="http://ns.adobe.com/xmp/sType/Area#"
+        xmlns:tiff="http://ns.adobe.com/tiff/1.0/"
+        xmlns:xmp="http://ns.adobe.com/xap/1.0/"
+        xmlns:xmpMM="http://ns.adobe.com/xap/1.0/mm/"
+      MY:DateRangeEnd="2016-02-21T16:23:45.420"
+      MY:DateRangeScope=""
+      MY:DateRangeStart="2016-02-21T16:23:45.420"
+      MY:MetadataDate="2023-03-27T13:28:35.381Z"
+      MY:Season="0"
+      MY:Undated="false"
+      MY:Year="0"
+      MY:flag="false"
+      MY:processVersion="1"
+      exif:DateTimeOriginal="2023-08-01T13:37:42"
+      exif:GPSLatitude="53,13.1635N"
+      exif:GPSLongitude="8,14.3797E"
+      exif:GPSVersionID="2.3.0.0"
+      exif:SubSecTime="420"
+      exif:SubSecTimeDigitized="420"
+      exif:SubSecTimeOriginal="420"
+      tiff:Orientation="6"
+      xmp:CreateDate="2016-02-21T16:23:45.420"
+      xmp:Label="Green"
+      xmp:MetadataDate="2023-03-27T13:28:35.381Z"
+      xmp:ModifyDate="2016-02-21T16:23:45.420"
+      xmp:Rating="3"
+      xmpMM:DocumentID="26D2F494-1226-403D-BAB5-F41D05F2AB35"
+      xmpMM:InstanceID="xmp.iid:3740FF85-236E-4C0D-8131-39CCEADD1BA1"
+      xmpMM:OriginalDocumentID="26D2F494-1226-403D-BAB5-F41D05F2AB35">
+      <Iptc4xmpExt:PersonInImage>
+        <rdf:Bag>
+          <rdf:li>John</rdf:li>
+        </rdf:Bag>
+      </Iptc4xmpExt:PersonInImage>
+      <dc:description>
+        <rdf:Alt>
+          <rdf:li xml:lang="x-default">This is the description</rdf:li>
+        </rdf:Alt>
+      </dc:description>
+      <dc:subject>
+        <rdf:Bag>
+          <rdf:li>&lt;swiper&gt;</rdf:li>
+          <rdf:li>fox</rdf:li>
+          <rdf:li>fuchs</rdf:li>
+        </rdf:Bag>
+      </dc:subject>
+      <dc:title>
+        <rdf:Alt>
+          <rdf:li xml:lang="x-default">sample title</rdf:li>
+        </rdf:Alt>
+      </dc:title>
+      <exif:ISOSpeedRatings>
+        <rdf:Seq>
+          <rdf:li>400</rdf:li>
+        </rdf:Seq>
+      </exif:ISOSpeedRatings>
+      <mwg-rs:Regions rdf:parseType="Resource">
+        <mwg-rs:AppliedToDimensions
+          stDim:h="3000"
+          stDim:unit="pixel"
+          stDim:w="4512"/>
+        <mwg-rs:RegionList>
+          <rdf:Seq>
+            <rdf:li>
+              <rdf:Description
+                mwg-rs:Name="Eye Left"
+                mwg-rs:Type="Face">
+              <mwg-rs:Area
+                stArea:h="0.050000"
+                stArea:unit="normalized"
+                stArea:w="0.033245"
+                stArea:x="0.295179"
+                stArea:y="0.278880"/>
+              </rdf:Description>
+            </rdf:li>
+            <rdf:li>
+              <rdf:Description
+                mwg-rs:Name="Eye Right"
+                mwg-rs:Type="Face">
+              <mwg-rs:Area
+                stArea:h="0.050000"
+                stArea:unit="normalized"
+                stArea:w="0.033245"
+                stArea:x="0.814990"
+                stArea:y="0.472579"/>
+              </rdf:Description>
+            </rdf:li>
+            <rdf:li>
+              <rdf:Description
+                mwg-rs:Name="Nothing"
+                mwg-rs:Type="Face">
+              <mwg-rs:Area
+                stArea:h="0.050000"
+                stArea:unit="normalized"
+                stArea:w="0.033245"
+                stArea:x="0.501552"
+                stArea:y="0.905484"/>
+              </rdf:Description>
+            </rdf:li>
+          </rdf:Seq>
+        </mwg-rs:RegionList>
+      </mwg-rs:Regions>
+    </rdf:Description>
+  </rdf:RDF>
+</x:xmpmeta>
+<?xpacket end="w"?>
