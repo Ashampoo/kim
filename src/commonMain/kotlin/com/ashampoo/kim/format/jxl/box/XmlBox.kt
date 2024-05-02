@@ -21,7 +21,7 @@ import com.ashampoo.kim.format.bmff.box.Box
 /**
  * JPEG XL XML box
  */
-internal class XmlBox(
+public class XmlBox(
     offset: Long,
     size: Long,
     largeSize: Long?,

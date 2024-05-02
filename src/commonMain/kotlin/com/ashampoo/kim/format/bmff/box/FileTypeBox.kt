@@ -27,7 +27,7 @@ import com.ashampoo.kim.input.read4BytesAsInt
 /**
  * EIC/ISO 14496-12 ftyp box
  */
-internal class FileTypeBox(
+public class FileTypeBox(
     offset: Long,
     size: Long,
     largeSize: Long?,

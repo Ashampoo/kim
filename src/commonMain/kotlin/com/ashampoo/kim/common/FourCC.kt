@@ -25,7 +25,7 @@ package com.ashampoo.kim.common
  * This excension function converts an int to such an type string.
  */
 @Suppress("MagicNumber")
-internal fun Int.toFourCCTypeString(): String =
+public fun Int.toFourCCTypeString(): String =
     charArrayOf(
         (0xFF and (this shr 24)).toChar(),
         (0xFF and (this shr 16)).toChar(),

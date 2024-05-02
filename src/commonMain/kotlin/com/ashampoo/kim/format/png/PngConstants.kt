@@ -18,7 +18,7 @@ package com.ashampoo.kim.format.png
 
 import com.ashampoo.kim.common.ByteOrder
 
-internal object PngConstants {
+public object PngConstants {
 
     val PNG_BYTE_ORDER = ByteOrder.BIG_ENDIAN
 

@@ -17,7 +17,7 @@ package com.ashampoo.kim.format.webp
 
 import com.ashampoo.kim.common.ByteOrder
 
-internal object WebPConstants {
+public object WebPConstants {
 
     val WEBP_BYTE_ORDER = ByteOrder.LITTLE_ENDIAN
 

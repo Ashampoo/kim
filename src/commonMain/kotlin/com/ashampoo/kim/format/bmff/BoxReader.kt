@@ -38,7 +38,7 @@ import com.ashampoo.kim.input.readBytes
 /**
  * Reads ISOBMFF boxes
  */
-internal object BoxReader {
+public object BoxReader {
 
     /**
      * @param byteReader The reader as source for the bytes
@@ -46,7 +46,7 @@ internal object BoxReader {
      * want to stop reading after the meta boxes to prevent reading the whole image data block in.
      * For iPhone HEIC this is possible, but Samsung HEIC has "meta" coming after "mdat"
      */
-    fun readBoxes(
+    public fun readBoxes(
         byteReader: ByteReader,
         stopAfterMetadataRead: Boolean = false,
         positionOffset: Long = 0,

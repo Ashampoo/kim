@@ -27,7 +27,7 @@ import com.ashampoo.kim.input.readRemainingBytes
 /**
  * JPEG XL Exif box
  */
-internal class ExifBox(
+public class ExifBox(
     offset: Long,
     size: Long,
     largeSize: Long?,

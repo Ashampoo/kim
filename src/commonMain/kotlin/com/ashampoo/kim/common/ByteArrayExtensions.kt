@@ -21,21 +21,21 @@ private const val FF: Int = 0xFF
 
 internal const val HEX_RADIX: Int = 16
 
-internal fun Byte.toHex(): String =
+public fun Byte.toHex(): String =
     this.toInt().and(FF).toString(HEX_RADIX).padStart(2, '0')
 
-internal fun convertHexStringToByteArray(string: String): ByteArray =
+public fun convertHexStringToByteArray(string: String): ByteArray =
     string
         .chunked(2)
         .map { it.toInt(HEX_RADIX).toByte() }
         .toByteArray()
 
 @Suppress("MagicNumber")
-internal fun ByteArray.toHex(): String =
+public fun ByteArray.toHex(): String =
     joinToString("") { it.toHex() }
 
 @Suppress("MagicNumber")
-internal fun ByteArray.toSingleNumberHexes(): String =
+public fun ByteArray.toSingleNumberHexes(): String =
     joinToString(", ") { "0x" + it.toHex() }
 
 internal fun ByteArray.indexOfNullTerminator(): Int =
@@ -94,12 +94,12 @@ internal fun ByteArray.getRemainingBytes(startIndex: Int): ByteArray {
     return sliceArray(actualStartIndex until size)
 }
 
-internal fun ByteArray.slice(startIndex: Int, count: Int): ByteArray {
+public fun ByteArray.slice(startIndex: Int, count: Int): ByteArray {
     val endIndex = (startIndex + count).coerceAtMost(size)
     return sliceArray(startIndex until endIndex)
 }
 
-internal fun ByteArray.head(endIndex: Int): ByteArray {
+public fun ByteArray.head(endIndex: Int): ByteArray {
     val actualEndIndex = endIndex.coerceAtMost(size)
     return sliceArray(0 until actualEndIndex)
 }

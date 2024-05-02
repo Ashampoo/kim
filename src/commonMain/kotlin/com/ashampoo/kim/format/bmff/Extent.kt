@@ -16,7 +16,7 @@
  */
 package com.ashampoo.kim.format.bmff
 
-internal data class Extent(
+data class Extent(
     val itemId: Int,
     val index: Long?,
     val offset: Long,

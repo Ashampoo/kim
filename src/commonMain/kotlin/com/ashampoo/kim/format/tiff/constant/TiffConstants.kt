@@ -23,7 +23,7 @@ import com.ashampoo.kim.common.ByteOrder
  * applications to define parameters for reading and writing TIFF files.
  */
 @Suppress("UnderscoresInNumericLiterals")
-internal object TiffConstants {
+public object TiffConstants {
 
     const val TIFF_VERSION: Int = 42
 
