@@ -114,7 +114,7 @@ object JpegRewriter {
             oldSegments.filterNot { piece -> piece is JFIFPieceSegment && piece.isExifSegment() }
 
         val exifSegmentPieces =
-            segmentPieces.filterIsInstance<JFIFPieceSegment>().filter { it.isExifSegment() }
+            segmentPieces.filterIsInstance<JFIFPieceSegment>().filter(JFIFPieceSegment::isExifSegment)
 
         val writer: TiffWriterBase
 
