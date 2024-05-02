@@ -103,9 +103,10 @@ object IptcWriter {
         binaryWriter.write2Bytes(2) // record version record size
         binaryWriter.write2Bytes(IptcConstants.IPTC_RECORD_VERSION_VALUE)
 
-        val sortedRecords: List<IptcRecord> = records.sortedWith(IptcRecord.comparator)
-
-        for ((iptcType, value) in sortedRecords) {
+        /**
+         * Write the IPTC records in order.
+         */
+        for ((iptcType, value) in records.sorted()) {
 
             /* Ignore the record version, because we already wrote it. */
             if (iptcType === IptcTypes.RECORD_VERSION)
