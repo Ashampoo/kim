@@ -24,6 +24,8 @@ import com.ashampoo.kim.format.jxl.box.CompressedBox
 import com.ashampoo.kim.format.jxl.box.JxlParticalCodestreamBox
 import com.ashampoo.kim.input.ByteReader
 import com.ashampoo.kim.output.ByteWriter
+import com.ashampoo.kim.output.writeInt
+import com.ashampoo.kim.output.writeLong
 
 object JxlWriter {
 

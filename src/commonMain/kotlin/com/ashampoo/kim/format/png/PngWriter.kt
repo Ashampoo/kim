@@ -26,6 +26,7 @@ import com.ashampoo.kim.format.png.chunk.PngTextChunk
 import com.ashampoo.kim.input.ByteReader
 import com.ashampoo.kim.output.ByteArrayByteWriter
 import com.ashampoo.kim.output.ByteWriter
+import com.ashampoo.kim.output.writeInt
 
 object PngWriter {
 

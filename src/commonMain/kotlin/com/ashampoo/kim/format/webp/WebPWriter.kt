@@ -23,6 +23,7 @@ import com.ashampoo.kim.format.webp.chunk.WebPChunkVP8X
 import com.ashampoo.kim.input.ByteReader
 import com.ashampoo.kim.output.ByteArrayByteWriter
 import com.ashampoo.kim.output.ByteWriter
+import com.ashampoo.kim.output.writeInt
 
 object WebPWriter {
 
