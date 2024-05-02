@@ -25,7 +25,9 @@ open class TiffElement(
     override fun toString(): String =
         debugDescription
 
-    companion object {
-        val offsetComparator = compareBy { e: TiffElement -> e.offset }
+    object OffsetComparator : Comparator<TiffElement> {
+
+        override fun compare(a: TiffElement, b: TiffElement): Int =
+            a.offset - b.offset
     }
 }

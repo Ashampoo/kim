@@ -96,7 +96,7 @@ class TiffWriterLossless(
             }
         }
 
-        elements.sortWith(TiffElement.offsetComparator)
+        elements.sortWith(TiffElement.OffsetComparator)
 
         return elements
     }
