@@ -70,7 +70,7 @@ class TiffOutputDirectory(
     private val byteOrder: ByteOrder
 ) : TiffOutputItem {
 
-    private val fields = mutableListOf<TiffOutputField>()
+    private val fields = mutableSetOf<TiffOutputField>()
 
     private var nextDirectory: TiffOutputDirectory? = null
 
@@ -387,7 +387,7 @@ class TiffOutputDirectory(
     fun add(field: TiffOutputField) =
         fields.add(field)
 
-    fun getFields(): List<TiffOutputField> =
+    fun getFields(): Set<TiffOutputField> =
         fields
 
     fun removeField(tagInfo: TagInfo) =
@@ -421,7 +421,7 @@ class TiffOutputDirectory(
         /* Write directory field count. */
         binaryByteWriter.write2Bytes(fields.size)
 
-        for (field in fields)
+        for (field in fields.sorted())
             field.writeField(binaryByteWriter)
 
         var nextDirectoryOffset: Int = 0
@@ -530,9 +530,7 @@ class TiffOutputDirectory(
 
         result.add(this)
 
-        fields.sort()
-
-        for (field in fields) {
+        for (field in fields.sorted()) {
 
             if (field.isLocalValue)
                 continue

@@ -98,7 +98,7 @@ abstract class TiffWriterBase(
 
             val fieldTags = mutableSetOf<Int>()
 
-            val fields = directory.getFields()
+            val fields = directory.getFields().sorted()
 
             for (field in fields) {
 
