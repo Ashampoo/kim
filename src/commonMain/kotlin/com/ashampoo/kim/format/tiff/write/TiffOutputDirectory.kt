@@ -393,28 +393,14 @@ class TiffOutputDirectory(
     fun removeField(tagInfo: TagInfo) =
         removeField(tagInfo.tag)
 
-    fun removeField(tag: Int) {
-
-        val matches = mutableListOf<TiffOutputField>()
-
-        for (field in fields)
-            if (field.tag == tag)
-                matches.add(field)
-
-        fields.removeAll(matches)
-    }
+    fun removeField(tag: Int) =
+        fields.removeAll { it.tag == tag }
 
     fun findField(tagInfo: TagInfo): TiffOutputField? =
         findField(tagInfo.tag)
 
-    fun findField(tag: Int): TiffOutputField? {
-
-        for (field in fields)
-            if (field.tag == tag)
-                return field
-
-        return null
-    }
+    fun findField(tag: Int): TiffOutputField? =
+        fields.find { it.tag == tag }
 
     override fun writeItem(binaryByteWriter: BinaryByteWriter) {
 
