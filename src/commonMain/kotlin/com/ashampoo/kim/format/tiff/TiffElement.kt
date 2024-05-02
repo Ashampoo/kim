@@ -20,14 +20,11 @@ open class TiffElement(
     val debugDescription: String,
     val offset: Int,
     val length: Int
-) {
+) : Comparable<TiffElement> {
 
     override fun toString(): String =
         debugDescription
 
-    object OffsetComparator : Comparator<TiffElement> {
-
-        override fun compare(a: TiffElement, b: TiffElement): Int =
-            a.offset - b.offset
-    }
+    override fun compareTo(other: TiffElement): Int =
+        offset - other.offset
 }
