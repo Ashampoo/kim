@@ -31,10 +31,10 @@ import kotlin.math.roundToLong
  * To address this challenge, this class stores the numerator and divisor
  * in long (64-bit) integers, applying masks as necessary for the unsigned type.
  */
-class RationalNumber {
+public class RationalNumber {
 
-    val numerator: Long
-    val divisor: Long
+    public val numerator: Long
+    public val divisor: Long
 
     /*
      * The TIFF and EXIF specifications call for the use
@@ -42,7 +42,7 @@ class RationalNumber {
      * unsigned type, this class widens the type to long in order
      * to avoid unintended negative numbers.
      */
-    val unsignedType: Boolean
+    public val unsignedType: Boolean
 
     /**
      * Constructs an instance based on signed integers
@@ -91,7 +91,7 @@ class RationalNumber {
         this.unsignedType = unsignedType
     }
 
-    fun doubleValue(): Double = numerator.toDouble() / divisor.toDouble()
+    public fun doubleValue(): Double = numerator.toDouble() / divisor.toDouble()
 
     /**
      * Negates the value of the RationalNumber. If the numerator of this
@@ -103,7 +103,7 @@ class RationalNumber {
      * way to perform the negation. When a negation cannot be performed correctly,
      * this method throws an unchecked exception.
      */
-    fun negate(): RationalNumber {
+    public fun negate(): RationalNumber {
 
         val isUnsignedType = unsignedType
         val negatedNumerator = -numerator
@@ -173,14 +173,14 @@ class RationalNumber {
         return result
     }
 
-    companion object {
+    public companion object {
 
         private const val TO_STRING_DOUBLE_ROUND_FRACTION_DIGITS = 6
 
         private const val INT_PRECISION_TOLERANCE = 1E-8
         private const val MAX_ITERATIONS = 100
 
-        fun create(numerator: Long, divisor: Long): RationalNumber {
+        public fun create(numerator: Long, divisor: Long): RationalNumber {
 
             val normalizedFraction = normalizeFraction(numerator, divisor)
 
