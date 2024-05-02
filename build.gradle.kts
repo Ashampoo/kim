@@ -115,7 +115,8 @@ dependencies {
 
 kotlin {
 
-    // explicitApi()
+    // TODO set to explicitApi()
+    explicitApiWarning()
 
     androidTarget {
 
