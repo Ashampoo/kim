@@ -52,6 +52,10 @@ class TiffWriterLossless(
         }
     }
 
+    /**
+     * Returns a sorted list of existing [TiffElement]s.
+     */
+    @Suppress("NestedBlockDepth")
     private fun findExistingTiffElements(
         tiffContents: TiffContents,
         makerNoteField: TiffOutputField?
