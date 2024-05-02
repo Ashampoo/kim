@@ -31,7 +31,7 @@ class TiffOutputField(
     val fieldType: FieldType<out Any>,
     val count: Int,
     private var bytes: ByteArray
-) {
+) : Comparable<TiffOutputField> {
 
     val tagFormatted: String =
         "0x" + tag.toString(HEX_RADIX).padStart(4, '0')
@@ -91,6 +91,14 @@ class TiffOutputField(
 
     override fun toString(): String =
         "TiffOutputField $tagFormatted"
+
+    override fun compareTo(other: TiffOutputField): Int {
+
+        if (tag != other.tag)
+            return tag - other.tag
+
+        return sortHint - other.sortHint
+    }
 
     companion object {
 

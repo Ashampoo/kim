@@ -416,19 +416,6 @@ class TiffOutputDirectory(
         return null
     }
 
-    fun sortFields() {
-
-        val comparator = Comparator { e1: TiffOutputField, e2: TiffOutputField ->
-
-            if (e1.tag != e2.tag)
-                return@Comparator e1.tag - e2.tag
-
-            e1.sortHint - e2.sortHint
-        }
-
-        fields.sortWith(comparator)
-    }
-
     override fun writeItem(binaryByteWriter: BinaryByteWriter) {
 
         /* Write directory field count. */
@@ -542,7 +529,8 @@ class TiffOutputDirectory(
         val result = mutableListOf<TiffOutputItem>()
 
         result.add(this)
-        sortFields()
+
+        fields.sort()
 
         for (field in fields) {
 
