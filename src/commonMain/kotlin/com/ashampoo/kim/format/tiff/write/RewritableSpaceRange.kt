@@ -23,11 +23,8 @@ package com.ashampoo.kim.format.tiff.write
 internal data class RewritableSpaceRange(
     val offset: Int,
     val length: Int
-) : Comparable<RewritableSpaceRange> {
+) {
 
     override fun toString(): String =
         "Rewritable space at $offset to ${length - offset} ($length bytes)"
-
-    override fun compareTo(other: RewritableSpaceRange): Int =
-        offset - other.offset
 }

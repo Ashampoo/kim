@@ -127,6 +127,13 @@ class TiffWriterLossless(
             }
 
             /*
+             * Ensure that the list of elements is sorted.
+             */
+            require(element.offset > lastElement.offset) {
+                "Parameterized elements must be sorted."
+            }
+
+            /*
              * We look for the next big gap. This is when an element
              * has an offset, that does not come next. This way we
              * know when we collected all bytes of the current directory.
@@ -162,9 +169,6 @@ class TiffWriterLossless(
                 )
             )
         }
-
-        /* Sort for safety. */
-        rewritableSpaceRanges.sort()
 
         return rewritableSpaceRanges
     }
