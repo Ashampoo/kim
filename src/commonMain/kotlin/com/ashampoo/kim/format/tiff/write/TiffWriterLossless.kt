@@ -331,7 +331,7 @@ class TiffWriterLossless(
             filteredAndSortedRewritableSpaceRanges.removeLast()
         }
 
-        return Pair(filteredAndSortedRewritableSpaceRanges, newExifBytesLength)
+        return filteredAndSortedRewritableSpaceRanges to newExifBytesLength
     }
 
     private fun writeInternal(

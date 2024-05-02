@@ -200,7 +200,7 @@ class RationalNumber {
             if (normalizedDivisor == 0L)
                 error("Invalid value, numerator: $normalizedNumerator, divisor: $normalizedDivisor")
 
-            return Pair(normalizedNumerator, normalizedDivisor)
+            return normalizedNumerator to normalizedDivisor
         }
 
         private fun normalizeValue(value: Long): Long {
