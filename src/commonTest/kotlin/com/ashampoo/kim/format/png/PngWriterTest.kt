@@ -41,6 +41,7 @@ import kotlin.test.fail
 
 class PngWriterTest {
 
+    /* language=XML */
     private val expectedXmp = """
         <?xpacket begin="﻿" id="W5M0MpCehiHzreSzNTczkc9d"?>
             <x:xmpmeta xmlns:x="adobe:ns:meta/" x:xmptk="Adobe XMP Core 6.1.10">

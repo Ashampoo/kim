@@ -49,6 +49,7 @@ class JpegRewriterTest {
         8.239661
     )
 
+    /* language=XML */
     private val newXmp = """
         <?xpacket begin="﻿" id="W5M0MpCehiHzreSzNTczkc9d"?>
             <x:xmpmeta xmlns:x="adobe:ns:meta/" x:xmptk="Adobe XMP Core 6.1.10">
