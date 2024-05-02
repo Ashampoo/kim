@@ -196,7 +196,7 @@ public object Kim {
         byteReader: ByteReader,
         byteWriter: ByteWriter,
         update: MetadataUpdate
-    ) = tryWithImageWriteException {
+    ): Unit = tryWithImageWriteException {
 
         val headerBytes = byteReader.readBytes(ImageFormat.REQUIRED_HEADER_BYTE_COUNT_FOR_DETECTION)
 

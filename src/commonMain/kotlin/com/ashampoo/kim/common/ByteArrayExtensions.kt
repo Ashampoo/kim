@@ -17,34 +17,34 @@
 
 package com.ashampoo.kim.common
 
-private const val FF = 0xFF
+private const val FF: Int = 0xFF
 
-const val HEX_RADIX = 16
+internal const val HEX_RADIX: Int = 16
 
-fun Byte.toHex(): String =
+internal fun Byte.toHex(): String =
     this.toInt().and(FF).toString(HEX_RADIX).padStart(2, '0')
 
-fun convertHexStringToByteArray(string: String): ByteArray =
+internal fun convertHexStringToByteArray(string: String): ByteArray =
     string
         .chunked(2)
         .map { it.toInt(HEX_RADIX).toByte() }
         .toByteArray()
 
 @Suppress("MagicNumber")
-fun ByteArray.toHex(): String =
+internal fun ByteArray.toHex(): String =
     joinToString("") { it.toHex() }
 
 @Suppress("MagicNumber")
-fun ByteArray.toSingleNumberHexes(): String =
+internal fun ByteArray.toSingleNumberHexes(): String =
     joinToString(", ") { "0x" + it.toHex() }
 
-fun ByteArray.indexOfNullTerminator(): Int =
+internal fun ByteArray.indexOfNullTerminator(): Int =
     indexOfNullTerminator(0)
 
 /**
  * NUL is often used in image formats to terminate a string.
  */
-fun ByteArray.indexOfNullTerminator(start: Int): Int {
+internal fun ByteArray.indexOfNullTerminator(start: Int): Int {
 
     for (i in start until size)
         if (this[i].toInt() == 0)
@@ -53,7 +53,7 @@ fun ByteArray.indexOfNullTerminator(start: Int): Int {
     return -1
 }
 
-fun ByteArray.startsWith(bytes: ByteArray): Boolean {
+internal fun ByteArray.startsWith(bytes: ByteArray): Boolean {
 
     if (bytes.size > size)
         return false
@@ -65,7 +65,7 @@ fun ByteArray.startsWith(bytes: ByteArray): Boolean {
     return true
 }
 
-fun ByteArray.startsWith(bytes: List<Byte>): Boolean {
+internal fun ByteArray.startsWith(bytes: List<Byte>): Boolean {
 
     if (bytes.size > size)
         return false
@@ -77,7 +77,7 @@ fun ByteArray.startsWith(bytes: List<Byte>): Boolean {
     return true
 }
 
-fun ByteArray.startsWithNullable(bytes: List<Byte?>): Boolean {
+internal fun ByteArray.startsWithNullable(bytes: List<Byte?>): Boolean {
 
     if (bytes.size > size)
         return false
@@ -89,22 +89,22 @@ fun ByteArray.startsWithNullable(bytes: List<Byte?>): Boolean {
     return true
 }
 
-fun ByteArray.getRemainingBytes(startIndex: Int): ByteArray {
+internal fun ByteArray.getRemainingBytes(startIndex: Int): ByteArray {
     val actualStartIndex = startIndex.coerceIn(indices)
     return sliceArray(actualStartIndex until size)
 }
 
-fun ByteArray.slice(startIndex: Int, count: Int): ByteArray {
+internal fun ByteArray.slice(startIndex: Int, count: Int): ByteArray {
     val endIndex = (startIndex + count).coerceAtMost(size)
     return sliceArray(startIndex until endIndex)
 }
 
-fun ByteArray.head(endIndex: Int): ByteArray {
+internal fun ByteArray.head(endIndex: Int): ByteArray {
     val actualEndIndex = endIndex.coerceAtMost(size)
     return sliceArray(0 until actualEndIndex)
 }
 
-fun ByteArray.isEquals(start: Int, other: ByteArray, otherStart: Int, length: Int): Boolean {
+internal fun ByteArray.isEquals(start: Int, other: ByteArray, otherStart: Int, length: Int): Boolean {
 
     if (size < start + length)
         return false

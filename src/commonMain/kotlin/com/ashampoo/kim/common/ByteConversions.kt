@@ -24,9 +24,9 @@ package com.ashampoo.kim.common
  */
 
 @Suppress("MagicNumber")
-fun Byte.toUInt8(): Int = 0xFF and toInt()
+internal fun Byte.toUInt8(): Int = 0xFF and toInt()
 
-fun Short.toBytes(byteOrder: ByteOrder): ByteArray {
+internal fun Short.toBytes(byteOrder: ByteOrder): ByteArray {
 
     val result = ByteArray(2)
 
@@ -35,7 +35,7 @@ fun Short.toBytes(byteOrder: ByteOrder): ByteArray {
     return result
 }
 
-fun ShortArray.toBytes(byteOrder: ByteOrder): ByteArray =
+internal fun ShortArray.toBytes(byteOrder: ByteOrder): ByteArray =
     this.toBytes(0, size, byteOrder)
 
 private fun ShortArray.toBytes(offset: Int, length: Int, byteOrder: ByteOrder): ByteArray {
@@ -59,7 +59,7 @@ private fun Short.toBytes(byteOrder: ByteOrder, result: ByteArray, offset: Int) 
     }
 }
 
-fun Int.toBytes(byteOrder: ByteOrder): ByteArray {
+internal fun Int.toBytes(byteOrder: ByteOrder): ByteArray {
 
     val result = ByteArray(4)
 
@@ -68,7 +68,7 @@ fun Int.toBytes(byteOrder: ByteOrder): ByteArray {
     return result
 }
 
-fun IntArray.toBytes(byteOrder: ByteOrder): ByteArray =
+internal fun IntArray.toBytes(byteOrder: ByteOrder): ByteArray =
     this.toBytes(0, size, byteOrder)
 
 private fun IntArray.toBytes(offset: Int, length: Int, byteOrder: ByteOrder): ByteArray {
@@ -96,7 +96,7 @@ private fun Int.toBytes(byteOrder: ByteOrder, result: ByteArray, offset: Int) {
     }
 }
 
-fun Float.toBytes(byteOrder: ByteOrder): ByteArray {
+internal fun Float.toBytes(byteOrder: ByteOrder): ByteArray {
 
     val result = ByteArray(4)
 
@@ -105,7 +105,7 @@ fun Float.toBytes(byteOrder: ByteOrder): ByteArray {
     return result
 }
 
-fun FloatArray.toBytes(byteOrder: ByteOrder): ByteArray =
+internal fun FloatArray.toBytes(byteOrder: ByteOrder): ByteArray =
     this.toBytes(0, size, byteOrder)
 
 private fun FloatArray.toBytes(offset: Int, length: Int, byteOrder: ByteOrder): ByteArray {
@@ -135,7 +135,7 @@ private fun Float.toBytes(byteOrder: ByteOrder, result: ByteArray, offset: Int) 
     }
 }
 
-fun Double.toBytes(byteOrder: ByteOrder): ByteArray {
+internal fun Double.toBytes(byteOrder: ByteOrder): ByteArray {
 
     val result = ByteArray(8)
 
@@ -144,7 +144,7 @@ fun Double.toBytes(byteOrder: ByteOrder): ByteArray {
     return result
 }
 
-fun DoubleArray.toBytes(byteOrder: ByteOrder): ByteArray =
+internal fun DoubleArray.toBytes(byteOrder: ByteOrder): ByteArray =
     this.toBytes(0, size, byteOrder)
 
 private fun DoubleArray.toBytes(offset: Int, length: Int, byteOrder: ByteOrder): ByteArray {
@@ -182,7 +182,7 @@ private fun Double.toBytes(byteOrder: ByteOrder, result: ByteArray, offset: Int)
     }
 }
 
-fun RationalNumber.toBytes(byteOrder: ByteOrder): ByteArray {
+internal fun RationalNumber.toBytes(byteOrder: ByteOrder): ByteArray {
 
     val result = ByteArray(8)
 
@@ -191,7 +191,7 @@ fun RationalNumber.toBytes(byteOrder: ByteOrder): ByteArray {
     return result
 }
 
-fun RationalNumbers.toBytes(byteOrder: ByteOrder): ByteArray =
+internal fun RationalNumbers.toBytes(byteOrder: ByteOrder): ByteArray =
     this.toBytes(0, values.size, byteOrder)
 
 private fun RationalNumbers.toBytes(
@@ -231,13 +231,13 @@ private fun RationalNumber.toBytes(byteOrder: ByteOrder, result: ByteArray, offs
     }
 }
 
-fun ByteArray.toShort(byteOrder: ByteOrder): Short =
+internal fun ByteArray.toShort(byteOrder: ByteOrder): Short =
     toShort(0, byteOrder)
 
 private fun ByteArray.toShort(offset: Int, byteOrder: ByteOrder): Short =
     toUInt16(offset, byteOrder).toShort()
 
-fun ByteArray.toShorts(byteOrder: ByteOrder): ShortArray =
+internal fun ByteArray.toShorts(byteOrder: ByteOrder): ShortArray =
     toShorts(0, size, byteOrder)
 
 private fun ByteArray.toShorts(offset: Int, length: Int, byteOrder: ByteOrder): ShortArray {
@@ -250,10 +250,10 @@ private fun ByteArray.toShorts(offset: Int, length: Int, byteOrder: ByteOrder): 
     return result
 }
 
-fun ByteArray.toUInt16(byteOrder: ByteOrder): Int =
+internal fun ByteArray.toUInt16(byteOrder: ByteOrder): Int =
     toUInt16(0, byteOrder)
 
-fun ByteArray.toUInt16(offset: Int, byteOrder: ByteOrder): Int {
+internal fun ByteArray.toUInt16(offset: Int, byteOrder: ByteOrder): Int {
 
     val byte0 = 0xFF and this[offset + 0].toInt()
     val byte1 = 0xFF and this[offset + 1].toInt()
@@ -264,10 +264,10 @@ fun ByteArray.toUInt16(offset: Int, byteOrder: ByteOrder): Int {
         byte1 shl 8 or byte0
 }
 
-fun ByteArray.toInt(byteOrder: ByteOrder): Int =
+internal fun ByteArray.toInt(byteOrder: ByteOrder): Int =
     this.toInt(0, byteOrder)
 
-fun ByteArray.toInt(offset: Int, byteOrder: ByteOrder): Int {
+internal fun ByteArray.toInt(offset: Int, byteOrder: ByteOrder): Int {
 
     val byte0 = 0xFF and this[offset + 0].toInt()
     val byte1 = 0xFF and this[offset + 1].toInt()
@@ -280,7 +280,7 @@ fun ByteArray.toInt(offset: Int, byteOrder: ByteOrder): Int {
         byte3 shl 24 or (byte2 shl 16) or (byte1 shl 8) or byte0
 }
 
-fun ByteArray.toInts(byteOrder: ByteOrder): IntArray =
+internal fun ByteArray.toInts(byteOrder: ByteOrder): IntArray =
     this.toInts(0, size, byteOrder)
 
 private fun ByteArray.toInts(offset: Int, length: Int, byteOrder: ByteOrder): IntArray {
@@ -294,7 +294,7 @@ private fun ByteArray.toInts(offset: Int, length: Int, byteOrder: ByteOrder): In
     return result
 }
 
-fun ByteArray.toFloat(byteOrder: ByteOrder): Float =
+internal fun ByteArray.toFloat(byteOrder: ByteOrder): Float =
     this.toFloat(0, byteOrder)
 
 private fun ByteArray.toFloat(offset: Int, byteOrder: ByteOrder): Float {
@@ -312,7 +312,7 @@ private fun ByteArray.toFloat(offset: Int, byteOrder: ByteOrder): Float {
     return Float.fromBits(bits)
 }
 
-fun ByteArray.toFloats(byteOrder: ByteOrder): FloatArray =
+internal fun ByteArray.toFloats(byteOrder: ByteOrder): FloatArray =
     this.toFloats(0, size, byteOrder)
 
 private fun ByteArray.toFloats(offset: Int, length: Int, byteOrder: ByteOrder): FloatArray {
@@ -325,7 +325,7 @@ private fun ByteArray.toFloats(offset: Int, length: Int, byteOrder: ByteOrder): 
     return result
 }
 
-fun ByteArray.toDouble(byteOrder: ByteOrder): Double =
+internal fun ByteArray.toDouble(byteOrder: ByteOrder): Double =
     this.toDouble(0, byteOrder)
 
 private fun ByteArray.toDouble(offset: Int, byteOrder: ByteOrder): Double {
@@ -371,7 +371,7 @@ private fun ByteArray.toDoubles(offset: Int, length: Int, byteOrder: ByteOrder):
     return result
 }
 
-fun ByteArray.toRational(byteOrder: ByteOrder, unsignedType: Boolean): RationalNumber =
+internal fun ByteArray.toRational(byteOrder: ByteOrder, unsignedType: Boolean): RationalNumber =
     this.toRational(0, byteOrder, unsignedType)
 
 private fun ByteArray.toRational(
@@ -403,7 +403,7 @@ private fun ByteArray.toRational(
     return RationalNumber(numerator, divisor, unsignedType)
 }
 
-fun ByteArray.toRationals(
+internal fun ByteArray.toRationals(
     byteOrder: ByteOrder,
     unsignedType: Boolean
 ): RationalNumbers =
@@ -426,7 +426,7 @@ private fun toRationals(
     return RationalNumbers(result as Array<RationalNumber>)
 }
 
-fun Int.quadsToByteArray(): ByteArray {
+internal fun Int.quadsToByteArray(): ByteArray {
 
     val bytes = ByteArray(4)
 
