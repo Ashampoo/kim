@@ -98,9 +98,7 @@ abstract class TiffWriterBase(
 
             val fieldTags = mutableSetOf<Int>()
 
-            val fields = directory.getFields().sorted()
-
-            for (field in fields) {
+            for (field in directory.getFields()) {
 
                 if (fieldTags.contains(field.tag))
                     throw ImageWriteException("Tag ${field.tagFormatted} appears twice in directory.")
