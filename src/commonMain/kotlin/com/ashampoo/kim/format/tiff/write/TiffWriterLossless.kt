@@ -307,7 +307,7 @@ class TiffWriterLossless(
         var newExifBytesLength = exifBytesLength
 
         val filteredAndSortedRewritableSpaceRanges = rewritableSpaceRanges
-            .sortedBy { it.offset }
+            .sorted()
             .toMutableList()
 
         /*
