@@ -163,6 +163,9 @@ class TiffWriterLossless(
             )
         }
 
+        /* Sort for safety. */
+        rewritableSpaceRanges.sort()
+
         return rewritableSpaceRanges
     }
 
@@ -224,15 +227,15 @@ class TiffWriterLossless(
         outputItems: List<TiffOutputItem>
     ): Int {
 
-        val filterAndSortElementsResult = filterAndSortRewriteableSpaceRanges(
+        val result = filterRewriteableSpaceRanges(
             rewritableSpaceRanges,
             exifBytes.size
         )
 
-        val unusedSpaceRanges = filterAndSortElementsResult.first
+        val unusedSpaceRanges = result.first
 
         /* Keeps track of the total length the exif bytes we have. */
-        var newExifBytesLength = filterAndSortElementsResult.second
+        var newExifBytesLength = result.second
 
         val unplacedItems = outputItems.toMutableList()
 
@@ -299,24 +302,22 @@ class TiffWriterLossless(
         return newExifBytesLength
     }
 
-    private fun filterAndSortRewriteableSpaceRanges(
+    private fun filterRewriteableSpaceRanges(
         rewritableSpaceRanges: List<RewritableSpaceRange>,
         exifBytesLength: Int
     ): Pair<MutableList<RewritableSpaceRange>, Int> {
 
         var newExifBytesLength = exifBytesLength
 
-        val filteredAndSortedRewritableSpaceRanges = rewritableSpaceRanges
-            .sorted()
-            .toMutableList()
+        val filteredRewritableSpaceRanges = rewritableSpaceRanges.toMutableList()
 
         /*
          * Any items that represent a gap at the end of
          * the exif segment, can be discarded.
          */
-        while (filteredAndSortedRewritableSpaceRanges.isNotEmpty()) {
+        while (filteredRewritableSpaceRanges.isNotEmpty()) {
 
-            val lastRange = filteredAndSortedRewritableSpaceRanges.last()
+            val lastRange = filteredRewritableSpaceRanges.last()
 
             val rangeEnd = lastRange.offset + lastRange.length
 
@@ -328,10 +329,10 @@ class TiffWriterLossless(
 
             newExifBytesLength -= lastRange.length
 
-            filteredAndSortedRewritableSpaceRanges.removeLast()
+            filteredRewritableSpaceRanges.removeLast()
         }
 
-        return filteredAndSortedRewritableSpaceRanges to newExifBytesLength
+        return filteredRewritableSpaceRanges to newExifBytesLength
     }
 
     private fun writeInternal(
