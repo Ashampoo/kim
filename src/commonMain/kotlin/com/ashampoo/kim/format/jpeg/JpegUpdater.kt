@@ -28,6 +28,7 @@ import com.ashampoo.kim.format.tiff.write.TiffOutputSet
 import com.ashampoo.kim.format.xmp.XmpWriter
 import com.ashampoo.kim.input.ByteArrayByteReader
 import com.ashampoo.kim.input.ByteReader
+import com.ashampoo.kim.input.readRemainingBytes
 import com.ashampoo.kim.model.MetadataUpdate
 import com.ashampoo.kim.model.TiffOrientation
 import com.ashampoo.kim.output.ByteArrayByteWriter

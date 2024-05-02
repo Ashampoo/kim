@@ -20,6 +20,9 @@ import com.ashampoo.kim.format.bmff.box.Box
 import com.ashampoo.kim.format.tiff.TiffContents
 import com.ashampoo.kim.format.tiff.TiffReader
 import com.ashampoo.kim.input.ByteArrayByteReader
+import com.ashampoo.kim.input.readByteAsInt
+import com.ashampoo.kim.input.readBytes
+import com.ashampoo.kim.input.readRemainingBytes
 
 /**
  * JPEG XL Exif box

@@ -19,6 +19,9 @@ package com.ashampoo.kim.format.jpeg
 import com.ashampoo.kim.common.toUInt16
 import com.ashampoo.kim.format.jpeg.JpegConstants.JPEG_BYTE_ORDER
 import com.ashampoo.kim.input.ByteReader
+import com.ashampoo.kim.input.readAndVerifyBytes
+import com.ashampoo.kim.input.readBytes
+import com.ashampoo.kim.input.readRemainingBytes
 
 object JpegUtils {
 

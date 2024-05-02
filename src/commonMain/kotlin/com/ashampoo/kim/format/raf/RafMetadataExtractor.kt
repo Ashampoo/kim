@@ -22,6 +22,9 @@ import com.ashampoo.kim.format.ImageFormatMagicNumbers
 import com.ashampoo.kim.format.MetadataExtractor
 import com.ashampoo.kim.format.jpeg.JpegMetadataExtractor
 import com.ashampoo.kim.input.ByteReader
+import com.ashampoo.kim.input.read4BytesAsInt
+import com.ashampoo.kim.input.readAndVerifyBytes
+import com.ashampoo.kim.input.skipBytes
 
 object RafMetadataExtractor : MetadataExtractor {
 

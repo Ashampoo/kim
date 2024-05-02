@@ -31,6 +31,9 @@ import com.ashampoo.kim.format.jxl.box.ExifBox
 import com.ashampoo.kim.format.jxl.box.JxlParticalCodestreamBox
 import com.ashampoo.kim.format.jxl.box.XmlBox
 import com.ashampoo.kim.input.ByteReader
+import com.ashampoo.kim.input.read4BytesAsInt
+import com.ashampoo.kim.input.read8BytesAsLong
+import com.ashampoo.kim.input.readBytes
 
 /**
  * Reads ISOBMFF boxes

@@ -35,6 +35,10 @@ import com.ashampoo.kim.format.png.chunk.PngTextChunk
 import com.ashampoo.kim.format.tiff.TiffContents
 import com.ashampoo.kim.format.tiff.TiffReader
 import com.ashampoo.kim.input.ByteReader
+import com.ashampoo.kim.input.read4BytesAsInt
+import com.ashampoo.kim.input.readAndVerifyBytes
+import com.ashampoo.kim.input.readBytes
+import com.ashampoo.kim.input.skipBytes
 import com.ashampoo.kim.model.ImageFormat
 
 object PngImageParser : ImageParser {

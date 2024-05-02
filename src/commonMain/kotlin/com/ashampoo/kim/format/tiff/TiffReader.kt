@@ -37,6 +37,12 @@ import com.ashampoo.kim.format.tiff.taginfo.TagInfoLongs
 import com.ashampoo.kim.input.ByteArrayByteReader
 import com.ashampoo.kim.input.ByteReader
 import com.ashampoo.kim.input.RandomAccessByteReader
+import com.ashampoo.kim.input.read2BytesAsInt
+import com.ashampoo.kim.input.read4BytesAsInt
+import com.ashampoo.kim.input.readByte
+import com.ashampoo.kim.input.readByteAsInt
+import com.ashampoo.kim.input.readBytes
+import com.ashampoo.kim.input.skipBytes
 import com.ashampoo.kim.output.ByteArrayByteWriter
 import kotlin.jvm.JvmStatic
 

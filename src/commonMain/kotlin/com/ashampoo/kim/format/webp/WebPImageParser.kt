@@ -32,6 +32,10 @@ import com.ashampoo.kim.format.webp.chunk.WebPChunkVP8L
 import com.ashampoo.kim.format.webp.chunk.WebPChunkVP8X
 import com.ashampoo.kim.format.webp.chunk.WebPChunkXmp
 import com.ashampoo.kim.input.ByteReader
+import com.ashampoo.kim.input.read4BytesAsInt
+import com.ashampoo.kim.input.readAndVerifyBytes
+import com.ashampoo.kim.input.readBytes
+import com.ashampoo.kim.input.skipBytes
 import com.ashampoo.kim.model.ImageFormat
 
 object WebPImageParser : ImageParser {

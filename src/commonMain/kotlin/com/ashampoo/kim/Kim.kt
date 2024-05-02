@@ -45,13 +45,13 @@ import com.ashampoo.kim.model.MetadataUpdate
 import com.ashampoo.kim.output.ByteArrayByteWriter
 import com.ashampoo.kim.output.ByteWriter
 
-object Kim {
+public object Kim {
 
     var underUnitTesting: Boolean = false
 
     @kotlin.jvm.JvmStatic
     @Throws(ImageReadException::class)
-    fun readMetadata(bytes: ByteArray): ImageMetadata? =
+    public fun readMetadata(bytes: ByteArray): ImageMetadata? =
         if (bytes.isEmpty())
             null
         else
@@ -59,7 +59,7 @@ object Kim {
 
     @kotlin.jvm.JvmStatic
     @Throws(ImageReadException::class)
-    fun readMetadata(
+    public fun readMetadata(
         byteReader: ByteReader
     ): ImageMetadata? = tryWithImageReadException {
 
@@ -93,7 +93,7 @@ object Kim {
      */
     @kotlin.jvm.JvmStatic
     @Throws(ImageReadException::class)
-    fun extractMetadataBytes(
+    public fun extractMetadataBytes(
         byteReader: ByteReader
     ): Pair<ImageFormat?, ByteArray> = tryWithImageReadException {
 
@@ -116,7 +116,7 @@ object Kim {
 
     @kotlin.jvm.JvmStatic
     @Throws(ImageReadException::class)
-    fun extractPreviewImage(
+    public fun extractPreviewImage(
         byteReader: ByteReader
     ): ByteArray? = tryWithImageReadException {
 
@@ -166,7 +166,7 @@ object Kim {
      */
     @kotlin.jvm.JvmStatic
     @Throws(ImageWriteException::class)
-    fun update(
+    public fun update(
         bytes: ByteArray,
         update: MetadataUpdate
     ): ByteArray = tryWithImageWriteException {
@@ -192,7 +192,7 @@ object Kim {
      */
     @kotlin.jvm.JvmStatic
     @Throws(ImageWriteException::class)
-    fun update(
+    public fun update(
         byteReader: ByteReader,
         byteWriter: ByteWriter,
         update: MetadataUpdate
@@ -216,7 +216,7 @@ object Kim {
 
     @kotlin.jvm.JvmStatic
     @Throws(ImageWriteException::class)
-    fun updateThumbnail(
+    public fun updateThumbnail(
         bytes: ByteArray,
         thumbnailBytes: ByteArray
     ): ByteArray = tryWithImageWriteException {

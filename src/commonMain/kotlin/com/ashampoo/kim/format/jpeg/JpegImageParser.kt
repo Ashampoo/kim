@@ -37,6 +37,8 @@ import com.ashampoo.kim.format.tiff.TiffContents
 import com.ashampoo.kim.format.tiff.TiffReader
 import com.ashampoo.kim.input.ByteArrayByteReader
 import com.ashampoo.kim.input.ByteReader
+import com.ashampoo.kim.input.read2BytesAsInt
+import com.ashampoo.kim.input.skipBytes
 import com.ashampoo.kim.model.ImageFormat
 import com.ashampoo.kim.model.ImageSize
 

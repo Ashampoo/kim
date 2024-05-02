@@ -20,6 +20,13 @@ import com.ashampoo.kim.format.bmff.BMFFConstants.BMFF_BYTE_ORDER
 import com.ashampoo.kim.format.bmff.BoxType
 import com.ashampoo.kim.format.bmff.Extent
 import com.ashampoo.kim.input.ByteArrayByteReader
+import com.ashampoo.kim.input.read2BytesAsInt
+import com.ashampoo.kim.input.read4BytesAsInt
+import com.ashampoo.kim.input.read8BytesAsLong
+import com.ashampoo.kim.input.readByteAsInt
+import com.ashampoo.kim.input.readBytes
+import com.ashampoo.kim.input.readXBytesAtInt
+import com.ashampoo.kim.input.skipBytes
 
 /**
  * EIC/ISO 14496-12 iloc box

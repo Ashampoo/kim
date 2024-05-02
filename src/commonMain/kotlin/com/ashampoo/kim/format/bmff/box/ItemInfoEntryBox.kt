@@ -21,6 +21,11 @@ import com.ashampoo.kim.common.toHex
 import com.ashampoo.kim.format.bmff.BMFFConstants.BMFF_BYTE_ORDER
 import com.ashampoo.kim.format.bmff.BoxType
 import com.ashampoo.kim.input.ByteArrayByteReader
+import com.ashampoo.kim.input.read2BytesAsInt
+import com.ashampoo.kim.input.read4BytesAsInt
+import com.ashampoo.kim.input.readByteAsInt
+import com.ashampoo.kim.input.readBytes
+import com.ashampoo.kim.input.readNullTerminatedString
 
 /**
  * EIC/ISO 14496-12 infe box

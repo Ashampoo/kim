@@ -22,7 +22,7 @@ import kotlin.math.max
  * This class buffers the reading from the original ByteReader and
  * provides random access needed for parsing TIFF files.
  */
-class DefaultRandomAccessByteReader(
+public class DefaultRandomAccessByteReader(
     val byteReader: ByteReader
 ) : RandomAccessByteReader {
 

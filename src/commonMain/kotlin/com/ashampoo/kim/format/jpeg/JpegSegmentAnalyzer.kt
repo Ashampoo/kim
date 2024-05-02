@@ -26,6 +26,8 @@ import com.ashampoo.kim.format.jpeg.JpegConstants.markerDescription
 import com.ashampoo.kim.format.jpeg.JpegMetadataExtractor.SEGMENT_IDENTIFIER
 import com.ashampoo.kim.format.jpeg.JpegMetadataExtractor.SEGMENT_START_OF_SCAN
 import com.ashampoo.kim.input.ByteReader
+import com.ashampoo.kim.input.read2BytesAsInt
+import com.ashampoo.kim.input.skipBytes
 
 /**
  * Algorithm to find segment offsets, types and lengths

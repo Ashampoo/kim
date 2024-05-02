@@ -19,7 +19,7 @@ package com.ashampoo.kim.input
  * Random access to the bytes are required to read TIFF files
  * where an offset can even be lower than the current position.
  */
-interface RandomAccessByteReader : ByteReader {
+public interface RandomAccessByteReader : ByteReader {
 
     fun reset() = moveTo(0)
 

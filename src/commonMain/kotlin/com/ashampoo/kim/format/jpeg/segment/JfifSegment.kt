@@ -21,6 +21,10 @@ import com.ashampoo.kim.format.jpeg.JpegConstants
 import com.ashampoo.kim.format.jpeg.JpegConstants.JPEG_BYTE_ORDER
 import com.ashampoo.kim.input.ByteArrayByteReader
 import com.ashampoo.kim.input.ByteReader
+import com.ashampoo.kim.input.read2BytesAsInt
+import com.ashampoo.kim.input.readByte
+import com.ashampoo.kim.input.readBytes
+import com.ashampoo.kim.input.skipBytes
 
 class JfifSegment(
     marker: Int,
@@ -58,7 +62,7 @@ class JfifSegment(
         thumbnailSize = xThumbnail * yThumbnail
 
         if (thumbnailSize > 0)
-            byteReader.skipBytes("Skip thumbnail", thumbnailSize)
+            byteReader.skipBytes("thumbnail", thumbnailSize)
     }
 
     constructor(marker: Int, segmentBytes: ByteArray) :

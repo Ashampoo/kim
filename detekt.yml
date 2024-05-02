@@ -677,7 +677,7 @@ style:
   RedundantHigherOrderMapUsage:
     active: true
   RedundantVisibilityModifierRule:
-    active: true
+    active: false # explicitApi
   ReturnCount:
     active: false # results in bad style
     max: 2

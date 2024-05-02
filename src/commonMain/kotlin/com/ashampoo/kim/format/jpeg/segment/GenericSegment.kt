@@ -17,6 +17,7 @@
 package com.ashampoo.kim.format.jpeg.segment
 
 import com.ashampoo.kim.input.ByteReader
+import com.ashampoo.kim.input.readBytes
 
 abstract class GenericSegment : Segment {
 

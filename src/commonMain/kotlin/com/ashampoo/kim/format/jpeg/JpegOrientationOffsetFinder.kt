@@ -29,6 +29,9 @@ import com.ashampoo.kim.format.tiff.constant.TiffConstants.TIFF_ENTRY_LENGTH
 import com.ashampoo.kim.format.tiff.constant.TiffConstants.TIFF_HEADER_SIZE
 import com.ashampoo.kim.format.tiff.constant.TiffTag
 import com.ashampoo.kim.input.ByteReader
+import com.ashampoo.kim.input.read2BytesAsInt
+import com.ashampoo.kim.input.readBytes
+import com.ashampoo.kim.input.skipBytes
 
 /**
  * This algorithm quickly identifies the EXIF orientation offset.

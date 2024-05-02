@@ -27,6 +27,11 @@ import com.ashampoo.kim.common.toUInt8
 import com.ashampoo.kim.format.jpeg.JpegConstants
 import com.ashampoo.kim.format.jpeg.iptc.IptcTypes.Companion.getIptcType
 import com.ashampoo.kim.input.ByteArrayByteReader
+import com.ashampoo.kim.input.read2BytesAsInt
+import com.ashampoo.kim.input.read4BytesAsInt
+import com.ashampoo.kim.input.readByte
+import com.ashampoo.kim.input.readBytes
+import com.ashampoo.kim.input.skipToQuad
 
 object IptcParser {
 
