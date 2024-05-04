@@ -154,7 +154,7 @@ public class TiffField(
         }
 
         if (value !is String)
-            throw ImageReadException("Expected String for $tagFormatted, but got: " + value)
+            throw ImageReadException("Expected String for $tagFormatted, but got: $value")
 
         return value
     }

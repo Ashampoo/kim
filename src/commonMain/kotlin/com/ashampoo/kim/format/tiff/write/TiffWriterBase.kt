@@ -85,7 +85,7 @@ public abstract class TiffWriterBase(
                         interoperabilityDirectory = directory
                     }
 
-                    else -> throw ImageWriteException("Unknown directory: " + dirType)
+                    else -> throw ImageWriteException("Unknown directory: $dirType")
                 }
 
             } else {
