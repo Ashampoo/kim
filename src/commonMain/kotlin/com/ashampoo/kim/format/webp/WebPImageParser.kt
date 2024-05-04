@@ -85,7 +85,7 @@ public object WebPImageParser : ImageParser {
             )
         }
 
-    fun readChunks(
+    public fun readChunks(
         byteReader: ByteReader,
         stopAfterMetadataRead: Boolean = false
     ): List<WebPChunk> = tryWithImageReadException {
@@ -113,6 +113,7 @@ public object WebPImageParser : ImageParser {
 
         var bytesReadCount = 0
 
+        @Suppress("LoopWithTooManyJumpStatements")
         while (bytesReadCount < bytesToRead) {
 
             val chunkType = WebPChunkType.of(

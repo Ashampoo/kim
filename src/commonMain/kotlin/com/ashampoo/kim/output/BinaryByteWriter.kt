@@ -18,15 +18,15 @@ package com.ashampoo.kim.output
 
 import com.ashampoo.kim.common.ByteOrder
 
-abstract class BinaryByteWriter(
-    val byteWriter: ByteWriter
+public abstract class BinaryByteWriter(
+    public val byteWriter: ByteWriter
 ) : ByteWriter {
 
-    abstract fun write2Bytes(value: Int)
+    public abstract fun write2Bytes(value: Int)
 
     // abstract fun write3Bytes(value: Int)
 
-    abstract fun write4Bytes(value: Int)
+    public abstract fun write4Bytes(value: Int)
 
     override fun write(byte: Int) {
         byteWriter.write(byte)
@@ -44,10 +44,10 @@ abstract class BinaryByteWriter(
         byteWriter.close()
     }
 
-    companion object {
+    public companion object {
 
         @kotlin.jvm.JvmStatic
-        fun createBinaryByteWriter(byteWriter: ByteWriter, byteOrder: ByteOrder): BinaryByteWriter =
+        public fun createBinaryByteWriter(byteWriter: ByteWriter, byteOrder: ByteOrder): BinaryByteWriter =
             when (byteOrder) {
                 ByteOrder.LITTLE_ENDIAN -> LittleEndianBinaryByteWriter(byteWriter)
                 ByteOrder.BIG_ENDIAN -> BigEndianBinaryByteWriter(byteWriter)

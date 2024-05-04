@@ -37,17 +37,17 @@ public class ItemInfoEntryBox(
     payload: ByteArray
 ) : Box(BoxType.INFE, offset, size, largeSize, payload) {
 
-    val version: Int
+    public val version: Int
 
-    val flags: ByteArray
+    public val flags: ByteArray
 
-    val itemId: Int
+    public val itemId: Int
 
-    val itemProtectionIndex: Int
+    public val itemProtectionIndex: Int
 
-    val itemType: Int
+    public val itemType: Int
 
-    val itemName: String
+    public val itemName: String
 
     init {
 

@@ -26,7 +26,7 @@ import com.ashampoo.kim.format.tiff.constant.TiffConstants
  * Two SLONG’s: the first represents the numerator of a
  * fraction, the second the denominator.
  */
-object FieldTypeSRational : FieldType<RationalNumbers> {
+public object FieldTypeSRational : FieldType<RationalNumbers> {
 
     override val type: Int = TiffConstants.FIELD_TYPE_SRATIONAL_INDEX
 

@@ -41,36 +41,36 @@ public class ItemLocationBox(
     /**
      * The version of the box.
      */
-    val version: Int
+    public val version: Int
 
     /**
      * Flags that provide additional information about the box.
      */
-    val flags: ByteArray
+    public val flags: ByteArray
 
     /**
      * The size (in bytes) of the offset field in each item location entry.
      */
-    val offsetSize: Int
+    public val offsetSize: Int
 
     /**
      * The size (in bytes) of the length field in each item location entry.
      */
-    val lengthSize: Int
+    public val lengthSize: Int
 
     /**
      * The size (in bytes) of the base offset field in each item location entry.
      */
-    val baseOffsetSize: Int
+    public val baseOffsetSize: Int
 
     /**
      * This part contains the actual entries describing the location of items within the file.
      */
-    val indexSize: Int
+    public val indexSize: Int
 
-    val itemCount: Int
+    public val itemCount: Int
 
-    val extents: List<Extent>
+    public val extents: List<Extent>
 
     init {
 

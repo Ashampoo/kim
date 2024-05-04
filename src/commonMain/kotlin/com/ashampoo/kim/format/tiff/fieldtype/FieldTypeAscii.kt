@@ -26,7 +26,7 @@ import com.ashampoo.kim.format.tiff.constant.TiffConstants
  * 8-bit byte that contains a 7-bit ASCII code;
  * the last byte must be NUL (binary zero).
  */
-data object FieldTypeAscii : FieldType<String> {
+public data object FieldTypeAscii : FieldType<String> {
 
     override val type: Int = TiffConstants.FIELD_TYPE_ASCII_INDEX
 

@@ -28,17 +28,12 @@ public class JxlParticalCodestreamBox(
     payload: ByteArray
 ) : Box(BoxType.JXLP, offset, size, largeSize, payload) {
 
-    val isHeader: Boolean
+    public val isHeader: Boolean =
+        jxlCodeStreamSignaure == payload.take(jxlCodeStreamSignaure.size)
 
-    init {
+    private companion object {
 
-        /* Check if it's the header */
-        isHeader = jxlCodeStreamSignaure == payload.take(jxlCodeStreamSignaure.size)
-    }
-
-    companion object {
-
-        val jxlCodeStreamSignaure = listOf<Byte>(
+        private val jxlCodeStreamSignaure = listOf<Byte>(
             0x00, 0x00, 0x00, 0x00, 0xFF.toByte(), 0x0A
         )
     }

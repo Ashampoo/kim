@@ -36,13 +36,13 @@ public class ItemInformationBox(
     payload: ByteArray
 ) : Box(BoxType.IINF, offset, size, largeSize, payload), BoxContainer {
 
-    val version: Int
+    public val version: Int
 
-    val flags: ByteArray
+    public val flags: ByteArray
 
-    val entryCount: Int
+    public val entryCount: Int
 
-    val map: Map<Int, ItemInfoEntryBox>
+    public val map: Map<Int, ItemInfoEntryBox>
 
     override val boxes: List<Box>
 

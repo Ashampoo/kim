@@ -19,7 +19,7 @@ package com.ashampoo.kim.format.tiff.taginfo
 import com.ashampoo.kim.format.tiff.constant.TiffDirectoryType
 import com.ashampoo.kim.format.tiff.fieldtype.FieldTypeDouble
 
-class TagInfoDoubles(
+public class TagInfoDoubles(
     tag: Int,
     name: String,
     length: Int,

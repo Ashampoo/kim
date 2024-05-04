@@ -21,26 +21,26 @@ import com.ashampoo.kim.format.tiff.constant.ExifTag.EXIF_DIRECTORY_UNKNOWN
 import com.ashampoo.kim.format.tiff.constant.TiffDirectoryType
 import com.ashampoo.kim.format.tiff.fieldtype.FieldType
 
-abstract class TagInfo(
-    val tag: Int,
-    val name: String,
-    val fieldType: FieldType<out Any>,
-    val length: Int = LENGTH_UNKNOWN,
-    val directoryType: TiffDirectoryType? = EXIF_DIRECTORY_UNKNOWN,
-    val isOffset: Boolean = false
+public abstract class TagInfo(
+    public val tag: Int,
+    public val name: String,
+    public val fieldType: FieldType<out Any>,
+    public val length: Int = LENGTH_UNKNOWN,
+    public val directoryType: TiffDirectoryType? = EXIF_DIRECTORY_UNKNOWN,
+    public val isOffset: Boolean = false
 ) {
 
     /** Return a proper Tag ID like 0x0100 */
-    val tagFormatted: String =
+    public val tagFormatted: String =
         "0x" + tag.toString(HEX_RADIX).padStart(4, '0')
 
-    val description: String =
+    public val description: String =
         "$tagFormatted $name"
 
     override fun toString(): String =
         description
 
-    open fun isText(): Boolean =
+    public open fun isText(): Boolean =
         false
 
     override fun equals(other: Any?): Boolean {
@@ -72,7 +72,7 @@ abstract class TagInfo(
         return result
     }
 
-    companion object {
-        const val LENGTH_UNKNOWN = -1
+    public companion object {
+        public const val LENGTH_UNKNOWN: Int = -1
     }
 }

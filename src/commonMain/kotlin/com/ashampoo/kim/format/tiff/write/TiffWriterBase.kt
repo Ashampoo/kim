@@ -25,11 +25,11 @@ import com.ashampoo.kim.format.tiff.constant.TiffConstants.TIFF_VERSION
 import com.ashampoo.kim.output.BinaryByteWriter
 import com.ashampoo.kim.output.ByteWriter
 
-abstract class TiffWriterBase(
-    val byteOrder: ByteOrder
+public abstract class TiffWriterBase(
+    public val byteOrder: ByteOrder
 ) {
 
-    abstract fun write(byteWriter: ByteWriter, outputSet: TiffOutputSet)
+    public abstract fun write(byteWriter: ByteWriter, outputSet: TiffOutputSet)
 
     internal fun createOffsetItems(outputSet: TiffOutputSet): TiffOffsetItems {
 
@@ -244,10 +244,10 @@ abstract class TiffWriterBase(
         byteWriter.write4Bytes(offsetToFirstIFD.toInt())
     }
 
-    companion object {
+    public companion object {
 
         /** Returns an appropriate TiffImageWriter instance. */
-        fun createTiffWriter(
+        public fun createTiffWriter(
             byteOrder: ByteOrder,
             oldExifBytes: ByteArray?
         ): TiffWriterBase {

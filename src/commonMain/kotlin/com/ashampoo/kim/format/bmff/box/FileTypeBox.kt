@@ -34,11 +34,11 @@ public class FileTypeBox(
     payload: ByteArray
 ) : Box(BoxType.FTYP, offset, size, largeSize, payload) {
 
-    val majorBrand: String
+    public val majorBrand: String
 
-    val minorBrand: String
+    public val minorBrand: String
 
-    val compatibleBrands: List<String>
+    public val compatibleBrands: List<String>
 
     init {
 
@@ -70,7 +70,7 @@ public class FileTypeBox(
     override fun toString(): String =
         "$type major=$majorBrand minor=$minorBrand compatible=$compatibleBrands"
 
-    companion object {
+    internal companion object {
         const val JXL_BRAND = "jxl "
     }
 }

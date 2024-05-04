@@ -38,15 +38,15 @@ public class MetaBox(
     payload: ByteArray
 ) : Box(BoxType.META, offset, size, largeSize, payload), BoxContainer {
 
-    val version: Int
+    public val version: Int
 
-    val flags: ByteArray
+    public val flags: ByteArray
 
     /* Mandatory boxes in META */
-    val handlerReferenceBox: HandlerReferenceBox
-    val primaryItemBox: PrimaryItemBox
-    val itemInfoBox: ItemInformationBox
-    val itemLocationBox: ItemLocationBox
+    public val handlerReferenceBox: HandlerReferenceBox
+    public val primaryItemBox: PrimaryItemBox
+    public val itemInfoBox: ItemInformationBox
+    public val itemLocationBox: ItemLocationBox
 
     override val boxes: List<Box>
 
@@ -72,7 +72,7 @@ public class MetaBox(
         itemLocationBox = boxes.find { it.type == BoxType.ILOC } as ItemLocationBox
     }
 
-    fun findMetadataOffsets(): List<MetadataOffset> {
+    public fun findMetadataOffsets(): List<MetadataOffset> {
 
         val offsets = mutableListOf<MetadataOffset>()
 

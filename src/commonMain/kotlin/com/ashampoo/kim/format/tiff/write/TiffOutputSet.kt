@@ -52,7 +52,7 @@ public class TiffOutputSet(
         return outputItems
     }
 
-    fun addDirectory(directory: TiffOutputDirectory): TiffOutputDirectory {
+    public fun addDirectory(directory: TiffOutputDirectory): TiffOutputDirectory {
 
         if (findDirectory(directory.type) != null)
             throw ImageWriteException("Output set already contains a directory of that type.")

@@ -35,11 +35,11 @@ public class PrimaryItemBox(
     payload: ByteArray
 ) : Box(BoxType.PITM, offset, size, largeSize, payload) {
 
-    val version: Int
+    public val version: Int
 
-    val flags: ByteArray
+    public val flags: ByteArray
 
-    val itemId: Int
+    public val itemId: Int
 
     init {
 

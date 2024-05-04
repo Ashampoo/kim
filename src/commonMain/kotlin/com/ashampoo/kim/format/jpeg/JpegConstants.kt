@@ -21,12 +21,12 @@ import com.ashampoo.kim.common.ByteOrder
 @Suppress("MagicNumber")
 public object JpegConstants {
 
-    val JPEG_BYTE_ORDER = ByteOrder.BIG_ENDIAN
+    public val JPEG_BYTE_ORDER: ByteOrder = ByteOrder.BIG_ENDIAN
 
     /* Max segment size is 65535 bytes (around 65 kb). */
-    const val MAX_SEGMENT_SIZE = 0xFFFF
+    public const val MAX_SEGMENT_SIZE: Int = 0xFFFF
 
-    val JFIF0_SIGNATURE = byteArrayOf(
+    public val JFIF0_SIGNATURE: ByteArray = byteArrayOf(
         0x4a, // J
         0x46, // F
         0x49, // I
@@ -34,7 +34,7 @@ public object JpegConstants {
         0x0
     )
 
-    val JFIF0_SIGNATURE_ALTERNATIVE = byteArrayOf(
+    public val JFIF0_SIGNATURE_ALTERNATIVE: ByteArray = byteArrayOf(
         0x4A, // J
         0x46, // F
         0x49, // I
@@ -42,7 +42,7 @@ public object JpegConstants {
         0x20
     )
 
-    val EXIF_IDENTIFIER_CODE = byteArrayOf(
+    public val EXIF_IDENTIFIER_CODE: ByteArray = byteArrayOf(
         0x45, // E
         0x78, // x
         0x69, // i
@@ -51,9 +51,9 @@ public object JpegConstants {
         0 // NUL
     )
 
-    const val EXIF_IDENTIFIER_CODE_HEX: String = "457869660000"
+    public const val EXIF_IDENTIFIER_CODE_HEX: String = "457869660000"
 
-    val XMP_IDENTIFIER = byteArrayOf(
+    public val XMP_IDENTIFIER: ByteArray = byteArrayOf(
         0x68, // h
         0x74, // t
         0x74, // t
@@ -85,67 +85,67 @@ public object JpegConstants {
         0
     )
 
-    val SOI = byteArrayOf(0xFF.toByte(), 0xD8.toByte())
-    val EOI = byteArrayOf(0xFF.toByte(), 0xD9.toByte())
+    public val SOI = byteArrayOf(0xFF.toByte(), 0xD8.toByte())
+    public val EOI = byteArrayOf(0xFF.toByte(), 0xD9.toByte())
 
-    const val JPEG_APP0_MARKER = 0xFFE0
-    const val JPEG_APP1_MARKER = 0xFFE1
-    const val JPEG_APP2_MARKER = 0xFFE2
-    const val JPEG_APP3_MARKER = 0xFFE3
-    const val JPEG_APP4_MARKER = 0xFFE4
-    const val JPEG_APP5_MARKER = 0xFFE5
-    const val JPEG_APP6_MARKER = 0xFFE6
-    const val JPEG_APP7_MARKER = 0xFFE7
-    const val JPEG_APP8_MARKER = 0xFFE8
-    const val JPEG_APP9_MARKER = 0xFFE9
-    const val JPEG_APP10_MARKER = 0xFFEA
-    const val JPEG_APP11_MARKER = 0xFFEB
-    const val JPEG_APP12_MARKER = 0xFFEC
-    const val JPEG_APP13_MARKER = 0xFFED
-    const val JPEG_APP14_MARKER = 0xFFEE
-    const val JPEG_APP15_MARKER = 0xFFEF
+    public const val JPEG_APP0_MARKER = 0xFFE0
+    public const val JPEG_APP1_MARKER = 0xFFE1
+    public const val JPEG_APP2_MARKER = 0xFFE2
+    public const val JPEG_APP3_MARKER = 0xFFE3
+    public const val JPEG_APP4_MARKER = 0xFFE4
+    public const val JPEG_APP5_MARKER = 0xFFE5
+    public const val JPEG_APP6_MARKER = 0xFFE6
+    public const val JPEG_APP7_MARKER = 0xFFE7
+    public const val JPEG_APP8_MARKER = 0xFFE8
+    public const val JPEG_APP9_MARKER = 0xFFE9
+    public const val JPEG_APP10_MARKER = 0xFFEA
+    public const val JPEG_APP11_MARKER = 0xFFEB
+    public const val JPEG_APP12_MARKER = 0xFFEC
+    public const val JPEG_APP13_MARKER = 0xFFED
+    public const val JPEG_APP14_MARKER = 0xFFEE
+    public const val JPEG_APP15_MARKER = 0xFFEF
 
-    const val JFIF_MARKER = 0xFFE0
-    const val DHT_MARKER = 0xFFC4
-    const val DAC_MARKER = 0xFFCC
+    public const val JFIF_MARKER = 0xFFE0
+    public const val DHT_MARKER = 0xFFC4
+    public const val DAC_MARKER = 0xFFCC
 
-    const val SOF0_MARKER = 0xFFC0
-    const val SOF1_MARKER = 0xFFC1
-    const val SOF2_MARKER = 0xFFC2
-    const val SOF3_MARKER = 0xFFC3
-    const val SOF5_MARKER = 0xFFC5
-    const val SOF6_MARKER = 0xFFC6
-    const val SOF7_MARKER = 0xFFC7
-    const val SOF9_MARKER = 0xFFC9
-    const val SOF10_MARKER = 0xFFCA
-    const val SOF11_MARKER = 0xFFCB
-    const val SOF13_MARKER = 0xFFCD
-    const val SOF14_MARKER = 0xFFCE
-    const val SOF15_MARKER = 0xFFCF
+    public const val SOF0_MARKER = 0xFFC0
+    public const val SOF1_MARKER = 0xFFC1
+    public const val SOF2_MARKER = 0xFFC2
+    public const val SOF3_MARKER = 0xFFC3
+    public const val SOF5_MARKER = 0xFFC5
+    public const val SOF6_MARKER = 0xFFC6
+    public const val SOF7_MARKER = 0xFFC7
+    public const val SOF9_MARKER = 0xFFC9
+    public const val SOF10_MARKER = 0xFFCA
+    public const val SOF11_MARKER = 0xFFCB
+    public const val SOF13_MARKER = 0xFFCD
+    public const val SOF14_MARKER = 0xFFCE
+    public const val SOF15_MARKER = 0xFFCF
 
-    const val DRI_MARKER = 0xFFDD
-    const val RST0_MARKER = 0xFFD0
-    const val RST1_MARKER = 0xFFD1
-    const val RST2_MARKER = 0xFFD2
-    const val RST3_MARKER = 0xFFD3
-    const val RST4_MARKER = 0xFFD4
-    const val RST5_MARKER = 0xFFD5
-    const val RST6_MARKER = 0xFFD6
-    const val RST7_MARKER = 0xFFD7
+    public const val DRI_MARKER = 0xFFDD
+    public const val RST0_MARKER = 0xFFD0
+    public const val RST1_MARKER = 0xFFD1
+    public const val RST2_MARKER = 0xFFD2
+    public const val RST3_MARKER = 0xFFD3
+    public const val RST4_MARKER = 0xFFD4
+    public const val RST5_MARKER = 0xFFD5
+    public const val RST6_MARKER = 0xFFD6
+    public const val RST7_MARKER = 0xFFD7
 
-    const val SOI_MARKER = 0xFFD8
-    const val EOI_MARKER = 0xFFD9
-    const val SOS_MARKER = 0xFFDA
-    const val DQT_MARKER = 0xFFDB
-    const val DNL_MARKER = 0xFFDC
-    const val JPG_EXT_MARKER = 0xFFC8
-    const val DHP_MARKER = 0xFFDE
-    const val EXP_MARKER = 0xFFDF
+    public const val SOI_MARKER = 0xFFD8
+    public const val EOI_MARKER = 0xFFD9
+    public const val SOS_MARKER = 0xFFDA
+    public const val DQT_MARKER = 0xFFDB
+    public const val DNL_MARKER = 0xFFDC
+    public const val JPG_EXT_MARKER = 0xFFC8
+    public const val DHP_MARKER = 0xFFDE
+    public const val EXP_MARKER = 0xFFDF
 
-    const val COM_MARKER_1 = 0xFFFE
-    const val COM_MARKER_2 = 0xFFEE
+    public const val COM_MARKER_1 = 0xFFFE
+    public const val COM_MARKER_2 = 0xFFEE
 
-    val SOFN_MARKERS = listOf(
+    public val SOFN_MARKERS = listOf(
         JpegConstants.SOF0_MARKER,
         JpegConstants.SOF1_MARKER,
         JpegConstants.SOF2_MARKER,
@@ -161,7 +161,7 @@ public object JpegConstants {
         JpegConstants.SOF15_MARKER
     )
 
-    val SOFN_MARKER_BYTES = listOf(
+    public val SOFN_MARKER_BYTES = listOf(
         0xC0.toByte(), 0xC1.toByte(), 0xC2.toByte(),
         0xC3.toByte(), 0xC5.toByte(), 0xC6.toByte(),
         0xC7.toByte(), 0xC9.toByte(), 0xCA.toByte(),
@@ -169,7 +169,7 @@ public object JpegConstants {
         0xCF.toByte()
     )
 
-    val APP13_IDENTIFIER = byteArrayOf(
+    public val APP13_IDENTIFIER = byteArrayOf(
         0x50, // P
         0x68, // h
         0x6F, // o
@@ -186,16 +186,16 @@ public object JpegConstants {
         0
     )
 
-    const val IPTC_MAX_BLOCK_NAME_LENGTH: Int = 255
+    public const val IPTC_MAX_BLOCK_NAME_LENGTH: Int = 255
 
     /** Int value of "8BIM" */
-    const val IPTC_RESOURCE_BLOCK_SIGNATURE_INT = 943_868_237
+    public const val IPTC_RESOURCE_BLOCK_SIGNATURE_INT = 943_868_237
 
     /** Hex value of "8BIM" (38 42 49 4D) */
-    const val IPTC_RESOURCE_BLOCK_SIGNATURE_HEX = "3842494d"
+    public const val IPTC_RESOURCE_BLOCK_SIGNATURE_HEX = "3842494d"
 
     @OptIn(ExperimentalStdlibApi::class)
-    fun markerDescription(marker: Int): String =
+    public fun markerDescription(marker: Int): String =
         when (marker) {
             /* Every file has these markers */
             SOI_MARKER -> "SOI (Start of Image)"

@@ -20,15 +20,15 @@ import com.ashampoo.kim.common.ByteOrder
 
 public object PngConstants {
 
-    val PNG_BYTE_ORDER = ByteOrder.BIG_ENDIAN
+    public val PNG_BYTE_ORDER: ByteOrder = ByteOrder.BIG_ENDIAN
 
     /* ChunkType is a FourCC, so it's 4 bytes. */
-    const val TPYE_LENGTH = 4
+    public const val TPYE_LENGTH: Int = 4
 
-    const val COMPRESSION_DEFLATE_INFLATE = 0
+    public const val COMPRESSION_DEFLATE_INFLATE: Int = 0
 
     @Suppress("MagicNumber")
-    val PNG_SIGNATURE = byteArrayOf(
+    public val PNG_SIGNATURE: ByteArray = byteArrayOf(
         0x89.toByte(),
         'P'.code.toByte(),
         'N'.code.toByte(),
@@ -39,14 +39,14 @@ public object PngConstants {
         '\n'.code.toByte()
     )
 
-    const val XMP_KEYWORD = "XML:com.adobe.xmp"
+    public const val XMP_KEYWORD: String = "XML:com.adobe.xmp"
 
-    const val EXIF_KEYWORD = "Raw profile type exif"
+    public const val EXIF_KEYWORD: String = "Raw profile type exif"
 
-    const val IPTC_KEYWORD = "Raw profile type iptc"
+    public const val IPTC_KEYWORD: String = "Raw profile type iptc"
 
     /* Size in raw profiles is always 8 chars long and padded with spaces. */
-    const val TXT_SIZE_LENGTH = 8
-    const val TXT_SIZE_PAD = ' '
+    public const val TXT_SIZE_LENGTH: Int = 8
+    public const val TXT_SIZE_PAD: Char = ' '
 
 }

@@ -20,7 +20,7 @@ import com.ashampoo.kim.common.ImageReadException
 /**
  * See http://geotiff.maptools.org/spec/geotiff2.4.html
  */
-data class GeoTiffDirectory(
+public data class GeoTiffDirectory(
 
     /**
      * "KeyDirectoryVersion" indicates the current version of Key
@@ -65,10 +65,10 @@ data class GeoTiffDirectory(
         return sb.toString()
     }
 
-    companion object {
+    public companion object {
 
         @Suppress("MagicNumber")
-        fun parseFrom(shorts: ShortArray): GeoTiffDirectory {
+        public fun parseFrom(shorts: ShortArray): GeoTiffDirectory {
 
             require(shorts.size >= 4) {
                 "GeoTiffDirectory should be at least 4 bytes, but was ${shorts.size}."

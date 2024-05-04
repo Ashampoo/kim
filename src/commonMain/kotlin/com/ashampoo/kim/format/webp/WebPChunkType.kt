@@ -43,25 +43,25 @@ public data class WebPChunkType internal constructor(
     override fun toString(): String =
         name
 
-    companion object {
+    public companion object {
 
         /** Standard lossy VP8 */
-        val VP8 = of("VP8 ".encodeToByteArray())
+        public val VP8: WebPChunkType = of("VP8 ".encodeToByteArray())
 
         /** Lossless VP8 */
-        val VP8L = of("VP8L".encodeToByteArray())
+        public val VP8L: WebPChunkType = of("VP8L".encodeToByteArray())
 
         /** Extended VP8 */
-        val VP8X = of("VP8X".encodeToByteArray())
+        public val VP8X: WebPChunkType = of("VP8X".encodeToByteArray())
 
         /** EXIF metadata */
-        val EXIF = of("EXIF".encodeToByteArray())
+        public val EXIF: WebPChunkType = of("EXIF".encodeToByteArray())
 
         /** XMP metadata */
-        val XMP = of("XMP ".encodeToByteArray())
+        public val XMP: WebPChunkType = of("XMP ".encodeToByteArray())
 
         @Suppress("MagicNumber")
-        fun of(typeBytes: ByteArray): WebPChunkType {
+        public fun of(typeBytes: ByteArray): WebPChunkType {
 
             require(typeBytes.size == WebPConstants.TPYE_LENGTH) {
                 "ChunkType must be always 4 bytes, but got ${typeBytes.size} bytes!"

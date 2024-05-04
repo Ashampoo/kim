@@ -34,13 +34,13 @@ public class HandlerReferenceBox(
     payload: ByteArray
 ) : Box(BoxType.HDLR, offset, size, largeSize, payload) {
 
-    val version: Int
+    public val version: Int
 
-    val flags: ByteArray
+    public val flags: ByteArray
 
-    val handlerType: String
+    public val handlerType: String
 
-    val name: String
+    public val name: String
 
     init {
 

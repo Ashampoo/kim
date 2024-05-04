@@ -34,13 +34,13 @@ public class ExifBox(
     payload: ByteArray
 ) : Box(BoxType.EXIF, offset, size, largeSize, payload) {
 
-    val version: Int
+    public val version: Int
 
-    val flags: ByteArray
+    public val flags: ByteArray
 
-    val exifBytes: ByteArray
+    public val exifBytes: ByteArray
 
-    val tiffContents: TiffContents
+    public val tiffContents: TiffContents
 
     init {
 

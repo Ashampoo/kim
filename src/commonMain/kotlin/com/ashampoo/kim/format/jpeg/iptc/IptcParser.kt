@@ -47,13 +47,13 @@ public object IptcParser {
     @Suppress("MagicNumber")
     private val PHOTOSHOP_IGNORED_BLOCK_TYPE = listOf(1084, 1085, 1086, 1087)
 
-    public const val CODED_CHARACTER_SET_IPTC_CODE = 90
+    public const val CODED_CHARACTER_SET_IPTC_CODE: Int = 90
 
     /* "ESC % G" as bytes */
-    public val UTF8_CHARACTER_ESCAPE_SEQUENCE =
+    public val UTF8_CHARACTER_ESCAPE_SEQUENCE: ByteArray =
         byteArrayOf('\u001B'.code.toByte(), '%'.code.toByte(), 'G'.code.toByte())
 
-    public val APP13_BYTE_ORDER = ByteOrder.BIG_ENDIAN
+    public val APP13_BYTE_ORDER: ByteOrder = ByteOrder.BIG_ENDIAN
 
     /**
      * Checks if the ByteArray starts with the Photoshop identifaction header.

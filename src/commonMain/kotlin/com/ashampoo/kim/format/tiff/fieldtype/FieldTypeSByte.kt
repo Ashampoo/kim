@@ -23,7 +23,7 @@ import com.ashampoo.kim.format.tiff.constant.TiffConstants
 /**
  * An 8-bit signed (twos-complement) integer.
  */
-data object FieldTypeSByte : FieldType<ByteArray> {
+public data object FieldTypeSByte : FieldType<ByteArray> {
 
     override val type: Int = TiffConstants.FIELD_TYPE_SBYTE_INDEX
 

@@ -27,7 +27,7 @@ import com.ashampoo.kim.format.tiff.constant.TiffConstants
  *
  * Hint: Signed 4 Bytes are in Kotlin a normal Integer.
  */
-data object FieldTypeSLong : FieldType<IntArray> {
+public data object FieldTypeSLong : FieldType<IntArray> {
 
     override val type: Int = TiffConstants.FIELD_TYPE_SLONG_INDEX
 

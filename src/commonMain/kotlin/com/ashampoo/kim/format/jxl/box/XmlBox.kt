@@ -28,10 +28,5 @@ public class XmlBox(
     payload: ByteArray
 ) : Box(BoxType.XML, offset, size, largeSize, payload) {
 
-    val xmp: String
-
-    init {
-
-        xmp = payload.decodeToString()
-    }
+    public val xmp: String = payload.decodeToString()
 }

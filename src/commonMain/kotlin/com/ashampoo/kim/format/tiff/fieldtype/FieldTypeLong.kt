@@ -25,7 +25,7 @@ import com.ashampoo.kim.format.tiff.constant.TiffConstants.FIELD_TYPE_LONG_INDEX
 /**
  * 32-bit (4-byte) unsigned integer.
  */
-data object FieldTypeLong : FieldType<IntArray> {
+public data object FieldTypeLong : FieldType<IntArray> {
 
     override val type: Int = FIELD_TYPE_LONG_INDEX
 

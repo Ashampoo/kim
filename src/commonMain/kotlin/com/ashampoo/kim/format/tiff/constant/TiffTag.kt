@@ -40,7 +40,7 @@ public object TiffTag {
      * TODO This list is incomplete
      */
 
-    public val TIFF_TAG_NEW_SUBFILE_TYPE = TagInfoLong(
+    public val TIFF_TAG_NEW_SUBFILE_TYPE: TagInfoLong = TagInfoLong(
         0xFE, "NewSubfileType",
         TIFF_DIRECTORY_IFD0
     )
