@@ -22,7 +22,7 @@ import java.io.InputStream
  * Provides way to read from Android ContentReolver that
  * should work on all versions.
  */
-open class AndroidInputStreamByteReader(
+public open class AndroidInputStreamByteReader(
     private val inputStream: InputStream,
     override val contentLength: Long
 ) : ByteReader {
@@ -54,6 +54,6 @@ open class AndroidInputStreamByteReader(
             buffer.slice(startIndex = 0, count = count)
     }
 
-    override fun close() =
+    override fun close(): Unit =
         inputStream.close()
 }
