@@ -31,7 +31,7 @@ public object KimJvm {
 
     @JvmStatic
     @Throws(ImageReadException::class)
-    public fun readMetadata(inputStream: InputStream, length: Long) =
+    public fun readMetadata(inputStream: InputStream, length: Long): ImageMetadata? =
         Kim.readMetadata(JvmInputStreamByteReader(inputStream, length))
 
     @JvmStatic

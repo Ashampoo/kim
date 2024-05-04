@@ -35,6 +35,6 @@ open class JvmInputStreamByteReader(
     override fun readBytes(count: Int): ByteArray =
         inputStream.readNBytes(count)
 
-    override fun close() =
+    override fun close(): Unit =
         inputStream.close()
 }

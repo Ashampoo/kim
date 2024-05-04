@@ -45,23 +45,23 @@ public object TiffTag {
         TIFF_DIRECTORY_IFD0
     )
 
-    public const val SUBFILE_TYPE_VALUE_FULL_RESOLUTION_IMAGE = 0
-    public const val SUBFILE_TYPE_VALUE_REDUCED_RESOLUTION_IMAGE = 1
-    public const val SUBFILE_TYPE_VALUE_SINGLE_PAGE_OF_MULTI_PAGE_IMAGE = 2
-    public const val SUBFILE_TYPE_VALUE_SINGLE_PAGE_OF_MULTI_PAGE_REDUCED_RESOLUTION_IMAGE = 3
-    public const val SUBFILE_TYPE_VALUE_TRANSPARENCY_MASK = 4
-    public const val SUBFILE_TYPE_VALUE_TRANSPARENCY_MASK_OF_REDUCED_RESOLUTION_IMAGE = 5
-    public const val SUBFILE_TYPE_VALUE_TRANSPARENCY_MASK_OF_MULTI_PAGE_IMAGE = 6
-    public const val SUBFILE_TYPE_VALUE_TRANSPARENCY_MASK_OF_REDUCED_RESOLUTION_MULTI_PAGE_IMAGE = 7
+    public const val SUBFILE_TYPE_VALUE_FULL_RESOLUTION_IMAGE: Int = 0
+    public const val SUBFILE_TYPE_VALUE_REDUCED_RESOLUTION_IMAGE: Int = 1
+    public const val SUBFILE_TYPE_VALUE_SINGLE_PAGE_OF_MULTI_PAGE_IMAGE: Int = 2
+    public const val SUBFILE_TYPE_VALUE_SINGLE_PAGE_OF_MULTI_PAGE_REDUCED_RESOLUTION_IMAGE: Int = 3
+    public const val SUBFILE_TYPE_VALUE_TRANSPARENCY_MASK: Int = 4
+    public const val SUBFILE_TYPE_VALUE_TRANSPARENCY_MASK_OF_REDUCED_RESOLUTION_IMAGE: Int = 5
+    public const val SUBFILE_TYPE_VALUE_TRANSPARENCY_MASK_OF_MULTI_PAGE_IMAGE: Int = 6
+    public const val SUBFILE_TYPE_VALUE_TRANSPARENCY_MASK_OF_REDUCED_RESOLUTION_MULTI_PAGE_IMAGE: Int = 7
 
     public val TIFF_TAG_SUBFILE_TYPE: TagInfoShort = TagInfoShort(
         0xFF, "SubfileType",
         TIFF_DIRECTORY_IFD0
     )
 
-    public const val OLD_SUBFILE_TYPE_VALUE_FULL_RESOLUTION_IMAGE = 1
-    public const val OLD_SUBFILE_TYPE_VALUE_REDUCED_RESOLUTION_IMAGE = 2
-    public const val OLD_SUBFILE_TYPE_VALUE_SINGLE_PAGE_OF_MULTI_PAGE_IMAGE = 3
+    public const val OLD_SUBFILE_TYPE_VALUE_FULL_RESOLUTION_IMAGE: Int = 1
+    public const val OLD_SUBFILE_TYPE_VALUE_REDUCED_RESOLUTION_IMAGE: Int = 2
+    public const val OLD_SUBFILE_TYPE_VALUE_SINGLE_PAGE_OF_MULTI_PAGE_IMAGE: Int = 3
 
     public val TIFF_TAG_IMAGE_WIDTH: TagInfoLong = TagInfoLong(
         0x100, "ImageWidth", TIFF_DIRECTORY_IFD0
@@ -81,65 +81,65 @@ public object TiffTag {
         TIFF_DIRECTORY_IFD0
     )
 
-    public const val COMPRESSION_VALUE_UNCOMPRESSED = 1
-    public const val COMPRESSION_VALUE_CCITT_1D = 2
-    public const val COMPRESSION_VALUE_T4_GROUP_3_FAX = 3
-    public const val COMPRESSION_VALUE_T6_GROUP_4_FAX = 4
-    public const val COMPRESSION_VALUE_LZW = 5
-    public const val COMPRESSION_VALUE_JPEG_OLD_STYLE = 6
-    public const val COMPRESSION_VALUE_JPEG = 7
-    public const val COMPRESSION_VALUE_ADOBE_DEFLATE = 8
-    public const val COMPRESSION_VALUE_JBIG_B_AND_W = 9
-    public const val COMPRESSION_VALUE_JBIG_COLOR = 10
-    public const val COMPRESSION_VALUE_NEXT = 32766
-    public const val COMPRESSION_VALUE_EPSON_ERF_COMPRESSED = 32769
-    public const val COMPRESSION_VALUE_CCIRLEW = 32771
-    public const val COMPRESSION_VALUE_PACK_BITS = 32773
-    public const val COMPRESSION_VALUE_THUNDERSCAN = 32809
-    public const val COMPRESSION_VALUE_IT8CTPAD = 32895
-    public const val COMPRESSION_VALUE_IT8LW = 32896
-    public const val COMPRESSION_VALUE_IT8MP = 32897
-    public const val COMPRESSION_VALUE_IT8BL = 32898
-    public const val COMPRESSION_VALUE_PIXAR_FILM = 32908
-    public const val COMPRESSION_VALUE_PIXAR_LOG = 32909
-    public const val COMPRESSION_VALUE_DEFLATE = 32946
-    public const val COMPRESSION_VALUE_DCS = 32947
-    public const val COMPRESSION_VALUE_JBIG = 34661
-    public const val COMPRESSION_VALUE_SGILOG = 34676
-    public const val COMPRESSION_VALUE_SGILOG_24 = 34677
-    public const val COMPRESSION_VALUE_JPEG_2000 = 34712
-    public const val COMPRESSION_VALUE_NIKON_NEF_COMPRESSED = 34713
-    public const val COMPRESSION_VALUE_KODAK_DCR_COMPRESSED = 65000
-    public const val COMPRESSION_VALUE_PENTAX_PEF_COMPRESSED = 65535
+    public const val COMPRESSION_VALUE_UNCOMPRESSED: Int = 1
+    public const val COMPRESSION_VALUE_CCITT_1D: Int = 2
+    public const val COMPRESSION_VALUE_T4_GROUP_3_FAX: Int = 3
+    public const val COMPRESSION_VALUE_T6_GROUP_4_FAX: Int = 4
+    public const val COMPRESSION_VALUE_LZW: Int = 5
+    public const val COMPRESSION_VALUE_JPEG_OLD_STYLE: Int = 6
+    public const val COMPRESSION_VALUE_JPEG: Int = 7
+    public const val COMPRESSION_VALUE_ADOBE_DEFLATE: Int = 8
+    public const val COMPRESSION_VALUE_JBIG_B_AND_W: Int = 9
+    public const val COMPRESSION_VALUE_JBIG_COLOR: Int = 10
+    public const val COMPRESSION_VALUE_NEXT: Int = 32766
+    public const val COMPRESSION_VALUE_EPSON_ERF_COMPRESSED: Int = 32769
+    public const val COMPRESSION_VALUE_CCIRLEW: Int = 32771
+    public const val COMPRESSION_VALUE_PACK_BITS: Int = 32773
+    public const val COMPRESSION_VALUE_THUNDERSCAN: Int = 32809
+    public const val COMPRESSION_VALUE_IT8CTPAD: Int = 32895
+    public const val COMPRESSION_VALUE_IT8LW: Int = 32896
+    public const val COMPRESSION_VALUE_IT8MP: Int = 32897
+    public const val COMPRESSION_VALUE_IT8BL: Int = 32898
+    public const val COMPRESSION_VALUE_PIXAR_FILM: Int = 32908
+    public const val COMPRESSION_VALUE_PIXAR_LOG: Int = 32909
+    public const val COMPRESSION_VALUE_DEFLATE: Int = 32946
+    public const val COMPRESSION_VALUE_DCS: Int = 32947
+    public const val COMPRESSION_VALUE_JBIG: Int = 34661
+    public const val COMPRESSION_VALUE_SGILOG: Int = 34676
+    public const val COMPRESSION_VALUE_SGILOG_24: Int = 34677
+    public const val COMPRESSION_VALUE_JPEG_2000: Int = 34712
+    public const val COMPRESSION_VALUE_NIKON_NEF_COMPRESSED: Int = 34713
+    public const val COMPRESSION_VALUE_KODAK_DCR_COMPRESSED: Int = 65000
+    public const val COMPRESSION_VALUE_PENTAX_PEF_COMPRESSED: Int = 65535
 
     public val TIFF_TAG_PHOTOMETRIC_INTERPRETATION: TagInfoShort = TagInfoShort(
         0x106, "PhotometricInterpretation",
         TIFF_DIRECTORY_IFD0
     )
 
-    public const val PHOTOMETRIC_INTERPRETATION_VALUE_WHITE_IS_ZERO = 0
-    public const val PHOTOMETRIC_INTERPRETATION_VALUE_BLACK_IS_ZERO = 1
-    public const val PHOTOMETRIC_INTERPRETATION_VALUE_RGB = 2
-    public const val PHOTOMETRIC_INTERPRETATION_VALUE_RGB_PALETTE = 3
-    public const val PHOTOMETRIC_INTERPRETATION_VALUE_TRANSPARENCY_MASK = 4
-    public const val PHOTOMETRIC_INTERPRETATION_VALUE_CMYK = 5
-    public const val PHOTOMETRIC_INTERPRETATION_VALUE_YCB_CR = 6
-    public const val PHOTOMETRIC_INTERPRETATION_VALUE_CIELAB = 8
-    public const val PHOTOMETRIC_INTERPRETATION_VALUE_ICCLAB = 9
-    public const val PHOTOMETRIC_INTERPRETATION_VALUE_ITULAB = 10
-    public const val PHOTOMETRIC_INTERPRETATION_VALUE_COLOR_FILTER_ARRAY = 32803
-    public const val PHOTOMETRIC_INTERPRETATION_VALUE_PIXAR_LOG_L = 32844
-    public const val PHOTOMETRIC_INTERPRETATION_VALUE_PIXAR_LOG_LUV = 32845
-    public const val PHOTOMETRIC_INTERPRETATION_VALUE_LINEAR_RAW = 34892
+    public const val PHOTOMETRIC_INTERPRETATION_VALUE_WHITE_IS_ZERO: Int = 0
+    public const val PHOTOMETRIC_INTERPRETATION_VALUE_BLACK_IS_ZERO: Int = 1
+    public const val PHOTOMETRIC_INTERPRETATION_VALUE_RGB: Int = 2
+    public const val PHOTOMETRIC_INTERPRETATION_VALUE_RGB_PALETTE: Int = 3
+    public const val PHOTOMETRIC_INTERPRETATION_VALUE_TRANSPARENCY_MASK: Int = 4
+    public const val PHOTOMETRIC_INTERPRETATION_VALUE_CMYK: Int = 5
+    public const val PHOTOMETRIC_INTERPRETATION_VALUE_YCB_CR: Int = 6
+    public const val PHOTOMETRIC_INTERPRETATION_VALUE_CIELAB: Int = 8
+    public const val PHOTOMETRIC_INTERPRETATION_VALUE_ICCLAB: Int = 9
+    public const val PHOTOMETRIC_INTERPRETATION_VALUE_ITULAB: Int = 10
+    public const val PHOTOMETRIC_INTERPRETATION_VALUE_COLOR_FILTER_ARRAY: Int = 32803
+    public const val PHOTOMETRIC_INTERPRETATION_VALUE_PIXAR_LOG_L: Int = 32844
+    public const val PHOTOMETRIC_INTERPRETATION_VALUE_PIXAR_LOG_LUV: Int = 32845
+    public const val PHOTOMETRIC_INTERPRETATION_VALUE_LINEAR_RAW: Int = 34892
 
     public val TIFF_TAG_THRESHHOLDING: TagInfoShort = TagInfoShort(
         0x107, "Threshholding",
         TIFF_DIRECTORY_IFD0
     )
 
-    public const val THRESHOLDING_VALUE_NO_DITHERING_OR_HALFTONING = 1
-    public const val THRESHOLDING_VALUE_ORDERED_DITHER_OR_HALFTONE = 2
-    public const val THRESHOLDING_VALUE_RANDOMIZED_DITHER = 3
+    public const val THRESHOLDING_VALUE_NO_DITHERING_OR_HALFTONING: Int = 1
+    public const val THRESHOLDING_VALUE_ORDERED_DITHER_OR_HALFTONE: Int = 2
+    public const val THRESHOLDING_VALUE_RANDOMIZED_DITHER: Int = 3
 
     public val TIFF_TAG_CELL_WIDTH: TagInfoShort = TagInfoShort(
         0x108, "CellWidth",
@@ -156,8 +156,8 @@ public object TiffTag {
         TIFF_DIRECTORY_IFD0
     )
 
-    public const val FILL_ORDER_VALUE_NORMAL = 1
-    public const val FILL_ORDER_VALUE_REVERSED = 2
+    public const val FILL_ORDER_VALUE_NORMAL: Int = 1
+    public const val FILL_ORDER_VALUE_REVERSED: Int = 2
 
     public val TIFF_TAG_DOCUMENT_NAME: TagInfoAscii = TagInfoAscii(
         0x10D, "DocumentName", TagInfo.LENGTH_UNKNOWN,
@@ -190,14 +190,14 @@ public object TiffTag {
         TIFF_DIRECTORY_IFD0
     )
 
-    public const val ORIENTATION_VALUE_HORIZONTAL_NORMAL = 1
-    public const val ORIENTATION_VALUE_MIRROR_HORIZONTAL = 2
-    public const val ORIENTATION_VALUE_ROTATE_180 = 3
-    public const val ORIENTATION_VALUE_MIRROR_VERTICAL = 4
-    public const val ORIENTATION_VALUE_MIRROR_HORIZONTAL_AND_ROTATE_270_CW = 5
-    public const val ORIENTATION_VALUE_ROTATE_90_CW = 6
-    public const val ORIENTATION_VALUE_MIRROR_HORIZONTAL_AND_ROTATE_90_CW = 7
-    public const val ORIENTATION_VALUE_ROTATE_270_CW = 8
+    public const val ORIENTATION_VALUE_HORIZONTAL_NORMAL: Int = 1
+    public const val ORIENTATION_VALUE_MIRROR_HORIZONTAL: Int = 2
+    public const val ORIENTATION_VALUE_ROTATE_180: Int = 3
+    public const val ORIENTATION_VALUE_MIRROR_VERTICAL: Int = 4
+    public const val ORIENTATION_VALUE_MIRROR_HORIZONTAL_AND_ROTATE_270_CW: Int = 5
+    public const val ORIENTATION_VALUE_ROTATE_90_CW: Int = 6
+    public const val ORIENTATION_VALUE_MIRROR_HORIZONTAL_AND_ROTATE_90_CW: Int = 7
+    public const val ORIENTATION_VALUE_ROTATE_270_CW: Int = 8
 
     public val TIFF_TAG_SAMPLES_PER_PIXEL: TagInfoShort = TagInfoShort(
         0x0115, "SamplesPerPixel",
@@ -244,8 +244,8 @@ public object TiffTag {
         TIFF_DIRECTORY_IFD0
     )
 
-    public const val PLANAR_CONFIGURATION_VALUE_CHUNKY = 1
-    public const val PLANAR_CONFIGURATION_VALUE_PLANAR = 2
+    public const val PLANAR_CONFIGURATION_VALUE_CHUNKY: Int = 1
+    public const val PLANAR_CONFIGURATION_VALUE_PLANAR: Int = 2
 
     public val TIFF_TAG_PAGE_NAME: TagInfoAscii = TagInfoAscii(
         0x11D, "PageName", TagInfo.LENGTH_UNKNOWN,
@@ -277,11 +277,11 @@ public object TiffTag {
         TIFF_DIRECTORY_IFD0
     )
 
-    public const val GRAY_RESPONSE_UNIT_VALUE_0_1 = 1
-    public const val GRAY_RESPONSE_UNIT_VALUE_0_01 = 2
-    public const val GRAY_RESPONSE_UNIT_VALUE_0_001 = 3
-    public const val GRAY_RESPONSE_UNIT_VALUE_0_0001 = 4
-    public const val GRAY_RESPONSE_UNIT_VALUE_0_00001 = 5
+    public const val GRAY_RESPONSE_UNIT_VALUE_0_1: Int = 1
+    public const val GRAY_RESPONSE_UNIT_VALUE_0_01: Int = 2
+    public const val GRAY_RESPONSE_UNIT_VALUE_0_001: Int = 3
+    public const val GRAY_RESPONSE_UNIT_VALUE_0_0001: Int = 4
+    public const val GRAY_RESPONSE_UNIT_VALUE_0_00001: Int = 5
 
     public val TIFF_TAG_GRAY_RESPONSE_CURVE: TagInfoShorts = TagInfoShorts(
         0x123, "GrayResponseCurve", TagInfo.LENGTH_UNKNOWN,
@@ -303,9 +303,9 @@ public object TiffTag {
         TIFF_DIRECTORY_IFD0
     )
 
-    public const val RESOLUTION_UNIT_VALUE_NONE = 1
-    public const val RESOLUTION_UNIT_VALUE_INCHES = 2
-    public const val RESOLUTION_UNIT_VALUE_CM = 3
+    public const val RESOLUTION_UNIT_VALUE_NONE: Int = 1
+    public const val RESOLUTION_UNIT_VALUE_INCHES: Int = 2
+    public const val RESOLUTION_UNIT_VALUE_CM: Int = 3
 
     public val TIFF_TAG_PAGE_NUMBER: TagInfoShorts = TagInfoShorts(
         0x129, "PageNumber", 2,
@@ -342,9 +342,9 @@ public object TiffTag {
         TIFF_DIRECTORY_IFD0
     )
 
-    public const val PREDICTOR_VALUE_NONE = 1
-    public const val PREDICTOR_VALUE_HORIZONTAL_DIFFERENCING = 2
-    public const val PREDICTOR_VALUE_FLOATING_POINT_DIFFERENCING = 3
+    public const val PREDICTOR_VALUE_NONE: Int = 1
+    public const val PREDICTOR_VALUE_HORIZONTAL_DIFFERENCING: Int = 2
+    public const val PREDICTOR_VALUE_FLOATING_POINT_DIFFERENCING: Int = 3
 
     public val TIFF_TAG_WHITE_POINT: TagInfoRationals = TagInfoRationals(
         0x13E, "WhitePoint", 2,
@@ -396,8 +396,8 @@ public object TiffTag {
         TIFF_DIRECTORY_IFD0
     )
 
-    public const val INK_SET_VALUE_CMYK = 1
-    public const val INK_SET_VALUE_NOT_CMYK = 2
+    public const val INK_SET_VALUE_CMYK: Int = 1
+    public const val INK_SET_VALUE_NOT_CMYK: Int = 2
 
     public val TIFF_TAG_INK_NAMES: TagInfoAscii = TagInfoAscii(
         0x14D, "InkNames", TagInfo.LENGTH_UNKNOWN,
@@ -426,20 +426,20 @@ public object TiffTag {
         TIFF_DIRECTORY_IFD0
     )
 
-    public const val EXTRA_SAMPLE_ASSOCIATED_ALPHA = 1
-    public const val EXTRA_SAMPLE_UNASSOCIATED_ALPHA = 2
+    public const val EXTRA_SAMPLE_ASSOCIATED_ALPHA: Int = 1
+    public const val EXTRA_SAMPLE_UNASSOCIATED_ALPHA: Int = 2
 
     public val TIFF_TAG_SAMPLE_FORMAT: TagInfoShorts = TagInfoShorts(
         0x153, "SampleFormat", TagInfo.LENGTH_UNKNOWN,
         TIFF_DIRECTORY_IFD0
     )
 
-    public const val SAMPLE_FORMAT_VALUE_UNSIGNED_INTEGER = 1
-    public const val SAMPLE_FORMAT_VALUE_TWOS_COMPLEMENT_SIGNED_INTEGER = 2
-    public const val SAMPLE_FORMAT_VALUE_IEEE_FLOATING_POINT = 3
-    public const val SAMPLE_FORMAT_VALUE_UNDEFINED = 4
-    public const val SAMPLE_FORMAT_VALUE_COMPLEX_INTEGER = 5
-    public const val SAMPLE_FORMAT_VALUE_IEEE_COMPLEX_FLOAT = 6
+    public const val SAMPLE_FORMAT_VALUE_UNSIGNED_INTEGER: Int = 1
+    public const val SAMPLE_FORMAT_VALUE_TWOS_COMPLEMENT_SIGNED_INTEGER: Int = 2
+    public const val SAMPLE_FORMAT_VALUE_IEEE_FLOATING_POINT: Int = 3
+    public const val SAMPLE_FORMAT_VALUE_UNDEFINED: Int = 4
+    public const val SAMPLE_FORMAT_VALUE_COMPLEX_INTEGER: Int = 5
+    public const val SAMPLE_FORMAT_VALUE_IEEE_COMPLEX_FLOAT: Int = 6
 
     /**
      * This field specifies the minimum sample value.
@@ -467,8 +467,8 @@ public object TiffTag {
         TIFF_DIRECTORY_IFD0
     )
 
-    public const val JPEGPROC_VALUE_BASELINE = 1
-    public const val JPEGPROC_VALUE_LOSSLESS = 14
+    public const val JPEGPROC_VALUE_BASELINE: Int = 1
+    public const val JPEGPROC_VALUE_LOSSLESS: Int = 14
 
     /**
      * This marks where the thumbnail starts.
@@ -532,8 +532,8 @@ public object TiffTag {
         TIFF_DIRECTORY_IFD0
     )
 
-    public const val YCB_CR_POSITIONING_VALUE_CENTERED = 1
-    public const val YCB_CR_POSITIONING_VALUE_CO_SITED = 2
+    public const val YCB_CR_POSITIONING_VALUE_CENTERED: Int = 1
+    public const val YCB_CR_POSITIONING_VALUE_CO_SITED: Int = 2
 
     public val TIFF_TAG_REFERENCE_BLACK_WHITE: TagInfoLongs = TagInfoLongs(
         0x214, "ReferenceBlackWhite", TagInfo.LENGTH_UNKNOWN, TIFF_DIRECTORY_IFD0
@@ -557,7 +557,7 @@ public object TiffTag {
         0xC612, "DNGVersion", 4, TIFF_DIRECTORY_IFD0
     )
 
-    public val ALL = listOf(
+    public val ALL: List<TagInfo> = listOf(
         TIFF_TAG_NEW_SUBFILE_TYPE, TIFF_TAG_SUBFILE_TYPE,
         TIFF_TAG_IMAGE_WIDTH, TIFF_TAG_IMAGE_LENGTH,
         TIFF_TAG_BITS_PER_SAMPLE, TIFF_TAG_COMPRESSION,

@@ -64,7 +64,7 @@ public object NikonTag {
         TiffDirectoryType.EXIF_DIRECTORY_MAKER_NOTE_NIKON
     )
 
-    public val ALL = listOf(
+    public val ALL: List<TagInfo> = listOf(
         MAKER_NOTE_VERSION, SHUTTER_COUNT,
         AUXILIARY_LENS, LENS_TYPE, LENS, LENS_F_STOPS
     )

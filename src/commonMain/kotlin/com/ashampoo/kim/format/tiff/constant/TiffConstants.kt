@@ -31,48 +31,48 @@ public object TiffConstants {
      * ExifTool defaults to big endian.
      * It's more natural to read.
      */
-    public val DEFAULT_TIFF_BYTE_ORDER = ByteOrder.BIG_ENDIAN
+    public val DEFAULT_TIFF_BYTE_ORDER: ByteOrder = ByteOrder.BIG_ENDIAN
 
-    public const val TIFF_HEADER_SIZE = 8
-    public const val TIFF_DIRECTORY_HEADER_LENGTH = 2
-    public const val TIFF_DIRECTORY_FOOTER_LENGTH = 4
-    public const val TIFF_ENTRY_LENGTH = 12
-    public const val TIFF_ENTRY_MAX_VALUE_LENGTH = 4
+    public const val TIFF_HEADER_SIZE: Int = 8
+    public const val TIFF_DIRECTORY_HEADER_LENGTH: Int = 2
+    public const val TIFF_DIRECTORY_FOOTER_LENGTH: Int = 4
+    public const val TIFF_ENTRY_LENGTH: Int = 12
+    public const val TIFF_ENTRY_MAX_VALUE_LENGTH: Int = 4
 
     /** Root directory */
-    public const val TIFF_DIRECTORY_TYPE_IFD0 = 0
+    public const val TIFF_DIRECTORY_TYPE_IFD0: Int = 0
 
     /** Thumbnail directory */
-    public const val TIFF_DIRECTORY_TYPE_IFD1 = 1
+    public const val TIFF_DIRECTORY_TYPE_IFD1: Int = 1
 
-    public const val TIFF_DIRECTORY_TYPE_IFD2 = 2
-    public const val TIFF_DIRECTORY_TYPE_IFD3 = 3
+    public const val TIFF_DIRECTORY_TYPE_IFD2: Int = 2
+    public const val TIFF_DIRECTORY_TYPE_IFD3: Int = 3
 
-    public const val EXIF_SUB_IFD1 = 2
-    public const val EXIF_SUB_IFD2 = 3
-    public const val EXIF_SUB_IFD3 = 4
+    public const val EXIF_SUB_IFD1: Int = 2
+    public const val EXIF_SUB_IFD2: Int = 3
+    public const val EXIF_SUB_IFD3: Int = 4
 
-    public const val TIFF_DIRECTORY_EXIF = -2
-    public const val TIFF_DIRECTORY_GPS = -3
-    public const val TIFF_DIRECTORY_INTEROP = -4
+    public const val TIFF_DIRECTORY_EXIF: Int = -2
+    public const val TIFF_DIRECTORY_GPS: Int = -3
+    public const val TIFF_DIRECTORY_INTEROP: Int = -4
 
-    public const val DIRECTORY_TYPE_UNKNOWN = -1
+    public const val DIRECTORY_TYPE_UNKNOWN: Int = -1
 
     /* Artificial MakerNote directores */
-    public const val TIFF_MAKER_NOTE_CANON = -101
-    public const val TIFF_MAKER_NOTE_NIKON = -102
+    public const val TIFF_MAKER_NOTE_CANON: Int = -101
+    public const val TIFF_MAKER_NOTE_NIKON: Int = -102
 
-    public const val FIELD_TYPE_BYTE_INDEX = 1
-    public const val FIELD_TYPE_ASCII_INDEX = 2
-    public const val FIELD_TYPE_SHORT_INDEX = 3
-    public const val FIELD_TYPE_LONG_INDEX = 4
-    public const val FIELD_TYPE_RATIONAL_INDEX = 5
-    public const val FIELD_TYPE_SBYTE_INDEX = 6
-    public const val FIELD_TYPE_UNDEFINED_INDEX = 7
-    public const val FIELD_TYPE_SSHORT_INDEX = 8
-    public const val FIELD_TYPE_SLONG_INDEX = 9
-    public const val FIELD_TYPE_SRATIONAL_INDEX = 10
-    public const val FIELD_TYPE_FLOAT_INDEX = 11
-    public const val FIELD_TYPE_DOUBLE_INDEX = 12
-    public const val FIELD_TYPE_IFD_INDEX = 13
+    public const val FIELD_TYPE_BYTE_INDEX: Int = 1
+    public const val FIELD_TYPE_ASCII_INDEX: Int = 2
+    public const val FIELD_TYPE_SHORT_INDEX: Int = 3
+    public const val FIELD_TYPE_LONG_INDEX: Int = 4
+    public const val FIELD_TYPE_RATIONAL_INDEX: Int = 5
+    public const val FIELD_TYPE_SBYTE_INDEX: Int = 6
+    public const val FIELD_TYPE_UNDEFINED_INDEX: Int = 7
+    public const val FIELD_TYPE_SSHORT_INDEX: Int = 8
+    public const val FIELD_TYPE_SLONG_INDEX: Int = 9
+    public const val FIELD_TYPE_SRATIONAL_INDEX: Int = 10
+    public const val FIELD_TYPE_FLOAT_INDEX: Int = 11
+    public const val FIELD_TYPE_DOUBLE_INDEX: Int = 12
+    public const val FIELD_TYPE_IFD_INDEX: Int = 13
 }

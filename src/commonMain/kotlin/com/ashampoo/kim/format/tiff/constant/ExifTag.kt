@@ -283,14 +283,14 @@ public object ExifTag {
         TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD
     )
 
-    public const val EXPOSURE_PROGRAM_VALUE_MANUAL = 1
-    public const val EXPOSURE_PROGRAM_VALUE_PROGRAM_AE = 2
-    public const val EXPOSURE_PROGRAM_VALUE_APERTURE_PRIORITY_AE = 3
-    public const val EXPOSURE_PROGRAM_VALUE_SHUTTER_SPEED_PRIORITY_AE = 4
-    public const val EXPOSURE_PROGRAM_VALUE_CREATIVE_SLOW_SPEED = 5
-    public const val EXPOSURE_PROGRAM_VALUE_ACTION_HIGH_SPEED = 6
-    public const val EXPOSURE_PROGRAM_VALUE_PORTRAIT = 7
-    public const val EXPOSURE_PROGRAM_VALUE_LANDSCAPE = 8
+    public const val EXPOSURE_PROGRAM_VALUE_MANUAL: Int = 1
+    public const val EXPOSURE_PROGRAM_VALUE_PROGRAM_AE: Int = 2
+    public const val EXPOSURE_PROGRAM_VALUE_APERTURE_PRIORITY_AE: Int = 3
+    public const val EXPOSURE_PROGRAM_VALUE_SHUTTER_SPEED_PRIORITY_AE: Int = 4
+    public const val EXPOSURE_PROGRAM_VALUE_CREATIVE_SLOW_SPEED: Int = 5
+    public const val EXPOSURE_PROGRAM_VALUE_ACTION_HIGH_SPEED: Int = 6
+    public const val EXPOSURE_PROGRAM_VALUE_PORTRAIT: Int = 7
+    public const val EXPOSURE_PROGRAM_VALUE_LANDSCAPE: Int = 8
 
     public val EXIF_TAG_SPECTRAL_SENSITIVITY: TagInfoAscii = TagInfoAscii(
         0x8824, "SpectralSensitivity", TagInfo.LENGTH_UNKNOWN,
@@ -396,72 +396,72 @@ public object ExifTag {
         TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD
     )
 
-    public const val METERING_MODE_VALUE_AVERAGE = 1
-    public const val METERING_MODE_VALUE_CENTER_WEIGHTED_AVERAGE = 2
-    public const val METERING_MODE_VALUE_SPOT = 3
-    public const val METERING_MODE_VALUE_MULTI_SPOT = 4
-    public const val METERING_MODE_VALUE_MULTI_SEGMENT = 5
-    public const val METERING_MODE_VALUE_PARTIAL = 6
-    public const val METERING_MODE_VALUE_OTHER = 255
+    public const val METERING_MODE_VALUE_AVERAGE: Int = 1
+    public const val METERING_MODE_VALUE_CENTER_WEIGHTED_AVERAGE: Int = 2
+    public const val METERING_MODE_VALUE_SPOT: Int = 3
+    public const val METERING_MODE_VALUE_MULTI_SPOT: Int = 4
+    public const val METERING_MODE_VALUE_MULTI_SEGMENT: Int = 5
+    public const val METERING_MODE_VALUE_PARTIAL: Int = 6
+    public const val METERING_MODE_VALUE_OTHER: Int = 255
 
     public val EXIF_TAG_LIGHT_SOURCE: TagInfoShort = TagInfoShort(
         0x9208, "LightSource",
         TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD
     )
 
-    public const val LIGHT_SOURCE_VALUE_DAYLIGHT = 1
-    public const val LIGHT_SOURCE_VALUE_FLUORESCENT = 2
-    public const val LIGHT_SOURCE_VALUE_TUNGSTEN = 3
-    public const val LIGHT_SOURCE_VALUE_FLASH = 4
-    public const val LIGHT_SOURCE_VALUE_FINE_WEATHER = 9
-    public const val LIGHT_SOURCE_VALUE_CLOUDY = 10
-    public const val LIGHT_SOURCE_VALUE_SHADE = 11
-    public const val LIGHT_SOURCE_VALUE_DAYLIGHT_FLUORESCENT = 12
-    public const val LIGHT_SOURCE_VALUE_DAY_WHITE_FLUORESCENT = 13
-    public const val LIGHT_SOURCE_VALUE_COOL_WHITE_FLUORESCENT = 14
-    public const val LIGHT_SOURCE_VALUE_WHITE_FLUORESCENT = 15
-    public const val LIGHT_SOURCE_VALUE_STANDARD_LIGHT_A = 17
-    public const val LIGHT_SOURCE_VALUE_STANDARD_LIGHT_B = 18
-    public const val LIGHT_SOURCE_VALUE_STANDARD_LIGHT_C = 19
-    public const val LIGHT_SOURCE_VALUE_D55 = 20
-    public const val LIGHT_SOURCE_VALUE_D65 = 21
-    public const val LIGHT_SOURCE_VALUE_D75 = 22
-    public const val LIGHT_SOURCE_VALUE_D50 = 23
-    public const val LIGHT_SOURCE_VALUE_ISO_STUDIO_TUNGSTEN = 24
-    public const val LIGHT_SOURCE_VALUE_OTHER = 255
+    public const val LIGHT_SOURCE_VALUE_DAYLIGHT: Int = 1
+    public const val LIGHT_SOURCE_VALUE_FLUORESCENT: Int = 2
+    public const val LIGHT_SOURCE_VALUE_TUNGSTEN: Int = 3
+    public const val LIGHT_SOURCE_VALUE_FLASH: Int = 4
+    public const val LIGHT_SOURCE_VALUE_FINE_WEATHER: Int = 9
+    public const val LIGHT_SOURCE_VALUE_CLOUDY: Int = 10
+    public const val LIGHT_SOURCE_VALUE_SHADE: Int = 11
+    public const val LIGHT_SOURCE_VALUE_DAYLIGHT_FLUORESCENT: Int = 12
+    public const val LIGHT_SOURCE_VALUE_DAY_WHITE_FLUORESCENT: Int = 13
+    public const val LIGHT_SOURCE_VALUE_COOL_WHITE_FLUORESCENT: Int = 14
+    public const val LIGHT_SOURCE_VALUE_WHITE_FLUORESCENT: Int = 15
+    public const val LIGHT_SOURCE_VALUE_STANDARD_LIGHT_A: Int = 17
+    public const val LIGHT_SOURCE_VALUE_STANDARD_LIGHT_B: Int = 18
+    public const val LIGHT_SOURCE_VALUE_STANDARD_LIGHT_C: Int = 19
+    public const val LIGHT_SOURCE_VALUE_D55: Int = 20
+    public const val LIGHT_SOURCE_VALUE_D65: Int = 21
+    public const val LIGHT_SOURCE_VALUE_D75: Int = 22
+    public const val LIGHT_SOURCE_VALUE_D50: Int = 23
+    public const val LIGHT_SOURCE_VALUE_ISO_STUDIO_TUNGSTEN: Int = 24
+    public const val LIGHT_SOURCE_VALUE_OTHER: Int = 255
 
     public val EXIF_TAG_FLASH: TagInfoShort = TagInfoShort(
         0x9209, "Flash",
         TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD
     )
 
-    public const val FLASH_VALUE_NO_FLASH = 0x0
-    public const val FLASH_VALUE_FIRED = 0x1
-    public const val FLASH_VALUE_FIRED_RETURN_NOT_DETECTED = 0x5
-    public const val FLASH_VALUE_FIRED_RETURN_DETECTED = 0x7
-    public const val FLASH_VALUE_ON_DID_NOT_FIRE = 0x8
-    public const val FLASH_VALUE_ON = 0x9
-    public const val FLASH_VALUE_ON_RETURN_NOT_DETECTED = 0xd
-    public const val FLASH_VALUE_ON_RETURN_DETECTED = 0xf
-    public const val FLASH_VALUE_OFF = 0x10
-    public const val FLASH_VALUE_OFF_DID_NOT_FIRE_RETURN_NOT_DETECTED = 0x14
-    public const val FLASH_VALUE_AUTO_DID_NOT_FIRE = 0x18
-    public const val FLASH_VALUE_AUTO_FIRED = 0x19
-    public const val FLASH_VALUE_AUTO_FIRED_RETURN_NOT_DETECTED = 0x1d
-    public const val FLASH_VALUE_AUTO_FIRED_RETURN_DETECTED = 0x1f
-    public const val FLASH_VALUE_NO_FLASH_FUNCTION = 0x20
-    public const val FLASH_VALUE_OFF_NO_FLASH_FUNCTION = 0x30
-    public const val FLASH_VALUE_FIRED_RED_EYE_REDUCTION = 0x41
-    public const val FLASH_VALUE_FIRED_RED_EYE_REDUCTION_RETURN_NOT_DETECTED = 0x45
-    public const val FLASH_VALUE_FIRED_RED_EYE_REDUCTION_RETURN_DETECTED = 0x47
-    public const val FLASH_VALUE_ON_RED_EYE_REDUCTION = 0x49
-    public const val FLASH_VALUE_ON_RED_EYE_REDUCTION_RETURN_NOT_DETECTED = 0x4d
-    public const val FLASH_VALUE_ON_RED_EYE_REDUCTION_RETURN_DETECTED = 0x4f
-    public const val FLASH_VALUE_OFF_RED_EYE_REDUCTION = 0x50
-    public const val FLASH_VALUE_AUTO_DID_NOT_FIRE_RED_EYE_REDUCTION = 0x58
-    public const val FLASH_VALUE_AUTO_FIRED_RED_EYE_REDUCTION = 0x59
-    public const val FLASH_VALUE_AUTO_FIRED_RED_EYE_REDUCTION_RETURN_NOT_DETECTED = 0x5d
-    public const val FLASH_VALUE_AUTO_FIRED_RED_EYE_REDUCTION_RETURN_DETECTED = 0x5f
+    public const val FLASH_VALUE_NO_FLASH: Int = 0x0
+    public const val FLASH_VALUE_FIRED: Int = 0x1
+    public const val FLASH_VALUE_FIRED_RETURN_NOT_DETECTED: Int = 0x5
+    public const val FLASH_VALUE_FIRED_RETURN_DETECTED: Int = 0x7
+    public const val FLASH_VALUE_ON_DID_NOT_FIRE: Int = 0x8
+    public const val FLASH_VALUE_ON: Int = 0x9
+    public const val FLASH_VALUE_ON_RETURN_NOT_DETECTED: Int = 0xd
+    public const val FLASH_VALUE_ON_RETURN_DETECTED: Int = 0xf
+    public const val FLASH_VALUE_OFF: Int = 0x10
+    public const val FLASH_VALUE_OFF_DID_NOT_FIRE_RETURN_NOT_DETECTED: Int = 0x14
+    public const val FLASH_VALUE_AUTO_DID_NOT_FIRE: Int = 0x18
+    public const val FLASH_VALUE_AUTO_FIRED: Int = 0x19
+    public const val FLASH_VALUE_AUTO_FIRED_RETURN_NOT_DETECTED: Int = 0x1d
+    public const val FLASH_VALUE_AUTO_FIRED_RETURN_DETECTED: Int = 0x1f
+    public const val FLASH_VALUE_NO_FLASH_FUNCTION: Int = 0x20
+    public const val FLASH_VALUE_OFF_NO_FLASH_FUNCTION: Int = 0x30
+    public const val FLASH_VALUE_FIRED_RED_EYE_REDUCTION: Int = 0x41
+    public const val FLASH_VALUE_FIRED_RED_EYE_REDUCTION_RETURN_NOT_DETECTED: Int = 0x45
+    public const val FLASH_VALUE_FIRED_RED_EYE_REDUCTION_RETURN_DETECTED: Int = 0x47
+    public const val FLASH_VALUE_ON_RED_EYE_REDUCTION: Int = 0x49
+    public const val FLASH_VALUE_ON_RED_EYE_REDUCTION_RETURN_NOT_DETECTED: Int = 0x4d
+    public const val FLASH_VALUE_ON_RED_EYE_REDUCTION_RETURN_DETECTED: Int = 0x4f
+    public const val FLASH_VALUE_OFF_RED_EYE_REDUCTION: Int = 0x50
+    public const val FLASH_VALUE_AUTO_DID_NOT_FIRE_RED_EYE_REDUCTION: Int = 0x58
+    public const val FLASH_VALUE_AUTO_FIRED_RED_EYE_REDUCTION: Int = 0x59
+    public const val FLASH_VALUE_AUTO_FIRED_RED_EYE_REDUCTION_RETURN_NOT_DETECTED: Int = 0x5d
+    public const val FLASH_VALUE_AUTO_FIRED_RED_EYE_REDUCTION_RETURN_DETECTED: Int = 0x5f
 
     public val EXIF_TAG_FOCAL_LENGTH: TagInfoRationals = TagInfoRationals(
         0x920a, "FocalLength", TagInfo.LENGTH_UNKNOWN,
@@ -568,11 +568,11 @@ public object ExifTag {
         TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD
     )
 
-    public const val FOCAL_PLANE_RESOLUTION_UNIT_EXIF_IFD_VALUE_NONE = 1
-    public const val FOCAL_PLANE_RESOLUTION_UNIT_EXIF_IFD_VALUE_INCHES = 2
-    public const val FOCAL_PLANE_RESOLUTION_UNIT_EXIF_IFD_VALUE_CM = 3
-    public const val FOCAL_PLANE_RESOLUTION_UNIT_EXIF_IFD_VALUE_MM = 4
-    public const val FOCAL_PLANE_RESOLUTION_UNIT_EXIF_IFD_VALUE_UM = 5
+    public const val FOCAL_PLANE_RESOLUTION_UNIT_EXIF_IFD_VALUE_NONE: Int = 1
+    public const val FOCAL_PLANE_RESOLUTION_UNIT_EXIF_IFD_VALUE_INCHES: Int = 2
+    public const val FOCAL_PLANE_RESOLUTION_UNIT_EXIF_IFD_VALUE_CM: Int = 3
+    public const val FOCAL_PLANE_RESOLUTION_UNIT_EXIF_IFD_VALUE_MM: Int = 4
+    public const val FOCAL_PLANE_RESOLUTION_UNIT_EXIF_IFD_VALUE_UM: Int = 5
 
     public val EXIF_TAG_SUBJECT_LOCATION: TagInfoShorts = TagInfoShorts(
         0xa214, "SubjectLocation", 2,
@@ -589,24 +589,24 @@ public object ExifTag {
         TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD
     )
 
-    public const val SENSING_METHOD_EXIF_IFD_VALUE_NOT_DEFINED = 1
-    public const val SENSING_METHOD_EXIF_IFD_VALUE_ONE_CHIP_COLOR_AREA = 2
-    public const val SENSING_METHOD_EXIF_IFD_VALUE_TWO_CHIP_COLOR_AREA = 3
-    public const val SENSING_METHOD_EXIF_IFD_VALUE_THREE_CHIP_COLOR_AREA = 4
-    public const val SENSING_METHOD_EXIF_IFD_VALUE_COLOR_SEQUENTIAL_AREA = 5
-    public const val SENSING_METHOD_EXIF_IFD_VALUE_TRILINEAR = 7
-    public const val SENSING_METHOD_EXIF_IFD_VALUE_COLOR_SEQUENTIAL_LINEAR = 8
+    public const val SENSING_METHOD_EXIF_IFD_VALUE_NOT_DEFINED: Int = 1
+    public const val SENSING_METHOD_EXIF_IFD_VALUE_ONE_CHIP_COLOR_AREA: Int = 2
+    public const val SENSING_METHOD_EXIF_IFD_VALUE_TWO_CHIP_COLOR_AREA: Int = 3
+    public const val SENSING_METHOD_EXIF_IFD_VALUE_THREE_CHIP_COLOR_AREA: Int = 4
+    public const val SENSING_METHOD_EXIF_IFD_VALUE_COLOR_SEQUENTIAL_AREA: Int = 5
+    public const val SENSING_METHOD_EXIF_IFD_VALUE_TRILINEAR: Int = 7
+    public const val SENSING_METHOD_EXIF_IFD_VALUE_COLOR_SEQUENTIAL_LINEAR: Int = 8
 
-    public val EXIF_TAG_FILE_SOURCE = TagInfoUndefined(
+    public val EXIF_TAG_FILE_SOURCE: TagInfoUndefined = TagInfoUndefined(
         0xa300, "FileSource",
         TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD
     )
 
-    public const val FILE_SOURCE_VALUE_FILM_SCANNER = 1
-    public const val FILE_SOURCE_VALUE_REFLECTION_PRINT_SCANNER = 2
-    public const val FILE_SOURCE_VALUE_DIGITAL_CAMERA = 3
+    public const val FILE_SOURCE_VALUE_FILM_SCANNER: Int = 1
+    public const val FILE_SOURCE_VALUE_REFLECTION_PRINT_SCANNER: Int = 2
+    public const val FILE_SOURCE_VALUE_DIGITAL_CAMERA: Int = 3
 
-    public val EXIF_TAG_SCENE_TYPE = TagInfoUndefined(
+    public val EXIF_TAG_SCENE_TYPE: TagInfoUndefined = TagInfoUndefined(
         0xa301, "SceneType",
         TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD
     )
@@ -621,25 +621,25 @@ public object ExifTag {
         TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD
     )
 
-    public const val CUSTOM_RENDERED_VALUE_NORMAL = 0
-    public const val CUSTOM_RENDERED_VALUE_CUSTOM = 1
+    public const val CUSTOM_RENDERED_VALUE_NORMAL: Int = 0
+    public const val CUSTOM_RENDERED_VALUE_CUSTOM: Int = 1
 
     public val EXIF_TAG_EXPOSURE_MODE: TagInfoShort = TagInfoShort(
         0xa402, "ExposureMode",
         TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD
     )
 
-    public const val EXPOSURE_MODE_VALUE_AUTO = 0
-    public const val EXPOSURE_MODE_VALUE_MANUAL = 1
-    public const val EXPOSURE_MODE_VALUE_AUTO_BRACKET = 2
+    public const val EXPOSURE_MODE_VALUE_AUTO: Int = 0
+    public const val EXPOSURE_MODE_VALUE_MANUAL: Int = 1
+    public const val EXPOSURE_MODE_VALUE_AUTO_BRACKET: Int = 2
 
     public val EXIF_TAG_WHITE_BALANCE_1: TagInfoShort = TagInfoShort(
         0xa403, "WhiteBalance",
         TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD
     )
 
-    public const val WHITE_BALANCE_1_VALUE_AUTO = 0
-    public const val WHITE_BALANCE_1_VALUE_MANUAL = 1
+    public const val WHITE_BALANCE_1_VALUE_AUTO: Int = 0
+    public const val WHITE_BALANCE_1_VALUE_MANUAL: Int = 1
 
     public val EXIF_TAG_DIGITAL_ZOOM_RATIO: TagInfoRational = TagInfoRational(
         0xa404, "DigitalZoomRatio",
@@ -656,48 +656,48 @@ public object ExifTag {
         TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD
     )
 
-    public const val SCENE_CAPTURE_TYPE_VALUE_STANDARD = 0
-    public const val SCENE_CAPTURE_TYPE_VALUE_LANDSCAPE = 1
-    public const val SCENE_CAPTURE_TYPE_VALUE_PORTRAIT = 2
-    public const val SCENE_CAPTURE_TYPE_VALUE_NIGHT = 3
+    public const val SCENE_CAPTURE_TYPE_VALUE_STANDARD: Int = 0
+    public const val SCENE_CAPTURE_TYPE_VALUE_LANDSCAPE: Int = 1
+    public const val SCENE_CAPTURE_TYPE_VALUE_PORTRAIT: Int = 2
+    public const val SCENE_CAPTURE_TYPE_VALUE_NIGHT: Int = 3
 
     public val EXIF_TAG_GAIN_CONTROL: TagInfoShort = TagInfoShort(
         0xa407, "GainControl",
         TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD
     )
 
-    public const val GAIN_CONTROL_VALUE_NONE = 0
-    public const val GAIN_CONTROL_VALUE_LOW_GAIN_UP = 1
-    public const val GAIN_CONTROL_VALUE_HIGH_GAIN_UP = 2
-    public const val GAIN_CONTROL_VALUE_LOW_GAIN_DOWN = 3
-    public const val GAIN_CONTROL_VALUE_HIGH_GAIN_DOWN = 4
+    public const val GAIN_CONTROL_VALUE_NONE: Int = 0
+    public const val GAIN_CONTROL_VALUE_LOW_GAIN_UP: Int = 1
+    public const val GAIN_CONTROL_VALUE_HIGH_GAIN_UP: Int = 2
+    public const val GAIN_CONTROL_VALUE_LOW_GAIN_DOWN: Int = 3
+    public const val GAIN_CONTROL_VALUE_HIGH_GAIN_DOWN: Int = 4
 
     public val EXIF_TAG_CONTRAST_1: TagInfoShort = TagInfoShort(
         0xa408, "Contrast",
         TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD
     )
 
-    public const val CONTRAST_1_VALUE_NORMAL = 0
-    public const val CONTRAST_1_VALUE_LOW = 1
-    public const val CONTRAST_1_VALUE_HIGH = 2
+    public const val CONTRAST_1_VALUE_NORMAL: Int = 0
+    public const val CONTRAST_1_VALUE_LOW: Int = 1
+    public const val CONTRAST_1_VALUE_HIGH: Int = 2
 
     public val EXIF_TAG_SATURATION_1: TagInfoShort = TagInfoShort(
         0xa409, "Saturation",
         TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD
     )
 
-    public const val SATURATION_1_VALUE_NORMAL = 0
-    public const val SATURATION_1_VALUE_LOW = 1
-    public const val SATURATION_1_VALUE_HIGH = 2
+    public const val SATURATION_1_VALUE_NORMAL: Int = 0
+    public const val SATURATION_1_VALUE_LOW: Int = 1
+    public const val SATURATION_1_VALUE_HIGH: Int = 2
 
     public val EXIF_TAG_SHARPNESS_1: TagInfoShort = TagInfoShort(
         0xa40a, "Sharpness",
         TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD
     )
 
-    public const val SHARPNESS_1_VALUE_NORMAL = 0
-    public const val SHARPNESS_1_VALUE_SOFT = 1
-    public const val SHARPNESS_1_VALUE_HARD = 2
+    public const val SHARPNESS_1_VALUE_NORMAL: Int = 0
+    public const val SHARPNESS_1_VALUE_SOFT: Int = 1
+    public const val SHARPNESS_1_VALUE_HARD: Int = 2
 
     public val EXIF_TAG_DEVICE_SETTING_DESCRIPTION: TagInfoUndefineds = TagInfoUndefineds(
         0xa40b, "DeviceSettingDescription", TagInfo.LENGTH_UNKNOWN,
@@ -709,9 +709,9 @@ public object ExifTag {
         TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD
     )
 
-    public const val SUBJECT_DISTANCE_RANGE_VALUE_MACRO = 1
-    public const val SUBJECT_DISTANCE_RANGE_VALUE_CLOSE = 2
-    public const val SUBJECT_DISTANCE_RANGE_VALUE_DISTANT = 3
+    public const val SUBJECT_DISTANCE_RANGE_VALUE_MACRO: Int = 1
+    public const val SUBJECT_DISTANCE_RANGE_VALUE_CLOSE: Int = 2
+    public const val SUBJECT_DISTANCE_RANGE_VALUE_DISTANT: Int = 3
 
     public val EXIF_TAG_IMAGE_UNIQUE_ID: TagInfoAscii = TagInfoAscii(
         0xa420, "ImageUniqueID", 33,
@@ -753,12 +753,12 @@ public object ExifTag {
         TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD
     )
 
-    public val EXIF_TAG_PRINT_IM = TagInfoUndefined(
+    public val EXIF_TAG_PRINT_IM: TagInfoUndefined = TagInfoUndefined(
         0xc4a5, "PrintIM",
         TIFF_DIRECTORY_IFD0
     )
 
-    public val EXIF_TAG_OFFSET_SCHEMA = TagInfoSLong(
+    public val EXIF_TAG_OFFSET_SCHEMA: TagInfoSLong = TagInfoSLong(
         0xea1d, "OffsetSchema",
         TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD
     )
@@ -865,13 +865,13 @@ public object ExifTag {
         TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD
     )
 
-    public val EXIF_TAG_ICC_PROFILE_OFFSET = TagInfoUndefined(
+    public val EXIF_TAG_ICC_PROFILE_OFFSET: TagInfoUndefined = TagInfoUndefined(
         0x8773, "ICC_Profile",
         TIFF_DIRECTORY_IFD0
     )
 
     /* Affinity Photo creates it's own tag with custom data. */
-    public val EXIF_TAG_AFFINITY_PHOTO_OFFSET = TagInfoUndefined(
+    public val EXIF_TAG_AFFINITY_PHOTO_OFFSET: TagInfoUndefined = TagInfoUndefined(
         0xC7E0, "AffinityPhoto",
         TIFF_DIRECTORY_IFD0
     )
@@ -887,12 +887,12 @@ public object ExifTag {
      * 100 characters or so to improve human display. The amount of padding is
      * workflow-dependent; around 2000 bytes is often a reasonable amount.
      */
-    public val EXIF_TAG_PADDING = TagInfoUndefined(
+    public val EXIF_TAG_PADDING: TagInfoUndefined = TagInfoUndefined(
         0xEA1C, "Padding",
         TIFF_DIRECTORY_IFD0
     )
 
-    public val ALL = listOf(
+    public val ALL: List<TagInfo> = listOf(
         EXIF_TAG_INTEROPERABILITY_INDEX, EXIF_TAG_INTEROPERABILITY_VERSION,
         EXIF_TAG_INTEROPERABILITY_RELATED_IMAGE_WIDTH,
         EXIF_TAG_INTEROPERABILITY_RELATED_IMAGE_HEIGHT,
