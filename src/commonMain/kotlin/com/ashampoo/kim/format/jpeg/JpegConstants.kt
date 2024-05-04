@@ -85,36 +85,36 @@ public object JpegConstants {
         0
     )
 
-    public val SOI = byteArrayOf(0xFF.toByte(), 0xD8.toByte())
-    public val EOI = byteArrayOf(0xFF.toByte(), 0xD9.toByte())
+    public val SOI: ByteArray = byteArrayOf(0xFF.toByte(), 0xD8.toByte())
+    public val EOI: ByteArray = byteArrayOf(0xFF.toByte(), 0xD9.toByte())
 
-    public const val JPEG_APP0_MARKER = 0xFFE0
-    public const val JPEG_APP1_MARKER = 0xFFE1
-    public const val JPEG_APP2_MARKER = 0xFFE2
-    public const val JPEG_APP3_MARKER = 0xFFE3
-    public const val JPEG_APP4_MARKER = 0xFFE4
-    public const val JPEG_APP5_MARKER = 0xFFE5
-    public const val JPEG_APP6_MARKER = 0xFFE6
-    public const val JPEG_APP7_MARKER = 0xFFE7
-    public const val JPEG_APP8_MARKER = 0xFFE8
-    public const val JPEG_APP9_MARKER = 0xFFE9
-    public const val JPEG_APP10_MARKER = 0xFFEA
-    public const val JPEG_APP11_MARKER = 0xFFEB
-    public const val JPEG_APP12_MARKER = 0xFFEC
-    public const val JPEG_APP13_MARKER = 0xFFED
-    public const val JPEG_APP14_MARKER = 0xFFEE
-    public const val JPEG_APP15_MARKER = 0xFFEF
+    public const val JPEG_APP0_MARKER: Int = 0xFFE0
+    public const val JPEG_APP1_MARKER: Int = 0xFFE1
+    public const val JPEG_APP2_MARKER: Int = 0xFFE2
+    public const val JPEG_APP3_MARKER: Int = 0xFFE3
+    public const val JPEG_APP4_MARKER: Int = 0xFFE4
+    public const val JPEG_APP5_MARKER: Int = 0xFFE5
+    public const val JPEG_APP6_MARKER: Int = 0xFFE6
+    public const val JPEG_APP7_MARKER: Int = 0xFFE7
+    public const val JPEG_APP8_MARKER: Int = 0xFFE8
+    public const val JPEG_APP9_MARKER: Int = 0xFFE9
+    public const val JPEG_APP10_MARKER: Int = 0xFFEA
+    public const val JPEG_APP11_MARKER: Int = 0xFFEB
+    public const val JPEG_APP12_MARKER: Int = 0xFFEC
+    public const val JPEG_APP13_MARKER: Int = 0xFFED
+    public const val JPEG_APP14_MARKER: Int = 0xFFEE
+    public const val JPEG_APP15_MARKER: Int = 0xFFEF
 
-    public const val JFIF_MARKER = 0xFFE0
-    public const val DHT_MARKER = 0xFFC4
-    public const val DAC_MARKER = 0xFFCC
+    public const val JFIF_MARKER: Int = 0xFFE0
+    public const val DHT_MARKER: Int = 0xFFC4
+    public const val DAC_MARKER: Int = 0xFFCC
 
-    public const val SOF0_MARKER = 0xFFC0
-    public const val SOF1_MARKER = 0xFFC1
-    public const val SOF2_MARKER = 0xFFC2
-    public const val SOF3_MARKER = 0xFFC3
-    public const val SOF5_MARKER = 0xFFC5
-    public const val SOF6_MARKER = 0xFFC6
+    public const val SOF0_MARKER: Int = 0xFFC0
+    public const val SOF1_MARKER: Int = 0xFFC1
+    public const val SOF2_MARKER: Int = 0xFFC2
+    public const val SOF3_MARKER: Int = 0xFFC3
+    public const val SOF5_MARKER: Int = 0xFFC5
+    public const val SOF6_MARKER: Int = 0xFFC6
     public const val SOF7_MARKER = 0xFFC7
     public const val SOF9_MARKER = 0xFFC9
     public const val SOF10_MARKER = 0xFFCA
@@ -192,7 +192,7 @@ public object JpegConstants {
     public const val IPTC_RESOURCE_BLOCK_SIGNATURE_INT = 943_868_237
 
     /** Hex value of "8BIM" (38 42 49 4D) */
-    public const val IPTC_RESOURCE_BLOCK_SIGNATURE_HEX = "3842494d"
+    public const val IPTC_RESOURCE_BLOCK_SIGNATURE_HEX: String = "3842494d"
 
     @OptIn(ExperimentalStdlibApi::class)
     public fun markerDescription(marker: Int): String =
