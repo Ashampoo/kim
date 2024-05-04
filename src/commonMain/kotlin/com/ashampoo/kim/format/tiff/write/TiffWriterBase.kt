@@ -241,7 +241,7 @@ public abstract class TiffWriterBase(
         }
 
         byteWriter.write2Bytes(TIFF_VERSION)
-        byteWriter.write4Bytes(offsetToFirstIFD.toInt())
+        byteWriter.write4Bytes(offsetToFirstIFD)
     }
 
     public companion object {

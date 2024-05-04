@@ -44,10 +44,7 @@ public enum class ImageFormat(
     JXL("image/jxl", "public.jxl", setOf("jxl"));
 
     public fun isMetadataEmbeddable(): Boolean =
-        this == ImageFormat.JPEG ||
-            this == ImageFormat.PNG ||
-            this == ImageFormat.WEBP ||
-            this == ImageFormat.JXL
+        this == JPEG || this == PNG || this == WEBP || this == JXL
 
     public companion object {
 
@@ -59,7 +56,7 @@ public enum class ImageFormat(
 
         private val allImageFormats = ImageFormat.entries
 
-        private val allFileNameExtensions = getAllFileNameExtensions()
+        public val allFileNameExtensions: Set<String> = getAllFileNameExtensions()
 
         /*
          * OneDrive reports RAW files under wrong mime types
@@ -159,34 +156,34 @@ public enum class ImageFormat(
              */
             return when {
                 /* JPG is the most common format. Check this first. */
-                bytes.startsWith(ImageFormatMagicNumbers.jpeg) -> ImageFormat.JPEG
+                bytes.startsWith(ImageFormatMagicNumbers.jpeg) -> JPEG
                 /* Check other common formats. */
-                bytes.startsWith(ImageFormatMagicNumbers.png) -> ImageFormat.PNG
-                bytes.startsWithNullable(ImageFormatMagicNumbers.webP) -> ImageFormat.WEBP
+                bytes.startsWith(ImageFormatMagicNumbers.png) -> PNG
+                bytes.startsWithNullable(ImageFormatMagicNumbers.webP) -> WEBP
                 /* Canon CR2 et al *must* be checked before TIFF, because they are based on TIFF */
-                bytes.startsWith(ImageFormatMagicNumbers.cr2) -> ImageFormat.CR2
-                bytes.startsWith(ImageFormatMagicNumbers.rw2) -> ImageFormat.RW2
-                bytes.startsWith(ImageFormatMagicNumbers.orf_iiro) -> ImageFormat.ORF
-                bytes.startsWith(ImageFormatMagicNumbers.orf_mmor) -> ImageFormat.ORF
-                bytes.startsWith(ImageFormatMagicNumbers.orf_iirs) -> ImageFormat.ORF
-                bytes.startsWith(ImageFormatMagicNumbers.raf) -> ImageFormat.RAF
+                bytes.startsWith(ImageFormatMagicNumbers.cr2) -> CR2
+                bytes.startsWith(ImageFormatMagicNumbers.rw2) -> RW2
+                bytes.startsWith(ImageFormatMagicNumbers.orf_iiro) -> ORF
+                bytes.startsWith(ImageFormatMagicNumbers.orf_mmor) -> ORF
+                bytes.startsWith(ImageFormatMagicNumbers.orf_iirs) -> ORF
+                bytes.startsWith(ImageFormatMagicNumbers.raf) -> RAF
                 /* Check TIFF after the RAW files. */
-                bytes.startsWith(ImageFormatMagicNumbers.tiffLittleEndian) -> ImageFormat.TIFF
-                bytes.startsWith(ImageFormatMagicNumbers.tiffBigEndian) -> ImageFormat.TIFF
+                bytes.startsWith(ImageFormatMagicNumbers.tiffLittleEndian) -> TIFF
+                bytes.startsWith(ImageFormatMagicNumbers.tiffBigEndian) -> TIFF
                 /* Check JXL ISOBMFF */
-                bytes.startsWith(ImageFormatMagicNumbers.jxl) -> ImageFormat.JXL
+                bytes.startsWith(ImageFormatMagicNumbers.jxl) -> JXL
                 /* Check HEIC variants */
-                bytes.startsWithNullable(ImageFormatMagicNumbers.heic) -> ImageFormat.HEIC
-                bytes.startsWithNullable(ImageFormatMagicNumbers.mif1) -> ImageFormat.HEIC
-                bytes.startsWithNullable(ImageFormatMagicNumbers.msf1) -> ImageFormat.HEIC
-                bytes.startsWithNullable(ImageFormatMagicNumbers.heix) -> ImageFormat.HEIC
-                bytes.startsWithNullable(ImageFormatMagicNumbers.hevc) -> ImageFormat.HEIC
-                bytes.startsWithNullable(ImageFormatMagicNumbers.hevx) -> ImageFormat.HEIC
+                bytes.startsWithNullable(ImageFormatMagicNumbers.heic) -> HEIC
+                bytes.startsWithNullable(ImageFormatMagicNumbers.mif1) -> HEIC
+                bytes.startsWithNullable(ImageFormatMagicNumbers.msf1) -> HEIC
+                bytes.startsWithNullable(ImageFormatMagicNumbers.heix) -> HEIC
+                bytes.startsWithNullable(ImageFormatMagicNumbers.hevc) -> HEIC
+                bytes.startsWithNullable(ImageFormatMagicNumbers.hevx) -> HEIC
                 /* Check AVIF */
-                bytes.startsWithNullable(ImageFormatMagicNumbers.avif) -> ImageFormat.AVIF
+                bytes.startsWithNullable(ImageFormatMagicNumbers.avif) -> AVIF
                 /* Check GIF and other unlikely formats... */
-                bytes.startsWith(ImageFormatMagicNumbers.gif87a) -> ImageFormat.GIF
-                bytes.startsWith(ImageFormatMagicNumbers.gif89a) -> ImageFormat.GIF
+                bytes.startsWith(ImageFormatMagicNumbers.gif87a) -> GIF
+                bytes.startsWith(ImageFormatMagicNumbers.gif89a) -> GIF
                 else -> null
             }
         }

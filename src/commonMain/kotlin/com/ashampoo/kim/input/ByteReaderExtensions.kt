@@ -185,7 +185,7 @@ internal fun ByteReader.skipBytes(fieldName: String, count: Int) {
     if (count < 0)
         throw ImageReadException("Couldn't read $fieldName, invalid length: $count")
 
-    var total: Int = 0
+    var total = 0
 
     while (count != total) {
 

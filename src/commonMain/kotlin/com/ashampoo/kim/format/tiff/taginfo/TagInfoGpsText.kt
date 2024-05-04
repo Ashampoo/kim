@@ -38,7 +38,7 @@ public class TagInfoGpsText(
     tag: Int,
     name: String,
     exifDirectory: TiffDirectoryType?
-) : TagInfo(tag, name, FieldTypeUndefined, TagInfo.LENGTH_UNKNOWN, exifDirectory) {
+) : TagInfo(tag, name, FieldTypeUndefined, LENGTH_UNKNOWN, exifDirectory) {
 
     override fun isText(): Boolean =
         true

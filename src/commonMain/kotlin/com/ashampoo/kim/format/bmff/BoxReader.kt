@@ -54,7 +54,7 @@ public object BoxReader {
         updatePosition: ((Long) -> Unit)? = null
     ): List<Box> {
 
-        var haveSeenJxlHeaderBox: Boolean = false
+        var haveSeenJxlHeaderBox = false
 
         val boxes = mutableListOf<Box>()
 

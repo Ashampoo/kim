@@ -29,7 +29,7 @@ public object WebPConstants {
 
     public const val CHUNK_SIZE_LENGTH: Int = 4
 
-    public const val CHUNK_HEADER_LENGTH: Int = WebPConstants.TPYE_LENGTH + WebPConstants.CHUNK_SIZE_LENGTH
+    public const val CHUNK_HEADER_LENGTH: Int = TPYE_LENGTH + CHUNK_SIZE_LENGTH
 
     public const val VP8X_PAYLOAD_LENGTH: Int = 10
 

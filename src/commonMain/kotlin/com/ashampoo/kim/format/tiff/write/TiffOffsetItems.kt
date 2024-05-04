@@ -30,7 +30,7 @@ internal class TiffOffsetItems(val byteOrder: ByteOrder) {
         offsetItems.forEach {
             it.outputField.setBytes(
                 FieldTypeLong.writeData(
-                    data = it.outputItem.offset.toInt(),
+                    data = it.outputItem.offset,
                     byteOrder = byteOrder
                 )
             )

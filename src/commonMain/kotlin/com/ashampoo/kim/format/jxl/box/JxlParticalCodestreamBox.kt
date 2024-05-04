@@ -33,7 +33,7 @@ public class JxlParticalCodestreamBox(
 
     private companion object {
 
-        private val jxlCodeStreamSignaure = listOf<Byte>(
+        private val jxlCodeStreamSignaure = listOf(
             0x00, 0x00, 0x00, 0x00, 0xFF.toByte(), 0x0A
         )
     }

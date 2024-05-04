@@ -412,7 +412,7 @@ public class TiffOutputDirectory(
         for (field in fields.sorted())
             field.writeField(binaryByteWriter)
 
-        var nextDirectoryOffset: Int = 0
+        var nextDirectoryOffset = 0
 
         if (nextDirectory != null)
             nextDirectoryOffset = nextDirectory!!.offset
@@ -420,7 +420,7 @@ public class TiffOutputDirectory(
         if (nextDirectoryOffset == UNDEFINED_VALUE)
             binaryByteWriter.write4Bytes(0)
         else
-            binaryByteWriter.write4Bytes(nextDirectoryOffset.toInt())
+            binaryByteWriter.write4Bytes(nextDirectoryOffset)
     }
 
     /* Internal, because callers should use setThumbnailBytes() */

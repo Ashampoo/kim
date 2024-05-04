@@ -23,7 +23,7 @@ public interface RandomAccessByteReader : ByteReader {
 
     public fun reset(): Unit = moveTo(0)
 
-    public fun moveTo(position: Int): Unit
+    public fun moveTo(position: Int)
 
     public fun readBytes(offset: Int, length: Int): ByteArray
 

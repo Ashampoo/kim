@@ -17,7 +17,6 @@
 package com.ashampoo.kim.format.bmff.box
 
 import com.ashampoo.kim.common.toFourCCTypeString
-import com.ashampoo.kim.format.bmff.BMFFConstants
 import com.ashampoo.kim.format.bmff.BMFFConstants.BMFF_BYTE_ORDER
 import com.ashampoo.kim.format.bmff.BMFFConstants.BOX_HEADER_LENGTH
 import com.ashampoo.kim.format.bmff.BoxType
@@ -59,7 +58,7 @@ public class FileTypeBox(
         repeat(brandCount) {
             brands.add(
                 byteReader
-                    .read4BytesAsInt("brand $it", BMFFConstants.BMFF_BYTE_ORDER)
+                    .read4BytesAsInt("brand $it", BMFF_BYTE_ORDER)
                     .toFourCCTypeString()
             )
         }

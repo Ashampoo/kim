@@ -105,15 +105,11 @@ public object PngMetadataCopyUtil {
                 chunkTypeFilter = chunkTypesToCopy
             )
 
-        checkNotNull(sourceMetadataChunks) { "Failed to read source chunks: $source" }
-
         val destinationChunks: List<PngChunk> =
             PngImageParser.readChunks(
                 byteReader = ByteArrayByteReader(destination),
                 chunkTypeFilter = null // = All of them
             )
-
-        checkNotNull(destinationChunks) { "Failed to read destination chunks: $destination" }
 
         val filteredDestinationChunks = destinationChunks.filterNot {
             chunkTypesToCopy.contains(it.type)

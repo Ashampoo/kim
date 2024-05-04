@@ -184,7 +184,7 @@ public class TiffField(
     public fun toInt(): Int = when (value) {
         is ByteArray -> value.first().toInt()
         is ShortArray -> value.first().toInt()
-        is IntArray -> value.first().toInt()
+        is IntArray -> value.first()
         else -> (value as Number).toInt()
     }
 
@@ -202,7 +202,7 @@ public class TiffField(
         is ShortArray -> value.first().toDouble()
         is IntArray -> value.first().toDouble()
         is FloatArray -> value.first().toDouble()
-        is DoubleArray -> value.first().toDouble()
+        is DoubleArray -> value.first()
         else -> (value as Number).toDouble()
     }
 
@@ -214,7 +214,7 @@ public class TiffField(
         "$offsetFormatted $tagFormatted ${tagInfo?.name ?: "Unknown"} = $valueDescription"
 
     internal fun createOversizeValueElement(): TiffElement? =
-        valueOffset?.let { OversizeValueElement(it.toInt(), valueBytes.size) }
+        valueOffset?.let { OversizeValueElement(it, valueBytes.size) }
 
     internal inner class OversizeValueElement(offset: Int, length: Int) : TiffElement(
         debugDescription = "Value of $tagInfo ($fieldType) @ $offset",

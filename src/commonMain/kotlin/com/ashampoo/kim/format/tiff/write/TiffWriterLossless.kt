@@ -352,7 +352,7 @@ public class TiffWriterLossless(
 
         val rootDirectory = outputSet.getOrCreateRootDirectory()
 
-        val outputByteArray = ByteArray(outputLength.toInt())
+        val outputByteArray = ByteArray(outputLength)
 
         /* Copy old data that inclued makers notes and other stuff. */
         exifBytes.copyInto(
@@ -379,11 +379,11 @@ public class TiffWriterLossless(
         for (element in rewritableSpaceRanges)
             outputByteArray.fill(
                 element = 0.toByte(),
-                fromIndex = element.offset.toInt(),
+                fromIndex = element.offset,
                 toIndex = minOf(
                     a = element.offset + element.length,
                     b = outputByteArray.size
-                ).toInt(),
+                ),
             )
 
         /* Write in the new items */
@@ -392,7 +392,7 @@ public class TiffWriterLossless(
             val binaryByteWriter = createBinaryByteWriter(
                 byteWriter = BufferByteWriter(
                     buffer = outputByteArray,
-                    index = outputItem.offset.toInt()
+                    index = outputItem.offset
                 ),
                 byteOrder = byteOrder
             )

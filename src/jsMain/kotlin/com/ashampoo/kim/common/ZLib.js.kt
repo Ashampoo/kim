@@ -34,7 +34,7 @@ private fun ByteArray.toUint8Array(): Uint8Array {
     return Uint8Array(int8array.buffer, int8array.byteOffset, int8array.length)
 }
 
-@Suppress("UnusedPrivateMember", "UNUSED_VARIABLE") // False positive
+@Suppress("UnusedPrivateMember") // False positive
 @JsModule("pako")
 @JsNonModule
 private external object Pako {
