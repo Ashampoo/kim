@@ -337,9 +337,6 @@ private fun ByteArray.toDoubles(offset: Int = 0, length: Int, byteOrder: ByteOrd
     return result
 }
 
-internal fun ByteArray.toRational(byteOrder: ByteOrder, unsignedType: Boolean): RationalNumber =
-    this.toRational(0, byteOrder, unsignedType)
-
 private fun ByteArray.toRational(
     offset: Int,
     byteOrder: ByteOrder,
