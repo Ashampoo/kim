@@ -24,7 +24,7 @@ import kotlin.test.fail
 
 class XmpExtractionTest {
 
-    val indicesWithoutXmp = setOf(
+    val indicesWithoutXmp: Set<Int> = setOf(
         2, 18, 20, 23, 30, 42, 43, 44, 45, 46, 47, 48,
         KimTestData.HEIC_TEST_IMAGE_INDEX,
         KimTestData.GIF_TEST_IMAGE_INDEX,
@@ -38,7 +38,7 @@ class XmpExtractionTest {
     )
 
     // TODO Support these files as they have XMP
-    val indicesUnsupported = setOf(
+    val indicesUnsupported: Set<Int> = setOf(
         59, 78, 79, 80
     )
 

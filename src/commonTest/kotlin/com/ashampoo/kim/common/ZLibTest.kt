@@ -23,7 +23,7 @@ import kotlin.test.assertEquals
 
 class ZLibTest {
 
-    val zlibTestData = mapOf<String, ByteArray>(
+    val zlibTestData: Map<String, ByteArray> = mapOf<String, ByteArray>(
 
         "Hello, World!" to byteArrayOf(
             0x78.toByte(), 0x9c.toByte(), 0xf3.toByte(), 0x48.toByte(), 0xcd.toByte(), 0xc9.toByte(),

@@ -24,7 +24,8 @@ import kotlin.test.assertEquals
 
 class JpegSegmentAnalyzerTest {
 
-    val expectedMap = mapOf<Int, List<JpegSegmentAnalyzer.JpegSegmentInfo>>(
+    val expectedMap: Map<Int, List<JpegSegmentAnalyzer.JpegSegmentInfo>> =
+        mapOf<Int, List<JpegSegmentAnalyzer.JpegSegmentInfo>>(
         1 to listOf(
             JpegSegmentAnalyzer.JpegSegmentInfo(0, 65496, 2),
             JpegSegmentAnalyzer.JpegSegmentInfo(2, 65504, 18),
