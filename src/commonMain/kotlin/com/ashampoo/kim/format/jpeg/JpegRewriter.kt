@@ -261,7 +261,7 @@ public object JpegRewriter {
     @JvmStatic
     public fun updateXmpXml(byteReader: ByteReader, byteWriter: ByteWriter, xmpXml: String) {
 
-        val (allPieces) = readSegments(byteReader)
+        val (allPieces, _) = readSegments(byteReader)
 
         val piecesWithoutXmpSegments =
             allPieces.filterNot { piece -> piece is JFIFPieceSegment && piece.isXmpSegment() }
