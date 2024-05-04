@@ -69,7 +69,7 @@ public class TiffOutputField(
             if (separateValue == null)
                 throw ImageWriteException("Missing separate value item.")
 
-            byteWriter.write4Bytes(separateValue.offset.toInt())
+            byteWriter.write4Bytes(separateValue.offset)
         }
     }
 

@@ -91,7 +91,7 @@ public abstract class TiffWriterBase(
             } else {
 
                 if (directoryIndices.contains(dirType))
-                    throw ImageWriteException("More than one directory with index: " + dirType + ".")
+                    throw ImageWriteException("More than one directory with index: $dirType")
 
                 directoryIndices.add(dirType)
             }

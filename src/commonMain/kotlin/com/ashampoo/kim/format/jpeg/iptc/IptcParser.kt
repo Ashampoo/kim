@@ -42,7 +42,7 @@ public object IptcParser {
      * Block types (or Image Resource IDs) that are not recommended to be
      * interpreted when libraries process Photoshop IPTC metadata.
      *
-     * @see https://www.adobe.com/devnet-apps/photoshop/fileformatashtml/
+     * See https://www.adobe.com/devnet-apps/photoshop/fileformatashtml/
      */
     @Suppress("MagicNumber")
     private val PHOTOSHOP_IGNORED_BLOCK_TYPE = listOf(1084, 1085, 1086, 1087)
