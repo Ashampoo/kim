@@ -16,6 +16,7 @@
  */
 package com.ashampoo.kim.format.tiff.constant
 
+import com.ashampoo.kim.format.tiff.taginfo.TagInfo
 import com.ashampoo.kim.format.tiff.taginfo.TagInfoAscii
 import com.ashampoo.kim.format.tiff.taginfo.TagInfoByte
 import com.ashampoo.kim.format.tiff.taginfo.TagInfoBytes
@@ -27,7 +28,7 @@ import com.ashampoo.kim.format.tiff.taginfo.TagInfoShort
 @Suppress("MagicNumber")
 public object GpsTag {
 
-    public val GPS_TAG_GPS_VERSION_ID = TagInfoBytes(
+    public val GPS_TAG_GPS_VERSION_ID: TagInfoBytes = TagInfoBytes(
         0x0000, "GPSVersionID", 4,
         TiffDirectoryType.EXIF_DIRECTORY_GPS
     )
@@ -69,7 +70,7 @@ public object GpsTag {
     public const val GPS_TAG_GPS_ALTITUDE_REF_VALUE_ABOVE_SEA_LEVEL = 0
     public const val GPS_TAG_GPS_ALTITUDE_REF_VALUE_BELOW_SEA_LEVEL = 1
 
-    public val GPS_TAG_GPS_ALTITUDE = TagInfoRational(
+    public val GPS_TAG_GPS_ALTITUDE: TagInfoRational = TagInfoRational(
         0x0006, "GPSAltitude",
         TiffDirectoryType.EXIF_DIRECTORY_GPS
     )
@@ -100,7 +101,7 @@ public object GpsTag {
     public const val GPS_TAG_GPS_MEASURE_MODE_VALUE_2_DIMENSIONAL_MEASUREMENT = 2
     public const val GPS_TAG_GPS_MEASURE_MODE_VALUE_3_DIMENSIONAL_MEASUREMENT = 3
 
-    public val GPS_TAG_GPS_DOP = TagInfoRational(
+    public val GPS_TAG_GPS_DOP: TagInfoRational = TagInfoRational(
         0x000b, "GPSDOP",
         TiffDirectoryType.EXIF_DIRECTORY_GPS
     )
@@ -114,7 +115,7 @@ public object GpsTag {
     public const val GPS_TAG_GPS_SPEED_REF_VALUE_MPH = "M"
     public const val GPS_TAG_GPS_SPEED_REF_VALUE_KNOTS = "N"
 
-    public val GPS_TAG_GPS_SPEED = TagInfoRational(
+    public val GPS_TAG_GPS_SPEED: TagInfoRational = TagInfoRational(
         0x000d, "GPSSpeed",
         TiffDirectoryType.EXIF_DIRECTORY_GPS
     )
@@ -127,7 +128,7 @@ public object GpsTag {
     public const val GPS_TAG_GPS_TRACK_REF_VALUE_MAGNETIC_NORTH = "M"
     public const val GPS_TAG_GPS_TRACK_REF_VALUE_TRUE_NORTH = "T"
 
-    public val GPS_TAG_GPS_TRACK = TagInfoRational(
+    public val GPS_TAG_GPS_TRACK: TagInfoRational = TagInfoRational(
         0x000f, "GPSTrack",
         TiffDirectoryType.EXIF_DIRECTORY_GPS
     )
@@ -140,7 +141,7 @@ public object GpsTag {
     public const val GPS_TAG_GPS_IMG_DIRECTION_REF_VALUE_MAGNETIC_NORTH = "M"
     public const val GPS_TAG_GPS_IMG_DIRECTION_REF_VALUE_TRUE_NORTH = "T"
 
-    public val GPS_TAG_GPS_IMG_DIRECTION = TagInfoRational(
+    public val GPS_TAG_GPS_IMG_DIRECTION: TagInfoRational = TagInfoRational(
         0x0011, "GPSImgDirection",
         TiffDirectoryType.EXIF_DIRECTORY_GPS
     )
@@ -184,12 +185,12 @@ public object GpsTag {
     public const val GPS_TAG_GPS_DEST_BEARING_REF_VALUE_MAGNETIC_NORTH = "M"
     public const val GPS_TAG_GPS_DEST_BEARING_REF_VALUE_TRUE_NORTH = "T"
 
-    public val GPS_TAG_GPS_DEST_BEARING = TagInfoRational(
+    public val GPS_TAG_GPS_DEST_BEARING: TagInfoRational = TagInfoRational(
         0x0018, "GPSDestBearing",
         TiffDirectoryType.EXIF_DIRECTORY_GPS
     )
 
-    public val GPS_TAG_GPS_DEST_DISTANCE = TagInfoRational(
+    public val GPS_TAG_GPS_DEST_DISTANCE: TagInfoRational = TagInfoRational(
         0x001a, "GPSDestDistance",
         TiffDirectoryType.EXIF_DIRECTORY_GPS
     )
@@ -217,7 +218,7 @@ public object GpsTag {
     public const val GPS_TAG_GPS_DIFFERENTIAL_VALUE_NO_CORRECTION = 0
     public const val GPS_TAG_GPS_DIFFERENTIAL_VALUE_DIFFERENTIAL_CORRECTED = 1
 
-    public val ALL = listOf(
+    public val ALL: List<TagInfo> = listOf(
         GPS_TAG_GPS_VERSION_ID, GPS_TAG_GPS_LATITUDE_REF,
         GPS_TAG_GPS_LATITUDE, GPS_TAG_GPS_LONGITUDE_REF,
         GPS_TAG_GPS_LONGITUDE, GPS_TAG_GPS_ALTITUDE_REF,

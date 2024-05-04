@@ -17,6 +17,7 @@
 package com.ashampoo.kim.format.tiff.constant
 
 import com.ashampoo.kim.format.tiff.constant.ExifTag.EXIF_DIRECTORY_UNKNOWN
+import com.ashampoo.kim.format.tiff.taginfo.TagInfo
 import com.ashampoo.kim.format.tiff.taginfo.TagInfoAscii
 import com.ashampoo.kim.format.tiff.taginfo.TagInfoDoubles
 import com.ashampoo.kim.format.tiff.taginfo.TagInfoShorts
@@ -62,7 +63,7 @@ public object GeoTiffTag {
         EXIF_DIRECTORY_UNKNOWN
     )
 
-    public val ALL = listOf(
+    public val ALL: List<TagInfo> = listOf(
         EXIF_TAG_MODEL_PIXEL_SCALE_TAG,
         EXIF_TAG_INTERGRAPH_MATRIX_TAG,
         EXIF_TAG_MODEL_TIEPOINT_TAG,

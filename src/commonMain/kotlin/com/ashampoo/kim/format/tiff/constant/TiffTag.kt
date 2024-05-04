@@ -229,12 +229,12 @@ public object TiffTag {
         TIFF_DIRECTORY_IFD0
     )
 
-    public val TIFF_TAG_XRESOLUTION = TagInfoRational(
+    public val TIFF_TAG_XRESOLUTION: TagInfoRational = TagInfoRational(
         0x011A, "XResolution",
         TIFF_DIRECTORY_IFD0
     )
 
-    public val TIFF_TAG_YRESOLUTION = TagInfoRational(
+    public val TIFF_TAG_YRESOLUTION: TagInfoRational = TagInfoRational(
         0x011B, "YResolution",
         TIFF_DIRECTORY_IFD0
     )
@@ -412,7 +412,7 @@ public object TiffTag {
     /**
      * The component values that correspond to a 0% dot and 100% dot.
      */
-    public val TIFF_TAG_DOT_RANGE = TagInfoByte(
+    public val TIFF_TAG_DOT_RANGE: TagInfoByte = TagInfoByte(
         0x150, "DotRange", TIFF_DIRECTORY_IFD0
     )
 
@@ -543,17 +543,17 @@ public object TiffTag {
         0x8298, "Copyright", TagInfo.LENGTH_UNKNOWN, TIFF_DIRECTORY_IFD0
     )
 
-    public val TIFF_TAG_XMP = TagInfoBytes(
+    public val TIFF_TAG_XMP: TagInfoBytes = TagInfoBytes(
         0x2BC, "XMP", TagInfo.LENGTH_UNKNOWN, TIFF_DIRECTORY_IFD0
     )
 
     /** Panasonic RW2 special tag. */
-    public val TIFF_TAG_JPG_FROM_RAW = TagInfoBytes(
+    public val TIFF_TAG_JPG_FROM_RAW: TagInfoBytes = TagInfoBytes(
         0x002E, "JpgFromRaw", TagInfo.LENGTH_UNKNOWN, TIFF_DIRECTORY_IFD0
     )
 
     /** Required field for all DNGs. Can be used to detect if TIFF is a DNG. */
-    public val TIFF_TAG_DNG_VERSION = TagInfoBytes(
+    public val TIFF_TAG_DNG_VERSION: TagInfoBytes = TagInfoBytes(
         0xC612, "DNGVersion", 4, TIFF_DIRECTORY_IFD0
     )
 

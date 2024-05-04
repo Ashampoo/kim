@@ -49,7 +49,7 @@ public object NikonTag {
         TiffDirectoryType.EXIF_DIRECTORY_MAKER_NOTE_NIKON
     )
 
-    public val LENS_TYPE = TagInfoByte(
+    public val LENS_TYPE: TagInfoByte = TagInfoByte(
         0x0083, "LensType",
         TiffDirectoryType.EXIF_DIRECTORY_MAKER_NOTE_NIKON
     )
