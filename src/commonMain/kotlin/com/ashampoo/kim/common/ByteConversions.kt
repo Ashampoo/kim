@@ -261,9 +261,6 @@ private fun ByteArray.toInts(offset: Int, length: Int, byteOrder: ByteOrder): In
     return result
 }
 
-internal fun ByteArray.toFloat(byteOrder: ByteOrder): Float =
-    this.toFloat(0, byteOrder)
-
 private fun ByteArray.toFloat(offset: Int, byteOrder: ByteOrder): Float {
 
     val byte0 = 0xFF and this[offset + 0].toInt()
@@ -279,23 +276,20 @@ private fun ByteArray.toFloat(offset: Int, byteOrder: ByteOrder): Float {
     return Float.fromBits(bits)
 }
 
-internal fun ByteArray.toFloats(byteOrder: ByteOrder): FloatArray =
-    this.toFloats(0, size, byteOrder)
+internal fun ByteArray.toFloats(byteOrder: ByteOrder): FloatArray {
 
-private fun ByteArray.toFloats(offset: Int, length: Int, byteOrder: ByteOrder): FloatArray {
-
-    val result = FloatArray(length / 4)
+    val result = FloatArray(size / 4)
 
     for (i in result.indices)
-        result[i] = toFloat(offset + 4 * i, byteOrder)
+        result[i] = toFloat(4 * i, byteOrder)
 
     return result
 }
 
-internal fun ByteArray.toDouble(byteOrder: ByteOrder): Double =
-    this.toDouble(0, byteOrder)
-
-private fun ByteArray.toDouble(offset: Int, byteOrder: ByteOrder): Double {
+private fun ByteArray.toDouble(
+    offset: Int = 0,
+    byteOrder: ByteOrder
+): Double {
 
     val byte0 = 0xFFL and this[offset + 0].toLong()
     val byte1 = 0xFFL and this[offset + 1].toLong()
