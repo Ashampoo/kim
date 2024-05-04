@@ -372,21 +372,12 @@ private fun ByteArray.toRational(
 internal fun ByteArray.toRationals(
     byteOrder: ByteOrder,
     unsignedType: Boolean
-): RationalNumbers =
-    toRationals(this, 0, size, byteOrder, unsignedType)
-
-private fun toRationals(
-    bytes: ByteArray,
-    offset: Int,
-    length: Int,
-    byteOrder: ByteOrder,
-    unsignedType: Boolean
 ): RationalNumbers {
 
-    val result = arrayOfNulls<RationalNumber>(length / 8)
+    val result = arrayOfNulls<RationalNumber>(size / 8)
 
     repeat(result.size) { i ->
-        result[i] = bytes.toRational(offset + 8 * i, byteOrder, unsignedType)
+        result[i] = this.toRational(8 * i, byteOrder, unsignedType)
     }
 
     return RationalNumbers(result as Array<RationalNumber>)
