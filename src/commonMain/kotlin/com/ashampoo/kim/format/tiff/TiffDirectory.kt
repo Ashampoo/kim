@@ -309,11 +309,10 @@ public class TiffDirectory(
             /*
              * All others are matched with all directories.
              */
-            for (directory in directories) {
+            for (directory in directories)
                 directory.findField(tagInfo)?.let {
-                    return it
+                    return@findTiffField it
                 }
-            }
 
             return null
         }
