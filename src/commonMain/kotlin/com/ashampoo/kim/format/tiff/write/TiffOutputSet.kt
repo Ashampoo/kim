@@ -233,9 +233,7 @@ public class TiffOutputSet(
         findField(ExifTag.EXIF_TAG_MAKER_NOTE.tag)
 
     public fun findField(tag: Int): TiffOutputField? =
-        directories
-            .mapNotNull { directory -> directory.findField(tag) }
-            .firstOrNull()
+        directories.firstNotNullOfOrNull { directory -> directory.findField(tag) }
 
     public fun addRootDirectory(): TiffOutputDirectory =
         addDirectory(TiffOutputDirectory(TiffConstants.TIFF_DIRECTORY_TYPE_IFD0, byteOrder))
