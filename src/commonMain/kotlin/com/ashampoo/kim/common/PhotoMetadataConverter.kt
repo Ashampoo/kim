@@ -165,11 +165,9 @@ public object PhotoMetadataConverter {
     @JvmStatic
     public fun extractTakenDateMillis(metadata: ImageMetadata): Long? {
 
-        var takenDate: String? = null
-
         try {
 
-            takenDate = extractTakenDateAsIsoString(metadata) ?: return null
+            val takenDate = extractTakenDateAsIsoString(metadata) ?: return null
 
             val takenDateSubSecond = metadata
                 .findStringValue(ExifTag.EXIF_TAG_SUB_SEC_TIME_ORIGINAL)
