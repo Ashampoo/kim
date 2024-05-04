@@ -61,94 +61,94 @@ public object ExifTag {
         TiffDirectoryType.EXIF_DIRECTORY_INTEROP_IFD
     )
 
-    public val EXIF_TAG_INTEROPERABILITY_RELATED_IMAGE_WIDTH = TagInfoShort(
+    public val EXIF_TAG_INTEROPERABILITY_RELATED_IMAGE_WIDTH: TagInfoShort = TagInfoShort(
         0x1001, "RelatedImageWidth",
         TiffDirectoryType.EXIF_DIRECTORY_INTEROP_IFD
     )
 
-    public val EXIF_TAG_INTEROPERABILITY_RELATED_IMAGE_HEIGHT = TagInfoShort(
+    public val EXIF_TAG_INTEROPERABILITY_RELATED_IMAGE_HEIGHT: TagInfoShort = TagInfoShort(
         0x1002, "RelatedImageHeight",
         TiffDirectoryType.EXIF_DIRECTORY_INTEROP_IFD
     )
 
-    public val EXIF_TAG_PROCESSING_SOFTWARE = TagInfoAscii(
+    public val EXIF_TAG_PROCESSING_SOFTWARE: TagInfoAscii = TagInfoAscii(
         0x000b, "ProcessingSoftware", TagInfo.LENGTH_UNKNOWN,
         TIFF_DIRECTORY_IFD0
     )
 
-    public val EXIF_TAG_SUB_IFDS_OFFSET = TagInfoLongs(
+    public val EXIF_TAG_SUB_IFDS_OFFSET: TagInfoLongs = TagInfoLongs(
         0x014a, "SubIFD", TagInfo.LENGTH_UNKNOWN,
         TIFF_DIRECTORY_IFD0,
         isOffset = true
     )
 
-    public val EXIF_TAG_SOFTWARE = TagInfoAscii(
+    public val EXIF_TAG_SOFTWARE: TagInfoAscii = TagInfoAscii(
         0x0131, "Software", TagInfo.LENGTH_UNKNOWN,
         TIFF_DIRECTORY_IFD0
     )
 
-    public val EXIF_TAG_PREVIEW_IMAGE_START_IFD0 = TagInfoLong(
+    public val EXIF_TAG_PREVIEW_IMAGE_START_IFD0: TagInfoLong = TagInfoLong(
         0x0111, "PreviewImageStart",
         TIFF_DIRECTORY_IFD0,
         isOffset = true
     )
 
-    public val EXIF_TAG_PREVIEW_IMAGE_START_SUB_IFD1 = TagInfoLong(
+    public val EXIF_TAG_PREVIEW_IMAGE_START_SUB_IFD1: TagInfoLong = TagInfoLong(
         0x0111, "PreviewImageStart",
         TIFF_DIRECTORY_IFD2,
         isOffset = true
     )
 
-    public val EXIF_TAG_JPG_FROM_RAW_START_SUB_IFD2 = TagInfoLong(
+    public val EXIF_TAG_JPG_FROM_RAW_START_SUB_IFD2: TagInfoLong = TagInfoLong(
         0x0111, "JpgFromRawStart",
         TIFF_DIRECTORY_IFD3,
         isOffset = true
     )
 
-    public val EXIF_TAG_PREVIEW_IMAGE_LENGTH_IFD0 = TagInfoLong(
+    public val EXIF_TAG_PREVIEW_IMAGE_LENGTH_IFD0: TagInfoLong = TagInfoLong(
         0x0117, "PreviewImageLength",
         TIFF_DIRECTORY_IFD0
     )
 
-    public val EXIF_TAG_PREVIEW_IMAGE_LENGTH_SUB_IFD1 = TagInfoLong(
+    public val EXIF_TAG_PREVIEW_IMAGE_LENGTH_SUB_IFD1: TagInfoLong = TagInfoLong(
         0x0117, "PreviewImageLength",
         TIFF_DIRECTORY_IFD2
     )
 
-    public val EXIF_TAG_JPG_FROM_RAW_LENGTH_SUB_IFD2 = TagInfoLong(
+    public val EXIF_TAG_JPG_FROM_RAW_LENGTH_SUB_IFD2: TagInfoLong = TagInfoLong(
         0x0117, "JpgFromRawLength",
         TIFF_DIRECTORY_IFD3
     )
 
-    public val EXIF_TAG_JPG_FROM_RAW_START_SUB_IFD = TagInfoLong(
+    public val EXIF_TAG_JPG_FROM_RAW_START_SUB_IFD: TagInfoLong = TagInfoLong(
         0x0201, "JpgFromRawStart",
         TIFF_DIRECTORY_IFD1,
         isOffset = true
     )
 
-    public val EXIF_TAG_JPG_FROM_RAW_START_IFD2 = TagInfoLong(
+    public val EXIF_TAG_JPG_FROM_RAW_START_IFD2: TagInfoLong = TagInfoLong(
         0x0201, "JpgFromRawStart",
         TIFF_DIRECTORY_IFD2,
         isOffset = true
     )
 
-    public val EXIF_TAG_OTHER_IMAGE_START = TagInfoLong(
+    public val EXIF_TAG_OTHER_IMAGE_START: TagInfoLong = TagInfoLong(
         0x0201, "OtherImageStart",
         EXIF_DIRECTORY_UNKNOWN,
         isOffset = true
     )
 
-    public val EXIF_TAG_JPG_FROM_RAW_LENGTH_SUB_IFD = TagInfoLong(
+    public val EXIF_TAG_JPG_FROM_RAW_LENGTH_SUB_IFD: TagInfoLong = TagInfoLong(
         0x0202, "JpgFromRawLength",
         TIFF_DIRECTORY_IFD1
     )
 
-    public val EXIF_TAG_JPG_FROM_RAW_LENGTH_IFD2 = TagInfoLong(
+    public val EXIF_TAG_JPG_FROM_RAW_LENGTH_IFD2: TagInfoLong = TagInfoLong(
         0x0202, "JpgFromRawLength",
         TIFF_DIRECTORY_IFD2
     )
 
-    public val EXIF_TAG_OTHER_IMAGE_LENGTH = TagInfoLong(
+    public val EXIF_TAG_OTHER_IMAGE_LENGTH: TagInfoLong = TagInfoLong(
         0x0202, "OtherImageLength",
         EXIF_DIRECTORY_UNKNOWN
     )
@@ -158,57 +158,57 @@ public object ExifTag {
         EXIF_DIRECTORY_UNKNOWN
     )
 
-    public val EXIF_TAG_EXPOSURE_TIME = TagInfoRationals(
+    public val EXIF_TAG_EXPOSURE_TIME: TagInfoRationals = TagInfoRationals(
         0x829a, "ExposureTime", TagInfo.LENGTH_UNKNOWN,
         TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD
     )
 
-    public val EXIF_TAG_FNUMBER = TagInfoRationals(
+    public val EXIF_TAG_FNUMBER: TagInfoRationals = TagInfoRationals(
         0x829d, "FNumber", TagInfo.LENGTH_UNKNOWN,
         TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD
     )
 
-    public val EXIF_TAG_IPTC_NAA = TagInfoLong(
+    public val EXIF_TAG_IPTC_NAA: TagInfoLong = TagInfoLong(
         0x83bb, "IPTC-NAA",
         TIFF_DIRECTORY_IFD0
     )
 
-    public val EXIF_TAG_INTERGRAPH_PACKET_DATA = TagInfoShorts(
+    public val EXIF_TAG_INTERGRAPH_PACKET_DATA: TagInfoShorts = TagInfoShorts(
         0x847e, "IntergraphPacketData", TagInfo.LENGTH_UNKNOWN,
         EXIF_DIRECTORY_UNKNOWN
     )
 
-    public val EXIF_TAG_INTERGRAPH_FLAG_REGISTERS = TagInfoLongs(
+    public val EXIF_TAG_INTERGRAPH_FLAG_REGISTERS: TagInfoLongs = TagInfoLongs(
         0x847f, "IntergraphFlagRegisters", 16,
         EXIF_DIRECTORY_UNKNOWN
     )
 
-    public val EXIF_TAG_SITE = TagInfoAscii(
+    public val EXIF_TAG_SITE: TagInfoAscii = TagInfoAscii(
         0x84e0, "Site", TagInfo.LENGTH_UNKNOWN,
         EXIF_DIRECTORY_UNKNOWN
     )
 
-    public val EXIF_TAG_COLOR_SEQUENCE = TagInfoAscii(
+    public val EXIF_TAG_COLOR_SEQUENCE: TagInfoAscii = TagInfoAscii(
         0x84e1, "ColorSequence", TagInfo.LENGTH_UNKNOWN,
         EXIF_DIRECTORY_UNKNOWN
     )
 
-    public val EXIF_TAG_IT8HEADER = TagInfoAscii(
+    public val EXIF_TAG_IT8HEADER: TagInfoAscii = TagInfoAscii(
         0x84e2, "IT8Header", TagInfo.LENGTH_UNKNOWN,
         EXIF_DIRECTORY_UNKNOWN
     )
 
-    public val EXIF_TAG_RASTER_PADDING = TagInfoShort(
+    public val EXIF_TAG_RASTER_PADDING: TagInfoShort = TagInfoShort(
         0x84e3, "RasterPadding",
         EXIF_DIRECTORY_UNKNOWN
     )
 
-    public val EXIF_TAG_BITS_PER_RUN_LENGTH = TagInfoShort(
+    public val EXIF_TAG_BITS_PER_RUN_LENGTH: TagInfoShort = TagInfoShort(
         0x84e4, "BitsPerRunLength",
         EXIF_DIRECTORY_UNKNOWN
     )
 
-    public val EXIF_TAG_BITS_PER_EXTENDED_RUN_LENGTH = TagInfoShort(
+    public val EXIF_TAG_BITS_PER_EXTENDED_RUN_LENGTH: TagInfoShort = TagInfoShort(
         0x84e5, "BitsPerExtendedRunLength",
         EXIF_DIRECTORY_UNKNOWN
     )
@@ -248,22 +248,22 @@ public object ExifTag {
         EXIF_DIRECTORY_UNKNOWN
     )
 
-    public val EXIF_TAG_COLOR_CHARACTERIZATION = TagInfoAscii(
+    public val EXIF_TAG_COLOR_CHARACTERIZATION: TagInfoAscii = TagInfoAscii(
         0x84ed, "ColorCharacterization", TagInfo.LENGTH_UNKNOWN,
         EXIF_DIRECTORY_UNKNOWN
     )
 
-    public val EXIF_TAG_SEMINFO = TagInfoAscii(
+    public val EXIF_TAG_SEMINFO: TagInfoAscii = TagInfoAscii(
         0x8546, "SEMInfo", 1,
         TIFF_DIRECTORY_IFD0
     )
 
-    public val EXIF_TAG_AFCP_IPTC = TagInfoLong(
+    public val EXIF_TAG_AFCP_IPTC: TagInfoLong = TagInfoLong(
         0x8568, "AFCP_IPTC",
         EXIF_DIRECTORY_UNKNOWN
     )
 
-    public val EXIF_TAG_LEAF_DATA = TagInfoLong(
+    public val EXIF_TAG_LEAF_DATA: TagInfoLong = TagInfoLong(
         0x8606, "LeafData",
         EXIF_DIRECTORY_UNKNOWN
     )
@@ -273,12 +273,12 @@ public object ExifTag {
         EXIF_DIRECTORY_UNKNOWN
     )
 
-    public val EXIF_TAG_EXIF_OFFSET = TagInfoLong(
+    public val EXIF_TAG_EXIF_OFFSET: TagInfoLong = TagInfoLong(
         0x8769, "ExifOffset",
         EXIF_DIRECTORY_UNKNOWN
     )
 
-    public val EXIF_TAG_EXPOSURE_PROGRAM = TagInfoShort(
+    public val EXIF_TAG_EXPOSURE_PROGRAM: TagInfoShort = TagInfoShort(
         0x8822, "ExposureProgram",
         TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD
     )
@@ -292,12 +292,12 @@ public object ExifTag {
     public const val EXPOSURE_PROGRAM_VALUE_PORTRAIT = 7
     public const val EXPOSURE_PROGRAM_VALUE_LANDSCAPE = 8
 
-    public val EXIF_TAG_SPECTRAL_SENSITIVITY = TagInfoAscii(
+    public val EXIF_TAG_SPECTRAL_SENSITIVITY: TagInfoAscii = TagInfoAscii(
         0x8824, "SpectralSensitivity", TagInfo.LENGTH_UNKNOWN,
         TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD
     )
 
-    public val EXIF_TAG_GPSINFO = TagInfoLong(
+    public val EXIF_TAG_GPSINFO: TagInfoLong = TagInfoLong(
         0x8825, "GPSInfo",
         EXIF_DIRECTORY_UNKNOWN,
         isOffset = true
@@ -310,7 +310,7 @@ public object ExifTag {
      * EXIF 2.3: "PhotographicSensitivity"
      * ExifTool: "ISO"
      */
-    public val EXIF_TAG_ISO = TagInfoShorts(
+    public val EXIF_TAG_ISO: TagInfoShorts = TagInfoShorts(
         0x8827, "ISO", TagInfo.LENGTH_UNKNOWN,
         TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD
     )
@@ -321,37 +321,37 @@ public object ExifTag {
      *
      * See https://exiftool.org/TagNames/PanasonicRaw.html
      */
-    public val EXIF_TAG_ISO_PANASONIC = TagInfoShort(
+    public val EXIF_TAG_ISO_PANASONIC: TagInfoShort = TagInfoShort(
         0x0017, "ISO",
         TIFF_DIRECTORY_IFD0
     )
 
-    public val EXIF_TAG_OPTO_ELECTRIC_CONV_FACTOR = TagInfoUndefineds(
+    public val EXIF_TAG_OPTO_ELECTRIC_CONV_FACTOR: TagInfoUndefineds = TagInfoUndefineds(
         0x8828, "Opto - Electric Conv Factor", TagInfo.LENGTH_UNKNOWN,
         EXIF_DIRECTORY_UNKNOWN
     )
 
-    public val EXIF_TAG_LEAF_SUB_IFD = TagInfoLong(
+    public val EXIF_TAG_LEAF_SUB_IFD: TagInfoLong = TagInfoLong(
         0x888a, "LeafSubIFD",
         EXIF_DIRECTORY_UNKNOWN
     )
 
-    public val EXIF_TAG_EXIF_VERSION = TagInfoUndefineds(
+    public val EXIF_TAG_EXIF_VERSION: TagInfoUndefineds = TagInfoUndefineds(
         0x9000, "ExifVersion", 4,
         TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD
     )
 
-    public val EXIF_TAG_DATE_TIME_ORIGINAL = TagInfoAscii(
+    public val EXIF_TAG_DATE_TIME_ORIGINAL: TagInfoAscii = TagInfoAscii(
         0x9003, "DateTimeOriginal", 20,
         TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD
     )
 
-    public val EXIF_TAG_DATE_TIME_DIGITIZED = TagInfoAscii(
+    public val EXIF_TAG_DATE_TIME_DIGITIZED: TagInfoAscii = TagInfoAscii(
         0x9004, "DateTimeDigitized", 20,
         TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD
     )
 
-    public val EXIF_TAG_COMPONENTS_CONFIGURATION = TagInfoUndefineds(
+    public val EXIF_TAG_COMPONENTS_CONFIGURATION: TagInfoUndefineds = TagInfoUndefineds(
         0x9101, "ComponentsConfiguration", 4,
         TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD
     )
@@ -361,7 +361,7 @@ public object ExifTag {
         TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD
     )
 
-    public val EXIF_TAG_SHUTTER_SPEED_VALUE = TagInfoSRational(
+    public val EXIF_TAG_SHUTTER_SPEED_VALUE: TagInfoSRational = TagInfoSRational(
         0x9201, "ShutterSpeedValue",
         TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD
     )
@@ -371,12 +371,12 @@ public object ExifTag {
         TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD
     )
 
-    public val EXIF_TAG_BRIGHTNESS_VALUE = TagInfoSRational(
+    public val EXIF_TAG_BRIGHTNESS_VALUE: TagInfoSRational = TagInfoSRational(
         0x9203, "BrightnessValue",
         TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD
     )
 
-    public val EXIF_TAG_EXPOSURE_COMPENSATION = TagInfoSRational(
+    public val EXIF_TAG_EXPOSURE_COMPENSATION: TagInfoSRational = TagInfoSRational(
         0x9204, "ExposureCompensation",
         TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD
     )
@@ -386,12 +386,12 @@ public object ExifTag {
         TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD
     )
 
-    public val EXIF_TAG_SUBJECT_DISTANCE = TagInfoRationals(
+    public val EXIF_TAG_SUBJECT_DISTANCE: TagInfoRationals = TagInfoRationals(
         0x9206, "Subject Distance", TagInfo.LENGTH_UNKNOWN,
         TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD
     )
 
-    public val EXIF_TAG_METERING_MODE = TagInfoShort(
+    public val EXIF_TAG_METERING_MODE: TagInfoShort = TagInfoShort(
         0x9207, "MeteringMode",
         TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD
     )
@@ -404,7 +404,7 @@ public object ExifTag {
     public const val METERING_MODE_VALUE_PARTIAL = 6
     public const val METERING_MODE_VALUE_OTHER = 255
 
-    public val EXIF_TAG_LIGHT_SOURCE = TagInfoShort(
+    public val EXIF_TAG_LIGHT_SOURCE: TagInfoShort = TagInfoShort(
         0x9208, "LightSource",
         TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD
     )
@@ -430,7 +430,7 @@ public object ExifTag {
     public const val LIGHT_SOURCE_VALUE_ISO_STUDIO_TUNGSTEN = 24
     public const val LIGHT_SOURCE_VALUE_OTHER = 255
 
-    public val EXIF_TAG_FLASH = TagInfoShort(
+    public val EXIF_TAG_FLASH: TagInfoShort = TagInfoShort(
         0x9209, "Flash",
         TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD
     )
@@ -463,17 +463,17 @@ public object ExifTag {
     public const val FLASH_VALUE_AUTO_FIRED_RED_EYE_REDUCTION_RETURN_NOT_DETECTED = 0x5d
     public const val FLASH_VALUE_AUTO_FIRED_RED_EYE_REDUCTION_RETURN_DETECTED = 0x5f
 
-    public val EXIF_TAG_FOCAL_LENGTH = TagInfoRationals(
+    public val EXIF_TAG_FOCAL_LENGTH: TagInfoRationals = TagInfoRationals(
         0x920a, "FocalLength", TagInfo.LENGTH_UNKNOWN,
         TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD
     )
 
-    public val EXIF_TAG_SUBJECT_AREA = TagInfoShorts(
+    public val EXIF_TAG_SUBJECT_AREA: TagInfoShorts = TagInfoShorts(
         0x9214, "SubjectArea", TagInfo.LENGTH_UNKNOWN,
         TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD
     )
 
-    public val EXIF_TAG_STO_NITS = TagInfoDouble(
+    public val EXIF_TAG_STO_NITS: TagInfoDouble = TagInfoDouble(
         0x923f, "StoNits",
         EXIF_DIRECTORY_UNKNOWN
     )
@@ -482,73 +482,73 @@ public object ExifTag {
      * A tag for manufacturers of Exif writers to record any desired information.
      * The contents are up to the manufacturer.
      */
-    public val EXIF_TAG_MAKER_NOTE = TagInfoUndefineds(
+    public val EXIF_TAG_MAKER_NOTE: TagInfoUndefineds = TagInfoUndefineds(
         0x927c, "MakerNote", TagInfo.LENGTH_UNKNOWN,
         TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD
     )
 
-    public val EXIF_TAG_USER_COMMENT = TagInfoGpsText(
+    public val EXIF_TAG_USER_COMMENT: TagInfoGpsText = TagInfoGpsText(
         0x9286, "UserComment",
         TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD
     )
 
-    public val EXIF_TAG_SUB_SEC_TIME = TagInfoAscii(
+    public val EXIF_TAG_SUB_SEC_TIME: TagInfoAscii = TagInfoAscii(
         0x9290, "SubSecTime", TagInfo.LENGTH_UNKNOWN,
         TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD
     )
 
-    public val EXIF_TAG_SUB_SEC_TIME_ORIGINAL = TagInfoAscii(
+    public val EXIF_TAG_SUB_SEC_TIME_ORIGINAL: TagInfoAscii = TagInfoAscii(
         0x9291, "SubSecTimeOriginal", TagInfo.LENGTH_UNKNOWN,
         TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD
     )
 
-    public val EXIF_TAG_SUB_SEC_TIME_DIGITIZED = TagInfoAscii(
+    public val EXIF_TAG_SUB_SEC_TIME_DIGITIZED: TagInfoAscii = TagInfoAscii(
         0x9292, "SubSecTimeDigitized", TagInfo.LENGTH_UNKNOWN,
         TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD
     )
 
-    public val EXIF_TAG_OFFSET_TIME = TagInfoAscii(
+    public val EXIF_TAG_OFFSET_TIME: TagInfoAscii = TagInfoAscii(
         0x9010, "OffsetTime", TagInfo.LENGTH_UNKNOWN,
         TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD
     )
 
-    public val EXIF_TAG_OFFSET_TIME_ORIGINAL = TagInfoAscii(
+    public val EXIF_TAG_OFFSET_TIME_ORIGINAL: TagInfoAscii = TagInfoAscii(
         0x9011, "OffsetTimeOriginal", TagInfo.LENGTH_UNKNOWN,
         TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD
     )
 
-    public val EXIF_TAG_FLASHPIX_VERSION = TagInfoUndefineds(
+    public val EXIF_TAG_FLASHPIX_VERSION: TagInfoUndefineds = TagInfoUndefineds(
         0xa000, "FlashpixVersion", 4,
         TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD
     )
 
-    public val EXIF_TAG_EXIF_IMAGE_WIDTH = TagInfoLong(
+    public val EXIF_TAG_EXIF_IMAGE_WIDTH: TagInfoLong = TagInfoLong(
         0xa002, "ExifImageWidth",
         TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD
     )
 
-    public val EXIF_TAG_EXIF_IMAGE_HEIGHT = TagInfoLong(
+    public val EXIF_TAG_EXIF_IMAGE_HEIGHT: TagInfoLong = TagInfoLong(
         0xa003, "ExifImageHeight",
         TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD
     )
 
-    public val EXIF_TAG_RELATED_SOUND_FILE = TagInfoAscii(
+    public val EXIF_TAG_RELATED_SOUND_FILE: TagInfoAscii = TagInfoAscii(
         0xa004, "RelatedSoundFile", 13,
         TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD
     )
 
-    public val EXIF_TAG_INTEROP_OFFSET = TagInfoLong(
+    public val EXIF_TAG_INTEROP_OFFSET: TagInfoLong = TagInfoLong(
         0xa005, "InteropOffset",
         EXIF_DIRECTORY_UNKNOWN,
         isOffset = true
     )
 
-    public val EXIF_TAG_FLASH_ENERGY_EXIF_IFD = TagInfoRationals(
+    public val EXIF_TAG_FLASH_ENERGY_EXIF_IFD: TagInfoRationals = TagInfoRationals(
         0xa20b, "FlashEnergy", TagInfo.LENGTH_UNKNOWN,
         TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD
     )
 
-    public val EXIF_TAG_SPATIAL_FREQUENCY_RESPONSE_2 = TagInfoUndefineds(
+    public val EXIF_TAG_SPATIAL_FREQUENCY_RESPONSE_2: TagInfoUndefineds = TagInfoUndefineds(
         0xa20c, "SpatialFrequencyResponse", TagInfo.LENGTH_UNKNOWN,
         EXIF_DIRECTORY_UNKNOWN
     )
@@ -563,7 +563,7 @@ public object ExifTag {
         TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD
     )
 
-    public val EXIF_TAG_FOCAL_PLANE_RESOLUTION_UNIT_EXIF_IFD = TagInfoShort(
+    public val EXIF_TAG_FOCAL_PLANE_RESOLUTION_UNIT_EXIF_IFD: TagInfoShort = TagInfoShort(
         0xa210, "FocalPlaneResolutionUnit",
         TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD
     )
@@ -574,7 +574,7 @@ public object ExifTag {
     public const val FOCAL_PLANE_RESOLUTION_UNIT_EXIF_IFD_VALUE_MM = 4
     public const val FOCAL_PLANE_RESOLUTION_UNIT_EXIF_IFD_VALUE_UM = 5
 
-    public val EXIF_TAG_SUBJECT_LOCATION = TagInfoShorts(
+    public val EXIF_TAG_SUBJECT_LOCATION: TagInfoShorts = TagInfoShorts(
         0xa214, "SubjectLocation", 2,
         TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD
     )
@@ -584,7 +584,7 @@ public object ExifTag {
         TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD
     )
 
-    public val EXIF_TAG_SENSING_METHOD_EXIF_IFD = TagInfoShort(
+    public val EXIF_TAG_SENSING_METHOD_EXIF_IFD: TagInfoShort = TagInfoShort(
         0xa217, "SensingMethod",
         TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD
     )
@@ -611,12 +611,12 @@ public object ExifTag {
         TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD
     )
 
-    public val EXIF_TAG_CFAPATTERN = TagInfoUndefineds(
+    public val EXIF_TAG_CFAPATTERN: TagInfoUndefineds = TagInfoUndefineds(
         0xa302, "CFAPattern", TagInfo.LENGTH_UNKNOWN,
         TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD
     )
 
-    public val EXIF_TAG_CUSTOM_RENDERED = TagInfoShort(
+    public val EXIF_TAG_CUSTOM_RENDERED: TagInfoShort = TagInfoShort(
         0xa401, "CustomRendered",
         TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD
     )
@@ -624,7 +624,7 @@ public object ExifTag {
     public const val CUSTOM_RENDERED_VALUE_NORMAL = 0
     public const val CUSTOM_RENDERED_VALUE_CUSTOM = 1
 
-    public val EXIF_TAG_EXPOSURE_MODE = TagInfoShort(
+    public val EXIF_TAG_EXPOSURE_MODE: TagInfoShort = TagInfoShort(
         0xa402, "ExposureMode",
         TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD
     )
@@ -633,7 +633,7 @@ public object ExifTag {
     public const val EXPOSURE_MODE_VALUE_MANUAL = 1
     public const val EXPOSURE_MODE_VALUE_AUTO_BRACKET = 2
 
-    public val EXIF_TAG_WHITE_BALANCE_1 = TagInfoShort(
+    public val EXIF_TAG_WHITE_BALANCE_1: TagInfoShort = TagInfoShort(
         0xa403, "WhiteBalance",
         TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD
     )
@@ -646,12 +646,12 @@ public object ExifTag {
         TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD
     )
 
-    public val EXIF_TAG_FOCAL_LENGTH_IN_35MM_FORMAT = TagInfoShort(
+    public val EXIF_TAG_FOCAL_LENGTH_IN_35MM_FORMAT: TagInfoShort = TagInfoShort(
         0xa405, "FocalLengthIn35mmFormat",
         TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD
     )
 
-    public val EXIF_TAG_SCENE_CAPTURE_TYPE = TagInfoShort(
+    public val EXIF_TAG_SCENE_CAPTURE_TYPE: TagInfoShort = TagInfoShort(
         0xa406, "SceneCaptureType",
         TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD
     )
@@ -661,7 +661,7 @@ public object ExifTag {
     public const val SCENE_CAPTURE_TYPE_VALUE_PORTRAIT = 2
     public const val SCENE_CAPTURE_TYPE_VALUE_NIGHT = 3
 
-    public val EXIF_TAG_GAIN_CONTROL = TagInfoShort(
+    public val EXIF_TAG_GAIN_CONTROL: TagInfoShort = TagInfoShort(
         0xa407, "GainControl",
         TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD
     )
@@ -672,7 +672,7 @@ public object ExifTag {
     public const val GAIN_CONTROL_VALUE_LOW_GAIN_DOWN = 3
     public const val GAIN_CONTROL_VALUE_HIGH_GAIN_DOWN = 4
 
-    public val EXIF_TAG_CONTRAST_1 = TagInfoShort(
+    public val EXIF_TAG_CONTRAST_1: TagInfoShort = TagInfoShort(
         0xa408, "Contrast",
         TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD
     )
@@ -681,7 +681,7 @@ public object ExifTag {
     public const val CONTRAST_1_VALUE_LOW = 1
     public const val CONTRAST_1_VALUE_HIGH = 2
 
-    public val EXIF_TAG_SATURATION_1 = TagInfoShort(
+    public val EXIF_TAG_SATURATION_1: TagInfoShort = TagInfoShort(
         0xa409, "Saturation",
         TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD
     )
@@ -690,7 +690,7 @@ public object ExifTag {
     public const val SATURATION_1_VALUE_LOW = 1
     public const val SATURATION_1_VALUE_HIGH = 2
 
-    public val EXIF_TAG_SHARPNESS_1 = TagInfoShort(
+    public val EXIF_TAG_SHARPNESS_1: TagInfoShort = TagInfoShort(
         0xa40a, "Sharpness",
         TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD
     )
@@ -699,12 +699,12 @@ public object ExifTag {
     public const val SHARPNESS_1_VALUE_SOFT = 1
     public const val SHARPNESS_1_VALUE_HARD = 2
 
-    public val EXIF_TAG_DEVICE_SETTING_DESCRIPTION = TagInfoUndefineds(
+    public val EXIF_TAG_DEVICE_SETTING_DESCRIPTION: TagInfoUndefineds = TagInfoUndefineds(
         0xa40b, "DeviceSettingDescription", TagInfo.LENGTH_UNKNOWN,
         EXIF_DIRECTORY_UNKNOWN
     )
 
-    public val EXIF_TAG_SUBJECT_DISTANCE_RANGE = TagInfoShort(
+    public val EXIF_TAG_SUBJECT_DISTANCE_RANGE: TagInfoShort = TagInfoShort(
         0xa40c, "SubjectDistanceRange",
         TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD
     )
@@ -713,37 +713,37 @@ public object ExifTag {
     public const val SUBJECT_DISTANCE_RANGE_VALUE_CLOSE = 2
     public const val SUBJECT_DISTANCE_RANGE_VALUE_DISTANT = 3
 
-    public val EXIF_TAG_IMAGE_UNIQUE_ID = TagInfoAscii(
+    public val EXIF_TAG_IMAGE_UNIQUE_ID: TagInfoAscii = TagInfoAscii(
         0xa420, "ImageUniqueID", 33,
         TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD
     )
 
-    public val EXIF_TAG_CAMERA_OWNER_NAME = TagInfoAscii(
+    public val EXIF_TAG_CAMERA_OWNER_NAME: TagInfoAscii = TagInfoAscii(
         0xa430, "CameraOwnerName", TagInfo.LENGTH_UNKNOWN,
         TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD
     )
 
-    public val EXIF_TAG_BODY_SERIAL_NUMBER = TagInfoAscii(
+    public val EXIF_TAG_BODY_SERIAL_NUMBER: TagInfoAscii = TagInfoAscii(
         0xa431, "BodySerialNumber", TagInfo.LENGTH_UNKNOWN,
         TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD
     )
 
-    public val EXIF_TAG_LENS_SPECIFICATION = TagInfoRationals(
+    public val EXIF_TAG_LENS_SPECIFICATION: TagInfoRationals = TagInfoRationals(
         0xa432, "LensSpecification", 4,
         TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD
     )
 
-    public val EXIF_TAG_LENS_MAKE = TagInfoAscii(
+    public val EXIF_TAG_LENS_MAKE: TagInfoAscii = TagInfoAscii(
         0xa433, "LensMake", TagInfo.LENGTH_UNKNOWN,
         TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD
     )
 
-    public val EXIF_TAG_LENS_MODEL = TagInfoAscii(
+    public val EXIF_TAG_LENS_MODEL: TagInfoAscii = TagInfoAscii(
         0xa434, "LensModel", TagInfo.LENGTH_UNKNOWN,
         TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD
     )
 
-    public val EXIF_TAG_LENS_SERIAL_NUMBER = TagInfoAscii(
+    public val EXIF_TAG_LENS_SERIAL_NUMBER: TagInfoAscii = TagInfoAscii(
         0xa435, "LensSerialNumber", TagInfo.LENGTH_UNKNOWN,
         TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD
     )
@@ -763,104 +763,104 @@ public object ExifTag {
         TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD
     )
 
-    public val EXIF_TAG_OWNER_NAME = TagInfoAscii(
+    public val EXIF_TAG_OWNER_NAME: TagInfoAscii = TagInfoAscii(
         0xfde8, "OwnerName", TagInfo.LENGTH_UNKNOWN,
         TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD
     )
 
-    public val EXIF_TAG_SERIAL_NUMBER = TagInfoAscii(
+    public val EXIF_TAG_SERIAL_NUMBER: TagInfoAscii = TagInfoAscii(
         0xfde9, "SerialNumber", TagInfo.LENGTH_UNKNOWN,
         TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD
     )
 
-    public val EXIF_TAG_LENS = TagInfoAscii(
+    public val EXIF_TAG_LENS: TagInfoAscii = TagInfoAscii(
         0xfdea, "Lens", TagInfo.LENGTH_UNKNOWN,
         TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD
     )
 
-    public val EXIF_TAG_RAW_FILE = TagInfoAscii(
+    public val EXIF_TAG_RAW_FILE: TagInfoAscii = TagInfoAscii(
         0xfe4c, "RawFile", TagInfo.LENGTH_UNKNOWN,
         TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD
     )
 
-    public val EXIF_TAG_CONVERTER = TagInfoAscii(
+    public val EXIF_TAG_CONVERTER: TagInfoAscii = TagInfoAscii(
         0xfe4d, "Converter", TagInfo.LENGTH_UNKNOWN,
         TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD
     )
 
-    public val EXIF_TAG_WHITE_BALANCE_2 = TagInfoAscii(
+    public val EXIF_TAG_WHITE_BALANCE_2: TagInfoAscii = TagInfoAscii(
         0xfe4e, "WhiteBalance", TagInfo.LENGTH_UNKNOWN,
         TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD
     )
 
-    public val EXIF_TAG_EXPOSURE = TagInfoAscii(
+    public val EXIF_TAG_EXPOSURE: TagInfoAscii = TagInfoAscii(
         0xfe51, "Exposure", TagInfo.LENGTH_UNKNOWN,
         TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD
     )
 
-    public val EXIF_TAG_SHADOWS = TagInfoAscii(
+    public val EXIF_TAG_SHADOWS: TagInfoAscii = TagInfoAscii(
         0xfe52, "Shadows", TagInfo.LENGTH_UNKNOWN,
         TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD
     )
 
-    public val EXIF_TAG_BRIGHTNESS = TagInfoAscii(
+    public val EXIF_TAG_BRIGHTNESS: TagInfoAscii = TagInfoAscii(
         0xfe53, "Brightness", TagInfo.LENGTH_UNKNOWN,
         TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD
     )
 
-    public val EXIF_TAG_CONTRAST_2 = TagInfoAscii(
+    public val EXIF_TAG_CONTRAST_2: TagInfoAscii = TagInfoAscii(
         0xfe54, "Contrast", TagInfo.LENGTH_UNKNOWN,
         TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD
     )
 
-    public val EXIF_TAG_SATURATION_2 = TagInfoAscii(
+    public val EXIF_TAG_SATURATION_2: TagInfoAscii = TagInfoAscii(
         0xfe55, "Saturation", TagInfo.LENGTH_UNKNOWN,
         TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD
     )
 
-    public val EXIF_TAG_SHARPNESS_2 = TagInfoAscii(
+    public val EXIF_TAG_SHARPNESS_2: TagInfoAscii = TagInfoAscii(
         0xfe56, "Sharpness", TagInfo.LENGTH_UNKNOWN,
         TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD
     )
 
-    public val EXIF_TAG_SMOOTHNESS = TagInfoAscii(
+    public val EXIF_TAG_SMOOTHNESS: TagInfoAscii = TagInfoAscii(
         0xfe57, "Smoothness", TagInfo.LENGTH_UNKNOWN,
         TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD
     )
 
-    public val EXIF_TAG_MOIRE_FILTER = TagInfoAscii(
+    public val EXIF_TAG_MOIRE_FILTER: TagInfoAscii = TagInfoAscii(
         0xfe58, "MoireFilter", TagInfo.LENGTH_UNKNOWN,
         TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD
     )
 
     /** Rating tag used by Windows */
-    public val EXIF_TAG_RATING = TagInfoShort(
+    public val EXIF_TAG_RATING: TagInfoShort = TagInfoShort(
         0x4746, "Rating",
         TiffDirectoryType.TIFF_DIRECTORY_IFD0
     )
 
     /** Rating tag used by Windows, value in percent */
-    public val EXIF_TAG_RATING_PERCENT = TagInfoShort(
+    public val EXIF_TAG_RATING_PERCENT: TagInfoShort = TagInfoShort(
         0x4749, "RatingPercent",
         TiffDirectoryType.TIFF_DIRECTORY_IFD0
     )
 
-    public val EXIF_TAG_MODIFY_DATE = TagInfoAscii(
+    public val EXIF_TAG_MODIFY_DATE: TagInfoAscii = TagInfoAscii(
         0x0132, "ModifyDate", TagInfo.LENGTH_UNKNOWN,
         TiffDirectoryType.TIFF_DIRECTORY_IFD0
     )
 
-    public val EXIF_TAG_SENSITIVITY_TYPE = TagInfoShort(
+    public val EXIF_TAG_SENSITIVITY_TYPE: TagInfoShort = TagInfoShort(
         0x8830, "SensitivityType",
         TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD
     )
 
-    public val EXIF_TAG_RECOMMENDED_EXPOSURE_INDEX = TagInfoLong(
+    public val EXIF_TAG_RECOMMENDED_EXPOSURE_INDEX: TagInfoLong = TagInfoLong(
         0x8832, "RecommendedExposureIndex",
         TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD
     )
 
-    public val EXIF_TAG_COLOR_SPACE = TagInfoShort(
+    public val EXIF_TAG_COLOR_SPACE: TagInfoShort = TagInfoShort(
         0xa001, "ColorSpace",
         TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD
     )

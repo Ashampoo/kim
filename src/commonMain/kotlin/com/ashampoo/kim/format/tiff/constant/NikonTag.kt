@@ -34,17 +34,17 @@ public object NikonTag {
      * TODO This list is incomplete
      */
 
-    public val MAKER_NOTE_VERSION = TagInfoUndefineds(
+    public val MAKER_NOTE_VERSION: TagInfoUndefineds = TagInfoUndefineds(
         0x0001, "MakerNoteVersion", 4,
         TiffDirectoryType.EXIF_DIRECTORY_MAKER_NOTE_NIKON
     )
 
-    public val SHUTTER_COUNT = TagInfoLong(
+    public val SHUTTER_COUNT: TagInfoLong = TagInfoLong(
         0x00a7, "ShutterCount",
         TiffDirectoryType.EXIF_DIRECTORY_MAKER_NOTE_NIKON
     )
 
-    public val AUXILIARY_LENS = TagInfoAscii(
+    public val AUXILIARY_LENS: TagInfoAscii = TagInfoAscii(
         0x0082, "AuxiliaryLens", TagInfo.LENGTH_UNKNOWN,
         TiffDirectoryType.EXIF_DIRECTORY_MAKER_NOTE_NIKON
     )
@@ -54,12 +54,12 @@ public object NikonTag {
         TiffDirectoryType.EXIF_DIRECTORY_MAKER_NOTE_NIKON
     )
 
-    public val LENS = TagInfoRationals(
+    public val LENS: TagInfoRationals = TagInfoRationals(
         0x0084, "Lens", 4,
         TiffDirectoryType.EXIF_DIRECTORY_MAKER_NOTE_NIKON
     )
 
-    public val LENS_F_STOPS = TagInfoUndefineds(
+    public val LENS_F_STOPS: TagInfoUndefineds = TagInfoUndefineds(
         0x008b, "LensFStops", 4,
         TiffDirectoryType.EXIF_DIRECTORY_MAKER_NOTE_NIKON
     )

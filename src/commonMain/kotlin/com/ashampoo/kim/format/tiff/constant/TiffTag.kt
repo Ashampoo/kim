@@ -54,7 +54,7 @@ public object TiffTag {
     public const val SUBFILE_TYPE_VALUE_TRANSPARENCY_MASK_OF_MULTI_PAGE_IMAGE = 6
     public const val SUBFILE_TYPE_VALUE_TRANSPARENCY_MASK_OF_REDUCED_RESOLUTION_MULTI_PAGE_IMAGE = 7
 
-    public val TIFF_TAG_SUBFILE_TYPE = TagInfoShort(
+    public val TIFF_TAG_SUBFILE_TYPE: TagInfoShort = TagInfoShort(
         0xFF, "SubfileType",
         TIFF_DIRECTORY_IFD0
     )
@@ -63,20 +63,20 @@ public object TiffTag {
     public const val OLD_SUBFILE_TYPE_VALUE_REDUCED_RESOLUTION_IMAGE = 2
     public const val OLD_SUBFILE_TYPE_VALUE_SINGLE_PAGE_OF_MULTI_PAGE_IMAGE = 3
 
-    public val TIFF_TAG_IMAGE_WIDTH = TagInfoLong(
+    public val TIFF_TAG_IMAGE_WIDTH: TagInfoLong = TagInfoLong(
         0x100, "ImageWidth", TIFF_DIRECTORY_IFD0
     )
 
-    public val TIFF_TAG_IMAGE_LENGTH = TagInfoLong(
+    public val TIFF_TAG_IMAGE_LENGTH: TagInfoLong = TagInfoLong(
         0x0101, "ImageLength", TIFF_DIRECTORY_IFD0
     )
 
-    public val TIFF_TAG_BITS_PER_SAMPLE = TagInfoShorts(
+    public val TIFF_TAG_BITS_PER_SAMPLE: TagInfoShorts = TagInfoShorts(
         0x0102, "BitsPerSample", TagInfo.LENGTH_UNKNOWN,
         TIFF_DIRECTORY_IFD0
     )
 
-    public val TIFF_TAG_COMPRESSION = TagInfoShort(
+    public val TIFF_TAG_COMPRESSION: TagInfoShort = TagInfoShort(
         0x0103, "Compression",
         TIFF_DIRECTORY_IFD0
     )
@@ -112,7 +112,7 @@ public object TiffTag {
     public const val COMPRESSION_VALUE_KODAK_DCR_COMPRESSED = 65000
     public const val COMPRESSION_VALUE_PENTAX_PEF_COMPRESSED = 65535
 
-    public val TIFF_TAG_PHOTOMETRIC_INTERPRETATION = TagInfoShort(
+    public val TIFF_TAG_PHOTOMETRIC_INTERPRETATION: TagInfoShort = TagInfoShort(
         0x106, "PhotometricInterpretation",
         TIFF_DIRECTORY_IFD0
     )
@@ -132,7 +132,7 @@ public object TiffTag {
     public const val PHOTOMETRIC_INTERPRETATION_VALUE_PIXAR_LOG_LUV = 32845
     public const val PHOTOMETRIC_INTERPRETATION_VALUE_LINEAR_RAW = 34892
 
-    public val TIFF_TAG_THRESHHOLDING = TagInfoShort(
+    public val TIFF_TAG_THRESHHOLDING: TagInfoShort = TagInfoShort(
         0x107, "Threshholding",
         TIFF_DIRECTORY_IFD0
     )
@@ -141,17 +141,17 @@ public object TiffTag {
     public const val THRESHOLDING_VALUE_ORDERED_DITHER_OR_HALFTONE = 2
     public const val THRESHOLDING_VALUE_RANDOMIZED_DITHER = 3
 
-    public val TIFF_TAG_CELL_WIDTH = TagInfoShort(
+    public val TIFF_TAG_CELL_WIDTH: TagInfoShort = TagInfoShort(
         0x108, "CellWidth",
         TIFF_DIRECTORY_IFD0
     )
 
-    public val TIFF_TAG_CELL_LENGTH = TagInfoShort(
+    public val TIFF_TAG_CELL_LENGTH: TagInfoShort = TagInfoShort(
         0x109, "CellLength",
         TIFF_DIRECTORY_IFD0
     )
 
-    public val TIFF_TAG_FILL_ORDER = TagInfoShort(
+    public val TIFF_TAG_FILL_ORDER: TagInfoShort = TagInfoShort(
         0x10A, "FillOrder",
         TIFF_DIRECTORY_IFD0
     )
@@ -159,33 +159,33 @@ public object TiffTag {
     public const val FILL_ORDER_VALUE_NORMAL = 1
     public const val FILL_ORDER_VALUE_REVERSED = 2
 
-    public val TIFF_TAG_DOCUMENT_NAME = TagInfoAscii(
+    public val TIFF_TAG_DOCUMENT_NAME: TagInfoAscii = TagInfoAscii(
         0x10D, "DocumentName", TagInfo.LENGTH_UNKNOWN,
         TIFF_DIRECTORY_IFD0
     )
 
-    public val TIFF_TAG_IMAGE_DESCRIPTION = TagInfoAscii(
+    public val TIFF_TAG_IMAGE_DESCRIPTION: TagInfoAscii = TagInfoAscii(
         0x10E, "ImageDescription", TagInfo.LENGTH_UNKNOWN,
         TIFF_DIRECTORY_IFD0
     )
 
-    public val TIFF_TAG_MAKE = TagInfoAscii(
+    public val TIFF_TAG_MAKE: TagInfoAscii = TagInfoAscii(
         0x10F, "Make", TagInfo.LENGTH_UNKNOWN,
         TIFF_DIRECTORY_IFD0
     )
 
-    public val TIFF_TAG_MODEL = TagInfoAscii(
+    public val TIFF_TAG_MODEL: TagInfoAscii = TagInfoAscii(
         0x0110, "Model", TagInfo.LENGTH_UNKNOWN,
         TIFF_DIRECTORY_IFD0
     )
 
-    public val TIFF_TAG_STRIP_OFFSETS = TagInfoLong(
+    public val TIFF_TAG_STRIP_OFFSETS: TagInfoLong = TagInfoLong(
         0x0111, "StripOffsets",
         TIFF_DIRECTORY_IFD0,
         isOffset = true
     )
 
-    public val TIFF_TAG_ORIENTATION = TagInfoShort(
+    public val TIFF_TAG_ORIENTATION: TagInfoShort = TagInfoShort(
         0x0112, "Orientation",
         TIFF_DIRECTORY_IFD0
     )
@@ -199,7 +199,7 @@ public object TiffTag {
     public const val ORIENTATION_VALUE_MIRROR_HORIZONTAL_AND_ROTATE_90_CW = 7
     public const val ORIENTATION_VALUE_ROTATE_270_CW = 8
 
-    public val TIFF_TAG_SAMPLES_PER_PIXEL = TagInfoShort(
+    public val TIFF_TAG_SAMPLES_PER_PIXEL: TagInfoShort = TagInfoShort(
         0x0115, "SamplesPerPixel",
         TIFF_DIRECTORY_IFD0
     )
@@ -210,21 +210,21 @@ public object TiffTag {
      * With JPEG compressed data this designation is not needed and is omitted.
      * See also <StripOffsets> and <StripByteCounts>.
      */
-    public val TIFF_TAG_ROWS_PER_STRIP = TagInfoLong(
+    public val TIFF_TAG_ROWS_PER_STRIP: TagInfoLong = TagInfoLong(
         0x0116, "RowsPerStrip", TIFF_DIRECTORY_IFD0
     )
 
-    public val TIFF_TAG_STRIP_BYTE_COUNTS = TagInfoLong(
+    public val TIFF_TAG_STRIP_BYTE_COUNTS: TagInfoLong = TagInfoLong(
         0x0117, "StripByteCounts",
         TIFF_DIRECTORY_IFD0
     )
 
-    public val TIFF_TAG_MIN_SAMPLE_VALUE = TagInfoShorts(
+    public val TIFF_TAG_MIN_SAMPLE_VALUE: TagInfoShorts = TagInfoShorts(
         0x0118, "MinSampleValue", TagInfo.LENGTH_UNKNOWN,
         TIFF_DIRECTORY_IFD0
     )
 
-    public val TIFF_TAG_MAX_SAMPLE_VALUE = TagInfoShorts(
+    public val TIFF_TAG_MAX_SAMPLE_VALUE: TagInfoShorts = TagInfoShorts(
         0x0119, "MaxSampleValue", TagInfo.LENGTH_UNKNOWN,
         TIFF_DIRECTORY_IFD0
     )
@@ -239,7 +239,7 @@ public object TiffTag {
         TIFF_DIRECTORY_IFD0
     )
 
-    public val TIFF_TAG_PLANAR_CONFIGURATION = TagInfoShort(
+    public val TIFF_TAG_PLANAR_CONFIGURATION: TagInfoShort = TagInfoShort(
         0x11C, "PlanarConfiguration",
         TIFF_DIRECTORY_IFD0
     )
@@ -247,32 +247,32 @@ public object TiffTag {
     public const val PLANAR_CONFIGURATION_VALUE_CHUNKY = 1
     public const val PLANAR_CONFIGURATION_VALUE_PLANAR = 2
 
-    public val TIFF_TAG_PAGE_NAME = TagInfoAscii(
+    public val TIFF_TAG_PAGE_NAME: TagInfoAscii = TagInfoAscii(
         0x11D, "PageName", TagInfo.LENGTH_UNKNOWN,
         TIFF_DIRECTORY_IFD0
     )
 
-    public val TIFF_TAG_XPOSITION = TagInfoRationals(
+    public val TIFF_TAG_XPOSITION: TagInfoRationals = TagInfoRationals(
         0x11E, "XPosition", TagInfo.LENGTH_UNKNOWN,
         TIFF_DIRECTORY_IFD0
     )
 
-    public val TIFF_TAG_YPOSITION = TagInfoRationals(
+    public val TIFF_TAG_YPOSITION: TagInfoRationals = TagInfoRationals(
         0x11F, "YPosition", TagInfo.LENGTH_UNKNOWN,
         TIFF_DIRECTORY_IFD0
     )
 
-    public val TIFF_TAG_FREE_OFFSETS = TagInfoLongs(
+    public val TIFF_TAG_FREE_OFFSETS: TagInfoLongs = TagInfoLongs(
         0x120, "FreeOffsets", TagInfo.LENGTH_UNKNOWN,
         TIFF_DIRECTORY_IFD0
     )
 
-    public val TIFF_TAG_FREE_BYTE_COUNTS = TagInfoLongs(
+    public val TIFF_TAG_FREE_BYTE_COUNTS: TagInfoLongs = TagInfoLongs(
         0x121, "FreeByteCounts", TagInfo.LENGTH_UNKNOWN,
         TIFF_DIRECTORY_IFD0
     )
 
-    public val TIFF_TAG_GRAY_RESPONSE_UNIT = TagInfoShort(
+    public val TIFF_TAG_GRAY_RESPONSE_UNIT: TagInfoShort = TagInfoShort(
         0x122, "GrayResponseUnit",
         TIFF_DIRECTORY_IFD0
     )
@@ -283,22 +283,22 @@ public object TiffTag {
     public const val GRAY_RESPONSE_UNIT_VALUE_0_0001 = 4
     public const val GRAY_RESPONSE_UNIT_VALUE_0_00001 = 5
 
-    public val TIFF_TAG_GRAY_RESPONSE_CURVE = TagInfoShorts(
+    public val TIFF_TAG_GRAY_RESPONSE_CURVE: TagInfoShorts = TagInfoShorts(
         0x123, "GrayResponseCurve", TagInfo.LENGTH_UNKNOWN,
         TIFF_DIRECTORY_IFD0
     )
 
-    public val TIFF_TAG_T4_OPTIONS = TagInfoLong(
+    public val TIFF_TAG_T4_OPTIONS: TagInfoLong = TagInfoLong(
         0x124, "T4Options",
         TIFF_DIRECTORY_IFD0
     )
 
-    public val TIFF_TAG_T6_OPTIONS = TagInfoLong(
+    public val TIFF_TAG_T6_OPTIONS: TagInfoLong = TagInfoLong(
         0x125, "T6Options",
         TIFF_DIRECTORY_IFD0
     )
 
-    public val TIFF_TAG_RESOLUTION_UNIT = TagInfoShort(
+    public val TIFF_TAG_RESOLUTION_UNIT: TagInfoShort = TagInfoShort(
         0x128, "ResolutionUnit",
         TIFF_DIRECTORY_IFD0
     )
@@ -307,37 +307,37 @@ public object TiffTag {
     public const val RESOLUTION_UNIT_VALUE_INCHES = 2
     public const val RESOLUTION_UNIT_VALUE_CM = 3
 
-    public val TIFF_TAG_PAGE_NUMBER = TagInfoShorts(
+    public val TIFF_TAG_PAGE_NUMBER: TagInfoShorts = TagInfoShorts(
         0x129, "PageNumber", 2,
         TIFF_DIRECTORY_IFD0
     )
 
-    public val TIFF_TAG_TRANSFER_FUNCTION = TagInfoShorts(
+    public val TIFF_TAG_TRANSFER_FUNCTION: TagInfoShorts = TagInfoShorts(
         0x12D, "TransferFunction", TagInfo.LENGTH_UNKNOWN,
         TIFF_DIRECTORY_IFD0
     )
 
-    public val TIFF_TAG_SOFTWARE = TagInfoAscii(
+    public val TIFF_TAG_SOFTWARE: TagInfoAscii = TagInfoAscii(
         0x131, "Software", TagInfo.LENGTH_UNKNOWN,
         TIFF_DIRECTORY_IFD0
     )
 
-    public val TIFF_TAG_DATE_TIME = TagInfoAscii(
+    public val TIFF_TAG_DATE_TIME: TagInfoAscii = TagInfoAscii(
         0x132, "ModifyDate", 20,
         TIFF_DIRECTORY_IFD0
     )
 
-    public val TIFF_TAG_ARTIST = TagInfoAscii(
+    public val TIFF_TAG_ARTIST: TagInfoAscii = TagInfoAscii(
         0x13B, "Artist", TagInfo.LENGTH_UNKNOWN,
         TIFF_DIRECTORY_IFD0
     )
 
-    public val TIFF_TAG_HOST_COMPUTER = TagInfoAscii(
+    public val TIFF_TAG_HOST_COMPUTER: TagInfoAscii = TagInfoAscii(
         0x13C, "HostComputer", TagInfo.LENGTH_UNKNOWN,
         TIFF_DIRECTORY_IFD0
     )
 
-    public val TIFF_TAG_PREDICTOR = TagInfoShort(
+    public val TIFF_TAG_PREDICTOR: TagInfoShort = TagInfoShort(
         0x13D, "Predictor",
         TIFF_DIRECTORY_IFD0
     )
@@ -346,22 +346,22 @@ public object TiffTag {
     public const val PREDICTOR_VALUE_HORIZONTAL_DIFFERENCING = 2
     public const val PREDICTOR_VALUE_FLOATING_POINT_DIFFERENCING = 3
 
-    public val TIFF_TAG_WHITE_POINT = TagInfoRationals(
+    public val TIFF_TAG_WHITE_POINT: TagInfoRationals = TagInfoRationals(
         0x13E, "WhitePoint", 2,
         TIFF_DIRECTORY_IFD0
     )
 
-    public val TIFF_TAG_PRIMARY_CHROMATICITIES = TagInfoRationals(
+    public val TIFF_TAG_PRIMARY_CHROMATICITIES: TagInfoRationals = TagInfoRationals(
         0x13F, "PrimaryChromaticities", 6,
         TIFF_DIRECTORY_IFD0
     )
 
-    public val TIFF_TAG_COLOR_MAP = TagInfoShorts(
+    public val TIFF_TAG_COLOR_MAP: TagInfoShorts = TagInfoShorts(
         0x140, "ColorMap", TagInfo.LENGTH_UNKNOWN,
         TIFF_DIRECTORY_IFD0
     )
 
-    public val TIFF_TAG_HALFTONE_HINTS = TagInfoShorts(
+    public val TIFF_TAG_HALFTONE_HINTS: TagInfoShorts = TagInfoShorts(
         0x141, "HalftoneHints", 2,
         TIFF_DIRECTORY_IFD0
     )
@@ -370,7 +370,7 @@ public object TiffTag {
      * The tile width in pixels.
      * This is the number of columns in each tile.
      */
-    public val TIFF_TAG_TILE_WIDTH = TagInfoLong(
+    public val TIFF_TAG_TILE_WIDTH: TagInfoLong = TagInfoLong(
         0x142, "TileWidth", TIFF_DIRECTORY_IFD0
     )
 
@@ -378,20 +378,20 @@ public object TiffTag {
      * The tile length (height) in pixels.
      * This is the number of rows in each tile.
      */
-    public val TIFF_TAG_TILE_LENGTH = TagInfoLong(
+    public val TIFF_TAG_TILE_LENGTH: TagInfoLong = TagInfoLong(
         0x143, "TileLength", TIFF_DIRECTORY_IFD0
     )
 
-    public val TIFF_TAG_TILE_OFFSETS = TagInfoLongs(
+    public val TIFF_TAG_TILE_OFFSETS: TagInfoLongs = TagInfoLongs(
         0x144, "TileOffsets", TagInfo.LENGTH_UNKNOWN,
         TIFF_DIRECTORY_IFD0, true
     )
 
-    public val TIFF_TAG_TILE_BYTE_COUNTS = TagInfoLong(
+    public val TIFF_TAG_TILE_BYTE_COUNTS: TagInfoLong = TagInfoLong(
         0x145, "TileByteCounts", TIFF_DIRECTORY_IFD0
     )
 
-    public val TIFF_TAG_INK_SET = TagInfoShort(
+    public val TIFF_TAG_INK_SET: TagInfoShort = TagInfoShort(
         0x14C, "InkSet",
         TIFF_DIRECTORY_IFD0
     )
@@ -399,12 +399,12 @@ public object TiffTag {
     public const val INK_SET_VALUE_CMYK = 1
     public const val INK_SET_VALUE_NOT_CMYK = 2
 
-    public val TIFF_TAG_INK_NAMES = TagInfoAscii(
+    public val TIFF_TAG_INK_NAMES: TagInfoAscii = TagInfoAscii(
         0x14D, "InkNames", TagInfo.LENGTH_UNKNOWN,
         TIFF_DIRECTORY_IFD0
     )
 
-    public val TIFF_TAG_NUMBER_OF_INKS = TagInfoShort(
+    public val TIFF_TAG_NUMBER_OF_INKS: TagInfoShort = TagInfoShort(
         0x14E, "NumberOfInks",
         TIFF_DIRECTORY_IFD0
     )
@@ -416,12 +416,12 @@ public object TiffTag {
         0x150, "DotRange", TIFF_DIRECTORY_IFD0
     )
 
-    public val TIFF_TAG_TARGET_PRINTER = TagInfoAscii(
+    public val TIFF_TAG_TARGET_PRINTER: TagInfoAscii = TagInfoAscii(
         0x151, "TargetPrinter", TagInfo.LENGTH_UNKNOWN,
         TIFF_DIRECTORY_IFD0
     )
 
-    public val TIFF_TAG_EXTRA_SAMPLES = TagInfoShorts(
+    public val TIFF_TAG_EXTRA_SAMPLES: TagInfoShorts = TagInfoShorts(
         0x152, "ExtraSamples", TagInfo.LENGTH_UNKNOWN,
         TIFF_DIRECTORY_IFD0
     )
@@ -429,7 +429,7 @@ public object TiffTag {
     public const val EXTRA_SAMPLE_ASSOCIATED_ALPHA = 1
     public const val EXTRA_SAMPLE_UNASSOCIATED_ALPHA = 2
 
-    public val TIFF_TAG_SAMPLE_FORMAT = TagInfoShorts(
+    public val TIFF_TAG_SAMPLE_FORMAT: TagInfoShorts = TagInfoShorts(
         0x153, "SampleFormat", TagInfo.LENGTH_UNKNOWN,
         TIFF_DIRECTORY_IFD0
     )
@@ -444,7 +444,7 @@ public object TiffTag {
     /**
      * This field specifies the minimum sample value.
      */
-    public val TIFF_TAG_SMIN_SAMPLE_VALUE = TagInfoShort(
+    public val TIFF_TAG_SMIN_SAMPLE_VALUE: TagInfoShort = TagInfoShort(
         0x154, "SMinSampleValue",
         TIFF_DIRECTORY_IFD0
     )
@@ -452,17 +452,17 @@ public object TiffTag {
     /**
      * This field specifies the maximum sample value.
      */
-    public val TIFF_TAG_SMAX_SAMPLE_VALUE = TagInfoShort(
+    public val TIFF_TAG_SMAX_SAMPLE_VALUE: TagInfoShort = TagInfoShort(
         0x155, "SMaxSampleValue",
         TIFF_DIRECTORY_IFD0
     )
 
-    public val TIFF_TAG_TRANSFER_RANGE = TagInfoShorts(
+    public val TIFF_TAG_TRANSFER_RANGE: TagInfoShorts = TagInfoShorts(
         0x156, "TransferRange", 6,
         TIFF_DIRECTORY_IFD0
     )
 
-    public val TIFF_TAG_JPEG_PROC = TagInfoShort(
+    public val TIFF_TAG_JPEG_PROC: TagInfoShort = TagInfoShort(
         0x200, "JPEGProc",
         TIFF_DIRECTORY_IFD0
     )
@@ -477,57 +477,57 @@ public object TiffTag {
      * "ThumbnailOffset", "PreviewImageStart", "JpgFromRawStart"
      * and "OtherImageStart".
      */
-    public val TIFF_TAG_JPEG_INTERCHANGE_FORMAT = TagInfoLong(
+    public val TIFF_TAG_JPEG_INTERCHANGE_FORMAT: TagInfoLong = TagInfoLong(
         0x0201, "JPEGInterchangeFormat",
         TIFF_DIRECTORY_IFD0, true
     )
 
-    public val TIFF_TAG_JPEG_INTERCHANGE_FORMAT_LENGTH = TagInfoLong(
+    public val TIFF_TAG_JPEG_INTERCHANGE_FORMAT_LENGTH: TagInfoLong = TagInfoLong(
         0x0202, "JPEGInterchangeFormatLength",
         TIFF_DIRECTORY_IFD0
     )
 
-    public val TIFF_TAG_JPEG_RESTART_INTERVAL = TagInfoShort(
+    public val TIFF_TAG_JPEG_RESTART_INTERVAL: TagInfoShort = TagInfoShort(
         0x203, "JPEGRestartInterval",
         TIFF_DIRECTORY_IFD0
     )
 
-    public val TIFF_TAG_JPEG_LOSSLESS_PREDICTORS = TagInfoShorts(
+    public val TIFF_TAG_JPEG_LOSSLESS_PREDICTORS: TagInfoShorts = TagInfoShorts(
         0x205, "JPEGLosslessPredictors", TagInfo.LENGTH_UNKNOWN,
         TIFF_DIRECTORY_IFD0
     )
 
-    public val TIFF_TAG_JPEG_POINT_TRANSFORMS = TagInfoShorts(
+    public val TIFF_TAG_JPEG_POINT_TRANSFORMS: TagInfoShorts = TagInfoShorts(
         0x206, "JPEGPointTransforms", TagInfo.LENGTH_UNKNOWN,
         TIFF_DIRECTORY_IFD0
     )
 
-    public val TIFF_TAG_JPEG_QTABLES = TagInfoLongs(
+    public val TIFF_TAG_JPEG_QTABLES: TagInfoLongs = TagInfoLongs(
         0x207, "JPEGQTables", TagInfo.LENGTH_UNKNOWN,
         TIFF_DIRECTORY_IFD0
     )
 
-    public val TIFF_TAG_JPEG_DCTABLES = TagInfoLongs(
+    public val TIFF_TAG_JPEG_DCTABLES: TagInfoLongs = TagInfoLongs(
         0x208, "JPEGDCTables", TagInfo.LENGTH_UNKNOWN,
         TIFF_DIRECTORY_IFD0
     )
 
-    public val TIFF_TAG_JPEG_ACTABLES = TagInfoLongs(
+    public val TIFF_TAG_JPEG_ACTABLES: TagInfoLongs = TagInfoLongs(
         0x209, "JPEGACTables", TagInfo.LENGTH_UNKNOWN,
         TIFF_DIRECTORY_IFD0
     )
 
-    public val TIFF_TAG_YCBCR_COEFFICIENTS = TagInfoRationals(
+    public val TIFF_TAG_YCBCR_COEFFICIENTS: TagInfoRationals = TagInfoRationals(
         0x211, "YCbCrCoefficients", 3,
         TIFF_DIRECTORY_IFD0
     )
 
-    public val TIFF_TAG_YCBCR_SUB_SAMPLING = TagInfoShorts(
+    public val TIFF_TAG_YCBCR_SUB_SAMPLING: TagInfoShorts = TagInfoShorts(
         0x212, "YCbCrSubSampling", 2,
         TIFF_DIRECTORY_IFD0
     )
 
-    public val TIFF_TAG_YCBCR_POSITIONING = TagInfoShort(
+    public val TIFF_TAG_YCBCR_POSITIONING: TagInfoShort = TagInfoShort(
         0x213, "YCbCrPositioning",
         TIFF_DIRECTORY_IFD0
     )
@@ -535,11 +535,11 @@ public object TiffTag {
     public const val YCB_CR_POSITIONING_VALUE_CENTERED = 1
     public const val YCB_CR_POSITIONING_VALUE_CO_SITED = 2
 
-    public val TIFF_TAG_REFERENCE_BLACK_WHITE = TagInfoLongs(
+    public val TIFF_TAG_REFERENCE_BLACK_WHITE: TagInfoLongs = TagInfoLongs(
         0x214, "ReferenceBlackWhite", TagInfo.LENGTH_UNKNOWN, TIFF_DIRECTORY_IFD0
     )
 
-    public val TIFF_TAG_COPYRIGHT = TagInfoAscii(
+    public val TIFF_TAG_COPYRIGHT: TagInfoAscii = TagInfoAscii(
         0x8298, "Copyright", TagInfo.LENGTH_UNKNOWN, TIFF_DIRECTORY_IFD0
     )
 
