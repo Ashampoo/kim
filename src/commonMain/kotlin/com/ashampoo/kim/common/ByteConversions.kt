@@ -323,15 +323,12 @@ private fun ByteArray.toDouble(offset: Int, byteOrder: ByteOrder): Double {
     return Double.fromBits(bits)
 }
 
-internal fun ByteArray.toDoubles(byteOrder: ByteOrder): DoubleArray =
-    this.toDoubles(0, size, byteOrder)
+internal fun ByteArray.toDoubles(byteOrder: ByteOrder): DoubleArray {
 
-private fun ByteArray.toDoubles(offset: Int = 0, length: Int, byteOrder: ByteOrder): DoubleArray {
-
-    val result = DoubleArray(length / 8)
+    val result = DoubleArray(size / 8)
 
     repeat(result.size) { i ->
-        result[i] = toDouble(offset + 8 * i, byteOrder)
+        result[i] = toDouble(8 * i, byteOrder)
     }
 
     return result
