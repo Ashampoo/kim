@@ -231,15 +231,8 @@ private fun RationalNumber.toBytes(byteOrder: ByteOrder, result: ByteArray, offs
     }
 }
 
-internal fun ByteArray.toShorts(byteOrder: ByteOrder): ShortArray {
-
-    val result = ShortArray(size / 2)
-
-    for (i in result.indices)
-        result[i] = toUInt16(2 * i, byteOrder).toShort()
-
-    return result
-}
+internal fun ByteArray.toShorts(byteOrder: ByteOrder): ShortArray =
+    ShortArray(size / 2) { i -> toUInt16(2 * i, byteOrder).toShort() }
 
 internal fun ByteArray.toUInt16(byteOrder: ByteOrder): Int =
     toUInt16(0, byteOrder)
@@ -350,7 +343,7 @@ private fun ByteArray.toDouble(offset: Int, byteOrder: ByteOrder): Double {
 internal fun ByteArray.toDoubles(byteOrder: ByteOrder): DoubleArray =
     this.toDoubles(0, size, byteOrder)
 
-private fun ByteArray.toDoubles(offset: Int, length: Int, byteOrder: ByteOrder): DoubleArray {
+private fun ByteArray.toDoubles(offset: Int = 0, length: Int, byteOrder: ByteOrder): DoubleArray {
 
     val result = DoubleArray(length / 8)
 
