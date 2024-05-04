@@ -414,8 +414,9 @@ public class TiffOutputDirectory(
 
         var nextDirectoryOffset = 0
 
-        if (nextDirectory != null)
-            nextDirectoryOffset = nextDirectory!!.offset
+        nextDirectory?.let {
+            nextDirectoryOffset = it.offset
+        }
 
         if (nextDirectoryOffset == UNDEFINED_VALUE)
             binaryByteWriter.write4Bytes(0)
