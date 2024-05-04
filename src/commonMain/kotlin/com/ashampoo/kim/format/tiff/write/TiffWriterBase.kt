@@ -156,9 +156,7 @@ public abstract class TiffWriterBase(
         }
 
         val rootDirectory = directoryTypeMap[TiffConstants.TIFF_DIRECTORY_TYPE_IFD0]
-
-        if (rootDirectory == null)
-            throw ImageWriteException("Root directory is missing.")
+            ?: throw ImageWriteException("Root directory is missing.")
 
         if (interoperabilityDirectory == null && interoperabilityDirectoryOffsetField != null)
             throw ImageWriteException(

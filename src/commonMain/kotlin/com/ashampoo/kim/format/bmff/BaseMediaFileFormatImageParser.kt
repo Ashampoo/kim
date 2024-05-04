@@ -61,9 +61,7 @@ public object BaseMediaFileFormatImageParser : ImageParser {
             throw ImageReadException("Illegal ISOBMFF: Has no boxes.")
 
         val fileTypeBox = allBoxes.filterIsInstance<FileTypeBox>().firstOrNull()
-
-        if (fileTypeBox == null)
-            throw ImageReadException("Illegal ISOBMFF: Has no 'ftyp' Box.")
+            ?: throw ImageReadException("Illegal ISOBMFF: Has no 'ftyp' Box.")
 
         /**
          * Handle JPEG XL
@@ -74,9 +72,7 @@ public object BaseMediaFileFormatImageParser : ImageParser {
             return JxlReader.createMetadata(allBoxes)
 
         val metaBox = allBoxes.filterIsInstance<MetaBox>().firstOrNull()
-
-        if (metaBox == null)
-            throw ImageReadException("Illegal ISOBMFF: Has no 'meta' Box.")
+            ?: throw ImageReadException("Illegal ISOBMFF: Has no 'meta' Box.")
 
         val metadataOffsets = metaBox.findMetadataOffsets()
 

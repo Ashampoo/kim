@@ -28,15 +28,8 @@ import com.ashampoo.kim.output.ByteArrayByteWriter
  * Java these functions are designed as extension functions.
  */
 
-internal fun ByteReader.readByte(fieldName: String): Byte {
-
-    val byte = readByte()
-
-    if (byte == null)
-        throw ImageReadException("Couldn't read byte for $fieldName")
-
-    return byte
-}
+internal fun ByteReader.readByte(fieldName: String): Byte =
+    readByte() ?: throw ImageReadException("Couldn't read byte for $fieldName")
 
 internal fun ByteReader.readBytes(fieldName: String, count: Int): ByteArray {
 
@@ -150,9 +143,7 @@ internal fun ByteReader.readAndVerifyBytes(fieldName: String, expectedBytes: Byt
     for (index in expectedBytes.indices) {
 
         val byte = readByte()
-
-        if (byte == null)
-            throw ImageReadException("Unexpected EOF for $fieldName")
+            ?: throw ImageReadException("Unexpected EOF for $fieldName")
 
         if (byte != expectedBytes[index])
             throw ImageReadException("Byte $index is different by reading $fieldName: ${byte.toHex()}")
