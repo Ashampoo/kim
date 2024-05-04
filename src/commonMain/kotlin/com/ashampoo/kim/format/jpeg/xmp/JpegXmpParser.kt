@@ -21,7 +21,7 @@ import com.ashampoo.kim.common.slice
 import com.ashampoo.kim.common.startsWith
 import com.ashampoo.kim.format.jpeg.JpegConstants
 
-object JpegXmpParser {
+internal object JpegXmpParser {
 
     fun isXmpJpegSegment(segmentData: ByteArray): Boolean =
         segmentData.startsWith(JpegConstants.XMP_IDENTIFIER)

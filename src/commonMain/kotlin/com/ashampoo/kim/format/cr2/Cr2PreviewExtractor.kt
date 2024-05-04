@@ -22,7 +22,7 @@ import com.ashampoo.kim.format.tiff.TiffContents
 import com.ashampoo.kim.format.tiff.constant.ExifTag
 import com.ashampoo.kim.input.RandomAccessByteReader
 
-object Cr2PreviewExtractor : TiffPreviewExtractor {
+public object Cr2PreviewExtractor : TiffPreviewExtractor {
 
     @Throws(ImageReadException::class)
     override fun extractPreviewImage(

@@ -36,11 +36,12 @@ import com.ashampoo.kim.format.tiff.write.TiffWriterLossy
 import com.ashampoo.kim.input.ByteReader
 import com.ashampoo.kim.output.ByteArrayByteWriter
 import com.ashampoo.kim.output.ByteWriter
+import kotlin.jvm.JvmStatic
 
 /**
  * Interface for Exif write/update/remove functionality for Jpeg/JFIF images.
  */
-object JpegRewriter {
+public object JpegRewriter {
 
     private fun readSegments(byteReader: ByteReader): JFIFPieces {
 
@@ -106,7 +107,8 @@ object JpegRewriter {
         return mergedSegments
     }
 
-    fun updateExifMetadataLossless(byteReader: ByteReader, byteWriter: ByteWriter, outputSet: TiffOutputSet) {
+    @JvmStatic
+    public fun updateExifMetadataLossless(byteReader: ByteReader, byteWriter: ByteWriter, outputSet: TiffOutputSet) {
 
         val (oldSegments, segmentPieces) = readSegments(byteReader)
 
@@ -114,7 +116,7 @@ object JpegRewriter {
             oldSegments.filterNot { piece -> piece is JFIFPieceSegment && piece.isExifSegment() }
 
         val exifSegmentPieces =
-            segmentPieces.filterIsInstance<JFIFPieceSegment>().filter { it.isExifSegment() }
+            segmentPieces.filterIsInstance<JFIFPieceSegment>().filter(JFIFPieceSegment::isExifSegment)
 
         val writer: TiffWriterBase
 
@@ -136,6 +138,7 @@ object JpegRewriter {
         writeSegmentsReplacingExif(byteWriter, oldSegmentsWithoutExif, newBytes)
     }
 
+    @JvmStatic
     private fun writeSegmentsReplacingExif(
         byteWriter: ByteWriter,
         oldSegments: List<JFIFPiece>,
@@ -223,7 +226,8 @@ object JpegRewriter {
      * Reads a JPEG image, replaces the IPTC data in the App13 segment, but leaves the other
      * data in that segment (if present) unchanged and writes the result to a stream.
      */
-    fun writeIPTC(byteReader: ByteReader, byteWriter: ByteWriter, metadata: IptcMetadata) {
+    @JvmStatic
+    public fun writeIPTC(byteReader: ByteReader, byteWriter: ByteWriter, metadata: IptcMetadata) {
 
         val oldPieces = readSegments(byteReader).allPieces
 
@@ -254,9 +258,10 @@ object JpegRewriter {
             piece.write(byteWriter)
     }
 
-    fun updateXmpXml(byteReader: ByteReader, byteWriter: ByteWriter, xmpXml: String) {
+    @JvmStatic
+    public fun updateXmpXml(byteReader: ByteReader, byteWriter: ByteWriter, xmpXml: String) {
 
-        val (allPieces) = readSegments(byteReader)
+        val (allPieces, _) = readSegments(byteReader)
 
         val piecesWithoutXmpSegments =
             allPieces.filterNot { piece -> piece is JFIFPieceSegment && piece.isXmpSegment() }

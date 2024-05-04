@@ -49,7 +49,7 @@ private const val UNKNOWN_CHAR_BYTE: Byte = 0X3F.toByte()
  *     charset = Charsets.ISO_8859_1
  * )
  */
-actual fun ByteArray.decodeLatin1BytesToString(): String =
+internal actual fun ByteArray.decodeLatin1BytesToString(): String =
     buildString {
         for (char in this@decodeLatin1BytesToString)
             append(latin1CharArray[char.toUInt8()])
@@ -60,5 +60,5 @@ actual fun ByteArray.decodeLatin1BytesToString(): String =
  *
  * this.toByteArray(Charsets.ISO_8859_1)
  */
-actual fun String.encodeToLatin1Bytes(): ByteArray =
+internal actual fun String.encodeToLatin1Bytes(): ByteArray =
     map { charToIndexMap[it]?.toByte() ?: UNKNOWN_CHAR_BYTE }.toByteArray()

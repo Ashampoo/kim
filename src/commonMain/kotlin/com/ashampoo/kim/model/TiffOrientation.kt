@@ -16,7 +16,9 @@
 package com.ashampoo.kim.model
 
 @Suppress("MagicNumber")
-enum class TiffOrientation(val value: Int) {
+public enum class TiffOrientation(
+    public val value: Int
+) {
 
     /** 1: The image is in its default orientation. */
     STANDARD(1),
@@ -43,7 +45,7 @@ enum class TiffOrientation(val value: Int) {
     ROTATE_LEFT(8);
 
     /** Returns the orientation after rotating the image to the left. */
-    fun rotateLeft(): TiffOrientation = when (this) {
+    public fun rotateLeft(): TiffOrientation = when (this) {
         STANDARD -> ROTATE_LEFT
         MIRROR_HORIZONTAL -> MIRROR_HORIZONTAL_AND_ROTATE_LEFT
         UPSIDE_DOWN -> ROTATE_RIGHT
@@ -55,7 +57,7 @@ enum class TiffOrientation(val value: Int) {
     }
 
     /** Returns the orientation after rotating the image to the right. */
-    fun rotateRight(): TiffOrientation = when (this) {
+    public fun rotateRight(): TiffOrientation = when (this) {
         STANDARD -> ROTATE_RIGHT
         MIRROR_HORIZONTAL -> MIRROR_HORIZONTAL_AND_ROTATE_RIGHT
         UPSIDE_DOWN -> ROTATE_LEFT
@@ -67,7 +69,7 @@ enum class TiffOrientation(val value: Int) {
     }
 
     /** Returns the orientation after flipping the image horizontally. */
-    fun flipHorizontally(): TiffOrientation = when (this) {
+    public fun flipHorizontally(): TiffOrientation = when (this) {
         STANDARD -> MIRROR_HORIZONTAL
         MIRROR_HORIZONTAL -> STANDARD
         UPSIDE_DOWN -> MIRROR_VERTICAL
@@ -79,7 +81,7 @@ enum class TiffOrientation(val value: Int) {
     }
 
     /** Returns the orientation after flipping the image vertically. */
-    fun flipVertically(): TiffOrientation = when (this) {
+    public fun flipVertically(): TiffOrientation = when (this) {
         STANDARD -> MIRROR_VERTICAL
         MIRROR_HORIZONTAL -> UPSIDE_DOWN
         UPSIDE_DOWN -> MIRROR_HORIZONTAL
@@ -90,10 +92,10 @@ enum class TiffOrientation(val value: Int) {
         ROTATE_LEFT -> MIRROR_HORIZONTAL_AND_ROTATE_LEFT
     }
 
-    companion object {
+    public companion object {
 
         /** Returns the TiffOrientation enum value that corresponds to the given integer value. */
-        fun of(value: Int?): TiffOrientation? = when (value) {
+        public fun of(value: Int?): TiffOrientation? = when (value) {
             1 -> STANDARD
             2 -> MIRROR_HORIZONTAL
             3 -> UPSIDE_DOWN

@@ -15,6 +15,6 @@
  */
 package com.ashampoo.kim.common
 
-expect fun compress(input: String): ByteArray
+internal expect fun compress(input: String): ByteArray
 
-expect fun decompress(byteArray: ByteArray): String
+internal expect fun decompress(byteArray: ByteArray): String

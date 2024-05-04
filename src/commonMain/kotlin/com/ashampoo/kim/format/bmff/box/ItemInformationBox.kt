@@ -21,24 +21,28 @@ import com.ashampoo.kim.format.bmff.BMFFConstants.BMFF_BYTE_ORDER
 import com.ashampoo.kim.format.bmff.BoxReader
 import com.ashampoo.kim.format.bmff.BoxType
 import com.ashampoo.kim.input.ByteArrayByteReader
+import com.ashampoo.kim.input.read2BytesAsInt
+import com.ashampoo.kim.input.read4BytesAsInt
+import com.ashampoo.kim.input.readByteAsInt
+import com.ashampoo.kim.input.readBytes
 
 /**
  * EIC/ISO 14496-12 iinf box
  */
-class ItemInformationBox(
+public class ItemInformationBox(
     offset: Long,
     size: Long,
     largeSize: Long?,
     payload: ByteArray
 ) : Box(BoxType.IINF, offset, size, largeSize, payload), BoxContainer {
 
-    val version: Int
+    public val version: Int
 
-    val flags: ByteArray
+    public val flags: ByteArray
 
-    val entryCount: Int
+    public val entryCount: Int
 
-    val map: Map<Int, ItemInfoEntryBox>
+    public val map: Map<Int, ItemInfoEntryBox>
 
     override val boxes: List<Box>
 
@@ -50,10 +54,10 @@ class ItemInformationBox(
 
         flags = byteReader.readBytes("flags", 3)
 
-        if (version == 0)
-            entryCount = byteReader.read2BytesAsInt("entryCount", BMFF_BYTE_ORDER)
+        entryCount = if (version == 0)
+            byteReader.read2BytesAsInt("entryCount", BMFF_BYTE_ORDER)
         else
-            entryCount = byteReader.read4BytesAsInt("entryCount", BMFF_BYTE_ORDER)
+            byteReader.read4BytesAsInt("entryCount", BMFF_BYTE_ORDER)
 
         boxes = BoxReader.readBoxes(
             byteReader = byteReader,
@@ -68,7 +72,7 @@ class ItemInformationBox(
 
             box as ItemInfoEntryBox
 
-            map.put(box.itemId, box)
+            map[box.itemId] = box
         }
 
         this.map = map

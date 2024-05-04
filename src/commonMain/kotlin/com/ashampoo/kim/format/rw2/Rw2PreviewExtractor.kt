@@ -20,7 +20,7 @@ import com.ashampoo.kim.format.tiff.TiffContents
 import com.ashampoo.kim.format.tiff.constant.TiffTag
 import com.ashampoo.kim.input.RandomAccessByteReader
 
-object Rw2PreviewExtractor : TiffPreviewExtractor {
+public object Rw2PreviewExtractor : TiffPreviewExtractor {
 
     override fun extractPreviewImage(
         tiffContents: TiffContents,

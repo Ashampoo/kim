@@ -16,7 +16,7 @@
  */
 package com.ashampoo.kim.format.jpeg.iptc
 
-object IptcConstants {
+internal object IptcConstants {
     const val IPTC_NON_EXTENDED_RECORD_MAXIMUM_SIZE = 32_767
     const val IMAGE_RESOURCE_BLOCK_PHOTOSHOP2_INFO = 0x03e8
     const val IMAGE_RESOURCE_BLOCK_MACINTOSH_PRINT_INFO = 0x03e9

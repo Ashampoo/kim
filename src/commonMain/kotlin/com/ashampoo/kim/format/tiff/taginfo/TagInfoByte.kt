@@ -20,15 +20,15 @@ import com.ashampoo.kim.format.tiff.constant.TiffDirectoryType
 import com.ashampoo.kim.format.tiff.fieldtype.FieldType
 import com.ashampoo.kim.format.tiff.fieldtype.FieldTypeByte
 
-open class TagInfoByte : TagInfo {
+public open class TagInfoByte : TagInfo {
 
-    constructor(
+    public constructor(
         tag: Int,
         name: String,
         directoryType: TiffDirectoryType?
     ) : super(tag, name, FieldTypeByte, 1, directoryType)
 
-    constructor(
+    public constructor(
         tag: Int,
         name: String,
         fieldType: FieldType<out Any>,

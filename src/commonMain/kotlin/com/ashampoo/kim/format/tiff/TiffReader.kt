@@ -37,13 +37,19 @@ import com.ashampoo.kim.format.tiff.taginfo.TagInfoLongs
 import com.ashampoo.kim.input.ByteArrayByteReader
 import com.ashampoo.kim.input.ByteReader
 import com.ashampoo.kim.input.RandomAccessByteReader
+import com.ashampoo.kim.input.read2BytesAsInt
+import com.ashampoo.kim.input.read4BytesAsInt
+import com.ashampoo.kim.input.readByte
+import com.ashampoo.kim.input.readByteAsInt
+import com.ashampoo.kim.input.readBytes
+import com.ashampoo.kim.input.skipBytes
 import com.ashampoo.kim.output.ByteArrayByteWriter
 import kotlin.jvm.JvmStatic
 
 @Suppress("TooManyFunctions")
-object TiffReader {
+public object TiffReader {
 
-    const val NIKON_MAKER_NOTE_SIGNATURE = "Nikon\u0000"
+    internal const val NIKON_MAKER_NOTE_SIGNATURE = "Nikon\u0000"
 
     private val offsetFields = listOf(
         ExifTag.EXIF_TAG_EXIF_OFFSET,
@@ -64,7 +70,7 @@ object TiffReader {
      * the EXIF bytes in JPG, which are limited to 64 KB.
      */
     @JvmStatic
-    fun read(exifBytes: ByteArray): TiffContents =
+    public fun read(exifBytes: ByteArray): TiffContents =
         read(ByteArrayByteReader(exifBytes))
 
     /**
@@ -76,7 +82,7 @@ object TiffReader {
      *                           For normal reading of RAW metadata this consumes a lot of memory.
      */
     @JvmStatic
-    fun read(
+    public fun read(
         byteReader: RandomAccessByteReader,
         readTiffImageBytes: Boolean = false
     ): TiffContents {

@@ -15,30 +15,30 @@
  */
 package com.ashampoo.kim.model
 
-const val REJECTED_VALUE: Int = -1
-const val UNRATED_VALUE: Int = 0
-const val ONE_STAR_VALUE: Int = 1
-const val TWO_STARS_VALUE: Int = 2
-const val THREE_STARS_VALUE: Int = 3
-const val FOUR_STARS_VALUE: Int = 4
-const val FIVE_STARS_VALUE: Int = 5
+private const val REJECTED_VALUE: Int = -1
+private const val UNRATED_VALUE: Int = 0
+private const val ONE_STAR_VALUE: Int = 1
+private const val TWO_STARS_VALUE: Int = 2
+private const val THREE_STARS_VALUE: Int = 3
+private const val FOUR_STARS_VALUE: Int = 4
+private const val FIVE_STARS_VALUE: Int = 5
 
-const val REJECTED_STRING: String = "-----"
-const val UNRATED_STRING: String = "☆☆☆☆☆"
-const val ONE_STAR_STRING: String = "★☆☆☆☆"
-const val TWO_STARS_STRING: String = "★★☆☆☆"
-const val THREE_STARS_STRING: String = "★★★☆☆"
-const val FOUR_STARS_STRING: String = "★★★★☆"
-const val FIVE_STARS_STRING: String = "★★★★★"
+private const val REJECTED_STRING: String = "-----"
+private const val UNRATED_STRING: String = "☆☆☆☆☆"
+private const val ONE_STAR_STRING: String = "★☆☆☆☆"
+private const val TWO_STARS_STRING: String = "★★☆☆☆"
+private const val THREE_STARS_STRING: String = "★★★☆☆"
+private const val FOUR_STARS_STRING: String = "★★★★☆"
+private const val FIVE_STARS_STRING: String = "★★★★★"
 
 /**
  * This represents the XMP exif:Rating property,
  * which is a 5-star-system with 0 for unrated
  * and -1 for rejected images.
  */
-enum class PhotoRating(
-    val value: Int,
-    val string: String
+public enum class PhotoRating(
+    public val value: Int,
+    public val string: String
 ) {
 
     REJECTED(REJECTED_VALUE, REJECTED_STRING),
@@ -49,12 +49,12 @@ enum class PhotoRating(
     FOUR_STARS(FOUR_STARS_VALUE, FOUR_STARS_STRING),
     FIVE_STARS(FIVE_STARS_VALUE, FIVE_STARS_STRING);
 
-    companion object {
+    public companion object {
 
-        val validIntRange: IntRange = REJECTED.value..FIVE_STARS.value
+        public val validIntRange: IntRange = REJECTED.value..FIVE_STARS.value
 
         /* **Note:** Swift problems if parameter value is of type Int? */
-        fun of(value: Int): PhotoRating? = when (value) {
+        public fun of(value: Int): PhotoRating? = when (value) {
             REJECTED_VALUE -> REJECTED
             UNRATED_VALUE -> UNRATED
             ONE_STAR_VALUE -> ONE_STAR
@@ -65,7 +65,7 @@ enum class PhotoRating(
             else -> null
         }
 
-        fun of(value: String?): PhotoRating? = when (value) {
+        public fun of(value: String?): PhotoRating? = when (value) {
             "-1" -> REJECTED
             "0" -> UNRATED
             "1" -> ONE_STAR

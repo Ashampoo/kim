@@ -15,65 +15,14 @@
  */
 package com.ashampoo.kim.output
 
-import com.ashampoo.kim.common.ByteOrder
 import com.ashampoo.kim.input.Closeable
 
-interface ByteWriter : Closeable {
+public interface ByteWriter : Closeable {
 
-    fun write(byte: Int)
+    public fun write(byte: Int)
 
-    fun write(byteArray: ByteArray)
+    public fun write(byteArray: ByteArray)
 
-    fun flush()
+    public fun flush()
 
-    @Suppress("MagicNumber")
-    fun writeInt(
-        value: Int,
-        byteOrder: ByteOrder
-    ) {
-
-        if (byteOrder == ByteOrder.BIG_ENDIAN) {
-
-            write(0xFF and (value shr 24))
-            write(0xFF and (value shr 16))
-            write(0xFF and (value shr 8))
-            write(0xFF and (value shr 0))
-
-        } else {
-
-            write(0xFF and (value shr 0))
-            write(0xFF and (value shr 8))
-            write(0xFF and (value shr 16))
-            write(0xFF and (value shr 24))
-        }
-    }
-
-    @Suppress("MagicNumber")
-    fun writeLong(
-        value: Long,
-        byteOrder: ByteOrder
-    ) {
-        if (byteOrder == ByteOrder.BIG_ENDIAN) {
-
-            write(0xFF and (value shr 56).toInt())
-            write(0xFF and (value shr 48).toInt())
-            write(0xFF and (value shr 40).toInt())
-            write(0xFF and (value shr 32).toInt())
-            write(0xFF and (value shr 24).toInt())
-            write(0xFF and (value shr 16).toInt())
-            write(0xFF and (value shr 8).toInt())
-            write(0xFF and value.toInt())
-
-        } else {
-
-            write(0xFF and value.toInt())
-            write(0xFF and (value shr 8).toInt())
-            write(0xFF and (value shr 16).toInt())
-            write(0xFF and (value shr 24).toInt())
-            write(0xFF and (value shr 32).toInt())
-            write(0xFF and (value shr 40).toInt())
-            write(0xFF and (value shr 48).toInt())
-            write(0xFF and (value shr 56).toInt())
-        }
-    }
 }

@@ -19,7 +19,7 @@ package com.ashampoo.kim.format.tiff.write
 /**
  * This class combines an Directory like the GPS directory with it's offset value.
  */
-data class TiffOffsetItem(
+public data class TiffOffsetItem(
     val outputItem: TiffOutputItem,
     val outputField: TiffOutputField
 )

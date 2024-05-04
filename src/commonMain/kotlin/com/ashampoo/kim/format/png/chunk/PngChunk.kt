@@ -19,16 +19,16 @@ package com.ashampoo.kim.format.png.chunk
 import com.ashampoo.kim.format.png.PngChunkType
 
 @Suppress("MagicNumber")
-open class PngChunk(
-    val type: PngChunkType,
-    val bytes: ByteArray,
-    val crc: Int
+public open class PngChunk(
+    public val type: PngChunkType,
+    public val bytes: ByteArray,
+    public val crc: Int
 ) {
 
-    val ancillary: Boolean
-    val isPrivate: Boolean
-    val reserved: Boolean
-    val safeToCopy: Boolean
+    public val ancillary: Boolean
+    public val isPrivate: Boolean
+    public val reserved: Boolean
+    public val safeToCopy: Boolean
 
     init {
 
@@ -52,7 +52,7 @@ open class PngChunk(
         safeToCopy = propertyBits[3]
     }
 
-    override fun toString() =
+    override fun toString(): String =
         "PngChunk ${type.name} " +
             "(${bytes.size} bytes, " +
             (if (ancillary) "ancillary" else "critical") + ", " +

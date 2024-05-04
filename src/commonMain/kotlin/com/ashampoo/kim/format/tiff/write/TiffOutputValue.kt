@@ -20,7 +20,7 @@ import com.ashampoo.kim.common.ImageWriteException
 import com.ashampoo.kim.common.toHex
 import com.ashampoo.kim.output.BinaryByteWriter
 
-class TiffOutputValue internal constructor(
+public class TiffOutputValue internal constructor(
     private val description: String,
     private val bytes: ByteArray
 ) : TiffOutputItem {
@@ -31,7 +31,7 @@ class TiffOutputValue internal constructor(
     override fun getItemLength(): Int =
         bytes.size
 
-    fun updateValue(bytes: ByteArray) {
+    public fun updateValue(bytes: ByteArray) {
 
         if (this.bytes.size != bytes.size)
             throw ImageWriteException("Updated data size mismatch: ${this.bytes.size} != ${bytes.size}")
@@ -39,7 +39,7 @@ class TiffOutputValue internal constructor(
         bytes.copyInto(this.bytes)
     }
 
-    override fun writeItem(binaryByteWriter: BinaryByteWriter) =
+    override fun writeItem(binaryByteWriter: BinaryByteWriter): Unit =
         binaryByteWriter.write(bytes)
 
     override fun toString(): String =

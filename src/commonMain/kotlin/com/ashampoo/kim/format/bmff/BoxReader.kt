@@ -31,11 +31,14 @@ import com.ashampoo.kim.format.jxl.box.ExifBox
 import com.ashampoo.kim.format.jxl.box.JxlParticalCodestreamBox
 import com.ashampoo.kim.format.jxl.box.XmlBox
 import com.ashampoo.kim.input.ByteReader
+import com.ashampoo.kim.input.read4BytesAsInt
+import com.ashampoo.kim.input.read8BytesAsLong
+import com.ashampoo.kim.input.readBytes
 
 /**
  * Reads ISOBMFF boxes
  */
-object BoxReader {
+public object BoxReader {
 
     /**
      * @param byteReader The reader as source for the bytes
@@ -43,7 +46,7 @@ object BoxReader {
      * want to stop reading after the meta boxes to prevent reading the whole image data block in.
      * For iPhone HEIC this is possible, but Samsung HEIC has "meta" coming after "mdat"
      */
-    fun readBoxes(
+    public fun readBoxes(
         byteReader: ByteReader,
         stopAfterMetadataRead: Boolean = false,
         positionOffset: Long = 0,
@@ -51,7 +54,7 @@ object BoxReader {
         updatePosition: ((Long) -> Unit)? = null
     ): List<Box> {
 
-        var haveSeenJxlHeaderBox: Boolean = false
+        var haveSeenJxlHeaderBox = false
 
         val boxes = mutableListOf<Box>()
 

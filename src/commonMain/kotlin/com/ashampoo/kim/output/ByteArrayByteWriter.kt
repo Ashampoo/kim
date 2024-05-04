@@ -19,7 +19,7 @@ package com.ashampoo.kim.output
 import com.ashampoo.kim.input.Closeable
 import com.ashampoo.kim.input.DEFAULT_BUFFER_SIZE
 
-class ByteArrayByteWriter : ByteWriter, Closeable {
+public class ByteArrayByteWriter : ByteWriter, Closeable {
 
     private var bytes: ByteArray = ByteArray(DEFAULT_BUFFER_SIZE)
 
@@ -44,7 +44,7 @@ class ByteArrayByteWriter : ByteWriter, Closeable {
         /* Nothing to do */
     }
 
-    fun toByteArray(): ByteArray = bytes.copyOfRange(0, position)
+    public fun toByteArray(): ByteArray = bytes.copyOfRange(0, position)
 
     private fun ensureCapacity(requiredCapacity: Int) {
 

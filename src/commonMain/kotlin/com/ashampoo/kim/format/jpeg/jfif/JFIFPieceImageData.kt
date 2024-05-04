@@ -18,7 +18,7 @@ package com.ashampoo.kim.format.jpeg.jfif
 
 import com.ashampoo.kim.output.ByteWriter
 
-class JFIFPieceImageData(
+internal class JFIFPieceImageData(
     private val markerBytes: ByteArray,
     private val imageData: ByteArray
 ) : JFIFPiece {

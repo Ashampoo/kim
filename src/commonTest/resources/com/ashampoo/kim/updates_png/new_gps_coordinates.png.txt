@@ -119,7 +119,7 @@ Little-endian (Intel, II)
 0000001286 0x00d0 Unknown = 0
 0000001298 0x0001 CanonCameraSettings = [48 shorts]
 0000001310 0x0093 Unknown = [33 shorts]
-0000001322 0x00a0 Unknown = [14 shorts]
+0000001322 0x00a0 Unknown = [28, 0, 0, -1, -1, -1, -1, -1, -1, -1, 132, 0, 9, -1]
 0000001334 0x0004 Unknown = [34 shorts]
 0000001346 0x0035 Unknown = [16, 0, 32766, 0]
 
@@ -133,7 +133,7 @@ Time Created (60) = '15:28:58-15:28'
 
 ---- XMP ----
 <?xpacket begin="﻿" id="W5M0MpCehiHzreSzNTczkc9d"?>
-<x:xmpmeta xmlns:x="adobe:ns:meta/" x:xmptk="Ashampoo XMP Core 1.2.2">
+<x:xmpmeta xmlns:x="adobe:ns:meta/" x:xmptk="Ashampoo XMP Core 1.3.0">
   <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
     <rdf:Description rdf:about=""
         xmlns:GIMP="http://www.gimp.org/xmp/"

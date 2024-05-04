@@ -19,14 +19,15 @@ package com.ashampoo.kim.format.png.chunk
 import com.ashampoo.kim.format.png.PngChunkType
 import com.ashampoo.kim.format.png.PngConstants.PNG_BYTE_ORDER
 import com.ashampoo.kim.input.ByteArrayByteReader
+import com.ashampoo.kim.input.read4BytesAsInt
 import com.ashampoo.kim.model.ImageSize
 
-class PngChunkIhdr(
+public class PngChunkIhdr(
     bytes: ByteArray,
     crc: Int
 ) : PngChunk(PngChunkType.IHDR, bytes, crc) {
 
-    val imageSize: ImageSize
+    public val imageSize: ImageSize
 
     init {
 

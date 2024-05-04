@@ -22,17 +22,13 @@ import com.ashampoo.kim.format.bmff.box.Box
 /**
  * JPEG XL brob box for brotli compressed Exif or XMP
  */
-class CompressedBox(
+public class CompressedBox(
     offset: Long,
     size: Long,
     largeSize: Long?,
     payload: ByteArray
 ) : Box(BoxType.BROB, offset, size, largeSize, payload) {
 
-    val actualType: BoxType
-
-    init {
-
-        actualType = BoxType.of(payload.take(BMFFConstants.TPYE_LENGTH).toByteArray())
-    }
+    public val actualType: BoxType =
+        BoxType.of(payload.take(BMFFConstants.TPYE_LENGTH).toByteArray())
 }

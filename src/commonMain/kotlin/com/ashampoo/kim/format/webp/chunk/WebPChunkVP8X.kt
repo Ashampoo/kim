@@ -26,15 +26,15 @@ import com.ashampoo.kim.model.ImageSize
  * https://developers.google.com/speed/webp/docs/riff_container#extended_file_format
  */
 @Suppress("MagicNumber")
-class WebPChunkVP8X(
+public class WebPChunkVP8X(
     bytes: ByteArray
 ) : WebPChunk(WebPChunkType.VP8X, bytes), ImageSizeAware {
 
-    val hasIcc: Boolean
-    val hasAlpha: Boolean
-    val hasExif: Boolean
-    val hasXmp: Boolean
-    val hasAnimation: Boolean
+    public val hasIcc: Boolean
+    public val hasAlpha: Boolean
+    public val hasExif: Boolean
+    public val hasXmp: Boolean
+    public val hasAnimation: Boolean
 
     override val imageSize: ImageSize
 
@@ -74,9 +74,9 @@ class WebPChunkVP8X(
             " hasXmp=$hasXmp hasAnimation=$hasAnimation" +
             " imageSize=$imageSize"
 
-    companion object {
+    public companion object {
 
-        fun createBytes(
+        public fun createBytes(
             hasIcc: Boolean,
             hasAlpha: Boolean,
             hasExif: Boolean,

@@ -31,7 +31,7 @@ import platform.posix.perror
 import platform.posix.rewind
 
 @OptIn(UnsafeNumber::class, ExperimentalForeignApi::class)
-fun readFileAsByteArray(filePath: String): ByteArray? = memScoped {
+internal fun readFileAsByteArray(filePath: String): ByteArray? = memScoped {
 
     /* Note: Mode "rb" is for reading binary files. */
     val file: CPointer<FILE>? = fopen(filePath, "rb")

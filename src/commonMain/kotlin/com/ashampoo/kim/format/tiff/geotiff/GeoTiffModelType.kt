@@ -23,9 +23,9 @@ import kotlin.jvm.JvmStatic
  * See http://geotiff.maptools.org/spec/geotiff6.html#6.3.1.1
  */
 @Suppress("MagicNumber")
-enum class GeoTiffModelType(
-    val typeCode: Short,
-    val displayName: String
+public enum class GeoTiffModelType(
+    public val typeCode: Short,
+    public val displayName: String
 ) {
 
     /** Projection Coordinate System */
@@ -40,10 +40,10 @@ enum class GeoTiffModelType(
     /** user-defined */
     USER_DEFINED(32767, "User Defined");
 
-    companion object {
+    public companion object {
 
         @JvmStatic
-        fun of(typeCode: Short): GeoTiffModelType? =
+        public fun of(typeCode: Short): GeoTiffModelType? =
             GeoTiffModelType.entries.firstOrNull { it.typeCode == typeCode }
     }
 }

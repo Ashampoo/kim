@@ -15,14 +15,15 @@
  */
 package com.ashampoo.kim.format.webp.chunk
 
+import com.ashampoo.kim.format.tiff.TiffContents
 import com.ashampoo.kim.format.tiff.TiffReader
 import com.ashampoo.kim.format.webp.WebPChunkType
 
-class WebPChunkExif(
+public class WebPChunkExif(
     bytes: ByteArray
 ) : WebPChunk(WebPChunkType.EXIF, bytes) {
 
     /* Directly parse EXIF to ensure that it's valid. */
-    val tiffContents = TiffReader.read(bytes)
+    public val tiffContents: TiffContents = TiffReader.read(bytes)
 
 }

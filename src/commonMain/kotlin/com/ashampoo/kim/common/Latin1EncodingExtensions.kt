@@ -15,6 +15,6 @@
  */
 package com.ashampoo.kim.common
 
-expect fun ByteArray.decodeLatin1BytesToString(): String
+internal expect fun ByteArray.decodeLatin1BytesToString(): String
 
-expect fun String.encodeToLatin1Bytes(): ByteArray
+internal expect fun String.encodeToLatin1Bytes(): ByteArray

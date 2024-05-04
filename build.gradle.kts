@@ -22,10 +22,10 @@ repositories {
     mavenCentral()
 }
 
-val productName = "Ashampoo Kim"
+val productName: String = "Ashampoo Kim"
 
 val ktorVersion: String = "2.3.10"
-val xmpCoreVersion: String = "1.2.2"
+val xmpCoreVersion: String = "1.3.0"
 val dateTimeVersion: String = "0.5.0"
 val testRessourcesVersion: String = "0.4.0"
 val kotlinxIoVersion: String = "0.3.3"
@@ -114,6 +114,8 @@ dependencies {
 }
 
 kotlin {
+
+    explicitApi()
 
     androidTarget {
 
@@ -333,6 +335,7 @@ kotlin {
         macosArm64Test.dependsOn(this)
     }
 
+    @Suppress("UnusedPrivateMember", "UNUSED_VARIABLE") // False positive
     val jsMain by sourceSets.getting {
 
         dependsOn(commonMain)
@@ -360,7 +363,7 @@ kotlin {
 }
 
 // region Writing version.txt for GitHub Actions
-val writeVersion = tasks.register("writeVersion") {
+val writeVersion: TaskProvider<Task> = tasks.register("writeVersion") {
     doLast {
         File("build/version.txt").writeText(project.version.toString())
     }
@@ -404,7 +407,7 @@ ext["signing.secretKeyRingFile"] = "secring.pgp"
 ext["ossrhUsername"] = System.getenv("OSSRH_USERNAME")
 ext["ossrhPassword"] = System.getenv("OSSRH_PASSWORD")
 
-val javadocJar by tasks.registering(Jar::class) {
+val javadocJar: TaskProvider<Jar> by tasks.registering(Jar::class) {
     archiveClassifier.set("javadoc")
 }
 
@@ -485,7 +488,7 @@ afterEvaluate {
     }
 }
 
-fun getExtraString(name: String) = ext[name]?.toString()
+fun getExtraString(name: String): String? = ext[name]?.toString()
 
 publishing {
     publications {
@@ -515,7 +518,7 @@ publishing {
                 licenses {
                     license {
                         name.set("The Apache License, Version 2.0")
-                        url.set("http://www.apache.org/licenses/LICENSE-2.0.txt")
+                        url.set("https://www.apache.org/licenses/LICENSE-2.0.txt")
                     }
                 }
 

@@ -16,10 +16,10 @@
  */
 package com.ashampoo.kim.format.tiff.constant
 
-enum class TiffDirectoryType(
-    val typeId: Int,
-    val displayName: String,
-    val isImageDirectory: Boolean
+public enum class TiffDirectoryType(
+    public val typeId: Int,
+    public val displayName: String,
+    public val isImageDirectory: Boolean
 ) {
 
     TIFF_DIRECTORY_IFD0(

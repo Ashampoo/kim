@@ -26,15 +26,15 @@ import com.ashampoo.kim.input.ByteReader
 import com.ashampoo.kim.model.ImageFormat
 import kotlin.jvm.JvmStatic
 
-fun interface ImageParser {
+public fun interface ImageParser {
 
     @Throws(ImageReadException::class)
-    fun parseMetadata(byteReader: ByteReader): ImageMetadata
+    public fun parseMetadata(byteReader: ByteReader): ImageMetadata
 
-    companion object {
+    public companion object {
 
         @JvmStatic
-        fun forFormat(imageFormat: ImageFormat): ImageParser? =
+        public fun forFormat(imageFormat: ImageFormat): ImageParser? =
             when (imageFormat) {
 
                 ImageFormat.JPEG -> JpegImageParser

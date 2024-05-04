@@ -32,22 +32,22 @@ import com.ashampoo.kim.format.tiff.constant.TiffConstants.FIELD_TYPE_SRATIONAL_
 import com.ashampoo.kim.format.tiff.constant.TiffConstants.FIELD_TYPE_SSHORT_INDEX
 import com.ashampoo.kim.format.tiff.constant.TiffConstants.FIELD_TYPE_UNDEFINED_INDEX
 
-interface FieldType<T> {
+public interface FieldType<T> {
 
-    val type: Int
+    public val type: Int
 
-    val name: String
+    public val name: String
 
-    val size: Int
+    public val size: Int
 
-    fun getValue(bytes: ByteArray, byteOrder: ByteOrder): T
+    public fun getValue(bytes: ByteArray, byteOrder: ByteOrder): T
 
-    fun writeData(data: Any, byteOrder: ByteOrder): ByteArray
+    public fun writeData(data: Any, byteOrder: ByteOrder): ByteArray
 
-    companion object {
+    public companion object {
 
         @kotlin.jvm.JvmStatic
-        fun getFieldType(type: Int): FieldType<out Any> =
+        public fun getFieldType(type: Int): FieldType<out Any> =
             when (type) {
                 FIELD_TYPE_BYTE_INDEX -> FieldTypeByte
                 FIELD_TYPE_ASCII_INDEX -> FieldTypeAscii

@@ -17,7 +17,7 @@ package com.ashampoo.kim.format.bmff
 
 import com.ashampoo.kim.common.ByteOrder
 
-object BMFFConstants {
+internal object BMFFConstants {
 
     val BMFF_BYTE_ORDER = ByteOrder.BIG_ENDIAN
 

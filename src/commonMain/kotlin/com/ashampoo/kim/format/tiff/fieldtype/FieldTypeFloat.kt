@@ -25,7 +25,7 @@ import com.ashampoo.kim.format.tiff.constant.TiffConstants
 /**
  * Single precision (4-byte) IEEE format.
  */
-object FieldTypeFloat : FieldType<FloatArray> {
+public object FieldTypeFloat : FieldType<FloatArray> {
 
     override val type: Int = TiffConstants.FIELD_TYPE_FLOAT_INDEX
 

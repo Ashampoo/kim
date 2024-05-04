@@ -23,28 +23,30 @@ import com.ashampoo.kim.format.bmff.BMFFConstants
 import com.ashampoo.kim.format.bmff.BoxReader
 import com.ashampoo.kim.format.bmff.BoxType
 import com.ashampoo.kim.input.ByteArrayByteReader
+import com.ashampoo.kim.input.readByteAsInt
+import com.ashampoo.kim.input.readBytes
 
 /**
  * EIC/ISO 14496-12 meta box
  *
  * The Meta Box is a container for several metadata boxes.
  */
-class MetaBox(
+public class MetaBox(
     offset: Long,
     size: Long,
     largeSize: Long?,
     payload: ByteArray
 ) : Box(BoxType.META, offset, size, largeSize, payload), BoxContainer {
 
-    val version: Int
+    public val version: Int
 
-    val flags: ByteArray
+    public val flags: ByteArray
 
     /* Mandatory boxes in META */
-    val handlerReferenceBox: HandlerReferenceBox
-    val primaryItemBox: PrimaryItemBox
-    val itemInfoBox: ItemInformationBox
-    val itemLocationBox: ItemLocationBox
+    public val handlerReferenceBox: HandlerReferenceBox
+    public val primaryItemBox: PrimaryItemBox
+    public val itemInfoBox: ItemInformationBox
+    public val itemLocationBox: ItemLocationBox
 
     override val boxes: List<Box>
 
@@ -70,7 +72,7 @@ class MetaBox(
         itemLocationBox = boxes.find { it.type == BoxType.ILOC } as ItemLocationBox
     }
 
-    fun findMetadataOffsets(): List<MetadataOffset> {
+    public fun findMetadataOffsets(): List<MetadataOffset> {
 
         val offsets = mutableListOf<MetadataOffset>()
 

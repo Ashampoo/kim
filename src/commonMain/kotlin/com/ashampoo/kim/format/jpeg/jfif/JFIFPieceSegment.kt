@@ -22,7 +22,7 @@ import com.ashampoo.kim.format.jpeg.JpegConstants
 import com.ashampoo.kim.format.jpeg.iptc.IptcParser
 import com.ashampoo.kim.output.ByteWriter
 
-open class JFIFPieceSegment(
+internal open class JFIFPieceSegment(
     val marker: Int,
     val markerBytes: ByteArray,
     val segmentLengthBytes: ByteArray,

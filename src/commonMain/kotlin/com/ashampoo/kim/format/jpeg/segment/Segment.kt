@@ -16,7 +16,7 @@
  */
 package com.ashampoo.kim.format.jpeg.segment
 
-abstract class Segment(val marker: Int, val length: Int) {
+internal abstract class Segment(val marker: Int, val length: Int) {
 
     abstract fun getDescription(): String
 

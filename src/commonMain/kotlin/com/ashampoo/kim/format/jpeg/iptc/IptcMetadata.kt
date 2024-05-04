@@ -19,13 +19,13 @@ package com.ashampoo.kim.format.jpeg.iptc
 /**
  * IPTC as located in JPEG APP13 segments
  */
-data class IptcMetadata(
+public data class IptcMetadata(
     val records: List<IptcRecord>,
     val rawBlocks: List<IptcBlock>
 ) {
 
     val nonIptcBlocks: List<IptcBlock> by lazy {
-        rawBlocks.filterNot { it.isIPTCBlock() }
+        rawBlocks.filterNot(IptcBlock::isIPTCBlock)
     }
 
     override fun toString(): String {

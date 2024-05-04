@@ -19,21 +19,17 @@ package com.ashampoo.kim.format.jpeg.iptc
 /*
  * Represents an IPTC record, a single key-value pair of Photoshop IPTC data.
  */
-data class IptcRecord(
+public data class IptcRecord(
     val iptcType: IptcType,
     val value: String
-) {
+) : Comparable<IptcRecord> {
 
     override fun toString(): String =
         "$iptcType = '$value\'"
 
-    companion object {
-
-        /**
-         * IPTC records must be written in numerical order.
-         */
-
-        val comparator: Comparator<IptcRecord> =
-            compareBy { -it.iptcType.type }
-    }
+    /**
+     * IPTC records must be written in ascending order of their type.
+     */
+    override fun compareTo(other: IptcRecord): Int =
+        other.iptcType.type - this.iptcType.type
 }

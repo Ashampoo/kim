@@ -19,16 +19,16 @@ package com.ashampoo.kim.format.tiff.taginfo
 import com.ashampoo.kim.format.tiff.constant.TiffDirectoryType
 import com.ashampoo.kim.format.tiff.fieldtype.FieldTypeLong
 
-class TagInfoLongs : TagInfo {
+public class TagInfoLongs : TagInfo {
 
-    constructor(
+    public constructor(
         tag: Int,
         name: String,
         length: Int,
         directoryType: TiffDirectoryType?
     ) : super(tag, name, FieldTypeLong, length, directoryType)
 
-    constructor(
+    public constructor(
         tag: Int,
         name: String,
         length: Int,

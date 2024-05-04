@@ -30,42 +30,42 @@ import com.ashampoo.kim.format.tiff.taginfo.TagInfoGpsText
 /**
  * A TIFF field in a TIFF directory.
  */
-class TiffField(
+public class TiffField(
     /** Offset relative to TIFF header */
-    val offset: Int,
-    val tag: Int,
-    val directoryType: Int,
-    val fieldType: FieldType<out Any>,
-    val count: Int,
+    public val offset: Int,
+    public val tag: Int,
+    public val directoryType: Int,
+    public val fieldType: FieldType<out Any>,
+    public val count: Int,
     /** Set if field has a local value. */
-    val localValue: Int?,
+    public val localValue: Int?,
     /** Set if field has a offset pointer to its value. */
-    val valueOffset: Int?,
-    val valueBytes: ByteArray,
-    val byteOrder: ByteOrder,
-    val sortHint: Int
+    public val valueOffset: Int?,
+    public val valueBytes: ByteArray,
+    public val byteOrder: ByteOrder,
+    public val sortHint: Int
 ) {
 
     /**
      * Returns the offset with padding.
      * Because TIFF files can be as big as 4 GB we need 10 digits to present that.
      */
-    val offsetFormatted: String =
+    public val offsetFormatted: String =
         offset.toString().padStart(10, '0')
 
     /** Return a proper Tag ID like 0x0100 */
-    val tagFormatted: String =
+    public val tagFormatted: String =
         "0x" + tag.toString(HEX_RADIX).padStart(4, '0')
 
     /** TagInfo, if the tag is found in our registry. */
-    val tagInfo: TagInfo? = getTag(directoryType, tag)
+    public val tagInfo: TagInfo? = getTag(directoryType, tag)
 
-    val value: Any = if (tagInfo is TagInfoGpsText)
+    public val value: Any = if (tagInfo is TagInfoGpsText)
         tagInfo.getValue(this)
     else
         fieldType.getValue(this.valueBytes, this.byteOrder)
 
-    val valueDescription: String by lazy {
+    public val valueDescription: String by lazy {
         try {
 
             if (value is ByteArray) {
@@ -141,7 +141,7 @@ class TiffField(
         }
     }
 
-    fun toStringValue(): String {
+    public fun toStringValue(): String {
 
         if (value is List<*>) {
 
@@ -154,12 +154,12 @@ class TiffField(
         }
 
         if (value !is String)
-            throw ImageReadException("Expected String for $tagFormatted, but got: " + value)
+            throw ImageReadException("Expected String for $tagFormatted, but got: $value")
 
         return value
     }
 
-    fun toIntArray(): IntArray {
+    public fun toIntArray(): IntArray {
 
         if (value is Number)
             return intArrayOf(value.toInt())
@@ -181,28 +181,28 @@ class TiffField(
         throw ImageReadException("Can't format value of tag $tagFormatted as int: $value")
     }
 
-    fun toInt(): Int = when (value) {
+    public fun toInt(): Int = when (value) {
         is ByteArray -> value.first().toInt()
         is ShortArray -> value.first().toInt()
-        is IntArray -> value.first().toInt()
+        is IntArray -> value.first()
         else -> (value as Number).toInt()
     }
 
-    fun toShort(): Short = when (value) {
+    public fun toShort(): Short = when (value) {
         is ByteArray -> value.first().toShort()
         is ShortArray -> value.first()
         is IntArray -> value.first().toShort()
         else -> (value as Number).toShort()
     }
 
-    fun toDouble(): Double = when (value) {
+    public fun toDouble(): Double = when (value) {
         is RationalNumbers -> value.values.first().doubleValue()
         is RationalNumber -> value.doubleValue()
         is ByteArray -> value.first().toDouble()
         is ShortArray -> value.first().toDouble()
         is IntArray -> value.first().toDouble()
         is FloatArray -> value.first().toDouble()
-        is DoubleArray -> value.first().toDouble()
+        is DoubleArray -> value.first()
         else -> (value as Number).toDouble()
     }
 
@@ -213,10 +213,10 @@ class TiffField(
     override fun toString(): String =
         "$offsetFormatted $tagFormatted ${tagInfo?.name ?: "Unknown"} = $valueDescription"
 
-    fun createOversizeValueElement(): TiffElement? =
-        valueOffset?.let { OversizeValueElement(it.toInt(), valueBytes.size) }
+    internal fun createOversizeValueElement(): TiffElement? =
+        valueOffset?.let { OversizeValueElement(it, valueBytes.size) }
 
-    inner class OversizeValueElement(offset: Int, length: Int) : TiffElement(
+    internal inner class OversizeValueElement(offset: Int, length: Int) : TiffElement(
         debugDescription = "Value of $tagInfo ($fieldType) @ $offset",
         offset = offset,
         length = length
@@ -226,7 +226,7 @@ class TiffField(
             debugDescription
     }
 
-    companion object {
+    private companion object {
 
         /**
          * Limit to 16 bytes, so that a GeoTiff ModelTransformationTag

@@ -22,9 +22,9 @@ import com.ashampoo.kim.format.ImageFormatMagicNumbers
 import com.ashampoo.kim.format.MetadataExtractor
 import com.ashampoo.kim.input.ByteReader
 
-object PngMetadataExtractor : MetadataExtractor {
+public object PngMetadataExtractor : MetadataExtractor {
 
-    const val INT32_BYTE_SIZE: Int = 4
+    private const val INT32_BYTE_SIZE: Int = 4
 
     /* Length of black pixel chunk data. */
     private val fakeImageDataChunkLength: List<Byte> = listOf(
@@ -63,7 +63,7 @@ object PngMetadataExtractor : MetadataExtractor {
 
         /* Ensure it's actually a PNG. */
         require(magicNumberBytes == ImageFormatMagicNumbers.png) {
-            "PNG magic number mismatch: ${magicNumberBytes.toByteArray().toSingleNumberHexes()}"
+            "PNG magic number mismatch: ${magicNumberBytes.toSingleNumberHexes()}"
         }
 
         bytes.addAll(magicNumberBytes)
@@ -128,7 +128,7 @@ object PngMetadataExtractor : MetadataExtractor {
         return@tryWithImageReadException bytes.toByteArray()
     }
 
-    fun extractExifBytes(reader: ByteReader): ByteArray? {
+    internal fun extractExifBytes(reader: ByteReader): ByteArray? {
 
         val bytes = mutableListOf<Byte>()
 
@@ -136,7 +136,7 @@ object PngMetadataExtractor : MetadataExtractor {
 
         /* Ensure it's actually a PNG. */
         require(magicNumberBytes == ImageFormatMagicNumbers.png) {
-            "PNG magic number mismatch: ${magicNumberBytes.toByteArray().toSingleNumberHexes()}"
+            "PNG magic number mismatch: ${magicNumberBytes.toSingleNumberHexes()}"
         }
 
         bytes.addAll(magicNumberBytes)
@@ -228,7 +228,7 @@ object PngMetadataExtractor : MetadataExtractor {
 }
 
 @Suppress("MagicNumber")
-fun ByteArray.toInt32(): Int =
+private fun ByteArray.toInt32(): Int =
     this[0].toInt() shl 24 and -0x1000000 or
         (this[1].toInt() shl 16 and 0xFF0000) or
         (this[2].toInt() shl 8 and 0xFF00) or

@@ -18,15 +18,15 @@ package com.ashampoo.kim.format.png.chunk
 
 import com.ashampoo.kim.format.png.PngChunkType
 
-abstract class PngTextChunk(
+public abstract class PngTextChunk(
     chunkType: PngChunkType,
     bytes: ByteArray,
     crc: Int
 ) : PngChunk(chunkType, bytes, crc) {
 
-    abstract fun getKeyword(): String
+    public abstract fun getKeyword(): String
 
-    abstract fun getText(): String
+    public abstract fun getText(): String
 
     override fun toString(): String =
         super.toString() + " '" + getKeyword() + "'"

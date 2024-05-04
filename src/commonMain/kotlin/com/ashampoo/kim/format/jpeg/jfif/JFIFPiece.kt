@@ -18,7 +18,7 @@ package com.ashampoo.kim.format.jpeg.jfif
 
 import com.ashampoo.kim.output.ByteWriter
 
-fun interface JFIFPiece {
+internal fun interface JFIFPiece {
 
     fun write(byteWriter: ByteWriter)
 

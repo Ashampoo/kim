@@ -36,13 +36,13 @@ import kotlinx.datetime.toLocalDateTime
 import kotlin.math.abs
 
 @Suppress("TooManyFunctions")
-class TiffOutputSet(
-    val byteOrder: ByteOrder = DEFAULT_TIFF_BYTE_ORDER
+public class TiffOutputSet(
+    public val byteOrder: ByteOrder = DEFAULT_TIFF_BYTE_ORDER
 ) {
 
     private val directories = mutableListOf<TiffOutputDirectory>()
 
-    fun getOutputItems(tiffOffsetItems: TiffOffsetItems): List<TiffOutputItem> {
+    internal fun getOutputItems(tiffOffsetItems: TiffOffsetItems): List<TiffOutputItem> {
 
         val outputItems = mutableListOf<TiffOutputItem>()
 
@@ -52,7 +52,7 @@ class TiffOutputSet(
         return outputItems
     }
 
-    fun addDirectory(directory: TiffOutputDirectory): TiffOutputDirectory {
+    public fun addDirectory(directory: TiffOutputDirectory): TiffOutputDirectory {
 
         if (findDirectory(directory.type) != null)
             throw ImageWriteException("Output set already contains a directory of that type.")
@@ -62,12 +62,12 @@ class TiffOutputSet(
         return directory
     }
 
-    fun getDirectories(): List<TiffOutputDirectory> = directories
+    public fun getDirectories(): List<TiffOutputDirectory> = directories
 
-    fun getOrCreateRootDirectory(): TiffOutputDirectory =
+    public fun getOrCreateRootDirectory(): TiffOutputDirectory =
         findDirectory(TiffConstants.TIFF_DIRECTORY_TYPE_IFD0) ?: addRootDirectory()
 
-    fun getOrCreateExifDirectory(): TiffOutputDirectory {
+    public fun getOrCreateExifDirectory(): TiffOutputDirectory {
 
         /* The EXIF directory requires root directory. */
         getOrCreateRootDirectory()
@@ -75,7 +75,7 @@ class TiffOutputSet(
         return findDirectory(TiffConstants.TIFF_DIRECTORY_EXIF) ?: addExifDirectory()
     }
 
-    fun getOrCreateThumbnailDirectory(): TiffOutputDirectory {
+    public fun getOrCreateThumbnailDirectory(): TiffOutputDirectory {
 
         /* The Thumbnail directory requires root directory. */
         getOrCreateRootDirectory()
@@ -83,7 +83,7 @@ class TiffOutputSet(
         return findDirectory(TiffConstants.TIFF_DIRECTORY_TYPE_IFD1) ?: addThumbnailDirectory()
     }
 
-    fun getOrCreateGPSDirectory(): TiffOutputDirectory {
+    public fun getOrCreateGPSDirectory(): TiffOutputDirectory {
 
         /* The GPS directory requires EXIF directory */
         getOrCreateExifDirectory()
@@ -91,10 +91,10 @@ class TiffOutputSet(
         return findDirectory(TiffConstants.TIFF_DIRECTORY_GPS) ?: addGPSDirectory()
     }
 
-    fun findDirectory(directoryType: Int): TiffOutputDirectory? =
+    public fun findDirectory(directoryType: Int): TiffOutputDirectory? =
         directories.find { it.type == directoryType }
 
-    fun applyUpdate(update: MetadataUpdate) {
+    public fun applyUpdate(update: MetadataUpdate) {
 
         val rootDirectory = getOrCreateRootDirectory()
         val exifDirectory = getOrCreateExifDirectory()
@@ -140,7 +140,7 @@ class TiffOutputSet(
     /**
      * Sets the provided thumbnail bytes to the thumbnail directory (IFD1)
      */
-    fun setThumbnailBytes(thumbnailBytes: ByteArray) {
+    public fun setThumbnailBytes(thumbnailBytes: ByteArray) {
 
         val thumbnailDirectory = getOrCreateThumbnailDirectory()
 
@@ -150,7 +150,7 @@ class TiffOutputSet(
     /**
      * A convenience method to update GPS values in EXIF metadata.
      */
-    fun setGpsCoordinates(gpsCoordinates: GpsCoordinates?) {
+    public fun setGpsCoordinates(gpsCoordinates: GpsCoordinates?) {
 
         val gpsDirectory = getOrCreateGPSDirectory()
 
@@ -229,23 +229,21 @@ class TiffOutputSet(
         }
     }
 
-    fun findMakerNoteField(): TiffOutputField? =
+    public fun findMakerNoteField(): TiffOutputField? =
         findField(ExifTag.EXIF_TAG_MAKER_NOTE.tag)
 
-    fun findField(tag: Int): TiffOutputField? =
-        directories
-            .mapNotNull { directory -> directory.findField(tag) }
-            .firstOrNull()
+    public fun findField(tag: Int): TiffOutputField? =
+        directories.firstNotNullOfOrNull { directory -> directory.findField(tag) }
 
-    fun addRootDirectory(): TiffOutputDirectory =
+    public fun addRootDirectory(): TiffOutputDirectory =
         addDirectory(TiffOutputDirectory(TiffConstants.TIFF_DIRECTORY_TYPE_IFD0, byteOrder))
 
-    fun addExifDirectory(): TiffOutputDirectory =
+    public fun addExifDirectory(): TiffOutputDirectory =
         addDirectory(TiffOutputDirectory(TiffConstants.TIFF_DIRECTORY_EXIF, byteOrder))
 
-    fun addThumbnailDirectory(): TiffOutputDirectory =
+    public fun addThumbnailDirectory(): TiffOutputDirectory =
         addDirectory(TiffOutputDirectory(TiffConstants.TIFF_DIRECTORY_TYPE_IFD1, byteOrder))
 
-    fun addGPSDirectory(): TiffOutputDirectory =
+    public fun addGPSDirectory(): TiffOutputDirectory =
         addDirectory(TiffOutputDirectory(TiffConstants.TIFF_DIRECTORY_GPS, byteOrder))
 }

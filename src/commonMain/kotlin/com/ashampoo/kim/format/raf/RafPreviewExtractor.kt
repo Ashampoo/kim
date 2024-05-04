@@ -20,11 +20,16 @@ import com.ashampoo.kim.common.ImageReadException
 import com.ashampoo.kim.common.tryWithImageReadException
 import com.ashampoo.kim.format.ImageFormatMagicNumbers
 import com.ashampoo.kim.input.ByteReader
+import com.ashampoo.kim.input.read4BytesAsInt
+import com.ashampoo.kim.input.readAndVerifyBytes
+import com.ashampoo.kim.input.skipBytes
+import kotlin.jvm.JvmStatic
 
-object RafPreviewExtractor {
+public object RafPreviewExtractor {
 
     @Throws(ImageReadException::class)
-    fun extractPreviewImage(
+    @JvmStatic
+    public fun extractPreviewImage(
         reader: ByteReader
     ): ByteArray? = tryWithImageReadException {
 

@@ -37,18 +37,20 @@ import com.ashampoo.kim.format.tiff.TiffContents
 import com.ashampoo.kim.format.tiff.TiffReader
 import com.ashampoo.kim.input.ByteArrayByteReader
 import com.ashampoo.kim.input.ByteReader
+import com.ashampoo.kim.input.read2BytesAsInt
+import com.ashampoo.kim.input.skipBytes
 import com.ashampoo.kim.model.ImageFormat
 import com.ashampoo.kim.model.ImageSize
 
-object JpegImageParser : ImageParser {
+public object JpegImageParser : ImageParser {
 
-    fun getImageSize(byteReader: ByteReader): ImageSize? {
+    public fun getImageSize(byteReader: ByteReader): ImageSize? {
 
         val magicNumberBytes = byteReader.readBytes(ImageFormatMagicNumbers.jpeg.size).toList()
 
         /* Ensure it's actually a JPEG. */
         require(magicNumberBytes == ImageFormatMagicNumbers.jpeg) {
-            "JPEG magic number mismatch: ${magicNumberBytes.toByteArray().toSingleNumberHexes()}"
+            "JPEG magic number mismatch: ${magicNumberBytes.toSingleNumberHexes()}"
         }
 
         var readBytesCount = magicNumberBytes.size

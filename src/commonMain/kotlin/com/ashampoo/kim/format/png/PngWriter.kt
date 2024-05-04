@@ -26,16 +26,17 @@ import com.ashampoo.kim.format.png.chunk.PngTextChunk
 import com.ashampoo.kim.input.ByteReader
 import com.ashampoo.kim.output.ByteArrayByteWriter
 import com.ashampoo.kim.output.ByteWriter
+import com.ashampoo.kim.output.writeInt
 
-object PngWriter {
+public object PngWriter {
 
-    fun writeImage(
+    public fun writeImage(
         byteReader: ByteReader,
         byteWriter: ByteWriter,
         exifBytes: ByteArray?,
         iptcBytes: ByteArray?,
         xmp: String?
-    ) = writeImage(
+    ): Unit = writeImage(
         chunks = PngImageParser.readChunks(byteReader, null),
         byteWriter = byteWriter,
         exifBytes = exifBytes,
@@ -43,7 +44,7 @@ object PngWriter {
         xmp = xmp
     )
 
-    fun writeImage(
+    public fun writeImage(
         chunks: List<PngChunk>,
         byteWriter: ByteWriter,
         exifBytes: ByteArray?,
@@ -96,7 +97,7 @@ object PngWriter {
         byteWriter.close()
     }
 
-    fun writeImage(
+    public fun writeImage(
         chunks: List<PngChunk>,
         byteWriter: ByteWriter,
     ) {

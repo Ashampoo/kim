@@ -27,21 +27,21 @@ import java.nio.file.StandardOpenOption
 /**
  * Extra object to have a nicer API for Java projects
  */
-object KimJvm {
+public object KimJvm {
 
     @JvmStatic
     @Throws(ImageReadException::class)
-    fun readMetadata(inputStream: InputStream, length: Long) =
+    public fun readMetadata(inputStream: InputStream, length: Long): ImageMetadata? =
         Kim.readMetadata(JvmInputStreamByteReader(inputStream, length))
 
     @JvmStatic
     @Throws(ImageReadException::class)
-    fun readMetadata(path: String): ImageMetadata? =
+    public fun readMetadata(path: String): ImageMetadata? =
         readMetadata(File(path))
 
     @JvmStatic
     @Throws(ImageReadException::class)
-    fun readMetadata(file: File): ImageMetadata? {
+    public fun readMetadata(file: File): ImageMetadata? {
 
         check(file.exists()) { "File does not exist: $file" }
 
@@ -50,7 +50,7 @@ object KimJvm {
 
     @JvmStatic
     @Throws(ImageReadException::class)
-    fun readMetadata(path: java.nio.file.Path): ImageMetadata? {
+    public fun readMetadata(path: java.nio.file.Path): ImageMetadata? {
 
         check(Files.exists(path)) { "File does not exist: $path" }
 
@@ -62,17 +62,17 @@ object KimJvm {
 }
 
 @Throws(ImageReadException::class)
-fun Kim.readMetadata(inputStream: InputStream, length: Long): ImageMetadata? =
+public fun Kim.readMetadata(inputStream: InputStream, length: Long): ImageMetadata? =
     KimJvm.readMetadata(inputStream, length)
 
 @Throws(ImageReadException::class)
-fun Kim.readMetadata(path: String): ImageMetadata? =
+public fun Kim.readMetadata(path: String): ImageMetadata? =
     KimJvm.readMetadata(path)
 
 @Throws(ImageReadException::class)
-fun Kim.readMetadata(file: File): ImageMetadata? =
+public fun Kim.readMetadata(file: File): ImageMetadata? =
     KimJvm.readMetadata(file)
 
 @Throws(ImageReadException::class)
-fun Kim.readMetadata(path: java.nio.file.Path): ImageMetadata? =
+public fun Kim.readMetadata(path: java.nio.file.Path): ImageMetadata? =
     KimJvm.readMetadata(path)

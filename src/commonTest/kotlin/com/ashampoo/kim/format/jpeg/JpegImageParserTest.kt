@@ -89,7 +89,7 @@ class JpegImageParserTest {
             val actualImageSize = JpegImageParser.getImageSize(byteReader)
 
             assertEquals(
-                expected = expectedImageSizesMap.get(index),
+                expected = expectedImageSizesMap[index],
                 actual = actualImageSize,
                 message = "Image size of $index is different."
             )

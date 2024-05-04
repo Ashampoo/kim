@@ -21,7 +21,7 @@ import java.util.zip.Inflater
 
 private const val ZLIB_BUFFER_SIZE: Int = 1024
 
-actual fun compress(input: String): ByteArray {
+internal actual fun compress(input: String): ByteArray {
 
     val deflater = Deflater()
     val inputBytes = input.toByteArray()
@@ -45,7 +45,7 @@ actual fun compress(input: String): ByteArray {
     return outputStream.toByteArray()
 }
 
-actual fun decompress(byteArray: ByteArray): String {
+internal actual fun decompress(byteArray: ByteArray): String {
 
     val inflater = Inflater()
     val outputStream = ByteArrayOutputStream()

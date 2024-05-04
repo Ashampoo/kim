@@ -26,24 +26,24 @@ import com.ashampoo.kim.format.tiff.fieldtype.FieldTypeLong
 import com.ashampoo.kim.format.tiff.taginfo.TagInfo
 import com.ashampoo.kim.output.BinaryByteWriter
 
-class TiffOutputField(
-    val tag: Int,
-    val fieldType: FieldType<out Any>,
-    val count: Int,
+public class TiffOutputField(
+    public val tag: Int,
+    public val fieldType: FieldType<out Any>,
+    public val count: Int,
     private var bytes: ByteArray
-) {
+) : Comparable<TiffOutputField> {
 
-    val tagFormatted: String =
+    public val tagFormatted: String =
         "0x" + tag.toString(HEX_RADIX).padStart(4, '0')
 
-    val isLocalValue: Boolean = bytes.size <= TIFF_ENTRY_MAX_VALUE_LENGTH
+    public val isLocalValue: Boolean = bytes.size <= TIFF_ENTRY_MAX_VALUE_LENGTH
 
-    val separateValue: TiffOutputValue? =
+    public val separateValue: TiffOutputValue? =
         if (isLocalValue) null else TiffOutputValue("Value of $this", bytes)
 
-    var sortHint = -1
+    public var sortHint: Int = -1
 
-    fun writeField(byteWriter: BinaryByteWriter) {
+    internal fun writeField(byteWriter: BinaryByteWriter) {
 
         byteWriter.write2Bytes(tag)
         byteWriter.write2Bytes(fieldType.type)
@@ -69,17 +69,17 @@ class TiffOutputField(
             if (separateValue == null)
                 throw ImageWriteException("Missing separate value item.")
 
-            byteWriter.write4Bytes(separateValue.offset.toInt())
+            byteWriter.write4Bytes(separateValue.offset)
         }
     }
 
-    fun bytesAsHex(): String =
+    internal fun bytesAsHex(): String =
         bytes.toHex()
 
-    fun bytesEqual(data: ByteArray): Boolean =
+    internal fun bytesEqual(data: ByteArray): Boolean =
         bytes.contentEquals(data)
 
-    fun setBytes(bytes: ByteArray) {
+    internal fun setBytes(bytes: ByteArray) {
 
         if (this.bytes.size != bytes.size)
             throw ImageWriteException("Cannot change size of value.")
@@ -92,9 +92,17 @@ class TiffOutputField(
     override fun toString(): String =
         "TiffOutputField $tagFormatted"
 
-    companion object {
+    override fun compareTo(other: TiffOutputField): Int {
 
-        fun createOffsetField(tagInfo: TagInfo, byteOrder: ByteOrder): TiffOutputField =
+        if (tag != other.tag)
+            return tag - other.tag
+
+        return sortHint - other.sortHint
+    }
+
+    internal companion object {
+
+        internal fun createOffsetField(tagInfo: TagInfo, byteOrder: ByteOrder): TiffOutputField =
             TiffOutputField(tagInfo.tag, FieldTypeLong, 1, FieldTypeLong.writeData(0, byteOrder))
     }
 }

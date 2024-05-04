@@ -20,22 +20,26 @@ import com.ashampoo.kim.common.toHex
 import com.ashampoo.kim.format.bmff.BMFFConstants.BMFF_BYTE_ORDER
 import com.ashampoo.kim.format.bmff.BoxType
 import com.ashampoo.kim.input.ByteArrayByteReader
+import com.ashampoo.kim.input.read2BytesAsInt
+import com.ashampoo.kim.input.read4BytesAsInt
+import com.ashampoo.kim.input.readByteAsInt
+import com.ashampoo.kim.input.readBytes
 
 /**
  * EIC/ISO 14496-12 pitm box
  */
-class PrimaryItemBox(
+public class PrimaryItemBox(
     offset: Long,
     size: Long,
     largeSize: Long?,
     payload: ByteArray
 ) : Box(BoxType.PITM, offset, size, largeSize, payload) {
 
-    val version: Int
+    public val version: Int
 
-    val flags: ByteArray
+    public val flags: ByteArray
 
-    val itemId: Int
+    public val itemId: Int
 
     init {
 
@@ -45,10 +49,10 @@ class PrimaryItemBox(
 
         flags = byteReader.readBytes("flags", 3)
 
-        if (version == 0)
-            itemId = byteReader.read2BytesAsInt("itemId", BMFF_BYTE_ORDER)
+        itemId = if (version == 0)
+            byteReader.read2BytesAsInt("itemId", BMFF_BYTE_ORDER)
         else
-            itemId = byteReader.read4BytesAsInt("itemId", BMFF_BYTE_ORDER)
+            byteReader.read4BytesAsInt("itemId", BMFF_BYTE_ORDER)
     }
 
     override fun toString(): String =

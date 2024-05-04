@@ -19,7 +19,7 @@ package com.ashampoo.kim.format.tiff
 import com.ashampoo.kim.common.ByteOrder
 import com.ashampoo.kim.format.tiff.constant.TiffConstants
 
-data class TiffHeader(
+public data class TiffHeader(
     val byteOrder: ByteOrder,
     val tiffVersion: Int,
     val offsetToFirstIFD: Int

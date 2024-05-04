@@ -22,7 +22,7 @@ import com.ashampoo.kim.common.toBytes
 import com.ashampoo.kim.common.toInts
 import com.ashampoo.kim.format.tiff.constant.TiffConstants
 
-data object FieldTypeIfd : FieldType<IntArray> {
+public data object FieldTypeIfd : FieldType<IntArray> {
 
     override val type: Int = TiffConstants.FIELD_TYPE_IFD_INDEX
 

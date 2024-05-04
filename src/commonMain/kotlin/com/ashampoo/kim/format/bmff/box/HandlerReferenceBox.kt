@@ -19,24 +19,28 @@ package com.ashampoo.kim.format.bmff.box
 import com.ashampoo.kim.common.toHex
 import com.ashampoo.kim.format.bmff.BoxType
 import com.ashampoo.kim.input.ByteArrayByteReader
+import com.ashampoo.kim.input.readByteAsInt
+import com.ashampoo.kim.input.readBytes
+import com.ashampoo.kim.input.readNullTerminatedString
+import com.ashampoo.kim.input.skipBytes
 
 /**
  * EIC/ISO 14496-12 hdlr box
  */
-class HandlerReferenceBox(
+public class HandlerReferenceBox(
     offset: Long,
     size: Long,
     largeSize: Long?,
     payload: ByteArray
 ) : Box(BoxType.HDLR, offset, size, largeSize, payload) {
 
-    val version: Int
+    public val version: Int
 
-    val flags: ByteArray
+    public val flags: ByteArray
 
-    val handlerType: String
+    public val handlerType: String
 
-    val name: String
+    public val name: String
 
     init {
 

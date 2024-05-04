@@ -24,7 +24,7 @@ import com.ashampoo.kim.format.tiff.constant.TiffConstants
  * An 8-bit byte that may contain anything,
  * depending on the definition of the field.
  */
-data object FieldTypeUndefined : FieldType<ByteArray> {
+public data object FieldTypeUndefined : FieldType<ByteArray> {
 
     override val type: Int = TiffConstants.FIELD_TYPE_UNDEFINED_INDEX
 

@@ -23,22 +23,26 @@ import com.ashampoo.kim.format.webp.chunk.WebPChunkVP8X
 import com.ashampoo.kim.input.ByteReader
 import com.ashampoo.kim.output.ByteArrayByteWriter
 import com.ashampoo.kim.output.ByteWriter
+import com.ashampoo.kim.output.writeInt
+import kotlin.jvm.JvmStatic
 
-object WebPWriter {
+public object WebPWriter {
 
-    fun writeImage(
+    @JvmStatic
+    public fun writeImage(
         byteReader: ByteReader,
         byteWriter: ByteWriter,
         exifBytes: ByteArray?,
         xmp: String?
-    ) = writeImage(
+    ): Unit = writeImage(
         chunks = WebPImageParser.readChunks(byteReader, false),
         byteWriter = byteWriter,
         exifBytes = exifBytes,
         xmp = xmp
     )
 
-    fun writeImage(
+    @JvmStatic
+    public fun writeImage(
         chunks: List<WebPChunk>,
         byteWriter: ByteWriter,
         exifBytes: ByteArray?,

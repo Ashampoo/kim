@@ -23,7 +23,7 @@ import com.ashampoo.kim.format.tiff.taginfo.TagInfo
 import com.ashampoo.kim.model.ImageFormat
 import com.ashampoo.kim.model.ImageSize
 
-data class ImageMetadata(
+public data class ImageMetadata(
     val imageFormat: ImageFormat?,
     val imageSize: ImageSize?,
     val exif: TiffContents?,
@@ -32,7 +32,7 @@ data class ImageMetadata(
     val xmp: String?
 ) {
 
-    fun findStringValue(tagInfo: TagInfo): String? {
+    public fun findStringValue(tagInfo: TagInfo): String? {
 
         val strings = findTiffField(tagInfo)?.value as? List<String>
 
@@ -43,19 +43,19 @@ data class ImageMetadata(
         return findTiffField(tagInfo)?.value as? String
     }
 
-    fun findShortValue(tagInfo: TagInfo): Short? =
+    public fun findShortValue(tagInfo: TagInfo): Short? =
         findTiffField(tagInfo)?.toShort()
 
-    fun findDoubleValue(tagInfo: TagInfo): Double? =
+    public fun findDoubleValue(tagInfo: TagInfo): Double? =
         findTiffField(tagInfo)?.toDouble()
 
-    fun findTiffField(tagInfo: TagInfo): TiffField? =
+    public fun findTiffField(tagInfo: TagInfo): TiffField? =
         exif?.findTiffField(tagInfo)
 
-    fun findTiffDirectory(directoryType: Int): TiffDirectory? =
+    public fun findTiffDirectory(directoryType: Int): TiffDirectory? =
         exif?.findTiffDirectory(directoryType)
 
-    fun getExifThumbnailBytes(): ByteArray? =
+    public fun getExifThumbnailBytes(): ByteArray? =
         exif?.getExifThumbnailBytes()
 
     override fun toString(): String {

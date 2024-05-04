@@ -17,7 +17,7 @@ package com.ashampoo.kim.model
 
 import kotlin.math.max
 
-data class ImageSize(
+public data class ImageSize(
     val width: Int,
     val height: Int
 ) {

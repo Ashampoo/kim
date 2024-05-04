@@ -17,7 +17,7 @@ package com.ashampoo.kim.output
 
 import java.io.OutputStream
 
-class OutputStreamByteWriter(
+public class OutputStreamByteWriter(
     private val outputStream: OutputStream
 ) : ByteWriter {
 

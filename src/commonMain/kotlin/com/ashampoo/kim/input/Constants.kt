@@ -16,4 +16,4 @@
 package com.ashampoo.kim.input
 
 /** Same as kotlin.io.DEFAULT_BUFFER_SIZE */
-const val DEFAULT_BUFFER_SIZE: Int = 8 * 1024
+internal const val DEFAULT_BUFFER_SIZE: Int = 8 * 1024

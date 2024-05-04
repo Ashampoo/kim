@@ -34,16 +34,16 @@ import com.ashampoo.kim.format.tiff.fieldtype.FieldTypeUndefined
  * the text encoding in the first 8 bytes followed by
  * the non-null-terminated text in an unknown byte order.
  */
-class TagInfoGpsText(
+public class TagInfoGpsText(
     tag: Int,
     name: String,
     exifDirectory: TiffDirectoryType?
-) : TagInfo(tag, name, FieldTypeUndefined, TagInfo.LENGTH_UNKNOWN, exifDirectory) {
+) : TagInfo(tag, name, FieldTypeUndefined, LENGTH_UNKNOWN, exifDirectory) {
 
     override fun isText(): Boolean =
         true
 
-    fun encodeValue(value: Any): ByteArray {
+    public fun encodeValue(value: Any): ByteArray {
 
         if (value !is String)
             throw ImageWriteException("GPS text value not String: $value")
@@ -67,7 +67,7 @@ class TagInfoGpsText(
         return result
     }
 
-    fun getValue(entry: TiffField): String {
+    public fun getValue(entry: TiffField): String {
 
         val fieldType = entry.fieldType
 
@@ -123,7 +123,7 @@ class TagInfoGpsText(
         return bytes.decodeLatin1BytesToString()
     }
 
-    companion object {
+    private companion object {
 
         private const val ZERO_BYTE: Byte = 0.toByte()
 

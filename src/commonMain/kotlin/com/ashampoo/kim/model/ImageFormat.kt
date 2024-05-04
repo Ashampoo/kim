@@ -21,10 +21,10 @@ import com.ashampoo.kim.common.toSingleNumberHexes
 import com.ashampoo.kim.format.ImageFormatMagicNumbers
 import kotlin.jvm.JvmStatic
 
-enum class ImageFormat(
-    val mimeType: String,
-    val uniformTypeIdentifier: String,
-    val fileNameExtensions: Set<String>
+public enum class ImageFormat(
+    public val mimeType: String,
+    public val uniformTypeIdentifier: String,
+    public val fileNameExtensions: Set<String>
 ) {
 
     JPEG("image/jpeg", "public.jpeg", setOf("jpg", "jpeg")),
@@ -43,23 +43,20 @@ enum class ImageFormat(
     DNG("image/x-adobe-dng", "com.adobe.raw-image", setOf("dng")),
     JXL("image/jxl", "public.jxl", setOf("jxl"));
 
-    fun isMetadataEmbeddable(): Boolean =
-        this == ImageFormat.JPEG ||
-            this == ImageFormat.PNG ||
-            this == ImageFormat.WEBP ||
-            this == ImageFormat.JXL
+    public fun isMetadataEmbeddable(): Boolean =
+        this == JPEG || this == PNG || this == WEBP || this == JXL
 
-    companion object {
+    public companion object {
 
         /**
          * RAF is the longest format that requires us to read 16 bytes to detect it.
          * Right after that we need 12 bytes to check for HEIC.
          */
-        const val REQUIRED_HEADER_BYTE_COUNT_FOR_DETECTION: Int = 16
+        public const val REQUIRED_HEADER_BYTE_COUNT_FOR_DETECTION: Int = 16
 
         private val allImageFormats = ImageFormat.entries
 
-        private val allFileNameExtensions = getAllFileNameExtensions()
+        public val allFileNameExtensions: Set<String> = computeAllFileNameExtensions()
 
         /*
          * OneDrive reports RAW files under wrong mime types
@@ -72,8 +69,7 @@ enum class ImageFormat(
         private const val ORF_ONEDRIVE_MIME_TYPE = "image/ORF"
         private const val DNG_ONEDRIVE_MIME_TYPE = "image/DNG"
 
-        @JvmStatic
-        private fun getAllFileNameExtensions(): MutableSet<String> {
+        private fun computeAllFileNameExtensions(): MutableSet<String> {
 
             val fileNameExtensions = mutableSetOf<String>()
 
@@ -85,7 +81,7 @@ enum class ImageFormat(
         }
 
         @JvmStatic
-        fun hasValidFileNameExtension(fileName: String): Boolean {
+        public fun hasValidFileNameExtension(fileName: String): Boolean {
 
             for (extension in allFileNameExtensions)
                 if (fileName.endsWith(".$extension", ignoreCase = true))
@@ -95,7 +91,7 @@ enum class ImageFormat(
         }
 
         @JvmStatic
-        fun byMimeType(mimeType: String): ImageFormat? {
+        public fun byMimeType(mimeType: String): ImageFormat? {
 
             for (fileType in allImageFormats)
                 if (mimeType.contentEquals(fileType.mimeType, ignoreCase = true))
@@ -114,7 +110,7 @@ enum class ImageFormat(
         }
 
         @JvmStatic
-        fun byUniformTypeIdentifier(
+        public fun byUniformTypeIdentifier(
             uniformTypeIdentifier: String
         ): ImageFormat? {
 
@@ -126,7 +122,7 @@ enum class ImageFormat(
         }
 
         @JvmStatic
-        fun byFileNameExtension(fileName: String): ImageFormat? {
+        public fun byFileNameExtension(fileName: String): ImageFormat? {
 
             for (fileType in allImageFormats)
                 for (extension in fileType.fileNameExtensions)
@@ -143,7 +139,7 @@ enum class ImageFormat(
          * (for example empty) than the detection returns null.
          */
         @JvmStatic
-        fun detect(bytes: ByteArray): ImageFormat? {
+        public fun detect(bytes: ByteArray): ImageFormat? {
 
             /*
              * If empty or not enough bytes we can't detect the format and will return NULL.
@@ -159,34 +155,34 @@ enum class ImageFormat(
              */
             return when {
                 /* JPG is the most common format. Check this first. */
-                bytes.startsWith(ImageFormatMagicNumbers.jpeg) -> ImageFormat.JPEG
+                bytes.startsWith(ImageFormatMagicNumbers.jpeg) -> JPEG
                 /* Check other common formats. */
-                bytes.startsWith(ImageFormatMagicNumbers.png) -> ImageFormat.PNG
-                bytes.startsWithNullable(ImageFormatMagicNumbers.webP) -> ImageFormat.WEBP
+                bytes.startsWith(ImageFormatMagicNumbers.png) -> PNG
+                bytes.startsWithNullable(ImageFormatMagicNumbers.webP) -> WEBP
                 /* Canon CR2 et al *must* be checked before TIFF, because they are based on TIFF */
-                bytes.startsWith(ImageFormatMagicNumbers.cr2) -> ImageFormat.CR2
-                bytes.startsWith(ImageFormatMagicNumbers.rw2) -> ImageFormat.RW2
-                bytes.startsWith(ImageFormatMagicNumbers.orf_iiro) -> ImageFormat.ORF
-                bytes.startsWith(ImageFormatMagicNumbers.orf_mmor) -> ImageFormat.ORF
-                bytes.startsWith(ImageFormatMagicNumbers.orf_iirs) -> ImageFormat.ORF
-                bytes.startsWith(ImageFormatMagicNumbers.raf) -> ImageFormat.RAF
+                bytes.startsWith(ImageFormatMagicNumbers.cr2) -> CR2
+                bytes.startsWith(ImageFormatMagicNumbers.rw2) -> RW2
+                bytes.startsWith(ImageFormatMagicNumbers.orf_iiro) -> ORF
+                bytes.startsWith(ImageFormatMagicNumbers.orf_mmor) -> ORF
+                bytes.startsWith(ImageFormatMagicNumbers.orf_iirs) -> ORF
+                bytes.startsWith(ImageFormatMagicNumbers.raf) -> RAF
                 /* Check TIFF after the RAW files. */
-                bytes.startsWith(ImageFormatMagicNumbers.tiffLittleEndian) -> ImageFormat.TIFF
-                bytes.startsWith(ImageFormatMagicNumbers.tiffBigEndian) -> ImageFormat.TIFF
+                bytes.startsWith(ImageFormatMagicNumbers.tiffLittleEndian) -> TIFF
+                bytes.startsWith(ImageFormatMagicNumbers.tiffBigEndian) -> TIFF
                 /* Check JXL ISOBMFF */
-                bytes.startsWith(ImageFormatMagicNumbers.jxl) -> ImageFormat.JXL
+                bytes.startsWith(ImageFormatMagicNumbers.jxl) -> JXL
                 /* Check HEIC variants */
-                bytes.startsWithNullable(ImageFormatMagicNumbers.heic) -> ImageFormat.HEIC
-                bytes.startsWithNullable(ImageFormatMagicNumbers.mif1) -> ImageFormat.HEIC
-                bytes.startsWithNullable(ImageFormatMagicNumbers.msf1) -> ImageFormat.HEIC
-                bytes.startsWithNullable(ImageFormatMagicNumbers.heix) -> ImageFormat.HEIC
-                bytes.startsWithNullable(ImageFormatMagicNumbers.hevc) -> ImageFormat.HEIC
-                bytes.startsWithNullable(ImageFormatMagicNumbers.hevx) -> ImageFormat.HEIC
+                bytes.startsWithNullable(ImageFormatMagicNumbers.heic) -> HEIC
+                bytes.startsWithNullable(ImageFormatMagicNumbers.mif1) -> HEIC
+                bytes.startsWithNullable(ImageFormatMagicNumbers.msf1) -> HEIC
+                bytes.startsWithNullable(ImageFormatMagicNumbers.heix) -> HEIC
+                bytes.startsWithNullable(ImageFormatMagicNumbers.hevc) -> HEIC
+                bytes.startsWithNullable(ImageFormatMagicNumbers.hevx) -> HEIC
                 /* Check AVIF */
-                bytes.startsWithNullable(ImageFormatMagicNumbers.avif) -> ImageFormat.AVIF
+                bytes.startsWithNullable(ImageFormatMagicNumbers.avif) -> AVIF
                 /* Check GIF and other unlikely formats... */
-                bytes.startsWith(ImageFormatMagicNumbers.gif87a) -> ImageFormat.GIF
-                bytes.startsWith(ImageFormatMagicNumbers.gif89a) -> ImageFormat.GIF
+                bytes.startsWith(ImageFormatMagicNumbers.gif87a) -> GIF
+                bytes.startsWith(ImageFormatMagicNumbers.gif89a) -> GIF
                 else -> null
             }
         }
@@ -196,7 +192,7 @@ enum class ImageFormat(
          * It translates to a readable name or returns a hex presentation of the bytes.
          */
         @JvmStatic
-        fun detectNameOrReturnHex(byteArray: ByteArray): String =
+        public fun detectNameOrReturnHex(byteArray: ByteArray): String =
             detect(byteArray)?.name ?: byteArray
                 .take(REQUIRED_HEADER_BYTE_COUNT_FOR_DETECTION)
                 .toByteArray()

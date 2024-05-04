@@ -22,25 +22,25 @@ package com.ashampoo.kim.format
  * For example HEIC has a broad number of different headers bytes.
  */
 @Suppress("MagicNumber")
-object ImageFormatMagicNumbers {
+public object ImageFormatMagicNumbers {
 
-    val jpeg: List<Byte> = byteListOf(
+    public val jpeg: List<Byte> = byteListOf(
         0xFF, 0xD8
     )
 
-    val gif87a: List<Byte> = byteListOf(
+    public val gif87a: List<Byte> = byteListOf(
         0x47, 0x49, 0x46, 0x38, 0x37, 0x61
     )
 
-    val gif89a: List<Byte> = byteListOf(
+    public val gif89a: List<Byte> = byteListOf(
         0x47, 0x49, 0x46, 0x38, 0x39, 0x61
     )
 
-    val png: List<Byte> = byteListOf(
+    public val png: List<Byte> = byteListOf(
         0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A
     )
 
-    val tiffLittleEndian: List<Byte> = byteListOf(
+    public val tiffLittleEndian: List<Byte> = byteListOf(
         0x49, 0x49, 0x2A, 0x00
     )
 
@@ -48,78 +48,78 @@ object ImageFormatMagicNumbers {
      * Note that NEF, ARW & DNG also starts this way.
      * We can't distinguish a normal TIFF and a raw file based on them.
      */
-    val tiffBigEndian: List<Byte> = byteListOf(
+    public val tiffBigEndian: List<Byte> = byteListOf(
         0x4D, 0x4D, 0x00, 0x2A
     )
 
-    val cr2: List<Byte> = byteListOf(
+    public val cr2: List<Byte> = byteListOf(
         0x49, 0x49, 0x2A, 0x00, 0x10, 0x00, 0x00, 0x00, 0x43, 0x52
     )
 
-    val raf: List<Byte> = "FUJIFILMCCD-RAW ".encodeToByteArray().toList()
+    public val raf: List<Byte> = "FUJIFILMCCD-RAW ".encodeToByteArray().toList()
 
-    val rw2: List<Byte> = byteListOf(
+    public val rw2: List<Byte> = byteListOf(
         0x49, 0x49, 0x55, 0x00
     )
 
-    val orf_iiro: List<Byte> = byteListOf(
+    public val orf_iiro: List<Byte> = byteListOf(
         0x49, 0x49, 0x52, 0x4F, 0x08, 0x00
     )
 
-    val orf_mmor: List<Byte> = byteListOf(
+    public val orf_mmor: List<Byte> = byteListOf(
         0x4D, 0x4D, 0x4F, 0x52, 0x00, 0x00
     )
 
-    val orf_iirs: List<Byte> = byteListOf(
+    public val orf_iirs: List<Byte> = byteListOf(
         0x49, 0x49, 0x52, 0x53, 0x08, 0x00
     )
 
-    val webP: List<Byte?> = byteListOf(
+    public val webP: List<Byte?> = byteListOf(
         0x52, 0x49, 0x46, 0x46, null, null, null, null, 0x57, 0x45, 0x42, 0x50
     )
 
     /* 4 bytes + "ftypheic" */
-    val heic: List<Byte?> = byteListOf(
+    public val heic: List<Byte?> = byteListOf(
         null, null, null, null
     ).plus("ftypheic".encodeToByteArray().toList())
 
     /* A HEIC brand */
-    val mif1: List<Byte?> = byteListOf(
+    public val mif1: List<Byte?> = byteListOf(
         null, null, null, null
     ).plus("ftypmif1".encodeToByteArray().toList())
 
     /* A HEIC brand */
-    val msf1: List<Byte?> = byteListOf(
+    public val msf1: List<Byte?> = byteListOf(
         null, null, null, null
     ).plus("ftypmsf1".encodeToByteArray().toList())
 
     /* A HEIC brand */
-    val heix: List<Byte?> = byteListOf(
+    public val heix: List<Byte?> = byteListOf(
         null, null, null, null
     ).plus("ftypheix".encodeToByteArray().toList())
 
     /* A HEIC brand */
-    val hevc: List<Byte?> = byteListOf(
+    public val hevc: List<Byte?> = byteListOf(
         null, null, null, null
     ).plus("ftyphevc".encodeToByteArray().toList())
 
     /* A HEIC brand */
-    val hevx: List<Byte?> = byteListOf(
+    public val hevx: List<Byte?> = byteListOf(
         null, null, null, null
     ).plus("ftyphevx".encodeToByteArray().toList())
 
     /* 4 bytes + "ftypavif" */
-    val avif: List<Byte?> = byteListOf(
+    public val avif: List<Byte?> = byteListOf(
         null, null, null, null
     ).plus("ftypavif".encodeToByteArray().toList())
 
     /* The regular ISOBMFF-based JPEG XL */
-    val jxl: List<Byte> = byteListOf(
+    public val jxl: List<Byte> = byteListOf(
         0x00, 0x00, 0x00, 0x0C, 0x4A, 0x58, 0x4C, 0x20, 0x0D, 0x0A, 0x87, 0x0A
     )
 
     /* The 'naked' code stream without metadata. */
-    val jxlCodeStream: List<Byte> = byteListOf(
+    public val jxlCodeStream: List<Byte> = byteListOf(
         0xFF, 0x0A
     )
 

@@ -26,7 +26,7 @@ import com.ashampoo.kim.format.tiff.constant.TiffConstants
  * Two SLONG’s: the first represents the numerator of a
  * fraction, the second the denominator.
  */
-object FieldTypeSRational : FieldType<RationalNumbers> {
+public object FieldTypeSRational : FieldType<RationalNumbers> {
 
     override val type: Int = TiffConstants.FIELD_TYPE_SRATIONAL_INDEX
 
@@ -35,7 +35,7 @@ object FieldTypeSRational : FieldType<RationalNumbers> {
     override val size: Int = 8
 
     override fun getValue(bytes: ByteArray, byteOrder: ByteOrder): RationalNumbers =
-        bytes.toRationals(byteOrder, unsignedType = false)
+        bytes.toRationals(unsignedType = false, byteOrder)
 
     override fun writeData(data: Any, byteOrder: ByteOrder): ByteArray =
         (data as RationalNumbers).toBytes(byteOrder)

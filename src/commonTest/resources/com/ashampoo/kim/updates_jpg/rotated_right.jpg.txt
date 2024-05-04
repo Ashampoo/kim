@@ -96,7 +96,7 @@ Little-endian (Intel, II)
 0000001022 0x0022 Unknown = [208 shorts]
 0000001034 0x0023 Unknown = [8, 0]
 0000001046 0x0027 Unknown = [21 shorts]
-0000001058 0x0028 Unknown = [16 bytes]
+0000001058 0x0028 Unknown = [0x6d, 0x0c, 0xe7, 0x33, 0xaf, 0xf8, 0xd1, 0xdc, 0x5a, 0xeb, 0x38, 0x82, 0x5e, 0x81, 0x04, 0x2f]
 0000001070 0x002d Unknown = 0
 0000001082 0x002e Unknown = [27 shorts]
 0000001094 0x002f Unknown = [17 shorts]
@@ -112,7 +112,7 @@ Little-endian (Intel, II)
 0000001214 0x0096 InternalSerialNumber = SA0151220
 0000001226 0x0099 Unknown = [34 ints]
 0000001238 0x009a Unknown = [0, 2304, 1536, 0, 0]
-0000001250 0x00a0 Unknown = [14 shorts]
+0000001250 0x00a0 Unknown = [28, 0, 0, -1, -1, -1, -1, -1, -1, -1, 132, 0, 9, -1]
 0000001262 0x00aa Unknown = [12, 392, 545, 546, 2614, 0]
 0000001274 0x00d0 Unknown = 0
 0000001286 0x4008 Unknown = [135, 135, 135]
@@ -135,7 +135,7 @@ Keywords (25) = 'people'
 
 ---- XMP ----
 <?xpacket begin="﻿" id="W5M0MpCehiHzreSzNTczkc9d"?>
-<x:xmpmeta xmlns:x="adobe:ns:meta/" x:xmptk="Ashampoo XMP Core 1.2.2">
+<x:xmpmeta xmlns:x="adobe:ns:meta/" x:xmptk="Ashampoo XMP Core 1.3.0">
   <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
     <rdf:Description rdf:about=""
         xmlns:tiff="http://ns.adobe.com/tiff/1.0/"

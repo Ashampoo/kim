@@ -22,7 +22,7 @@ import kotlin.test.assertEquals
 
 class JpegOrientationOffsetFinderTest {
 
-    val expectedMap = mapOf<Int, Long>(
+    val expectedMap: Map<Int, Long> = mapOf<Int, Long>(
         1 to 72,
         2 to 72,
         15 to 85,

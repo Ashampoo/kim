@@ -22,11 +22,13 @@ import com.ashampoo.kim.format.jpeg.iptc.IptcParser.APP13_BYTE_ORDER
 import com.ashampoo.kim.output.BigEndianBinaryByteWriter
 import com.ashampoo.kim.output.BinaryByteWriter
 import com.ashampoo.kim.output.ByteArrayByteWriter
+import kotlin.jvm.JvmStatic
 
-object IptcWriter {
+public object IptcWriter {
 
     @Suppress("ThrowsCount")
-    fun writeIptcBlocks(
+    @JvmStatic
+    public fun writeIptcBlocks(
         blocks: List<IptcBlock>,
         includeApp13Identifier: Boolean = true
     ): ByteArray {
@@ -78,7 +80,7 @@ object IptcWriter {
     }
 
     /* Writes the IPTC block in UTF-8 */
-    fun writeIptcBlockData(records: List<IptcRecord>): ByteArray {
+    public fun writeIptcBlockData(records: List<IptcRecord>): ByteArray {
 
         val byteWriter = ByteArrayByteWriter()
 
@@ -103,9 +105,10 @@ object IptcWriter {
         binaryWriter.write2Bytes(2) // record version record size
         binaryWriter.write2Bytes(IptcConstants.IPTC_RECORD_VERSION_VALUE)
 
-        val sortedRecords: List<IptcRecord> = records.sortedWith(IptcRecord.comparator)
-
-        for ((iptcType, value) in sortedRecords) {
+        /**
+         * Write the IPTC records in order.
+         */
+        for ((iptcType, value) in records.sorted()) {
 
             /* Ignore the record version, because we already wrote it. */
             if (iptcType === IptcTypes.RECORD_VERSION)

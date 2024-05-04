@@ -19,8 +19,8 @@ package com.ashampoo.kim.common
  * To avoid rather unsafe "Array<*>" in instance checking we have this
  * extra class to represent a collection of rational numbers.
  */
-class RationalNumbers(
-    val values: Array<RationalNumber>
+public class RationalNumbers(
+    public val values: Array<RationalNumber>
 ) {
 
     override fun toString(): String =

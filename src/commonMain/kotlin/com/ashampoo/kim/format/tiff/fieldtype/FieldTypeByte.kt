@@ -23,7 +23,7 @@ import com.ashampoo.kim.format.tiff.constant.TiffConstants
 /**
  * 8-bit unsigned integer.
  */
-data object FieldTypeByte : FieldType<ByteArray> {
+public data object FieldTypeByte : FieldType<ByteArray> {
 
     override val type: Int = TiffConstants.FIELD_TYPE_BYTE_INDEX
 

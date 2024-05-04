@@ -17,7 +17,7 @@ package com.ashampoo.kim.format.bmff
 
 import com.ashampoo.kim.common.toFourCCTypeString
 
-data class BoxType internal constructor(
+public data class BoxType internal constructor(
     val bytes: ByteArray,
     val name: String,
     val intValue: Int
@@ -40,7 +40,7 @@ data class BoxType internal constructor(
     override fun toString(): String =
         name
 
-    companion object {
+    public companion object {
 
         /*
          * Important: All the box types listed below are integral components of the
@@ -55,66 +55,66 @@ data class BoxType internal constructor(
         /**
          * File Type box, the first box
          */
-        val FTYP = of("ftyp".encodeToByteArray())
+        public val FTYP: BoxType = of("ftyp".encodeToByteArray())
 
         /**
          * Meta Box for metadata, usually the second box.
          * It's a container for several more boxes like IINF.
          */
-        val META = of("meta".encodeToByteArray())
+        public val META: BoxType = of("meta".encodeToByteArray())
 
         /**
          * Handler Reference Box
          */
-        val HDLR = of("hdlr".encodeToByteArray())
+        public val HDLR: BoxType = of("hdlr".encodeToByteArray())
 
         /**
          * Primary Item Box
          */
-        val PITM = of("pitm".encodeToByteArray())
+        public val PITM: BoxType = of("pitm".encodeToByteArray())
 
         /**
          * Item Information Box, container for INFE boxes
          */
-        val IINF = of("iinf".encodeToByteArray())
+        public val IINF: BoxType = of("iinf".encodeToByteArray())
 
         /*
          * Item Info Entry Box
          */
-        val INFE = of("infe".encodeToByteArray())
+        public val INFE: BoxType = of("infe".encodeToByteArray())
 
         /**
          * Item Location Box
          */
-        val ILOC = of("iloc".encodeToByteArray())
+        public val ILOC: BoxType = of("iloc".encodeToByteArray())
 
         /**
          * Media Data box, of which there can be many at the end.
          */
-        val MDAT = of("mdat".encodeToByteArray())
+        public val MDAT: BoxType = of("mdat".encodeToByteArray())
 
         /**
          * Extra box for EXIF data as part of the JPEG XL spec.
          */
-        val EXIF = of("Exif".encodeToByteArray())
+        public val EXIF: BoxType = of("Exif".encodeToByteArray())
 
         /**
          * Extra box for XMP data as part of the JPEG XL spec.
          */
-        val XML = of("xml ".encodeToByteArray())
+        public val XML: BoxType = of("xml ".encodeToByteArray())
 
         /**
          * Extra box for brotli compressed data as part of the JPEG XL spec.
          */
-        val BROB = of("brob".encodeToByteArray())
+        public val BROB: BoxType = of("brob".encodeToByteArray())
 
         /**
          * JPEG XL partical codestream box
          */
-        val JXLP = of("jxlp".encodeToByteArray())
+        public val JXLP: BoxType = of("jxlp".encodeToByteArray())
 
         @Suppress("MagicNumber")
-        fun of(typeBytes: ByteArray): BoxType {
+        public fun of(typeBytes: ByteArray): BoxType {
 
             require(typeBytes.size == BMFFConstants.TPYE_LENGTH) {
                 "BoxType must be always 4 bytes!"

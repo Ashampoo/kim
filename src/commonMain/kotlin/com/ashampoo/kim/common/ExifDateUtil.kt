@@ -38,14 +38,14 @@ private const val TIME_SEPARATOR_INDEX = 10
 private const val FIRST_SECOND_INDEX = 17
 private const val SECOND_SECOND_INDEX = 18
 
-fun isExifDateEmpty(exifDate: String?): Boolean =
+public fun isExifDateEmpty(exifDate: String?): Boolean =
     exifDate.isNullOrBlank() || emptyExifDateStrings.contains(exifDate)
 
 /**
  * EXIF dates are in the format of "yyyy:MM:dd HH:mm:ss" (19 chars),
  * which should be transformed to ISO like "yyyy-MM-ddTHH:mm:ss".
  */
-fun convertExifDateToIso8601Date(exifDate: String): String {
+public fun convertExifDateToIso8601Date(exifDate: String): String {
 
     require(!isExifDateEmpty(exifDate)) { "Given date was empty: $exifDate" }
 

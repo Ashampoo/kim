@@ -27,33 +27,40 @@ import com.ashampoo.kim.common.toUInt8
 import com.ashampoo.kim.format.jpeg.JpegConstants
 import com.ashampoo.kim.format.jpeg.iptc.IptcTypes.Companion.getIptcType
 import com.ashampoo.kim.input.ByteArrayByteReader
+import com.ashampoo.kim.input.read2BytesAsInt
+import com.ashampoo.kim.input.read4BytesAsInt
+import com.ashampoo.kim.input.readByte
+import com.ashampoo.kim.input.readBytes
+import com.ashampoo.kim.input.skipToQuad
+import kotlin.jvm.JvmStatic
 
-object IptcParser {
+public object IptcParser {
 
-    val EMPTY_BYTE_ARRAY = byteArrayOf()
+    internal val EMPTY_BYTE_ARRAY = byteArrayOf()
 
     /**
      * Block types (or Image Resource IDs) that are not recommended to be
      * interpreted when libraries process Photoshop IPTC metadata.
      *
-     * @see https://www.adobe.com/devnet-apps/photoshop/fileformatashtml/
+     * See https://www.adobe.com/devnet-apps/photoshop/fileformatashtml/
      */
     @Suppress("MagicNumber")
     private val PHOTOSHOP_IGNORED_BLOCK_TYPE = listOf(1084, 1085, 1086, 1087)
 
-    const val CODED_CHARACTER_SET_IPTC_CODE = 90
+    public const val CODED_CHARACTER_SET_IPTC_CODE: Int = 90
 
     /* "ESC % G" as bytes */
-    val UTF8_CHARACTER_ESCAPE_SEQUENCE =
+    public val UTF8_CHARACTER_ESCAPE_SEQUENCE: ByteArray =
         byteArrayOf('\u001B'.code.toByte(), '%'.code.toByte(), 'G'.code.toByte())
 
-    val APP13_BYTE_ORDER = ByteOrder.BIG_ENDIAN
+    public val APP13_BYTE_ORDER: ByteOrder = ByteOrder.BIG_ENDIAN
 
     /**
      * Checks if the ByteArray starts with the Photoshop identifaction header.
      * This is mandatory for IPTC embedded into APP13.
      */
-    fun isPhotoshopApp13Segment(segmentData: ByteArray): Boolean {
+    @JvmStatic
+    public fun isPhotoshopApp13Segment(segmentData: ByteArray): Boolean {
 
         if (!segmentData.startsWith(JpegConstants.APP13_IDENTIFIER))
             return false
@@ -70,7 +77,8 @@ object IptcParser {
      * @param bytes                 The IPTC bytes
      * @param startsWithApp13Header If IPTC is read from JPEG the header is required.
      */
-    fun parseIptc(
+    @JvmStatic
+    public fun parseIptc(
         bytes: ByteArray,
         startsWithApp13Header: Boolean = true
     ): IptcMetadata {

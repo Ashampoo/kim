@@ -23,9 +23,12 @@ import com.ashampoo.kim.format.ImageMetadata
 import com.ashampoo.kim.format.ImageParser
 import com.ashampoo.kim.format.jpeg.JpegImageParser
 import com.ashampoo.kim.input.ByteReader
+import com.ashampoo.kim.input.read4BytesAsInt
+import com.ashampoo.kim.input.readAndVerifyBytes
+import com.ashampoo.kim.input.skipBytes
 import com.ashampoo.kim.model.ImageFormat
 
-object RafImageParser : ImageParser {
+public object RafImageParser : ImageParser {
 
     /**
      * The RAF file contains a JPEG with EXIF metadata.

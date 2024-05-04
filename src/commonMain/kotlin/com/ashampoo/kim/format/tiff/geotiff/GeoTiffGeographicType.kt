@@ -23,9 +23,9 @@ import kotlin.jvm.JvmStatic
  * See http://geotiff.maptools.org/spec/geotiff6.html#6.3.2.1
  */
 @Suppress("MagicNumber")
-enum class GeoTiffGeographicType(
-    val typeCode: Short,
-    val displayName: String
+public enum class GeoTiffGeographicType(
+    public val typeCode: Short,
+    public val displayName: String
 ) {
 
     GCS_ADINDAN(4201, "Adindan"),
@@ -202,10 +202,10 @@ enum class GeoTiffGeographicType(
     /** user-defined */
     USER_DEFINED(32767, "User Defined");
 
-    companion object {
+    public companion object {
 
         @JvmStatic
-        fun of(typeCode: Short): GeoTiffGeographicType? =
+        public fun of(typeCode: Short): GeoTiffGeographicType? =
             GeoTiffGeographicType.entries.firstOrNull { it.typeCode == typeCode }
     }
 }

@@ -17,27 +17,27 @@
 package com.ashampoo.kim.format.bmff.box
 
 import com.ashampoo.kim.common.toFourCCTypeString
-import com.ashampoo.kim.format.bmff.BMFFConstants
 import com.ashampoo.kim.format.bmff.BMFFConstants.BMFF_BYTE_ORDER
 import com.ashampoo.kim.format.bmff.BMFFConstants.BOX_HEADER_LENGTH
 import com.ashampoo.kim.format.bmff.BoxType
 import com.ashampoo.kim.input.ByteArrayByteReader
+import com.ashampoo.kim.input.read4BytesAsInt
 
 /**
  * EIC/ISO 14496-12 ftyp box
  */
-class FileTypeBox(
+public class FileTypeBox(
     offset: Long,
     size: Long,
     largeSize: Long?,
     payload: ByteArray
 ) : Box(BoxType.FTYP, offset, size, largeSize, payload) {
 
-    val majorBrand: String
+    public val majorBrand: String
 
-    val minorBrand: String
+    public val minorBrand: String
 
-    val compatibleBrands: List<String>
+    public val compatibleBrands: List<String>
 
     init {
 
@@ -58,7 +58,7 @@ class FileTypeBox(
         repeat(brandCount) {
             brands.add(
                 byteReader
-                    .read4BytesAsInt("brand $it", BMFFConstants.BMFF_BYTE_ORDER)
+                    .read4BytesAsInt("brand $it", BMFF_BYTE_ORDER)
                     .toFourCCTypeString()
             )
         }
@@ -69,7 +69,7 @@ class FileTypeBox(
     override fun toString(): String =
         "$type major=$majorBrand minor=$minorBrand compatible=$compatibleBrands"
 
-    companion object {
+    internal companion object {
         const val JXL_BRAND = "jxl "
     }
 }

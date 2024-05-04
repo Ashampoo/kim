@@ -15,11 +15,11 @@
  */
 package com.ashampoo.kim.common
 
-data class MetadataOffset(
+public data class MetadataOffset(
     val type: MetadataType,
     val offset: Long,
     val length: Long
 ) {
 
-    val endPosition = offset + length
+    val endPosition: Long = offset + length
 }

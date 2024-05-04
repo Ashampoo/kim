@@ -29,6 +29,10 @@ import com.ashampoo.kim.format.tiff.TiffContents
 import com.ashampoo.kim.format.tiff.TiffReader
 import com.ashampoo.kim.input.ByteArrayByteReader
 import com.ashampoo.kim.input.ByteReader
+import com.ashampoo.kim.input.read4BytesAsInt
+import com.ashampoo.kim.input.readBytes
+import com.ashampoo.kim.input.readRemainingBytes
+import com.ashampoo.kim.input.skipBytes
 
 /**
  * Reads containers that follow the ISO base media file format
@@ -37,7 +41,7 @@ import com.ashampoo.kim.input.ByteReader
  *
  * https://en.wikipedia.org/wiki/ISO_base_media_file_format
  */
-object BaseMediaFileFormatImageParser : ImageParser {
+public object BaseMediaFileFormatImageParser : ImageParser {
 
     override fun parseMetadata(byteReader: ByteReader): ImageMetadata {
 
@@ -57,9 +61,7 @@ object BaseMediaFileFormatImageParser : ImageParser {
             throw ImageReadException("Illegal ISOBMFF: Has no boxes.")
 
         val fileTypeBox = allBoxes.filterIsInstance<FileTypeBox>().firstOrNull()
-
-        if (fileTypeBox == null)
-            throw ImageReadException("Illegal ISOBMFF: Has no 'ftyp' Box.")
+            ?: throw ImageReadException("Illegal ISOBMFF: Has no 'ftyp' Box.")
 
         /**
          * Handle JPEG XL
@@ -70,9 +72,7 @@ object BaseMediaFileFormatImageParser : ImageParser {
             return JxlReader.createMetadata(allBoxes)
 
         val metaBox = allBoxes.filterIsInstance<MetaBox>().firstOrNull()
-
-        if (metaBox == null)
-            throw ImageReadException("Illegal ISOBMFF: Has no 'meta' Box.")
+            ?: throw ImageReadException("Illegal ISOBMFF: Has no 'meta' Box.")
 
         val metadataOffsets = metaBox.findMetadataOffsets()
 
@@ -131,10 +131,8 @@ object BaseMediaFileFormatImageParser : ImageParser {
              * Ignore illegal offsets.
              * endPosition is checked for negative values to also catch value overflows.
              */
-            if (offset.endPosition < 0 || offset.endPosition > byteReader.contentLength) {
-                println("Ignored illegal start offset: $offset")
+            if (offset.endPosition < 0 || offset.endPosition > byteReader.contentLength)
                 continue
-            }
 
             when (offset.type) {
 

@@ -27,7 +27,7 @@ import com.ashampoo.kim.output.BinaryByteWriter.Companion.createBinaryByteWriter
 import com.ashampoo.kim.output.BufferByteWriter
 import com.ashampoo.kim.output.ByteWriter
 
-class TiffWriterLossless(
+public class TiffWriterLossless(
     byteOrder: ByteOrder,
     private val exifBytes: ByteArray
 ) : TiffWriterBase(byteOrder) {
@@ -52,6 +52,10 @@ class TiffWriterLossless(
         }
     }
 
+    /**
+     * Returns a sorted list of existing [TiffElement]s.
+     */
+    @Suppress("NestedBlockDepth")
     private fun findExistingTiffElements(
         tiffContents: TiffContents,
         makerNoteField: TiffOutputField?
@@ -77,8 +81,7 @@ class TiffWriterLossless(
                 if (oversizeValue != null) {
 
                     /* MakerNote offsets must stay the same. */
-                    if (makerNoteField != null &&
-                        makerNoteField.separateValue != null &&
+                    if (makerNoteField?.separateValue != null &&
                         makerNoteField.bytesEqual(field.valueBytes)
                     )
                         makerNoteField.separateValue.offset = field.valueOffset!!
@@ -96,7 +99,7 @@ class TiffWriterLossless(
             }
         }
 
-        elements.sortWith(TiffElement.offsetComparator)
+        elements.sort()
 
         return elements
     }
@@ -124,6 +127,13 @@ class TiffWriterLossless(
                 position = element.offset + element.length
 
                 continue
+            }
+
+            /*
+             * Ensure that the list of elements is sorted.
+             */
+            require(element.offset > lastElement.offset) {
+                "Parameterized elements must be sorted."
             }
 
             /*
@@ -224,15 +234,15 @@ class TiffWriterLossless(
         outputItems: List<TiffOutputItem>
     ): Int {
 
-        val filterAndSortElementsResult = filterAndSortRewriteableSpaceRanges(
+        val result = filterRewriteableSpaceRanges(
             rewritableSpaceRanges,
             exifBytes.size
         )
 
-        val unusedSpaceRanges = filterAndSortElementsResult.first
+        val unusedSpaceRanges = result.first
 
         /* Keeps track of the total length the exif bytes we have. */
-        var newExifBytesLength = filterAndSortElementsResult.second
+        var newExifBytesLength = result.second
 
         val unplacedItems = outputItems.toMutableList()
 
@@ -299,24 +309,22 @@ class TiffWriterLossless(
         return newExifBytesLength
     }
 
-    private fun filterAndSortRewriteableSpaceRanges(
+    private fun filterRewriteableSpaceRanges(
         rewritableSpaceRanges: List<RewritableSpaceRange>,
         exifBytesLength: Int
     ): Pair<MutableList<RewritableSpaceRange>, Int> {
 
         var newExifBytesLength = exifBytesLength
 
-        val filteredAndSortedRewritableSpaceRanges = rewritableSpaceRanges
-            .sortedBy { it.offset }
-            .toMutableList()
+        val filteredRewritableSpaceRanges = rewritableSpaceRanges.toMutableList()
 
         /*
          * Any items that represent a gap at the end of
          * the exif segment, can be discarded.
          */
-        while (filteredAndSortedRewritableSpaceRanges.isNotEmpty()) {
+        while (filteredRewritableSpaceRanges.isNotEmpty()) {
 
-            val lastRange = filteredAndSortedRewritableSpaceRanges.last()
+            val lastRange = filteredRewritableSpaceRanges.last()
 
             val rangeEnd = lastRange.offset + lastRange.length
 
@@ -328,10 +336,10 @@ class TiffWriterLossless(
 
             newExifBytesLength -= lastRange.length
 
-            filteredAndSortedRewritableSpaceRanges.removeLast()
+            filteredRewritableSpaceRanges.removeLast()
         }
 
-        return Pair(filteredAndSortedRewritableSpaceRanges, newExifBytesLength)
+        return filteredRewritableSpaceRanges to newExifBytesLength
     }
 
     private fun writeInternal(
@@ -344,7 +352,7 @@ class TiffWriterLossless(
 
         val rootDirectory = outputSet.getOrCreateRootDirectory()
 
-        val outputByteArray = ByteArray(outputLength.toInt())
+        val outputByteArray = ByteArray(outputLength)
 
         /* Copy old data that inclued makers notes and other stuff. */
         exifBytes.copyInto(
@@ -371,11 +379,11 @@ class TiffWriterLossless(
         for (element in rewritableSpaceRanges)
             outputByteArray.fill(
                 element = 0.toByte(),
-                fromIndex = element.offset.toInt(),
+                fromIndex = element.offset,
                 toIndex = minOf(
                     a = element.offset + element.length,
                     b = outputByteArray.size
-                ).toInt(),
+                ),
             )
 
         /* Write in the new items */
@@ -384,7 +392,7 @@ class TiffWriterLossless(
             val binaryByteWriter = createBinaryByteWriter(
                 byteWriter = BufferByteWriter(
                     buffer = outputByteArray,
-                    index = outputItem.offset.toInt()
+                    index = outputItem.offset
                 ),
                 byteOrder = byteOrder
             )
@@ -395,7 +403,7 @@ class TiffWriterLossless(
         byteWriter.write(outputByteArray)
     }
 
-    companion object {
+    private companion object {
 
         const val OFFSET_TOLERANCE = 3
     }

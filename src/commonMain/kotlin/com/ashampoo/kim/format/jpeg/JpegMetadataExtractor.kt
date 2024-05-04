@@ -24,11 +24,11 @@ import com.ashampoo.kim.format.ImageFormatMagicNumbers
 import com.ashampoo.kim.format.MetadataExtractor
 import com.ashampoo.kim.input.ByteReader
 
-object JpegMetadataExtractor : MetadataExtractor {
+public object JpegMetadataExtractor : MetadataExtractor {
 
-    const val SEGMENT_IDENTIFIER = 0xFF.toByte()
-    const val SEGMENT_START_OF_SCAN = 0xDA.toByte()
-    const val MARKER_END_OF_IMAGE = 0xD9.toByte()
+    internal const val SEGMENT_IDENTIFIER = 0xFF.toByte()
+    internal const val SEGMENT_START_OF_SCAN = 0xDA.toByte()
+    internal const val MARKER_END_OF_IMAGE = 0xD9.toByte()
 
     private const val ADDITIONAL_BYTE_COUNT_AFTER_HEADER: Int = 12
 
@@ -44,7 +44,7 @@ object JpegMetadataExtractor : MetadataExtractor {
 
         /* Ensure it's actually a JPEG. */
         require(magicNumberBytes == ImageFormatMagicNumbers.jpeg) {
-            "JPEG magic number mismatch: ${magicNumberBytes.toByteArray().toSingleNumberHexes()}"
+            "JPEG magic number mismatch: ${magicNumberBytes.toSingleNumberHexes()}"
         }
 
         bytes.addAll(magicNumberBytes)

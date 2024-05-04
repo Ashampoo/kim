@@ -23,16 +23,16 @@ import com.ashampoo.kim.common.indexOfNullTerminator
 import com.ashampoo.kim.format.png.PngChunkType
 import com.ashampoo.kim.format.png.PngConstants
 
-class PngChunkZtxt(
+public class PngChunkZtxt(
     bytes: ByteArray,
     crc: Int
 ) : PngTextChunk(PngChunkType.ZTXT, bytes, crc) {
 
     @kotlin.jvm.JvmField
-    val keyword: String
+    public val keyword: String
 
     @kotlin.jvm.JvmField
-    val text: String
+    public val text: String
 
     init {
 

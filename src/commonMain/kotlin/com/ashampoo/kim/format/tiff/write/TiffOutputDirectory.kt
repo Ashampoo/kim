@@ -65,24 +65,24 @@ import com.ashampoo.kim.format.tiff.write.TiffOutputItem.Companion.UNDEFINED_VAL
 import com.ashampoo.kim.output.BinaryByteWriter
 
 @Suppress("TooManyFunctions", "MethodOverloading")
-class TiffOutputDirectory(
-    val type: Int,
+public class TiffOutputDirectory(
+    public val type: Int,
     private val byteOrder: ByteOrder
 ) : TiffOutputItem {
 
-    private val fields = mutableListOf<TiffOutputField>()
+    private val fields = mutableSetOf<TiffOutputField>()
 
     private var nextDirectory: TiffOutputDirectory? = null
 
     override var offset: Int = UNDEFINED_VALUE
 
-    var thumbnailBytes: ByteArray? = null
+    public var thumbnailBytes: ByteArray? = null
         private set
 
-    var tiffImageBytes: ByteArray? = null
+    public var tiffImageBytes: ByteArray? = null
         private set
 
-    fun setNextDirectory(nextDirectory: TiffOutputDirectory?) {
+    internal fun setNextDirectory(nextDirectory: TiffOutputDirectory?) {
         this.nextDirectory = nextDirectory
     }
 
@@ -92,7 +92,7 @@ class TiffOutputDirectory(
             throw ImageWriteException("Tag length is ${tagInfo.length}, parameter length was $length")
     }
 
-    fun add(tagInfo: TagInfoByte, value: Byte) {
+    public fun add(tagInfo: TagInfoByte, value: Byte) {
 
         add(
             TiffOutputField(
@@ -104,7 +104,7 @@ class TiffOutputDirectory(
         )
     }
 
-    fun add(tagInfo: TagInfoBytes, bytes: ByteArray) {
+    public fun add(tagInfo: TagInfoBytes, bytes: ByteArray) {
 
         checkMatchingLength(tagInfo, bytes.size)
 
@@ -118,7 +118,7 @@ class TiffOutputDirectory(
         )
     }
 
-    fun add(tagInfo: TagInfoAscii, value: String) {
+    public fun add(tagInfo: TagInfoAscii, value: String) {
 
         val bytes = FieldTypeAscii.writeData(value, byteOrder)
 
@@ -134,7 +134,7 @@ class TiffOutputDirectory(
         )
     }
 
-    fun add(tagInfo: TagInfoShort, value: Short) {
+    public fun add(tagInfo: TagInfoShort, value: Short) {
 
         add(
             TiffOutputField(
@@ -146,7 +146,7 @@ class TiffOutputDirectory(
         )
     }
 
-    fun add(tagInfo: TagInfoShorts, values: ShortArray) {
+    public fun add(tagInfo: TagInfoShorts, values: ShortArray) {
 
         checkMatchingLength(tagInfo, values.size)
 
@@ -160,7 +160,7 @@ class TiffOutputDirectory(
         )
     }
 
-    fun add(tagInfo: TagInfoLong, value: Int) {
+    public fun add(tagInfo: TagInfoLong, value: Int) {
 
         add(
             TiffOutputField(
@@ -172,7 +172,7 @@ class TiffOutputDirectory(
         )
     }
 
-    fun add(tagInfo: TagInfoLongs, values: IntArray) {
+    public fun add(tagInfo: TagInfoLongs, values: IntArray) {
 
         checkMatchingLength(tagInfo, values.size)
 
@@ -186,7 +186,7 @@ class TiffOutputDirectory(
         )
     }
 
-    fun add(tagInfo: TagInfoRational, value: RationalNumber) {
+    public fun add(tagInfo: TagInfoRational, value: RationalNumber) {
 
         add(
             TiffOutputField(
@@ -198,7 +198,7 @@ class TiffOutputDirectory(
         )
     }
 
-    fun add(tagInfo: TagInfoRationals, values: RationalNumbers) {
+    public fun add(tagInfo: TagInfoRationals, values: RationalNumbers) {
 
         checkMatchingLength(tagInfo, values.values.size)
 
@@ -212,7 +212,7 @@ class TiffOutputDirectory(
         )
     }
 
-    fun add(tagInfo: TagInfoSByte, value: Byte) {
+    public fun add(tagInfo: TagInfoSByte, value: Byte) {
 
         add(
             TiffOutputField(
@@ -224,7 +224,7 @@ class TiffOutputDirectory(
         )
     }
 
-    fun add(tagInfo: TagInfoSBytes, value: ByteArray) {
+    public fun add(tagInfo: TagInfoSBytes, value: ByteArray) {
 
         checkMatchingLength(tagInfo, value.size)
 
@@ -238,7 +238,7 @@ class TiffOutputDirectory(
         )
     }
 
-    fun add(tagInfo: TagInfoSShort, value: Short) {
+    public fun add(tagInfo: TagInfoSShort, value: Short) {
 
         add(
             TiffOutputField(
@@ -250,7 +250,7 @@ class TiffOutputDirectory(
         )
     }
 
-    fun add(tagInfo: TagInfoSShorts, values: ShortArray) {
+    public fun add(tagInfo: TagInfoSShorts, values: ShortArray) {
 
         checkMatchingLength(tagInfo, values.size)
 
@@ -264,7 +264,7 @@ class TiffOutputDirectory(
         )
     }
 
-    fun add(tagInfo: TagInfoSLong, value: Int) {
+    public fun add(tagInfo: TagInfoSLong, value: Int) {
 
         add(
             TiffOutputField(
@@ -276,7 +276,7 @@ class TiffOutputDirectory(
         )
     }
 
-    fun add(tagInfo: TagInfoSLongs, values: IntArray) {
+    public fun add(tagInfo: TagInfoSLongs, values: IntArray) {
 
         checkMatchingLength(tagInfo, values.size)
 
@@ -290,7 +290,7 @@ class TiffOutputDirectory(
         )
     }
 
-    fun add(tagInfo: TagInfoSRational, value: RationalNumber) {
+    public fun add(tagInfo: TagInfoSRational, value: RationalNumber) {
 
         add(
             TiffOutputField(
@@ -302,7 +302,7 @@ class TiffOutputDirectory(
         )
     }
 
-    fun add(tagInfo: TagInfoSRationals, value: RationalNumbers) {
+    public fun add(tagInfo: TagInfoSRationals, value: RationalNumbers) {
 
         checkMatchingLength(tagInfo, value.values.size)
 
@@ -316,7 +316,7 @@ class TiffOutputDirectory(
         )
     }
 
-    fun add(tagInfo: TagInfoFloat, value: Float) {
+    public fun add(tagInfo: TagInfoFloat, value: Float) {
 
         val bytes = value.toBytes(byteOrder)
 
@@ -330,7 +330,7 @@ class TiffOutputDirectory(
         )
     }
 
-    fun add(tagInfo: TagInfoFloats, values: FloatArray) {
+    public fun add(tagInfo: TagInfoFloats, values: FloatArray) {
 
         checkMatchingLength(tagInfo, values.size)
 
@@ -344,7 +344,7 @@ class TiffOutputDirectory(
         )
     }
 
-    fun add(tagInfo: TagInfoDouble, value: Double) {
+    public fun add(tagInfo: TagInfoDouble, value: Double) {
 
         add(
             TiffOutputField(
@@ -356,7 +356,7 @@ class TiffOutputDirectory(
         )
     }
 
-    fun add(tagInfo: TagInfoDoubles, values: DoubleArray) {
+    public fun add(tagInfo: TagInfoDoubles, values: DoubleArray) {
 
         checkMatchingLength(tagInfo, values.size)
 
@@ -370,7 +370,7 @@ class TiffOutputDirectory(
         )
     }
 
-    fun add(tagInfo: TagInfoGpsText, value: String) {
+    public fun add(tagInfo: TagInfoGpsText, value: String) {
 
         val bytes = tagInfo.encodeValue(value)
 
@@ -384,68 +384,44 @@ class TiffOutputDirectory(
         )
     }
 
-    fun add(field: TiffOutputField) =
+    public fun add(field: TiffOutputField): Boolean =
         fields.add(field)
 
-    fun getFields(): List<TiffOutputField> =
+    public fun getFields(): Set<TiffOutputField> =
         fields
 
-    fun removeField(tagInfo: TagInfo) =
+    public fun removeField(tagInfo: TagInfo): Boolean =
         removeField(tagInfo.tag)
 
-    fun removeField(tag: Int) {
+    public fun removeField(tag: Int): Boolean =
+        fields.removeAll { it.tag == tag }
 
-        val matches = mutableListOf<TiffOutputField>()
-
-        for (field in fields)
-            if (field.tag == tag)
-                matches.add(field)
-
-        fields.removeAll(matches)
-    }
-
-    fun findField(tagInfo: TagInfo): TiffOutputField? =
+    public fun findField(tagInfo: TagInfo): TiffOutputField? =
         findField(tagInfo.tag)
 
-    fun findField(tag: Int): TiffOutputField? {
+    public fun findField(tag: Int): TiffOutputField? =
+        fields.find { it.tag == tag }
 
-        for (field in fields)
-            if (field.tag == tag)
-                return field
-
-        return null
-    }
-
-    fun sortFields() {
-
-        val comparator = Comparator { e1: TiffOutputField, e2: TiffOutputField ->
-
-            if (e1.tag != e2.tag)
-                return@Comparator e1.tag - e2.tag
-
-            e1.sortHint - e2.sortHint
-        }
-
-        fields.sortWith(comparator)
-    }
-
-    override fun writeItem(binaryByteWriter: BinaryByteWriter) {
+    override fun writeItem(
+        binaryByteWriter: BinaryByteWriter
+    ) {
 
         /* Write directory field count. */
         binaryByteWriter.write2Bytes(fields.size)
 
-        for (field in fields)
+        for (field in fields.sorted())
             field.writeField(binaryByteWriter)
 
-        var nextDirectoryOffset: Int = 0
+        var nextDirectoryOffset = 0
 
-        if (nextDirectory != null)
-            nextDirectoryOffset = nextDirectory!!.offset
+        nextDirectory?.let {
+            nextDirectoryOffset = it.offset
+        }
 
         if (nextDirectoryOffset == UNDEFINED_VALUE)
             binaryByteWriter.write4Bytes(0)
         else
-            binaryByteWriter.write4Bytes(nextDirectoryOffset.toInt())
+            binaryByteWriter.write4Bytes(nextDirectoryOffset)
     }
 
     /* Internal, because callers should use setThumbnailBytes() */
@@ -463,7 +439,7 @@ class TiffOutputDirectory(
     private fun removeFieldIfPresent(tagInfo: TagInfo) =
         findField(tagInfo)?.let { field -> fields.remove(field) }
 
-    fun getOutputItems(tiffOffsetItems: TiffOffsetItems): List<TiffOutputItem> {
+    internal fun getOutputItems(tiffOffsetItems: TiffOffsetItems): List<TiffOutputItem> {
 
         /* First remove old fields */
         removeFieldIfPresent(TiffTag.TIFF_TAG_JPEG_INTERCHANGE_FORMAT)
@@ -542,9 +518,8 @@ class TiffOutputDirectory(
         val result = mutableListOf<TiffOutputItem>()
 
         result.add(this)
-        sortFields()
 
-        for (field in fields) {
+        for (field in fields.sorted()) {
 
             if (field.isLocalValue)
                 continue

@@ -24,8 +24,11 @@ import com.ashampoo.kim.format.jxl.box.CompressedBox
 import com.ashampoo.kim.format.jxl.box.JxlParticalCodestreamBox
 import com.ashampoo.kim.input.ByteReader
 import com.ashampoo.kim.output.ByteWriter
+import com.ashampoo.kim.output.writeInt
+import com.ashampoo.kim.output.writeLong
+import kotlin.jvm.JvmStatic
 
-object JxlWriter {
+public object JxlWriter {
 
     /*
      * As a safety measure we don't want to write uncompressed boxes to
@@ -36,19 +39,21 @@ object JxlWriter {
             "Writing to this file will result in data loss. " +
             "Please only update uncompressed metadata for now."
 
-    fun writeImage(
+    @JvmStatic
+    public fun writeImage(
         byteReader: ByteReader,
         byteWriter: ByteWriter,
         exifBytes: ByteArray?,
         xmp: String?
-    ) = writeImage(
+    ): Unit = writeImage(
         boxes = BoxReader.readBoxes(byteReader, false),
         byteWriter = byteWriter,
         exifBytes = exifBytes,
         xmp = xmp
     )
 
-    fun writeImage(
+    @JvmStatic
+    public fun writeImage(
         boxes: List<Box>,
         byteWriter: ByteWriter,
         exifBytes: ByteArray?,

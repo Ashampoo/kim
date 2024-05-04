@@ -29,19 +29,22 @@ import com.ashampoo.kim.format.tiff.constant.TiffConstants.TIFF_ENTRY_LENGTH
 import com.ashampoo.kim.format.tiff.constant.TiffConstants.TIFF_HEADER_SIZE
 import com.ashampoo.kim.format.tiff.constant.TiffTag
 import com.ashampoo.kim.input.ByteReader
+import com.ashampoo.kim.input.read2BytesAsInt
+import com.ashampoo.kim.input.readBytes
+import com.ashampoo.kim.input.skipBytes
 
 /**
  * This algorithm quickly identifies the EXIF orientation offset.
  * If the file already has one no restructuring of the whole file is necessary.
  */
-object JpegOrientationOffsetFinder {
+public object JpegOrientationOffsetFinder {
 
-    const val APP1_MARKER = 0xE1.toByte()
+    private const val APP1_MARKER = 0xE1.toByte()
 
     @OptIn(ExperimentalStdlibApi::class)
     @Throws(ImageReadException::class)
     @Suppress("ComplexMethod")
-    fun findOrientationOffset(
+    public fun findOrientationOffset(
         byteReader: ByteReader
     ): Long? = tryWithImageReadException {
 
@@ -49,7 +52,7 @@ object JpegOrientationOffsetFinder {
 
         /* Ensure it's actually a JPEG. */
         require(magicNumberBytes == ImageFormatMagicNumbers.jpeg) {
-            "JPEG magic number mismatch: ${magicNumberBytes.toByteArray().toSingleNumberHexes()}"
+            "JPEG magic number mismatch: ${magicNumberBytes.toSingleNumberHexes()}"
         }
 
         var positionCounter: Long = ImageFormatMagicNumbers.jpeg.size.toLong()

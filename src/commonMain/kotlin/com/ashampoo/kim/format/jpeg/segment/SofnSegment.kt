@@ -20,8 +20,10 @@ import com.ashampoo.kim.format.jpeg.JpegConstants
 import com.ashampoo.kim.format.jpeg.JpegConstants.JPEG_BYTE_ORDER
 import com.ashampoo.kim.input.ByteArrayByteReader
 import com.ashampoo.kim.input.ByteReader
+import com.ashampoo.kim.input.read2BytesAsInt
+import com.ashampoo.kim.input.skipBytes
 
-class SofnSegment(marker: Int, markerLength: Int, byteReader: ByteReader) : Segment(marker, markerLength) {
+internal class SofnSegment(marker: Int, markerLength: Int, byteReader: ByteReader) : Segment(marker, markerLength) {
 
     val width: Int
     val height: Int

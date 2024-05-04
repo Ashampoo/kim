@@ -40,12 +40,12 @@ import com.ashampoo.kim.model.TiffOrientation
  * for individual images or sets of metadata. While not all Directories contain
  * images, images are always stored in a Directory.
  */
-class TiffDirectory(
-    val type: Int,
-    val entries: List<TiffField>,
+public class TiffDirectory(
+    public val type: Int,
+    public val entries: List<TiffField>,
     offset: Int,
-    val nextDirectoryOffset: Int,
-    val byteOrder: ByteOrder
+    public val nextDirectoryOffset: Int,
+    public val byteOrder: ByteOrder
 ) : TiffElement(
     debugDescription = "Directory " + description(type) + " @ $offset",
     offset = offset,
@@ -53,25 +53,25 @@ class TiffDirectory(
         TiffConstants.TIFF_ENTRY_LENGTH + TiffConstants.TIFF_DIRECTORY_FOOTER_LENGTH
 ) {
 
-    var thumbnailBytes: ByteArray? = null
-    var tiffImageBytes: ByteArray? = null
+    internal var thumbnailBytes: ByteArray? = null
+    internal var tiffImageBytes: ByteArray? = null
 
-    fun getDirectoryEntries(): List<TiffField> = entries
+    public fun getDirectoryEntries(): List<TiffField> = entries
 
-    fun hasJpegImageData(): Boolean =
+    public fun hasJpegImageData(): Boolean =
         null != findField(TiffTag.TIFF_TAG_JPEG_INTERCHANGE_FORMAT)
 
-    fun hasStripImageData(): Boolean =
+    public fun hasStripImageData(): Boolean =
         null != findField(TiffTag.TIFF_TAG_STRIP_OFFSETS)
 
-    fun findField(tag: TagInfo): TiffField? {
+    public fun findField(tag: TagInfo): TiffField? {
         return findField(
             tag = tag,
             failIfMissing = false
         )
     }
 
-    fun findField(tag: TagInfo, failIfMissing: Boolean = false): TiffField? {
+    public fun findField(tag: TagInfo, failIfMissing: Boolean = false): TiffField? {
 
         for (field in entries)
             if (field.tag == tag.tag)
@@ -83,7 +83,7 @@ class TiffDirectory(
         return null
     }
 
-    fun getFieldValue(tag: TagInfoBytes, mustExist: Boolean): ByteArray? {
+    public fun getFieldValue(tag: TagInfoBytes, mustExist: Boolean): ByteArray? {
 
         val field = findField(tag)
 
@@ -99,7 +99,7 @@ class TiffDirectory(
     }
 
     @Suppress("ThrowsCount")
-    fun getFieldValue(tag: TagInfoLong): Int? {
+    public fun getFieldValue(tag: TagInfoLong): Int? {
 
         val field = findField(tag) ?: return null
 
@@ -113,7 +113,7 @@ class TiffDirectory(
     }
 
     @Suppress("ThrowsCount")
-    fun getFieldValue(tag: TagInfoLongs): IntArray {
+    public fun getFieldValue(tag: TagInfoLongs): IntArray {
 
         val field = findField(tag)
             ?: throw ImageReadException("Required field ${tag.name} is missing")
@@ -124,7 +124,7 @@ class TiffDirectory(
         return field.valueBytes.toInts(field.byteOrder)
     }
 
-    fun getJpegImageDataElement(): ImageDataElement? {
+    public fun getJpegImageDataElement(): ImageDataElement? {
 
         val jpegInterchangeFormat = findField(TiffTag.TIFF_TAG_JPEG_INTERCHANGE_FORMAT)
         val jpegInterchangeFormatLength = findField(TiffTag.TIFF_TAG_JPEG_INTERCHANGE_FORMAT_LENGTH)
@@ -144,7 +144,7 @@ class TiffDirectory(
      * Returns a list as tiff image bytes can be splitted upon the whole file.
      * ImageIO creates small splits while GIMP creates a single big chunk.
      */
-    fun getStripImageDataElements(): List<ImageDataElement>? {
+    public fun getStripImageDataElements(): List<ImageDataElement>? {
 
         val offsetField = findField(TiffTag.TIFF_TAG_STRIP_OFFSETS)
         val lengthField = findField(TiffTag.TIFF_TAG_STRIP_BYTE_COUNTS)
@@ -168,7 +168,7 @@ class TiffDirectory(
         return null
     }
 
-    fun createOutputDirectory(byteOrder: ByteOrder): TiffOutputDirectory {
+    public fun createOutputDirectory(byteOrder: ByteOrder): TiffOutputDirectory {
 
         /*
          * Prevent attempts to add MakerNote directories.
@@ -263,7 +263,7 @@ class TiffDirectory(
         return sb.toString()
     }
 
-    companion object {
+    public companion object {
 
         private val tagsToTrim = setOf(
             TiffTag.TIFF_TAG_COPYRIGHT,
@@ -272,7 +272,7 @@ class TiffDirectory(
         )
 
         @kotlin.jvm.JvmStatic
-        fun description(type: Int): String {
+        public fun description(type: Int): String {
             return when (type) {
                 TiffConstants.DIRECTORY_TYPE_UNKNOWN -> "Unknown"
                 TiffConstants.TIFF_DIRECTORY_TYPE_IFD0 -> "IFD0"
@@ -293,7 +293,7 @@ class TiffDirectory(
          * Note: Keep in sync with TiffTags.getTag()
          */
         @Suppress("UnnecessaryParentheses")
-        fun findTiffField(directories: List<TiffDirectory>, tagInfo: TagInfo): TiffField? {
+        public fun findTiffField(directories: List<TiffDirectory>, tagInfo: TagInfo): TiffField? {
 
             /*
              * TagInfos that specify a directory (like GPS and MakerNotes)
@@ -309,11 +309,10 @@ class TiffDirectory(
             /*
              * All others are matched with all directories.
              */
-            for (directory in directories) {
+            for (directory in directories)
                 directory.findField(tagInfo)?.let {
-                    return it
+                    return@findTiffField it
                 }
-            }
 
             return null
         }

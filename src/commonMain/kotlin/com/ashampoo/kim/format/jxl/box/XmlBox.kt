@@ -21,17 +21,12 @@ import com.ashampoo.kim.format.bmff.box.Box
 /**
  * JPEG XL XML box
  */
-class XmlBox(
+public class XmlBox(
     offset: Long,
     size: Long,
     largeSize: Long?,
     payload: ByteArray
 ) : Box(BoxType.XML, offset, size, largeSize, payload) {
 
-    val xmp: String
-
-    init {
-
-        xmp = payload.decodeToString()
-    }
+    public val xmp: String = payload.decodeToString()
 }

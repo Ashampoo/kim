@@ -31,10 +31,10 @@ import kotlin.math.roundToLong
  * To address this challenge, this class stores the numerator and divisor
  * in long (64-bit) integers, applying masks as necessary for the unsigned type.
  */
-class RationalNumber {
+public class RationalNumber {
 
-    val numerator: Long
-    val divisor: Long
+    public val numerator: Long
+    public val divisor: Long
 
     /*
      * The TIFF and EXIF specifications call for the use
@@ -42,7 +42,7 @@ class RationalNumber {
      * unsigned type, this class widens the type to long in order
      * to avoid unintended negative numbers.
      */
-    val unsignedType: Boolean
+    public val unsignedType: Boolean
 
     /**
      * Constructs an instance based on signed integers
@@ -50,7 +50,7 @@ class RationalNumber {
      * @param numerator a 32-bit signed integer
      * @param divisor   a non-zero 32-bit signed integer
      */
-    constructor(numerator: Int, divisor: Int) {
+    public constructor(numerator: Int, divisor: Int) {
         this.numerator = numerator.toLong()
         this.divisor = divisor.toLong()
         unsignedType = false
@@ -64,7 +64,7 @@ class RationalNumber {
      * @param unsignedType indicates whether the input values are to be treated as unsigned.
      */
     @Suppress("MagicNumber")
-    constructor(numerator: Int, divisor: Int, unsignedType: Boolean) {
+    public constructor(numerator: Int, divisor: Int, unsignedType: Boolean) {
 
         this.unsignedType = unsignedType
 
@@ -91,7 +91,7 @@ class RationalNumber {
         this.unsignedType = unsignedType
     }
 
-    fun doubleValue(): Double = numerator.toDouble() / divisor.toDouble()
+    public fun doubleValue(): Double = numerator.toDouble() / divisor.toDouble()
 
     /**
      * Negates the value of the RationalNumber. If the numerator of this
@@ -103,7 +103,7 @@ class RationalNumber {
      * way to perform the negation. When a negation cannot be performed correctly,
      * this method throws an unchecked exception.
      */
-    fun negate(): RationalNumber {
+    public fun negate(): RationalNumber {
 
         val isUnsignedType = unsignedType
         val negatedNumerator = -numerator
@@ -173,14 +173,14 @@ class RationalNumber {
         return result
     }
 
-    companion object {
+    public companion object {
 
         private const val TO_STRING_DOUBLE_ROUND_FRACTION_DIGITS = 6
 
         private const val INT_PRECISION_TOLERANCE = 1E-8
         private const val MAX_ITERATIONS = 100
 
-        fun create(numerator: Long, divisor: Long): RationalNumber {
+        public fun create(numerator: Long, divisor: Long): RationalNumber {
 
             val normalizedFraction = normalizeFraction(numerator, divisor)
 
@@ -200,7 +200,7 @@ class RationalNumber {
             if (normalizedDivisor == 0L)
                 error("Invalid value, numerator: $normalizedNumerator, divisor: $normalizedDivisor")
 
-            return Pair(normalizedNumerator, normalizedDivisor)
+            return normalizedNumerator to normalizedDivisor
         }
 
         private fun normalizeValue(value: Long): Long {
@@ -243,7 +243,7 @@ class RationalNumber {
         /**
          * Calculate rational number using successive approximations.
          */
-        fun valueOf(value: Double): RationalNumber {
+        public fun valueOf(value: Double): RationalNumber {
 
             if (value >= Int.MAX_VALUE)
                 return RationalNumber(Int.MAX_VALUE, 1)
@@ -264,10 +264,10 @@ class RationalNumber {
 
                 val approx = absValue.toInt()
 
-                if (approx < absValue)
-                    low = RationalNumber(approx, 1)
+                low = if (approx < absValue)
+                    RationalNumber(approx, 1)
                 else
-                    low = RationalNumber(approx - 1, 1)
+                    RationalNumber(approx - 1, 1)
 
                 high = RationalNumber(approx + 1, 1)
 
@@ -275,10 +275,10 @@ class RationalNumber {
 
                 val approx = (1.0 / absValue).toInt()
 
-                if (1.0 / approx < absValue)
-                    low = RationalNumber(1, approx)
+                low = if (1.0 / approx < absValue)
+                    RationalNumber(1, approx)
                 else
-                    low = RationalNumber(1, approx + 1)
+                    RationalNumber(1, approx + 1)
 
                 high = RationalNumber(1, approx - 1)
             }

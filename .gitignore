@@ -9,6 +9,7 @@
 /.idea/deploymentTargetDropDown.xml
 /.idea/gradle.xml
 /.idea/jarRepositories.xml
+/.idea/kim.iml
 /.idea/kotlinScripting.xml
 /.idea/kotlinc.xml
 /.idea/libraries/
@@ -23,5 +24,4 @@
 /.idea/workspace.xml
 /build/
 /local.properties
-/.idea/kim.iml
 /src/commonTest/resources/com/ashampoo/kim/testdata/full/*.html

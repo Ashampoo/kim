@@ -20,7 +20,7 @@ package com.ashampoo.kim.input
  * read from [ByteReader] after that. Can be used to
  * prepend the magic number again.
  */
-class PrePendingByteReader(
+internal class PrePendingByteReader(
     private val delegate: ByteReader,
     prependedBytes: List<Byte>
 ) : ByteReader {

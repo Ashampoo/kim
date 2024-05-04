@@ -20,11 +20,18 @@ import com.ashampoo.kim.format.bmff.BMFFConstants.BMFF_BYTE_ORDER
 import com.ashampoo.kim.format.bmff.BoxType
 import com.ashampoo.kim.format.bmff.Extent
 import com.ashampoo.kim.input.ByteArrayByteReader
+import com.ashampoo.kim.input.read2BytesAsInt
+import com.ashampoo.kim.input.read4BytesAsInt
+import com.ashampoo.kim.input.read8BytesAsLong
+import com.ashampoo.kim.input.readByteAsInt
+import com.ashampoo.kim.input.readBytes
+import com.ashampoo.kim.input.readXBytesAtInt
+import com.ashampoo.kim.input.skipBytes
 
 /**
  * EIC/ISO 14496-12 iloc box
  */
-class ItemLocationBox(
+public class ItemLocationBox(
     offset: Long,
     size: Long,
     largeSize: Long?,
@@ -34,36 +41,36 @@ class ItemLocationBox(
     /**
      * The version of the box.
      */
-    val version: Int
+    public val version: Int
 
     /**
      * Flags that provide additional information about the box.
      */
-    val flags: ByteArray
+    public val flags: ByteArray
 
     /**
      * The size (in bytes) of the offset field in each item location entry.
      */
-    val offsetSize: Int
+    public val offsetSize: Int
 
     /**
      * The size (in bytes) of the length field in each item location entry.
      */
-    val lengthSize: Int
+    public val lengthSize: Int
 
     /**
      * The size (in bytes) of the base offset field in each item location entry.
      */
-    val baseOffsetSize: Int
+    public val baseOffsetSize: Int
 
     /**
      * This part contains the actual entries describing the location of items within the file.
      */
-    val indexSize: Int
+    public val indexSize: Int
 
-    val itemCount: Int
+    public val itemCount: Int
 
-    val extents: List<Extent>
+    public val extents: List<Extent>
 
     init {
 
@@ -80,20 +87,20 @@ class ItemLocationBox(
 
         val offsetAndLengthSize = byteReader.readByteAsInt()
         offsetSize = (offsetAndLengthSize and 0xF0) shr 4
-        lengthSize = (offsetAndLengthSize and 0x0F)
+        lengthSize = offsetAndLengthSize and 0x0F
 
         val baseOffsetSizeAndIndexSize = byteReader.readByteAsInt()
         baseOffsetSize = (baseOffsetSizeAndIndexSize and 0xF0) shr 4
 
-        if (version in 1..2)
-            indexSize = (baseOffsetSizeAndIndexSize and 0x0F)
+        indexSize = if (version in 1..2)
+            baseOffsetSizeAndIndexSize and 0x0F
         else
-            indexSize = 0 // Unused
+            0 // Unused
 
-        if (version < 2)
-            itemCount = byteReader.read2BytesAsInt("itemCount", BMFF_BYTE_ORDER)
+        itemCount = if (version < 2)
+            byteReader.read2BytesAsInt("itemCount", BMFF_BYTE_ORDER)
         else if (version == 2)
-            itemCount = byteReader.read4BytesAsInt("itemCount", BMFF_BYTE_ORDER)
+            byteReader.read4BytesAsInt("itemCount", BMFF_BYTE_ORDER)
         else
             error("Unknown version $version")
 

@@ -19,13 +19,13 @@ package com.ashampoo.kim.format.bmff.box
 import com.ashampoo.kim.format.bmff.BMFFConstants.BOX_HEADER_LENGTH
 import com.ashampoo.kim.format.bmff.BoxType
 
-open class Box(
-    val type: BoxType,
-    val offset: Long,
-    val size: Long,
-    val largeSize: Long?,
+public open class Box(
+    public val type: BoxType,
+    public val offset: Long,
+    public val size: Long,
+    public val largeSize: Long?,
     /** Payload bytes, not including type & length bytes */
-    val payload: ByteArray
+    public val payload: ByteArray
 ) {
 
     /*
@@ -35,7 +35,7 @@ open class Box(
      * box is the last one in the file, and its contents extend to the
      * end of the file (normally only used for a Media Data Box)
      */
-    val actualLength: Long =
+    public val actualLength: Long =
         when (size) {
             0L -> BOX_HEADER_LENGTH.toLong() + payload.size
             1L -> largeSize!!

@@ -15,7 +15,7 @@
  */
 package com.ashampoo.kim.common
 
-enum class MetadataType {
+public enum class MetadataType {
 
     EXIF,
     IPTC,

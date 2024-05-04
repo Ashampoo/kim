@@ -38,12 +38,12 @@ import kotlin.jvm.JvmStatic
  * This is a dedicated object with @JvmStatic methods
  * to provide a better API to pure Java projects.
  */
-object PhotoMetadataConverter {
+public object PhotoMetadataConverter {
 
     @JvmStatic
     @JvmOverloads
     @Suppress("LongMethod")
-    fun convertToPhotoMetadata(
+    public fun convertToPhotoMetadata(
         imageMetadata: ImageMetadata,
         ignoreOrientation: Boolean = false
     ): PhotoMetadata {
@@ -57,7 +57,7 @@ object PhotoMetadataConverter {
 
         val gpsDirectory = imageMetadata.findTiffDirectory(TiffConstants.TIFF_DIRECTORY_GPS)
 
-        val gps = gpsDirectory?.let { GPSInfo.createFrom(it) }
+        val gps = gpsDirectory?.let(GPSInfo::createFrom)
 
         val latitude = gps?.getLatitudeAsDegreesNorth()
         val longitude = gps?.getLongitudeAsDegreesEast()
@@ -143,7 +143,7 @@ object PhotoMetadataConverter {
     }
 
     @JvmStatic
-    fun extractTakenDateAsIsoString(metadata: ImageMetadata): String? {
+    public fun extractTakenDateAsIsoString(metadata: ImageMetadata): String? {
 
         val takenDateField = metadata.findTiffField(ExifTag.EXIF_TAG_DATE_TIME_ORIGINAL)
             ?: return null
@@ -163,13 +163,11 @@ object PhotoMetadataConverter {
     }
 
     @JvmStatic
-    fun extractTakenDateMillis(metadata: ImageMetadata): Long? {
-
-        var takenDate: String? = null
+    public fun extractTakenDateMillis(metadata: ImageMetadata): Long? {
 
         try {
 
-            takenDate = extractTakenDateAsIsoString(metadata) ?: return null
+            val takenDate = extractTakenDateAsIsoString(metadata) ?: return null
 
             val takenDateSubSecond = metadata
                 .findStringValue(ExifTag.EXIF_TAG_SUB_SEC_TIME_ORIGINAL)
@@ -200,7 +198,6 @@ object PhotoMetadataConverter {
              * Many photos contain wrong values here. We ignore this problem and hope
              * that another taken date source like embedded XMP has a valid date instead.
              */
-            println("Ignore invalid EXIF DateTimeOriginal: '$takenDate'")
 
             return null
         }
@@ -208,7 +205,7 @@ object PhotoMetadataConverter {
 
 }
 
-fun ImageMetadata.convertToPhotoMetadata(
+public fun ImageMetadata.convertToPhotoMetadata(
     ignoreOrientation: Boolean = false
 ): PhotoMetadata =
     PhotoMetadataConverter.convertToPhotoMetadata(

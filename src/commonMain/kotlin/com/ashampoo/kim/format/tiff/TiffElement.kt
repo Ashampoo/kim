@@ -16,16 +16,15 @@
  */
 package com.ashampoo.kim.format.tiff
 
-open class TiffElement(
-    val debugDescription: String,
-    val offset: Int,
-    val length: Int
-) {
+public open class TiffElement(
+    public val debugDescription: String,
+    public val offset: Int,
+    public val length: Int
+) : Comparable<TiffElement> {
 
     override fun toString(): String =
         debugDescription
 
-    companion object {
-        val offsetComparator = compareBy { e: TiffElement -> e.offset }
-    }
+    override fun compareTo(other: TiffElement): Int =
+        offset - other.offset
 }

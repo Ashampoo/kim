@@ -1,8 +1,8 @@
 import com.ashampoo.kim.Kim;
-import com.ashampoo.kim.jvm.KimJvm;
 import com.ashampoo.kim.format.ImageMetadata;
 import com.ashampoo.kim.input.ByteReader;
 import com.ashampoo.kim.input.JvmInputStreamByteReader;
+import com.ashampoo.kim.jvm.KimJvm;
 import com.ashampoo.kim.model.MetadataUpdate;
 import com.ashampoo.kim.output.ByteArrayByteWriter;
 

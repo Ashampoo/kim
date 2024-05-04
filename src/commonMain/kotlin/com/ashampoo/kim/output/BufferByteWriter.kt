@@ -18,7 +18,7 @@ package com.ashampoo.kim.output
 
 import com.ashampoo.kim.common.ImageWriteException
 
-class BufferByteWriter(
+internal class BufferByteWriter(
     private val buffer: ByteArray,
     private var index: Int
 ) : ByteWriter {

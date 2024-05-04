@@ -19,7 +19,7 @@ import com.ashampoo.kim.common.convertToPhotoMetadata
 import com.ashampoo.kim.common.readFileAsByteArray
 import platform.posix.perror
 
-fun main(args: Array<String>) {
+public fun main(args: Array<String>) {
 
     if (args.size != 1) {
         println("USAGE: Must be called with one argument.")

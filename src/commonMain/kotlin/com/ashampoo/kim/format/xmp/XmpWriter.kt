@@ -25,8 +25,9 @@ import com.ashampoo.xmp.options.SerializeOptions
 import kotlinx.datetime.Instant
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
+import kotlin.jvm.JvmStatic
 
-object XmpWriter {
+public object XmpWriter {
 
     private val xmpSerializeOptions =
         SerializeOptions()
@@ -36,7 +37,8 @@ object XmpWriter {
             .setUseCanonicalFormat(false)
             .setSort(true)
 
-    fun XMPMeta.applyUpdate(update: MetadataUpdate) {
+    @JvmStatic
+    public fun XMPMeta.applyUpdate(update: MetadataUpdate) {
 
         when (update) {
 
@@ -100,7 +102,8 @@ object XmpWriter {
      */
     @Throws(XMPException::class)
     @Suppress("LoopWithTooManyJumpStatements")
-    fun updateXmp(
+    @JvmStatic
+    public fun updateXmp(
         xmpMeta: XMPMeta,
         updates: Set<MetadataUpdate>,
         writePackageWrapper: Boolean
@@ -117,7 +120,8 @@ object XmpWriter {
      */
     @Throws(XMPException::class)
     @Suppress("LoopWithTooManyJumpStatements")
-    fun updateXmp(
+    @JvmStatic
+    public fun updateXmp(
         xmpMeta: XMPMeta,
         update: MetadataUpdate,
         writePackageWrapper: Boolean

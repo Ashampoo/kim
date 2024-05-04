@@ -25,13 +25,13 @@ import com.ashampoo.kim.format.tiff.constant.TiffConstants.TIFF_VERSION
 import com.ashampoo.kim.output.BinaryByteWriter
 import com.ashampoo.kim.output.ByteWriter
 
-abstract class TiffWriterBase(
-    val byteOrder: ByteOrder
+public abstract class TiffWriterBase(
+    public val byteOrder: ByteOrder
 ) {
 
-    abstract fun write(byteWriter: ByteWriter, outputSet: TiffOutputSet)
+    public abstract fun write(byteWriter: ByteWriter, outputSet: TiffOutputSet)
 
-    protected fun createOffsetItems(outputSet: TiffOutputSet): TiffOffsetItems {
+    internal fun createOffsetItems(outputSet: TiffOutputSet): TiffOffsetItems {
 
         val directories = outputSet.getDirectories()
 
@@ -85,22 +85,20 @@ abstract class TiffWriterBase(
                         interoperabilityDirectory = directory
                     }
 
-                    else -> throw ImageWriteException("Unknown directory: " + dirType)
+                    else -> throw ImageWriteException("Unknown directory: $dirType")
                 }
 
             } else {
 
                 if (directoryIndices.contains(dirType))
-                    throw ImageWriteException("More than one directory with index: " + dirType + ".")
+                    throw ImageWriteException("More than one directory with index: $dirType")
 
                 directoryIndices.add(dirType)
             }
 
             val fieldTags = mutableSetOf<Int>()
 
-            val fields = directory.getFields()
-
-            for (field in fields) {
+            for (field in directory.getFields()) {
 
                 if (fieldTags.contains(field.tag))
                     throw ImageWriteException("Tag ${field.tagFormatted} appears twice in directory.")
@@ -158,9 +156,7 @@ abstract class TiffWriterBase(
         }
 
         val rootDirectory = directoryTypeMap[TiffConstants.TIFF_DIRECTORY_TYPE_IFD0]
-
-        if (rootDirectory == null)
-            throw ImageWriteException("Root directory is missing.")
+            ?: throw ImageWriteException("Root directory is missing.")
 
         if (interoperabilityDirectory == null && interoperabilityDirectoryOffsetField != null)
             throw ImageWriteException(
@@ -243,13 +239,13 @@ abstract class TiffWriterBase(
         }
 
         byteWriter.write2Bytes(TIFF_VERSION)
-        byteWriter.write4Bytes(offsetToFirstIFD.toInt())
+        byteWriter.write4Bytes(offsetToFirstIFD)
     }
 
-    companion object {
+    public companion object {
 
         /** Returns an appropriate TiffImageWriter instance. */
-        fun createTiffWriter(
+        public fun createTiffWriter(
             byteOrder: ByteOrder,
             oldExifBytes: ByteArray?
         ): TiffWriterBase {

@@ -20,24 +20,27 @@ import com.ashampoo.kim.format.bmff.box.Box
 import com.ashampoo.kim.format.tiff.TiffContents
 import com.ashampoo.kim.format.tiff.TiffReader
 import com.ashampoo.kim.input.ByteArrayByteReader
+import com.ashampoo.kim.input.readByteAsInt
+import com.ashampoo.kim.input.readBytes
+import com.ashampoo.kim.input.readRemainingBytes
 
 /**
  * JPEG XL Exif box
  */
-class ExifBox(
+public class ExifBox(
     offset: Long,
     size: Long,
     largeSize: Long?,
     payload: ByteArray
 ) : Box(BoxType.EXIF, offset, size, largeSize, payload) {
 
-    val version: Int
+    public val version: Int
 
-    val flags: ByteArray
+    public val flags: ByteArray
 
-    val exifBytes: ByteArray
+    public val exifBytes: ByteArray
 
-    val tiffContents: TiffContents
+    public val tiffContents: TiffContents
 
     init {
 

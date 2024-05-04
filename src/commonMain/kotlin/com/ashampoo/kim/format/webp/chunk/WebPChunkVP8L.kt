@@ -25,15 +25,15 @@ import com.ashampoo.kim.model.ImageSize
  * https://developers.google.com/speed/webp/docs/riff_container#simple_file_format_lossless
  */
 @Suppress("MagicNumber")
-class WebPChunkVP8L(
+public class WebPChunkVP8L(
     bytes: ByteArray
 ) : WebPChunk(WebPChunkType.VP8L, bytes), ImageSizeAware {
 
     override val imageSize: ImageSize
 
-    val hasAlpha: Boolean
+    public val hasAlpha: Boolean
 
-    val versionNumber: Int
+    public val versionNumber: Int
 
     init {
 
