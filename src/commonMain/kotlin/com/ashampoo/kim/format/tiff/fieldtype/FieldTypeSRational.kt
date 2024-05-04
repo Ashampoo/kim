@@ -35,7 +35,7 @@ public object FieldTypeSRational : FieldType<RationalNumbers> {
     override val size: Int = 8
 
     override fun getValue(bytes: ByteArray, byteOrder: ByteOrder): RationalNumbers =
-        bytes.toRationals(byteOrder, unsignedType = false)
+        bytes.toRationals(unsignedType = false, byteOrder)
 
     override fun writeData(data: Any, byteOrder: ByteOrder): ByteArray =
         (data as RationalNumbers).toBytes(byteOrder)

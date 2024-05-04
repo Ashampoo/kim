@@ -30,7 +30,7 @@ internal fun Short.toBytes(byteOrder: ByteOrder): ByteArray {
 
     val result = ByteArray(2)
 
-    this.toBytes(byteOrder, result, 0)
+    this.toBytes(result, 0, byteOrder)
 
     return result
 }
@@ -40,12 +40,12 @@ internal fun ShortArray.toBytes(byteOrder: ByteOrder): ByteArray {
     val result = ByteArray(size * 2)
 
     for (index in indices)
-        this[index].toBytes(byteOrder, result, index * 2)
+        this[index].toBytes(result, index * 2, byteOrder)
 
     return result
 }
 
-private fun Short.toBytes(byteOrder: ByteOrder, result: ByteArray, offset: Int) {
+private fun Short.toBytes(result: ByteArray, offset: Int, byteOrder: ByteOrder) {
 
     if (byteOrder == ByteOrder.BIG_ENDIAN) {
         result[offset + 0] = (toInt() shr 8).toByte()
@@ -60,7 +60,7 @@ internal fun Int.toBytes(byteOrder: ByteOrder): ByteArray {
 
     val result = ByteArray(4)
 
-    this.toBytes(byteOrder, result, 0)
+    this.toBytes(result, 0, byteOrder)
 
     return result
 }
@@ -70,12 +70,12 @@ internal fun IntArray.toBytes(byteOrder: ByteOrder): ByteArray {
     val result = ByteArray(size * 4)
 
     for (i in indices)
-        this[i].toBytes(byteOrder, result, i * 4)
+        this[i].toBytes(result, i * 4, byteOrder)
 
     return result
 }
 
-private fun Int.toBytes(byteOrder: ByteOrder, result: ByteArray, offset: Int) {
+private fun Int.toBytes(result: ByteArray, offset: Int, byteOrder: ByteOrder) {
 
     if (byteOrder == ByteOrder.BIG_ENDIAN) {
         result[offset + 0] = (this shr 24).toByte()
@@ -94,7 +94,7 @@ internal fun Float.toBytes(byteOrder: ByteOrder): ByteArray {
 
     val result = ByteArray(4)
 
-    this.toBytes(byteOrder, result, 0)
+    this.toBytes(result, 0, byteOrder)
 
     return result
 }
@@ -104,12 +104,12 @@ internal fun FloatArray.toBytes(byteOrder: ByteOrder): ByteArray {
     val result = ByteArray(size * 4)
 
     for (i in indices)
-        this[i].toBytes(byteOrder, result, i * 4)
+        this[i].toBytes(result, i * 4, byteOrder)
 
     return result
 }
 
-private fun Float.toBytes(byteOrder: ByteOrder, result: ByteArray, offset: Int) {
+private fun Float.toBytes(result: ByteArray, offset: Int, byteOrder: ByteOrder) {
 
     val bits = toRawBits()
 
@@ -130,7 +130,7 @@ internal fun Double.toBytes(byteOrder: ByteOrder): ByteArray {
 
     val result = ByteArray(8)
 
-    this.toBytes(byteOrder, result, 0)
+    this.toBytes(result, 0, byteOrder)
 
     return result
 }
@@ -140,12 +140,12 @@ internal fun DoubleArray.toBytes(byteOrder: ByteOrder): ByteArray {
     val result = ByteArray(size * 8)
 
     for (i in indices)
-        this[i].toBytes(byteOrder, result, i * 8)
+        this[i].toBytes(result, i * 8, byteOrder)
 
     return result
 }
 
-private fun Double.toBytes(byteOrder: ByteOrder, result: ByteArray, offset: Int) {
+private fun Double.toBytes(result: ByteArray, offset: Int, byteOrder: ByteOrder) {
 
     val bits = toRawBits()
 
@@ -174,7 +174,7 @@ internal fun RationalNumber.toBytes(byteOrder: ByteOrder): ByteArray {
 
     val result = ByteArray(8)
 
-    this.toBytes(byteOrder, result, 0)
+    this.toBytes(result, 0, byteOrder)
 
     return result
 }
@@ -186,12 +186,16 @@ internal fun RationalNumbers.toBytes(
     val result = ByteArray(values.size * 8)
 
     for (index in values.indices)
-        values[index].toBytes(byteOrder, result, index * 8)
+        values[index].toBytes(result, index * 8, byteOrder)
 
     return result
 }
 
-private fun RationalNumber.toBytes(byteOrder: ByteOrder, result: ByteArray, offset: Int) {
+private fun RationalNumber.toBytes(
+    result: ByteArray,
+    offset: Int,
+    byteOrder: ByteOrder
+) {
 
     if (byteOrder == ByteOrder.BIG_ENDIAN) {
         result[offset + 0] = (numerator shr 24).toByte()
@@ -307,8 +311,8 @@ internal fun ByteArray.toDoubles(byteOrder: ByteOrder): DoubleArray =
 
 private fun ByteArray.toRational(
     offset: Int,
-    byteOrder: ByteOrder,
-    unsignedType: Boolean
+    unsignedType: Boolean,
+    byteOrder: ByteOrder
 ): RationalNumber {
 
     val byte0 = 0xFF and this[offset + 0].toInt()
@@ -335,11 +339,11 @@ private fun ByteArray.toRational(
 }
 
 internal fun ByteArray.toRationals(
-    byteOrder: ByteOrder,
-    unsignedType: Boolean
+    unsignedType: Boolean,
+    byteOrder: ByteOrder
 ): RationalNumbers = RationalNumbers(
     values = Array(size / 8) { index ->
-        this.toRational(8 * index, byteOrder, unsignedType)
+        this.toRational(8 * index, unsignedType, byteOrder)
     }
 )
 
