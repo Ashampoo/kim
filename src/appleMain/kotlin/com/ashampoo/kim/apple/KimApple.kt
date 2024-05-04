@@ -45,7 +45,7 @@ public object KimApple {
 }
 
 @Throws(ImageReadException::class)
-private fun Kim.readMetadata(data: NSData): ImageMetadata? =
+public fun Kim.readMetadata(data: NSData): ImageMetadata? =
     KimApple.readMetadata(data)
 
 @Throws(ImageReadException::class)
