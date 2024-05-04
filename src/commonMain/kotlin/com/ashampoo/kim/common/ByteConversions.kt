@@ -24,7 +24,7 @@ package com.ashampoo.kim.common
  */
 
 @Suppress("MagicNumber")
-public fun Byte.toUInt8(): Int = 0xFF and toInt()
+internal fun Byte.toUInt8(): Int = 0xFF and toInt()
 
 internal fun Short.toBytes(byteOrder: ByteOrder): ByteArray {
 
