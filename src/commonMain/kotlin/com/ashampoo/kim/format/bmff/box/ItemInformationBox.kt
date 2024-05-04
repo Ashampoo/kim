@@ -54,10 +54,10 @@ public class ItemInformationBox(
 
         flags = byteReader.readBytes("flags", 3)
 
-        if (version == 0)
-            entryCount = byteReader.read2BytesAsInt("entryCount", BMFF_BYTE_ORDER)
+        entryCount = if (version == 0)
+            byteReader.read2BytesAsInt("entryCount", BMFF_BYTE_ORDER)
         else
-            entryCount = byteReader.read4BytesAsInt("entryCount", BMFF_BYTE_ORDER)
+            byteReader.read4BytesAsInt("entryCount", BMFF_BYTE_ORDER)
 
         boxes = BoxReader.readBoxes(
             byteReader = byteReader,

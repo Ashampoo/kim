@@ -87,20 +87,20 @@ public class ItemLocationBox(
 
         val offsetAndLengthSize = byteReader.readByteAsInt()
         offsetSize = (offsetAndLengthSize and 0xF0) shr 4
-        lengthSize = (offsetAndLengthSize and 0x0F)
+        lengthSize = offsetAndLengthSize and 0x0F
 
         val baseOffsetSizeAndIndexSize = byteReader.readByteAsInt()
         baseOffsetSize = (baseOffsetSizeAndIndexSize and 0xF0) shr 4
 
-        if (version in 1..2)
-            indexSize = (baseOffsetSizeAndIndexSize and 0x0F)
+        indexSize = if (version in 1..2)
+            baseOffsetSizeAndIndexSize and 0x0F
         else
-            indexSize = 0 // Unused
+            0 // Unused
 
-        if (version < 2)
-            itemCount = byteReader.read2BytesAsInt("itemCount", BMFF_BYTE_ORDER)
+        itemCount = if (version < 2)
+            byteReader.read2BytesAsInt("itemCount", BMFF_BYTE_ORDER)
         else if (version == 2)
-            itemCount = byteReader.read4BytesAsInt("itemCount", BMFF_BYTE_ORDER)
+            byteReader.read4BytesAsInt("itemCount", BMFF_BYTE_ORDER)
         else
             error("Unknown version $version")
 

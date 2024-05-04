@@ -264,10 +264,10 @@ public class RationalNumber {
 
                 val approx = absValue.toInt()
 
-                if (approx < absValue)
-                    low = RationalNumber(approx, 1)
+                low = if (approx < absValue)
+                    RationalNumber(approx, 1)
                 else
-                    low = RationalNumber(approx - 1, 1)
+                    RationalNumber(approx - 1, 1)
 
                 high = RationalNumber(approx + 1, 1)
 
@@ -275,10 +275,10 @@ public class RationalNumber {
 
                 val approx = (1.0 / absValue).toInt()
 
-                if (1.0 / approx < absValue)
-                    low = RationalNumber(1, approx)
+                low = if (1.0 / approx < absValue)
+                    RationalNumber(1, approx)
                 else
-                    low = RationalNumber(1, approx + 1)
+                    RationalNumber(1, approx + 1)
 
                 high = RationalNumber(1, approx - 1)
             }

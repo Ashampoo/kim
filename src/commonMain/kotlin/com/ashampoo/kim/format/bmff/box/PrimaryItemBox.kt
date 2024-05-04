@@ -49,10 +49,10 @@ public class PrimaryItemBox(
 
         flags = byteReader.readBytes("flags", 3)
 
-        if (version == 0)
-            itemId = byteReader.read2BytesAsInt("itemId", BMFF_BYTE_ORDER)
+        itemId = if (version == 0)
+            byteReader.read2BytesAsInt("itemId", BMFF_BYTE_ORDER)
         else
-            itemId = byteReader.read4BytesAsInt("itemId", BMFF_BYTE_ORDER)
+            byteReader.read4BytesAsInt("itemId", BMFF_BYTE_ORDER)
     }
 
     override fun toString(): String =
