@@ -17,10 +17,10 @@ package com.ashampoo.kim.format.webp.chunk
 
 import com.ashampoo.kim.format.webp.WebPChunkType
 
-internal class WebPChunkXmp(
+public class WebPChunkXmp(
     bytes: ByteArray
 ) : WebPChunk(WebPChunkType.XMP, bytes) {
 
-    val xmp = bytes.decodeToString()
+    public val xmp: String = bytes.decodeToString()
 
 }

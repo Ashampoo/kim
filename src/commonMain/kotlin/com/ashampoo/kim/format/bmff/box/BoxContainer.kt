@@ -16,13 +16,13 @@
  */
 package com.ashampoo.kim.format.bmff.box
 
-internal interface BoxContainer {
+public interface BoxContainer {
 
-    val boxes: List<Box>
+    public val boxes: List<Box>
 
-    companion object {
+    public companion object {
 
-        fun findAllBoxesRecursive(boxes: List<Box>): List<Box> {
+        public fun findAllBoxesRecursive(boxes: List<Box>): List<Box> {
 
             val allBoxes = mutableListOf<Box>()
 
