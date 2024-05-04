@@ -72,7 +72,7 @@ public class ItemInformationBox(
 
             box as ItemInfoEntryBox
 
-            map.put(box.itemId, box)
+            map[box.itemId] = box
         }
 
         this.map = map
