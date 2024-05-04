@@ -200,7 +200,6 @@ public object PhotoMetadataConverter {
              * Many photos contain wrong values here. We ignore this problem and hope
              * that another taken date source like embedded XMP has a valid date instead.
              */
-            println("Ignore invalid EXIF DateTimeOriginal: '$takenDate'")
 
             return null
         }

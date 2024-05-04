@@ -135,10 +135,8 @@ public object BaseMediaFileFormatImageParser : ImageParser {
              * Ignore illegal offsets.
              * endPosition is checked for negative values to also catch value overflows.
              */
-            if (offset.endPosition < 0 || offset.endPosition > byteReader.contentLength) {
-                println("Ignored illegal start offset: $offset")
+            if (offset.endPosition < 0 || offset.endPosition > byteReader.contentLength)
                 continue
-            }
 
             when (offset.type) {
 
