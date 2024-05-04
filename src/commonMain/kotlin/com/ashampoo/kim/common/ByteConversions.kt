@@ -339,8 +339,7 @@ private fun ByteArray.toDouble(offset: Int, byteOrder: ByteOrder): Double {
     val byte6 = 0xFFL and this[offset + 6].toLong()
     val byte7 = 0xFFL and this[offset + 7].toLong()
 
-    val bits: Long
-    bits = if (byteOrder == ByteOrder.BIG_ENDIAN) {
+    val bits: Long = if (byteOrder == ByteOrder.BIG_ENDIAN) {
         (
             byte0 shl 56 or (byte1 shl 48) or (byte2 shl 40)
                 or (byte3 shl 32) or (byte4 shl 24) or (byte5 shl 16)
