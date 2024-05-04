@@ -23,7 +23,7 @@ import kotlinx.coroutines.runBlocking
 /**
  * This class allows streaming data from a cloud service and read only the headers.
  */
-class KtorByteReadChannelByteReader(
+public class KtorByteReadChannelByteReader(
     private val channel: ByteReadChannel,
     override val contentLength: Long,
     private val bufferSize: Long = DEFAULT_BUFFER_SIZE
@@ -88,7 +88,7 @@ class KtorByteReadChannelByteReader(
         }
     }
 
-    companion object {
+    public companion object {
         private const val DEFAULT_BUFFER_SIZE: Long = 32 * 1024
     }
 }

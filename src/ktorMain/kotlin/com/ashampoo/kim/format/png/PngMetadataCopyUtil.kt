@@ -29,7 +29,7 @@ import kotlinx.io.files.SystemFileSystem
  * The intended use case is to retain metadata when a new
  * image is created due to scaling, rotation, or other modifications.
  */
-object PngMetadataCopyUtil {
+public object PngMetadataCopyUtil {
 
     private val chunkTypesToCopy = listOf(
         PngChunkType.TEXT,
@@ -38,7 +38,7 @@ object PngMetadataCopyUtil {
         PngChunkType.EXIF
     )
 
-    fun copy(
+    public fun copy(
         source: Path,
         destination: Path
     ) {
@@ -94,7 +94,7 @@ object PngMetadataCopyUtil {
         )
     }
 
-    fun copy(
+    public fun copy(
         source: ByteArray,
         destination: ByteArray
     ): ByteArray {

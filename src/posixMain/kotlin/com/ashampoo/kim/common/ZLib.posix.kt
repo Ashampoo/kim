@@ -41,7 +41,7 @@ import platform.zlib.z_stream
 private const val OUTPUT_BUFFER_LENGTH = 4096
 
 @OptIn(UnsafeNumber::class, ExperimentalForeignApi::class)
-actual fun compress(input: String): ByteArray {
+internal actual fun compress(input: String): ByteArray {
 
     memScoped {
 
@@ -81,7 +81,7 @@ actual fun compress(input: String): ByteArray {
 }
 
 @OptIn(ExperimentalForeignApi::class)
-actual fun decompress(byteArray: ByteArray): String {
+internal actual fun decompress(byteArray: ByteArray): String {
 
     memScoped {
 

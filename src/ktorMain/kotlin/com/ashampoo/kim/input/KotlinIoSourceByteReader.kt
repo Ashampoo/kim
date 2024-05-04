@@ -23,8 +23,8 @@ import kotlinx.io.files.SystemFileSystem
 import kotlinx.io.readByteArray
 import kotlin.math.min
 
-class KotlinIoSourceByteReader(
-    val source: Source,
+public class KotlinIoSourceByteReader(
+    private val source: Source,
     override val contentLength: Long
 ) : ByteReader {
 
@@ -52,13 +52,13 @@ class KotlinIoSourceByteReader(
         return bytes
     }
 
-    override fun close() =
+    override fun close(): Unit =
         source.close()
 
-    companion object {
+    public companion object {
 
         @OptIn(ExperimentalStdlibApi::class)
-        fun <T> read(path: Path, block: (ByteReader?) -> T): T {
+        public fun <T> read(path: Path, block: (ByteReader?) -> T): T {
 
             if (!path.exists())
                 return block(null)

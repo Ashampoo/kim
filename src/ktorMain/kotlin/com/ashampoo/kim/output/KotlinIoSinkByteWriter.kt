@@ -20,26 +20,26 @@ import kotlinx.io.buffered
 import kotlinx.io.files.Path
 import kotlinx.io.files.SystemFileSystem
 
-class KotlinIoSinkByteWriter(
-    val sink: Sink,
+public class KotlinIoSinkByteWriter(
+    private val sink: Sink,
 ) : ByteWriter {
 
-    override fun write(byte: Int) =
+    override fun write(byte: Int): Unit =
         sink.writeByte(byte.toByte())
 
-    override fun write(byteArray: ByteArray) =
+    override fun write(byteArray: ByteArray): Unit =
         sink.write(byteArray)
 
-    override fun flush() =
+    override fun flush(): Unit =
         sink.flush()
 
-    override fun close() =
+    override fun close(): Unit =
         sink.close()
 
-    companion object {
+    public companion object {
 
         @OptIn(ExperimentalStdlibApi::class)
-        fun <T> write(path: Path, block: (ByteWriter) -> T): T {
+        public fun <T> write(path: Path, block: (ByteWriter) -> T): T {
 
             return SystemFileSystem.sink(path).buffered().use { sink ->
                 block(KotlinIoSinkByteWriter(sink))

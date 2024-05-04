@@ -23,7 +23,7 @@ import io.ktor.utils.io.core.readBytes
  * a Ktor HttpClient Input. It is particularly useful for parsing metadata
  * of files hosted on a cloud service, which is a common use case.
  */
-class KtorInputByteReader(
+public class KtorInputByteReader(
     private val byteReadPacket: ByteReadPacket
 ) : ByteReader {
 
@@ -35,6 +35,6 @@ class KtorInputByteReader(
     override fun readBytes(count: Int): ByteArray =
         byteReadPacket.readBytes(minOf(count, byteReadPacket.remaining.toInt()))
 
-    override fun close() =
+    override fun close(): Unit =
         byteReadPacket.close()
 }
