@@ -19,10 +19,10 @@ import org.khronos.webgl.Uint8Array
 import org.khronos.webgl.get
 import org.khronos.webgl.set
 
-actual fun compress(input: String): ByteArray =
+internal actual fun compress(input: String): ByteArray =
     Pako.deflate(input).toByteArray()
 
-actual fun decompress(byteArray: ByteArray): String =
+internal actual fun decompress(byteArray: ByteArray): String =
     Pako.inflate(byteArray.toUint8Array(), toStringOptions)
 
 private val toStringOptions: JsAny = js("({to: 'string'})")
