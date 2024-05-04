@@ -52,7 +52,7 @@ public object JpegOrientationOffsetFinder {
 
         /* Ensure it's actually a JPEG. */
         require(magicNumberBytes == ImageFormatMagicNumbers.jpeg) {
-            "JPEG magic number mismatch: ${magicNumberBytes.toByteArray().toSingleNumberHexes()}"
+            "JPEG magic number mismatch: ${magicNumberBytes.toSingleNumberHexes()}"
         }
 
         var positionCounter: Long = ImageFormatMagicNumbers.jpeg.size.toLong()

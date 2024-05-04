@@ -44,7 +44,7 @@ public object JpegMetadataExtractor : MetadataExtractor {
 
         /* Ensure it's actually a JPEG. */
         require(magicNumberBytes == ImageFormatMagicNumbers.jpeg) {
-            "JPEG magic number mismatch: ${magicNumberBytes.toByteArray().toSingleNumberHexes()}"
+            "JPEG magic number mismatch: ${magicNumberBytes.toSingleNumberHexes()}"
         }
 
         bytes.addAll(magicNumberBytes)

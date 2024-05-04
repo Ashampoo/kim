@@ -63,7 +63,7 @@ public object PngMetadataExtractor : MetadataExtractor {
 
         /* Ensure it's actually a PNG. */
         require(magicNumberBytes == ImageFormatMagicNumbers.png) {
-            "PNG magic number mismatch: ${magicNumberBytes.toByteArray().toSingleNumberHexes()}"
+            "PNG magic number mismatch: ${magicNumberBytes.toSingleNumberHexes()}"
         }
 
         bytes.addAll(magicNumberBytes)
@@ -136,7 +136,7 @@ public object PngMetadataExtractor : MetadataExtractor {
 
         /* Ensure it's actually a PNG. */
         require(magicNumberBytes == ImageFormatMagicNumbers.png) {
-            "PNG magic number mismatch: ${magicNumberBytes.toByteArray().toSingleNumberHexes()}"
+            "PNG magic number mismatch: ${magicNumberBytes.toSingleNumberHexes()}"
         }
 
         bytes.addAll(magicNumberBytes)
