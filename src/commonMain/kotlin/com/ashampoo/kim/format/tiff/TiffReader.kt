@@ -82,7 +82,7 @@ public object TiffReader {
      *                           For normal reading of RAW metadata this consumes a lot of memory.
      */
     @JvmStatic
-    fun read(
+    public fun read(
         byteReader: RandomAccessByteReader,
         readTiffImageBytes: Boolean = false
     ): TiffContents {
