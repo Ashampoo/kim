@@ -43,9 +43,9 @@ class PngImageParserTest {
         assertNotNull(chunks)
         assertEquals(4, chunks.size)
 
-        val exifTxtChunk = chunks.get(1) as? PngChunkZtxt
-        val iptcTxtChunk = chunks.get(2) as? PngChunkZtxt
-        val xmpTxtChunk = chunks.get(3) as? PngChunkItxt
+        val exifTxtChunk = chunks[1] as? PngChunkZtxt
+        val iptcTxtChunk = chunks[2] as? PngChunkZtxt
+        val xmpTxtChunk = chunks[3] as? PngChunkItxt
 
         assertNotNull(exifTxtChunk)
         assertEquals("Raw profile type exif", exifTxtChunk.keyword)

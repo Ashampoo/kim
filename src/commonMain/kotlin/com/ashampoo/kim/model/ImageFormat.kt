@@ -56,7 +56,7 @@ public enum class ImageFormat(
 
         private val allImageFormats = ImageFormat.entries
 
-        public val allFileNameExtensions: Set<String> = getAllFileNameExtensions()
+        public val allFileNameExtensions: Set<String> = computeAllFileNameExtensions()
 
         /*
          * OneDrive reports RAW files under wrong mime types
@@ -69,8 +69,7 @@ public enum class ImageFormat(
         private const val ORF_ONEDRIVE_MIME_TYPE = "image/ORF"
         private const val DNG_ONEDRIVE_MIME_TYPE = "image/DNG"
 
-        @JvmStatic
-        private fun getAllFileNameExtensions(): MutableSet<String> {
+        private fun computeAllFileNameExtensions(): MutableSet<String> {
 
             val fileNameExtensions = mutableSetOf<String>()
 
