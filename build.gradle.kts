@@ -336,6 +336,7 @@ kotlin {
         macosArm64Test.dependsOn(this)
     }
 
+    @Suppress("UnusedPrivateMember", "UNUSED_VARIABLE") // False positive
     val jsMain by sourceSets.getting {
 
         dependsOn(commonMain)
