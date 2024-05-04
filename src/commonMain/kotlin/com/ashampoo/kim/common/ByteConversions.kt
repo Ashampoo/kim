@@ -215,7 +215,7 @@ private fun RationalNumber.toBytes(byteOrder: ByteOrder, result: ByteArray, offs
 }
 
 internal fun ByteArray.toShorts(byteOrder: ByteOrder): ShortArray =
-    ShortArray(size / 2) { i -> toUInt16(2 * i, byteOrder).toShort() }
+    ShortArray(size / 2) { index -> toUInt16(2 * index, byteOrder).toShort() }
 
 internal fun ByteArray.toUInt16(byteOrder: ByteOrder): Int =
     toUInt16(0, byteOrder)
@@ -250,16 +250,8 @@ internal fun ByteArray.toInt(offset: Int, byteOrder: ByteOrder): Int {
 internal fun ByteArray.toInts(byteOrder: ByteOrder): IntArray =
     this.toInts(0, size, byteOrder)
 
-private fun ByteArray.toInts(offset: Int, length: Int, byteOrder: ByteOrder): IntArray {
-
-    val result = IntArray(length / 4)
-
-    repeat(result.size) { i ->
-        result[i] = toInt(offset + 4 * i, byteOrder)
-    }
-
-    return result
-}
+private fun ByteArray.toInts(offset: Int, length: Int, byteOrder: ByteOrder): IntArray =
+    IntArray(length / 4) { index -> toInt(offset + 4 * index, byteOrder) }
 
 private fun ByteArray.toFloat(offset: Int, byteOrder: ByteOrder): Float {
 
@@ -276,15 +268,8 @@ private fun ByteArray.toFloat(offset: Int, byteOrder: ByteOrder): Float {
     return Float.fromBits(bits)
 }
 
-internal fun ByteArray.toFloats(byteOrder: ByteOrder): FloatArray {
-
-    val result = FloatArray(size / 4)
-
-    for (i in result.indices)
-        result[i] = toFloat(4 * i, byteOrder)
-
-    return result
-}
+internal fun ByteArray.toFloats(byteOrder: ByteOrder): FloatArray =
+    FloatArray(size / 4) { index -> toFloat(4 * index, byteOrder) }
 
 private fun ByteArray.toDouble(
     offset: Int = 0,
@@ -317,16 +302,8 @@ private fun ByteArray.toDouble(
     return Double.fromBits(bits)
 }
 
-internal fun ByteArray.toDoubles(byteOrder: ByteOrder): DoubleArray {
-
-    val result = DoubleArray(size / 8)
-
-    repeat(result.size) { i ->
-        result[i] = toDouble(8 * i, byteOrder)
-    }
-
-    return result
-}
+internal fun ByteArray.toDoubles(byteOrder: ByteOrder): DoubleArray =
+    DoubleArray(size / 8) { index -> toDouble(8 * index, byteOrder) }
 
 private fun ByteArray.toRational(
     offset: Int,
