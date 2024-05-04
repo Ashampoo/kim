@@ -22,7 +22,7 @@ repositories {
     mavenCentral()
 }
 
-val productName = "Ashampoo Kim"
+val productName: String = "Ashampoo Kim"
 
 val ktorVersion: String = "2.3.10"
 val xmpCoreVersion: String = "1.3.0"
@@ -116,7 +116,7 @@ dependencies {
 kotlin {
 
     // TODO set to explicitApi()
-    explicitApiWarning()
+    // explicitApi()
 
     androidTarget {
 
@@ -364,7 +364,7 @@ kotlin {
 }
 
 // region Writing version.txt for GitHub Actions
-val writeVersion = tasks.register("writeVersion") {
+val writeVersion: TaskProvider<Task> = tasks.register("writeVersion") {
     doLast {
         File("build/version.txt").writeText(project.version.toString())
     }
@@ -408,7 +408,7 @@ ext["signing.secretKeyRingFile"] = "secring.pgp"
 ext["ossrhUsername"] = System.getenv("OSSRH_USERNAME")
 ext["ossrhPassword"] = System.getenv("OSSRH_PASSWORD")
 
-val javadocJar by tasks.registering(Jar::class) {
+val javadocJar: TaskProvider<Jar> by tasks.registering(Jar::class) {
     archiveClassifier.set("javadoc")
 }
 
@@ -489,7 +489,7 @@ afterEvaluate {
     }
 }
 
-fun getExtraString(name: String) = ext[name]?.toString()
+fun getExtraString(name: String): String? = ext[name]?.toString()
 
 publishing {
     publications {
