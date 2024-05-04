@@ -50,7 +50,7 @@ public class RationalNumber {
      * @param numerator a 32-bit signed integer
      * @param divisor   a non-zero 32-bit signed integer
      */
-    constructor(numerator: Int, divisor: Int) {
+    public constructor(numerator: Int, divisor: Int) {
         this.numerator = numerator.toLong()
         this.divisor = divisor.toLong()
         unsignedType = false
@@ -64,7 +64,7 @@ public class RationalNumber {
      * @param unsignedType indicates whether the input values are to be treated as unsigned.
      */
     @Suppress("MagicNumber")
-    constructor(numerator: Int, divisor: Int, unsignedType: Boolean) {
+    public constructor(numerator: Int, divisor: Int, unsignedType: Boolean) {
 
         this.unsignedType = unsignedType
 
@@ -243,7 +243,7 @@ public class RationalNumber {
         /**
          * Calculate rational number using successive approximations.
          */
-        fun valueOf(value: Double): RationalNumber {
+        public fun valueOf(value: Double): RationalNumber {
 
             if (value >= Int.MAX_VALUE)
                 return RationalNumber(Int.MAX_VALUE, 1)

@@ -76,13 +76,13 @@ public class TiffOutputDirectory(
 
     override var offset: Int = UNDEFINED_VALUE
 
-    var thumbnailBytes: ByteArray? = null
+    public var thumbnailBytes: ByteArray? = null
         private set
 
-    var tiffImageBytes: ByteArray? = null
+    public var tiffImageBytes: ByteArray? = null
         private set
 
-    fun setNextDirectory(nextDirectory: TiffOutputDirectory?) {
+    internal fun setNextDirectory(nextDirectory: TiffOutputDirectory?) {
         this.nextDirectory = nextDirectory
     }
 
@@ -384,22 +384,22 @@ public class TiffOutputDirectory(
         )
     }
 
-    public fun add(field: TiffOutputField) =
+    public fun add(field: TiffOutputField): Boolean =
         fields.add(field)
 
-    fun getFields(): Set<TiffOutputField> =
+    public fun getFields(): Set<TiffOutputField> =
         fields
 
-    fun removeField(tagInfo: TagInfo) =
+    public fun removeField(tagInfo: TagInfo): Boolean =
         removeField(tagInfo.tag)
 
-    fun removeField(tag: Int) =
+    public fun removeField(tag: Int): Boolean =
         fields.removeAll { it.tag == tag }
 
-    fun findField(tagInfo: TagInfo): TiffOutputField? =
+    public fun findField(tagInfo: TagInfo): TiffOutputField? =
         findField(tagInfo.tag)
 
-    fun findField(tag: Int): TiffOutputField? =
+    public fun findField(tag: Int): TiffOutputField? =
         fields.find { it.tag == tag }
 
     override fun writeItem(

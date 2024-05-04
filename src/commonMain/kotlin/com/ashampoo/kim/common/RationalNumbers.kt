@@ -20,7 +20,7 @@ package com.ashampoo.kim.common
  * extra class to represent a collection of rational numbers.
  */
 public class RationalNumbers(
-    val values: Array<RationalNumber>
+    public val values: Array<RationalNumber>
 ) {
 
     override fun toString(): String =
