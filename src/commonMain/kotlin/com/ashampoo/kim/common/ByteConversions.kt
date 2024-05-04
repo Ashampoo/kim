@@ -135,15 +135,12 @@ internal fun Double.toBytes(byteOrder: ByteOrder): ByteArray {
     return result
 }
 
-internal fun DoubleArray.toBytes(byteOrder: ByteOrder): ByteArray =
-    this.toBytes(0, size, byteOrder)
+internal fun DoubleArray.toBytes(byteOrder: ByteOrder): ByteArray {
 
-private fun DoubleArray.toBytes(offset: Int, length: Int, byteOrder: ByteOrder): ByteArray {
+    val result = ByteArray(size * 8)
 
-    val result = ByteArray(length * 8)
-
-    for (i in 0 until length)
-        this[offset + i].toBytes(byteOrder, result, i * 8)
+    for (i in indices)
+        this[i].toBytes(byteOrder, result, i * 8)
 
     return result
 }
@@ -182,19 +179,14 @@ internal fun RationalNumber.toBytes(byteOrder: ByteOrder): ByteArray {
     return result
 }
 
-internal fun RationalNumbers.toBytes(byteOrder: ByteOrder): ByteArray =
-    this.toBytes(0, values.size, byteOrder)
-
-private fun RationalNumbers.toBytes(
-    offset: Int,
-    length: Int,
+internal fun RationalNumbers.toBytes(
     byteOrder: ByteOrder
 ): ByteArray {
 
-    val result = ByteArray(length * 8)
+    val result = ByteArray(values.size * 8)
 
-    for (index in 0 until length)
-        values[offset + index].toBytes(byteOrder, result, index * 8)
+    for (index in values.indices)
+        values[index].toBytes(byteOrder, result, index * 8)
 
     return result
 }
