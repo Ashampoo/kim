@@ -39,12 +39,4 @@ public object FieldTypeRational : FieldType<RationalNumbers> {
 
     override fun writeData(data: Any, byteOrder: ByteOrder): ByteArray =
         (data as RationalNumbers).toBytes(byteOrder)
-
-//        val rationalNumbers = arrayOfNulls<RationalNumber>(data.size)
-//
-//        repeat(rationalNumbers.size) { i ->
-//            rationalNumbers[i] = valueOf(i.toDouble())
-//        }
-//
-//        return (rationalNumbers as Array<RationalNumber>).toBytes(byteOrder)
 }
