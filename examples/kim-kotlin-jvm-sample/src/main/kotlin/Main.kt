@@ -12,7 +12,6 @@ import com.ashampoo.kim.input.JvmInputStreamByteReader
 import com.ashampoo.kim.input.KotlinIoSourceByteReader
 import com.ashampoo.kim.input.use
 import com.ashampoo.kim.jvm.readMetadata
-import com.ashampoo.kim.kotlinx.KimKotlinx
 import com.ashampoo.kim.model.MetadataUpdate
 import com.ashampoo.kim.output.ByteArrayByteWriter
 import com.ashampoo.kim.output.OutputStreamByteWriter
