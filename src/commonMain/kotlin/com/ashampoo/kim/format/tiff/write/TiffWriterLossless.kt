@@ -81,8 +81,7 @@ public class TiffWriterLossless(
                 if (oversizeValue != null) {
 
                     /* MakerNote offsets must stay the same. */
-                    if (makerNoteField != null &&
-                        makerNoteField.separateValue != null &&
+                    if (makerNoteField?.separateValue != null &&
                         makerNoteField.bytesEqual(field.valueBytes)
                     )
                         makerNoteField.separateValue.offset = field.valueOffset!!
