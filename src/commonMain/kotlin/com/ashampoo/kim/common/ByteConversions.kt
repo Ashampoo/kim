@@ -35,15 +35,12 @@ internal fun Short.toBytes(byteOrder: ByteOrder): ByteArray {
     return result
 }
 
-internal fun ShortArray.toBytes(byteOrder: ByteOrder): ByteArray =
-    this.toBytes(0, size, byteOrder)
+internal fun ShortArray.toBytes(byteOrder: ByteOrder): ByteArray {
 
-private fun ShortArray.toBytes(offset: Int, length: Int, byteOrder: ByteOrder): ByteArray {
+    val result = ByteArray(size * 2)
 
-    val result = ByteArray(length * 2)
-
-    for (index in 0 until length)
-        this[offset + index].toBytes(byteOrder, result, index * 2)
+    for (index in indices)
+        this[index].toBytes(byteOrder, result, index * 2)
 
     return result
 }
@@ -68,15 +65,12 @@ internal fun Int.toBytes(byteOrder: ByteOrder): ByteArray {
     return result
 }
 
-internal fun IntArray.toBytes(byteOrder: ByteOrder): ByteArray =
-    this.toBytes(0, size, byteOrder)
+internal fun IntArray.toBytes(byteOrder: ByteOrder): ByteArray {
 
-private fun IntArray.toBytes(offset: Int, length: Int, byteOrder: ByteOrder): ByteArray {
+    val result = ByteArray(size * 4)
 
-    val result = ByteArray(length * 4)
-
-    for (i in 0 until length)
-        this[offset + i].toBytes(byteOrder, result, i * 4)
+    for (i in indices)
+        this[i].toBytes(byteOrder, result, i * 4)
 
     return result
 }
@@ -105,15 +99,12 @@ internal fun Float.toBytes(byteOrder: ByteOrder): ByteArray {
     return result
 }
 
-internal fun FloatArray.toBytes(byteOrder: ByteOrder): ByteArray =
-    this.toBytes(0, size, byteOrder)
+internal fun FloatArray.toBytes(byteOrder: ByteOrder): ByteArray {
 
-private fun FloatArray.toBytes(offset: Int, length: Int, byteOrder: ByteOrder): ByteArray {
+    val result = ByteArray(size * 4)
 
-    val result = ByteArray(length * 4)
-
-    for (i in 0 until length)
-        this[offset + i].toBytes(byteOrder, result, i * 4)
+    for (i in indices)
+        this[i].toBytes(byteOrder, result, i * 4)
 
     return result
 }
