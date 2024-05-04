@@ -22,7 +22,7 @@ import com.ashampoo.kim.common.ImageReadException
 import com.ashampoo.kim.common.RationalNumbers
 import com.ashampoo.kim.format.tiff.constant.GpsTag
 
-internal data class GPSInfo private constructor(
+internal data class GPSInfo(
     private val latitudeRef: String,
     private val longitudeRef: String,
     private val latitudeDegrees: Double,
