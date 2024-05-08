@@ -51,6 +51,9 @@ public fun Path.readBytes(): ByteArray =
         .buffered()
         .use { it.readByteArray() }
 
-@OptIn(ExperimentalStdlibApi::class)
 public fun Path.exists(): Boolean =
     SystemFileSystem.exists(this)
+
+public fun Path.list(): Collection<Path> =
+    SystemFileSystem.list(this)
+
