@@ -45,6 +45,9 @@ public sealed interface MetadataUpdate {
 
     /**
      * Set a photo as flagged/tagged/picked.
+     *
+     * In the case of flagging/picking a photo a rejected
+     * rating will be reset to UNRATED for logical consistency.
      */
     public data class Flagged(
         val flagged: Boolean
@@ -53,6 +56,9 @@ public sealed interface MetadataUpdate {
     /**
      * Set a new Rating.
      * Can't be NULL and should be UNRATED instead.
+     *
+     * In the case of rejecting a photo a flag/pick marker
+     * will be removed for logical consistency.
      */
     public data class Rating(
         val photoRating: PhotoRating

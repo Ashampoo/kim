@@ -18,6 +18,7 @@ package com.ashampoo.kim.format.xmp
 import com.ashampoo.kim.Kim.underUnitTesting
 import com.ashampoo.kim.common.GpsUtil
 import com.ashampoo.kim.model.MetadataUpdate
+import com.ashampoo.kim.model.PhotoRating
 import com.ashampoo.xmp.XMPException
 import com.ashampoo.xmp.XMPMeta
 import com.ashampoo.xmp.XMPMetaFactory
@@ -77,11 +78,29 @@ public object XmpWriter {
                     deleteGpsCoordinates()
             }
 
-            is MetadataUpdate.Flagged ->
+            is MetadataUpdate.Flagged -> {
+
                 setFlagged(update.flagged)
 
-            is MetadataUpdate.Rating ->
+                /*
+                 * In the case of flagging/picking a photo a rejected
+                 * rating will be reset to UNRATED for logical consistency.
+                 */
+                if (update.flagged && getRating() == PhotoRating.REJECTED.value)
+                    setRating(PhotoRating.UNRATED.value)
+            }
+
+            is MetadataUpdate.Rating -> {
+
                 setRating(update.photoRating.value)
+
+                /*
+                 * In the case of rejecting a photo a flag/pick marker
+                 * will be removed for logical consistency.
+                 */
+                if (update.photoRating == PhotoRating.REJECTED && isFlagged())
+                    setFlagged(false)
+            }
 
             is MetadataUpdate.Keywords ->
                 setKeywords(update.keywords)
