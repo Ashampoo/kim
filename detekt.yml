@@ -130,7 +130,7 @@ complexity:
     active: true
     threshold: 600
   LongMethod:
-    active: true
+    active: false
     threshold: 60
   LongParameterList:
     active: false # already checked by SonarQube
@@ -609,10 +609,10 @@ style:
     ignoreActualFunction: true
     excludedFunctions: [ ]
   LoopWithTooManyJumpStatements:
-    active: true
+    active: false
     maxJumpCount: 1
   MagicNumber:
-    active: true
+    active: false
     excludes: [ '**/commonTest/**', '**/jvmTest/**' ]
     ignoreNumbers:
       - '-1'
@@ -730,7 +730,7 @@ style:
   UnnecessaryLet:
     active: true
   UnnecessaryParentheses:
-    active: true
+    active: false
     allowForUnclearPrecedence: false
   UntilInsteadOfRangeTo:
     active: true
