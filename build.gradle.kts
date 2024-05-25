@@ -335,7 +335,7 @@ kotlin {
         dependsOn(commonMain)
 
         dependencies {
-            implementation(npm("pako", "2.1.0"))
+            api(npm("pako", "2.1.0"))
         }
     }
 
