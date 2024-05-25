@@ -22,6 +22,7 @@
 /.idea/uiDesigner.xml
 /.idea/vcs.xml
 /.idea/workspace.xml
+/.kotlin/
 /build/
 /local.properties
 /src/commonTest/resources/com/ashampoo/kim/testdata/full/*.html

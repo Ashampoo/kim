@@ -17,10 +17,6 @@ package com.ashampoo.kim.model
 
 import com.ashampoo.kim.common.PhotoValueFormatter
 import com.ashampoo.xmp.XMPRegionArea
-import kotlinx.datetime.Instant
-import kotlinx.datetime.LocalDateTime
-import kotlinx.datetime.TimeZone
-import kotlinx.datetime.toLocalDateTime
 
 /**
  * Represents a high-level summary of image metadata extracted from raw ImageMetadata.
@@ -68,34 +64,33 @@ public data class PhotoMetadata(
 
 ) {
 
-    val takenDateLocalDateTime: LocalDateTime? = takenDate?.let {
-        Instant.fromEpochMilliseconds(takenDate).toLocalDateTime(TimeZone.currentSystemDefault())
-    }
+    val megaPixelCount: Int
+        get() = if (widthPx == null || heightPx == null)
+            0
+        else
+            (widthPx * heightPx).div(PhotoValueFormatter.MEGA_PIXEL_COUNT)
 
-    val megaPixelCount: Int = if (widthPx == null || heightPx == null)
-        0
-    else
-        (widthPx * heightPx).div(PhotoValueFormatter.MEGA_PIXEL_COUNT)
+    val locationDisplay: String?
+        get() = location?.displayString ?: gpsCoordinates?.let { gpsCoordinates.displayString }
 
-    val locationDisplay: String? =
-        location?.displayString ?: gpsCoordinates?.let { gpsCoordinates.displayString }
+    val cameraName: String?
+        get() = PhotoValueFormatter.createCameraOrLensName(cameraMake, cameraModel)
 
-    val cameraName: String? =
-        PhotoValueFormatter.createCameraOrLensName(cameraMake, cameraModel)
-
-    val lensName: String? =
-        PhotoValueFormatter.createModifiedLensName(
+    val lensName: String?
+        get() = PhotoValueFormatter.createModifiedLensName(
             cameraName = cameraName,
             lensName = PhotoValueFormatter.createCameraOrLensName(lensMake, lensModel)
         )
 
-    val cameraAndLensName: String? = PhotoValueFormatter.createCameraAndLensName(
-        cameraName = cameraName,
-        lensName = lensName
-    )
+    val cameraAndLensName: String?
+        get() = PhotoValueFormatter.createCameraAndLensName(
+            cameraName = cameraName,
+            lensName = lensName
+        )
 
     @Suppress("DataClassContainsFunctions")
-    public fun isEmpty(): Boolean = this == emptyPhotoMetadata
+    public fun isEmpty(): Boolean =
+        this == emptyPhotoMetadata
 
     /**
      * Combine the current metadata with the given one,
