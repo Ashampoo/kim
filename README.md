@@ -9,7 +9,6 @@
 ![macOS](https://img.shields.io/badge/-macOS-gray.svg?style=flat)
 ![JS](https://img.shields.io/badge/-JS-gray.svg?style=flat)
 ![WASM](https://img.shields.io/badge/-WASM-gray.svg?style=flat)
-![WASI](https://img.shields.io/badge/-WASI-gray.svg?style=flat)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=kim&metric=coverage)](https://sonarcloud.io/summary/new_code?id=kim)
 
 Kim is a Kotlin Multiplatform library for reading and writing image metadata.
@@ -40,7 +39,7 @@ of Ashampoo Photo Organizer, which, in turn, is driven by user community feedbac
 ## Installation
 
 ```
-implementation("com.ashampoo:kim:0.18.2")
+implementation("com.ashampoo:kim:0.18.3")
 ```
 
 For the targets `wasmJs` & `js` you also need to specify this:

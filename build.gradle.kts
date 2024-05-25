@@ -175,8 +175,9 @@ kotlin {
     @OptIn(ExperimentalWasmDsl::class)
     wasmJs()
 
-    @OptIn(ExperimentalWasmDsl::class)
-    wasmWasi()
+    // WASI support is planned for kotlinx-datetime v0.7
+    // @OptIn(ExperimentalWasmDsl::class)
+    // wasmWasi()
 
     @Suppress("UnusedPrivateMember") // False positive
     val commonMain by sourceSets.getting {
