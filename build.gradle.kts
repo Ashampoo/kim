@@ -192,7 +192,7 @@ kotlin {
         }
     }
 
-    @Suppress("UnusedPrivateMember", "UNUSED_VARIABLE") // False positive
+    @Suppress("UnusedPrivateMember") // False positive
     val commonTest by sourceSets.getting {
         dependencies {
 
@@ -262,31 +262,31 @@ kotlin {
         dependsOn(ktorMain)
     }
 
-    @Suppress("UnusedPrivateMember", "UNUSED_VARIABLE") // False positive
+    @Suppress("UnusedPrivateMember") // False positive
     val jvmMain by sourceSets.getting {
 
         dependsOn(commonMain)
         dependsOn(ktorMain)
     }
 
-    @Suppress("UnusedPrivateMember", "UNUSED_VARIABLE") // False positive
+    @Suppress("UnusedPrivateMember") // False positive
     val androidMain by sourceSets.getting {
 
         dependsOn(commonMain)
         dependsOn(ktorMain)
     }
 
-    @Suppress("UnusedPrivateMember", "UNUSED_VARIABLE") // False positive
+    @Suppress("UnusedPrivateMember") // False positive
     val winMain by sourceSets.getting {
         dependsOn(posixMain)
     }
 
-    @Suppress("UnusedPrivateMember", "UNUSED_VARIABLE") // False positive
+    @Suppress("UnusedPrivateMember") // False positive
     val linuxX64Main by sourceSets.getting {
         dependsOn(posixMain)
     }
 
-    @Suppress("UnusedPrivateMember", "UNUSED_VARIABLE") // False positive
+    @Suppress("UnusedPrivateMember") // False positive
     val linuxArm64Main by sourceSets.getting {
         dependsOn(posixMain)
     }
@@ -297,7 +297,7 @@ kotlin {
     val macosX64Main by sourceSets.getting
     val macosArm64Main by sourceSets.getting
 
-    @Suppress("UnusedPrivateMember", "UNUSED_VARIABLE") // False positive
+    @Suppress("UnusedPrivateMember") // False positive
     val appleMain by sourceSets.creating {
 
         dependsOn(commonMain)
@@ -317,7 +317,7 @@ kotlin {
     val macosX64Test by sourceSets.getting
     val macosArm64Test by sourceSets.getting
 
-    @Suppress("UnusedPrivateMember", "UNUSED_VARIABLE") // False positive
+    @Suppress("UnusedPrivateMember") // False positive
     val appleTest by sourceSets.creating {
 
         dependsOn(commonTest)
@@ -329,7 +329,7 @@ kotlin {
         macosArm64Test.dependsOn(this)
     }
 
-    @Suppress("UnusedPrivateMember", "UNUSED_VARIABLE") // False positive
+    @Suppress("UnusedPrivateMember") // False positive
     val jsMain by sourceSets.getting {
 
         dependsOn(commonMain)
@@ -342,7 +342,7 @@ kotlin {
     val wasmJsMain by sourceSets.getting
     // val wasmWasiMain by sourceSets.getting
 
-    @Suppress("UnusedPrivateMember", "UNUSED_VARIABLE") // False positive
+    @Suppress("UnusedPrivateMember") // False positive
     val wasmMain by sourceSets.creating {
 
         dependsOn(commonMain)
