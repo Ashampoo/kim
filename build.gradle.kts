@@ -170,20 +170,13 @@ kotlin {
         }
     }
 
-    js {
-        // nodejs()
-    }
+    js()
 
     @OptIn(ExperimentalWasmDsl::class)
-    wasmJs {
-        // All tests reading from files fail, because kotlinx-io
-        // has no Path support for WASM (yet?).
-        // nodejs()
-    }
+    wasmJs()
 
-//  Note: Missing support in kotlinx-datetime
-//    @OptIn(ExperimentalWasmDsl::class)
-//    wasmWasi()
+    @OptIn(ExperimentalWasmDsl::class)
+    wasmWasi()
 
     @Suppress("UnusedPrivateMember") // False positive
     val commonMain by sourceSets.getting {
