@@ -25,10 +25,10 @@ repositories {
 val productName: String = "Ashampoo Kim"
 
 val ktorVersion: String = "2.3.11"
-val xmpCoreVersion: String = "1.3.0"
+val xmpCoreVersion: String = "1.4.0"
 val dateTimeVersion: String = "0.6.0"
 val testRessourcesVersion: String = "0.4.0"
-val kotlinxIoVersion: String = "0.3.5"
+val kotlinxIoVersion: String = "0.4.0"
 
 description = productName
 group = "com.ashampoo"
