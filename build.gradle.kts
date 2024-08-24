@@ -3,7 +3,7 @@ import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
 import org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalWasmDsl
 
 plugins {
-    kotlin("multiplatform") version "2.0.0"
+    kotlin("multiplatform") version "2.0.20"
     id("com.android.library") version "8.2.2"
     id("maven-publish")
     id("signing")
@@ -11,8 +11,8 @@ plugins {
     id("org.sonarqube") version "4.3.1.3277"
     id("org.jetbrains.kotlinx.kover") version "0.6.1"
     id("com.asarkar.gradle.build-time-tracker") version "4.3.0"
-    id("me.qoomon.git-versioning") version "6.4.3"
-    id("com.goncalossilva.resources") version "0.4.1"
+    id("me.qoomon.git-versioning") version "6.4.4"
+    id("com.goncalossilva.resources") version "0.9.0"
     id("com.github.ben-manes.versions") version "0.51.0"
     id("org.jetbrains.dokka") version "1.9.20"
 }
@@ -24,11 +24,11 @@ repositories {
 
 val productName: String = "Ashampoo Kim"
 
-val ktorVersion: String = "2.3.11"
+val ktorVersion: String = "2.3.12"
 val xmpCoreVersion: String = "1.4.0"
-val dateTimeVersion: String = "0.6.0"
+val dateTimeVersion: String = "0.6.1"
 val testRessourcesVersion: String = "0.4.0"
-val kotlinxIoVersion: String = "0.4.0"
+val kotlinxIoVersion: String = "0.5.3"
 
 description = productName
 group = "com.ashampoo"
