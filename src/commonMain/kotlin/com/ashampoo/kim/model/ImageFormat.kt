@@ -35,6 +35,7 @@ public enum class ImageFormat(
     HEIC("image/heic", "public.heic", setOf("heic")),
     AVIF("image/avif", "public.avif", setOf("avif")),
     CR2("image/x-canon-cr2", "com.canon.cr2-raw-image", setOf("cr2")),
+    CR3("image/x-canon-cr3", "com.canon.cr3", setOf("cr3")),
     RAF("image/x-fuji-raf", "com.fuji.raw-image", setOf("raf")),
     NEF("image/x-nikon-nef", "com.nikon.raw-image", setOf("nef")),
     ARW("image/x-sony-arw", "com.sony.raw-image", setOf("arw")),
@@ -62,6 +63,7 @@ public enum class ImageFormat(
          * OneDrive reports RAW files under wrong mime types
          */
         private const val CR2_ONEDRIVE_MIME_TYPE = "image/CR2"
+        private const val CR3_ONEDRIVE_MIME_TYPE = "image/CR3"
         private const val RAF_ONEDRIVE_MIME_TYPE = "image/RAF"
         private const val NEF_ONEDRIVE_MIME_TYPE = "image/NEF"
         private const val ARW_ONEDRIVE_MIME_TYPE = "image/ARW"
@@ -99,6 +101,7 @@ public enum class ImageFormat(
 
             return when (mimeType) {
                 CR2_ONEDRIVE_MIME_TYPE -> CR2
+                CR3_ONEDRIVE_MIME_TYPE -> CR3
                 RAF_ONEDRIVE_MIME_TYPE -> RAF
                 NEF_ONEDRIVE_MIME_TYPE -> NEF
                 ARW_ONEDRIVE_MIME_TYPE -> ARW
@@ -180,6 +183,8 @@ public enum class ImageFormat(
                 bytes.startsWithNullable(ImageFormatMagicNumbers.hevx) -> HEIC
                 /* Check AVIF */
                 bytes.startsWithNullable(ImageFormatMagicNumbers.avif) -> AVIF
+                /* Check CR3 */
+                bytes.startsWithNullable(ImageFormatMagicNumbers.cr3) -> CR3
                 /* Check GIF and other unlikely formats... */
                 bytes.startsWith(ImageFormatMagicNumbers.gif87a) -> GIF
                 bytes.startsWith(ImageFormatMagicNumbers.gif89a) -> GIF

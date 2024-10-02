@@ -113,6 +113,11 @@ public object ImageFormatMagicNumbers {
         null, null, null, null
     ).plus("ftypavif".encodeToByteArray().toList())
 
+    /* 4 bytes + "ftypcrx" */
+    public val cr3: List<Byte?> = byteListOf(
+        null, null, null, null
+    ).plus("ftypcrx".encodeToByteArray().toList())
+
     /* The regular ISOBMFF-based JPEG XL */
     public val jxl: List<Byte> = byteListOf(
         0x00, 0x00, 0x00, 0x0C, 0x4A, 0x58, 0x4C, 0x20, 0x0D, 0x0A, 0x87, 0x0A
