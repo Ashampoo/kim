@@ -152,9 +152,9 @@ public object BoxReader {
                 if (type == BoxType.META)
                     break
 
-                /* This is the case for CR3 */
-                if (type == BoxType.MOOV)
-                    break
+//                /* This is the case for CR3 */
+//                if (type == BoxType.MOOV)
+//                    break
 
                 /*
                  * When parsing JXL we need to take a note that we saw the header.
