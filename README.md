@@ -24,10 +24,10 @@ It's part of [Ashampoo Photo Organizer](https://ashampoo.com/photo-organizer).
 * HEIC / AVIF: Read EXIF & XMP
 * JXL: Read & Write EXIF & XMP of uncompressed files
 * TIFF / RAW: Read EXIF & XMP
-    + Full support for Adobe DNG, Canon CR2 & Fujifilm RAF
+    + Full support for Adobe DNG, Canon CR2, Canon CR3 & Fujifilm RAF
     + Support for Nikon NEF, Sony ARW & Olympus ORF without lens info
     + Support for Panasonic RW2 without lens info and image size
-    + API for preview image extraction of DNG, CR2, RAF, NEF, ARW & RW2
+    + API for preview image extraction of DNG, CR2, CR3, RAF, NEF, ARW & RW2
 * Handling of XMP content through
   [XMP Core for Kotlin Multiplatform](https://github.com/Ashampoo/xmpcore)
 * Convenient `Kim.update()` API to perform updates to the relevant places
@@ -39,7 +39,7 @@ of Ashampoo Photo Organizer, which, in turn, is driven by user community feedbac
 ## Installation
 
 ```
-implementation("com.ashampoo:kim:0.18.4")
+implementation("com.ashampoo:kim:0.18.5")
 ```
 
 For the targets `wasmJs` & `js` you also need to specify this:
