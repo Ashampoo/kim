@@ -16,15 +16,9 @@
  */
 package com.ashampoo.kim.format.bmff.box
 
-import com.ashampoo.kim.common.MetadataOffset
-import com.ashampoo.kim.common.MetadataType
 import com.ashampoo.kim.common.toHex
-import com.ashampoo.kim.format.bmff.BMFFConstants
-import com.ashampoo.kim.format.bmff.BoxReader
 import com.ashampoo.kim.format.bmff.BoxType
 import com.ashampoo.kim.input.ByteArrayByteReader
-import com.ashampoo.kim.input.readByteAsInt
-import com.ashampoo.kim.input.readBytes
 import com.ashampoo.kim.input.readRemainingBytes
 
 /**

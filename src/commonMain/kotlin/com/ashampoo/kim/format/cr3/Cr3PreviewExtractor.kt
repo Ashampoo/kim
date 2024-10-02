@@ -17,17 +17,13 @@ package com.ashampoo.kim.format.cr3
 
 import com.ashampoo.kim.common.ByteOrder
 import com.ashampoo.kim.common.ImageReadException
-import com.ashampoo.kim.common.toHex
 import com.ashampoo.kim.common.tryWithImageReadException
 import com.ashampoo.kim.format.bmff.BoxReader
-import com.ashampoo.kim.format.bmff.box.Box
-import com.ashampoo.kim.format.bmff.box.MovieBox
 import com.ashampoo.kim.format.bmff.box.UuidBox
 import com.ashampoo.kim.input.ByteArrayByteReader
 import com.ashampoo.kim.input.ByteReader
 import com.ashampoo.kim.input.read4BytesAsInt
 import com.ashampoo.kim.input.readBytes
-import com.ashampoo.kim.input.readRemainingBytes
 import com.ashampoo.kim.input.skipBytes
 import kotlin.jvm.JvmStatic
 
