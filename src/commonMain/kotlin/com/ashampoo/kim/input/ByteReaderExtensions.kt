@@ -196,9 +196,10 @@ internal fun ByteReader.skipBytes(fieldName: String, count: Int) {
     }
 }
 
-internal fun ByteReader.skipToQuad(quad: Int): Boolean {
+internal fun ByteReader.skipToQuad(quad: Int): Boolean =
+    skipToBytes(quad.quadsToByteArray())
 
-    val needle = quad.quadsToByteArray()
+internal fun ByteReader.skipToBytes(needle: ByteArray): Boolean {
 
     var position = 0
 
