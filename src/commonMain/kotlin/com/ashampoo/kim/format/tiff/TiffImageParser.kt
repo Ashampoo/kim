@@ -94,7 +94,7 @@ public object TiffImageParser : ImageParser {
     private fun getImageSize(directory: TiffDirectory): ImageSize? {
 
         val widthField = directory.findField(TiffTag.TIFF_TAG_IMAGE_WIDTH, false)
-        val heightField = directory.findField(TiffTag.TIFF_TAG_IMAGE_LENGTH, false)
+        val heightField = directory.findField(TiffTag.TIFF_TAG_IMAGE_HEIGHT, false)
 
         if (widthField == null || heightField == null)
             return null

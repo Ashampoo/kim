@@ -13,10 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.ashampoo.kim.format.cr3;
+package com.ashampoo.kim.format.cr3
 
 import com.ashampoo.kim.common.ImageReadException
-import com.ashampoo.kim.common.toHex
 import com.ashampoo.kim.format.ImageMetadata
 import com.ashampoo.kim.format.bmff.BoxReader
 import com.ashampoo.kim.format.bmff.BoxType
@@ -27,9 +26,10 @@ import com.ashampoo.kim.format.tiff.TiffContents
 import com.ashampoo.kim.format.tiff.TiffDirectory
 import com.ashampoo.kim.format.tiff.TiffReader
 import com.ashampoo.kim.format.tiff.constant.TiffConstants
-import com.ashampoo.kim.format.xmp.XmpReader
+import com.ashampoo.kim.format.tiff.constant.TiffTag
 import com.ashampoo.kim.input.ByteArrayByteReader
 import com.ashampoo.kim.model.ImageFormat
+import com.ashampoo.kim.model.ImageSize
 
 /**
  * Parses CR3 as documented on https://github.com/lclevy/canon_cr3
@@ -73,7 +73,7 @@ internal object Cr3Reader {
             )
         }
 
-        val idf0Directory = idf0.directories.firstOrNull()
+        val idf0Directory = idf0.directories.first()
 
         val exifIfdDirectory: TiffDirectory? = readTiffContents(
             boxes = subBoxes,
@@ -104,9 +104,20 @@ internal object Cr3Reader {
             it.uuidAsHex == CR3_XMP_UUID
         }
 
+        val imageWidth = idf0.findTiffField(TiffTag.TIFF_TAG_IMAGE_WIDTH)?.toInt()
+        val imageHeight = idf0.findTiffField(TiffTag.TIFF_TAG_IMAGE_HEIGHT)?.toInt()
+
+        val imageSize = if (imageWidth != null && imageHeight != null)
+            ImageSize(
+                width = imageWidth,
+                height = imageHeight
+            )
+        else
+            null
+
         return ImageMetadata(
             imageFormat = ImageFormat.CR3,
-            imageSize = null, // TODO Read size
+            imageSize = imageSize,
             exif = tiffContents,
             exifBytes = null, // TODO Generate bytes?
             iptc = null, // not covered by ISO BMFF

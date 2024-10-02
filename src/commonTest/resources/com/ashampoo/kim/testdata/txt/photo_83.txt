@@ -1,5 +1,5 @@
 File format : CR3
-Resolution  : null
+Resolution  : 6000 x 4000
 ---- TIFF ----
 Version 42
 Little-endian (Intel, II)
