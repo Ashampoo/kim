@@ -113,6 +113,16 @@ public data class BoxType internal constructor(
          */
         public val JXLP: BoxType = of("jxlp".encodeToByteArray())
 
+        /**
+         * ISOBMFF movie box, used by CR3
+         */
+        public val MOOV: BoxType = of("moov".encodeToByteArray())
+
+        /**
+         * ISOBMFF UUID box, used by CR3
+         */
+        public val UUID: BoxType = of("uuid".encodeToByteArray())
+
         @Suppress("MagicNumber")
         public fun of(typeBytes: ByteArray): BoxType {
 

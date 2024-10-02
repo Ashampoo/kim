@@ -15,18 +15,43 @@
  */
 package com.ashampoo.kim.format.cr3;
 
+import com.ashampoo.kim.common.ImageReadException
+import com.ashampoo.kim.common.toHex
 import com.ashampoo.kim.format.ImageMetadata
+import com.ashampoo.kim.format.bmff.BoxReader
+import com.ashampoo.kim.format.bmff.BoxType
 import com.ashampoo.kim.format.bmff.box.Box
+import com.ashampoo.kim.format.bmff.box.MovieBox
+import com.ashampoo.kim.format.bmff.box.UuidBox
+import com.ashampoo.kim.input.ByteArrayByteReader
 import com.ashampoo.kim.model.ImageFormat
 
+/**
+ * Parses CR3 as documented on https://github.com/lclevy/canon_cr3
+ */
 internal object Cr3Reader {
+
+    const val CR3_METADATA_UUID = "85c0b687820f11e08111f4ce462b6a48"
 
     fun createMetadata(allBoxes: List<Box>): ImageMetadata {
 
-        println("CR3 boxes: " + allBoxes)
+        val moovBox = allBoxes.filterIsInstance<MovieBox>().firstOrNull()
+            ?: throw ImageReadException("Illegal CR3: No 'moov' box found.")
 
-//        val exifBox = allBoxes.filterIsInstance<ExifBox>().firstOrNull()
-//        val xmlBox = allBoxes.filterIsInstance<XmlBox>().firstOrNull()
+        val metadataBox = moovBox.boxes.filterIsInstance<UuidBox>().find { box ->
+            box.uuidAsHex == CR3_METADATA_UUID
+        } ?: throw ImageReadException("Illegal CR3: No metadata UUID box found.")
+
+        println(metadataBox)
+
+        val subBoxes = BoxReader.readBoxes(
+            byteReader = ByteArrayByteReader(metadataBox.data),
+            stopAfterMetadataRead = false,
+            positionOffset = 4,
+            offsetShift = metadataBox.offset + 16
+        )
+
+        println(subBoxes)
 
         // TODO
         return ImageMetadata(

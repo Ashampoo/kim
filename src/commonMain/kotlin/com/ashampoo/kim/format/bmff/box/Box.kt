@@ -43,5 +43,5 @@ public open class Box(
         }
 
     override fun toString(): String =
-        "Box '$type' @ $offset ($actualLength bytes)"
+        "Box '$type' @$offset ($actualLength bytes)"
 }
