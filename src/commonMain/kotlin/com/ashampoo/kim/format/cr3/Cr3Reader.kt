@@ -16,13 +16,16 @@
 package com.ashampoo.kim.format.cr3;
 
 import com.ashampoo.kim.common.ImageReadException
-import com.ashampoo.kim.common.toHex
 import com.ashampoo.kim.format.ImageMetadata
 import com.ashampoo.kim.format.bmff.BoxReader
 import com.ashampoo.kim.format.bmff.BoxType
 import com.ashampoo.kim.format.bmff.box.Box
 import com.ashampoo.kim.format.bmff.box.MovieBox
 import com.ashampoo.kim.format.bmff.box.UuidBox
+import com.ashampoo.kim.format.tiff.TiffContents
+import com.ashampoo.kim.format.tiff.TiffDirectory
+import com.ashampoo.kim.format.tiff.TiffReader
+import com.ashampoo.kim.format.tiff.constant.TiffConstants
 import com.ashampoo.kim.input.ByteArrayByteReader
 import com.ashampoo.kim.model.ImageFormat
 
@@ -42,8 +45,6 @@ internal object Cr3Reader {
             box.uuidAsHex == CR3_METADATA_UUID
         } ?: throw ImageReadException("Illegal CR3: No metadata UUID box found.")
 
-        println(metadataBox)
-
         val subBoxes = BoxReader.readBoxes(
             byteReader = ByteArrayByteReader(metadataBox.data),
             stopAfterMetadataRead = false,
@@ -51,7 +52,39 @@ internal object Cr3Reader {
             offsetShift = metadataBox.offset + 16
         )
 
+        val idf0Directory: TiffDirectory? = readTiffDirectory(
+            boxes = subBoxes,
+            boxType = BoxType.CMT1,
+            directoryType = TiffConstants.TIFF_DIRECTORY_TYPE_IFD0
+        )
+
+        val exifIfdDirectory: TiffDirectory? = readTiffDirectory(
+            boxes = subBoxes,
+            boxType = BoxType.CMT2,
+            directoryType = TiffConstants.TIFF_DIRECTORY_EXIF
+        )
+
+        val makerNotesDirectory: TiffDirectory? = readTiffDirectory(
+            boxes = subBoxes,
+            boxType = BoxType.CMT3,
+            directoryType = TiffConstants.TIFF_MAKER_NOTE_CANON
+        )
+
+        val gpsIfdDirectory: TiffDirectory? = readTiffDirectory(
+            boxes = subBoxes,
+            boxType = BoxType.CMT4,
+            directoryType = TiffConstants.TIFF_DIRECTORY_GPS
+        )
+
         println(subBoxes)
+
+        println(idf0Directory)
+
+        println(exifIfdDirectory)
+
+        println(makerNotesDirectory)
+
+        println(gpsIfdDirectory)
 
         // TODO
         return ImageMetadata(
@@ -62,5 +95,22 @@ internal object Cr3Reader {
             iptc = null, // not covered by ISO BMFF
             xmp = null
         )
+    }
+
+    private fun readTiffDirectory(
+        boxes: List<Box>,
+        boxType: BoxType,
+        directoryType: Int
+    ): TiffDirectory? {
+
+        val exifBytes = boxes.find { it.type == boxType }?.payload
+            ?: return null
+
+        val tiffContents: TiffContents = TiffReader.read(
+            exifBytes = exifBytes,
+            directoryType = directoryType
+        )
+
+        return tiffContents.directories.firstOrNull()
     }
 }

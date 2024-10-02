@@ -123,6 +123,31 @@ public data class BoxType internal constructor(
          */
         public val UUID: BoxType = of("uuid".encodeToByteArray())
 
+        /**
+         * CR3 specific: Canon Metadata Tiff (CMT) for Exif IFD0
+         */
+        public val CMT1: BoxType = of("CMT1".encodeToByteArray())
+
+        /**
+         * CR3 specific: Canon Metadata Tiff (CMT) for Exif ExifIFD
+         */
+        public val CMT2: BoxType = of("CMT2".encodeToByteArray())
+
+        /**
+         * CR3 specific: Canon Metadata Tiff (CMT) for Makernotes
+         */
+        public val CMT3: BoxType = of("CMT3".encodeToByteArray())
+
+        /**
+         * CR3 specific: Canon Metadata Tiff (CMT) for Exif GPS IFD
+         */
+        public val CMT4: BoxType = of("CMT4".encodeToByteArray())
+
+        /**
+         * CR3 specific: Thumbnail JPG bytes
+         */
+        public val THMB: BoxType = of("THMB".encodeToByteArray())
+
         @Suppress("MagicNumber")
         public fun of(typeBytes: ByteArray): BoxType {
 
