@@ -15,15 +15,25 @@
  */
 package com.ashampoo.kim.format.cr3
 
+import com.ashampoo.kim.common.ByteOrder
 import com.ashampoo.kim.common.ImageReadException
+import com.ashampoo.kim.common.toHex
 import com.ashampoo.kim.common.tryWithImageReadException
 import com.ashampoo.kim.format.bmff.BoxReader
-import com.ashampoo.kim.format.bmff.box.MediaDataBox
+import com.ashampoo.kim.format.bmff.box.Box
 import com.ashampoo.kim.format.bmff.box.MovieBox
-import com.ashampoo.kim.format.bmff.box.TrackBox
+import com.ashampoo.kim.format.bmff.box.UuidBox
+import com.ashampoo.kim.input.ByteArrayByteReader
 import com.ashampoo.kim.input.ByteReader
+import com.ashampoo.kim.input.read4BytesAsInt
+import com.ashampoo.kim.input.readBytes
+import com.ashampoo.kim.input.readRemainingBytes
+import com.ashampoo.kim.input.skipBytes
 import kotlin.jvm.JvmStatic
 
+/**
+ * See https://github.com/lclevy/canon_cr3?tab=readme-ov-file#prvw-preview
+ */
 public object Cr3PreviewExtractor {
 
     @Throws(ImageReadException::class)
@@ -37,22 +47,30 @@ public object Cr3PreviewExtractor {
             stopAfterMetadataRead = false
         )
 
-        val moovBox = allBoxes.filterIsInstance<MovieBox>().firstOrNull()
-            ?: throw ImageReadException("Illegal CR3: No 'moov' box found.")
+        val previewUuidBox = allBoxes.filterIsInstance<UuidBox>().find {
+            it.uuidAsHex == Cr3Reader.CR3_PREVIEW_UUID
+        } ?: return@tryWithImageReadException null
 
-        val firstTrak = moovBox.boxes.filterIsInstance<TrackBox>().firstOrNull()
-            ?: return@tryWithImageReadException null
+        val payloadReader = ByteArrayByteReader(previewUuidBox.data)
 
-        println(firstTrak.mediaBox)
+        /* Skip unknown bytes */
+        payloadReader.skipBytes("", 8)
 
-        val mdat = allBoxes.filterIsInstance<MediaDataBox>().firstOrNull()
-            ?: return@tryWithImageReadException null
+        /* Skip size */
+        payloadReader.skipBytes("size", 4)
 
-        return@tryWithImageReadException null
+        val marker = payloadReader.readBytes("marker", 4).decodeToString()
 
-//        return@tryWithImageReadException mdat.payload.slice(
-//            startIndex = trackOffsetsBox.previewOffset,
-//            count = trackOffsetsBox.previewLength
-//        )
+        if (marker != "PRVW")
+            throw ImageReadException("Expected marker PRVW, but got: $marker")
+
+        /* Not interesting bytes */
+        payloadReader.skipBytes("header", 12)
+
+        val jpegSize = payloadReader.read4BytesAsInt("jpegSize", ByteOrder.BIG_ENDIAN)
+
+        val jpegBytes = payloadReader.readBytes(jpegSize)
+
+        return@tryWithImageReadException jpegBytes
     }
 }

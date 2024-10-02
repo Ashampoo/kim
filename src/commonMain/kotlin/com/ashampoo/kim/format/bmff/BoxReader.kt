@@ -30,7 +30,6 @@ import com.ashampoo.kim.format.bmff.box.MovieBox
 import com.ashampoo.kim.format.bmff.box.PrimaryItemBox
 import com.ashampoo.kim.format.bmff.box.TrackBox
 import com.ashampoo.kim.format.bmff.box.UuidBox
-import com.ashampoo.kim.format.cr3.box.CanonTrakOffsetsBox
 import com.ashampoo.kim.format.jxl.box.CompressedBox
 import com.ashampoo.kim.format.jxl.box.ExifBox
 import com.ashampoo.kim.format.jxl.box.JxlParticalCodestreamBox
@@ -145,8 +144,6 @@ public object BoxReader {
                 BoxType.XML -> XmlBox(globalOffset, size, largeSize, bytes)
                 BoxType.JXLP -> JxlParticalCodestreamBox(globalOffset, size, largeSize, bytes)
                 BoxType.BROB -> CompressedBox(globalOffset, size, largeSize, bytes)
-                /* CR3 boxes */
-                BoxType.CTBO -> CanonTrakOffsetsBox(globalOffset, size, largeSize, bytes)
                 /* Unknown box */
                 else -> Box(type, globalOffset, size, largeSize, bytes)
             }
@@ -158,10 +155,6 @@ public object BoxReader {
                 /* This is the case for HEIC & AVIF */
                 if (type == BoxType.META)
                     break
-
-//                /* This is the case for CR3 */
-//                if (type == BoxType.MOOV)
-//                    break
 
                 /*
                  * When parsing JXL we need to take a note that we saw the header.

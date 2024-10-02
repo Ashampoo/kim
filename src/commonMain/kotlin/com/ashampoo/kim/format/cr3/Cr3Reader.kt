@@ -38,6 +38,7 @@ internal object Cr3Reader {
 
     const val CR3_EXIF_UUID = "85c0b687820f11e08111f4ce462b6a48"
     const val CR3_XMP_UUID = "be7acfcb97a942e89c71999491e3afac"
+    const val CR3_PREVIEW_UUID = "eaf42b5e1c984b88b9fbb7dc406e4d16"
 
     fun createMetadata(allBoxes: List<Box>): ImageMetadata {
 
