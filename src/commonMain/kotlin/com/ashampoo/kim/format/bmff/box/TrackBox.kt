@@ -16,29 +16,27 @@
  */
 package com.ashampoo.kim.format.bmff.box
 
-import com.ashampoo.kim.common.MetadataOffset
-import com.ashampoo.kim.common.MetadataType
-import com.ashampoo.kim.common.toHex
-import com.ashampoo.kim.format.bmff.BMFFConstants
+import com.ashampoo.kim.common.ImageReadException
 import com.ashampoo.kim.format.bmff.BoxReader
 import com.ashampoo.kim.format.bmff.BoxType
 import com.ashampoo.kim.input.ByteArrayByteReader
-import com.ashampoo.kim.input.readByteAsInt
-import com.ashampoo.kim.input.readBytes
 
 /**
  * EIC/ISO 14496-12 movie box
  *
- * The Movie Box is a container for several sub boxes.
+ * The Track Box is a container for several sub boxes.
  */
-public class MovieBox(
+public class TrackBox(
     offset: Long,
     size: Long,
     largeSize: Long?,
     payload: ByteArray
-) : Box(BoxType.MOOV, offset, size, largeSize, payload), BoxContainer {
+) : Box(BoxType.TRAK, offset, size, largeSize, payload), BoxContainer {
 
     override val boxes: List<Box>
+
+    public val trackHeaderBox: Box
+    public val mediaBox: MediaBox
 
     init {
 
@@ -50,6 +48,12 @@ public class MovieBox(
             positionOffset = 4,
             offsetShift = offset + 8
         )
+
+        if (boxes.size != 2)
+            throw ImageReadException("Track box should contain two boxes: $boxes")
+
+        trackHeaderBox = boxes[0]
+        mediaBox = boxes[1] as MediaBox
     }
 
     override fun toString(): String =

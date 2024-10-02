@@ -16,11 +16,11 @@
 package com.ashampoo.kim.format.cr3
 
 import com.ashampoo.kim.common.ImageReadException
-import com.ashampoo.kim.common.slice
 import com.ashampoo.kim.common.tryWithImageReadException
 import com.ashampoo.kim.format.bmff.BoxReader
 import com.ashampoo.kim.format.bmff.box.MediaDataBox
-import com.ashampoo.kim.format.cr3.box.CanonTrakOffsetsBox
+import com.ashampoo.kim.format.bmff.box.MovieBox
+import com.ashampoo.kim.format.bmff.box.TrackBox
 import com.ashampoo.kim.input.ByteReader
 import kotlin.jvm.JvmStatic
 
@@ -37,19 +37,22 @@ public object Cr3PreviewExtractor {
             stopAfterMetadataRead = false
         )
 
-        val metadataSubBoxes = Cr3Reader.findMetadaSubBoxes(allBoxes)
+        val moovBox = allBoxes.filterIsInstance<MovieBox>().firstOrNull()
+            ?: throw ImageReadException("Illegal CR3: No 'moov' box found.")
 
-        val trackOffsetsBox = metadataSubBoxes.filterIsInstance<CanonTrakOffsetsBox>().firstOrNull()
+        val firstTrak = moovBox.boxes.filterIsInstance<TrackBox>().firstOrNull()
             ?: return@tryWithImageReadException null
 
-        println(trackOffsetsBox)
+        println(firstTrak.mediaBox)
 
         val mdat = allBoxes.filterIsInstance<MediaDataBox>().firstOrNull()
             ?: return@tryWithImageReadException null
 
-        return@tryWithImageReadException mdat.payload.slice(
-            startIndex = trackOffsetsBox.previewOffset,
-            count = trackOffsetsBox.previewLength
-        )
+        return@tryWithImageReadException null
+
+//        return@tryWithImageReadException mdat.payload.slice(
+//            startIndex = trackOffsetsBox.previewOffset,
+//            count = trackOffsetsBox.previewLength
+//        )
     }
 }

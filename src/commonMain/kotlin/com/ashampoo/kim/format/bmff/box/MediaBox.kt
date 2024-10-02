@@ -31,12 +31,12 @@ import com.ashampoo.kim.input.readBytes
  *
  * The Movie Box is a container for several sub boxes.
  */
-public class MovieBox(
+public class MediaBox(
     offset: Long,
     size: Long,
     largeSize: Long?,
     payload: ByteArray
-) : Box(BoxType.MOOV, offset, size, largeSize, payload), BoxContainer {
+) : Box(BoxType.MDIA, offset, size, largeSize, payload), BoxContainer {
 
     override val boxes: List<Box>
 

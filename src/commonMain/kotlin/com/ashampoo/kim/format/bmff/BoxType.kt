@@ -119,6 +119,16 @@ public data class BoxType internal constructor(
         public val MOOV: BoxType = of("moov".encodeToByteArray())
 
         /**
+         * ISOBMFF track box, used by CR3
+         */
+        public val TRAK: BoxType = of("trak".encodeToByteArray())
+
+        /**
+         * ISOBMFF media box, used by CR3
+         */
+        public val MDIA: BoxType = of("mdia".encodeToByteArray())
+
+        /**
          * ISOBMFF UUID box, used by CR3
          */
         public val UUID: BoxType = of("uuid".encodeToByteArray())

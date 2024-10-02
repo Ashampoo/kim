@@ -23,10 +23,12 @@ import com.ashampoo.kim.format.bmff.box.HandlerReferenceBox
 import com.ashampoo.kim.format.bmff.box.ItemInfoEntryBox
 import com.ashampoo.kim.format.bmff.box.ItemInformationBox
 import com.ashampoo.kim.format.bmff.box.ItemLocationBox
+import com.ashampoo.kim.format.bmff.box.MediaBox
 import com.ashampoo.kim.format.bmff.box.MediaDataBox
 import com.ashampoo.kim.format.bmff.box.MetaBox
 import com.ashampoo.kim.format.bmff.box.MovieBox
 import com.ashampoo.kim.format.bmff.box.PrimaryItemBox
+import com.ashampoo.kim.format.bmff.box.TrackBox
 import com.ashampoo.kim.format.bmff.box.UuidBox
 import com.ashampoo.kim.format.cr3.box.CanonTrakOffsetsBox
 import com.ashampoo.kim.format.jxl.box.CompressedBox
@@ -135,6 +137,8 @@ public object BoxReader {
                 BoxType.PITM -> PrimaryItemBox(globalOffset, size, largeSize, bytes)
                 BoxType.MDAT -> MediaDataBox(globalOffset, size, largeSize, bytes)
                 BoxType.MOOV -> MovieBox(globalOffset, size, largeSize, bytes)
+                BoxType.TRAK -> TrackBox(globalOffset, size, largeSize, bytes)
+                BoxType.MDIA -> MediaBox(globalOffset, size, largeSize, bytes)
                 BoxType.UUID -> UuidBox(globalOffset, size, largeSize, bytes)
                 /* JXL boxes */
                 BoxType.EXIF -> ExifBox(globalOffset, size, largeSize, bytes)
