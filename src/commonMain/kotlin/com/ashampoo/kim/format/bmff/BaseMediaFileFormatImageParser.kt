@@ -24,6 +24,7 @@ import com.ashampoo.kim.format.bmff.BMFFConstants.BMFF_BYTE_ORDER
 import com.ashampoo.kim.format.bmff.BMFFConstants.TIFF_HEADER_OFFSET_BYTE_COUNT
 import com.ashampoo.kim.format.bmff.box.FileTypeBox
 import com.ashampoo.kim.format.bmff.box.MetaBox
+import com.ashampoo.kim.format.cr3.Cr3Reader
 import com.ashampoo.kim.format.jxl.JxlReader
 import com.ashampoo.kim.format.tiff.TiffContents
 import com.ashampoo.kim.format.tiff.TiffReader
@@ -70,6 +71,12 @@ public object BaseMediaFileFormatImageParser : ImageParser {
          */
         if (fileTypeBox.majorBrand == FileTypeBox.JXL_BRAND)
             return JxlReader.createMetadata(allBoxes)
+
+        /**
+         * Handle CR3
+         */
+        if (fileTypeBox.majorBrand == FileTypeBox.CR3_BRAND)
+            return Cr3Reader.createMetadata(allBoxes)
 
         val metaBox = allBoxes.filterIsInstance<MetaBox>().firstOrNull()
             ?: throw ImageReadException("Illegal ISOBMFF: Has no 'meta' Box.")
