@@ -32,6 +32,7 @@ class PreviewImageExtractionTest {
         KimTestData.ARW_TEST_IMAGE_INDEX,
         KimTestData.RW2_TEST_IMAGE_INDEX,
         // KimTestData.ORF_TEST_IMAGE_INDEX,
+        KimTestData.CR3_TEST_IMAGE_INDEX,
         KimTestData.DNG_CR2_TEST_IMAGE_INDEX,
         KimTestData.DNG_RAF_TEST_IMAGE_INDEX,
         KimTestData.DNG_NEF_TEST_IMAGE_INDEX,

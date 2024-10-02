@@ -148,6 +148,11 @@ public data class BoxType internal constructor(
          */
         public val THMB: BoxType = of("THMB".encodeToByteArray())
 
+        /**
+         * CR3 specific: Canon Trak Offsets
+         */
+        public val CTBO: BoxType = of("CTBO".encodeToByteArray())
+
         @Suppress("MagicNumber")
         public fun of(typeBytes: ByteArray): BoxType {
 

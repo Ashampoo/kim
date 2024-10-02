@@ -32,5 +32,5 @@ public class MediaDataBox(
 ) : Box(BoxType.MDAT, offset, size, largeSize, payload) {
 
     override fun toString(): String =
-        "$type Box"
+        "mdat Box @$offset ($actualLength bytes)"
 }

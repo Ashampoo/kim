@@ -41,19 +41,7 @@ internal object Cr3Reader {
 
     fun createMetadata(allBoxes: List<Box>): ImageMetadata {
 
-        val moovBox = allBoxes.filterIsInstance<MovieBox>().firstOrNull()
-            ?: throw ImageReadException("Illegal CR3: No 'moov' box found.")
-
-        val metadataBox = moovBox.boxes.filterIsInstance<UuidBox>().find { box ->
-            box.uuidAsHex == CR3_EXIF_UUID
-        } ?: throw ImageReadException("Illegal CR3: No metadata UUID box found.")
-
-        val subBoxes = BoxReader.readBoxes(
-            byteReader = ByteArrayByteReader(metadataBox.data),
-            stopAfterMetadataRead = false,
-            positionOffset = 4,
-            offsetShift = metadataBox.offset + 16
-        )
+        val subBoxes = findMetadaSubBoxes(allBoxes)
 
         val idf0: TiffContents? = readTiffContents(
             boxes = subBoxes,
@@ -140,5 +128,22 @@ internal object Cr3Reader {
         )
 
         return tiffContents
+    }
+
+    fun findMetadaSubBoxes(allBoxes: List<Box>): List<Box> {
+
+        val moovBox = allBoxes.filterIsInstance<MovieBox>().firstOrNull()
+            ?: throw ImageReadException("Illegal CR3: No 'moov' box found.")
+
+        val metadataBox = moovBox.boxes.filterIsInstance<UuidBox>().find { box ->
+            box.uuidAsHex == CR3_EXIF_UUID
+        } ?: throw ImageReadException("Illegal CR3: No metadata UUID box found.")
+
+        return BoxReader.readBoxes(
+            byteReader = ByteArrayByteReader(metadataBox.data),
+            stopAfterMetadataRead = false,
+            positionOffset = 4,
+            offsetShift = metadataBox.offset + 16
+        )
     }
 }

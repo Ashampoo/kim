@@ -23,6 +23,7 @@ import com.ashampoo.kim.format.ImageMetadata
 import com.ashampoo.kim.format.ImageParser
 import com.ashampoo.kim.format.arw.ArwPreviewExtractor
 import com.ashampoo.kim.format.cr2.Cr2PreviewExtractor
+import com.ashampoo.kim.format.cr3.Cr3PreviewExtractor
 import com.ashampoo.kim.format.dng.DngPreviewExtractor
 import com.ashampoo.kim.format.jpeg.JpegMetadataExtractor
 import com.ashampoo.kim.format.jpeg.JpegUpdater
@@ -131,6 +132,9 @@ public object Kim {
             if (imageFormat == ImageFormat.RAF)
                 return@use RafPreviewExtractor.extractPreviewImage(prePendingByteReader)
 
+            if (imageFormat == ImageFormat.CR3)
+                return@use Cr3PreviewExtractor.extractPreviewImage(prePendingByteReader)
+
             val reader = DefaultRandomAccessByteReader(prePendingByteReader)
 
             val tiffContents = TiffReader.read(reader)
@@ -140,8 +144,11 @@ public object Kim {
              * is burried in the Olympus MakerNotes, which are currently not interpreted.
              */
             return@use when (imageFormat) {
+
                 ImageFormat.CR2 -> Cr2PreviewExtractor.extractPreviewImage(tiffContents, reader)
+
                 ImageFormat.RW2 -> Rw2PreviewExtractor.extractPreviewImage(tiffContents, reader)
+
                 ImageFormat.TIFF -> {
 
                     /* It can now be DNG, NEF or ARW. */

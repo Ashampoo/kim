@@ -28,6 +28,7 @@ import com.ashampoo.kim.format.bmff.box.MetaBox
 import com.ashampoo.kim.format.bmff.box.MovieBox
 import com.ashampoo.kim.format.bmff.box.PrimaryItemBox
 import com.ashampoo.kim.format.bmff.box.UuidBox
+import com.ashampoo.kim.format.cr3.box.CanonTrakOffsetsBox
 import com.ashampoo.kim.format.jxl.box.CompressedBox
 import com.ashampoo.kim.format.jxl.box.ExifBox
 import com.ashampoo.kim.format.jxl.box.JxlParticalCodestreamBox
@@ -140,6 +141,8 @@ public object BoxReader {
                 BoxType.XML -> XmlBox(globalOffset, size, largeSize, bytes)
                 BoxType.JXLP -> JxlParticalCodestreamBox(globalOffset, size, largeSize, bytes)
                 BoxType.BROB -> CompressedBox(globalOffset, size, largeSize, bytes)
+                /* CR3 boxes */
+                BoxType.CTBO -> CanonTrakOffsetsBox(globalOffset, size, largeSize, bytes)
                 /* Unknown box */
                 else -> Box(type, globalOffset, size, largeSize, bytes)
             }
