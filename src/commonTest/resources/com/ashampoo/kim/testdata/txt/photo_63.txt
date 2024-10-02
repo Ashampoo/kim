@@ -65,7 +65,7 @@ Little-endian (Intel, II)
 ---- Directory IFD1 @ 118108 ----
 0000118110 0x00fe NewSubfileType = 0
 0000118122 0x0100 ImageWidth = 4288
-0000118134 0x0101 ImageLength = 2858
+0000118134 0x0101 ImageHeight = 2858
 0000118146 0x0102 BitsPerSample = 12
 0000118158 0x0103 Compression = 32767
 0000118170 0x0106 PhotometricInterpretation = -32733

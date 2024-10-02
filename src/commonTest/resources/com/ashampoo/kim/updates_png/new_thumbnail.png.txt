@@ -5,7 +5,7 @@ Version 42
 Little-endian (Intel, II)
 ---- Directory IFD0 @ 8 ----
 0000000010 0x0100 ImageWidth = 500
-0000000022 0x0101 ImageLength = 333
+0000000022 0x0101 ImageHeight = 333
 0000000034 0x0102 BitsPerSample = [8, 8, 8]
 0000000046 0x010f Make = Canon
 0000000058 0x0110 Model = Canon EOS M3
@@ -66,7 +66,7 @@ Little-endian (Intel, II)
 ---- Directory SubIFD @ 4586 ----
 0000004588 0x00fe NewSubfileType = 1
 0000004600 0x0100 ImageWidth = 256
-0000004612 0x0101 ImageLength = 170
+0000004612 0x0101 ImageHeight = 170
 0000004624 0x0102 BitsPerSample = [8, 8, 8]
 0000004636 0x0103 Compression = 6
 0000004648 0x0106 PhotometricInterpretation = 6

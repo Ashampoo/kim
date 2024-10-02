@@ -5,7 +5,7 @@ Version 42
 Little-endian (Intel, II)
 ---- Directory IFD0 @ 8 ----
 0000000010 0x0100 ImageWidth = 6000
-0000000022 0x0101 ImageLength = 4000
+0000000022 0x0101 ImageHeight = 4000
 0000000034 0x0102 BitsPerSample = [8, 8, 8]
 0000000046 0x0103 Compression = 6
 0000000058 0x010f Make = Canon

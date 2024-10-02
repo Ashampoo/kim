@@ -5,7 +5,7 @@ Version 20306
 Little-endian (Intel, II)
 ---- Directory IFD0 @ 8 ----
 0000000010 0x0100 ImageWidth = 3680
-0000000022 0x0101 ImageLength = 2760
+0000000022 0x0101 ImageHeight = 2760
 0000000034 0x0102 BitsPerSample = 16
 0000000046 0x0103 Compression = 1
 0000000058 0x0106 PhotometricInterpretation = 1

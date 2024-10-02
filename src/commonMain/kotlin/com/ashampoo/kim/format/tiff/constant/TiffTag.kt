@@ -68,7 +68,7 @@ public object TiffTag {
     )
 
     public val TIFF_TAG_IMAGE_HEIGHT: TagInfoLong = TagInfoLong(
-        0x0101, "ImageLength", TIFF_DIRECTORY_IFD0 // TODO Rename
+        0x0101, "ImageHeight", TIFF_DIRECTORY_IFD0
     )
 
     public val TIFF_TAG_BITS_PER_SAMPLE: TagInfoShorts = TagInfoShorts(

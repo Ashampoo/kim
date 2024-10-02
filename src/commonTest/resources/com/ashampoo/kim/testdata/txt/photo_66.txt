@@ -6,7 +6,7 @@ Little-endian (Intel, II)
 ---- Directory IFD0 @ 8 ----
 0000000010 0x00fe NewSubfileType = 1
 0000000022 0x0100 ImageWidth = 256
-0000000034 0x0101 ImageLength = 171
+0000000034 0x0101 ImageHeight = 171
 0000000046 0x0102 BitsPerSample = [8, 8, 8]
 0000000058 0x0103 Compression = 1
 0000000070 0x0106 PhotometricInterpretation = 2
@@ -101,7 +101,7 @@ Little-endian (Intel, II)
 ---- Directory IFD1 @ 109546 ----
 0000109548 0x00fe NewSubfileType = 0
 0000109560 0x0100 ImageWidth = 5344
-0000109572 0x0101 ImageLength = 3516
+0000109572 0x0101 ImageHeight = 3516
 0000109584 0x0102 BitsPerSample = 16
 0000109596 0x0103 Compression = 7
 0000109608 0x0106 PhotometricInterpretation = -32733
@@ -130,7 +130,7 @@ Little-endian (Intel, II)
 ---- Directory SubIFD1 @ 112356 ----
 0000112358 0x00fe NewSubfileType = 1
 0000112370 0x0100 ImageWidth = 1024
-0000112382 0x0101 ImageLength = 683
+0000112382 0x0101 ImageHeight = 683
 0000112394 0x0102 BitsPerSample = [8, 8, 8]
 0000112406 0x0103 Compression = 7
 0000112418 0x0106 PhotometricInterpretation = 6
@@ -152,7 +152,7 @@ Little-endian (Intel, II)
 ---- Directory SubIFD2 @ 112748 ----
 0000112750 0x00fe NewSubfileType = 1
 0000112762 0x0100 ImageWidth = 1728
-0000112774 0x0101 ImageLength = 1152
+0000112774 0x0101 ImageHeight = 1152
 0000112786 0x0102 BitsPerSample = [8, 8, 8]
 0000112798 0x0103 Compression = -30644
 0000112810 0x0106 PhotometricInterpretation = -30644
@@ -170,7 +170,7 @@ Little-endian (Intel, II)
 ---- Directory SubIFD3 @ 113298 ----
 0000113300 0x00fe NewSubfileType = 1
 0000113312 0x0100 ImageWidth = 512
-0000113324 0x0101 ImageLength = 341
+0000113324 0x0101 ImageHeight = 341
 0000113336 0x0102 BitsPerSample = [8, 8, 8]
 0000113348 0x0103 Compression = -30644
 0000113360 0x0106 PhotometricInterpretation = -30644
@@ -189,7 +189,7 @@ Little-endian (Intel, II)
 ---- Directory IFD1 @ 113820 ----
 0000113822 0x00fe NewSubfileType = 1
 0000113834 0x0100 ImageWidth = 256
-0000113846 0x0101 ImageLength = 171
+0000113846 0x0101 ImageHeight = 171
 0000113858 0x0102 BitsPerSample = [8, 8, 8]
 0000113870 0x0103 Compression = -30644
 0000113882 0x0106 PhotometricInterpretation = -30644
