@@ -5,7 +5,7 @@ Version 42
 Little-endian (Intel, II)
 ---- Directory IFD0 @ 8 ----
 0000000010 0x0100 ImageWidth = 4000
-0000000022 0x0101 ImageLength = 3000
+0000000022 0x0101 ImageHeight = 3000
 0000000034 0x010f Make = samsung
 0000000046 0x0110 Model = SM-G998B
 0000000058 0x0112 Orientation = 6

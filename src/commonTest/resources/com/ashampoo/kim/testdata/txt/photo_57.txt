@@ -5,7 +5,7 @@ Version 42
 Little-endian (Intel, II)
 ---- Directory IFD0 @ 16 ----
 0000000018 0x0100 ImageWidth = 5184
-0000000030 0x0101 ImageLength = 3456
+0000000030 0x0101 ImageHeight = 3456
 0000000042 0x0102 BitsPerSample = [8, 8, 8]
 0000000054 0x0103 Compression = 6
 0000000066 0x010f Make = Canon
@@ -72,7 +72,7 @@ Little-endian (Intel, II)
 
 ---- Directory SubIFD1 @ 46684 ----
 0000046686 0x0100 ImageWidth = 668
-0000046698 0x0101 ImageLength = 432
+0000046698 0x0101 ImageHeight = 432
 0000046710 0x0102 BitsPerSample = [16, 16, 16]
 0000046722 0x0103 Compression = 1
 0000046734 0x0106 PhotometricInterpretation = 2

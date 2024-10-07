@@ -6,7 +6,7 @@ Big-endian (Motorola, MM)
 ---- Directory IFD0 @ 8 ----
 0000000010 0x00fe NewSubfileType = 1
 0000000022 0x0100 ImageWidth = 160
-0000000034 0x0101 ImageLength = 120
+0000000034 0x0101 ImageHeight = 120
 0000000046 0x0102 BitsPerSample = [8, 8, 8]
 0000000058 0x0103 Compression = 1
 0000000070 0x0106 PhotometricInterpretation = 2
@@ -81,7 +81,7 @@ Big-endian (Motorola, MM)
 ---- Directory SubIFD1 @ 181864 ----
 0000181866 0x00fe NewSubfileType = 0
 0000181878 0x0100 ImageWidth = 4992
-0000181890 0x0101 ImageLength = 3280
+0000181890 0x0101 ImageHeight = 3280
 0000181902 0x0102 BitsPerSample = 14
 0000181914 0x0103 Compression = -30823
 0000181926 0x0106 PhotometricInterpretation = -32733

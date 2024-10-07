@@ -5,7 +5,7 @@ Version 42
 Little-endian (Intel, II)
 ---- Directory IFD0 @ 8 ----
 0000000010 0x0100 ImageWidth = 2920
-0000000022 0x0101 ImageLength = 4045
+0000000022 0x0101 ImageHeight = 4045
 0000000034 0x0102 BitsPerSample = [8, 8, 8]
 0000000046 0x0106 PhotometricInterpretation = 2
 0000000058 0x010e ImageDescription = OLYMPUS DIGITAL CAMERA

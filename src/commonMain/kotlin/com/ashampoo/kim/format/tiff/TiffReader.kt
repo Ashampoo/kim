@@ -70,8 +70,12 @@ public object TiffReader {
      * the EXIF bytes in JPG, which are limited to 64 KB.
      */
     @JvmStatic
-    public fun read(exifBytes: ByteArray): TiffContents =
-        read(ByteArrayByteReader(exifBytes))
+    public fun read(
+        exifBytes: ByteArray,
+        readTiffImageBytes: Boolean = false,
+        directoryType: Int = TiffConstants.TIFF_DIRECTORY_TYPE_IFD0
+    ): TiffContents =
+        read(ByteArrayByteReader(exifBytes), readTiffImageBytes, directoryType)
 
     /**
      * Reads the TIFF file.
@@ -84,7 +88,8 @@ public object TiffReader {
     @JvmStatic
     public fun read(
         byteReader: RandomAccessByteReader,
-        readTiffImageBytes: Boolean = false
+        readTiffImageBytes: Boolean = false,
+        directoryType: Int = TiffConstants.TIFF_DIRECTORY_TYPE_IFD0
     ): TiffContents {
 
         val tiffHeader = readTiffHeader(byteReader)
@@ -97,8 +102,8 @@ public object TiffReader {
             byteReader = byteReader,
             byteOrder = tiffHeader.byteOrder,
             directoryOffset = tiffHeader.offsetToFirstIFD,
-            directoryType = TiffConstants.TIFF_DIRECTORY_TYPE_IFD0,
-            visitedOffsets = mutableListOf<Int>(),
+            directoryType = directoryType,
+            visitedOffsets = mutableListOf(),
             readTiffImageBytes = readTiffImageBytes,
             addDirectory = {
                 directories.add(it)

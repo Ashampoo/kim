@@ -67,8 +67,8 @@ public object TiffTag {
         0x100, "ImageWidth", TIFF_DIRECTORY_IFD0
     )
 
-    public val TIFF_TAG_IMAGE_LENGTH: TagInfoLong = TagInfoLong(
-        0x0101, "ImageLength", TIFF_DIRECTORY_IFD0
+    public val TIFF_TAG_IMAGE_HEIGHT: TagInfoLong = TagInfoLong(
+        0x0101, "ImageHeight", TIFF_DIRECTORY_IFD0
     )
 
     public val TIFF_TAG_BITS_PER_SAMPLE: TagInfoShorts = TagInfoShorts(
@@ -559,7 +559,7 @@ public object TiffTag {
 
     public val ALL: List<TagInfo> = listOf(
         TIFF_TAG_NEW_SUBFILE_TYPE, TIFF_TAG_SUBFILE_TYPE,
-        TIFF_TAG_IMAGE_WIDTH, TIFF_TAG_IMAGE_LENGTH,
+        TIFF_TAG_IMAGE_WIDTH, TIFF_TAG_IMAGE_HEIGHT,
         TIFF_TAG_BITS_PER_SAMPLE, TIFF_TAG_COMPRESSION,
         TIFF_TAG_PHOTOMETRIC_INTERPRETATION, TIFF_TAG_THRESHHOLDING,
         TIFF_TAG_CELL_WIDTH, TIFF_TAG_CELL_LENGTH, TIFF_TAG_FILL_ORDER,

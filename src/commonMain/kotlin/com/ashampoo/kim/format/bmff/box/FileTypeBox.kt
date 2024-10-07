@@ -71,5 +71,6 @@ public class FileTypeBox(
 
     internal companion object {
         const val JXL_BRAND = "jxl "
+        const val CR3_BRAND = "crx "
     }
 }

@@ -5,7 +5,7 @@ Version 42
 Little-endian (Intel, II)
 ---- Directory IFD0 @ 2265684 ----
 0002265686 0x0100 ImageWidth = 1200
-0002265698 0x0101 ImageLength = 800
+0002265698 0x0101 ImageHeight = 800
 0002265710 0x0102 BitsPerSample = [8, 8, 8]
 0002265722 0x0103 Compression = 5
 0002265734 0x0106 PhotometricInterpretation = 2

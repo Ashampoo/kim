@@ -54,6 +54,7 @@ public fun interface ImageParser {
 
                 ImageFormat.HEIC,
                 ImageFormat.AVIF,
+                ImageFormat.CR3,
                 ImageFormat.JXL -> BaseMediaFileFormatImageParser
 
                 else -> null

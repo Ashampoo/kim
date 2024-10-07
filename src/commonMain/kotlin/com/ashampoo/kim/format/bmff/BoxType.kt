@@ -53,45 +53,85 @@ public data class BoxType internal constructor(
          */
 
         /**
-         * File Type box, the first box
+         * ISOBMFF File Type box, the first box
          */
         public val FTYP: BoxType = of("ftyp".encodeToByteArray())
 
         /**
-         * Meta Box for metadata, usually the second box.
+         * ISOBMFF Meta Box for metadata, usually the second box.
          * It's a container for several more boxes like IINF.
          */
         public val META: BoxType = of("meta".encodeToByteArray())
 
         /**
-         * Handler Reference Box
+         * ISOBMFF Handler Reference Box
          */
         public val HDLR: BoxType = of("hdlr".encodeToByteArray())
 
         /**
-         * Primary Item Box
+         * ISOBMFF Primary Item Box
          */
         public val PITM: BoxType = of("pitm".encodeToByteArray())
 
         /**
-         * Item Information Box, container for INFE boxes
+         * ISOBMFF Item Information Box, container for INFE boxes
          */
         public val IINF: BoxType = of("iinf".encodeToByteArray())
 
         /*
-         * Item Info Entry Box
+         * ISOBMFF Item Info Entry Box
          */
         public val INFE: BoxType = of("infe".encodeToByteArray())
 
         /**
-         * Item Location Box
+         * ISOBMFF Item Location Box
          */
         public val ILOC: BoxType = of("iloc".encodeToByteArray())
 
         /**
-         * Media Data box, of which there can be many at the end.
+         * ISOBMFF Media Data box, of which there can be many at the end.
          */
         public val MDAT: BoxType = of("mdat".encodeToByteArray())
+
+        /**
+         * ISOBMFF Movie Box, used by CR3
+         */
+        public val MOOV: BoxType = of("moov".encodeToByteArray())
+
+        /**
+         * ISOBMFF Track Box, used by CR3
+         */
+        public val TRAK: BoxType = of("trak".encodeToByteArray())
+
+        /**
+         * ISOBMFF Media Box, used by CR3
+         */
+        public val MDIA: BoxType = of("mdia".encodeToByteArray())
+
+        /**
+         * ISOBMFF Media Information Container, used by CR3
+         */
+        public val MINF: BoxType = of("minf".encodeToByteArray())
+
+        /**
+         * ISOBMFF Sample Table Box, used by CR3
+         */
+        public val STBL: BoxType = of("stbl".encodeToByteArray())
+
+        /**
+         * ISOBMFF Sample Size Box (32-bit), used by CR3
+         */
+        public val STSZ: BoxType = of("stsz".encodeToByteArray())
+
+        /**
+         * ISOBMFF Chunk Offset Box 64-bit, used by CR3
+         */
+        public val CO64: BoxType = of("co64".encodeToByteArray())
+
+        /**
+         * ISOBMFF UUID box, used by CR3
+         */
+        public val UUID: BoxType = of("uuid".encodeToByteArray())
 
         /**
          * Extra box for EXIF data as part of the JPEG XL spec.
@@ -112,6 +152,31 @@ public data class BoxType internal constructor(
          * JPEG XL partical codestream box
          */
         public val JXLP: BoxType = of("jxlp".encodeToByteArray())
+
+        /**
+         * CR3 specific: Canon Metadata Tiff (CMT) for Exif IFD0
+         */
+        public val CMT1: BoxType = of("CMT1".encodeToByteArray())
+
+        /**
+         * CR3 specific: Canon Metadata Tiff (CMT) for Exif ExifIFD
+         */
+        public val CMT2: BoxType = of("CMT2".encodeToByteArray())
+
+        /**
+         * CR3 specific: Canon Metadata Tiff (CMT) for Makernotes
+         */
+        public val CMT3: BoxType = of("CMT3".encodeToByteArray())
+
+        /**
+         * CR3 specific: Canon Metadata Tiff (CMT) for Exif GPS IFD
+         */
+        public val CMT4: BoxType = of("CMT4".encodeToByteArray())
+
+        /**
+         * CR3 specific: Thumbnail JPG bytes
+         */
+        public val THMB: BoxType = of("THMB".encodeToByteArray())
 
         @Suppress("MagicNumber")
         public fun of(typeBytes: ByteArray): BoxType {

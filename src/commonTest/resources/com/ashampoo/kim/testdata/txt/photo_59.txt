@@ -5,7 +5,7 @@ Version 42
 Little-endian (Intel, II)
 ---- Directory IFD0 @ 8 ----
 0000000010 0x0100 ImageWidth = 5184
-0000000022 0x0101 ImageLength = 3456
+0000000022 0x0101 ImageHeight = 3456
 0000000034 0x0102 BitsPerSample = [8, 8, 8]
 0000000046 0x010f Make = Canon
 0000000058 0x0110 Model = Canon EOS Rebel T6
@@ -52,7 +52,7 @@ Little-endian (Intel, II)
 ---- Directory IFD1 @ 804 ----
 0000000806 0x00fe NewSubfileType = 1
 0000000818 0x0100 ImageWidth = 256
-0000000830 0x0101 ImageLength = 170
+0000000830 0x0101 ImageHeight = 170
 0000000842 0x0102 BitsPerSample = [8, 8, 8]
 0000000854 0x0103 Compression = 6
 0000000866 0x0106 PhotometricInterpretation = 6

@@ -23,9 +23,13 @@ import com.ashampoo.kim.format.bmff.box.HandlerReferenceBox
 import com.ashampoo.kim.format.bmff.box.ItemInfoEntryBox
 import com.ashampoo.kim.format.bmff.box.ItemInformationBox
 import com.ashampoo.kim.format.bmff.box.ItemLocationBox
+import com.ashampoo.kim.format.bmff.box.MediaBox
 import com.ashampoo.kim.format.bmff.box.MediaDataBox
 import com.ashampoo.kim.format.bmff.box.MetaBox
+import com.ashampoo.kim.format.bmff.box.MovieBox
 import com.ashampoo.kim.format.bmff.box.PrimaryItemBox
+import com.ashampoo.kim.format.bmff.box.TrackBox
+import com.ashampoo.kim.format.bmff.box.UuidBox
 import com.ashampoo.kim.format.jxl.box.CompressedBox
 import com.ashampoo.kim.format.jxl.box.ExifBox
 import com.ashampoo.kim.format.jxl.box.JxlParticalCodestreamBox
@@ -122,6 +126,7 @@ public object BoxReader {
             val globalOffset = offset + offsetShift
 
             val box = when (type) {
+                /* Generic EIC/ISO 14496-12 boxes. */
                 BoxType.FTYP -> FileTypeBox(globalOffset, size, largeSize, bytes)
                 BoxType.META -> MetaBox(globalOffset, size, largeSize, bytes)
                 BoxType.HDLR -> HandlerReferenceBox(globalOffset, size, largeSize, bytes)
@@ -130,11 +135,16 @@ public object BoxReader {
                 BoxType.ILOC -> ItemLocationBox(globalOffset, size, largeSize, bytes)
                 BoxType.PITM -> PrimaryItemBox(globalOffset, size, largeSize, bytes)
                 BoxType.MDAT -> MediaDataBox(globalOffset, size, largeSize, bytes)
+                BoxType.MOOV -> MovieBox(globalOffset, size, largeSize, bytes)
+                BoxType.TRAK -> TrackBox(globalOffset, size, largeSize, bytes)
+                BoxType.MDIA -> MediaBox(globalOffset, size, largeSize, bytes)
+                BoxType.UUID -> UuidBox(globalOffset, size, largeSize, bytes)
                 /* JXL boxes */
                 BoxType.EXIF -> ExifBox(globalOffset, size, largeSize, bytes)
                 BoxType.XML -> XmlBox(globalOffset, size, largeSize, bytes)
                 BoxType.JXLP -> JxlParticalCodestreamBox(globalOffset, size, largeSize, bytes)
                 BoxType.BROB -> CompressedBox(globalOffset, size, largeSize, bytes)
+                /* Unknown box */
                 else -> Box(type, globalOffset, size, largeSize, bytes)
             }
 
