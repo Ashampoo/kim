@@ -27,14 +27,25 @@ import com.ashampoo.kim.input.readBytes
 import com.ashampoo.kim.input.skipBytes
 import kotlin.jvm.JvmStatic
 
-/**
- * See https://github.com/lclevy/canon_cr3?tab=readme-ov-file#prvw-preview
- */
 public object Cr3PreviewExtractor {
 
     @Throws(ImageReadException::class)
     @JvmStatic
     public fun extractPreviewImage(
+        byteReader: ByteReader
+    ): ByteArray? = tryWithImageReadException {
+
+        return@tryWithImageReadException extractSmallPreviewImage(byteReader)
+    }
+
+    /**
+     * Extracts an JPG with an resoltion of 1620 x 1080
+     *
+     * See https://github.com/lclevy/canon_cr3?tab=readme-ov-file#prvw-preview
+     */
+    @Throws(ImageReadException::class)
+    @JvmStatic
+    public fun extractSmallPreviewImage(
         byteReader: ByteReader
     ): ByteArray? = tryWithImageReadException {
 
