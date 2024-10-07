@@ -17,12 +17,18 @@ package com.ashampoo.kim.format.cr3
 
 import com.ashampoo.kim.common.ByteOrder
 import com.ashampoo.kim.common.ImageReadException
+import com.ashampoo.kim.common.slice
 import com.ashampoo.kim.common.tryWithImageReadException
 import com.ashampoo.kim.format.bmff.BoxReader
+import com.ashampoo.kim.format.bmff.BoxType
+import com.ashampoo.kim.format.bmff.box.MediaDataBox
+import com.ashampoo.kim.format.bmff.box.MovieBox
+import com.ashampoo.kim.format.bmff.box.TrackBox
 import com.ashampoo.kim.format.bmff.box.UuidBox
 import com.ashampoo.kim.input.ByteArrayByteReader
 import com.ashampoo.kim.input.ByteReader
 import com.ashampoo.kim.input.read4BytesAsInt
+import com.ashampoo.kim.input.read8BytesAsLong
 import com.ashampoo.kim.input.readBytes
 import com.ashampoo.kim.input.skipBytes
 import kotlin.jvm.JvmStatic
@@ -33,9 +39,83 @@ public object Cr3PreviewExtractor {
     @JvmStatic
     public fun extractPreviewImage(
         byteReader: ByteReader
+    ): ByteArray? =
+        extractFullSizePreviewImage(byteReader)
+
+    /**
+     * Extracts an preview image at full resolution.
+     *
+     * See https://github.com/lclevy/canon_cr3/blob/master/readme.md
+     */
+    @Throws(ImageReadException::class)
+    @JvmStatic
+    public fun extractFullSizePreviewImage(
+        byteReader: ByteReader
     ): ByteArray? = tryWithImageReadException {
 
-        return@tryWithImageReadException extractSmallPreviewImage(byteReader)
+        val allBoxes = BoxReader.readBoxes(
+            byteReader = byteReader,
+            stopAfterMetadataRead = false
+        )
+
+        val movieBox = allBoxes.filterIsInstance<MovieBox>().firstOrNull()
+            ?: return@tryWithImageReadException null
+
+        val firstTrack = movieBox.boxes.filterIsInstance<TrackBox>().firstOrNull()
+            ?: return@tryWithImageReadException null
+
+        val mediaBox = firstTrack.mediaBox
+
+        val mediaInformationContainer = mediaBox.boxes.find { it.type == BoxType.MINF }
+            ?: return@tryWithImageReadException null
+
+        val minfBoxes = BoxReader.readBoxes(
+            byteReader = ByteArrayByteReader(mediaInformationContainer.payload),
+            stopAfterMetadataRead = false
+        )
+
+        val sampleTableBox = minfBoxes.find { it.type == BoxType.STBL }
+            ?: return@tryWithImageReadException null
+
+        val stblBoxes = BoxReader.readBoxes(
+            byteReader = ByteArrayByteReader(sampleTableBox.payload),
+            stopAfterMetadataRead = false
+        )
+
+        val sampleSizesBox = stblBoxes.find { it.type == BoxType.STSZ }
+            ?: return@tryWithImageReadException null
+
+        val chunkOffsetBox = stblBoxes.find { it.type == BoxType.CO64 }
+            ?: return@tryWithImageReadException null
+
+        val stszReader = ByteArrayByteReader(sampleSizesBox.payload)
+
+        /*
+         * Skip one version byte, 3 bytes flags, 4 bytes sample size
+         * and 4 bytes sample count.
+         */
+        stszReader.skipBytes("", 12)
+
+        val length = stszReader.read4BytesAsInt("length", ByteOrder.BIG_ENDIAN)
+
+        val co64Reader = ByteArrayByteReader(chunkOffsetBox.payload)
+
+        /*
+         * Skip one version byte, 3 bytes flags and 4 bytes entry count
+         */
+        co64Reader.skipBytes("", 8)
+
+        val offset = co64Reader.read8BytesAsLong("offset", ByteOrder.BIG_ENDIAN)
+
+        val mdatBox = allBoxes.filterIsInstance<MediaDataBox>().firstOrNull()
+            ?: return@tryWithImageReadException null
+
+        val offsetInMdatPayload = (offset - mdatBox.offset - 16).toInt()
+
+        return@tryWithImageReadException mdatBox.payload.slice(
+            startIndex = offsetInMdatPayload,
+            count = length
+        )
     }
 
     /**
