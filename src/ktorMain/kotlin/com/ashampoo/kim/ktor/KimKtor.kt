@@ -21,7 +21,7 @@ import com.ashampoo.kim.format.ImageMetadata
 import com.ashampoo.kim.input.KtorByteReadChannelByteReader
 import com.ashampoo.kim.input.KtorInputByteReader
 import io.ktor.utils.io.ByteReadChannel
-import io.ktor.utils.io.core.ByteReadPacket
+import kotlinx.io.Source
 import kotlin.jvm.JvmStatic
 
 /**
@@ -31,7 +31,7 @@ public object KimKtor {
 
     @JvmStatic
     @Throws(ImageReadException::class)
-    public fun readMetadata(byteReadPacket: ByteReadPacket): ImageMetadata? =
+    public fun readMetadata(byteReadPacket: Source): ImageMetadata? =
         Kim.readMetadata(KtorInputByteReader(byteReadPacket))
 
     @JvmStatic
@@ -41,7 +41,7 @@ public object KimKtor {
 }
 
 @Throws(ImageReadException::class)
-public fun Kim.readMetadata(byteReadPacket: ByteReadPacket): ImageMetadata? =
+public fun Kim.readMetadata(byteReadPacket: Source): ImageMetadata? =
     KimKtor.readMetadata(byteReadPacket)
 
 @Throws(ImageReadException::class)
