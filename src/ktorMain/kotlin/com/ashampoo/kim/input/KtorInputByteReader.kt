@@ -26,17 +26,17 @@ import kotlinx.io.readByteArray
  * of files hosted on a cloud service, which is a common use case.
  */
 public class KtorInputByteReader(
-    private val byteReadPacket: Source
+    private val source: Source
 ) : ByteReader {
 
-    override val contentLength: Long = byteReadPacket.remaining
+    override val contentLength: Long = source.remaining
 
     override fun readByte(): Byte? =
-        if (byteReadPacket.endOfInput) null else byteReadPacket.readByte()
+        if (source.endOfInput) null else source.readByte()
 
     override fun readBytes(count: Int): ByteArray =
-        byteReadPacket.readByteArray(minOf(count, byteReadPacket.remaining.toInt()))
+        source.readByteArray(minOf(count, source.remaining.toInt()))
 
     override fun close(): Unit =
-        byteReadPacket.close()
+        source.close()
 }

@@ -31,8 +31,8 @@ public object KimKtor {
 
     @JvmStatic
     @Throws(ImageReadException::class)
-    public fun readMetadata(byteReadPacket: Source): ImageMetadata? =
-        Kim.readMetadata(KtorInputByteReader(byteReadPacket))
+    public fun readMetadata(source: Source): ImageMetadata? =
+        Kim.readMetadata(KtorInputByteReader(source))
 
     @JvmStatic
     @Throws(ImageReadException::class)
@@ -41,8 +41,8 @@ public object KimKtor {
 }
 
 @Throws(ImageReadException::class)
-public fun Kim.readMetadata(byteReadPacket: Source): ImageMetadata? =
-    KimKtor.readMetadata(byteReadPacket)
+public fun Kim.readMetadata(source: Source): ImageMetadata? =
+    KimKtor.readMetadata(source)
 
 @Throws(ImageReadException::class)
 public fun Kim.readMetadata(byteReadChannel: ByteReadChannel, contentLength: Long): ImageMetadata? =

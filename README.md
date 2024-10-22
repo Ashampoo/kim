@@ -53,7 +53,7 @@ implementation(npm("pako", "2.1.0"))
 ### Read metadata
 
 `Kim.readMetadata()` takes `kotlin.ByteArray` on all platforms and depending on
-the platform also `kotlinx.io.files.Path`, Ktor `ByteReadPacket` & `ByteReadChannel`,
+the platform also `kotlinx.io.files.Path`, Ktor `Source` & `ByteReadChannel`,
 `java.io.File`, `java.io.InputStream`, `NSData` and `String` paths.
 
 ```kotlin
