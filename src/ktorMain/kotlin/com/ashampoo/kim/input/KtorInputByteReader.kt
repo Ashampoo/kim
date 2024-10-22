@@ -15,8 +15,10 @@
  */
 package com.ashampoo.kim.input
 
-import io.ktor.utils.io.core.ByteReadPacket
-import io.ktor.utils.io.core.readBytes
+import io.ktor.utils.io.core.endOfInput
+import io.ktor.utils.io.core.remaining
+import kotlinx.io.Source
+import kotlinx.io.readByteArray
 
 /**
  * This class provides a convenient way to parse metadata directly from
@@ -24,7 +26,7 @@ import io.ktor.utils.io.core.readBytes
  * of files hosted on a cloud service, which is a common use case.
  */
 public class KtorInputByteReader(
-    private val byteReadPacket: ByteReadPacket
+    private val byteReadPacket: Source
 ) : ByteReader {
 
     override val contentLength: Long = byteReadPacket.remaining
@@ -33,7 +35,7 @@ public class KtorInputByteReader(
         if (byteReadPacket.endOfInput) null else byteReadPacket.readByte()
 
     override fun readBytes(count: Int): ByteArray =
-        byteReadPacket.readBytes(minOf(count, byteReadPacket.remaining.toInt()))
+        byteReadPacket.readByteArray(minOf(count, byteReadPacket.remaining.toInt()))
 
     override fun close(): Unit =
         byteReadPacket.close()
