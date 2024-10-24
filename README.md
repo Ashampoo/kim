@@ -1,6 +1,6 @@
 # Kim - Kotlin Image Metadata
 
-[![Kotlin](https://img.shields.io/badge/kotlin-2.0.20-blue.svg?logo=kotlin)](httpw://kotlinlang.org)
+[![Kotlin](https://img.shields.io/badge/kotlin-2.0.21-blue.svg?logo=kotlin)](httpw://kotlinlang.org)
 ![JVM](https://img.shields.io/badge/-JVM-gray.svg?style=flat)
 ![Android](https://img.shields.io/badge/-Android-gray.svg?style=flat)
 ![iOS](https://img.shields.io/badge/-iOS-gray.svg?style=flat)
@@ -39,7 +39,7 @@ of Ashampoo Photo Organizer, which, in turn, is driven by user community feedbac
 ## Installation
 
 ```
-implementation("com.ashampoo:kim:0.19")
+implementation("com.ashampoo:kim:0.20")
 ```
 
 For the targets `wasmJs` & `js` you also need to specify this:
@@ -53,7 +53,7 @@ implementation(npm("pako", "2.1.0"))
 ### Read metadata
 
 `Kim.readMetadata()` takes `kotlin.ByteArray` on all platforms and depending on
-the platform also `kotlinx.io.files.Path`, Ktor `ByteReadPacket` & `ByteReadChannel`,
+the platform also `kotlinx.io.files.Path`, Ktor `Source` & `ByteReadChannel`,
 `java.io.File`, `java.io.InputStream`, `NSData` and `String` paths.
 
 ```kotlin

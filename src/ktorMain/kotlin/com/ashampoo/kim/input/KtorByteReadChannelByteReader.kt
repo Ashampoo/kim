@@ -17,8 +17,9 @@ package com.ashampoo.kim.input
 
 import io.ktor.utils.io.ByteReadChannel
 import io.ktor.utils.io.cancel
-import io.ktor.utils.io.core.readBytes
+import io.ktor.utils.io.readRemaining
 import kotlinx.coroutines.runBlocking
+import kotlinx.io.readByteArray
 
 /**
  * This class allows streaming data from a cloud service and read only the headers.
@@ -41,7 +42,7 @@ public class KtorByteReadChannelByteReader(
                 return null
 
             buffer = runBlocking {
-                channel.readRemaining(limit = bufferSize).readBytes()
+                channel.readRemaining(max = bufferSize).readByteArray()
             }
             bufferLimit = buffer.size
             bufferOffset = 0
@@ -64,7 +65,7 @@ public class KtorByteReadChannelByteReader(
                     break
 
                 buffer = runBlocking {
-                    channel.readRemaining(limit = bufferSize).readBytes()
+                    channel.readRemaining(max = bufferSize).readByteArray()
                 }
                 bufferLimit = buffer.size
                 bufferOffset = 0
