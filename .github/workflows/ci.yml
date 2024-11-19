@@ -24,7 +24,7 @@ jobs:
         uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
-          java-version: '17.0.10+7'
+          java-version: '17.0.13+11'
       - name: Select XCode 15.2
         run: |
           sudo xcode-select -s /Applications/Xcode_15.2.app/Contents/Developer
