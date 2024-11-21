@@ -170,9 +170,29 @@ kotlin {
     }
 
     js(IR) {
-        browser()
-        nodejs()
+
+        browser {
+
+            // FIXME Not working
+            webpackTask {
+                sourceMaps = false
+            }
+
+            // FIXME Not working
+            commonWebpackConfig {
+                sourceMaps = false
+            }
+        }
+
+        // nodejs()
+
         binaries.library()
+
+        compilations.all {
+            compileTaskProvider.configure {
+                compilerOptions.freeCompilerArgs.add("-Xir-minimized-member-names=false")
+            }
+        }
     }
 
     @OptIn(ExperimentalWasmDsl::class)
