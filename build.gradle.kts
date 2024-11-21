@@ -170,15 +170,9 @@ kotlin {
     }
 
     js(IR) {
-        browser {
-
-            binaries.executable()
-
-            webpackTask {
-                mainOutputFileName = "kim.js"
-                output.library = "kim"
-            }
-        }
+        browser()
+        nodejs()
+        binaries.library()
     }
 
     @OptIn(ExperimentalWasmDsl::class)
