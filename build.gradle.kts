@@ -173,23 +173,8 @@ kotlin {
 
         moduleName = "kim"
 
-        browser {
-            webpackTask {
-                mainOutputFileName = "kim.js"
-                output.library = "kimlib"
-            }
-        }
-
-        nodejs()
-
-        binaries.library()
-        // binaries.executable()
-
-        compilations.all {
-            compileTaskProvider.configure {
-                compilerOptions.freeCompilerArgs.add("-Xir-minimized-member-names=false")
-            }
-        }
+        browser()
+        binaries.executable()
     }
 
     @OptIn(ExperimentalWasmDsl::class)

@@ -1,0 +1,19 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Including a External JavaScript File</title>
+</head>
+
+<body>
+<!--<script type="text/javascript" src="build/kotlin-webpack/js/developmentExecutable/kim.js"></script>-->
+<script type="text/javascript" src="build/kotlin-webpack/js/productionExecutable/kim.js"></script>
+<script>
+    var kim = this['kim'];
+
+    // var greeting = new shared.playground.kmp.js.Greeting();
+    console.log(kim);
+</script>
+</body>
+
+</html>
