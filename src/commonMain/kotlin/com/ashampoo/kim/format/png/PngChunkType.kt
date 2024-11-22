@@ -24,7 +24,7 @@ import com.ashampoo.kim.format.png.PngConstants.TPYE_LENGTH
  *
  * @see [Portable Network Graphics Specification - Chunk specifications](http://www.w3.org/TR/PNG/.11Chunks)
  */
-public data class PngChunkType internal constructor(
+public data class PngChunkType(
     val bytes: ByteArray,
     val name: String,
     val intValue: Int

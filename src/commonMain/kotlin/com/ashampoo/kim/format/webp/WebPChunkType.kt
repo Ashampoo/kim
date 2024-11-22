@@ -20,7 +20,7 @@ import com.ashampoo.kim.common.toFourCCTypeString
 /**
  * Type of a WebP chunk.
  */
-public data class WebPChunkType internal constructor(
+public data class WebPChunkType(
     val bytes: ByteArray,
     val name: String,
     val intValue: Int

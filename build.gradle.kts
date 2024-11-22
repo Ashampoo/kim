@@ -3,7 +3,7 @@ import org.jetbrains.kotlin.gradle.plugin.mpp.NativeBuildType
 import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
 
 plugins {
-    kotlin("multiplatform") version "2.0.20"
+    kotlin("multiplatform") version "2.0.21"
     id("com.android.library") version "8.5.0"
     id("maven-publish")
     id("signing")
@@ -24,10 +24,10 @@ repositories {
 
 val productName: String = "Ashampoo Kim"
 
-val ktorVersion: String = "3.0.0"
+val ktorVersion: String = "3.0.1"
 val xmpCoreVersion: String = "1.4.2"
 val dateTimeVersion: String = "0.6.1"
-val kotlinxIoVersion: String = "0.5.4"
+val kotlinxIoVersion: String = "0.6.0"
 
 description = productName
 group = "com.ashampoo"
@@ -169,10 +169,40 @@ kotlin {
         }
     }
 
-    js()
+    js(IR) {
+
+        moduleName = "kim"
+
+        browser {
+            webpackTask {
+                mainOutputFileName = "kim.js"
+                output.library = "kimlib"
+            }
+        }
+
+        nodejs()
+
+        binaries.library()
+        // binaries.executable()
+
+        compilations.all {
+            compileTaskProvider.configure {
+                compilerOptions.freeCompilerArgs.add("-Xir-minimized-member-names=false")
+            }
+        }
+    }
 
     @OptIn(ExperimentalWasmDsl::class)
-    wasmJs()
+    wasmJs {
+
+        moduleName = "kim-wasm"
+
+        browser()
+        nodejs()
+
+        binaries.library()
+        // binaries.executable()
+    }
 
     // WASI support is planned for kotlinx-datetime v0.7
     // @OptIn(ExperimentalWasmDsl::class)
