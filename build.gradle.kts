@@ -184,7 +184,7 @@ kotlin {
     }
 
     @OptIn(ExperimentalWasmDsl::class)
-    wasmJs() {
+    wasmJs {
 
         browser()
         nodejs()
