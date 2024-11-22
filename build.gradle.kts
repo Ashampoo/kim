@@ -171,9 +171,15 @@ kotlin {
 
     js(IR) {
 
-        moduleName = "kim-js"
+        moduleName = "kim"
 
-        browser()
+        browser {
+            webpackTask {
+                mainOutputFileName = "kim.js"
+                output.library = "kimlib"
+            }
+        }
+
         nodejs()
 
         binaries.library()
