@@ -24,10 +24,10 @@ repositories {
 
 val productName: String = "Ashampoo Kim"
 
-val ktorVersion: String = "3.0.0"
+val ktorVersion: String = "3.0.1"
 val xmpCoreVersion: String = "1.4.2"
 val dateTimeVersion: String = "0.6.1"
-val kotlinxIoVersion: String = "0.5.4"
+val kotlinxIoVersion: String = "0.6.0"
 
 description = productName
 group = "com.ashampoo"
@@ -171,10 +171,13 @@ kotlin {
 
     js(IR) {
 
+        moduleName = "kim-js"
+
         browser()
         nodejs()
 
         binaries.library()
+        binaries.executable()
 
         compilations.all {
             compileTaskProvider.configure {
@@ -186,8 +189,13 @@ kotlin {
     @OptIn(ExperimentalWasmDsl::class)
     wasmJs {
 
+        moduleName = "kim-wasm"
+
         browser()
         nodejs()
+
+        binaries.library()
+        binaries.executable()
     }
 
     // WASI support is planned for kotlinx-datetime v0.7
