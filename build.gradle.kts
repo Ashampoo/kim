@@ -171,20 +171,8 @@ kotlin {
 
     js(IR) {
 
-        browser {
-
-            // FIXME Not working
-            webpackTask {
-                sourceMaps = false
-            }
-
-            // FIXME Not working
-            commonWebpackConfig {
-                sourceMaps = false
-            }
-        }
-
-        // nodejs()
+        browser()
+        nodejs()
 
         binaries.library()
 
@@ -196,7 +184,11 @@ kotlin {
     }
 
     @OptIn(ExperimentalWasmDsl::class)
-    wasmJs()
+    wasmJs() {
+
+        browser()
+        nodejs()
+    }
 
     // WASI support is planned for kotlinx-datetime v0.7
     // @OptIn(ExperimentalWasmDsl::class)
