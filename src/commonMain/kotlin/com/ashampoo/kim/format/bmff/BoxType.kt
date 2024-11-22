@@ -17,7 +17,7 @@ package com.ashampoo.kim.format.bmff
 
 import com.ashampoo.kim.common.toFourCCTypeString
 
-public data class BoxType internal constructor(
+public data class BoxType(
     val bytes: ByteArray,
     val name: String,
     val intValue: Int
