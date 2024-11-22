@@ -177,7 +177,7 @@ kotlin {
         nodejs()
 
         binaries.library()
-        binaries.executable()
+        // binaries.executable()
 
         compilations.all {
             compileTaskProvider.configure {
@@ -195,7 +195,7 @@ kotlin {
         nodejs()
 
         binaries.library()
-        binaries.executable()
+        // binaries.executable()
     }
 
     // WASI support is planned for kotlinx-datetime v0.7
