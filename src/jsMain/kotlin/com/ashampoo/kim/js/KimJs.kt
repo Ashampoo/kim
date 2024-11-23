@@ -17,6 +17,8 @@ package com.ashampoo.kim.js
 
 import com.ashampoo.kim.Kim
 import com.ashampoo.kim.common.convertToPhotoMetadata
+import com.ashampoo.kim.format.xmp.XmpReader
+import com.ashampoo.kim.model.PhotoMetadata
 import kotlinx.datetime.Instant
 import kotlinx.datetime.toJSDate
 import org.khronos.webgl.Uint8Array
@@ -38,45 +40,53 @@ public object KimJs {
 
         val photoMetadata = imageMetadata.convertToPhotoMetadata()
 
-        val takenDateJsDate = photoMetadata.takenDate?.let {
-            Instant.fromEpochMilliseconds(it).toJSDate()
-        }
-
-        val faces = photoMetadata.faces.map {
-            Face(
-                name = it.key,
-                xPos = it.value.xPos,
-                yPos = it.value.yPos,
-                width = it.value.width,
-                height = it.value.height
-            )
-        }.toTypedArray()
-
-        return JsImageMetadata(
-            mimeType = photoMetadata.imageFormat?.mimeType,
-            widthPx = photoMetadata.widthPx,
-            heightPx = photoMetadata.heightPx,
-            orientation = photoMetadata.orientation?.value,
-            takenDate = takenDateJsDate,
-            gpsLatitude = photoMetadata.gpsCoordinates?.latitude,
-            gpsLongitude = photoMetadata.gpsCoordinates?.longitude,
-            cameraMake = photoMetadata.cameraMake,
-            cameraModel = photoMetadata.cameraModel,
-            lensMake = photoMetadata.lensMake,
-            lensModel = photoMetadata.lensModel,
-            iso = photoMetadata.iso,
-            exposureTime = photoMetadata.exposureTime,
-            fNumber = photoMetadata.fNumber,
-            focalLength = photoMetadata.focalLength,
-            flagged = photoMetadata.flagged,
-            rating = photoMetadata.rating?.value,
-            keywords = photoMetadata.keywords.toTypedArray(),
-            faces = faces,
-            personsInImage = photoMetadata.personsInImage.toTypedArray(),
-            albums = photoMetadata.albums.toTypedArray()
-        )
+        return photoMetadata.convertToJsImageMetadata()
     }
+
+    public fun readXmp(xmp: String): JsImageMetadata =
+        XmpReader.readMetadata(xmp).convertToJsImageMetadata()
 }
 
 private fun Uint8Array.toByteArray(): ByteArray =
     ByteArray(length) { this[it] }
+
+private fun PhotoMetadata.convertToJsImageMetadata(): JsImageMetadata {
+
+    val takenDateJsDate = this.takenDate?.let {
+        Instant.fromEpochMilliseconds(it).toJSDate()
+    }
+
+    val faces = this.faces.map {
+        Face(
+            name = it.key,
+            xPos = it.value.xPos,
+            yPos = it.value.yPos,
+            width = it.value.width,
+            height = it.value.height
+        )
+    }.toTypedArray()
+
+    return JsImageMetadata(
+        mimeType = imageFormat?.mimeType,
+        widthPx = widthPx,
+        heightPx = heightPx,
+        orientation = orientation?.value,
+        takenDate = takenDateJsDate,
+        gpsLatitude = gpsCoordinates?.latitude,
+        gpsLongitude = gpsCoordinates?.longitude,
+        cameraMake = cameraMake,
+        cameraModel = cameraModel,
+        lensMake = lensMake,
+        lensModel = lensModel,
+        iso = iso,
+        exposureTime = exposureTime,
+        fNumber = fNumber,
+        focalLength = focalLength,
+        flagged = flagged,
+        rating = rating?.value,
+        keywords = keywords.toTypedArray(),
+        faces = faces,
+        personsInImage = personsInImage.toTypedArray(),
+        albums = albums.toTypedArray()
+    )
+}

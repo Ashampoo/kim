@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>kim.js Test</title>
+</head>
+
+<body>
+
+<h1>XMP Read Test</h1>
+
+<input type="file" id="files"/>
+
+<br><br>
+
+<div id="results"/>
+
+<script type="text/javascript" src="../build/kotlin-webpack/js/productionExecutable/kim.js"></script>
+
+<script>
+
+    var kimLib = this['kimLib'];
+
+    var resultsDiv = document.getElementById('results')
+
+    function handleFileSelect(evt) {
+
+        var file = evt.target.files[0];
+
+        if (!file) {
+            document.getElementById('results').innerText = "No file selected.";
+            return;
+        }
+
+        var reader = new FileReader();
+
+        reader.onload = function (event) {
+
+            var xmp = event.target.result;
+
+            var kim = kimLib.com.ashampoo.kim.js.Kim;
+
+            try {
+
+                var metadata = kim.readXmp(xmp);
+
+                var metadataString = JSON.stringify(metadata, null, 2);
+
+                resultsDiv.innerText = metadataString;
+
+            } catch (error) {
+
+                resultsDiv.innerText = "Error reading metadata: " + error.message +
+                    "\n\nStack Trace:\n" + error.stack;
+            }
+        };
+
+        reader.readAsText(file);
+    }
+
+    document.getElementById('files').addEventListener('change', handleFileSelect, false);
+
+</script>
+
+</body>
+
+</html>
