@@ -33,7 +33,10 @@ public const val UNKNOWN_IMAGE_MIME_TYPE: String = "application/octet-stream"
 @JsName("Kim")
 public object KimJs {
 
-    public fun readMetadataFromFile(file: File): JsImageMetadata {
+    public fun readMetadataFromFile(
+        file: File,
+        onRead: (JsImageMetadata?) -> Unit
+    ) {
 
         val fileReader = FileReader()
 
@@ -49,20 +52,23 @@ public object KimJs {
 
                     val uInt8Bytes = Uint8Array(arrayBuffer)
 
-                    // FIXME How to return here?
-                    return convertImageMetadata(
-                        readMetadataFromByteArray(uInt8Bytes)
-                    )
+                    val metadata = readMetadataFromByteArray(uInt8Bytes)
+
+                    onRead(metadata)
+
+                } else {
+                    onRead(null)
                 }
+
+            } else {
+                onRead(null)
             }
         }
 
         fileReader.readAsArrayBuffer(file)
-
-        return JsImageMetadata.UNKNOWN
     }
 
-    public fun readMetadataFromByteArray(uint8Array: Uint8Array): JsImageMetadata =
+    public fun readMetadataFromByteArray(uint8Array: Uint8Array): JsImageMetadata? =
         convertImageMetadata(Kim.readMetadata(uint8Array.toByteArray()))
 }
 
@@ -71,9 +77,15 @@ private fun Uint8Array.toByteArray(): ByteArray =
 
 private fun convertImageMetadata(
     imageMetadata: ImageMetadata?
-) = JsImageMetadata(
-    mimeType = imageMetadata?.imageFormat?.mimeType ?: UNKNOWN_IMAGE_MIME_TYPE,
-    imageWidth = imageMetadata?.imageSize?.width ?: 0,
-    imageHeight = imageMetadata?.imageSize?.height ?: 0,
-    xmp = imageMetadata?.xmp ?: ""
-)
+): JsImageMetadata? {
+
+    if (imageMetadata == null)
+        return null
+
+    return JsImageMetadata(
+        mimeType = imageMetadata.imageFormat.mimeType,
+        imageWidth = imageMetadata.imageSize?.width ?: 0,
+        imageHeight = imageMetadata.imageSize?.height ?: 0,
+        xmp = imageMetadata.xmp ?: ""
+    )
+}
