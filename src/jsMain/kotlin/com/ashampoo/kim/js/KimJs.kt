@@ -17,11 +17,8 @@ package com.ashampoo.kim.js
 
 import com.ashampoo.kim.Kim
 import com.ashampoo.kim.format.ImageMetadata
-import org.khronos.webgl.ArrayBuffer
 import org.khronos.webgl.Uint8Array
 import org.khronos.webgl.get
-import org.w3c.files.File
-import org.w3c.files.FileReader
 
 public const val UNKNOWN_IMAGE_MIME_TYPE: String = "application/octet-stream"
 
@@ -33,42 +30,7 @@ public const val UNKNOWN_IMAGE_MIME_TYPE: String = "application/octet-stream"
 @JsName("Kim")
 public object KimJs {
 
-    public fun readMetadataFromFile(
-        file: File,
-        onRead: (JsImageMetadata?) -> Unit
-    ) {
-
-        val fileReader = FileReader()
-
-        fileReader.onload = { event ->
-
-            val target = event.target as? FileReader
-
-            if (target != null) {
-
-                val arrayBuffer = target.result as? ArrayBuffer
-
-                if (arrayBuffer != null) {
-
-                    val uInt8Bytes = Uint8Array(arrayBuffer)
-
-                    val metadata = readMetadataFromByteArray(uInt8Bytes)
-
-                    onRead(metadata)
-
-                } else {
-                    onRead(null)
-                }
-
-            } else {
-                onRead(null)
-            }
-        }
-
-        fileReader.readAsArrayBuffer(file)
-    }
-
-    public fun readMetadataFromByteArray(uint8Array: Uint8Array): JsImageMetadata? =
+    public fun readMetadata(uint8Array: Uint8Array): JsImageMetadata? =
         convertImageMetadata(Kim.readMetadata(uint8Array.toByteArray()))
 }
 

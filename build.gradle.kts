@@ -173,7 +173,13 @@ kotlin {
 
         moduleName = "kim"
 
-        browser()
+        browser {
+            webpackTask {
+                mainOutputFileName = "kim.js"
+                output.library = "kimLib"
+            }
+        }
+
         binaries.executable()
     }
 

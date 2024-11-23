@@ -8,27 +8,49 @@
 
 <body>
 
+<h1>Metadata parsing test</h1>
+
 <input type="file" id="files"/>
 
-<!--<script type="text/javascript" src="build/kotlin-webpack/js/developmentExecutable/kim.js"></script>-->
+<div id="results"/>
+
 <script type="text/javascript" src="build/kotlin-webpack/js/productionExecutable/kim.js"></script>
 
 <script>
+    var kimLib = this['kimLib'];
 
     function handleFileSelect(evt) {
 
         var file = evt.target.files[0];
 
-        console.log("File selected")
+        if (!file) {
+            console.log("No file selected");
+            return;
+        }
 
-        var lib = this['kim'];
+        console.log("File selected:", file.name);
 
-        var kim = new lib.com.ashampoo.kim.js.Kim();
+        var reader = new FileReader();
 
-        var metadata = kim.readMetadataFromFile(file)
+        reader.onload = function (e) {
 
-        console.log(metadata);
+            var arrayBuffer = e.target.result;
+            var uint8Array = new Uint8Array(arrayBuffer);
 
+            var kim = kimLib.com.ashampoo.kim.js.Kim;
+
+            try {
+
+                var metadata = kim.readMetadata(uint8Array);
+
+                console.log("Metadata:", metadata);
+
+            } catch (error) {
+                console.error("Error reading metadata:", error);
+            }
+        };
+
+        reader.readAsArrayBuffer(file);
     }
 
     document.getElementById('files').addEventListener('change', handleFileSelect, false);
