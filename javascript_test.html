@@ -38,6 +38,7 @@
             var kim = kimLib.com.ashampoo.kim.js.Kim;
 
             try {
+
                 var metadata = kim.readMetadata(uint8Array);
 
                 // Convert metadata object to a readable string format
@@ -45,6 +46,7 @@
 
                 // Display the metadata in the results div
                 document.getElementById('results').innerText = metadataString;
+
             } catch (error) {
                 document.getElementById('results').innerText = "Error reading metadata: " + error.message;
             }

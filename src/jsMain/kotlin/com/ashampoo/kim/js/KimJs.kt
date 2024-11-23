@@ -16,11 +16,11 @@
 package com.ashampoo.kim.js
 
 import com.ashampoo.kim.Kim
-import com.ashampoo.kim.format.ImageMetadata
+import com.ashampoo.kim.common.convertToPhotoMetadata
+import kotlinx.datetime.Instant
+import kotlinx.datetime.toJSDate
 import org.khronos.webgl.Uint8Array
 import org.khronos.webgl.get
-
-public const val UNKNOWN_IMAGE_MIME_TYPE: String = "application/octet-stream"
 
 /**
  * Extra object to have a nicer API for JavaScript projects
@@ -30,24 +30,53 @@ public const val UNKNOWN_IMAGE_MIME_TYPE: String = "application/octet-stream"
 @JsName("Kim")
 public object KimJs {
 
-    public fun readMetadata(uint8Array: Uint8Array): JsImageMetadata? =
-        convertImageMetadata(Kim.readMetadata(uint8Array.toByteArray()))
+    public fun readMetadata(uint8Array: Uint8Array): JsImageMetadata? {
+
+        val byteArray = uint8Array.toByteArray()
+
+        val imageMetadata = Kim.readMetadata(byteArray) ?: return null
+
+        val photoMetadata = imageMetadata.convertToPhotoMetadata()
+
+        val takenDateJsDate = photoMetadata.takenDate?.let {
+            Instant.fromEpochMilliseconds(it).toJSDate()
+        }
+
+        val faces = photoMetadata.faces.map {
+            Face(
+                name = it.key,
+                xPos = it.value.xPos,
+                yPos = it.value.yPos,
+                width = it.value.width,
+                height = it.value.height
+            )
+        }.toTypedArray()
+
+        return JsImageMetadata(
+            mimeType = photoMetadata.imageFormat?.mimeType,
+            widthPx = photoMetadata.widthPx,
+            heightPx = photoMetadata.heightPx,
+            orientation = photoMetadata.orientation?.value,
+            takenDate = takenDateJsDate,
+            gpsLatitude = photoMetadata.gpsCoordinates?.latitude,
+            gpsLongitude = photoMetadata.gpsCoordinates?.longitude,
+            cameraMake = photoMetadata.cameraMake,
+            cameraModel = photoMetadata.cameraModel,
+            lensMake = photoMetadata.lensMake,
+            lensModel = photoMetadata.lensModel,
+            iso = photoMetadata.iso,
+            exposureTime = photoMetadata.exposureTime,
+            fNumber = photoMetadata.fNumber,
+            focalLength = photoMetadata.focalLength,
+            flagged = photoMetadata.flagged,
+            rating = photoMetadata.rating?.value,
+            keywords = photoMetadata.keywords.toTypedArray(),
+            faces = faces,
+            personsInImage = photoMetadata.personsInImage.toTypedArray(),
+            albums = photoMetadata.albums.toTypedArray()
+        )
+    }
 }
 
 private fun Uint8Array.toByteArray(): ByteArray =
     ByteArray(length) { this[it] }
-
-private fun convertImageMetadata(
-    imageMetadata: ImageMetadata?
-): JsImageMetadata? {
-
-    if (imageMetadata == null)
-        return null
-
-    return JsImageMetadata(
-        mimeType = imageMetadata.imageFormat.mimeType,
-        imageWidth = imageMetadata.imageSize?.width ?: 0,
-        imageHeight = imageMetadata.imageSize?.height ?: 0,
-        xmp = imageMetadata.xmp ?: ""
-    )
-}
