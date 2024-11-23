@@ -8,9 +8,11 @@
 
 <body>
 
-<h1>Metadata parsing test</h1>
+<h1>Metadata Parsing Test</h1>
 
 <input type="file" id="files"/>
+
+<br><br>
 
 <div id="results"/>
 
@@ -20,33 +22,31 @@
     var kimLib = this['kimLib'];
 
     function handleFileSelect(evt) {
-
         var file = evt.target.files[0];
 
         if (!file) {
-            console.log("No file selected");
+            document.getElementById('results').innerText = "No file selected.";
             return;
         }
-
-        console.log("File selected:", file.name);
 
         var reader = new FileReader();
 
         reader.onload = function (e) {
-
             var arrayBuffer = e.target.result;
             var uint8Array = new Uint8Array(arrayBuffer);
 
             var kim = kimLib.com.ashampoo.kim.js.Kim;
 
             try {
-
                 var metadata = kim.readMetadata(uint8Array);
 
-                console.log("Metadata:", metadata);
+                // Convert metadata object to a readable string format
+                var metadataString = JSON.stringify(metadata, null, 2);
 
+                // Display the metadata in the results div
+                document.getElementById('results').innerText = metadataString;
             } catch (error) {
-                console.error("Error reading metadata:", error);
+                document.getElementById('results').innerText = "Error reading metadata: " + error.message;
             }
         };
 
