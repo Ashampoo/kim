@@ -34,6 +34,7 @@ import com.ashampoo.kim.input.read4BytesAsInt
 import com.ashampoo.kim.input.readBytes
 import com.ashampoo.kim.input.readRemainingBytes
 import com.ashampoo.kim.input.skipBytes
+import com.ashampoo.kim.model.ImageFormat
 
 /**
  * Reads containers that follow the ISO base media file format
@@ -86,7 +87,7 @@ public object BaseMediaFileFormatImageParser : ImageParser {
         /* Return empty object if no metadata is found. */
         if (metadataOffsets.isEmpty())
             return ImageMetadata(
-                imageFormat = null,
+                imageFormat = ImageFormat.HEIC,
                 imageSize = null,
                 exif = null,
                 exifBytes = null,
@@ -164,7 +165,7 @@ public object BaseMediaFileFormatImageParser : ImageParser {
         }
 
         return ImageMetadata(
-            imageFormat = null, // could be any ISO BMFF
+            imageFormat = ImageFormat.HEIC, // could be any ISO BMFF
             imageSize = null, // not covered by ISO BMFF
             exif = exif,
             exifBytes = exifBytes,

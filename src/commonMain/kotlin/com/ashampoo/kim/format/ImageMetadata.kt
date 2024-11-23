@@ -24,7 +24,7 @@ import com.ashampoo.kim.model.ImageFormat
 import com.ashampoo.kim.model.ImageSize
 
 public data class ImageMetadata(
-    val imageFormat: ImageFormat?,
+    val imageFormat: ImageFormat,
     val imageSize: ImageSize?,
     val exif: TiffContents?,
     val exifBytes: ByteArray?,
