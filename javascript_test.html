@@ -19,9 +19,11 @@
 <script type="text/javascript" src="build/kotlin-webpack/js/productionExecutable/kim.js"></script>
 
 <script>
+
     var kimLib = this['kimLib'];
 
     function handleFileSelect(evt) {
+
         var file = evt.target.files[0];
 
         if (!file) {
@@ -31,8 +33,10 @@
 
         var reader = new FileReader();
 
-        reader.onload = function (e) {
-            var arrayBuffer = e.target.result;
+        reader.onload = function (event) {
+
+            var arrayBuffer = event.target.result;
+
             var uint8Array = new Uint8Array(arrayBuffer);
 
             var kim = kimLib.com.ashampoo.kim.js.Kim;
@@ -41,10 +45,8 @@
 
                 var metadata = kim.readMetadata(uint8Array);
 
-                // Convert metadata object to a readable string format
                 var metadataString = JSON.stringify(metadata, null, 2);
 
-                // Display the metadata in the results div
                 document.getElementById('results').innerText = metadataString;
 
             } catch (error) {
