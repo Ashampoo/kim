@@ -41,16 +41,20 @@
 
             var kim = kimLib.com.ashampoo.kim.js.Kim;
 
+            var resultsDiv = document.getElementById('results')
+
             try {
 
                 var metadata = kim.readMetadata(uint8Array);
 
                 var metadataString = JSON.stringify(metadata, null, 2);
 
-                document.getElementById('results').innerText = metadataString;
+                resultsDiv.innerText = metadataString;
 
             } catch (error) {
-                document.getElementById('results').innerText = "Error reading metadata: " + error.message;
+
+                resultsDiv.innerText = "Error reading metadata: " + error.message +
+                    "\n\nStack Trace:\n" + error.stack;
             }
         };
 
@@ -58,6 +62,7 @@
     }
 
     document.getElementById('files').addEventListener('change', handleFileSelect, false);
+
 </script>
 
 </body>
