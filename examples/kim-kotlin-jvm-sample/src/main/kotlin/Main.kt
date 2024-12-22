@@ -1,10 +1,12 @@
 import com.ashampoo.kim.Kim
+import com.ashampoo.kim.common.RationalNumber
 import com.ashampoo.kim.common.writeBytes
 import com.ashampoo.kim.format.jpeg.JpegRewriter
 import com.ashampoo.kim.format.tiff.TiffContents
 import com.ashampoo.kim.format.tiff.TiffReader
 import com.ashampoo.kim.format.tiff.constant.ExifTag
 import com.ashampoo.kim.format.tiff.constant.GeoTiffTag
+import com.ashampoo.kim.format.tiff.constant.GpsTag
 import com.ashampoo.kim.format.tiff.write.TiffOutputSet
 import com.ashampoo.kim.format.tiff.write.TiffWriterLossy
 import com.ashampoo.kim.input.DefaultRandomAccessByteReader
@@ -24,6 +26,8 @@ fun main() {
     updateTakenDate()
 
     updateTakenDateLowLevelApi()
+
+    updateGpsImgDirection()
 
     /* Various GeoTiff samples */
     setGeoTiffToJpeg()
@@ -75,6 +79,42 @@ fun updateTakenDateLowLevelApi() {
 
     exifDirectory.removeField(ExifTag.EXIF_TAG_DATE_TIME_ORIGINAL)
     exifDirectory.add(ExifTag.EXIF_TAG_DATE_TIME_ORIGINAL, "2222:02:02 13:37:42")
+
+    OutputStreamByteWriter(outputFile.outputStream()).use { outputStreamByteWriter ->
+
+        JpegRewriter.updateExifMetadataLossless(
+            byteReader = JvmInputStreamByteReader(inputFile.inputStream(), inputFile.length()),
+            byteWriter = outputStreamByteWriter,
+            outputSet = outputSet
+        )
+    }
+}
+
+/**
+ * Shows how to update GPS Image direction using low level API.
+ */
+fun updateGpsImgDirection() {
+
+    val inputFile = File("testphoto.jpg")
+    val outputFile = File("testphoto_gps_img_direction.jpg")
+
+    val metadata = Kim.readMetadata(inputFile) ?: return
+
+    val outputSet: TiffOutputSet = metadata.exif?.createOutputSet() ?: TiffOutputSet()
+
+    val gpsDirectory = outputSet.getOrCreateGPSDirectory()
+
+    val roundedGeoAngle: Long = 1337
+
+    gpsDirectory.add(
+        GpsTag.GPS_TAG_GPS_IMG_DIRECTION,
+        RationalNumber.create(roundedGeoAngle, 100)
+    )
+
+    gpsDirectory.add(
+        GpsTag.GPS_TAG_GPS_IMG_DIRECTION_REF,
+        "M"
+    )
 
     OutputStreamByteWriter(outputFile.outputStream()).use { outputStreamByteWriter ->
 
