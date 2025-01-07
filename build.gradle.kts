@@ -24,7 +24,7 @@ repositories {
 
 val productName: String = "Ashampoo Kim"
 
-val ktorVersion: String = "3.0.1"
+val ktorVersion: String = "3.0.3"
 val xmpCoreVersion: String = "1.4.2"
 val dateTimeVersion: String = "0.6.1"
 val kotlinxIoVersion: String = "0.6.0"
@@ -176,20 +176,13 @@ kotlin {
         browser {
             webpackTask {
                 mainOutputFileName = "kim.js"
-                output.library = "kimlib"
+                output.library = "kimLib"
             }
         }
 
         nodejs()
 
-        binaries.library()
-        // binaries.executable()
-
-        compilations.all {
-            compileTaskProvider.configure {
-                compilerOptions.freeCompilerArgs.add("-Xir-minimized-member-names=false")
-            }
-        }
+        binaries.executable()
     }
 
     @OptIn(ExperimentalWasmDsl::class)
@@ -200,8 +193,7 @@ kotlin {
         browser()
         nodejs()
 
-        binaries.library()
-        // binaries.executable()
+        binaries.executable()
     }
 
     // WASI support is planned for kotlinx-datetime v0.7
