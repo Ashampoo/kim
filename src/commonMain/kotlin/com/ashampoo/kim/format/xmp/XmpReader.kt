@@ -102,17 +102,4 @@ public object XmpReader {
             albums = xmpMeta.getAlbums()
         )
     }
-
-    @Suppress("Unused")
-    @JvmStatic
-    public fun determineXmpPath(path: String): String {
-
-        val xmpPath = path.replaceAfterLast(".", "xmp")
-
-        /* If the path is not different, there was no suffix. */
-        if (xmpPath != path)
-            return xmpPath
-
-        return path + ".xmp"
-    }
 }
