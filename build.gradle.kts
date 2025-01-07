@@ -1,9 +1,11 @@
+import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.plugin.mpp.NativeBuildType
 import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
 
 plugins {
-    kotlin("multiplatform") version "2.0.21"
+    kotlin("multiplatform") version "2.0.21" // Kotlin 2.1.0 results in compile errors!
     id("com.android.library") version "8.5.0"
     id("maven-publish")
     id("signing")
@@ -12,7 +14,7 @@ plugins {
     id("org.jetbrains.kotlinx.kover") version "0.6.1"
     id("com.asarkar.gradle.build-time-tracker") version "4.3.0"
     id("me.qoomon.git-versioning") version "6.4.4"
-    id("com.goncalossilva.resources") version "0.9.0"
+    id("com.goncalossilva.resources") version "0.9.0" // 0.10.0 requires Kotlin 2.1.0
     id("com.github.ben-manes.versions") version "0.51.0"
     id("org.jetbrains.dokka") version "1.9.20"
 }
@@ -24,7 +26,7 @@ repositories {
 
 val productName: String = "Ashampoo Kim"
 
-val ktorVersion: String = "3.0.1"
+val ktorVersion: String = "3.0.3"
 val xmpCoreVersion: String = "1.4.2"
 val dateTimeVersion: String = "0.6.1"
 val kotlinxIoVersion: String = "0.6.0"
@@ -118,10 +120,9 @@ kotlin {
 
     androidTarget {
 
-        compilations.all {
-            kotlinOptions {
-                jvmTarget = "11"
-            }
+        @OptIn(ExperimentalKotlinGradlePluginApi::class)
+        compilerOptions {
+            jvmTarget = JvmTarget.JVM_11
         }
 
         publishLibraryVariants("release")
@@ -176,20 +177,13 @@ kotlin {
         browser {
             webpackTask {
                 mainOutputFileName = "kim.js"
-                output.library = "kimlib"
+                output.library = "kimLib"
             }
         }
 
         nodejs()
 
-        binaries.library()
-        // binaries.executable()
-
-        compilations.all {
-            compileTaskProvider.configure {
-                compilerOptions.freeCompilerArgs.add("-Xir-minimized-member-names=false")
-            }
-        }
+        binaries.executable()
     }
 
     @OptIn(ExperimentalWasmDsl::class)
@@ -200,8 +194,7 @@ kotlin {
         browser()
         nodejs()
 
-        binaries.library()
-        // binaries.executable()
+        binaries.executable()
     }
 
     // WASI support is planned for kotlinx-datetime v0.7

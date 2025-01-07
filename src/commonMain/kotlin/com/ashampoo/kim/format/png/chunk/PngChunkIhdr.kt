@@ -1,5 +1,5 @@
 /*
- * Copyright 2024 Ashampoo GmbH & Co. KG
+ * Copyright 2025 Ashampoo GmbH & Co. KG
  * Copyright 2007-2023 The Apache Software Foundation
  *
  * Licensed under the Apache License, Version 2.0 (the "License");

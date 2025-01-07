@@ -1,5 +1,5 @@
 /*
- * Copyright 2024 Ashampoo GmbH & Co. KG
+ * Copyright 2025 Ashampoo GmbH & Co. KG
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -101,18 +101,5 @@ public object XmpReader {
             personsInImage = xmpMeta.getPersonsInImage(),
             albums = xmpMeta.getAlbums()
         )
-    }
-
-    @Suppress("Unused")
-    @JvmStatic
-    public fun determineXmpPath(path: String): String {
-
-        val xmpPath = path.replaceAfterLast(".", "xmp")
-
-        /* If the path is not different, there was no suffix. */
-        if (xmpPath != path)
-            return xmpPath
-
-        return path + ".xmp"
     }
 }
