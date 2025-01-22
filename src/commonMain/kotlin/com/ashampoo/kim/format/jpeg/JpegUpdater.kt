@@ -122,9 +122,11 @@ internal object JpegUpdater : MetadataUpdater {
         /*
          * Filter out all updates we can perform on EXIF.
          */
+        @Suppress("ComplexCondition")
         if (
             update !is MetadataUpdate.Orientation &&
             update !is MetadataUpdate.TakenDate &&
+            update !is MetadataUpdate.Description &&
             update !is MetadataUpdate.GpsCoordinates
         )
             return inputBytes
@@ -184,6 +186,7 @@ internal object JpegUpdater : MetadataUpdater {
         /*
          * Filter out all updates we can perform on IPTC.
          */
+        @Suppress("ComplexCondition")
         if (
             update !is MetadataUpdate.Title &&
             update !is MetadataUpdate.Description &&

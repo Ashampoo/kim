@@ -128,6 +128,15 @@ public class TiffOutputSet(
                 }
             }
 
+            is MetadataUpdate.Description -> {
+
+                rootDirectory.removeField(TiffTag.TIFF_TAG_IMAGE_DESCRIPTION)
+
+                update.description?.let { description ->
+                    rootDirectory.add(TiffTag.TIFF_TAG_IMAGE_DESCRIPTION, description)
+                }
+            }
+
             is MetadataUpdate.GpsCoordinates -> {
 
                 setGpsCoordinates(update.gpsCoordinates)
