@@ -15,10 +15,13 @@
  */
 package com.ashampoo.kim.model
 
-public data class Location(
+/**
+ * Iptc4xmpExt:LocationShown
+ */
+public data class LocationShown(
 
     /**
-     * Descriptive name like "Times Square"
+     * Descriptive name like "Times Square" or "//CRASH"
      */
     val name: String?,
 

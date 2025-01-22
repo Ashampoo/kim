@@ -122,7 +122,8 @@ internal object JpegUpdater : MetadataUpdater {
         /*
          * Filter out all updates we can perform on EXIF.
          */
-        if (update !is MetadataUpdate.Orientation &&
+        if (
+            update !is MetadataUpdate.Orientation &&
             update !is MetadataUpdate.TakenDate &&
             update !is MetadataUpdate.GpsCoordinates
         )
@@ -180,21 +181,75 @@ internal object JpegUpdater : MetadataUpdater {
         update: MetadataUpdate
     ): ByteArray {
 
-        /* We currently only support to update keywords. */
-        if (update !is MetadataUpdate.Keywords)
+        /*
+         * Filter out all updates we can perform on IPTC.
+         */
+        if (
+            update !is MetadataUpdate.Title &&
+            update !is MetadataUpdate.Description &&
+            update !is MetadataUpdate.LocationShown &&
+            update !is MetadataUpdate.Keywords
+        )
             return inputBytes
 
         /* Update IPTC keywords */
 
-        val newKeywords = update.keywords
-
         val newBlocks = iptc?.nonIptcBlocks ?: emptyList()
         val oldRecords = iptc?.records ?: emptyList()
 
-        val newRecords = oldRecords.filter { it.iptcType != IptcTypes.KEYWORDS }.toMutableList()
+        val newRecords = mutableListOf<IptcRecord>()
 
-        for (keyword in newKeywords.sorted())
-            newRecords.add(IptcRecord(IptcTypes.KEYWORDS, keyword))
+        if (update is MetadataUpdate.Title) {
+
+            newRecords.addAll(oldRecords.filter { it.iptcType != IptcTypes.OBJECT_NAME })
+
+            update.title?.let { title ->
+                newRecords.add(IptcRecord(IptcTypes.OBJECT_NAME, title))
+            }
+        }
+
+        if (update is MetadataUpdate.Description) {
+
+            newRecords.addAll(oldRecords.filter { it.iptcType != IptcTypes.CAPTION_ABSTRACT })
+
+            update.description?.let { description ->
+                newRecords.add(IptcRecord(IptcTypes.CAPTION_ABSTRACT, description))
+            }
+        }
+
+        if (update is MetadataUpdate.LocationShown) {
+
+            newRecords.addAll(
+                oldRecords.filter {
+                    it.iptcType != IptcTypes.CITY &&
+                        it.iptcType != IptcTypes.PROVINCE_STATE &&
+                        it.iptcType != IptcTypes.COUNTRY_PRIMARY_LOCATION_NAME
+                }
+            )
+
+            if (update.locationShown != null) {
+
+                update.locationShown.city?.let { city ->
+                    newRecords.add(IptcRecord(IptcTypes.CITY, city))
+                }
+
+                update.locationShown.state?.let { state ->
+                    newRecords.add(IptcRecord(IptcTypes.PROVINCE_STATE, state))
+                }
+
+                update.locationShown.country?.let { country ->
+                    newRecords.add(IptcRecord(IptcTypes.COUNTRY_PRIMARY_LOCATION_NAME, country))
+                }
+            }
+        }
+
+        if (update is MetadataUpdate.Keywords) {
+
+            newRecords.addAll(oldRecords.filter { it.iptcType != IptcTypes.KEYWORDS })
+
+            for (keyword in update.keywords.sorted())
+                newRecords.add(IptcRecord(IptcTypes.KEYWORDS, keyword))
+        }
 
         val newIptc = IptcMetadata(newRecords, newBlocks)
 

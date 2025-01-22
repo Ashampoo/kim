@@ -26,7 +26,7 @@ import com.ashampoo.kim.format.tiff.constant.TiffTag
 import com.ashampoo.kim.format.xmp.XmpReader
 import com.ashampoo.kim.input.ByteArrayByteReader
 import com.ashampoo.kim.model.GpsCoordinates
-import com.ashampoo.kim.model.Location
+import com.ashampoo.kim.model.LocationShown
 import com.ashampoo.kim.model.PhotoMetadata
 import com.ashampoo.kim.model.TiffOrientation
 import kotlinx.datetime.LocalDateTime
@@ -92,7 +92,7 @@ public object PhotoMetadataConverter {
             ?.find { it.iptcType == IptcTypes.CAPTION_ABSTRACT }
             ?.value
 
-        val location = xmpMetadata?.location
+        val location = xmpMetadata?.locationShown
             ?: extractLocationFromIptc(imageMetadata)
 
         val thumbnailBytes = imageMetadata.getExifThumbnailBytes()
@@ -118,7 +118,7 @@ public object PhotoMetadataConverter {
             orientation = orientation,
             takenDate = takenDateMillis,
             gpsCoordinates = gpsCoordinates,
-            location = location,
+            locationShown = location,
             cameraMake = cameraMake,
             cameraModel = cameraModel,
             lensMake = lensMake,
@@ -239,7 +239,7 @@ public object PhotoMetadataConverter {
     @JvmStatic
     private fun extractLocationFromIptc(
         metadata: ImageMetadata
-    ): Location? {
+    ): LocationShown? {
 
         val iptcRecords = metadata.iptc?.records
             ?: return null
@@ -260,7 +260,7 @@ public object PhotoMetadataConverter {
         if (iptcCity.isNullOrBlank() && iptcState.isNullOrBlank() && iptcCountry.isNullOrBlank())
             return null
 
-        return Location(
+        return LocationShown(
             name = null,
             location = null,
             city = iptcCity,

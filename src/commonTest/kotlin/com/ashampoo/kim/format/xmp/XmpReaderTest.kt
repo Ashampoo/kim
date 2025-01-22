@@ -17,7 +17,7 @@ package com.ashampoo.kim.format.xmp
 
 import com.ashampoo.kim.Kim
 import com.ashampoo.kim.model.GpsCoordinates
-import com.ashampoo.kim.model.Location
+import com.ashampoo.kim.model.LocationShown
 import com.ashampoo.kim.model.PhotoMetadata
 import com.ashampoo.kim.model.PhotoRating
 import com.ashampoo.kim.model.TiffOrientation
@@ -64,7 +64,7 @@ class XmpReaderTest {
                     latitude = 53.2193388,
                     longitude = 8.239984883333333
                 ),
-                location = Location(
+                locationShown = LocationShown(
                     name = null,
                     location = "Wahnbek",
                     city = "Rastede",

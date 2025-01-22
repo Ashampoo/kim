@@ -90,9 +90,9 @@ class PhotoMetadataConverterTest {
                 "$name;${metadata.imageFormat};${metadata.widthPx};${metadata.heightPx};" +
                     "${metadata.orientation};${metadata.takenDate};" +
                     "${metadata.gpsCoordinates?.latitude};${metadata.gpsCoordinates?.longitude};" +
-                    "${metadata.location?.name};${metadata.location?.location};" +
-                    "${metadata.location?.city};${metadata.location?.state};" +
-                    "${metadata.location?.country};" +
+                    "${metadata.locationShown?.name};${metadata.locationShown?.location};" +
+                    "${metadata.locationShown?.city};${metadata.locationShown?.state};" +
+                    "${metadata.locationShown?.country};" +
                     "${metadata.cameraMake};${metadata.cameraModel};${metadata.lensMake};" +
                     "${metadata.lensModel};${metadata.iso};${metadata.exposureTime};" +
                     "${metadata.fNumber};${metadata.focalLength};" +
