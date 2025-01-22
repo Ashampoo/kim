@@ -173,13 +173,7 @@ kotlin {
     js()
 
     @OptIn(ExperimentalWasmDsl::class)
-    wasmJs {
-
-        dependencies {
-
-            implementation("org.jetbrains.kotlinx:kotlinx-browser:0.3")
-        }
-    }
+    wasmJs()
 
     // WASI support is planned for kotlinx-datetime v0.7
     // @OptIn(ExperimentalWasmDsl::class)
@@ -357,6 +351,9 @@ kotlin {
         // wasmWasiMain.dependsOn(this)
 
         dependencies {
+
+            implementation("org.jetbrains.kotlinx:kotlinx-browser:0.3")
+
             implementation(npm("pako", "2.1.0"))
         }
     }
