@@ -131,6 +131,6 @@ internal object PngUpdater : MetadataUpdater {
             xmp = null // No change to XMP
         )
 
-        return byteWriter.toByteArray()
+        return@updateThumbnail byteWriter.toByteArray()
     }
 }
