@@ -256,7 +256,8 @@ public object PhotoMetadataConverter {
             .find { it.iptcType == IptcTypes.COUNTRY_PRIMARY_LOCATION_NAME }
             ?.value
 
-        if (iptcCity == null && iptcState == null && iptcCountry == null)
+        /* Don't create an object if everything is NULL */
+        if (iptcCity.isNullOrBlank() && iptcState.isNullOrBlank() && iptcCountry.isNullOrBlank())
             return null
 
         return Location(
