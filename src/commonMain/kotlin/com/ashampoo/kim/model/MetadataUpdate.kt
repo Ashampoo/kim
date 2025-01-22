@@ -44,6 +44,29 @@ public sealed interface MetadataUpdate {
     ) : MetadataUpdate
 
     /**
+     * New location info or NULL to remove it (if the location is wrong and/or not known)
+     *
+     * This is in the sense of Iptc4xmpExt:LocationShown
+     */
+    public data class LocationShown(
+        val locationShown: com.ashampoo.kim.model.LocationShown?
+    ) : MetadataUpdate
+
+    /**
+     * New title or NULL to remove it
+     */
+    public data class Title(
+        val title: String?
+    ) : MetadataUpdate
+
+    /**
+     * New description or NULL to remove it
+     */
+    public data class Description(
+        val description: String?
+    ) : MetadataUpdate
+
+    /**
      * Set a photo as flagged/tagged/picked.
      *
      * In the case of flagging/picking a photo a rejected

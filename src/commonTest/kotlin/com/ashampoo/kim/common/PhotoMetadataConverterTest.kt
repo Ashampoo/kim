@@ -75,8 +75,9 @@ class PhotoMetadataConverterTest {
 
         stringBuilder.appendLine(
             "name;imageFormat;widthPx;heightPx;orientation;takenDate;latitude;longitude;" +
-                "cameraMake;cameraModel;lensMake;lensModel;iso;exposureTime;fNumber;" +
-                "focalLength;flagged;rating;keywords;personsInAlbums;albums;" +
+                "locationName;location;city;state;country;" +
+                "cameraMake;cameraModel;lensMake;lensModel;iso;exposureTime;fNumber;focalLength;" +
+                "title;description;flagged;rating;keywords;personsInAlbums;albums;" +
                 "thumbnailImageSize;thumbnailBytes.size"
         )
 
@@ -89,9 +90,13 @@ class PhotoMetadataConverterTest {
                 "$name;${metadata.imageFormat};${metadata.widthPx};${metadata.heightPx};" +
                     "${metadata.orientation};${metadata.takenDate};" +
                     "${metadata.gpsCoordinates?.latitude};${metadata.gpsCoordinates?.longitude};" +
+                    "${metadata.locationShown?.name};${metadata.locationShown?.location};" +
+                    "${metadata.locationShown?.city};${metadata.locationShown?.state};" +
+                    "${metadata.locationShown?.country};" +
                     "${metadata.cameraMake};${metadata.cameraModel};${metadata.lensMake};" +
                     "${metadata.lensModel};${metadata.iso};${metadata.exposureTime};" +
                     "${metadata.fNumber};${metadata.focalLength};" +
+                    "${metadata.title};${metadata.description};" +
                     "${metadata.flagged};${metadata.rating?.value};" +
                     "${metadata.keywords};${metadata.personsInImage};${metadata.albums};" +
                     "${metadata.thumbnailImageSize};${metadata.thumbnailBytes?.size}"

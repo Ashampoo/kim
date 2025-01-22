@@ -53,6 +53,7 @@ internal object WebPUpdater : MetadataUpdater {
 
         val isExifUpdate = update is MetadataUpdate.Orientation ||
             update is MetadataUpdate.TakenDate ||
+            update is MetadataUpdate.Description ||
             update is MetadataUpdate.GpsCoordinates
 
         val exifBytes: ByteArray? = if (isExifUpdate) {

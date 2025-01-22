@@ -1,0 +1,19 @@
+File format : PNG
+Resolution  : 500 x 333
+---- TIFF ----
+Version 42
+Big-endian (Motorola, MM)
+---- Directory IFD0 @ 8 ----
+
+---- Directory IFD1 @ 16 ----
+0000000018 0x0201 JpgFromRawStart = 48
+0000000030 0x0202 JpgFromRawLength = 13884
+
+---- IPTC ----
+Caption/Abstract (120) = 'time lapse photography of fire'
+Date Created (55) = '2023-07-12'
+Keywords (25) = 'human'
+Keywords (25) = 'person'
+Keywords (25) = 'people'
+Time Created (60) = '15:28:58-15:28'
+

@@ -20,6 +20,7 @@ import com.ashampoo.kim.common.GpsUtil
 import com.ashampoo.kim.model.MetadataUpdate
 import com.ashampoo.kim.model.PhotoRating
 import com.ashampoo.xmp.XMPException
+import com.ashampoo.xmp.XMPLocation
 import com.ashampoo.xmp.XMPMeta
 import com.ashampoo.xmp.XMPMetaFactory
 import com.ashampoo.xmp.options.SerializeOptions
@@ -77,6 +78,32 @@ public object XmpWriter {
                 else
                     deleteGpsCoordinates()
             }
+
+            is MetadataUpdate.LocationShown -> {
+
+                val locationShown = update.locationShown
+
+                if (locationShown == null) {
+                    setLocation(null)
+                    return
+                }
+
+                setLocation(
+                    XMPLocation(
+                        name = locationShown.name,
+                        location = locationShown.location,
+                        city = locationShown.city,
+                        state = locationShown.state,
+                        country = locationShown.country
+                    )
+                )
+            }
+
+            is MetadataUpdate.Title ->
+                setTitle(update.title)
+
+            is MetadataUpdate.Description ->
+                setDescription(update.description)
 
             is MetadataUpdate.Flagged -> {
 

@@ -17,6 +17,7 @@ package com.ashampoo.kim.format.xmp
 
 import com.ashampoo.kim.Kim
 import com.ashampoo.kim.model.GpsCoordinates
+import com.ashampoo.kim.model.LocationShown
 import com.ashampoo.kim.model.PhotoMetadata
 import com.ashampoo.kim.model.PhotoRating
 import com.ashampoo.kim.model.TiffOrientation
@@ -58,9 +59,17 @@ class XmpReaderTest {
             expected = PhotoMetadata(
                 orientation = TiffOrientation.STANDARD,
                 takenDate = 1_664_279_361_000,
+                description = "Standard caption",
                 gpsCoordinates = GpsCoordinates(
                     latitude = 53.2193388,
                     longitude = 8.239984883333333
+                ),
+                locationShown = LocationShown(
+                    name = null,
+                    location = "Wahnbek",
+                    city = "Rastede",
+                    state = "Niedersachsen",
+                    country = "Germany"
                 ),
                 rating = PhotoRating.FOUR_STARS,
                 keywords = setOf("Pflanze", "Ecke", "MacBook"),
@@ -80,6 +89,7 @@ class XmpReaderTest {
         assertEquals(
             expected = PhotoMetadata(
                 takenDate = 1_540_041_598_000,
+                description = "orange fox walking on street",
                 rating = PhotoRating.THREE_STARS,
                 keywords = setOf(
                     "\"fuchs\"",
@@ -113,6 +123,8 @@ class XmpReaderTest {
                     latitude = 53.21939166666667,
                     longitude = 8.239661666666667
                 ),
+                title = "sample title",
+                description = "This is the description",
                 rating = PhotoRating.REJECTED,
                 keywords = setOf("animal", "bird"),
                 faces = mapOf(
@@ -151,6 +163,7 @@ class XmpReaderTest {
         assertEquals(
             expected = PhotoMetadata(
                 takenDate = 1_540_041_598_620,
+                description = "orange fox walking on street",
                 rating = PhotoRating.FIVE_STARS,
                 keywords = setOf(
                     "\"fuchs\"",

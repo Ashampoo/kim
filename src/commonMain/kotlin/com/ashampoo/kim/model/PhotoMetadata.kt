@@ -36,7 +36,7 @@ public data class PhotoMetadata(
     /* Capture parameters */
     val takenDate: Long? = null,
     val gpsCoordinates: GpsCoordinates? = null,
-    val location: Location? = null,
+    val locationShown: LocationShown? = null,
     val cameraMake: String? = null,
     val cameraModel: String? = null,
     val lensMake: String? = null,
@@ -45,6 +45,10 @@ public data class PhotoMetadata(
     val exposureTime: Double? = null,
     val fNumber: Double? = null,
     val focalLength: Double? = null,
+
+    /* Title & Description */
+    val title: String? = null,
+    val description: String? = null,
 
     /* Ratings & Tags */
     val flagged: Boolean = false,
@@ -71,7 +75,7 @@ public data class PhotoMetadata(
             (widthPx * heightPx).div(PhotoValueFormatter.MEGA_PIXEL_COUNT)
 
     val locationDisplay: String?
-        get() = location?.displayString ?: gpsCoordinates?.let { gpsCoordinates.displayString }
+        get() = locationShown?.displayString ?: gpsCoordinates?.let { gpsCoordinates.displayString }
 
     val cameraName: String?
         get() = PhotoValueFormatter.createCameraOrLensName(cameraMake, cameraModel)
@@ -121,7 +125,7 @@ public data class PhotoMetadata(
             /* Capture parameters */
             takenDate = takenDate ?: other.takenDate,
             gpsCoordinates = gpsCoordinates ?: other.gpsCoordinates,
-            location = location ?: other.location,
+            locationShown = locationShown ?: other.locationShown,
             cameraMake = cameraMake ?: other.cameraMake,
             cameraModel = cameraModel ?: other.cameraModel,
             lensMake = lensMake ?: other.lensMake,
@@ -130,6 +134,10 @@ public data class PhotoMetadata(
             exposureTime = exposureTime ?: other.exposureTime,
             fNumber = fNumber ?: other.fNumber,
             focalLength = focalLength ?: other.focalLength,
+
+            /* Title & Description */
+            title = title ?: other.title,
+            description = description ?: other.description,
 
             /* Ratings & Tags */
             flagged = flagged || other.flagged,

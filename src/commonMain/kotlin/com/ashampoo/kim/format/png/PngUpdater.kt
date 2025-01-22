@@ -53,6 +53,7 @@ internal object PngUpdater : MetadataUpdater {
 
         val isExifUpdate = update is MetadataUpdate.Orientation ||
             update is MetadataUpdate.TakenDate ||
+            update is MetadataUpdate.Description ||
             update is MetadataUpdate.GpsCoordinates
 
         val exifBytes: ByteArray? = if (isExifUpdate) {
@@ -130,6 +131,6 @@ internal object PngUpdater : MetadataUpdater {
             xmp = null // No change to XMP
         )
 
-        return byteWriter.toByteArray()
+        return@updateThumbnail byteWriter.toByteArray()
     }
 }

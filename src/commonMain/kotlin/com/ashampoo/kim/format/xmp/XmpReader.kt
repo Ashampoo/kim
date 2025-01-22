@@ -18,6 +18,7 @@ package com.ashampoo.kim.format.xmp
 import com.ashampoo.kim.Kim.underUnitTesting
 import com.ashampoo.kim.common.GpsUtil
 import com.ashampoo.kim.model.GpsCoordinates
+import com.ashampoo.kim.model.LocationShown
 import com.ashampoo.kim.model.PhotoMetadata
 import com.ashampoo.kim.model.PhotoRating
 import com.ashampoo.kim.model.TiffOrientation
@@ -83,6 +84,17 @@ public object XmpReader {
         else
             null
 
+        val locationShown = xmpMeta.getLocation()?.let {
+
+            LocationShown(
+                name = it.name,
+                location = it.location,
+                city = it.city,
+                state = it.state,
+                country = it.country
+            )
+        }
+
         /*
          * Compile into PhotoMetadata object
          */
@@ -91,7 +103,9 @@ public object XmpReader {
             orientation = TiffOrientation.of(xmpMeta.getOrientation()),
             takenDate = takenDate,
             gpsCoordinates = gpsCoordinates,
-            location = null, // TODO Read location information to avoid GPS resolving!
+            locationShown = locationShown,
+            title = xmpMeta.getTitle(),
+            description = xmpMeta.getDescription(),
             flagged = xmpMeta.isFlagged(),
             rating = xmpMeta.getRating()?.let { PhotoRating.of(it) },
             keywords = xmpMeta.getKeywords().ifEmpty {

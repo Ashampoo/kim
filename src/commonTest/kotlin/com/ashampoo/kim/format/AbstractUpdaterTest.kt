@@ -21,6 +21,7 @@ import com.ashampoo.kim.common.readBytes
 import com.ashampoo.kim.common.writeBytes
 import com.ashampoo.kim.getPathForResource
 import com.ashampoo.kim.model.GpsCoordinates
+import com.ashampoo.kim.model.LocationShown
 import com.ashampoo.kim.model.MetadataUpdate
 import com.ashampoo.kim.model.PhotoRating
 import com.ashampoo.kim.model.TiffOrientation
@@ -35,9 +36,21 @@ abstract class AbstractUpdaterTest(
 
     private val keywordWithUmlauts = "Äußerst öffentlich"
 
+    private val titleWithUmlauts = "Süße Vögelchen"
+
+    private val descriptionWithUmlauts = "Äußerst süße Vögel fliegen durch die Lüfte."
+
     private val crashBuildingGps = GpsCoordinates(
-        53.219391,
-        8.239661
+        latitude = 53.219391,
+        longitude = 8.239661
+    )
+
+    private val crashBuildingLocation = LocationShown(
+        name = "//CRASH",
+        location = "Schafjückenweg 2",
+        city = "Rastede",
+        state = "Niedersachsen",
+        country = "Deutschland"
     )
 
     private val timestamp = 1_689_166_125_401 // 2023:07:12 12:48:45
@@ -61,7 +74,6 @@ abstract class AbstractUpdaterTest(
         Kim.underUnitTesting = true
     }
 
-    @OptIn(ExperimentalStdlibApi::class)
     @Test
     fun testUpdateOrientation() {
 
@@ -73,7 +85,6 @@ abstract class AbstractUpdaterTest(
         compare("rotated_right.$format", newBytes)
     }
 
-    @OptIn(ExperimentalStdlibApi::class)
     @Test
     fun testUpdateOrientationOnEmptyImage() {
 
@@ -85,7 +96,6 @@ abstract class AbstractUpdaterTest(
         compare("rotated_right.no_metadata.$format", newBytes)
     }
 
-    @OptIn(ExperimentalStdlibApi::class)
     @Test
     fun testUpdateTakenDate() {
 
@@ -97,7 +107,6 @@ abstract class AbstractUpdaterTest(
         compare("new_taken_date.$format", newBytes)
     }
 
-    @OptIn(ExperimentalStdlibApi::class)
     @Test
     fun testUpdateTakenDateOnEmptyImage() {
 
@@ -109,7 +118,6 @@ abstract class AbstractUpdaterTest(
         compare("new_taken_date.no_metadata.$format", newBytes)
     }
 
-    @OptIn(ExperimentalStdlibApi::class)
     @Test
     fun testUpdateGpsCoordinates() {
 
@@ -121,7 +129,6 @@ abstract class AbstractUpdaterTest(
         compare("new_gps_coordinates.$format", newBytes)
     }
 
-    @OptIn(ExperimentalStdlibApi::class)
     @Test
     fun testUpdateGpsCoordinatesOnEmptyImage() {
 
@@ -133,7 +140,94 @@ abstract class AbstractUpdaterTest(
         compare("new_gps_coordinates.no_metadata.$format", newBytes)
     }
 
-    @OptIn(ExperimentalStdlibApi::class)
+    @Test
+    fun testUpdateLocationShown() {
+
+        val newBytes = Kim.update(
+            bytes = originalBytes,
+            update = MetadataUpdate.LocationShown(crashBuildingLocation)
+        )
+
+        compare("new_location_shown.$format", newBytes)
+    }
+
+    @Test
+    fun testUpdateLocationShownOnEmptyImage() {
+
+        val newBytes = Kim.update(
+            bytes = noMetadataBytes,
+            update = MetadataUpdate.LocationShown(crashBuildingLocation)
+        )
+
+        compare("new_location_shown.no_metadata.$format", newBytes)
+    }
+
+    @Test
+    fun testUpdateTitle() {
+
+        val newBytes = Kim.update(
+            bytes = originalBytes,
+            update = MetadataUpdate.Title(titleWithUmlauts)
+        )
+
+        compare("new_title.$format", newBytes)
+    }
+
+    @Test
+    fun testUpdateTitleOnEmptyImage() {
+
+        val newBytes = Kim.update(
+            bytes = noMetadataBytes,
+            update = MetadataUpdate.Title(titleWithUmlauts)
+        )
+
+        compare("new_title.no_metadata.$format", newBytes)
+    }
+
+    @Test
+    fun testUpdateDescription() {
+
+        val newBytes = Kim.update(
+            bytes = originalBytes,
+            update = MetadataUpdate.Description(descriptionWithUmlauts)
+        )
+
+        compare("new_description.$format", newBytes)
+    }
+
+    @Test
+    fun testUpdateDescriptionOnEmptyImage() {
+
+        val newBytes = Kim.update(
+            bytes = noMetadataBytes,
+            update = MetadataUpdate.Description(descriptionWithUmlauts)
+        )
+
+        compare("new_description.no_metadata.$format", newBytes)
+    }
+
+    @Test
+    fun testUpdateFlagged() {
+
+        val newBytes = Kim.update(
+            bytes = originalBytes,
+            update = MetadataUpdate.Flagged(true)
+        )
+
+        compare("new_flagged.$format", newBytes)
+    }
+
+    @Test
+    fun testUpdateFlaggedOnEmptyImage() {
+
+        val newBytes = Kim.update(
+            bytes = noMetadataBytes,
+            update = MetadataUpdate.Flagged(true)
+        )
+
+        compare("new_flagged.no_metadata.$format", newBytes)
+    }
+
     @Test
     fun testUpdateRating() {
 
@@ -145,7 +239,6 @@ abstract class AbstractUpdaterTest(
         compare("new_rating.$format", newBytes)
     }
 
-    @OptIn(ExperimentalStdlibApi::class)
     @Test
     fun testUpdateRatingOnEmptyImage() {
 
@@ -157,7 +250,6 @@ abstract class AbstractUpdaterTest(
         compare("new_rating.no_metadata.$format", newBytes)
     }
 
-    @OptIn(ExperimentalStdlibApi::class)
     @Test
     fun testUpdateKeywords() {
 
@@ -169,7 +261,6 @@ abstract class AbstractUpdaterTest(
         compare("new_keywords.$format", newBytes)
     }
 
-    @OptIn(ExperimentalStdlibApi::class)
     @Test
     fun testUpdateKeywordsOnEmptyImage() {
 
@@ -181,7 +272,6 @@ abstract class AbstractUpdaterTest(
         compare("new_keywords.no_metadata.$format", newBytes)
     }
 
-    @OptIn(ExperimentalStdlibApi::class)
     @Test
     fun testUpdatePersons() {
 
@@ -193,7 +283,6 @@ abstract class AbstractUpdaterTest(
         compare("new_persons.$format", newBytes)
     }
 
-    @OptIn(ExperimentalStdlibApi::class)
     @Test
     fun testUpdatePersonsOnEmptyImage() {
 
@@ -205,7 +294,6 @@ abstract class AbstractUpdaterTest(
         compare("new_persons.no_metadata.$format", newBytes)
     }
 
-    @OptIn(ExperimentalStdlibApi::class)
     @Test
     fun testUpdateThumbnail() {
 
@@ -217,7 +305,6 @@ abstract class AbstractUpdaterTest(
         compare("new_thumbnail.$format", newBytes)
     }
 
-    @OptIn(ExperimentalStdlibApi::class)
     @Test
     fun testUpdateThumbnailOnEmptyImage() {
 
@@ -229,7 +316,6 @@ abstract class AbstractUpdaterTest(
         compare("new_thumbnail.no_metadata.$format", newBytes)
     }
 
-    @OptIn(ExperimentalStdlibApi::class)
     private fun compare(fileName: String, actualBytes: ByteArray) {
 
         val path = Path(getPathForResource("$resourcePath/$fileName"))
