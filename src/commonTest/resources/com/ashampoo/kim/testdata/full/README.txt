@@ -8,6 +8,7 @@ photo_20.jpg = EXIF DateTimeOriginal with all zeros
 photo_21.jpg = Corrupted IFD1 (thumbnail)
 photo_22.jpg = Non-corrupted version of photo_30.jpg
 photo_23.jpg = Nothing Phone OOC-JPEG (50 MP)
+photo_25.jpg = Location added using Mylio
 photo_30.jpg = Multiple APP1
 photo_41.jpg = Long APP1
 photo_42.jpg = Broken, normal fields point into Makernote space.

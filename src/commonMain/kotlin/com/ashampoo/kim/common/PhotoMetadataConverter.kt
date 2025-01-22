@@ -26,6 +26,7 @@ import com.ashampoo.kim.format.tiff.constant.TiffTag
 import com.ashampoo.kim.format.xmp.XmpReader
 import com.ashampoo.kim.input.ByteArrayByteReader
 import com.ashampoo.kim.model.GpsCoordinates
+import com.ashampoo.kim.model.Location
 import com.ashampoo.kim.model.PhotoMetadata
 import com.ashampoo.kim.model.TiffOrientation
 import kotlinx.datetime.LocalDateTime
@@ -48,19 +49,20 @@ public object PhotoMetadataConverter {
         ignoreOrientation: Boolean = false
     ): PhotoMetadata {
 
+        val xmpMetadata: PhotoMetadata? = imageMetadata.xmp?.let {
+            XmpReader.readMetadata(it)
+        }
+
         val orientation = if (ignoreOrientation)
             TiffOrientation.STANDARD
         else
             TiffOrientation.of(imageMetadata.findShortValue(TiffTag.TIFF_TAG_ORIENTATION)?.toInt())
 
-        val takenDateMillis = extractTakenDateMillis(imageMetadata)
+        val takenDateMillis: Long? = xmpMetadata?.takenDate
+            ?: extractTakenDateMillisFromExif(imageMetadata)
 
-        val gpsDirectory = imageMetadata.findTiffDirectory(TiffConstants.TIFF_DIRECTORY_GPS)
-
-        val gps = gpsDirectory?.let(GPSInfo::createFrom)
-
-        val latitude = gps?.getLatitudeAsDegreesNorth()
-        val longitude = gps?.getLongitudeAsDegreesEast()
+        val gpsCoordinates: GpsCoordinates? = xmpMetadata?.gpsCoordinates
+            ?: extractGpsCoordinatesFromExif(imageMetadata)
 
         val cameraMake = imageMetadata.findStringValue(TiffTag.TIFF_TAG_MAKE)
         val cameraModel = imageMetadata.findStringValue(TiffTag.TIFF_TAG_MODEL)
@@ -76,28 +78,22 @@ public object PhotoMetadataConverter {
         val fNumber = imageMetadata.findDoubleValue(ExifTag.EXIF_TAG_FNUMBER)
         val focalLength = imageMetadata.findDoubleValue(ExifTag.EXIF_TAG_FOCAL_LENGTH)
 
-        val keywords = mutableSetOf<String>()
+        val keywords = xmpMetadata?.keywords?.ifEmpty {
+            extractKeywordsFromIptc(imageMetadata)
+        } ?: extractKeywordsFromIptc(imageMetadata)
 
         val iptcRecords = imageMetadata.iptc?.records
 
-        iptcRecords?.forEach {
+        val title = xmpMetadata?.title ?: iptcRecords
+            ?.find { it.iptcType == IptcTypes.OBJECT_NAME }
+            ?.value
 
-            if (it.iptcType == IptcTypes.KEYWORDS)
-                keywords.add(it.value)
-        }
+        val description = xmpMetadata?.description ?: iptcRecords
+            ?.find { it.iptcType == IptcTypes.CAPTION_ABSTRACT }
+            ?.value
 
-        val gpsCoordinates =
-            if (latitude != null && longitude != null)
-                GpsCoordinates(
-                    latitude = latitude,
-                    longitude = longitude
-                )
-            else
-                null
-
-        val xmpMetadata: PhotoMetadata? = imageMetadata.xmp?.let {
-            XmpReader.readMetadata(it)
-        }
+        val location = xmpMetadata?.location
+            ?: extractLocationFromIptc(imageMetadata)
 
         val thumbnailBytes = imageMetadata.getExifThumbnailBytes()
 
@@ -120,9 +116,9 @@ public object PhotoMetadataConverter {
             widthPx = imageMetadata.imageSize?.width,
             heightPx = imageMetadata.imageSize?.height,
             orientation = orientation,
-            takenDate = xmpMetadata?.takenDate ?: takenDateMillis,
-            gpsCoordinates = xmpMetadata?.gpsCoordinates ?: gpsCoordinates,
-            location = xmpMetadata?.location,
+            takenDate = takenDateMillis,
+            gpsCoordinates = gpsCoordinates,
+            location = location,
             cameraMake = cameraMake,
             cameraModel = cameraModel,
             lensMake = lensMake,
@@ -131,9 +127,11 @@ public object PhotoMetadataConverter {
             exposureTime = exposureTime,
             fNumber = fNumber,
             focalLength = focalLength,
+            title = title,
+            description = description,
             flagged = xmpMetadata?.flagged ?: false,
             rating = xmpMetadata?.rating,
-            keywords = keywords.ifEmpty { xmpMetadata?.keywords ?: emptySet() },
+            keywords = keywords,
             faces = xmpMetadata?.faces ?: emptyMap(),
             personsInImage = xmpMetadata?.personsInImage ?: emptySet(),
             albums = xmpMetadata?.albums ?: emptySet(),
@@ -143,7 +141,7 @@ public object PhotoMetadataConverter {
     }
 
     @JvmStatic
-    public fun extractTakenDateAsIsoString(metadata: ImageMetadata): String? {
+    private fun extractTakenDateAsIsoString(metadata: ImageMetadata): String? {
 
         val takenDateField = metadata.findTiffField(ExifTag.EXIF_TAG_DATE_TIME_ORIGINAL)
             ?: return null
@@ -163,7 +161,9 @@ public object PhotoMetadataConverter {
     }
 
     @JvmStatic
-    public fun extractTakenDateMillis(metadata: ImageMetadata): Long? {
+    private fun extractTakenDateMillisFromExif(
+        metadata: ImageMetadata
+    ): Long? {
 
         try {
 
@@ -203,6 +203,70 @@ public object PhotoMetadataConverter {
         }
     }
 
+    @JvmStatic
+    private fun extractGpsCoordinatesFromExif(
+        metadata: ImageMetadata
+    ): GpsCoordinates? {
+
+        val gpsDirectory = metadata.findTiffDirectory(TiffConstants.TIFF_DIRECTORY_GPS)
+
+        val gps = gpsDirectory?.let(GPSInfo::createFrom)
+
+        val latitude = gps?.getLatitudeAsDegreesNorth()
+        val longitude = gps?.getLongitudeAsDegreesEast()
+
+        if (latitude == null || longitude == null)
+            return null
+
+        return GpsCoordinates(
+            latitude = latitude,
+            longitude = longitude
+        )
+    }
+
+    @JvmStatic
+    private fun extractKeywordsFromIptc(
+        metadata: ImageMetadata
+    ): Set<String> {
+
+        return metadata.iptc?.records
+            ?.filter { it.iptcType == IptcTypes.KEYWORDS }
+            ?.map { it.value }
+            ?.toSet()
+            ?: emptySet()
+    }
+
+    @JvmStatic
+    private fun extractLocationFromIptc(
+        metadata: ImageMetadata
+    ): Location? {
+
+        val iptcRecords = metadata.iptc?.records
+            ?: return null
+
+        val iptcCity = iptcRecords
+            .find { it.iptcType == IptcTypes.CITY }
+            ?.value
+
+        val iptcState = iptcRecords
+            .find { it.iptcType == IptcTypes.PROVINCE_STATE }
+            ?.value
+
+        val iptcCountry = iptcRecords
+            .find { it.iptcType == IptcTypes.COUNTRY_PRIMARY_LOCATION_NAME }
+            ?.value
+
+        if (iptcCity == null && iptcState == null && iptcCountry == null)
+            return null
+
+        return Location(
+            name = null,
+            location = null,
+            city = iptcCity,
+            state = iptcState,
+            country = iptcCountry
+        )
+    }
 }
 
 public fun ImageMetadata.convertToPhotoMetadata(

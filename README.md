@@ -80,12 +80,14 @@ It contains the following:
 
 - Image size
 - Orientation
-- Taken date
+- Date taken
 - GPS coordinates
 - Camera make & model
 - Lens make & model
 - ISO, Exposure time, F-Number, Focal length
+- Image title & description
 - Rating
+- `XMP:pick` flag
 - Keywords
 - Faces (XMP-mwg-rs regions, used by Picasa and others)
 - Persons in image

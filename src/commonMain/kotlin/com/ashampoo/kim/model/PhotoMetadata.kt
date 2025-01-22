@@ -46,6 +46,10 @@ public data class PhotoMetadata(
     val fNumber: Double? = null,
     val focalLength: Double? = null,
 
+    /* Title & Description */
+    val title: String? = null,
+    val description: String? = null,
+
     /* Ratings & Tags */
     val flagged: Boolean = false,
     val rating: PhotoRating? = null,
@@ -130,6 +134,10 @@ public data class PhotoMetadata(
             exposureTime = exposureTime ?: other.exposureTime,
             fNumber = fNumber ?: other.fNumber,
             focalLength = focalLength ?: other.focalLength,
+
+            /* Title & Description */
+            title = title ?: other.title,
+            description = description ?: other.description,
 
             /* Ratings & Tags */
             flagged = flagged || other.flagged,

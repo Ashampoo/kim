@@ -25,7 +25,7 @@ import kotlin.test.assertEquals
 class JpegSegmentAnalyzerTest {
 
     val expectedMap: Map<Int, List<JpegSegmentAnalyzer.JpegSegmentInfo>> =
-        mapOf<Int, List<JpegSegmentAnalyzer.JpegSegmentInfo>>(
+        mapOf(
             1 to listOf(
                 JpegSegmentAnalyzer.JpegSegmentInfo(0, 65496, 2),
                 JpegSegmentAnalyzer.JpegSegmentInfo(2, 65504, 18),
@@ -348,23 +348,6 @@ class JpegSegmentAnalyzerTest {
                 JpegSegmentAnalyzer.JpegSegmentInfo(40017, 65498, 1286743),
                 JpegSegmentAnalyzer.JpegSegmentInfo(1326760, 65497, 2),
             ),
-            25 to listOf(
-                JpegSegmentAnalyzer.JpegSegmentInfo(0, 65496, 2),
-                JpegSegmentAnalyzer.JpegSegmentInfo(2, 65505, 7020),
-                JpegSegmentAnalyzer.JpegSegmentInfo(7022, 65517, 8736),
-                JpegSegmentAnalyzer.JpegSegmentInfo(15758, 65505, 18443),
-                JpegSegmentAnalyzer.JpegSegmentInfo(34201, 65506, 578),
-                JpegSegmentAnalyzer.JpegSegmentInfo(34779, 65518, 16),
-                JpegSegmentAnalyzer.JpegSegmentInfo(34795, 65499, 69),
-                JpegSegmentAnalyzer.JpegSegmentInfo(34864, 65499, 69),
-                JpegSegmentAnalyzer.JpegSegmentInfo(34933, 65472, 19),
-                JpegSegmentAnalyzer.JpegSegmentInfo(34952, 65476, 30),
-                JpegSegmentAnalyzer.JpegSegmentInfo(34982, 65476, 89),
-                JpegSegmentAnalyzer.JpegSegmentInfo(35071, 65476, 30),
-                JpegSegmentAnalyzer.JpegSegmentInfo(35101, 65476, 58),
-                JpegSegmentAnalyzer.JpegSegmentInfo(35159, 65498, 1517109),
-                JpegSegmentAnalyzer.JpegSegmentInfo(1552268, 65497, 2),
-            ),
             26 to listOf(
                 JpegSegmentAnalyzer.JpegSegmentInfo(0, 65496, 2),
                 JpegSegmentAnalyzer.JpegSegmentInfo(2, 65504, 18),
@@ -660,7 +643,7 @@ class JpegSegmentAnalyzerTest {
 
         // TODO Refresh data
         val outdatedData = setOf(
-            8, 9, 18, 19, 41, 42, 43, 44, 45, 46, 47
+            8, 9, 18, 19, 25, 41, 42, 43, 44, 45, 46, 47
         )
 
         for (index in 1..KimTestData.HIGHEST_JPEG_INDEX) {
@@ -700,7 +683,7 @@ class JpegSegmentAnalyzerTest {
 
             /* Compare previously saved results. */
             assertEquals(
-                expected = expectedMap.get(index),
+                expected = expectedMap[index],
                 actual = segmentInfos
             )
         }

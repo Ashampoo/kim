@@ -16,17 +16,45 @@
 package com.ashampoo.kim.model
 
 public data class Location(
+
+    /**
+     * Descriptive name like "Times Square"
+     */
     val name: String?,
+
+    /**
+     * Often a street adress like "Schafjückenweg 2"
+     */
+    val location: String?,
+
+    /**
+     * The city, for example "Rastede"
+     */
     val city: String?,
+
+    /**
+     * The state, for example "Niedersachsen"
+     */
     val state: String?,
-    val country: String
+
+    /**
+     * The city, for example "Deutschland"
+     */
+    val country: String?
 ) {
 
-    val displayString: String =
+    val displayString: String? =
         when {
-            name != null -> "$name, $country"
-            city != null -> "$city, $country"
-            state != null -> "$state, $country"
+
+            name != null && country != null -> "$name, $country"
+            name != null -> name
+
+            city != null && country != null -> "$city, $country"
+            city != null -> city
+
+            state != null && country != null -> "$state, $country"
+            state != null -> state
+
             else -> country
         }
 }

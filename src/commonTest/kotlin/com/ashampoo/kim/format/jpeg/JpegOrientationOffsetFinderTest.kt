@@ -29,7 +29,7 @@ class JpegOrientationOffsetFinderTest {
         20 to 84,
         21 to 55,
         23 to 43,
-        25 to 54,
+        25 to 7068,
         26 to 3447,
         28 to 66,
         29 to 114,
