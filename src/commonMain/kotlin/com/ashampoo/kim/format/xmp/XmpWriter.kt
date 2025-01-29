@@ -91,7 +91,7 @@ public object XmpWriter {
                 setLocation(
                     XMPLocation(
                         name = locationShown.name,
-                        location = locationShown.location,
+                        location = locationShown.street,
                         city = locationShown.city,
                         state = locationShown.state,
                         country = locationShown.country
@@ -123,7 +123,7 @@ public object XmpWriter {
                 setLocation(
                     XMPLocation(
                         name = locationShown.name,
-                        location = locationShown.location,
+                        location = locationShown.street,
                         city = locationShown.city,
                         state = locationShown.state,
                         country = locationShown.country

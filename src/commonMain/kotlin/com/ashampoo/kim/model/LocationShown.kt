@@ -27,8 +27,10 @@ public data class LocationShown(
 
     /**
      * Often a street adress like "Schafjückenweg 2"
+     *
+     * Also known as "Sublocation".
      */
-    val location: String?,
+    val street: String?,
 
     /**
      * The city, for example "Rastede"

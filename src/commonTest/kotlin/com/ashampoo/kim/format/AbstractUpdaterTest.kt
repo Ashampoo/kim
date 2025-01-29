@@ -47,7 +47,7 @@ abstract class AbstractUpdaterTest(
 
     private val crashBuildingLocation = LocationShown(
         name = "//CRASH",
-        location = "Schafjückenweg 2",
+        street = "Schafjückenweg 2",
         city = "Rastede",
         state = "Niedersachsen",
         country = "Deutschland"

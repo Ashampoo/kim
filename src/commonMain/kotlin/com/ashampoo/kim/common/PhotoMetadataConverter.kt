@@ -262,7 +262,7 @@ public object PhotoMetadataConverter {
 
         return LocationShown(
             name = null,
-            location = null,
+            street = null,
             city = iptcCity,
             state = iptcState,
             country = iptcCountry
