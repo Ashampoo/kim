@@ -23,29 +23,72 @@ private const val MIN_LATITUDE: Double = -MAX_LATITUDE
 private const val MAX_LONGITUDE = 180.0
 private const val MIN_LONGITUDE = -MAX_LONGITUDE
 
+/** Around ~100 m accuracy */
 private const val THREE_DIGIT_PRECISE: Double = 1_000.0
+
+/** Around ~1 m accuracy */
 private const val FIVE_DIGIT_PRECISE: Double = 100_000.0
+
+private const val LAT_LONG_STRING_REGEX_PATTERN =
+    """^\s*-?([1-8]?\d(\.\d+)?|90(\.0+)?),\s*-?(180(\.0+)?|((1[0-7]\d)|(\d{1,2}))(\.\d+)?)\s*$"""
+
+private val latLongStringRegex: Regex = LAT_LONG_STRING_REGEX_PATTERN.toRegex()
 
 public data class GpsCoordinates(
     val latitude: Double,
     val longitude: Double
 ) {
 
-    val displayString: String = "GPS: ${roundForDisplay(latitude)}, ${roundForDisplay(longitude)}"
+    val latLongString: String = "${roundPrecise(latitude)}, ${roundPrecise(longitude)}"
 
-    public fun toRoundedForCaching(): GpsCoordinates = GpsCoordinates(
-        latitude = roundForCaching(latitude),
-        longitude = roundForCaching(longitude)
+    public fun toPreciseCoordinates(): GpsCoordinates = GpsCoordinates(
+        latitude = roundPrecise(latitude),
+        longitude = roundPrecise(longitude)
     )
 
-    public fun isNullIsland(): Boolean = latitude == 0.0 && longitude == 0.0
+    public fun toCoarseCoordinates(): GpsCoordinates = GpsCoordinates(
+        latitude = roundCoarse(latitude),
+        longitude = roundCoarse(longitude)
+    )
+
+    public fun isNullIsland(): Boolean =
+        latitude == 0.0 && longitude == 0.0
 
     public fun isValid(): Boolean =
-        latitude in MIN_LATITUDE..MAX_LATITUDE && longitude in MIN_LONGITUDE..MAX_LONGITUDE
+        latitude in MIN_LATITUDE..MAX_LATITUDE &&
+            longitude in MIN_LONGITUDE..MAX_LONGITUDE
+
+    public companion object {
+
+        public fun parse(latLongString: String?): GpsCoordinates? {
+
+            if (latLongString.isNullOrBlank())
+                return null
+
+            if (!latLongStringRegex.matches(latLongString))
+                return null
+
+            val parts = latLongString.split(",")
+
+            return GpsCoordinates(
+                latitude = parts[0].toDouble(),
+                longitude = parts[1].toDouble()
+            )
+        }
+    }
 }
 
-private fun roundForCaching(value: Double): Double =
+/**
+ * Rounds the coordinates to three decimal places,
+ * providing approximately 100 meters accuracy.
+ */
+private fun roundCoarse(value: Double): Double =
     round(value * THREE_DIGIT_PRECISE) / THREE_DIGIT_PRECISE
 
-private fun roundForDisplay(value: Double): Double =
+/**
+ * Rounds the coordinates to five decimal places,
+ * providing approximately 1 meter accuracy.
+ * Suitable for display and precise localization.
+ */
+private fun roundPrecise(value: Double): Double =
     round(value * FIVE_DIGIT_PRECISE) / FIVE_DIGIT_PRECISE
