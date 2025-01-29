@@ -163,6 +163,34 @@ abstract class AbstractUpdaterTest(
     }
 
     @Test
+    fun testUpdateGpsCoordinatesAndLocationShown() {
+
+        val newBytes = Kim.update(
+            bytes = originalBytes,
+            update = MetadataUpdate.GpsCoordinatesAndLocationShown(
+                gpsCoordinates = crashBuildingGps,
+                locationShown = crashBuildingLocation
+            )
+        )
+
+        compare("new_gps_coordinates_and_location_shown.$format", newBytes)
+    }
+
+    @Test
+    fun testUpdateGpsCoordinatesAndLocationShownOnEmptyImage() {
+
+        val newBytes = Kim.update(
+            bytes = noMetadataBytes,
+            update = MetadataUpdate.GpsCoordinatesAndLocationShown(
+                gpsCoordinates = crashBuildingGps,
+                locationShown = crashBuildingLocation
+            )
+        )
+
+        compare("new_gps_coordinates_and_location_shown.no_metadata.$format", newBytes)
+    }
+
+    @Test
     fun testUpdateTitle() {
 
         val newBytes = Kim.update(

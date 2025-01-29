@@ -142,6 +142,11 @@ public class TiffOutputSet(
                 setGpsCoordinates(update.gpsCoordinates)
             }
 
+            is MetadataUpdate.GpsCoordinatesAndLocationShown -> {
+
+                setGpsCoordinates(update.gpsCoordinates)
+            }
+
             else -> throw ImageWriteException("Can't perform update $update.")
         }
     }

@@ -99,6 +99,38 @@ public object XmpWriter {
                 )
             }
 
+            is MetadataUpdate.GpsCoordinatesAndLocationShown -> {
+
+                /* GPS */
+
+                if (update.gpsCoordinates != null)
+                    setGpsCoordinates(
+                        GpsUtil.decimalLatitudeToDDM(update.gpsCoordinates.latitude),
+                        GpsUtil.decimalLongitudeToDDM(update.gpsCoordinates.longitude)
+                    )
+                else
+                    deleteGpsCoordinates()
+
+                /* Location */
+
+                val locationShown = update.locationShown
+
+                if (locationShown == null) {
+                    setLocation(null)
+                    return
+                }
+
+                setLocation(
+                    XMPLocation(
+                        name = locationShown.name,
+                        location = locationShown.location,
+                        city = locationShown.city,
+                        state = locationShown.state,
+                        country = locationShown.country
+                    )
+                )
+            }
+
             is MetadataUpdate.Title ->
                 setTitle(update.title)
 
