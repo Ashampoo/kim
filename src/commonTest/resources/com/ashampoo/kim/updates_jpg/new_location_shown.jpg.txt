@@ -131,6 +131,7 @@ Little-endian (Intel, II)
 Caption/Abstract (120) = 'time lapse photography of fire'
 Country/Primary Location Name (101) = 'Deutschland'
 Province/State (95) = 'Niedersachsen'
+Sublocation (92) = 'Schafjückenweg 2'
 City (90) = 'Rastede'
 Keywords (25) = 'human'
 Keywords (25) = 'person'

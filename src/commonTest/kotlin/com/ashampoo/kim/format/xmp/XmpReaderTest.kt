@@ -66,7 +66,7 @@ class XmpReaderTest {
                 ),
                 locationShown = LocationShown(
                     name = null,
-                    location = "Wahnbek",
+                    street = "Wahnbek",
                     city = "Rastede",
                     state = "Niedersachsen",
                     country = "Germany"

@@ -235,7 +235,7 @@ internal object JpegUpdater : MetadataUpdater {
 
             if (update.locationShown != null) {
 
-                update.locationShown.location?.let { location ->
+                update.locationShown.street?.let { location ->
                     newRecords.add(IptcRecord(IptcTypes.SUBLOCATION, location))
                 }
 
@@ -266,7 +266,7 @@ internal object JpegUpdater : MetadataUpdater {
 
             if (update.locationShown != null) {
 
-                update.locationShown.location?.let { location ->
+                update.locationShown.street?.let { location ->
                     newRecords.add(IptcRecord(IptcTypes.SUBLOCATION, location))
                 }
 

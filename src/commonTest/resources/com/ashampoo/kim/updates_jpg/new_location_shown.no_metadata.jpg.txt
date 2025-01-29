@@ -3,6 +3,7 @@ Resolution  : 2304 x 1536
 ---- IPTC ----
 Country/Primary Location Name (101) = 'Deutschland'
 Province/State (95) = 'Niedersachsen'
+Sublocation (92) = 'Schafjückenweg 2'
 City (90) = 'Rastede'
 
 ---- XMP ----

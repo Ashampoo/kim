@@ -88,7 +88,7 @@ public object XmpReader {
 
             LocationShown(
                 name = it.name,
-                location = it.location,
+                street = it.location,
                 city = it.city,
                 state = it.state,
                 country = it.country
