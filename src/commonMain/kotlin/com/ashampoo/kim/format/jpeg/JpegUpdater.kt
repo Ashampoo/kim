@@ -226,13 +226,18 @@ internal object JpegUpdater : MetadataUpdater {
 
             newRecords.addAll(
                 oldRecords.filter {
-                    it.iptcType != IptcTypes.CITY &&
+                    it.iptcType != IptcTypes.SUBLOCATION &&
+                        it.iptcType != IptcTypes.CITY &&
                         it.iptcType != IptcTypes.PROVINCE_STATE &&
                         it.iptcType != IptcTypes.COUNTRY_PRIMARY_LOCATION_NAME
                 }
             )
 
             if (update.locationShown != null) {
+
+                update.locationShown.location?.let { location ->
+                    newRecords.add(IptcRecord(IptcTypes.SUBLOCATION, location))
+                }
 
                 update.locationShown.city?.let { city ->
                     newRecords.add(IptcRecord(IptcTypes.CITY, city))
@@ -252,6 +257,7 @@ internal object JpegUpdater : MetadataUpdater {
 
             newRecords.addAll(
                 oldRecords.filter {
+                    it.iptcType != IptcTypes.SUBLOCATION &&
                     it.iptcType != IptcTypes.CITY &&
                         it.iptcType != IptcTypes.PROVINCE_STATE &&
                         it.iptcType != IptcTypes.COUNTRY_PRIMARY_LOCATION_NAME
@@ -259,6 +265,10 @@ internal object JpegUpdater : MetadataUpdater {
             )
 
             if (update.locationShown != null) {
+
+                update.locationShown.location?.let { location ->
+                    newRecords.add(IptcRecord(IptcTypes.SUBLOCATION, location))
+                }
 
                 update.locationShown.city?.let { city ->
                     newRecords.add(IptcRecord(IptcTypes.CITY, city))
