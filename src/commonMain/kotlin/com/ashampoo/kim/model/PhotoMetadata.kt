@@ -75,7 +75,8 @@ public data class PhotoMetadata(
             (widthPx * heightPx).div(PhotoValueFormatter.MEGA_PIXEL_COUNT)
 
     val locationDisplay: String?
-        get() = locationShown?.displayString ?: gpsCoordinates?.let { gpsCoordinates.displayString }
+        get() = locationShown?.displayString
+            ?: gpsCoordinates?.let { "GPS: " + gpsCoordinates.latLongString }
 
     val cameraName: String?
         get() = PhotoValueFormatter.createCameraOrLensName(cameraMake, cameraModel)

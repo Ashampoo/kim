@@ -55,10 +55,12 @@ internal object JxlUpdater : MetadataUpdater {
 
         val updatedXmp = XmpWriter.updateXmp(xmpMeta, update, true)
 
-        val isExifUpdate = update is MetadataUpdate.Orientation ||
-            update is MetadataUpdate.TakenDate ||
-            update is MetadataUpdate.Description ||
-            update is MetadataUpdate.GpsCoordinates
+        val isExifUpdate =
+            update is MetadataUpdate.Orientation ||
+                update is MetadataUpdate.TakenDate ||
+                update is MetadataUpdate.Description ||
+                update is MetadataUpdate.GpsCoordinates ||
+                update is MetadataUpdate.GpsCoordinatesAndLocationShown
 
         val exifBytes: ByteArray? = if (isExifUpdate) {
 
@@ -131,6 +133,6 @@ internal object JxlUpdater : MetadataUpdater {
             xmp = null // No change to XMP
         )
 
-        return byteWriter.toByteArray()
+        return@tryWithImageWriteException byteWriter.toByteArray()
     }
 }

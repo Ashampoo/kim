@@ -127,7 +127,8 @@ internal object JpegUpdater : MetadataUpdater {
             update !is MetadataUpdate.Orientation &&
             update !is MetadataUpdate.TakenDate &&
             update !is MetadataUpdate.Description &&
-            update !is MetadataUpdate.GpsCoordinates
+            update !is MetadataUpdate.GpsCoordinates &&
+            update !is MetadataUpdate.GpsCoordinatesAndLocationShown
         )
             return inputBytes
 
@@ -191,6 +192,7 @@ internal object JpegUpdater : MetadataUpdater {
             update !is MetadataUpdate.Title &&
             update !is MetadataUpdate.Description &&
             update !is MetadataUpdate.LocationShown &&
+            update !is MetadataUpdate.GpsCoordinatesAndLocationShown &&
             update !is MetadataUpdate.Keywords
         )
             return inputBytes
@@ -221,6 +223,32 @@ internal object JpegUpdater : MetadataUpdater {
         }
 
         if (update is MetadataUpdate.LocationShown) {
+
+            newRecords.addAll(
+                oldRecords.filter {
+                    it.iptcType != IptcTypes.CITY &&
+                        it.iptcType != IptcTypes.PROVINCE_STATE &&
+                        it.iptcType != IptcTypes.COUNTRY_PRIMARY_LOCATION_NAME
+                }
+            )
+
+            if (update.locationShown != null) {
+
+                update.locationShown.city?.let { city ->
+                    newRecords.add(IptcRecord(IptcTypes.CITY, city))
+                }
+
+                update.locationShown.state?.let { state ->
+                    newRecords.add(IptcRecord(IptcTypes.PROVINCE_STATE, state))
+                }
+
+                update.locationShown.country?.let { country ->
+                    newRecords.add(IptcRecord(IptcTypes.COUNTRY_PRIMARY_LOCATION_NAME, country))
+                }
+            }
+        }
+
+        if (update is MetadataUpdate.GpsCoordinatesAndLocationShown) {
 
             newRecords.addAll(
                 oldRecords.filter {

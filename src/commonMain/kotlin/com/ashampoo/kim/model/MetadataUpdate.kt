@@ -52,6 +52,14 @@ public sealed interface MetadataUpdate {
         val locationShown: com.ashampoo.kim.model.LocationShown?
     ) : MetadataUpdate
 
+    /*
+     * One-shot update GPS coordinates & location
+     */
+    public data class GpsCoordinatesAndLocationShown(
+        val gpsCoordinates: com.ashampoo.kim.model.GpsCoordinates?,
+        val locationShown: com.ashampoo.kim.model.LocationShown?
+    ) : MetadataUpdate
+
     /**
      * New title or NULL to remove it
      */
