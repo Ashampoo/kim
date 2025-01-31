@@ -21,7 +21,7 @@ jobs:
         with:
           fetch-depth: 0 # no shallow clones for SonarQube
       - name: Set up Java JDK 17
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
           java-version: '17.0.13+11'
