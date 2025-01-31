@@ -21,7 +21,7 @@ jobs:
         with:
           fetch-depth: 0 # no shallow clones for SonarQube
       - name: Set up Java JDK 17
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
           java-version: '17.0.13+11'
@@ -68,13 +68,13 @@ jobs:
           echo "RELEASE_VERSION=$(cat build/version.txt)" >> $GITHUB_ENV
           echo ${{ env.RELEASE_VERSION }}
       - name: Upload reports
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         if: always()
         with:
           name: reports.zip
           path: build/reports
       - name: Upload unit test reference files
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         if: always()
         with:
           name: reference_files.zip
@@ -83,67 +83,67 @@ jobs:
         run: |
           ls -lah build/bin/*/releaseExecutable build/libs/  build/outputs/aar/ build/XCFrameworks/release/
       - name: Upload kim.jar
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           if-no-files-found: error
           name: kim.jar
           path: build/libs/kim-jvm-${{ env.RELEASE_VERSION }}.jar
       - name: Upload kim.aar
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           if-no-files-found: error
           name: kim.aar
           path: build/outputs/aar/kim-release.aar
       - name: Upload kim.xcframework
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           if-no-files-found: error
           name: kim.xcframework
           path: build/XCFrameworks/release/kim.xcframework
       - name: Upload kim.exe
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           if-no-files-found: error
           name: kim.exe
           path: build/bin/win/releaseExecutable/kim.exe
       - name: Upload kim-macosX64.kexe
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           if-no-files-found: error
           name: kim-macosX64.kexe
           path: build/bin/macosX64/releaseExecutable/kim.kexe
       - name: Upload kim-macosArm64.kexe
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           if-no-files-found: error
           name: kim-macosArm64.kexe
           path: build/bin/macosArm64/releaseExecutable/kim.kexe
       - name: Upload kim-win-lib.zip
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           if-no-files-found: error
           name: kim-win-lib.zip
           path: build/bin/win/releaseStatic
       - name: Upload kim-linuxArm64.kexe
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           if-no-files-found: error
           name: kim-linuxArm64.kexe
           path: build/bin/linuxArm64/releaseExecutable/kim.kexe
       - name: Upload kim-linuxX64-lib.zip
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           if-no-files-found: error
           name: kim-linuxX64-lib.zip
           path: build/bin/linuxX64/releaseStatic
       - name: Upload kim-linuxX64.kexe
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           if-no-files-found: error
           name: kim-linuxX64.kexe
           path: build/bin/linuxX64/releaseExecutable/kim.kexe
       - name: Upload kim-linuxArm64-lib.zip
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           if-no-files-found: error
           name: kim-linuxArm64-lib.zip
