@@ -71,9 +71,7 @@ public object Kim {
             val imageFormat = ImageFormat.detect(headerBytes) ?: return@use null
 
             val imageParser = ImageParser.forFormat(imageFormat)
-
-            if (imageParser == null)
-                return@use ImageMetadata(imageFormat, null, null, null, null, null)
+                ?: return@use ImageMetadata(imageFormat, null, null, null, null, null)
 
             val newReader = PrePendingByteReader(it, headerBytes.toList())
 

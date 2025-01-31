@@ -27,7 +27,7 @@ repositories {
 val productName: String = "Ashampoo Kim"
 
 val ktorVersion: String = "3.0.3"
-val xmpCoreVersion: String = "1.5.0"
+val xmpCoreVersion: String = "1.5.1"
 val dateTimeVersion: String = "0.6.1"
 val kotlinxIoVersion: String = "0.6.0"
 
@@ -374,7 +374,7 @@ android {
 
     namespace = "com.ashampoo.kim"
 
-    compileSdk = 34
+    compileSdk = 35
 
     sourceSets["main"].res.srcDirs("src/commonMain/resources")
 
