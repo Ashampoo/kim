@@ -372,7 +372,8 @@ android {
 
     namespace = "com.ashampoo.kim"
 
-    compileSdk = 35
+    // For API 35 tests fail. Something seems incompatible.
+    compileSdk = 34
 
     sourceSets["main"].res.srcDirs("src/commonMain/resources")
 
