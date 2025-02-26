@@ -92,6 +92,15 @@ public enum class TiffOrientation(
         ROTATE_LEFT -> MIRROR_HORIZONTAL_AND_ROTATE_LEFT
     }
 
+    /** Returns true if the orientation means image dimensions are flipped. */
+    public fun hasFlippedDimensions(): Boolean = when (this) {
+        ROTATE_LEFT,
+        ROTATE_RIGHT,
+        MIRROR_HORIZONTAL_AND_ROTATE_RIGHT,
+        MIRROR_HORIZONTAL_AND_ROTATE_LEFT -> true
+        else -> false
+    }
+
     public companion object {
 
         /** Returns the TiffOrientation enum value that corresponds to the given integer value. */

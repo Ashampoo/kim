@@ -93,6 +93,13 @@ public data class PhotoMetadata(
             lensName = lensName
         )
 
+    val originalSize: ImageSize?
+        get() = when {
+            widthPx == null || heightPx == null -> null
+            orientation?.hasFlippedDimensions() == true -> ImageSize(heightPx, widthPx)
+            else -> ImageSize(widthPx, heightPx)
+        }
+
     @Suppress("DataClassContainsFunctions")
     public fun isEmpty(): Boolean =
         this == emptyPhotoMetadata
