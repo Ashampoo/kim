@@ -93,7 +93,7 @@ public data class PhotoMetadata(
             lensName = lensName
         )
 
-    val originalSize: ImageSize?
+    val orientedSize: ImageSize?
         get() = when {
             widthPx == null || heightPx == null -> null
             orientation?.hasFlippedDimensions() == true -> ImageSize(heightPx, widthPx)
