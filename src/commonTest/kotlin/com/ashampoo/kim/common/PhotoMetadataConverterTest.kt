@@ -78,7 +78,7 @@ class PhotoMetadataConverterTest {
                 "locationName;location;city;state;country;" +
                 "cameraMake;cameraModel;lensMake;lensModel;iso;exposureTime;fNumber;focalLength;" +
                 "title;description;flagged;rating;keywords;personsInAlbums;albums;" +
-                "thumbnailImageSize;thumbnailBytes.size"
+                "thumbnailImageSize;thumbnailBytes.size;orientedSize.width;orientedSize.height"
         )
 
         for (entry in metadataMap.entries) {
@@ -99,7 +99,8 @@ class PhotoMetadataConverterTest {
                     "${metadata.title};${metadata.description};" +
                     "${metadata.flagged};${metadata.rating?.value};" +
                     "${metadata.keywords};${metadata.personsInImage};${metadata.albums};" +
-                    "${metadata.thumbnailImageSize};${metadata.thumbnailBytes?.size}"
+                    "${metadata.thumbnailImageSize};${metadata.thumbnailBytes?.size};" +
+                    "${metadata.orientedSize?.width};${metadata.orientedSize?.height}"
             )
         }
 

@@ -199,6 +199,50 @@ class TiffOrientationTest {
     }
 
     @Test
+    fun testHasFlippedDimensions() {
+
+        assertEquals(
+            TiffOrientation.STANDARD.hasFlippedDimensions(),
+            false
+        )
+
+        assertEquals(
+            TiffOrientation.MIRROR_HORIZONTAL.hasFlippedDimensions(),
+            false
+        )
+
+        assertEquals(
+            TiffOrientation.UPSIDE_DOWN.hasFlippedDimensions(),
+            false
+        )
+
+        assertEquals(
+            TiffOrientation.MIRROR_VERTICAL.hasFlippedDimensions(),
+            false
+        )
+
+        assertEquals(
+            TiffOrientation.MIRROR_HORIZONTAL_AND_ROTATE_LEFT.hasFlippedDimensions(),
+            true
+        )
+
+        assertEquals(
+            TiffOrientation.ROTATE_RIGHT.hasFlippedDimensions(),
+            true
+        )
+
+        assertEquals(
+            TiffOrientation.MIRROR_HORIZONTAL_AND_ROTATE_RIGHT.hasFlippedDimensions(),
+            true
+        )
+
+        assertEquals(
+            TiffOrientation.ROTATE_LEFT.hasFlippedDimensions(),
+            true
+        )
+    }
+
+    @Test
     fun testOf() {
 
         assertEquals(
