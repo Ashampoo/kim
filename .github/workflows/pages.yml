@@ -47,7 +47,7 @@ jobs:
           chmod +x ./gradlew
           ./gradlew dokkaHtml
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v2
+        uses: actions/upload-pages-artifact@v3
         with:
           path: 'build/dokka/html'
       - name: Deploy to GitHub Pages
