@@ -8,7 +8,7 @@ plugins {
     id("com.android.library") version "8.5.0"
     id("maven-publish")
     id("signing")
-    id("io.gitlab.arturbosch.detekt") version "1.23.7"
+    id("io.gitlab.arturbosch.detekt") version "1.23.8"
     id("org.sonarqube") version "4.3.1.3277"
     id("org.jetbrains.kotlinx.kover") version "0.6.1"
     id("com.asarkar.gradle.build-time-tracker") version "4.3.0"
@@ -25,10 +25,10 @@ repositories {
 
 val productName: String = "Ashampoo Kim"
 
-val ktorVersion: String = "3.0.3"
+val ktorVersion: String = "3.1.1"
 val xmpCoreVersion: String = "1.5.1"
-val dateTimeVersion: String = "0.6.1"
-val kotlinxIoVersion: String = "0.6.0"
+val dateTimeVersion: String = "0.6.2"
+val kotlinxIoVersion: String = "0.7.0"
 
 description = productName
 group = "com.ashampoo"
@@ -110,7 +110,7 @@ koverMerged {
 }
 
 dependencies {
-    detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:1.23.7")
+    detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:1.23.8")
 }
 
 kotlin {
@@ -173,9 +173,8 @@ kotlin {
     @OptIn(ExperimentalWasmDsl::class)
     wasmJs()
 
-    // WASI support is planned for kotlinx-datetime v0.7
-    // @OptIn(ExperimentalWasmDsl::class)
-    // wasmWasi()
+//    @OptIn(ExperimentalWasmDsl::class)
+//    wasmWasi()
 
     @Suppress("UnusedPrivateMember") // False positive
     val commonMain by sourceSets.getting {
