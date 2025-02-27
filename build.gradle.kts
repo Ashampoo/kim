@@ -25,10 +25,10 @@ repositories {
 
 val productName: String = "Ashampoo Kim"
 
-val ktorVersion: String = "3.0.3"
+val ktorVersion: String = "3.1.1"
 val xmpCoreVersion: String = "1.5.1"
-val dateTimeVersion: String = "0.6.1"
-val kotlinxIoVersion: String = "0.6.0"
+val dateTimeVersion: String = "0.6.2"
+val kotlinxIoVersion: String = "0.7.0"
 
 description = productName
 group = "com.ashampoo"
@@ -173,9 +173,8 @@ kotlin {
     @OptIn(ExperimentalWasmDsl::class)
     wasmJs()
 
-    // WASI support is planned for kotlinx-datetime v0.7
-    // @OptIn(ExperimentalWasmDsl::class)
-    // wasmWasi()
+//    @OptIn(ExperimentalWasmDsl::class)
+//    wasmWasi()
 
     @Suppress("UnusedPrivateMember") // False positive
     val commonMain by sourceSets.getting {
