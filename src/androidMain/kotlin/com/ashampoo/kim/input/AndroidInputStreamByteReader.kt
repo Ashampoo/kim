@@ -15,8 +15,9 @@
  */
 package com.ashampoo.kim.input
 
-import com.ashampoo.kim.common.slice
+import android.os.Build
 import java.io.InputStream
+
 
 /**
  * Provides way to read from Android ContentReolver that
@@ -37,22 +38,19 @@ public open class AndroidInputStreamByteReader(
         return nextByte.toByte()
     }
 
-    override fun readBytes(count: Int): ByteArray {
+    override fun readBytes(count: Int): ByteArray =
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            inputStream.readNBytes(count)
+        } else {
+            val buffer = ByteArray(count)
 
-        /*
-         * InputStream.readNBytes(count) is not available
-         * on older Android versions. So we need to read
-         * into a buffer.
-         */
-        val buffer = ByteArray(count)
+            val bytes = inputStream.read(buffer)
 
-        val bytes = inputStream.read(buffer)
-
-        return if (bytes == count)
-            buffer
-        else
-            buffer.slice(startIndex = 0, count = count)
-    }
+            if (bytes == count)
+                buffer
+            else
+                buffer.slice(IntRange(start = 0, endInclusive = count)).toByteArray()
+        }
 
     override fun close(): Unit =
         inputStream.close()
