@@ -9,5 +9,5 @@ public class GifChunkPlainTextExtension(
     GifChunkType.PLAIN_TEXT_EXTENSION,
     subChunks.fold(header) { acc, subChunk ->
         acc + subChunk
-    }
+    }.plus(0x00)
 )

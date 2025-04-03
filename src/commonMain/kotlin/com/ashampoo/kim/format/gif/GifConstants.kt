@@ -29,4 +29,6 @@ public object GifConstants {
     public const val COMMENT_EXTENSION_LABEL: Byte = 0xFE.toByte()
 
     public const val XMP_APPLICATION_IDENTIFIER: String = "XMP Data"
+
+    public const val XMP_APPLICATION_CODE: String = "XMP"
 }

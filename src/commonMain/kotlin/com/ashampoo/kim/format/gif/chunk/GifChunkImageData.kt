@@ -9,5 +9,5 @@ public class GifChunkImageData(
     GifChunkType.IMAGE_DATA,
     subChunks.fold(byteArrayOf(lzwMinimumCodeSize)) { acc, subChunk ->
         acc + subChunk
-    }
+    }.plus(0x00)
 )

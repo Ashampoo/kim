@@ -9,5 +9,5 @@ public class GifChunkCommentExtension(
     GifChunkType.COMMENT_EXTENSION,
     subChunks.fold(header) { acc, subChunk ->
         acc + subChunk
-    }
+    }.plus(0x00)
 )

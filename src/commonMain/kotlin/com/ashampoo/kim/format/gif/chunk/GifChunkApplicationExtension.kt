@@ -13,7 +13,7 @@ public class GifChunkApplicationExtension(
     GifChunkType.APPLICATION_EXTENSION,
     subChunks.fold(header) { acc, subChunk ->
         acc + subChunk
-    }
+    }.plus(0x00)
 ) {
     private val xmpMetaTag: String = "x:xmpmeta"
 

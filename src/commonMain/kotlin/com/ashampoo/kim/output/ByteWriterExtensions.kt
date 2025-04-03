@@ -90,3 +90,9 @@ internal fun ByteWriter.writeLong(
         write(0xFF and (value shr 56).toInt())
     }
 }
+
+internal fun ByteWriter.writeString(
+    value: String
+) {
+    value.forEach { write(0xFF and it.code) }
+}

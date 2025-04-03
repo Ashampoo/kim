@@ -12,6 +12,7 @@ import com.ashampoo.kim.format.gif.chunk.GifChunkImageData
 import com.ashampoo.kim.format.gif.chunk.GifChunkImageDescriptor
 import com.ashampoo.kim.format.gif.chunk.GifChunkLogicalScreenDescriptor
 import com.ashampoo.kim.format.gif.chunk.GifChunkPlainTextExtension
+import com.ashampoo.kim.format.gif.chunk.GifChunkTerminator
 import com.ashampoo.kim.input.ByteReader
 import com.ashampoo.kim.input.readByte
 import com.ashampoo.kim.input.readByteAsInt
@@ -116,7 +117,7 @@ public object GifImageParser : ImageParser {
                 GifConstants.EXTENSION_INTRODUCER -> readExtensionChunk(byteReader, chunkTypeFilter)?.also(chunks::add)
                 GifConstants.GIF_TERMINATOR -> {
                     if (chunkTypeFilter?.contains(GifChunkType.TERMINATOR) != false) {
-                        chunks.add(GifChunk(GifChunkType.TERMINATOR, byteArrayOf(GifConstants.GIF_TERMINATOR)))
+                        chunks.add(GifChunkTerminator(byteArrayOf(GifConstants.GIF_TERMINATOR)))
                     }
                     break
                 }
