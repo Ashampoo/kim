@@ -15,8 +15,10 @@
  */
 package com.ashampoo.kim.input
 
-import com.ashampoo.kim.common.slice
 import java.io.InputStream
+
+
+private const val MAX_BUFFER_SIZE = Integer.MAX_VALUE - 8
 
 /**
  * Provides way to read from Android ContentReolver that
@@ -37,23 +39,65 @@ public open class AndroidInputStreamByteReader(
         return nextByte.toByte()
     }
 
-    override fun readBytes(count: Int): ByteArray {
-
-        /*
-         * InputStream.readNBytes(count) is not available
-         * on older Android versions. So we need to read
-         * into a buffer.
-         */
-        val buffer = ByteArray(count)
-
-        val bytes = inputStream.read(buffer)
-
-        return if (bytes == count)
-            buffer
-        else
-            buffer.slice(startIndex = 0, count = count)
-    }
+    override fun readBytes(count: Int): ByteArray =
+        inputStream.readBytes(count)
 
     override fun close(): Unit =
         inputStream.close()
+}
+
+@Suppress("NestedBlockDepth")
+// Code copied from readNBytes (Android 35)
+private fun InputStream.readBytes(len: Int): ByteArray {
+    require(len >= 0)
+
+    var bufs: MutableList<ByteArray>? = null
+    var result: ByteArray? = null
+    var total = 0
+    var remaining = len
+    var n: Int
+
+    do {
+        val buf = ByteArray(minOf(remaining, DEFAULT_BUFFER_SIZE))
+        var nread = 0
+
+        while (read(buf, nread, minOf(buf.size - nread, remaining)).also { n = it } > 0) {
+            nread += n
+            remaining -= n
+        }
+
+        if (nread > 0) {
+            if (MAX_BUFFER_SIZE - total < nread) {
+                throw OutOfMemoryError("Required array size too large")
+            }
+            val bufToStore = if (nread < buf.size) buf.copyOf(nread) else buf
+            total += nread
+
+            if (result == null) {
+                result = bufToStore
+            } else {
+                if (bufs == null) {
+                    bufs = mutableListOf()
+                    bufs.add(result)
+                }
+                bufs.add(bufToStore)
+            }
+        }
+    } while (n >= 0 && remaining > 0)
+
+    if (bufs == null) {
+        return result ?: ByteArray(0)
+    }
+
+    result = ByteArray(total)
+    var offset = 0
+    remaining = total
+    for (b in bufs) {
+        val count = minOf(b.size, remaining)
+        System.arraycopy(b, 0, result, offset, count)
+        offset += count
+        remaining -= count
+    }
+
+    return result
 }
