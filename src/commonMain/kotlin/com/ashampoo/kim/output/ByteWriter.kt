@@ -19,7 +19,11 @@ import com.ashampoo.kim.input.Closeable
 
 public interface ByteWriter : Closeable {
 
-    public fun write(byte: Int)
+    public fun write(byte: Byte)
+
+    public fun write(byte: Int) {
+        write(byte.toByte())
+    }
 
     public fun write(byteArray: ByteArray)
 

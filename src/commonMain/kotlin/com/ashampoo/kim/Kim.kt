@@ -25,6 +25,7 @@ import com.ashampoo.kim.format.arw.ArwPreviewExtractor
 import com.ashampoo.kim.format.cr2.Cr2PreviewExtractor
 import com.ashampoo.kim.format.cr3.Cr3PreviewExtractor
 import com.ashampoo.kim.format.dng.DngPreviewExtractor
+import com.ashampoo.kim.format.gif.GifMetadataExtractor
 import com.ashampoo.kim.format.jpeg.JpegMetadataExtractor
 import com.ashampoo.kim.format.jpeg.JpegUpdater
 import com.ashampoo.kim.format.jxl.JxlUpdater
@@ -108,6 +109,7 @@ public object Kim {
                 ImageFormat.JPEG -> imageFormat to JpegMetadataExtractor.extractMetadataBytes(newReader)
                 ImageFormat.PNG -> imageFormat to PngMetadataExtractor.extractMetadataBytes(newReader)
                 ImageFormat.RAF -> imageFormat to RafMetadataExtractor.extractMetadataBytes(newReader)
+                ImageFormat.GIF -> imageFormat to GifMetadataExtractor.extractMetadataBytes(newReader)
                 else -> imageFormat to byteArrayOf()
             }
         }

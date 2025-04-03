@@ -1,0 +1,18 @@
+<x:xmpmeta xmlns:x="adobe:ns:meta/">
+  <x:metadata>
+    <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+      <rdf:Description rdf:about=""
+        xmlns:dc="http://purl.org/dc/elements/1.1/"
+        xmlns:xmp="http://ns.adobe.com/xap/1.0/">
+        <dc:title>Sample GIF</dc:title>
+        <dc:creator>kim</dc:creator>
+        <dc:subject>Example GIF with XMP metadata</dc:subject>
+        <dc:description>This is a sample GIF used to demonstrate XMP metadata embedding.</dc:description>
+        <dc:date>2025-04-04</dc:date>
+        <xmp:CreatorTool>exiftool</xmp:CreatorTool>
+        <xmp:Label>Demo GIF</xmp:Label>
+        <xmp:Rights>CC-BY 4.0</xmp:Rights>
+      </rdf:Description>
+    </rdf:RDF>
+  </x:metadata>
+</x:xmpmeta>

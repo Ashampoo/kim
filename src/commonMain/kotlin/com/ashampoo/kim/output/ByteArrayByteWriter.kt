@@ -25,9 +25,9 @@ public class ByteArrayByteWriter : ByteWriter, Closeable {
 
     private var position: Int = 0
 
-    override fun write(byte: Int) {
+    override fun write(byte: Byte) {
         ensureCapacity(1)
-        bytes[position++] = byte.toByte()
+        bytes[position++] = byte
     }
 
     override fun write(byteArray: ByteArray) {

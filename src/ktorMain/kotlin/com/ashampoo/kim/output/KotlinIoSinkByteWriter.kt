@@ -24,8 +24,8 @@ public class KotlinIoSinkByteWriter(
     private val sink: Sink,
 ) : ByteWriter {
 
-    override fun write(byte: Int): Unit =
-        sink.writeByte(byte.toByte())
+    override fun write(byte: Byte): Unit =
+        sink.writeByte(byte)
 
     override fun write(byteArray: ByteArray): Unit =
         sink.write(byteArray)
