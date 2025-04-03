@@ -124,6 +124,7 @@ public object GifMetadataExtractor : MetadataExtractor {
                 outputBytes.addAll(listOf(GifConstants.EXTENSION_INTRODUCER, extensionLabelByte))
                 val subChunks = byteReader.parseGifSubChunksUntilEmpty("plain text extension")
                 subChunks.forEach { outputBytes.addAll(it.toList()) }
+                outputBytes.add(0x00)
             }
         }
     }

@@ -31,7 +31,9 @@ import kotlin.test.Test
 import kotlin.test.fail
 
 abstract class AbstractUpdaterTest(
-    val format: String
+    val format: String,
+    val testThumbnail: Boolean = true,
+    val testOrientation: Boolean = true
 ) {
 
     private val keywordWithUmlauts = "Äußerst öffentlich"
@@ -76,6 +78,7 @@ abstract class AbstractUpdaterTest(
 
     @Test
     fun testUpdateOrientation() {
+        if (!testOrientation) return
 
         val newBytes = Kim.update(
             bytes = originalBytes,
@@ -87,6 +90,7 @@ abstract class AbstractUpdaterTest(
 
     @Test
     fun testUpdateOrientationOnEmptyImage() {
+        if (!testOrientation) return
 
         val newBytes = Kim.update(
             bytes = noMetadataBytes,
@@ -324,6 +328,7 @@ abstract class AbstractUpdaterTest(
 
     @Test
     fun testUpdateThumbnail() {
+        if (!testThumbnail) return
 
         val newBytes = Kim.updateThumbnail(
             bytes = originalBytes,
@@ -335,6 +340,7 @@ abstract class AbstractUpdaterTest(
 
     @Test
     fun testUpdateThumbnailOnEmptyImage() {
+        if (!testThumbnail) return
 
         val newBytes = Kim.updateThumbnail(
             bytes = noMetadataBytes,
