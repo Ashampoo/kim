@@ -26,6 +26,7 @@ import com.ashampoo.kim.format.cr2.Cr2PreviewExtractor
 import com.ashampoo.kim.format.cr3.Cr3PreviewExtractor
 import com.ashampoo.kim.format.dng.DngPreviewExtractor
 import com.ashampoo.kim.format.gif.GifMetadataExtractor
+import com.ashampoo.kim.format.gif.GifUpdater
 import com.ashampoo.kim.format.jpeg.JpegMetadataExtractor
 import com.ashampoo.kim.format.jpeg.JpegUpdater
 import com.ashampoo.kim.format.jxl.JxlUpdater
@@ -216,6 +217,7 @@ public object Kim {
             ImageFormat.PNG -> PngUpdater.update(prePendingByteReader, byteWriter, update)
             ImageFormat.WEBP -> WebPUpdater.update(prePendingByteReader, byteWriter, update)
             ImageFormat.JXL -> JxlUpdater.update(prePendingByteReader, byteWriter, update)
+            ImageFormat.GIF -> GifUpdater.update(prePendingByteReader, byteWriter, update)
             null -> throw ImageWriteException("Unknown or unsupported file format.")
             else -> throw ImageWriteException("Can't embed metadata into $imageFormat.")
         }
