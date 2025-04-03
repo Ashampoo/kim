@@ -11,6 +11,5 @@ public enum class GifChunkType {
     PLAIN_TEXT_EXTENSION,
     APPLICATION_EXTENSION,
     COMMENT_EXTENSION,
-    UNKNOWN,
     TERMINATOR
 }
