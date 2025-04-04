@@ -1,3 +1,19 @@
+/*
+ * Copyright 2025 Ramon Bouckaert
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.ashampoo.kim.format.gif.chunk
 
 import com.ashampoo.kim.common.ImageReadException
@@ -13,7 +29,10 @@ import kotlin.jvm.JvmStatic
 
 public class GifChunkImageDescriptor(
     bytes: ByteArray
-) : GifChunk(GifChunkType.IMAGE_DESCRIPTOR, bytes) {
+) : GifChunk(
+    GifChunkType.IMAGE_DESCRIPTOR,
+    bytes
+) {
 
     public val leftPosition: Int
     public val topPosition: Int
@@ -24,18 +43,20 @@ public class GifChunkImageDescriptor(
     public val localColorTableSize: Int
 
     init {
+
         if (bytes.size != 10)
             throw ImageReadException("Invalid size for Image Descriptor chunk: ${bytes.size} bytes, expected 10 bytes.")
 
         val byteReader = ByteArrayByteReader(bytes)
 
-        // Read image separator
+        /* Read image separator */
         if (byteReader.readByte("image separator") != GifConstants.IMAGE_SEPARATOR)
             throw ImageReadException("Image descriptor did not start with image separator")
 
-        // Read image position and dimensions
+        /* Read image position and dimensions */
         leftPosition = byteReader.read2BytesAsInt("left position", GifConstants.GIF_BYTE_ORDER)
         topPosition = byteReader.read2BytesAsInt("top position", GifConstants.GIF_BYTE_ORDER)
+
         val width = byteReader.read2BytesAsInt("width", GifConstants.GIF_BYTE_ORDER)
         val height = byteReader.read2BytesAsInt("height", GifConstants.GIF_BYTE_ORDER)
         imageSize = ImageSize(width, height)
@@ -48,6 +69,7 @@ public class GifChunkImageDescriptor(
     }
 
     public companion object {
+
         @JvmStatic
         public fun constructFromProperties(
             leftPosition: Int,
@@ -58,6 +80,7 @@ public class GifChunkImageDescriptor(
             sortFlag: Boolean,
             localColorTableSize: Int
         ): GifChunkImageDescriptor {
+
             val byteWriter = ByteArrayByteWriter()
 
             byteWriter.write(GifConstants.IMAGE_SEPARATOR)

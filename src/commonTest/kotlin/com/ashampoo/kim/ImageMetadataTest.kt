@@ -19,7 +19,6 @@ import com.ashampoo.kim.common.writeBytes
 import com.ashampoo.kim.testdata.KimTestData
 import kotlinx.io.files.Path
 import kotlin.test.Test
-import kotlin.test.assertEquals
 import kotlin.test.fail
 
 class ImageMetadataTest {
