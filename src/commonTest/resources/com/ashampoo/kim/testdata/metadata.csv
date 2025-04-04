@@ -58,7 +58,7 @@ photo_56.tif;TIFF;1200;800;STANDARD;1637818851450;null;null;null;null;null;null;
 photo_57.cr2;CR2;5184;3456;STANDARD;1638761253820;null;null;null;null;null;null;null;Canon;Canon EOS 60D;null;EF-S15-85mm f/3.5-5.6 IS USM;400;0.016666666666666666;5.0;24.0;null;null;false;0;[];[];[];160 x 120;11248;5184;3456
 photo_58.raf;RAF;4416;2944;STANDARD;1684514510000;null;null;null;null;null;null;null;FUJIFILM;X-T4;FUJIFILM;XC35mmF2;400;0.025;4.0;35.0;null;null;false;0;[];[];[];160 x 120;9457;4416;2944
 photo_59.webp;WEBP;5184;3456;STANDARD;1563981341900;null;null;null;null;null;null;null;Canon;Canon EOS Rebel T6;null;EF-S18-55mm f/3.5-5.6 IS II;100;0.016666666666666666;8.0;18.0;null;null;false;2;[];[];[];256 x 170;7245;5184;3456
-photo_61.gif;GIF;null;null;null;null;null;null;null;null;null;null;null;null;null;null;null;null;null;null;null;null;null;false;null;[];[];[];null;null;null;null
+photo_61.gif;GIF;3000;3000;null;null;null;null;null;null;null;null;null;null;null;null;null;null;null;null;null;Sample GIF;This is a sample GIF used to demonstrate XMP metadata embedding.;false;null;[Example GIF with XMP metadata];[];[];null;null;3000;3000
 photo_62.nef;TIFF;4992;3280;STANDARD;1407828658100;null;null;null;null;null;null;null;NIKON CORPORATION;NIKON D5100;null;null;200;0.00625;6.3;30.0;null;null;false;null;[];[];[];4928 x 3264;1470727;4992;3280
 photo_63.arw;TIFF;4272;2848;STANDARD;1265033028000;null;null;null;null;null;null;null;SONY;DSLR-A500;null;null;200;0.016666666666666666;8.0;18.0;null;null;false;null;[];[];[];1616 x 1080;736202;4272;2848
 photo_64.rw2;RW2;null;null;STANDARD;1416431264000;null;null;null;null;null;null;null;Panasonic;DMC-LX7;null;null;160;0.016666666666666666;1.4;4.7;null;null;false;null;[];[];[];null;null;null;null

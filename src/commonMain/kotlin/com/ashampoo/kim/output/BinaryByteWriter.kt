@@ -20,29 +20,13 @@ import com.ashampoo.kim.common.ByteOrder
 
 public abstract class BinaryByteWriter(
     public val byteWriter: ByteWriter
-) : ByteWriter {
+) : ByteWriter by byteWriter {
 
     public abstract fun write2Bytes(value: Int)
 
     // abstract fun write3Bytes(value: Int)
 
     public abstract fun write4Bytes(value: Int)
-
-    override fun write(byte: Int) {
-        byteWriter.write(byte)
-    }
-
-    override fun write(byteArray: ByteArray) {
-        byteWriter.write(byteArray)
-    }
-
-    override fun flush() {
-        byteWriter.flush()
-    }
-
-    override fun close() {
-        byteWriter.close()
-    }
 
     public companion object {
 

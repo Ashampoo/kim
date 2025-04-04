@@ -21,6 +21,10 @@ public class OutputStreamByteWriter(
     private val outputStream: OutputStream
 ) : ByteWriter {
 
+    override fun write(byte: Byte) {
+        write(byte.toInt())
+    }
+
     override fun write(byte: Int) {
         outputStream.write(byte)
     }

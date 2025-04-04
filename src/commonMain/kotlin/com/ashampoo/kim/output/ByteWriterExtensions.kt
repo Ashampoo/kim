@@ -23,6 +23,24 @@ import com.ashampoo.kim.common.ByteOrder
  */
 
 @Suppress("MagicNumber")
+internal fun ByteWriter.write2BytesAsInt(
+    value: Int,
+    byteOrder: ByteOrder
+) {
+
+    if (byteOrder == ByteOrder.BIG_ENDIAN) {
+
+        write(0xFF and (value shr 8))
+        write(0xFF and (value shr 0))
+
+    } else {
+
+        write(0xFF and (value shr 0))
+        write(0xFF and (value shr 8))
+    }
+}
+
+@Suppress("MagicNumber")
 internal fun ByteWriter.writeInt(
     value: Int,
     byteOrder: ByteOrder
@@ -71,4 +89,10 @@ internal fun ByteWriter.writeLong(
         write(0xFF and (value shr 48).toInt())
         write(0xFF and (value shr 56).toInt())
     }
+}
+
+internal fun ByteWriter.writeString(
+    value: String
+) {
+    value.forEach { write(0xFF and it.code) }
 }

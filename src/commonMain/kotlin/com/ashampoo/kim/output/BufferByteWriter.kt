@@ -23,12 +23,12 @@ internal class BufferByteWriter(
     private var index: Int
 ) : ByteWriter {
 
-    override fun write(byte: Int) {
+    override fun write(byte: Byte) {
 
         if (index >= buffer.size)
             throw ImageWriteException("Buffer overflow.")
 
-        buffer[index++] = byte.toByte()
+        buffer[index++] = byte
     }
 
     override fun write(byteArray: ByteArray) {

@@ -17,6 +17,7 @@ package com.ashampoo.kim.format
 
 import com.ashampoo.kim.common.ImageReadException
 import com.ashampoo.kim.format.bmff.BaseMediaFileFormatImageParser
+import com.ashampoo.kim.format.gif.GifImageParser
 import com.ashampoo.kim.format.jpeg.JpegImageParser
 import com.ashampoo.kim.format.png.PngImageParser
 import com.ashampoo.kim.format.raf.RafImageParser
@@ -56,6 +57,8 @@ public fun interface ImageParser {
                 ImageFormat.AVIF,
                 ImageFormat.CR3,
                 ImageFormat.JXL -> BaseMediaFileFormatImageParser
+
+                ImageFormat.GIF -> GifImageParser
 
                 else -> null
             }
