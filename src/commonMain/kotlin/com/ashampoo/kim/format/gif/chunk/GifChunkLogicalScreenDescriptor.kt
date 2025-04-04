@@ -72,7 +72,7 @@ public class GifChunkLogicalScreenDescriptor(
                     ((colorResolution and 0b111) shl 4) or
                     ((if (sortFlag) 1 else 0) shl 3) or
                     (globalColorTableSize and 0b111)
-            ).toByte()
+                ).toByte()
 
             byteWriter.write(packed)
 

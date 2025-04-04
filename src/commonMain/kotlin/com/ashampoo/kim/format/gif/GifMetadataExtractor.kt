@@ -35,7 +35,7 @@ public object GifMetadataExtractor : MetadataExtractor {
         val versionBytes = byteReader.readBytes(3)
         require(
             GifVersion.GIF87A.matches(versionBytes) ||
-                    GifVersion.GIF89A.matches(versionBytes)
+                GifVersion.GIF89A.matches(versionBytes)
         ) {
             "GIF version mismatch: ${versionBytes.toSingleNumberHexes()}"
         }

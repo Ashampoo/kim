@@ -19,6 +19,7 @@ public class GifChunkApplicationExtension(
 
     public val applicationIdentifier: String
     public val applicationCode: String
+
     init {
         if (subChunks.isEmpty()) throw ImageReadException("Application extension must have at least 1 subchunk.")
 

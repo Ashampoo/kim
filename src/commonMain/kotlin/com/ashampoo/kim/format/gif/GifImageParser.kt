@@ -52,7 +52,7 @@ public object GifImageParser : ImageParser {
 
         checkNotNull(headerChunk) {
             "Did not find mandatory header chunk. " +
-                    "Found chunk types: ${chunks.map { it.type }}"
+                "Found chunk types: ${chunks.map { it.type }}"
         }
 
         val version = headerChunk.version
@@ -61,7 +61,7 @@ public object GifImageParser : ImageParser {
 
         checkNotNull(firstImageDescriptorChunk) {
             "Did not find mandatory image descriptor chunk. " +
-                    "Found chunk types: ${chunks.map { it.type }}"
+                "Found chunk types: ${chunks.map { it.type }}"
         }
 
         val imageSize = firstImageDescriptorChunk.imageSize
