@@ -9,7 +9,6 @@
 ![macOS](https://img.shields.io/badge/-macOS-gray.svg?style=flat)
 ![JS](https://img.shields.io/badge/-JS-gray.svg?style=flat)
 ![WASM](https://img.shields.io/badge/-WASM-gray.svg?style=flat)
-[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=kim&metric=coverage)](https://sonarcloud.io/summary/new_code?id=kim)
 
 Kim is a Kotlin Multiplatform library for reading and writing image metadata.
 
