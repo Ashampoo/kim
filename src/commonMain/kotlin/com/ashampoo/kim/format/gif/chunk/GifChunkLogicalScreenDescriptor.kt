@@ -1,3 +1,19 @@
+/*
+ * Copyright 2025 Ramon Bouckaert
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.ashampoo.kim.format.gif.chunk
 
 import com.ashampoo.kim.common.ImageReadException
@@ -14,7 +30,10 @@ import kotlin.jvm.JvmStatic
 
 public class GifChunkLogicalScreenDescriptor(
     bytes: ByteArray
-) : GifChunk(GifChunkType.LOGICAL_SCREEN_DESCRIPTOR, bytes) {
+) : GifChunk(
+    GifChunkType.LOGICAL_SCREEN_DESCRIPTOR,
+    bytes
+) {
 
     public val canvasSize: ImageSize
     public val globalColorTableFlag: Boolean
@@ -25,6 +44,7 @@ public class GifChunkLogicalScreenDescriptor(
     public val pixelAspectRatio: Int
 
     init {
+
         if (bytes.size != 7)
             throw ImageReadException(
                 "Invalid size for logical screen descriptor: ${bytes.size} bytes, expected 7 bytes."
@@ -32,22 +52,22 @@ public class GifChunkLogicalScreenDescriptor(
 
         val byteReader = ByteArrayByteReader(bytes)
 
-        // Read canvas width and height
+        /* Read canvas width and height */
         val canvasWidth = byteReader.read2BytesAsInt("canvas width", GifConstants.GIF_BYTE_ORDER)
         val canvasHeight = byteReader.read2BytesAsInt("canvas height", GifConstants.GIF_BYTE_ORDER)
         canvasSize = ImageSize(canvasWidth, canvasHeight)
 
-        // Read packed data
+        /* Read packed data */
         val packed = byteReader.readByte("packed fields").toInt()
         globalColorTableFlag = (packed shr 7 and 1) == 1
         colorResolution = (packed shr 4) and 0b111
         sortFlag = (packed shr 3 and 1) == 1
         globalColorTableSize = packed and 0b111
 
-        // Read background color index
+        /* Read background color index */
         backgroundColorIndex = byteReader.readByteAsInt()
 
-        // Read pixel aspect ratio
+        /* Read pixel aspect ratio */
         pixelAspectRatio = byteReader.readByteAsInt()
     }
 
@@ -62,6 +82,7 @@ public class GifChunkLogicalScreenDescriptor(
             backgroundColorIndex: Int,
             pixelAspectRatio: Int
         ): GifChunkLogicalScreenDescriptor {
+
             val byteWriter = ByteArrayByteWriter()
 
             byteWriter.write2BytesAsInt(canvasSize.width, GifConstants.GIF_BYTE_ORDER)
@@ -72,7 +93,7 @@ public class GifChunkLogicalScreenDescriptor(
                     ((colorResolution and 0b111) shl 4) or
                     ((if (sortFlag) 1 else 0) shl 3) or
                     (globalColorTableSize and 0b111)
-            ).toByte()
+                ).toByte()
 
             byteWriter.write(packed)
 

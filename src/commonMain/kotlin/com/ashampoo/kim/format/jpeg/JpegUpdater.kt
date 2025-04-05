@@ -258,7 +258,7 @@ internal object JpegUpdater : MetadataUpdater {
             newRecords.addAll(
                 oldRecords.filter {
                     it.iptcType != IptcTypes.SUBLOCATION &&
-                    it.iptcType != IptcTypes.CITY &&
+                        it.iptcType != IptcTypes.CITY &&
                         it.iptcType != IptcTypes.PROVINCE_STATE &&
                         it.iptcType != IptcTypes.COUNTRY_PRIMARY_LOCATION_NAME
                 }

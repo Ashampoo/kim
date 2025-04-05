@@ -98,6 +98,7 @@ public enum class TiffOrientation(
         ROTATE_RIGHT,
         MIRROR_HORIZONTAL_AND_ROTATE_RIGHT,
         MIRROR_HORIZONTAL_AND_ROTATE_LEFT -> true
+
         else -> false
     }
 
