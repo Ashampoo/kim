@@ -15,7 +15,6 @@
  */
 package com.ashampoo.kim.android
 
-import android.R.attr.path
 import android.content.ContentResolver
 import android.content.Context
 import android.net.Uri
@@ -26,8 +25,8 @@ import com.ashampoo.kim.common.ImageReadException
 import com.ashampoo.kim.format.ImageMetadata
 import com.ashampoo.kim.input.AndroidInputStreamByteReader
 import com.ashampoo.kim.input.ByteReader
-import com.ashampoo.kim.output.AndroidOutputStreamByteWriter
 import com.ashampoo.kim.output.ByteWriter
+import com.ashampoo.kim.output.OutputStreamByteWriter
 import java.io.File
 import java.io.InputStream
 
@@ -49,7 +48,7 @@ public object KimAndroid {
     @JvmStatic
     @Throws(ImageReadException::class)
     public fun readMetadata(context: Context, uri: String): ImageMetadata? =
-        getByteReader(context = context, uri = uri)?.let {
+        getByteReader(context, uri)?.let {
             Kim.readMetadata(it)
         }
 
@@ -64,13 +63,22 @@ public object KimAndroid {
 
     public fun getByteReader(context: Context, uri: String): ByteReader? =
         Uri.parse(uri).run {
+
+            /*
+             * On Android 10 and later we can use the context resolver
+             * to get what we need. On older versions we fall back to
+             * the old system.
+             */
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+
                 context.contentResolver.getFileSize(this)?.let { size ->
                     context.contentResolver.openInputStream(this)?.let {
                         AndroidInputStreamByteReader(it, size)
                     }
                 }
+
             } else {
+
                 path?.let {
                     val file = File(it)
                     AndroidInputStreamByteReader(file.inputStream(), file.length())
@@ -80,14 +88,23 @@ public object KimAndroid {
 
     public fun getByteWriter(context: Context, uri: String): ByteWriter? =
         Uri.parse(uri).run {
+
+            /*
+             * On Android 10 and later we can use the context resolver
+             * to get what we need. On older versions we fall back to
+             * the old system.
+             */
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+
                 context.contentResolver.openOutputStream(this)?.let {
-                    AndroidOutputStreamByteWriter(it)
+                    OutputStreamByteWriter(it)
                 }
+
             } else {
+
                 path?.let {
                     val file = File(it)
-                    AndroidOutputStreamByteWriter(file.outputStream())
+                    OutputStreamByteWriter(file.outputStream())
                 }
             }
         }
@@ -95,12 +112,25 @@ public object KimAndroid {
     private fun ContentResolver.getFileSize(
         uri: Uri,
     ): Long? {
-        val cursor = query(uri, null, null, null, null)
+
+        val cursor = query(
+            uri,
+            null,
+            null,
+            null,
+            null
+        )
+
         return cursor?.let {
+
             it.moveToFirst()
+
             val sizeIndex = cursor.getColumnIndex(OpenableColumns.SIZE)
+
             val size = it.getLong(sizeIndex)
+
             it.close()
+
             size
         }
     }
