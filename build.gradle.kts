@@ -14,7 +14,6 @@ plugins {
     id("me.qoomon.git-versioning") version "6.4.4"
     id("com.goncalossilva.resources") version "0.10.0"
     id("com.github.ben-manes.versions") version "0.51.0"
-    id("org.jetbrains.dokka") version "1.9.20"
 }
 
 repositories {
