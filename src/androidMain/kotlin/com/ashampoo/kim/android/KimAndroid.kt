@@ -55,7 +55,8 @@ public object KimAndroid {
     @Throws(ImageReadException::class)
     public fun readMetadata(file: File): ImageMetadata? {
 
-        check(file.exists()) { "File does not exist: $file" }
+        if (!file.exists())
+            throw ImageReadException("File does not exist: $file")
 
         return readMetadata(
             inputStream = file.inputStream().buffered(),
@@ -73,7 +74,7 @@ public object KimAndroid {
         Kim.readMetadata(
             byteReader = createByteReader(
                 contentResolver = context.contentResolver,
-                uri = uri,
+                uriString = uri,
                 length = length
             )
         )
@@ -88,7 +89,7 @@ public object KimAndroid {
         Kim.readMetadata(
             byteReader = createByteReader(
                 contentResolver = contentResolver,
-                uri = uri,
+                uriString = uri,
                 length = length
             )
         )
@@ -96,11 +97,21 @@ public object KimAndroid {
     @Throws(ImageReadException::class)
     public fun createByteReader(
         contentResolver: ContentResolver,
-        uri: String,
+        uriString: String,
+        length: Long? = null
+    ): ByteReader =
+        createByteReader(
+            contentResolver = contentResolver,
+            uri = Uri.parse(uriString),
+            length = length
+        )
+
+    @Throws(ImageReadException::class)
+    public fun createByteReader(
+        contentResolver: ContentResolver,
+        uri: Uri,
         length: Long? = null
     ): ByteReader {
-
-        val androidUri = Uri.parse(uri)
 
         /*
          * On Android 10 (API 29) and above, we must use ContentResolver
@@ -113,12 +124,12 @@ public object KimAndroid {
              * If a length was provided we use that,
              * otherwise we receive it from the contentResolver.
              */
-            val contentLength = length ?: contentResolver.getFileSize(androidUri)
+            val contentLength = length ?: contentResolver.getFileSize(uri)
 
             if (contentLength == null)
                 throw ImageReadException("Unable to get file size for URI $uri")
 
-            val inputStream = contentResolver.openInputStream(androidUri)
+            val inputStream = contentResolver.openInputStream(uri)
 
             if (inputStream == null)
                 throw ImageReadException("Unable to open input stream for URI $uri")
@@ -130,12 +141,15 @@ public object KimAndroid {
          * Fall back to the old way
          */
 
-        val pathname = androidUri.path
+        val pathname = uri.path
 
         if (pathname == null)
             throw ImageReadException("Unable to find path for URI $uri")
 
         val file = File(pathname)
+
+        if (!file.exists())
+            throw ImageReadException("File does not exist: $file")
 
         return AndroidInputStreamByteReader(
             inputStream = file.inputStream(),
@@ -146,10 +160,18 @@ public object KimAndroid {
     @Throws(ImageWriteException::class)
     public fun createByteWriter(
         contentResolver: ContentResolver,
-        uri: String
-    ): ByteWriter {
+        uriString: String
+    ): ByteWriter =
+        createByteWriter(
+            contentResolver = contentResolver,
+            uri = Uri.parse(uriString)
+        )
 
-        val androidUri = Uri.parse(uri)
+    @Throws(ImageWriteException::class)
+    public fun createByteWriter(
+        contentResolver: ContentResolver,
+        uri: Uri
+    ): ByteWriter {
 
         /*
          * On Android 10 (API 29) and above, we must use ContentResolver
@@ -159,7 +181,7 @@ public object KimAndroid {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
 
-            val outputStream = contentResolver.openOutputStream(androidUri)
+            val outputStream = contentResolver.openOutputStream(uri)
 
             if (outputStream == null)
                 throw ImageWriteException("Unable to open ouput stream for URI $uri")
@@ -171,14 +193,19 @@ public object KimAndroid {
          * Fall back to the old way
          */
 
-        val pathname = androidUri.path
+        val pathname = uri.path
 
         if (pathname == null)
             throw ImageWriteException("Unable to find path for URI $uri")
 
         val file = File(pathname)
 
-        return OutputStreamByteWriter(file.outputStream())
+        if (!file.exists())
+            throw ImageWriteException("File does not exist: $file")
+
+        return OutputStreamByteWriter(
+            outputStream = file.outputStream()
+        )
     }
 
     private fun ContentResolver.getFileSize(
