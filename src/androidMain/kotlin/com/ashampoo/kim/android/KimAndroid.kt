@@ -57,11 +57,18 @@ public object KimAndroid {
     @JvmStatic
     @Throws(ImageReadException::class)
     public fun readMetadata(context: Context, uri: String): ImageMetadata? =
-        getByteReader(context, uri)?.let {
+        getByteReader(context.contentResolver, uri)?.let {
             Kim.readMetadata(it)
         }
 
-    public fun getByteReader(context: Context, uri: String): ByteReader? =
+    @JvmStatic
+    @Throws(ImageReadException::class)
+    public fun readMetadata(contentResolver: ContentResolver, uri: String): ImageMetadata? =
+        getByteReader(contentResolver, uri)?.let {
+            Kim.readMetadata(it)
+        }
+
+    public fun getByteReader(contentResolver: ContentResolver, uri: String): ByteReader? =
         Uri.parse(uri).run {
 
             /*
@@ -71,8 +78,8 @@ public object KimAndroid {
              */
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
 
-                context.contentResolver.getFileSize(this)?.let { size ->
-                    context.contentResolver.openInputStream(this)?.let {
+                contentResolver.getFileSize(this)?.let { size ->
+                    contentResolver.openInputStream(this)?.let {
                         AndroidInputStreamByteReader(it, size)
                     }
                 }
@@ -151,3 +158,7 @@ public fun Kim.readMetadata(file: File): ImageMetadata? =
 @Throws(ImageReadException::class)
 public fun Kim.readMetadata(context: Context, uri: String) =
     KimAndroid.readMetadata(context, uri)
+
+@Throws(ImageReadException::class)
+public fun Kim.readMetadata(contentResolver: ContentResolver, uri: String) =
+    KimAndroid.readMetadata(contentResolver, uri)
