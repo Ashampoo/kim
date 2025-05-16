@@ -61,7 +61,7 @@ public object KimAndroid {
         uri: String,
         length: Long? = null
     ): ImageMetadata? =
-        getByteReader(
+        createByteReader(
             contentResolver = context.contentResolver,
             uri = uri,
             length = length
@@ -76,11 +76,11 @@ public object KimAndroid {
         uri: String,
         length: Long? = null
     ): ImageMetadata? =
-        getByteReader(contentResolver, uri, length)?.let { byteReader ->
+        createByteReader(contentResolver, uri, length)?.let { byteReader ->
             Kim.readMetadata(byteReader)
         }
 
-    public fun getByteReader(
+    public fun createByteReader(
         contentResolver: ContentResolver,
         uri: String,
         length: Long? = null
@@ -122,7 +122,10 @@ public object KimAndroid {
             }
         }
 
-    public fun getByteWriter(contentResolver: ContentResolver, uri: String): ByteWriter? =
+    public fun createByteWriter(
+        contentResolver: ContentResolver,
+        uri: String
+    ): ByteWriter? =
         Uri.parse(uri).run {
 
             /*
