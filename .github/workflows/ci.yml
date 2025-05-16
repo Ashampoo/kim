@@ -19,7 +19,7 @@ jobs:
         uses: actions/checkout@v4
         timeout-minutes: 5
         with:
-          fetch-depth: 0 # no shallow clones for SonarQube
+          fetch-depth: 0
       - name: Set up Java JDK 17
         uses: actions/setup-java@v4
         with:
@@ -50,20 +50,12 @@ jobs:
           path: ~/.android
           key: ${{ runner.os }}-android-${{ hashFiles('gradle/wrapper/gradle-wrapper.properties', 'build.gradle.kts') }}
           restore-keys: ${{ runner.os }}-android-
-      - name: Cache SonarCloud packages
-        uses: actions/cache@v4
-        with:
-          path: ~/.sonar/cache
-          key: ${{ runner.os }}-sonar
-          restore-keys: ${{ runner.os }}-sonar
       - name: Build & Test
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        # Disabled "sonar" for now as Ashampoo cancelled the subscription
         run: |
           chmod +x ./gradlew
-          ./gradlew build test koverXmlReport detekt assembleXCFramework -x sonar --parallel
+          ./gradlew build test detekt assembleXCFramework --parallel
       - name: Set RELEASE_VERSION variable
         run: |
           echo "RELEASE_VERSION=$(cat build/version.txt)" >> $GITHUB_ENV

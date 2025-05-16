@@ -9,7 +9,6 @@ plugins {
     id("maven-publish")
     id("signing")
     id("io.gitlab.arturbosch.detekt") version "1.23.8"
-    id("org.sonarqube") version "4.3.1.3277"
     id("org.jetbrains.kotlinx.kover") version "0.6.1"
     id("com.asarkar.gradle.build-time-tracker") version "4.3.0"
     id("me.qoomon.git-versioning") version "6.4.4"
@@ -54,42 +53,10 @@ gitVersioning.apply {
 }
 
 apply(plugin = "io.gitlab.arturbosch.detekt")
-apply(plugin = "org.sonarqube")
 apply(plugin = "kover")
 
 buildTimeTracker {
     sortBy.set(com.asarkar.gradle.buildtimetracker.Sort.DESC)
-}
-
-sonar {
-    properties {
-
-        property("sonar.projectKey", "kim")
-        property("sonar.projectName", productName)
-        property("sonar.organization", "ashampoo")
-        property("sonar.host.url", "https://sonarcloud.io")
-
-        property(
-            "sonar.sources",
-            listOf(
-                "./src/androidMain/kotlin",
-                "./src/appleMain/kotlin",
-                "./src/commonMain/kotlin",
-                "./src/jvmMain/kotlin",
-                "./src/posixMain/kotlin"
-            )
-        )
-        property(
-            "sonar.tests",
-            listOf(
-                "./src/commonTest/kotlin"
-            )
-        )
-
-        property("sonar.android.lint.report", "build/reports/lint-results.xml")
-        property("sonar.kotlin.detekt.reportPaths", "build/reports/detekt/detekt.xml")
-        property("sonar.coverage.jacoco.xmlReportPaths", "build/reports/kover/xml/report.xml")
-    }
 }
 
 detekt {
