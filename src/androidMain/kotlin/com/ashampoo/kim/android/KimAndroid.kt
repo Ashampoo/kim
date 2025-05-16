@@ -19,7 +19,6 @@ import android.content.ContentResolver
 import android.content.Context
 import android.net.Uri
 import android.os.Build
-import android.provider.OpenableColumns
 import com.ashampoo.kim.Kim
 import com.ashampoo.kim.common.ImageReadException
 import com.ashampoo.kim.common.ImageWriteException
@@ -124,7 +123,7 @@ public object KimAndroid {
              * If a length was provided we use that,
              * otherwise we receive it from the contentResolver.
              */
-            val contentLength = length ?: contentResolver.getFileSize(uri)
+            val contentLength: Long? = length ?: contentResolver.getFileSize(uri)
 
             if (contentLength == null)
                 throw ImageReadException("Unable to get file size for URI $uri")
@@ -206,32 +205,6 @@ public object KimAndroid {
         return OutputStreamByteWriter(
             outputStream = file.outputStream()
         )
-    }
-
-    private fun ContentResolver.getFileSize(
-        uri: Uri
-    ): Long? {
-
-        val cursor = query(
-            uri,
-            null,
-            null,
-            null,
-            null
-        )
-
-        return cursor?.let {
-
-            it.moveToFirst()
-
-            val sizeIndex = cursor.getColumnIndex(OpenableColumns.SIZE)
-
-            val size = it.getLong(sizeIndex)
-
-            it.close()
-
-            size
-        }
     }
 }
 
