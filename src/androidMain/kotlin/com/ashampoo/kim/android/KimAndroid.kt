@@ -56,19 +56,35 @@ public object KimAndroid {
 
     @JvmStatic
     @Throws(ImageReadException::class)
-    public fun readMetadata(context: Context, uri: String): ImageMetadata? =
-        getByteReader(context.contentResolver, uri)?.let {
-            Kim.readMetadata(it)
+    public fun readMetadata(
+        context: Context,
+        uri: String,
+        length: Long? = null
+    ): ImageMetadata? =
+        getByteReader(
+            contentResolver = context.contentResolver,
+            uri = uri,
+            length = length
+        )?.let { byteReader ->
+            Kim.readMetadata(byteReader)
         }
 
     @JvmStatic
     @Throws(ImageReadException::class)
-    public fun readMetadata(contentResolver: ContentResolver, uri: String): ImageMetadata? =
-        getByteReader(contentResolver, uri)?.let {
-            Kim.readMetadata(it)
+    public fun readMetadata(
+        contentResolver: ContentResolver,
+        uri: String,
+        length: Long? = null
+    ): ImageMetadata? =
+        getByteReader(contentResolver, uri, length)?.let { byteReader ->
+            Kim.readMetadata(byteReader)
         }
 
-    public fun getByteReader(contentResolver: ContentResolver, uri: String): ByteReader? =
+    public fun getByteReader(
+        contentResolver: ContentResolver,
+        uri: String,
+        length: Long? = null
+    ): ByteReader? =
         Uri.parse(uri).run {
 
             /*
@@ -78,17 +94,29 @@ public object KimAndroid {
              */
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
 
-                contentResolver.getFileSize(this)?.let { size ->
-                    contentResolver.openInputStream(this)?.let {
-                        AndroidInputStreamByteReader(it, size)
-                    }
+                /*
+                 * If a length was provided we use that,
+                 * otherwise we receive it from the contentResolver.
+                 */
+                val contentLength = length ?: contentResolver.getFileSize(this)
+
+                if (contentLength == null)
+                    return null
+
+                contentResolver.openInputStream(this)?.let { inputStream ->
+                    AndroidInputStreamByteReader(inputStream, contentLength)
                 }
 
             } else {
 
-                path?.let {
-                    val file = File(it)
-                    AndroidInputStreamByteReader(file.inputStream(), file.length())
+                path?.let { pathname ->
+
+                    val file = File(pathname)
+
+                    AndroidInputStreamByteReader(
+                        inputStream = file.inputStream(),
+                        contentLength = length ?: file.length()
+                    )
                 }
             }
         }
@@ -117,7 +145,7 @@ public object KimAndroid {
         }
 
     private fun ContentResolver.getFileSize(
-        uri: Uri,
+        uri: Uri
     ): Long? {
 
         val cursor = query(
@@ -156,9 +184,17 @@ public fun Kim.readMetadata(file: File): ImageMetadata? =
     KimAndroid.readMetadata(file)
 
 @Throws(ImageReadException::class)
-public fun Kim.readMetadata(context: Context, uri: String) =
-    KimAndroid.readMetadata(context, uri)
+public fun Kim.readMetadata(
+    context: Context,
+    uri: String,
+    length: Long? = null
+): ImageMetadata? =
+    KimAndroid.readMetadata(context, uri, length)
 
 @Throws(ImageReadException::class)
-public fun Kim.readMetadata(contentResolver: ContentResolver, uri: String) =
-    KimAndroid.readMetadata(contentResolver, uri)
+public fun Kim.readMetadata(
+    contentResolver: ContentResolver,
+    uri: String,
+    length: Long? = null
+): ImageMetadata? =
+    KimAndroid.readMetadata(contentResolver, uri, length)
