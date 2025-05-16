@@ -22,6 +22,7 @@ import android.os.Build
 import android.provider.OpenableColumns
 import com.ashampoo.kim.Kim
 import com.ashampoo.kim.common.ImageReadException
+import com.ashampoo.kim.common.ImageWriteException
 import com.ashampoo.kim.format.ImageMetadata
 import com.ashampoo.kim.input.AndroidInputStreamByteReader
 import com.ashampoo.kim.input.ByteReader
@@ -38,7 +39,12 @@ public object KimAndroid {
     @JvmStatic
     @Throws(ImageReadException::class)
     public fun readMetadata(inputStream: InputStream, length: Long): ImageMetadata? =
-        Kim.readMetadata(AndroidInputStreamByteReader(inputStream, length))
+        Kim.readMetadata(
+            byteReader = AndroidInputStreamByteReader(
+                inputStream = inputStream,
+                contentLength = length
+            )
+        )
 
     @JvmStatic
     @Throws(ImageReadException::class)
@@ -51,7 +57,10 @@ public object KimAndroid {
 
         check(file.exists()) { "File does not exist: $file" }
 
-        return readMetadata(file.inputStream().buffered(), file.length())
+        return readMetadata(
+            inputStream = file.inputStream().buffered(),
+            length = file.length()
+        )
     }
 
     @JvmStatic
@@ -61,13 +70,13 @@ public object KimAndroid {
         uri: String,
         length: Long? = null
     ): ImageMetadata? =
-        createByteReader(
-            contentResolver = context.contentResolver,
-            uri = uri,
-            length = length
-        )?.let { byteReader ->
-            Kim.readMetadata(byteReader)
-        }
+        Kim.readMetadata(
+            byteReader = createByteReader(
+                contentResolver = context.contentResolver,
+                uri = uri,
+                length = length
+            )
+        )
 
     @JvmStatic
     @Throws(ImageReadException::class)
@@ -76,80 +85,101 @@ public object KimAndroid {
         uri: String,
         length: Long? = null
     ): ImageMetadata? =
-        createByteReader(contentResolver, uri, length)?.let { byteReader ->
-            Kim.readMetadata(byteReader)
-        }
+        Kim.readMetadata(
+            byteReader = createByteReader(
+                contentResolver = contentResolver,
+                uri = uri,
+                length = length
+            )
+        )
 
+    @Throws(ImageReadException::class)
     public fun createByteReader(
         contentResolver: ContentResolver,
         uri: String,
         length: Long? = null
-    ): ByteReader? =
-        Uri.parse(uri).run {
+    ): ByteReader {
+
+        val androidUri = Uri.parse(uri)
+
+        /*
+         * On Android 10 (API 29) and above, we must use ContentResolver
+         * due to Scoped Storage restrictions. For older versions, we can
+         * directly access the file system using file paths.
+         */
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
 
             /*
-             * On Android 10 (API 29) and above, we must use ContentResolver
-             * due to Scoped Storage restrictions. For older versions, we can
-             * directly access the file system using file paths.
+             * If a length was provided we use that,
+             * otherwise we receive it from the contentResolver.
              */
+            val contentLength = length ?: contentResolver.getFileSize(androidUri)
 
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            if (contentLength == null)
+                throw ImageReadException("Unable to get file size for URI $uri")
 
-                /*
-                 * If a length was provided we use that,
-                 * otherwise we receive it from the contentResolver.
-                 */
-                val contentLength = length ?: contentResolver.getFileSize(this)
+            val inputStream = contentResolver.openInputStream(androidUri)
 
-                if (contentLength == null)
-                    return null
+            if (inputStream == null)
+                throw ImageReadException("Unable to open input stream for URI $uri")
 
-                contentResolver.openInputStream(this)?.let { inputStream ->
-                    AndroidInputStreamByteReader(inputStream, contentLength)
-                }
-
-            } else {
-
-                path?.let { pathname ->
-
-                    val file = File(pathname)
-
-                    AndroidInputStreamByteReader(
-                        inputStream = file.inputStream(),
-                        contentLength = length ?: file.length()
-                    )
-                }
-            }
+            return AndroidInputStreamByteReader(inputStream, contentLength)
         }
 
+        /*
+         * Fall back to the old way
+         */
+
+        val pathname = androidUri.path
+
+        if (pathname == null)
+            throw ImageReadException("Unable to find path for URI $uri")
+
+        val file = File(pathname)
+
+        return AndroidInputStreamByteReader(
+            inputStream = file.inputStream(),
+            contentLength = length ?: file.length()
+        )
+    }
+
+    @Throws(ImageWriteException::class)
     public fun createByteWriter(
         contentResolver: ContentResolver,
         uri: String
-    ): ByteWriter? =
-        Uri.parse(uri).run {
+    ): ByteWriter {
 
-            /*
-             * On Android 10 (API 29) and above, we must use ContentResolver
-             * due to Scoped Storage restrictions. For older versions, we can
-             * directly access the file system using file paths.
-             */
+        val androidUri = Uri.parse(uri)
 
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+        /*
+         * On Android 10 (API 29) and above, we must use ContentResolver
+         * due to Scoped Storage restrictions. For older versions, we can
+         * directly access the file system using file paths.
+         */
 
-                contentResolver.openOutputStream(this)?.let { outputStream ->
-                    OutputStreamByteWriter(outputStream)
-                }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
 
-            } else {
+            val outputStream = contentResolver.openOutputStream(androidUri)
 
-                path?.let { pathname ->
+            if (outputStream == null)
+                throw ImageWriteException("Unable to open ouput stream for URI $uri")
 
-                    val file = File(pathname)
-
-                    OutputStreamByteWriter(file.outputStream())
-                }
-            }
+            return OutputStreamByteWriter(outputStream)
         }
+
+        /*
+         * Fall back to the old way
+         */
+
+        val pathname = androidUri.path
+
+        if (pathname == null)
+            throw ImageWriteException("Unable to find path for URI $uri")
+
+        val file = File(pathname)
+
+        return OutputStreamByteWriter(file.outputStream())
+    }
 
     private fun ContentResolver.getFileSize(
         uri: Uri
