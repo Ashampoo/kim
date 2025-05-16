@@ -13,7 +13,7 @@ on:
 jobs:
   build:
     name: Build & Test
-    runs-on: macos-13
+    runs-on: macos-15
     steps:
       - name: Checkout workspace
         uses: actions/checkout@v4
@@ -21,16 +21,16 @@ jobs:
         with:
           fetch-depth: 0 # no shallow clones for SonarQube
       - name: Set up Java JDK 17
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
-          java-version: '17.0.13+11'
-      - name: Select XCode 15.2
+          java-version: '17.0.15+6'
+      - name: Select XCode 16.3
         run: |
-          sudo xcode-select -s /Applications/Xcode_15.2.app/Contents/Developer
+          sudo xcode-select -s /Applications/Xcode_16.3.app/Contents/Developer
           xcodebuild -version
       - name: Gradle Cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: |
             ~/.gradle/caches
@@ -39,19 +39,19 @@ jobs:
           key: ${{ runner.os }}-gradle-${{ hashFiles('gradle/wrapper/gradle-wrapper.properties', 'build.gradle.kts') }}
           restore-keys: ${{ runner.os }}-gradle-
       - name: Kotlin Native Cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ~/.konan
           key: ${{ runner.os }}-konan-${{ hashFiles('gradle/wrapper/gradle-wrapper.properties', 'build.gradle.kts') }}
           restore-keys: ${{ runner.os }}-konan-
       - name: Android Cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ~/.android
           key: ${{ runner.os }}-android-${{ hashFiles('gradle/wrapper/gradle-wrapper.properties', 'build.gradle.kts') }}
           restore-keys: ${{ runner.os }}-android-
       - name: Cache SonarCloud packages
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ~/.sonar/cache
           key: ${{ runner.os }}-sonar
