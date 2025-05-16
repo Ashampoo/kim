@@ -26,6 +26,9 @@ private const val MIN_LONGITUDE = -MAX_LONGITUDE
 /** Around ~100 m accuracy */
 private const val THREE_DIGIT_PRECISE: Double = 1_000.0
 
+/** Around ~10 m accuracy */
+private const val FOUR_DIGIT_PRECISE: Double = 10_000.0
+
 /** Around ~1 m accuracy */
 private const val FIVE_DIGIT_PRECISE: Double = 100_000.0
 
@@ -41,14 +44,11 @@ public data class GpsCoordinates(
 
     val latLongString: String = "${roundPrecise(latitude)}, ${roundPrecise(longitude)}"
 
-    public fun toPreciseCoordinates(): GpsCoordinates = GpsCoordinates(
-        latitude = roundPrecise(latitude),
-        longitude = roundPrecise(longitude)
-    )
-
-    public fun toCoarseCoordinates(): GpsCoordinates = GpsCoordinates(
-        latitude = roundCoarse(latitude),
-        longitude = roundCoarse(longitude)
+    public fun toRoundedCoordinates(
+        precision: Precision
+    ): GpsCoordinates = GpsCoordinates(
+        latitude = round(latitude, precision),
+        longitude = round(longitude, precision)
     )
 
     public fun isNullIsland(): Boolean =
@@ -76,19 +76,38 @@ public data class GpsCoordinates(
             )
         }
     }
+
+    public enum class Precision {
+
+        ONE_METER,
+        TEN_METERS,
+        HUNDRED_METERS
+    }
 }
 
-/**
- * Rounds the coordinates to three decimal places,
- * providing approximately 100 meters accuracy.
- */
-private fun roundCoarse(value: Double): Double =
-    round(value * THREE_DIGIT_PRECISE) / THREE_DIGIT_PRECISE
+private fun roundPrecise(
+    value: Double
+) = round(
+    value = value,
+    precision = GpsCoordinates.Precision.ONE_METER
+)
 
 /**
  * Rounds the coordinates to five decimal places,
  * providing approximately 1 meter accuracy.
  * Suitable for display and precise localization.
  */
-private fun roundPrecise(value: Double): Double =
-    round(value * FIVE_DIGIT_PRECISE) / FIVE_DIGIT_PRECISE
+private fun round(
+    value: Double,
+    precision: GpsCoordinates.Precision
+): Double = when (precision) {
+
+    GpsCoordinates.Precision.ONE_METER ->
+        round(value * FIVE_DIGIT_PRECISE) / FIVE_DIGIT_PRECISE
+
+    GpsCoordinates.Precision.TEN_METERS ->
+        round(value * FOUR_DIGIT_PRECISE) / FOUR_DIGIT_PRECISE
+
+    GpsCoordinates.Precision.HUNDRED_METERS ->
+        round(value * THREE_DIGIT_PRECISE) / THREE_DIGIT_PRECISE
+}

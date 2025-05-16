@@ -36,7 +36,7 @@ class GpsCoordinatesTest {
     }
 
     @Test
-    fun testPreciseCoordinates() {
+    fun testToRoundedCoordinates() {
 
         assertEquals(
             expected = GpsCoordinates(
@@ -46,12 +46,23 @@ class GpsCoordinatesTest {
             actual = GpsCoordinates(
                 latitude = 53.2193897123,
                 longitude = 8.2396611123
-            ).toPreciseCoordinates()
+            ).toRoundedCoordinates(
+                precision = GpsCoordinates.Precision.ONE_METER
+            )
         )
-    }
 
-    @Test
-    fun testCoarseCoordinates() {
+        assertEquals(
+            expected = GpsCoordinates(
+                latitude = 53.2194,
+                longitude = 8.2397
+            ),
+            actual = GpsCoordinates(
+                latitude = 53.2193897123,
+                longitude = 8.2396611123
+            ).toRoundedCoordinates(
+                precision = GpsCoordinates.Precision.TEN_METERS
+            )
+        )
 
         assertEquals(
             expected = GpsCoordinates(
@@ -61,7 +72,9 @@ class GpsCoordinatesTest {
             actual = GpsCoordinates(
                 latitude = 53.2193897123,
                 longitude = 8.2396611123
-            ).toCoarseCoordinates()
+            ).toRoundedCoordinates(
+                precision = GpsCoordinates.Precision.HUNDRED_METERS
+            )
         )
     }
 
