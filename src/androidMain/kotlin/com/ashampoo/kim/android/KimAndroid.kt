@@ -136,8 +136,8 @@ public object KimAndroid {
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
 
-                contentResolver.openOutputStream(this)?.let {
-                    OutputStreamByteWriter(it)
+                contentResolver.openOutputStream(this)?.let { outputStream ->
+                    OutputStreamByteWriter(outputStream)
                 }
 
             } else {
