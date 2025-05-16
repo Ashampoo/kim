@@ -15,6 +15,7 @@
  */
 package com.ashampoo.kim.input
 
+import android.os.Build
 import com.ashampoo.kim.common.slice
 import java.io.InputStream
 
@@ -40,10 +41,15 @@ public open class AndroidInputStreamByteReader(
     override fun readBytes(count: Int): ByteArray {
 
         /*
-         * InputStream.readNBytes(count) is not available
-         * on older Android versions. So we need to read
-         * into a buffer.
+         * On Android 13 and later use the more efficient API.
          */
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU)
+            return inputStream.readNBytes(count)
+
+        /*
+         * Fall back to old API that works on all versions.
+         */
+
         val buffer = ByteArray(count)
 
         val bytes = inputStream.read(buffer)

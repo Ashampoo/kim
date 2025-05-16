@@ -96,7 +96,7 @@ comments:
 complexity:
   active: true
   CognitiveComplexMethod:
-    active: false  # already checked by SonarQube
+    active: true
     threshold: 15
   ComplexCondition:
     active: true
@@ -108,7 +108,7 @@ complexity:
     includePrivateDeclarations: false
     ignoreOverloaded: false
   CyclomaticComplexMethod:
-    active: false # already checked by SonarQube
+    active: true
     threshold: 15
     ignoreSingleWhenExpression: false
     ignoreSimpleWhenEntries: false
@@ -133,8 +133,8 @@ complexity:
     active: false
     threshold: 60
   LongParameterList:
-    active: false # already checked by SonarQube
-    functionThreshold: 7 # 7 is SonarQube default
+    active: true
+    functionThreshold: 7
     constructorThreshold: 7
     ignoreDefaultParameters: false
     ignoreDataClasses: true

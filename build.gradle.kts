@@ -4,18 +4,16 @@ import org.jetbrains.kotlin.gradle.plugin.mpp.NativeBuildType
 import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
 
 plugins {
-    kotlin("multiplatform") version "2.1.20"
-    id("com.android.library") version "8.5.0"
+    kotlin("multiplatform") version "2.1.21"
+    id("com.android.library") version "8.9.3"
     id("maven-publish")
     id("signing")
     id("io.gitlab.arturbosch.detekt") version "1.23.8"
-    id("org.sonarqube") version "4.3.1.3277"
-    id("org.jetbrains.kotlinx.kover") version "0.6.1"
-    id("com.asarkar.gradle.build-time-tracker") version "4.3.0"
+    id("org.jetbrains.kotlinx.kover") version "0.9.1"
+    id("com.asarkar.gradle.build-time-tracker") version "5.0.1"
     id("me.qoomon.git-versioning") version "6.4.4"
     id("com.goncalossilva.resources") version "0.10.0"
-    id("com.github.ben-manes.versions") version "0.51.0"
-    id("org.jetbrains.dokka") version "1.9.20"
+    id("com.github.ben-manes.versions") version "0.52.0"
 }
 
 repositories {
@@ -25,8 +23,8 @@ repositories {
 
 val productName: String = "Ashampoo Kim"
 
-val ktorVersion: String = "3.1.2"
-val xmpCoreVersion: String = "1.5.1"
+val ktorVersion: String = "3.1.3"
+val xmpCoreVersion: String = "1.5.2"
 val dateTimeVersion: String = "0.6.2"
 val kotlinxIoVersion: String = "0.7.0"
 
@@ -54,42 +52,9 @@ gitVersioning.apply {
 }
 
 apply(plugin = "io.gitlab.arturbosch.detekt")
-apply(plugin = "org.sonarqube")
-apply(plugin = "kover")
 
 buildTimeTracker {
     sortBy.set(com.asarkar.gradle.buildtimetracker.Sort.DESC)
-}
-
-sonar {
-    properties {
-
-        property("sonar.projectKey", "kim")
-        property("sonar.projectName", productName)
-        property("sonar.organization", "ashampoo")
-        property("sonar.host.url", "https://sonarcloud.io")
-
-        property(
-            "sonar.sources",
-            listOf(
-                "./src/androidMain/kotlin",
-                "./src/appleMain/kotlin",
-                "./src/commonMain/kotlin",
-                "./src/jvmMain/kotlin",
-                "./src/posixMain/kotlin"
-            )
-        )
-        property(
-            "sonar.tests",
-            listOf(
-                "./src/commonTest/kotlin"
-            )
-        )
-
-        property("sonar.android.lint.report", "build/reports/lint-results.xml")
-        property("sonar.kotlin.detekt.reportPaths", "build/reports/detekt/detekt.xml")
-        property("sonar.coverage.jacoco.xmlReportPaths", "build/reports/kover/xml/report.xml")
-    }
 }
 
 detekt {
@@ -102,11 +67,6 @@ detekt {
 }
 
 kover {
-}
-
-koverMerged {
-    xmlReport {
-    }
 }
 
 dependencies {
