@@ -88,10 +88,11 @@ public object KimAndroid {
         Uri.parse(uri).run {
 
             /*
-             * On Android 10 and later we can use the context resolver
-             * to get what we need. On older versions we fall back to
-             * the old system.
+             * On Android 10 (API 29) and above, we must use ContentResolver
+             * due to Scoped Storage restrictions. For older versions, we can
+             * directly access the file system using file paths.
              */
+
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
 
                 /*
@@ -121,24 +122,27 @@ public object KimAndroid {
             }
         }
 
-    public fun getByteWriter(context: Context, uri: String): ByteWriter? =
+    public fun getByteWriter(contentResolver: ContentResolver, uri: String): ByteWriter? =
         Uri.parse(uri).run {
 
             /*
-             * On Android 10 and later we can use the context resolver
-             * to get what we need. On older versions we fall back to
-             * the old system.
+             * On Android 10 (API 29) and above, we must use ContentResolver
+             * due to Scoped Storage restrictions. For older versions, we can
+             * directly access the file system using file paths.
              */
+
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
 
-                context.contentResolver.openOutputStream(this)?.let {
+                contentResolver.openOutputStream(this)?.let {
                     OutputStreamByteWriter(it)
                 }
 
             } else {
 
-                path?.let {
-                    val file = File(it)
+                path?.let { pathname ->
+
+                    val file = File(pathname)
+
                     OutputStreamByteWriter(file.outputStream())
                 }
             }
