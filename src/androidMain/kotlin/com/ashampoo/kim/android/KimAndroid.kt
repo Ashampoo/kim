@@ -47,19 +47,19 @@ public object KimAndroid {
 
     @JvmStatic
     @Throws(ImageReadException::class)
-    public fun readMetadata(context: Context, uri: String): ImageMetadata? =
-        getByteReader(context, uri)?.let {
-            Kim.readMetadata(it)
-        }
-
-    @JvmStatic
-    @Throws(ImageReadException::class)
     public fun readMetadata(file: File): ImageMetadata? {
 
         check(file.exists()) { "File does not exist: $file" }
 
         return readMetadata(file.inputStream().buffered(), file.length())
     }
+
+    @JvmStatic
+    @Throws(ImageReadException::class)
+    public fun readMetadata(context: Context, uri: String): ImageMetadata? =
+        getByteReader(context, uri)?.let {
+            Kim.readMetadata(it)
+        }
 
     public fun getByteReader(context: Context, uri: String): ByteReader? =
         Uri.parse(uri).run {
@@ -147,3 +147,7 @@ public fun Kim.readMetadata(path: String): ImageMetadata? =
 @Throws(ImageReadException::class)
 public fun Kim.readMetadata(file: File): ImageMetadata? =
     KimAndroid.readMetadata(file)
+
+@Throws(ImageReadException::class)
+public fun Kim.readMetadata(context: Context, uri: String) =
+    KimAndroid.readMetadata(context, uri)
