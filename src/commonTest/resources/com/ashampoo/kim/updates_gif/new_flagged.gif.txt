@@ -1,0 +1,47 @@
+File format : GIF
+Resolution  : 500 x 333
+---- XMP ----
+<x:xmpmeta xmlns:x="adobe:ns:meta/" x:xmptk="Ashampoo XMP Core 1.5.2">
+  <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+    <rdf:Description rdf:about=""
+        xmlns:MY="http://ns.mylollc.com/MyloEdit/"
+        xmlns:acdsee="http://ns.acdsee.com/iptc/1.0/"
+        xmlns:dc="http://purl.org/dc/elements/1.1/"
+        xmlns:narrative="http://ns.narrative.so/narrative_select/1.0/"
+        xmlns:xmp="http://ns.adobe.com/xap/1.0/"
+        xmlns:xmpDM="http://ns.adobe.com/xmp/1.0/DynamicMedia/"
+      MY:flag="true"
+      acdsee:tagged="True"
+      narrative:Tagged="True"
+      xmp:CreatorTool="exiftool"
+      xmp:Label="Demo GIF"
+      xmp:Rights="CC-BY 4.0"
+      xmpDM:pick="1">
+      <dc:creator>
+        <rdf:Seq>
+          <rdf:li>kim</rdf:li>
+        </rdf:Seq>
+      </dc:creator>
+      <dc:date>
+        <rdf:Seq>
+          <rdf:li>2025-04-04</rdf:li>
+        </rdf:Seq>
+      </dc:date>
+      <dc:description>
+        <rdf:Alt>
+          <rdf:li xml:lang="x-default">This is a sample GIF used to demonstrate XMP metadata embedding.</rdf:li>
+        </rdf:Alt>
+      </dc:description>
+      <dc:subject>
+        <rdf:Bag>
+          <rdf:li>Example GIF with XMP metadata</rdf:li>
+        </rdf:Bag>
+      </dc:subject>
+      <dc:title>
+        <rdf:Alt>
+          <rdf:li xml:lang="x-default">Sample GIF</rdf:li>
+        </rdf:Alt>
+      </dc:title>
+    </rdf:Description>
+  </rdf:RDF>
+</x:xmpmeta>
