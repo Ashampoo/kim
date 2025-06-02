@@ -45,7 +45,7 @@ public enum class ImageFormat(
     JXL("image/jxl", "public.jxl", setOf("jxl"));
 
     public fun isMetadataEmbeddable(): Boolean =
-        this == JPEG || this == PNG || this == WEBP || this == JXL
+        this == JPEG || this == PNG || this == GIF || this == WEBP || this == JXL
 
     public companion object {
 
