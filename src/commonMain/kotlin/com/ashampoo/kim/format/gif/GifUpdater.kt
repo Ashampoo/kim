@@ -27,6 +27,7 @@ import com.ashampoo.xmp.XMPMeta
 import com.ashampoo.xmp.XMPMetaFactory
 
 internal object GifUpdater : MetadataUpdater {
+
     override fun update(
         byteReader: ByteReader,
         byteWriter: ByteWriter,
