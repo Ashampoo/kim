@@ -30,10 +30,11 @@ import com.ashampoo.kim.format.tiff.constant.TiffConstants.DEFAULT_TIFF_BYTE_ORD
 import com.ashampoo.kim.format.tiff.constant.TiffTag
 import com.ashampoo.kim.model.GpsCoordinates
 import com.ashampoo.kim.model.MetadataUpdate
-import kotlinx.datetime.Instant
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
 import kotlin.math.abs
+import kotlin.time.ExperimentalTime
+import kotlin.time.Instant
 
 @Suppress("TooManyFunctions")
 public class TiffOutputSet(
@@ -94,6 +95,7 @@ public class TiffOutputSet(
     public fun findDirectory(directoryType: Int): TiffOutputDirectory? =
         directories.find { it.type == directoryType }
 
+    @OptIn(ExperimentalTime::class)
     public fun applyUpdate(update: MetadataUpdate) {
 
         val rootDirectory = getOrCreateRootDirectory()
@@ -119,7 +121,8 @@ public class TiffOutputSet(
                     else
                         TimeZone.currentSystemDefault()
 
-                    val exifDateString = Instant.fromEpochMilliseconds(update.takenDate)
+                    val exifDateString = Instant
+                        .fromEpochMilliseconds(update.takenDate)
                         .toLocalDateTime(timeZone)
                         .toExifDateString()
 
