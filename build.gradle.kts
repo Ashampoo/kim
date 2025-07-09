@@ -4,7 +4,7 @@ import org.jetbrains.kotlin.gradle.plugin.mpp.NativeBuildType
 import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
 
 plugins {
-    kotlin("multiplatform") version "2.1.21"
+    kotlin("multiplatform") version "2.2.0"
     id("com.android.library") version "8.9.3"
     id("maven-publish")
     id("signing")
@@ -23,10 +23,10 @@ repositories {
 
 val productName: String = "Ashampoo Kim"
 
-val ktorVersion: String = "3.1.3"
+val ktorVersion: String = "3.2.1"
 val xmpCoreVersion: String = "1.5.2"
-val dateTimeVersion: String = "0.6.2"
-val kotlinxIoVersion: String = "0.7.0"
+val dateTimeVersion: String = "0.7.1"
+val kotlinxIoVersion: String = "0.8.0"
 
 description = productName
 group = "com.ashampoo"

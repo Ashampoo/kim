@@ -28,6 +28,7 @@ import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toInstant
 import kotlin.jvm.JvmStatic
+import kotlin.time.ExperimentalTime
 
 /**
  * We only read metadata that the user is likely to change/correct
@@ -38,6 +39,7 @@ import kotlin.jvm.JvmStatic
  */
 public object XmpReader {
 
+    @OptIn(ExperimentalTime::class)
     @Suppress("LoopWithTooManyJumpStatements")
     @Throws(XMPException::class)
     @JvmStatic
@@ -66,7 +68,7 @@ public object XmpReader {
                 LocalDateTime.parse(it)
                     .toInstant(timeZone)
                     .toEpochMilliseconds()
-            } catch (ignore: Exception) {
+            } catch (_: Exception) {
                 /* We ignore invalid XMP DateTimeOriginal values. */
                 null
             }

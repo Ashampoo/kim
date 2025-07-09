@@ -34,6 +34,7 @@ import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toInstant
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
+import kotlin.time.ExperimentalTime
 
 /*
  * This is a dedicated object with @JvmStatic methods
@@ -160,6 +161,7 @@ public object PhotoMetadataConverter {
         return convertExifDateToIso8601Date(takenDate)
     }
 
+    @OptIn(ExperimentalTime::class)
     @JvmStatic
     private fun extractTakenDateMillisFromExif(
         metadata: ImageMetadata
@@ -188,11 +190,12 @@ public object PhotoMetadataConverter {
             else
                 TimeZone.currentSystemDefault()
 
-            return LocalDateTime.parse(takenDatePlusSubSecond)
+            return LocalDateTime
+                .parse(takenDatePlusSubSecond)
                 .toInstant(timeZone)
                 .toEpochMilliseconds()
 
-        } catch (ignore: Exception) {
+        } catch (_: Exception) {
 
             /*
              * Many photos contain wrong values here. We ignore this problem and hope

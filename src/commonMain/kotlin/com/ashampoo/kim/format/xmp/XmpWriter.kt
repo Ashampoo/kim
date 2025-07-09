@@ -24,10 +24,11 @@ import com.ashampoo.xmp.XMPLocation
 import com.ashampoo.xmp.XMPMeta
 import com.ashampoo.xmp.XMPMetaFactory
 import com.ashampoo.xmp.options.SerializeOptions
-import kotlinx.datetime.Instant
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
 import kotlin.jvm.JvmStatic
+import kotlin.time.ExperimentalTime
+import kotlin.time.Instant
 
 public object XmpWriter {
 
@@ -39,6 +40,7 @@ public object XmpWriter {
             .setUseCanonicalFormat(false)
             .setSort(true)
 
+    @OptIn(ExperimentalTime::class)
     @JvmStatic
     public fun XMPMeta.applyUpdate(update: MetadataUpdate) {
 
@@ -56,7 +58,8 @@ public object XmpWriter {
                     else
                         TimeZone.currentSystemDefault()
 
-                    val isoDate = Instant.fromEpochMilliseconds(update.takenDate)
+                    val isoDate = Instant
+                        .fromEpochMilliseconds(update.takenDate)
                         .toLocalDateTime(timeZone)
                         .toString()
 
