@@ -154,3 +154,13 @@ jobs:
           OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
           OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
         run: ./gradlew publishAllPublicationsToSonatypeRepository
+      - name: Make avaialble in Maven Central Publisher Portal
+        if: startsWith(github.ref, 'refs/tags/') # Only for releases
+        env:
+          OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
+          OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
+        run: |
+          curl -X POST \
+          --header "Authorization: Bearer $(echo -n "$OSSRH_USERNAME:$OSSRH_PASSWORD" | base64)" \
+          https://ossrh-staging-api.central.sonatype.com/manual/upload/defaultRepository/com.ashampoo
+    
