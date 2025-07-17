@@ -154,6 +154,9 @@ jobs:
           OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
           OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
         run: ./gradlew publishAllPublicationsToSonatypeRepository
+      - name: Wait 5 seconds
+        if: startsWith(github.ref, 'refs/tags/') # Only for releases
+        run: sleep 5
       - name: Make avaialble in Maven Central Publisher Portal
         if: startsWith(github.ref, 'refs/tags/') # Only for releases
         env:
