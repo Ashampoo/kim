@@ -141,29 +141,15 @@ jobs:
           if-no-files-found: error
           name: kim-linuxArm64-lib.zip
           path: build/bin/linuxArm64/releaseStatic
-      - name: Export secring.pgp
-        if: startsWith(github.ref, 'refs/tags/') # Only for releases
-        run: |
-          echo ${{ secrets.SINGING_SECRET_KEY_RING_FILE_CONTENTS }} | base64 --decode > secring.pgp
       - name: Publish to Maven Central
         if: startsWith(github.ref, 'refs/tags/') # Only for releases
+        run: ./gradlew publishToMavenCentral --no-configuration-cache
         env:
           SIGNING_ENABLED: true
-          SIGNING_KEY_ID: ${{ secrets.SIGNING_KEY_ID }}
-          SIGNING_PASSWORD: ${{ secrets.SIGNING_PASSWORD }}
-          OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
-          OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
-        run: ./gradlew publishAllPublicationsToSonatypeRepository
-      - name: Wait 5 seconds
-        if: startsWith(github.ref, 'refs/tags/') # Only for releases
-        run: sleep 5
-      - name: Make avaialble in Maven Central Publisher Portal
-        if: startsWith(github.ref, 'refs/tags/') # Only for releases
-        env:
-          OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
-          OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
-        run: |
-          curl -X POST \
-          --header "Authorization: Bearer $(echo -n "$OSSRH_USERNAME:$OSSRH_PASSWORD" | base64)" \
-          https://ossrh-staging-api.central.sonatype.com/manual/upload/defaultRepository/com.ashampoo
+          ORG_GRADLE_PROJECT_mavenCentralUsername: ${{ secrets.OSSRH_USERNAME }}
+          ORG_GRADLE_PROJECT_mavenCentralPassword: ${{ secrets.OSSRH_PASSWORD }}
+          ORG_GRADLE_PROJECT_signingInMemoryKeyId: ${{ secrets.SIGNING_KEY_ID }}
+          ORG_GRADLE_PROJECT_signingInMemoryKeyPassword: ${{ secrets.SIGNING_PASSWORD }}
+          ORG_GRADLE_PROJECT_signingInMemoryKey: ${{ secrets.SINGING_SECRET_KEY_RING_FILE_CONTENTS }}          
+
     

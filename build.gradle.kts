@@ -6,7 +6,6 @@ import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
 plugins {
     kotlin("multiplatform") version "2.2.0"
     id("com.android.library") version "8.9.3"
-    id("maven-publish")
     id("signing")
     id("io.gitlab.arturbosch.detekt") version "1.23.8"
     id("org.jetbrains.kotlinx.kover") version "0.9.1"
@@ -14,6 +13,7 @@ plugins {
     id("me.qoomon.git-versioning") version "6.4.4"
     id("com.goncalossilva.resources") version "0.10.0"
     id("com.github.ben-manes.versions") version "0.52.0"
+    id("com.vanniktech.maven.publish") version "0.34.0"
 }
 
 repositories {
@@ -443,59 +443,42 @@ afterEvaluate {
     }
 }
 
-fun getExtraString(name: String): String? = ext[name]?.toString()
+mavenPublishing {
 
-publishing {
-    publications {
+    publishToMavenCentral()
 
-        // Configure maven central repository
-        repositories {
-            maven {
-                name = "sonatype"
-                setUrl("https://ossrh-staging-api.central.sonatype.com/service/local/staging/deploy/maven2/")
-                credentials {
-                    username = getExtraString("ossrhUsername")
-                    password = getExtraString("ossrhPassword")
-                }
+    if (signingEnabled)
+        signAllPublications()
+
+    coordinates(
+        groupId = group.toString(),
+        artifactId = "kim",
+        version = version.toString()
+    )
+
+    pom {
+
+        name = productName
+        description = "Kotlin Multiplatform library for image metadata manipulation"
+        url = "https://github.com/Ashampoo/kim"
+
+        licenses {
+            license {
+                name = "The Apache License, Version 2.0"
+                url = "https://www.apache.org/licenses/LICENSE-2.0.txt"
             }
         }
 
-        publications.withType<MavenPublication> {
-
-            artifact(javadocJar.get())
-
-            pom {
-
-                name.set(productName)
-                description.set("Kotlin Multiplatform library for image metadata manipulation")
-                url.set("https://github.com/Ashampoo/kim")
-
-                licenses {
-                    license {
-                        name.set("The Apache License, Version 2.0")
-                        url.set("https://www.apache.org/licenses/LICENSE-2.0.txt")
-                    }
-                }
-
-                developers {
-                    developer {
-                        name.set("Ashampoo GmbH & Co. KG")
-                        url.set("https://www.ashampoo.com/")
-                    }
-                }
-
-                scm {
-                    connection.set("https://github.com/Ashampoo/kim.git")
-                    url.set("https://github.com/Ashampoo/kim")
-                }
+        developers {
+            developer {
+                name = "Ashampoo GmbH & Co. KG"
+                url = "https://www.ashampoo.com/"
             }
         }
 
-        if (signingEnabled) {
-
-            signing {
-                sign(publishing.publications)
-            }
+        scm {
+            url = "https://github.com/Ashampoo/kim"
+            connection = "scm:git:git://github.com/Ashampoo/kim.git"
         }
     }
 }
