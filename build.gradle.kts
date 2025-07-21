@@ -358,81 +358,6 @@ android {
 
 val signingEnabled: Boolean = System.getenv("SIGNING_ENABLED")?.toBoolean() ?: false
 
-afterEvaluate {
-
-    if (signingEnabled) {
-
-        /*
-         * Explicitly configure that signing comes before publishing.
-         * Otherwise the task execution of "publishAllPublicationsToSonatypeRepository" will fail.
-         */
-
-        val signJvmPublication by tasks.getting
-        val signAndroidReleasePublication by tasks.getting
-        val signIosArm64Publication by tasks.getting
-        val signIosX64Publication by tasks.getting
-        val signIosSimulatorArm64Publication by tasks.getting
-        val signMacosArm64Publication by tasks.getting
-        val signMacosX64Publication by tasks.getting
-        val signWinPublication by tasks.getting
-        val signLinuxX64Publication by tasks.getting
-        val signLinuxArm64Publication by tasks.getting
-        val signJsPublication by tasks.getting
-        val signWasmJsPublication by tasks.getting
-        // val signWasmWasiPublication by tasks.getting
-        val signKotlinMultiplatformPublication by tasks.getting
-
-        val publishJvmPublicationToSonatypeRepository by tasks.getting
-        val publishAndroidReleasePublicationToSonatypeRepository by tasks.getting
-        val publishIosArm64PublicationToSonatypeRepository by tasks.getting
-        val publishIosX64PublicationToSonatypeRepository by tasks.getting
-        val publishIosSimulatorArm64PublicationToSonatypeRepository by tasks.getting
-        val publishMacosArm64PublicationToSonatypeRepository by tasks.getting
-        val publishMacosX64PublicationToSonatypeRepository by tasks.getting
-        val publishWinPublicationToSonatypeRepository by tasks.getting
-        val publishLinuxX64PublicationToSonatypeRepository by tasks.getting
-        val publishLinuxArm64PublicationToSonatypeRepository by tasks.getting
-        val publishJsPublicationToSonatypeRepository by tasks.getting
-        val publishWasmJsPublicationToSonatypeRepository by tasks.getting
-        // val publishWasmWasiPublicationToSonatypeRepository by tasks.getting
-        val publishKotlinMultiplatformPublicationToSonatypeRepository by tasks.getting
-        val publishAllPublicationsToSonatypeRepository by tasks.getting
-
-        val signTasks = listOf(
-            signJvmPublication, signAndroidReleasePublication,
-            signIosArm64Publication, signIosX64Publication,
-            signIosSimulatorArm64Publication,
-            signMacosArm64Publication, signMacosX64Publication,
-            signWinPublication, signLinuxX64Publication, signLinuxArm64Publication,
-            signJsPublication, signWasmJsPublication, // signWasmWasiPublication,
-            signKotlinMultiplatformPublication
-        )
-
-        val publishTasks = listOf(
-            publishJvmPublicationToSonatypeRepository,
-            publishAndroidReleasePublicationToSonatypeRepository,
-            publishIosArm64PublicationToSonatypeRepository,
-            publishIosX64PublicationToSonatypeRepository,
-            publishIosSimulatorArm64PublicationToSonatypeRepository,
-            publishMacosArm64PublicationToSonatypeRepository,
-            publishMacosX64PublicationToSonatypeRepository,
-            publishWinPublicationToSonatypeRepository,
-            publishLinuxX64PublicationToSonatypeRepository,
-            publishLinuxArm64PublicationToSonatypeRepository,
-            publishJsPublicationToSonatypeRepository,
-            publishWasmJsPublicationToSonatypeRepository,
-            // publishWasmWasiPublicationToSonatypeRepository,
-            publishKotlinMultiplatformPublicationToSonatypeRepository,
-            publishAllPublicationsToSonatypeRepository
-        )
-
-        /* Each publish task depenends on every sign task. */
-        for (publishTask in publishTasks)
-            for (signTask in signTasks)
-                publishTask.dependsOn(signTask)
-    }
-}
-
 mavenPublishing {
 
     publishToMavenCentral()
@@ -441,7 +366,7 @@ mavenPublishing {
         signAllPublications()
 
     coordinates(
-        groupId = group.toString(),
+        groupId = "com.ashampoo",
         artifactId = "kim",
         version = version.toString()
     )
