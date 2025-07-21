@@ -356,16 +356,6 @@ android {
 
 // region Maven publish
 
-ext["signing.keyId"] = System.getenv("SIGNING_KEY_ID")
-ext["signing.password"] = System.getenv("SIGNING_PASSWORD")
-ext["signing.secretKeyRingFile"] = "secring.pgp"
-ext["ossrhUsername"] = System.getenv("OSSRH_USERNAME")
-ext["ossrhPassword"] = System.getenv("OSSRH_PASSWORD")
-
-val javadocJar: TaskProvider<Jar> by tasks.registering(Jar::class) {
-    archiveClassifier.set("javadoc")
-}
-
 val signingEnabled: Boolean = System.getenv("SIGNING_ENABLED")?.toBoolean() ?: false
 
 afterEvaluate {
