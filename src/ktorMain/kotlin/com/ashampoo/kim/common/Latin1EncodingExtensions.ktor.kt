@@ -16,13 +16,20 @@
 package com.ashampoo.kim.common
 
 import io.ktor.utils.io.charsets.Charsets
-import io.ktor.utils.io.core.toByteArray
+import io.ktor.utils.io.charsets.decode
+import io.ktor.utils.io.charsets.encodeToByteArray
+import kotlinx.io.Buffer
 
-internal actual fun ByteArray.decodeLatin1BytesToString(): String =
-    io.ktor.utils.io.core.String(
-        bytes = this,
-        charset = Charsets.ISO_8859_1
-    )
+private val decoder = Charsets.ISO_8859_1.newDecoder()
+private val encoder = Charsets.ISO_8859_1.newEncoder()
+
+internal actual fun ByteArray.decodeLatin1BytesToString(): String {
+
+    val buffer = Buffer()
+    buffer.write(this)
+
+    return decoder.decode(buffer)
+}
 
 internal actual fun String.encodeToLatin1Bytes(): ByteArray =
-    this.toByteArray(Charsets.ISO_8859_1)
+    encoder.encodeToByteArray(this)
