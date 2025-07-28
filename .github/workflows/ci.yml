@@ -24,10 +24,10 @@ jobs:
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
-          java-version: '17.0.15+6'
-      - name: Select XCode 16.3
+          java-version: '17.0.16+8'
+      - name: Select XCode 16.4
         run: |
-          sudo xcode-select -s /Applications/Xcode_16.3.app/Contents/Developer
+          sudo xcode-select -s /Applications/Xcode_16.4.app/Contents/Developer
           xcodebuild -version
       - name: Gradle Cache
         uses: actions/cache@v4
