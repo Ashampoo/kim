@@ -1,0 +1,39 @@
+[versions]
+kotlin = "2.2.0"
+android-gradle = "8.9.3"
+android-compile-sdk = "36"
+android-build-tools = "36.0.0"
+android-min-sdk = "21"
+detekt = "1.23.8"
+kover = "0.9.1"
+build-time-tracker = "5.0.1"
+git-versioning = "6.4.4"
+resources = "0.10.1"
+versions-plugin = "0.52.0"
+maven-publish = "0.34.0"
+
+ktor = "3.2.2"
+xmpcore = "1.6.0"
+kotlinx-datetime = "0.7.1"
+kotlinx-io = "0.8.0"
+kotlinx-browser = "0.3"
+pako = "2.1.0"
+
+[libraries]
+kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinx-datetime" }
+xmpcore = { module = "com.ashampoo:xmpcore", version.ref = "xmpcore" }
+kotlinx-io-core = { module = "org.jetbrains.kotlinx:kotlinx-io-core", version.ref = "kotlinx-io" }
+ktor-io = { module = "io.ktor:ktor-io", version.ref = "ktor" }
+kotlinx-browser = { module = "org.jetbrains.kotlinx:kotlinx-browser", version.ref = "kotlinx-browser" }
+detekt-formatting = { module = "io.gitlab.arturbosch.detekt:detekt-formatting", version.ref = "detekt" }
+
+[plugins]
+kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
+android-library = { id = "com.android.library", version.ref = "android-gradle" }
+detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
+kover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kover" }
+build-time-tracker = { id = "com.asarkar.gradle.build-time-tracker", version.ref = "build-time-tracker" }
+git-versioning = { id = "me.qoomon.git-versioning", version.ref = "git-versioning" }
+resources = { id = "com.goncalossilva.resources", version.ref = "resources" }
+versions = { id = "com.github.ben-manes.versions", version.ref = "versions-plugin" }
+maven-publish = { id = "com.vanniktech.maven.publish", version.ref = "maven-publish" }

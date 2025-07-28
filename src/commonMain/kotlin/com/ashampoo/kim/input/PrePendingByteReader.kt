@@ -32,7 +32,7 @@ internal class PrePendingByteReader(
     override fun readByte(): Byte? {
 
         if (prependedBytesBuffer.isNotEmpty())
-            return prependedBytesBuffer.removeFirst()
+            return prependedBytesBuffer.removeAt(0)
 
         return delegate.readByte()
     }
@@ -48,7 +48,7 @@ internal class PrePendingByteReader(
         /* Read prepended bytes first */
         while (bytesRead < count && prependedBytesBuffer.isNotEmpty()) {
 
-            bytes[bytesRead] = prependedBytesBuffer.removeFirst()
+            bytes[bytesRead] = prependedBytesBuffer.removeAt(0)
 
             bytesRead++
         }
