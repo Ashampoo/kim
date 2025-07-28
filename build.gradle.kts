@@ -11,7 +11,7 @@ plugins {
     id("org.jetbrains.kotlinx.kover") version "0.9.1"
     id("com.asarkar.gradle.build-time-tracker") version "5.0.1"
     id("me.qoomon.git-versioning") version "6.4.4"
-    id("com.goncalossilva.resources") version "0.10.0"
+    id("com.goncalossilva.resources") version "0.10.1"
     id("com.github.ben-manes.versions") version "0.52.0"
     id("com.vanniktech.maven.publish") version "0.34.0"
 }
@@ -23,7 +23,7 @@ repositories {
 
 val productName: String = "Ashampoo Kim"
 
-val ktorVersion: String = "3.2.1"
+val ktorVersion: String = "3.2.2"
 val xmpCoreVersion: String = "1.5.2"
 val dateTimeVersion: String = "0.7.1"
 val kotlinxIoVersion: String = "0.8.0"
