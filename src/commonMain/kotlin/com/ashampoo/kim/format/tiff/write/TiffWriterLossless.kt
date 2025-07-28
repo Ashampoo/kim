@@ -336,7 +336,10 @@ public class TiffWriterLossless(
 
             newExifBytesLength -= lastRange.length
 
-            filteredRewritableSpaceRanges.removeLast()
+            /*
+             * Don't use removeLast() here due to Android incompatibility.
+             */
+            filteredRewritableSpaceRanges.removeAt(filteredRewritableSpaceRanges.size - 1)
         }
 
         return filteredRewritableSpaceRanges to newExifBytesLength
