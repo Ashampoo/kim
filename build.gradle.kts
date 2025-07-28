@@ -326,12 +326,13 @@ android {
 
     namespace = "com.ashampoo.kim"
 
-    compileSdk = 36
+    compileSdk = libs.versions.android.compile.sdk.get().toInt()
+    buildToolsVersion = libs.versions.android.build.tools.get()
 
     sourceSets["main"].res.srcDirs("src/commonMain/resources")
 
     defaultConfig {
-        minSdk = 21
+        minSdk = libs.versions.android.min.sdk.get().toInt()
     }
 
     compileOptions {
