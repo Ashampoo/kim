@@ -249,7 +249,7 @@ public class TiffWriterLossless(
         while (unplacedItems.isNotEmpty()) {
 
             /* Pop off largest unplaced item. */
-            val outputItem = unplacedItems.removeFirst()
+            val outputItem = unplacedItems.removeAt(0)
 
             val outputItemLength = outputItem.getItemLength()
 
