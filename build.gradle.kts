@@ -390,6 +390,8 @@ mavenPublishing {
                 url = "https://stefan-oltmann.de/"
                 organization = "Software Rangers GmbH"
                 organizationUrl = "https://software-rangers.com/"
+                roles = listOf("maintainer", "developer")
+                properties = mapOf("github" to "StefanOltmann")
             }
         }
 
