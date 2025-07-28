@@ -16,14 +16,15 @@
 package com.ashampoo.kim.common
 
 import kotlinx.datetime.LocalDateTime
+import kotlinx.datetime.number
 
 private const val YEAR_LENGTH = 4
 
 internal fun LocalDateTime.toExifDateString(): String {
 
     return year.toString().padStart(YEAR_LENGTH, '0') + ":" +
-        monthNumber.toString().padStart(2, '0') + ":" +
-        dayOfMonth.toString().padStart(2, '0') + " " +
+        month.number.toString().padStart(2, '0') + ":" +
+        day.toString().padStart(2, '0') + " " +
         hour.toString().padStart(2, '0') + ":" +
         minute.toString().padStart(2, '0') + ":" +
         second.toString().padStart(2, '0')
