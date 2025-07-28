@@ -375,7 +375,7 @@ mavenPublishing {
 
         name = productName
         description = "Kotlin Multiplatform library for image metadata manipulation"
-        url = "https://github.com/Ashampoo/kim"
+        url = "https://github.com/Software-Rangers/kim"
 
         licenses {
             license {
@@ -386,14 +386,14 @@ mavenPublishing {
 
         developers {
             developer {
-                name = "Ashampoo GmbH & Co. KG"
-                url = "https://www.ashampoo.com/"
+                name = "Software Rangers GmbH"
+                url = "https://software-rangers.com/"
             }
         }
 
         scm {
-            url = "https://github.com/Ashampoo/kim"
-            connection = "scm:git:git://github.com/Ashampoo/kim.git"
+            url = "https://github.com/Software-Rangers/kim"
+            connection = "scm:git:git://github.com/Software-Rangers/kim.git"
         }
     }
 }
