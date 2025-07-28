@@ -248,7 +248,10 @@ public class TiffWriterLossless(
 
         while (unplacedItems.isNotEmpty()) {
 
-            /* Pop off largest unplaced item. */
+            /*
+             * Pop off largest unplaced item.
+             * Note: Don't use removeFirst() for Android compatibility here.
+             */
             val outputItem = unplacedItems.removeAt(0)
 
             val outputItemLength = outputItem.getItemLength()
@@ -337,7 +340,7 @@ public class TiffWriterLossless(
             newExifBytesLength -= lastRange.length
 
             /*
-             * Don't use removeLast() here due to Android incompatibility.
+             * Note: Don't use removeLast() here due to Android incompatibility.
              */
             filteredRewritableSpaceRanges.removeAt(filteredRewritableSpaceRanges.size - 1)
         }
