@@ -4,16 +4,16 @@ import org.jetbrains.kotlin.gradle.plugin.mpp.NativeBuildType
 import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
 
 plugins {
-    kotlin("multiplatform") version "2.2.0"
-    id("com.android.library") version "8.9.3"
+    alias(libs.plugins.kotlin.multiplatform)
+    alias(libs.plugins.android.library)
     id("signing")
-    id("io.gitlab.arturbosch.detekt") version "1.23.8"
-    id("org.jetbrains.kotlinx.kover") version "0.9.1"
-    id("com.asarkar.gradle.build-time-tracker") version "5.0.1"
-    id("me.qoomon.git-versioning") version "6.4.4"
-    id("com.goncalossilva.resources") version "0.10.1"
-    id("com.github.ben-manes.versions") version "0.52.0"
-    id("com.vanniktech.maven.publish") version "0.34.0"
+    alias(libs.plugins.detekt)
+    alias(libs.plugins.kover)
+    alias(libs.plugins.build.time.tracker)
+    alias(libs.plugins.git.versioning)
+    alias(libs.plugins.resources)
+    alias(libs.plugins.versions)
+    alias(libs.plugins.maven.publish)
 }
 
 repositories {
@@ -22,11 +22,6 @@ repositories {
 }
 
 val productName: String = "Ashampoo Kim"
-
-val ktorVersion: String = "3.2.2"
-val xmpCoreVersion: String = "1.5.2"
-val dateTimeVersion: String = "0.7.1"
-val kotlinxIoVersion: String = "0.8.0"
 
 description = productName
 group = "com.ashampoo"
@@ -70,7 +65,7 @@ kover {
 }
 
 dependencies {
-    detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:1.23.8")
+    detektPlugins(libs.detekt.formatting)
 }
 
 kotlin {
@@ -142,10 +137,10 @@ kotlin {
         dependencies {
 
             /* Date handling */
-            implementation("org.jetbrains.kotlinx:kotlinx-datetime:$dateTimeVersion")
+            implementation(libs.kotlinx.datetime)
 
             /* XMP handling */
-            api("com.ashampoo:xmpcore:$xmpCoreVersion")
+            api(libs.xmpcore)
         }
     }
 
@@ -156,7 +151,7 @@ kotlin {
             /* Kotlin Test */
             implementation(kotlin("test"))
 
-            implementation("org.jetbrains.kotlinx:kotlinx-io-core:$kotlinxIoVersion")
+            implementation(libs.kotlinx.io.core)
         }
     }
 
@@ -202,14 +197,14 @@ kotlin {
              *
              * Not available in commonMain due to missing WASM support.
              */
-            api("io.ktor:ktor-io:$ktorVersion")
+            api(libs.ktor.io)
 
             /*
              * Multiplatform file access
              *
              * Not available in commonMain due to missing JS browser support.
              */
-            api("org.jetbrains.kotlinx:kotlinx-io-core:$kotlinxIoVersion")
+            api(libs.kotlinx.io.core)
         }
     }
 
@@ -309,7 +304,7 @@ kotlin {
 
         dependencies {
 
-            implementation("org.jetbrains.kotlinx:kotlinx-browser:0.3")
+            implementation(libs.kotlinx.browser)
 
             implementation(npm("pako", "2.1.0"))
         }
