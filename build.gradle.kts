@@ -379,10 +379,17 @@ mavenPublishing {
             }
         }
 
+        organization {
+            name = "Software Rangers GmbH"
+            url = "https://software-rangers.com/"
+        }
+
         developers {
             developer {
-                name = "Software Rangers GmbH"
-                url = "https://software-rangers.com/"
+                name = "Stefan Oltmann"
+                url = "https://stefan-oltmann.de/"
+                organization = "Software Rangers GmbH"
+                organizationUrl = "https://software-rangers.com/"
             }
         }
 
