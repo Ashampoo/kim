@@ -306,7 +306,7 @@ kotlin {
 
             implementation(libs.kotlinx.browser)
 
-            implementation(npm("pako", "2.1.0"))
+            implementation(npm("pako", libs.versions.pako.get()))
         }
     }
 }
@@ -326,8 +326,7 @@ android {
 
     namespace = "com.ashampoo.kim"
 
-    // For API 35 tests fail. Something seems incompatible.
-    compileSdk = 34
+    compileSdk = 36
 
     sourceSets["main"].res.srcDirs("src/commonMain/resources")
 
