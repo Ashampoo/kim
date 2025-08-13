@@ -19,7 +19,6 @@ plugins {
 repositories {
     google()
     mavenCentral()
-    mavenLocal()
 }
 
 val productName: String = "Ashampoo Kim"
