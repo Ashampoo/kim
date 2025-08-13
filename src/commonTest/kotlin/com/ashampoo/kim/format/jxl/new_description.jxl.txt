@@ -1,0 +1,290 @@
+File format : JXL
+Resolution  : null
+---- TIFF ----
+Version 42
+Little-endian (Intel, II)
+---- Directory IFD0 @ 8 ----
+0000000010 0x010e ImageDescription = Äußerst süße Vögel fliegen durch die Lüfte.
+0000000022 0x010f Make = SONY
+0000000034 0x0110 Model = DSC-RX100
+0000000046 0x0112 Orientation = 1
+0000000058 0x011a XResolution = 240/1 (240.0)
+0000000070 0x011b YResolution = 240/1 (240.0)
+0000000082 0x0128 ResolutionUnit = 2
+0000000094 0x0131 Software = Adobe Photoshop Lightroom Classic 8.3.1 (Windows)
+0000000106 0x0132 ModifyDate = 2019:08:04 21:22:41
+0000000118 0x8769 ExifOffset = 286
+
+---- Directory ExifIFD @ 286 ----
+0000000288 0x829a ExposureTime = 1/250 (0.004)
+0000000300 0x829d FNumber = 8/1 (8.0)
+0000000312 0x8822 ExposureProgram = 1
+0000000324 0x8827 ISO = 125
+0000000336 0x8830 SensitivityType = 2
+0000000348 0x8832 RecommendedExposureIndex = 125
+0000000360 0x9000 ExifVersion = [0x30, 0x32, 0x33, 0x31]
+0000000372 0x9003 DateTimeOriginal = 2019:02:25 06:14:16
+0000000384 0x9004 DateTimeDigitized = 2019:02:25 06:14:16
+0000000396 0x9010 OffsetTime = +02:00
+0000000408 0x9201 ShutterSpeedValue = 7965784/1000000 (7.965784)
+0000000420 0x9202 ApertureValue = 6/1 (6.0)
+0000000432 0x9203 BrightnessValue = 17574/2560 (6.864844)
+0000000444 0x9204 ExposureCompensation = 0/10 (0.0)
+0000000456 0x9205 MaxApertureValue = 434/256 (1.695313)
+0000000468 0x9207 MeteringMode = 3
+0000000480 0x9208 LightSource = 0
+0000000492 0x9209 Flash = 15
+0000000504 0x920a FocalLength = 1040/100 (10.4)
+0000000516 0xa001 ColorSpace = 1
+0000000528 0xa20e FocalPlaneXResolution = 135838255/32768 (4145.454559)
+0000000540 0xa20f FocalPlaneYResolution = 135838255/32768 (4145.454559)
+0000000552 0xa210 FocalPlaneResolutionUnit = 3
+0000000564 0xa300 FileSource = 3
+0000000576 0xa301 SceneType = 1
+0000000588 0xa401 CustomRendered = 0
+0000000600 0xa402 ExposureMode = 1
+0000000612 0xa403 WhiteBalance = 0
+0000000624 0xa404 DigitalZoomRatio = 16/16 (1.0)
+0000000636 0xa405 FocalLengthIn35mmFormat = 28
+0000000648 0xa406 SceneCaptureType = 0
+0000000660 0xa408 Contrast = 0
+0000000672 0xa409 Saturation = 0
+0000000684 0xa40a Sharpness = 0
+0000000696 0xa432 LensSpecification = [1040/100 (10.4), 3710/100 (37.1), 18/10 (1.8), 49/10 (4.9)]
+0000000708 0xa434 LensModel = 28-100mm F1.8-4.9
+
+---- Directory IFD1 @ 910 ----
+0000000912 0x0103 Compression = 6
+0000000924 0x011a XResolution = 72/1 (72.0)
+0000000936 0x011b YResolution = 72/1 (72.0)
+0000000948 0x0128 ResolutionUnit = 2
+0000000960 0x0201 JpgFromRawStart = 1004
+0000000972 0x0202 JpgFromRawLength = 11246
+
+---- XMP ----
+<?xpacket begin="﻿" id="W5M0MpCehiHzreSzNTczkc9d"?>
+<x:xmpmeta xmlns:x="adobe:ns:meta/" x:xmptk="Ashampoo XMP Core 1.6.1">
+  <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+    <rdf:Description rdf:about=""
+        xmlns:aux="http://ns.adobe.com/exif/1.0/aux/"
+        xmlns:crs="http://ns.adobe.com/camera-raw-settings/1.0/"
+        xmlns:dc="http://purl.org/dc/elements/1.1/"
+        xmlns:exifEX="http://cipa.jp/exif/1.0/"
+        xmlns:photoshop="http://ns.adobe.com/photoshop/1.0/"
+        xmlns:xmp="http://ns.adobe.com/xap/1.0/"
+        xmlns:xmpMM="http://ns.adobe.com/xap/1.0/mm/"
+        xmlns:stRef="http://ns.adobe.com/xap/1.0/sType/ResourceRef#"
+        xmlns:stEvt="http://ns.adobe.com/xap/1.0/sType/ResourceEvent#"
+      aux:DistortionCorrectionAlreadyApplied="True"
+      aux:LateralChromaticAberrationCorrectionAlreadyApplied="True"
+      aux:Lens="28-100mm F1.8-4.9"
+      aux:LensDistortInfo="34683/32768 -219328315/1073741824 52441832/1073741824 -7678158/1073741824"
+      aux:LensInfo="1040/100 3710/100 18/10 49/10"
+      crs:AlreadyApplied="True"
+      crs:AutoLateralCA="0"
+      crs:Blacks2012="0"
+      crs:BlueHue="0"
+      crs:BlueSaturation="0"
+      crs:CameraProfile="Embedded"
+      crs:CameraProfileDigest="54650A341B5B5CCAE8442D0B43A92BCE"
+      crs:Clarity2012="0"
+      crs:ColorNoiseReduction="0"
+      crs:Contrast2012="0"
+      crs:ConvertToGrayscale="False"
+      crs:DefringeGreenAmount="0"
+      crs:DefringeGreenHueHi="60"
+      crs:DefringeGreenHueLo="40"
+      crs:DefringePurpleAmount="0"
+      crs:DefringePurpleHueHi="70"
+      crs:DefringePurpleHueLo="30"
+      crs:Dehaze="0"
+      crs:Exposure2012="+0.40"
+      crs:GrainAmount="0"
+      crs:GreenHue="0"
+      crs:GreenSaturation="0"
+      crs:HasCrop="False"
+      crs:HasSettings="True"
+      crs:Highlights2012="0"
+      crs:HueAdjustmentAqua="0"
+      crs:HueAdjustmentBlue="0"
+      crs:HueAdjustmentGreen="0"
+      crs:HueAdjustmentMagenta="0"
+      crs:HueAdjustmentOrange="0"
+      crs:HueAdjustmentPurple="0"
+      crs:HueAdjustmentRed="0"
+      crs:HueAdjustmentYellow="0"
+      crs:IncrementalTemperature="0"
+      crs:IncrementalTint="0"
+      crs:LensManualDistortionAmount="0"
+      crs:LensProfileEnable="0"
+      crs:LensProfileSetup="LensDefaults"
+      crs:LuminanceAdjustmentAqua="0"
+      crs:LuminanceAdjustmentBlue="0"
+      crs:LuminanceAdjustmentGreen="0"
+      crs:LuminanceAdjustmentMagenta="0"
+      crs:LuminanceAdjustmentOrange="0"
+      crs:LuminanceAdjustmentPurple="0"
+      crs:LuminanceAdjustmentRed="0"
+      crs:LuminanceAdjustmentYellow="0"
+      crs:LuminanceSmoothing="0"
+      crs:OverrideLookVignette="False"
+      crs:ParametricDarks="0"
+      crs:ParametricHighlightSplit="75"
+      crs:ParametricHighlights="0"
+      crs:ParametricLights="0"
+      crs:ParametricMidtoneSplit="50"
+      crs:ParametricShadowSplit="25"
+      crs:ParametricShadows="0"
+      crs:PerspectiveAspect="0"
+      crs:PerspectiveHorizontal="0"
+      crs:PerspectiveRotate="0.0"
+      crs:PerspectiveScale="100"
+      crs:PerspectiveUpright="0"
+      crs:PerspectiveVertical="0"
+      crs:PerspectiveX="0.00"
+      crs:PerspectiveY="0.00"
+      crs:PostCropVignetteAmount="0"
+      crs:ProcessVersion="11.0"
+      crs:RawFileName=""
+      crs:RedHue="0"
+      crs:RedSaturation="0"
+      crs:Saturation="0"
+      crs:SaturationAdjustmentAqua="0"
+      crs:SaturationAdjustmentBlue="0"
+      crs:SaturationAdjustmentGreen="0"
+      crs:SaturationAdjustmentMagenta="0"
+      crs:SaturationAdjustmentOrange="0"
+      crs:SaturationAdjustmentPurple="0"
+      crs:SaturationAdjustmentRed="0"
+      crs:SaturationAdjustmentYellow="0"
+      crs:ShadowTint="0"
+      crs:Shadows2012="0"
+      crs:SharpenDetail="25"
+      crs:SharpenEdgeMasking="0"
+      crs:SharpenRadius="+1.0"
+      crs:Sharpness="0"
+      crs:SplitToningBalance="0"
+      crs:SplitToningHighlightHue="0"
+      crs:SplitToningHighlightSaturation="0"
+      crs:SplitToningShadowHue="0"
+      crs:SplitToningShadowSaturation="0"
+      crs:Texture="0"
+      crs:ToneCurveName="Linear"
+      crs:ToneCurveName2012="Linear"
+      crs:ToneMapStrength="0"
+      crs:UprightCenterMode="0"
+      crs:UprightCenterNormX="0.5"
+      crs:UprightCenterNormY="0.5"
+      crs:UprightFocalLength35mm="35"
+      crs:UprightFocalMode="0"
+      crs:UprightFourSegmentsCount="0"
+      crs:UprightPreview="False"
+      crs:UprightTransformCount="6"
+      crs:UprightVersion="151388160"
+      crs:Version="11.3"
+      crs:Vibrance="0"
+      crs:VignetteAmount="0"
+      crs:WhiteBalance="As Shot"
+      crs:Whites2012="0"
+      dc:format="image/jpeg"
+      exifEX:LensModel="28-100mm F1.8-4.9"
+      photoshop:DateCreated="2019-02-25T06:14:16"
+      xmp:CreateDate="2019-02-25T06:14:16"
+      xmp:CreatorTool="Adobe Photoshop Lightroom Classic 8.3.1 (Windows)"
+      xmp:MetadataDate="2019-08-04T21:22:41+02:00"
+      xmp:ModifyDate="2019-08-04T21:22:41+02:00"
+      xmp:Rating="0"
+      xmpMM:DocumentID="xmp.did:ce2000f3-5b24-1346-bf4e-cd945cb900a8"
+      xmpMM:InstanceID="xmp.iid:ce2000f3-5b24-1346-bf4e-cd945cb900a8"
+      xmpMM:OriginalDocumentID="F44F7718D2EE77F231D30D6F8BD43643">
+      <crs:Look
+        crs:Name=""/>
+      <crs:ToneCurve>
+        <rdf:Seq>
+          <rdf:li>0, 0</rdf:li>
+          <rdf:li>255, 255</rdf:li>
+        </rdf:Seq>
+      </crs:ToneCurve>
+      <crs:ToneCurveBlue>
+        <rdf:Seq>
+          <rdf:li>0, 0</rdf:li>
+          <rdf:li>255, 255</rdf:li>
+        </rdf:Seq>
+      </crs:ToneCurveBlue>
+      <crs:ToneCurveGreen>
+        <rdf:Seq>
+          <rdf:li>0, 0</rdf:li>
+          <rdf:li>255, 255</rdf:li>
+        </rdf:Seq>
+      </crs:ToneCurveGreen>
+      <crs:ToneCurvePV2012>
+        <rdf:Seq>
+          <rdf:li>0, 0</rdf:li>
+          <rdf:li>255, 255</rdf:li>
+        </rdf:Seq>
+      </crs:ToneCurvePV2012>
+      <crs:ToneCurvePV2012Blue>
+        <rdf:Seq>
+          <rdf:li>0, 0</rdf:li>
+          <rdf:li>255, 255</rdf:li>
+        </rdf:Seq>
+      </crs:ToneCurvePV2012Blue>
+      <crs:ToneCurvePV2012Green>
+        <rdf:Seq>
+          <rdf:li>0, 0</rdf:li>
+          <rdf:li>255, 255</rdf:li>
+        </rdf:Seq>
+      </crs:ToneCurvePV2012Green>
+      <crs:ToneCurvePV2012Red>
+        <rdf:Seq>
+          <rdf:li>0, 0</rdf:li>
+          <rdf:li>255, 255</rdf:li>
+        </rdf:Seq>
+      </crs:ToneCurvePV2012Red>
+      <crs:ToneCurveRed>
+        <rdf:Seq>
+          <rdf:li>0, 0</rdf:li>
+          <rdf:li>255, 255</rdf:li>
+        </rdf:Seq>
+      </crs:ToneCurveRed>
+      <dc:description>
+        <rdf:Alt>
+          <rdf:li xml:lang="x-default">Äußerst süße Vögel fliegen durch die Lüfte.</rdf:li>
+        </rdf:Alt>
+      </dc:description>
+      <xmpMM:DerivedFrom
+        stRef:documentID="adobe:docid:photoshop:402c59b6-9b47-284c-bf69-c29ff9849814"
+        stRef:instanceID="xmp.iid:5ed51343-dc41-7a4d-bbc9-d779a5a42cf5"
+        stRef:originalDocumentID="F44F7718D2EE77F231D30D6F8BD43643"/>
+      <xmpMM:History>
+        <rdf:Seq>
+          <rdf:li
+            stEvt:action="derived"
+            stEvt:parameters="converted from image/x-sony-arw to image/tiff"/>
+          <rdf:li
+            stEvt:action="saved"
+            stEvt:changed="/"
+            stEvt:instanceID="xmp.iid:1b7c7f7f-f2d3-3644-beb2-46bf86b3b9f7"
+            stEvt:softwareAgent="Adobe Photoshop Camera Raw 11.0 (Windows)"
+            stEvt:when="2019-03-14T22:13:19+01:00"/>
+          <rdf:li
+            stEvt:action="saved"
+            stEvt:changed="/"
+            stEvt:instanceID="xmp.iid:5ed51343-dc41-7a4d-bbc9-d779a5a42cf5"
+            stEvt:softwareAgent="Adobe Photoshop CC 2019 (Windows)"
+            stEvt:when="2019-03-14T22:29:25+01:00"/>
+          <rdf:li
+            stEvt:action="derived"
+            stEvt:parameters="converted from image/tiff to image/jpeg, saved to new location"/>
+          <rdf:li
+            stEvt:action="saved"
+            stEvt:changed="/"
+            stEvt:instanceID="xmp.iid:ce2000f3-5b24-1346-bf4e-cd945cb900a8"
+            stEvt:softwareAgent="Adobe Photoshop Lightroom Classic 8.3.1 (Windows)"
+            stEvt:when="2019-08-04T21:22:41+02:00"/>
+        </rdf:Seq>
+      </xmpMM:History>
+    </rdf:Description>
+  </rdf:RDF>
+</x:xmpmeta>
+<?xpacket end="w"?>

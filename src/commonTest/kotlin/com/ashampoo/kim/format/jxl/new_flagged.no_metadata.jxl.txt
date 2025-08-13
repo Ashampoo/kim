@@ -1,0 +1,18 @@
+File format : JXL
+Resolution  : null
+---- XMP ----
+<?xpacket begin="﻿" id="W5M0MpCehiHzreSzNTczkc9d"?>
+<x:xmpmeta xmlns:x="adobe:ns:meta/" x:xmptk="Ashampoo XMP Core 1.6.1">
+  <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+    <rdf:Description rdf:about=""
+        xmlns:MY="http://ns.mylollc.com/MyloEdit/"
+        xmlns:acdsee="http://ns.acdsee.com/iptc/1.0/"
+        xmlns:narrative="http://ns.narrative.so/narrative_select/1.0/"
+        xmlns:xmpDM="http://ns.adobe.com/xmp/1.0/DynamicMedia/"
+      MY:flag="true"
+      acdsee:tagged="True"
+      narrative:Tagged="True"
+      xmpDM:pick="1"/>
+  </rdf:RDF>
+</x:xmpmeta>
+<?xpacket end="w"?>
