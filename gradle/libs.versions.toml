@@ -12,11 +12,11 @@ resources = "0.10.1"
 versions-plugin = "0.52.0"
 maven-publish = "0.34.0"
 
-ktor = "3.2.2"
+ktor = "3.2.3"
 xmpcore = "1.6.1"
 kotlinx-datetime = "0.7.1"
 kotlinx-io = "0.8.0"
-kotlinx-browser = "0.3"
+kotlinx-browser = "0.4"
 pako = "2.1.0"
 
 [libraries]
