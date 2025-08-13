@@ -197,14 +197,14 @@ kotlin {
              *
              * Not available in commonMain due to missing WASM support.
              */
-            api(libs.ktor.io)
+            implementation(libs.ktor.io)
 
             /*
              * Multiplatform file access
              *
              * Not available in commonMain due to missing JS browser support.
              */
-            api(libs.kotlinx.io.core)
+            implementation(libs.kotlinx.io.core)
         }
     }
 
@@ -374,7 +374,7 @@ mavenPublishing {
 
         licenses {
             license {
-                name = "The Apache License, Version 2.0"
+                name = "Apache License 2.0"
                 url = "https://www.apache.org/licenses/LICENSE-2.0.txt"
             }
         }
