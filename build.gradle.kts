@@ -19,6 +19,7 @@ plugins {
 repositories {
     google()
     mavenCentral()
+    mavenLocal()
 }
 
 val productName: String = "Ashampoo Kim"
@@ -197,14 +198,14 @@ kotlin {
              *
              * Not available in commonMain due to missing WASM support.
              */
-            api(libs.ktor.io)
+            implementation(libs.ktor.io)
 
             /*
              * Multiplatform file access
              *
              * Not available in commonMain due to missing JS browser support.
              */
-            api(libs.kotlinx.io.core)
+            implementation(libs.kotlinx.io.core)
         }
     }
 
