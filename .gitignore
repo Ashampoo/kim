@@ -9,7 +9,7 @@
 /.idea/deploymentTargetDropDown.xml
 /.idea/gradle.xml
 /.idea/jarRepositories.xml
-/.idea/kim.iml
+/.idea/*.iml
 /.idea/kotlinScripting.xml
 /.idea/kotlinc.xml
 /.idea/libraries/
