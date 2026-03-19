@@ -32,7 +32,7 @@ public class KtorInputByteReader(
     source: Source
 ) : ByteReader {
 
-    private val bytes: ByteArray = source.readByteArray()
+    private val bytes: ByteArray = source.use { it.readByteArray() }
 
     override val contentLength: Long = bytes.size.toLong()
 
