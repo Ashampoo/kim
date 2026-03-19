@@ -15,8 +15,6 @@
  */
 package com.ashampoo.kim.input
 
-import io.ktor.utils.io.core.endOfInput
-import io.ktor.utils.io.core.remaining
 import kotlinx.io.Source
 import kotlinx.io.readByteArray
 
@@ -24,19 +22,43 @@ import kotlinx.io.readByteArray
  * This class provides a convenient way to parse metadata directly from
  * a Ktor HttpClient Input. It is particularly useful for parsing metadata
  * of files hosted on a cloud service, which is a common use case.
+ *
+ * The source is read into a byte array at construction time because
+ * [Source.remaining] returns 0 for unbuffered or streaming sources,
+ * which would cause [contentLength] to be 0 and metadata parsing to
+ * return null.
  */
 public class KtorInputByteReader(
-    private val source: Source
+    source: Source
 ) : ByteReader {
 
-    override val contentLength: Long = source.remaining
+    private val bytes: ByteArray = source.readByteArray()
 
-    override fun readByte(): Byte? =
-        if (source.endOfInput) null else source.readByte()
+    override val contentLength: Long = bytes.size.toLong()
 
-    override fun readBytes(count: Int): ByteArray =
-        source.readByteArray(minOf(count, source.remaining.toInt()))
+    private var position: Int = 0
 
-    override fun close(): Unit =
-        source.close()
+    override fun readByte(): Byte? {
+
+        if (position >= bytes.size)
+            return null
+
+        return bytes[position++]
+    }
+
+    override fun readBytes(count: Int): ByteArray {
+
+        val remaining = bytes.size - position
+        val bytesToRead = minOf(count, remaining)
+
+        val result = bytes.copyOfRange(position, position + bytesToRead)
+
+        position += bytesToRead
+
+        return result
+    }
+
+    override fun close() {
+        /* Bytes are already buffered; nothing to close. */
+    }
 }
